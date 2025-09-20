@@ -2,7 +2,7 @@
   "name": "profound",
   "version": "0.0.1",
   "description": "The official TypeScript library for the Profound API",
-  "author": "Profound <>",
+  "author": "Profound <support@tryprofound.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
