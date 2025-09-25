@@ -434,14 +434,14 @@ describe('instantiate client', () => {
 
   test('with environment variable arguments', () => {
     // set options via env var
-    process.env['COINGECKO_PRO_API_KEY'] = 'My Header API Key';
+    process.env['PROFOUND_API_KEY'] = 'My Header API Key';
     const client = new Profound();
     expect(client.headerAPIKey).toBe('My Header API Key');
   });
 
   test('with overridden environment variable arguments', () => {
     // set options via env var
-    process.env['COINGECKO_PRO_API_KEY'] = 'another My Header API Key';
+    process.env['PROFOUND_API_KEY'] = 'another My Header API Key';
     const client = new Profound({ headerAPIKey: 'My Header API Key' });
     expect(client.headerAPIKey).toBe('My Header API Key');
   });

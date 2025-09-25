@@ -149,8 +149,8 @@ export class Profound {
   /**
    * API Client for interfacing with the Profound API.
    *
-   * @param {string | null | undefined} [opts.headerAPIKey=process.env['COINGECKO_PRO_API_KEY'] ?? null]
-   * @param {string | null | undefined} [opts.queryAPIKey=process.env['COINGECKO_DEMO_API_KEY'] ?? null]
+   * @param {string | null | undefined} [opts.headerAPIKey=process.env['PROFOUND_API_KEY'] ?? null]
+   * @param {string | null | undefined} [opts.queryAPIKey=process.env['PROFOUND_API_KEY'] ?? null]
    * @param {string} [opts.baseURL=process.env['PROFOUND_BASE_URL'] ?? https://api.tryprofound.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -161,8 +161,8 @@ export class Profound {
    */
   constructor({
     baseURL = readEnv('PROFOUND_BASE_URL'),
-    headerAPIKey = readEnv('COINGECKO_PRO_API_KEY') ?? null,
-    queryAPIKey = readEnv('COINGECKO_DEMO_API_KEY') ?? null,
+    headerAPIKey = readEnv('PROFOUND_API_KEY') ?? null,
+    queryAPIKey = readEnv('PROFOUND_API_KEY') ?? null,
     ...opts
   }: ClientOptions = {}) {
     const options: ClientOptions = {
