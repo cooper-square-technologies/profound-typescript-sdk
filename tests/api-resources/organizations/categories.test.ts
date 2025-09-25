@@ -10,7 +10,7 @@ const client = new Profound({
 describe('resource categories', () => {
   // Prism tests are disabled
   test.skip('list', async () => {
-    const responsePromise = client.org.categories.list();
+    const responsePromise = client.organizations.categories.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,8 +21,8 @@ describe('resource categories', () => {
   });
 
   // Prism tests are disabled
-  test.skip('retrievePrompts', async () => {
-    const responsePromise = client.org.categories.retrievePrompts('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
+  test.skip('prompts', async () => {
+    const responsePromise = client.organizations.categories.prompts('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -33,8 +33,8 @@ describe('resource categories', () => {
   });
 
   // Prism tests are disabled
-  test.skip('retrieveTags', async () => {
-    const responsePromise = client.org.categories.retrieveTags('category_id');
+  test.skip('tags', async () => {
+    const responsePromise = client.organizations.categories.tags('category_id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -45,8 +45,8 @@ describe('resource categories', () => {
   });
 
   // Prism tests are disabled
-  test.skip('retrieveTopics', async () => {
-    const responsePromise = client.org.categories.retrieveTopics('category_id');
+  test.skip('topics', async () => {
+    const responsePromise = client.organizations.categories.topics('category_id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

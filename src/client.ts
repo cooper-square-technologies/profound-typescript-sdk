@@ -16,24 +16,24 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { Pagination, PromptGetAnswersParams, PromptGetAnswersResponse, Prompts } from './resources/prompts';
+import { Pagination, PromptAnswersParams, PromptAnswersResponse, Prompts } from './resources/prompts';
 import {
   Info,
-  ReportQueryCitationsParams,
-  ReportQueryCitationsResponse,
-  ReportQuerySentimentParams,
-  ReportQueryVisibilityParams,
+  ReportCitationsParams,
+  ReportCitationsResponse,
+  ReportSentimentParams,
+  ReportVisibilityParams,
   Reports,
   Response,
   Result,
 } from './resources/reports';
 import { Logs } from './resources/logs/logs';
 import {
-  Org,
-  OrgRetrieveDomainsResponse,
-  OrgRetrieveModelsResponse,
-  OrgRetrieveRegionsResponse,
-} from './resources/org/org';
+  OrganizationDomainsResponse,
+  OrganizationModelsResponse,
+  OrganizationRegionsResponse,
+  Organizations,
+} from './resources/organizations/organizations';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -742,13 +742,13 @@ export class Profound {
 
   static toFile = Uploads.toFile;
 
-  org: API.Org = new API.Org(this);
+  organizations: API.Organizations = new API.Organizations(this);
   prompts: API.Prompts = new API.Prompts(this);
   reports: API.Reports = new API.Reports(this);
   logs: API.Logs = new API.Logs(this);
 }
 
-Profound.Org = Org;
+Profound.Organizations = Organizations;
 Profound.Prompts = Prompts;
 Profound.Reports = Reports;
 Profound.Logs = Logs;
@@ -757,17 +757,17 @@ export declare namespace Profound {
   export type RequestOptions = Opts.RequestOptions;
 
   export {
-    Org as Org,
-    type OrgRetrieveDomainsResponse as OrgRetrieveDomainsResponse,
-    type OrgRetrieveModelsResponse as OrgRetrieveModelsResponse,
-    type OrgRetrieveRegionsResponse as OrgRetrieveRegionsResponse,
+    Organizations as Organizations,
+    type OrganizationDomainsResponse as OrganizationDomainsResponse,
+    type OrganizationModelsResponse as OrganizationModelsResponse,
+    type OrganizationRegionsResponse as OrganizationRegionsResponse,
   };
 
   export {
     Prompts as Prompts,
     type Pagination as Pagination,
-    type PromptGetAnswersResponse as PromptGetAnswersResponse,
-    type PromptGetAnswersParams as PromptGetAnswersParams,
+    type PromptAnswersResponse as PromptAnswersResponse,
+    type PromptAnswersParams as PromptAnswersParams,
   };
 
   export {
@@ -775,10 +775,10 @@ export declare namespace Profound {
     type Info as Info,
     type Response as Response,
     type Result as Result,
-    type ReportQueryCitationsResponse as ReportQueryCitationsResponse,
-    type ReportQueryCitationsParams as ReportQueryCitationsParams,
-    type ReportQuerySentimentParams as ReportQuerySentimentParams,
-    type ReportQueryVisibilityParams as ReportQueryVisibilityParams,
+    type ReportCitationsResponse as ReportCitationsResponse,
+    type ReportCitationsParams as ReportCitationsParams,
+    type ReportSentimentParams as ReportSentimentParams,
+    type ReportVisibilityParams as ReportVisibilityParams,
   };
 
   export { Logs as Logs };

@@ -8,7 +8,7 @@ export class Prompts extends APIResource {
   /**
    * Get the answers for the prompts.
    */
-  getAnswers(body: PromptGetAnswersParams, options?: RequestOptions): APIPromise<PromptGetAnswersResponse> {
+  answers(body: PromptAnswersParams, options?: RequestOptions): APIPromise<PromptAnswersResponse> {
     return this._client.post('/v1/prompts/answers', { body, ...options });
   }
 }
@@ -31,13 +31,13 @@ export interface Pagination {
 /**
  * Response for the answers endpoint.
  */
-export interface PromptGetAnswersResponse {
-  data: Array<PromptGetAnswersResponse.Data>;
+export interface PromptAnswersResponse {
+  data: Array<PromptAnswersResponse.Data>;
 
   info: { [key: string]: unknown };
 }
 
-export namespace PromptGetAnswersResponse {
+export namespace PromptAnswersResponse {
   /**
    * Raw data for the answers endpoint.
    */
@@ -72,16 +72,16 @@ export namespace PromptGetAnswersResponse {
   }
 }
 
-export interface PromptGetAnswersParams {
+export interface PromptAnswersParams {
   category_id: string;
 
   end_date: string;
 
   start_date: string;
 
-  filters?: Array<PromptGetAnswersParams.Filter>;
+  filters?: Array<PromptAnswersParams.Filter>;
 
-  include?: PromptGetAnswersParams.Include;
+  include?: PromptAnswersParams.Include;
 
   /**
    * Pagination parameters for the results. Default is 10,000 rows with no offset.
@@ -89,7 +89,7 @@ export interface PromptGetAnswersParams {
   pagination?: Pagination;
 }
 
-export namespace PromptGetAnswersParams {
+export namespace PromptAnswersParams {
   export interface Filter {
     field: 'region' | 'topic' | 'model' | 'prompt_type' | 'prompt' | 'tag';
 
@@ -145,7 +145,7 @@ export namespace PromptGetAnswersParams {
 export declare namespace Prompts {
   export {
     type Pagination as Pagination,
-    type PromptGetAnswersResponse as PromptGetAnswersResponse,
-    type PromptGetAnswersParams as PromptGetAnswersParams,
+    type PromptAnswersResponse as PromptAnswersResponse,
+    type PromptAnswersParams as PromptAnswersParams,
   };
 }

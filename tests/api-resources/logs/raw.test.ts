@@ -9,8 +9,8 @@ const client = new Profound({
 
 describe('resource raw', () => {
   // Prism tests are disabled
-  test.skip('getBots: only required params', async () => {
-    const responsePromise = client.logs.raw.getBots({
+  test.skip('bots: only required params', async () => {
+    const responsePromise = client.logs.raw.bots({
       domain: 'domain',
       metrics: ['count'],
       start_date: '2019-12-27T18:11:19.117Z',
@@ -25,8 +25,8 @@ describe('resource raw', () => {
   });
 
   // Prism tests are disabled
-  test.skip('getBots: required and optional params', async () => {
-    const response = await client.logs.raw.getBots({
+  test.skip('bots: required and optional params', async () => {
+    const response = await client.logs.raw.bots({
       domain: 'domain',
       metrics: ['count'],
       start_date: '2019-12-27T18:11:19.117Z',
@@ -40,8 +40,8 @@ describe('resource raw', () => {
   });
 
   // Prism tests are disabled
-  test.skip('getLogs: only required params', async () => {
-    const responsePromise = client.logs.raw.getLogs({
+  test.skip('logs: only required params', async () => {
+    const responsePromise = client.logs.raw.logs({
       domain: 'domain',
       metrics: ['count'],
       start_date: '2019-12-27T18:11:19.117Z',
@@ -56,8 +56,8 @@ describe('resource raw', () => {
   });
 
   // Prism tests are disabled
-  test.skip('getLogs: required and optional params', async () => {
-    const response = await client.logs.raw.getLogs({
+  test.skip('logs: required and optional params', async () => {
+    const response = await client.logs.raw.logs({
       domain: 'domain',
       metrics: ['count'],
       start_date: '2019-12-27T18:11:19.117Z',
