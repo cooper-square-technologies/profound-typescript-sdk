@@ -3,7 +3,7 @@
 import Profound from 'profound';
 
 const client = new Profound({
-  apiKey: 'My API Key',
+  headerAPIKey: 'My Header API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 

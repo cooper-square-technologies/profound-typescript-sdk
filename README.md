@@ -25,7 +25,9 @@ The full API of this library can be found in [api.md](api.md).
 ```js
 import Profound from 'profound';
 
-const client = new Profound();
+const client = new Profound({
+  queryAPIKey: process.env['COINGECKO_DEMO_API_KEY'], // This is the default and can be omitted
+});
 
 const orgItems = await client.org.categories.list();
 ```
@@ -38,7 +40,9 @@ This library includes TypeScript definitions for all request params and response
 ```ts
 import Profound from 'profound';
 
-const client = new Profound();
+const client = new Profound({
+  queryAPIKey: process.env['COINGECKO_DEMO_API_KEY'], // This is the default and can be omitted
+});
 
 const orgItems: Profound.Org.CategoryListResponse = await client.org.categories.list();
 ```
