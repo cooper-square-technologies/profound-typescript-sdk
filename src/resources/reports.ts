@@ -11,7 +11,7 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.reports.queryCitations({
+   * const response = await client.reports.citations({
    *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
    *   end_date: '2019-12-27T18:11:19.117Z',
    *   metrics: ['count'],
@@ -19,10 +19,7 @@ export class Reports extends APIResource {
    * });
    * ```
    */
-  queryCitations(
-    body: ReportQueryCitationsParams,
-    options?: RequestOptions,
-  ): APIPromise<ReportQueryCitationsResponse> {
+  citations(body: ReportCitationsParams, options?: RequestOptions): APIPromise<ReportCitationsResponse> {
     return this._client.post('/v1/reports/citations', { body, ...options });
   }
 
@@ -31,7 +28,7 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.reports.querySentiment({
+   * const response = await client.reports.sentiment({
    *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
    *   end_date: '2019-12-27T18:11:19.117Z',
    *   metrics: ['positive'],
@@ -39,7 +36,7 @@ export class Reports extends APIResource {
    * });
    * ```
    */
-  querySentiment(body: ReportQuerySentimentParams, options?: RequestOptions): APIPromise<Response> {
+  sentiment(body: ReportSentimentParams, options?: RequestOptions): APIPromise<Response> {
     return this._client.post('/v1/reports/sentiment', { body, ...options });
   }
 
@@ -48,7 +45,7 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.reports.queryVisibility({
+   * const response = await client.reports.visibility({
    *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
    *   end_date: '2019-12-27T18:11:19.117Z',
    *   metrics: ['share_of_voice'],
@@ -56,7 +53,7 @@ export class Reports extends APIResource {
    * });
    * ```
    */
-  queryVisibility(body: ReportQueryVisibilityParams, options?: RequestOptions): APIPromise<Response> {
+  visibility(body: ReportVisibilityParams, options?: RequestOptions): APIPromise<Response> {
     return this._client.post('/v1/reports/visibility', { body, ...options });
   }
 }
@@ -91,7 +88,7 @@ export interface Result {
   metrics: Array<number>;
 }
 
-export interface ReportQueryCitationsResponse {
+export interface ReportCitationsResponse {
   data: Array<Result>;
 
   /**
@@ -100,7 +97,7 @@ export interface ReportQueryCitationsResponse {
   info: Info;
 }
 
-export interface ReportQueryCitationsParams {
+export interface ReportCitationsParams {
   category_id: string;
 
   /**
@@ -131,7 +128,7 @@ export interface ReportQueryCitationsParams {
    * List of filters to apply to the report. Each filter has an operator, field, and
    * value.
    */
-  filters?: Array<ReportQueryCitationsParams.Filter>;
+  filters?: Array<ReportCitationsParams.Filter>;
 
   /**
    * Custom ordering of the report results.
@@ -153,7 +150,7 @@ export interface ReportQueryCitationsParams {
   pagination?: PromptsAPI.Pagination;
 }
 
-export namespace ReportQueryCitationsParams {
+export namespace ReportCitationsParams {
   export interface Filter {
     field: 'hostname' | 'path' | 'region' | 'topic' | 'model' | 'tag';
 
@@ -176,7 +173,7 @@ export namespace ReportQueryCitationsParams {
   }
 }
 
-export interface ReportQuerySentimentParams {
+export interface ReportSentimentParams {
   category_id: string;
 
   /**
@@ -207,7 +204,7 @@ export interface ReportQuerySentimentParams {
    * List of filters to apply to the report. Each filter has an operator, field, and
    * value.
    */
-  filters?: Array<ReportQuerySentimentParams.Filter>;
+  filters?: Array<ReportSentimentParams.Filter>;
 
   /**
    * Custom ordering of the report results.
@@ -229,7 +226,7 @@ export interface ReportQuerySentimentParams {
   pagination?: PromptsAPI.Pagination;
 }
 
-export namespace ReportQuerySentimentParams {
+export namespace ReportSentimentParams {
   export interface Filter {
     field: 'asset_name' | 'theme' | 'region' | 'topic' | 'model' | 'tag';
 
@@ -252,7 +249,7 @@ export namespace ReportQuerySentimentParams {
   }
 }
 
-export interface ReportQueryVisibilityParams {
+export interface ReportVisibilityParams {
   category_id: string;
 
   /**
@@ -283,7 +280,7 @@ export interface ReportQueryVisibilityParams {
    * List of filters to apply to the report. Each filter has an operator, field, and
    * value.
    */
-  filters?: Array<ReportQueryVisibilityParams.Filter>;
+  filters?: Array<ReportVisibilityParams.Filter>;
 
   /**
    * Custom ordering of the report results.
@@ -305,7 +302,7 @@ export interface ReportQueryVisibilityParams {
   pagination?: PromptsAPI.Pagination;
 }
 
-export namespace ReportQueryVisibilityParams {
+export namespace ReportVisibilityParams {
   export interface Filter {
     field: 'region' | 'topic' | 'model' | 'asset_name' | 'prompt' | 'tag';
 
@@ -333,9 +330,9 @@ export declare namespace Reports {
     type Info as Info,
     type Response as Response,
     type Result as Result,
-    type ReportQueryCitationsResponse as ReportQueryCitationsResponse,
-    type ReportQueryCitationsParams as ReportQueryCitationsParams,
-    type ReportQuerySentimentParams as ReportQuerySentimentParams,
-    type ReportQueryVisibilityParams as ReportQueryVisibilityParams,
+    type ReportCitationsResponse as ReportCitationsResponse,
+    type ReportCitationsParams as ReportCitationsParams,
+    type ReportSentimentParams as ReportSentimentParams,
+    type ReportVisibilityParams as ReportVisibilityParams,
   };
 }

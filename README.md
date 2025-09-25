@@ -29,7 +29,7 @@ const client = new Profound({
   queryAPIKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted
 });
 
-const orgItems = await client.org.categories.list();
+const orgItems = await client.organizations.categories.list();
 ```
 
 ### Request & Response types
@@ -44,7 +44,7 @@ const client = new Profound({
   queryAPIKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted
 });
 
-const orgItems: Profound.Org.CategoryListResponse = await client.org.categories.list();
+const orgItems: Profound.Organizations.CategoryListResponse = await client.organizations.categories.list();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -57,7 +57,7 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const orgItems = await client.org.categories.list().catch(async (err) => {
+const orgItems = await client.organizations.categories.list().catch(async (err) => {
   if (err instanceof Profound.APIError) {
     console.log(err.status); // 400
     console.log(err.name); // BadRequestError
@@ -97,7 +97,7 @@ const client = new Profound({
 });
 
 // Or, configure per-request:
-await client.org.categories.list({
+await client.organizations.categories.list({
   maxRetries: 5,
 });
 ```
@@ -114,7 +114,7 @@ const client = new Profound({
 });
 
 // Override per-request:
-await client.org.categories.list({
+await client.organizations.categories.list({
   timeout: 5 * 1000,
 });
 ```
@@ -137,11 +137,11 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new Profound();
 
-const response = await client.org.categories.list().asResponse();
+const response = await client.organizations.categories.list().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: orgItems, response: raw } = await client.org.categories.list().withResponse();
+const { data: orgItems, response: raw } = await client.organizations.categories.list().withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(orgItems);
 ```
@@ -223,7 +223,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.org.categories.list({
+client.organizations.categories.list({
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',
