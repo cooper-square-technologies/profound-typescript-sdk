@@ -49,9 +49,14 @@ import { isEmptyObj } from './internal/utils/values';
 
 export interface ClientOptions {
   /**
-   * Defaults to process.env['PROFOUND_API_KEY'].
+   * Header API Key
    */
-  apiKey?: string | undefined;
+  headerAPIKey?: string | null | undefined;
+
+  /**
+   * Query API Key
+   */
+  queryAPIKey?: string | null | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -126,7 +131,8 @@ export interface ClientOptions {
  * API Client for interfacing with the Profound API.
  */
 export class Profound {
-  apiKey: string;
+  headerAPIKey: string | null;
+  queryAPIKey: string | null;
 
   baseURL: string;
   maxRetries: number;
@@ -143,7 +149,8 @@ export class Profound {
   /**
    * API Client for interfacing with the Profound API.
    *
-   * @param {string | undefined} [opts.apiKey=process.env['PROFOUND_API_KEY'] ?? undefined]
+   * @param {string | null | undefined} [opts.headerAPIKey=process.env['COINGECKO_PRO_API_KEY'] ?? null]
+   * @param {string | null | undefined} [opts.queryAPIKey=process.env['COINGECKO_DEMO_API_KEY'] ?? null]
    * @param {string} [opts.baseURL=process.env['PROFOUND_BASE_URL'] ?? https://api.tryprofound.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -154,17 +161,13 @@ export class Profound {
    */
   constructor({
     baseURL = readEnv('PROFOUND_BASE_URL'),
-    apiKey = readEnv('PROFOUND_API_KEY'),
+    headerAPIKey = readEnv('COINGECKO_PRO_API_KEY') ?? null,
+    queryAPIKey = readEnv('COINGECKO_DEMO_API_KEY') ?? null,
     ...opts
   }: ClientOptions = {}) {
-    if (apiKey === undefined) {
-      throw new Errors.ProfoundError(
-        "The PROFOUND_API_KEY environment variable is missing or empty; either provide it, or instantiate the Profound client with an apiKey option, like new Profound({ apiKey: 'My API Key' }).",
-      );
-    }
-
     const options: ClientOptions = {
-      apiKey,
+      headerAPIKey,
+      queryAPIKey,
       ...opts,
       baseURL: baseURL || `https://api.tryprofound.com`,
     };
@@ -186,7 +189,8 @@ export class Profound {
 
     this._options = options;
 
-    this.apiKey = apiKey;
+    this.headerAPIKey = headerAPIKey;
+    this.queryAPIKey = queryAPIKey;
   }
 
   /**
@@ -202,7 +206,8 @@ export class Profound {
       logLevel: this.logLevel,
       fetch: this.fetch,
       fetchOptions: this.fetchOptions,
-      apiKey: this.apiKey,
+      headerAPIKey: this.headerAPIKey,
+      queryAPIKey: this.queryAPIKey,
       ...options,
     });
     return client;
@@ -216,7 +221,10 @@ export class Profound {
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
-    return this._options.defaultQuery;
+    return {
+      api_key: this.queryAPIKey ?? undefined,
+      ...this._options.defaultQuery,
+    };
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
@@ -224,7 +232,10 @@ export class Profound {
   }
 
   protected async authHeaders(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
-    return buildHeaders([{ 'X-API-Key': this.apiKey }]);
+    if (this.headerAPIKey == null) {
+      return undefined;
+    }
+    return buildHeaders([{ 'X-API-Key': this.headerAPIKey }]);
   }
 
   /**
