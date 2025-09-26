@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "profound/*": ["dist/src/*"],
-      "profound": ["dist/src/index.ts"]
+      "profound/*": ["./dist/src/*"],
+      "profound": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,
