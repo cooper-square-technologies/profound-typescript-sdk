@@ -25,13 +25,13 @@ export class Raw extends APIResource {
 /**
  * Base response model for reports.
  */
-export type RawBotsResponse = Array<RawBotsResponse.LogVisitBotList> | ReportsAPI.Response;
+export type RawBotsResponse = Array<RawBotsResponse.UnionMember0> | ReportsAPI.Response;
 
 export namespace RawBotsResponse {
   /**
    * DB Model for a bot visit.
    */
-  export interface LogVisitBotList {
+  export interface UnionMember0 {
     bot_name: string;
 
     bot_provider: string;
@@ -67,13 +67,13 @@ export namespace RawBotsResponse {
 /**
  * Base response model for reports.
  */
-export type RawLogsResponse = Array<RawLogsResponse.LogVisitList> | ReportsAPI.Response;
+export type RawLogsResponse = Array<RawLogsResponse.UnionMember0> | ReportsAPI.Response;
 
 export namespace RawLogsResponse {
   /**
    * DB Model for a log visit.
    */
-  export interface LogVisitList {
+  export interface UnionMember0 {
     host: string;
 
     ip: string;
