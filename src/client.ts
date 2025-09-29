@@ -49,14 +49,9 @@ import { isEmptyObj } from './internal/utils/values';
 
 export interface ClientOptions {
   /**
-   * Header API Key
+   * API Key
    */
-  headerAPIKey?: string | null | undefined;
-
-  /**
-   * Query API Key
-   */
-  queryAPIKey?: string | null | undefined;
+  apiKey?: string | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -131,8 +126,7 @@ export interface ClientOptions {
  * API Client for interfacing with the Profound API.
  */
 export class Profound {
-  headerAPIKey: string | null;
-  queryAPIKey: string | null;
+  apiKey: string;
 
   baseURL: string;
   maxRetries: number;
@@ -149,8 +143,7 @@ export class Profound {
   /**
    * API Client for interfacing with the Profound API.
    *
-   * @param {string | null | undefined} [opts.headerAPIKey=process.env['PROFOUND_API_KEY'] ?? null]
-   * @param {string | null | undefined} [opts.queryAPIKey=process.env['PROFOUND_API_KEY'] ?? null]
+   * @param {string | undefined} [opts.apiKey=process.env['PROFOUND_API_KEY'] ?? undefined]
    * @param {string} [opts.baseURL=process.env['PROFOUND_BASE_URL'] ?? https://api.tryprofound.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -161,13 +154,17 @@ export class Profound {
    */
   constructor({
     baseURL = readEnv('PROFOUND_BASE_URL'),
-    headerAPIKey = readEnv('PROFOUND_API_KEY') ?? null,
-    queryAPIKey = readEnv('PROFOUND_API_KEY') ?? null,
+    apiKey = readEnv('PROFOUND_API_KEY'),
     ...opts
   }: ClientOptions = {}) {
+    if (apiKey === undefined) {
+      throw new Errors.ProfoundError(
+        "The PROFOUND_API_KEY environment variable is missing or empty; either provide it, or instantiate the Profound client with an apiKey option, like new Profound({ apiKey: 'My API Key' }).",
+      );
+    }
+
     const options: ClientOptions = {
-      headerAPIKey,
-      queryAPIKey,
+      apiKey,
       ...opts,
       baseURL: baseURL || `https://api.tryprofound.com`,
     };
@@ -189,8 +186,7 @@ export class Profound {
 
     this._options = options;
 
-    this.headerAPIKey = headerAPIKey;
-    this.queryAPIKey = queryAPIKey;
+    this.apiKey = apiKey;
   }
 
   /**
@@ -206,8 +202,7 @@ export class Profound {
       logLevel: this.logLevel,
       fetch: this.fetch,
       fetchOptions: this.fetchOptions,
-      headerAPIKey: this.headerAPIKey,
-      queryAPIKey: this.queryAPIKey,
+      apiKey: this.apiKey,
       ...options,
     });
     return client;
@@ -221,10 +216,7 @@ export class Profound {
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
-    return {
-      api_key: this.queryAPIKey ?? undefined,
-      ...this._options.defaultQuery,
-    };
+    return this._options.defaultQuery;
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
@@ -232,10 +224,7 @@ export class Profound {
   }
 
   protected async authHeaders(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
-    if (this.headerAPIKey == null) {
-      return undefined;
-    }
-    return buildHeaders([{ 'X-API-Key': this.headerAPIKey }]);
+    return buildHeaders([{ 'X-API-Key': this.apiKey }]);
   }
 
   /**
