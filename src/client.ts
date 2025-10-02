@@ -54,11 +54,6 @@ export interface ClientOptions {
   apiKey?: string | null | undefined;
 
   /**
-   * Query API Key
-   */
-  queryAPIKey?: string | null | undefined;
-
-  /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
    * Defaults to process.env['PROFOUND_BASE_URL'].
@@ -132,7 +127,6 @@ export interface ClientOptions {
  */
 export class Profound {
   apiKey: string | null;
-  queryAPIKey: string | null;
 
   baseURL: string;
   maxRetries: number;
@@ -150,7 +144,6 @@ export class Profound {
    * API Client for interfacing with the Profound API.
    *
    * @param {string | null | undefined} [opts.apiKey=process.env['PROFOUND_API_KEY'] ?? null]
-   * @param {string | null | undefined} [opts.queryAPIKey=process.env['PROFOUND_API_KEY'] ?? null]
    * @param {string} [opts.baseURL=process.env['PROFOUND_BASE_URL'] ?? https://api.tryprofound.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -162,12 +155,10 @@ export class Profound {
   constructor({
     baseURL = readEnv('PROFOUND_BASE_URL'),
     apiKey = readEnv('PROFOUND_API_KEY') ?? null,
-    queryAPIKey = readEnv('PROFOUND_API_KEY') ?? null,
     ...opts
   }: ClientOptions = {}) {
     const options: ClientOptions = {
       apiKey,
-      queryAPIKey,
       ...opts,
       baseURL: baseURL || `https://api.tryprofound.com`,
     };
@@ -190,7 +181,6 @@ export class Profound {
     this._options = options;
 
     this.apiKey = apiKey;
-    this.queryAPIKey = queryAPIKey;
   }
 
   /**
@@ -207,7 +197,6 @@ export class Profound {
       fetch: this.fetch,
       fetchOptions: this.fetchOptions,
       apiKey: this.apiKey,
-      queryAPIKey: this.queryAPIKey,
       ...options,
     });
     return client;
@@ -221,14 +210,20 @@ export class Profound {
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
-    return {
-      api_key: this.queryAPIKey ?? undefined,
-      ...this._options.defaultQuery,
-    };
+    return this._options.defaultQuery;
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
-    return;
+    if (this.apiKey && values.get('x-api-key')) {
+      return;
+    }
+    if (nulls.has('x-api-key')) {
+      return;
+    }
+
+    throw new Error(
+      'Could not resolve authentication method. Expected the apiKey to be set. Or for the "X-API-Key" headers to be explicitly omitted',
+    );
   }
 
   protected async authHeaders(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {

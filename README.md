@@ -25,9 +25,7 @@ The full API of this library can be found in [api.md](api.md).
 ```js
 import Profound from 'profound';
 
-const client = new Profound({
-  queryAPIKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted
-});
+const client = new Profound();
 
 const orgItems = await client.organizations.categories.list();
 ```
@@ -40,9 +38,7 @@ This library includes TypeScript definitions for all request params and response
 ```ts
 import Profound from 'profound';
 
-const client = new Profound({
-  queryAPIKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted
-});
+const client = new Profound();
 
 const orgItems: Profound.Organizations.CategoryListResponse = await client.organizations.categories.list();
 ```
