@@ -10,8 +10,8 @@ import {
   Implementation,
   Tool,
 } from '@modelcontextprotocol/sdk/types.js';
-import { ClientOptions } from 'profound';
-import Profound from 'profound';
+import { ClientOptions } from 'profoundai';
+import Profound from 'profoundai';
 import {
   applyCompatibilityTransformations,
   ClientCapabilities,
@@ -27,13 +27,13 @@ import { McpOptions } from './options';
 export { McpOptions } from './options';
 export { ClientType } from './compat';
 export { Filter } from './tools';
-export { ClientOptions } from 'profound';
+export { ClientOptions } from 'profoundai';
 export { endpoints } from './tools';
 
 export const newMcpServer = () =>
   new McpServer(
     {
-      name: 'profound_api',
+      name: 'profoundai_api',
       version: '0.0.1',
     },
     { capabilities: { tools: {}, logging: {} } },

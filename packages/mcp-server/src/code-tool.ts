@@ -2,7 +2,7 @@
 
 import { dirname } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import Profound, { ClientOptions } from 'profound';
+import Profound, { ClientOptions } from 'profoundai';
 import { Endpoint, ContentBlock, Metadata } from './tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
