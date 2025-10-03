@@ -2,7 +2,7 @@
 
 import util from 'node:util';
 import { WorkerInput, WorkerSuccess, WorkerError } from './code-tool-types';
-import { Profound } from 'profound';
+import { Profound } from 'profoundai';
 
 const fetch = async (req: Request): Promise<Response> => {
   const { opts, code } = (await req.json()) as WorkerInput;

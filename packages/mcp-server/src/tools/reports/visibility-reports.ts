@@ -4,7 +4,7 @@ import { maybeFilter } from 'profound-mcp/filtering';
 import { Metadata, asTextContentResult } from 'profound-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import Profound from 'profound';
+import Profound from 'profoundai';
 
 export const metadata: Metadata = {
   resource: 'reports',
