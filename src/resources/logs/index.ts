@@ -3,8 +3,8 @@
 export { Logs } from './logs';
 export {
   Raw,
-  type RawGetBotsResponse,
-  type RawGetLogsResponse,
-  type RawGetBotsParams,
-  type RawGetLogsParams,
+  type RawBotsResponse,
+  type RawLogsResponse,
+  type RawBotsParams,
+  type RawLogsParams,
 } from './raw';

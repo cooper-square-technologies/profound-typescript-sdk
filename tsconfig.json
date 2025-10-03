@@ -7,10 +7,9 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./",
     "paths": {
-      "profound/*": ["src/*"],
-      "profound": ["src/index.ts"]
+      "profoundai/*": ["./src/*"],
+      "profoundai": ["./src/index.ts"]
     },
     "noEmit": true,
 

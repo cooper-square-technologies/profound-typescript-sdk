@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Profound from 'profound';
+import Profound from 'profoundai';
 
 const client = new Profound({
   apiKey: 'My API Key',
@@ -9,8 +9,8 @@ const client = new Profound({
 
 describe('resource prompts', () => {
   // Prism tests are disabled
-  test.skip('getAnswers: only required params', async () => {
-    const responsePromise = client.prompts.getAnswers({
+  test.skip('answers: only required params', async () => {
+    const responsePromise = client.prompts.answers({
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: '2019-12-27T18:11:19.117Z',
       start_date: '2019-12-27T18:11:19.117Z',
@@ -25,8 +25,8 @@ describe('resource prompts', () => {
   });
 
   // Prism tests are disabled
-  test.skip('getAnswers: required and optional params', async () => {
-    const response = await client.prompts.getAnswers({
+  test.skip('answers: required and optional params', async () => {
+    const response = await client.prompts.answers({
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: '2019-12-27T18:11:19.117Z',
       start_date: '2019-12-27T18:11:19.117Z',

@@ -2,24 +2,19 @@
 
 export { Logs } from './logs/logs';
 export {
-  Org,
-  type OrgRetrieveDomainsResponse,
-  type OrgRetrieveModelsResponse,
-  type OrgRetrieveRegionsResponse,
-} from './org/org';
-export {
-  Prompts,
-  type Pagination,
-  type PromptGetAnswersResponse,
-  type PromptGetAnswersParams,
-} from './prompts';
+  Organizations,
+  type OrganizationDomainsResponse,
+  type OrganizationModelsResponse,
+  type OrganizationRegionsResponse,
+} from './organizations/organizations';
+export { Prompts, type Pagination, type PromptAnswersResponse, type PromptAnswersParams } from './prompts';
 export {
   Reports,
   type Info,
   type Response,
   type Result,
-  type ReportQueryCitationsResponse,
-  type ReportQueryCitationsParams,
-  type ReportQuerySentimentParams,
-  type ReportQueryVisibilityParams,
+  type ReportCitationsResponse,
+  type ReportCitationsParams,
+  type ReportSentimentParams,
+  type ReportVisibilityParams,
 } from './reports';

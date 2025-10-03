@@ -16,24 +16,24 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { Pagination, PromptGetAnswersParams, PromptGetAnswersResponse, Prompts } from './resources/prompts';
+import { Pagination, PromptAnswersParams, PromptAnswersResponse, Prompts } from './resources/prompts';
 import {
   Info,
-  ReportQueryCitationsParams,
-  ReportQueryCitationsResponse,
-  ReportQuerySentimentParams,
-  ReportQueryVisibilityParams,
+  ReportCitationsParams,
+  ReportCitationsResponse,
+  ReportSentimentParams,
+  ReportVisibilityParams,
   Reports,
   Response,
   Result,
 } from './resources/reports';
 import { Logs } from './resources/logs/logs';
 import {
-  Org,
-  OrgRetrieveDomainsResponse,
-  OrgRetrieveModelsResponse,
-  OrgRetrieveRegionsResponse,
-} from './resources/org/org';
+  OrganizationDomainsResponse,
+  OrganizationModelsResponse,
+  OrganizationRegionsResponse,
+  Organizations,
+} from './resources/organizations/organizations';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -49,9 +49,9 @@ import { isEmptyObj } from './internal/utils/values';
 
 export interface ClientOptions {
   /**
-   * Defaults to process.env['PROFOUND_API_KEY'].
+   * API Key
    */
-  apiKey?: string | undefined;
+  apiKey?: string | null | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -126,7 +126,7 @@ export interface ClientOptions {
  * API Client for interfacing with the Profound API.
  */
 export class Profound {
-  apiKey: string;
+  apiKey: string | null;
 
   baseURL: string;
   maxRetries: number;
@@ -143,7 +143,7 @@ export class Profound {
   /**
    * API Client for interfacing with the Profound API.
    *
-   * @param {string | undefined} [opts.apiKey=process.env['PROFOUND_API_KEY'] ?? undefined]
+   * @param {string | null | undefined} [opts.apiKey=process.env['PROFOUND_API_KEY'] ?? null]
    * @param {string} [opts.baseURL=process.env['PROFOUND_BASE_URL'] ?? https://api.tryprofound.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -154,15 +154,9 @@ export class Profound {
    */
   constructor({
     baseURL = readEnv('PROFOUND_BASE_URL'),
-    apiKey = readEnv('PROFOUND_API_KEY'),
+    apiKey = readEnv('PROFOUND_API_KEY') ?? null,
     ...opts
   }: ClientOptions = {}) {
-    if (apiKey === undefined) {
-      throw new Errors.ProfoundError(
-        "The PROFOUND_API_KEY environment variable is missing or empty; either provide it, or instantiate the Profound client with an apiKey option, like new Profound({ apiKey: 'My API Key' }).",
-      );
-    }
-
     const options: ClientOptions = {
       apiKey,
       ...opts,
@@ -220,10 +214,22 @@ export class Profound {
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
-    return;
+    if (this.apiKey && values.get('x-api-key')) {
+      return;
+    }
+    if (nulls.has('x-api-key')) {
+      return;
+    }
+
+    throw new Error(
+      'Could not resolve authentication method. Expected the apiKey to be set. Or for the "X-API-Key" headers to be explicitly omitted',
+    );
   }
 
   protected async authHeaders(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
+    if (this.apiKey == null) {
+      return undefined;
+    }
     return buildHeaders([{ 'X-API-Key': this.apiKey }]);
   }
 
@@ -731,13 +737,13 @@ export class Profound {
 
   static toFile = Uploads.toFile;
 
-  org: API.Org = new API.Org(this);
+  organizations: API.Organizations = new API.Organizations(this);
   prompts: API.Prompts = new API.Prompts(this);
   reports: API.Reports = new API.Reports(this);
   logs: API.Logs = new API.Logs(this);
 }
 
-Profound.Org = Org;
+Profound.Organizations = Organizations;
 Profound.Prompts = Prompts;
 Profound.Reports = Reports;
 Profound.Logs = Logs;
@@ -746,17 +752,17 @@ export declare namespace Profound {
   export type RequestOptions = Opts.RequestOptions;
 
   export {
-    Org as Org,
-    type OrgRetrieveDomainsResponse as OrgRetrieveDomainsResponse,
-    type OrgRetrieveModelsResponse as OrgRetrieveModelsResponse,
-    type OrgRetrieveRegionsResponse as OrgRetrieveRegionsResponse,
+    Organizations as Organizations,
+    type OrganizationDomainsResponse as OrganizationDomainsResponse,
+    type OrganizationModelsResponse as OrganizationModelsResponse,
+    type OrganizationRegionsResponse as OrganizationRegionsResponse,
   };
 
   export {
     Prompts as Prompts,
     type Pagination as Pagination,
-    type PromptGetAnswersResponse as PromptGetAnswersResponse,
-    type PromptGetAnswersParams as PromptGetAnswersParams,
+    type PromptAnswersResponse as PromptAnswersResponse,
+    type PromptAnswersParams as PromptAnswersParams,
   };
 
   export {
@@ -764,10 +770,10 @@ export declare namespace Profound {
     type Info as Info,
     type Response as Response,
     type Result as Result,
-    type ReportQueryCitationsResponse as ReportQueryCitationsResponse,
-    type ReportQueryCitationsParams as ReportQueryCitationsParams,
-    type ReportQuerySentimentParams as ReportQuerySentimentParams,
-    type ReportQueryVisibilityParams as ReportQueryVisibilityParams,
+    type ReportCitationsResponse as ReportCitationsResponse,
+    type ReportCitationsParams as ReportCitationsParams,
+    type ReportSentimentParams as ReportSentimentParams,
+    type ReportVisibilityParams as ReportVisibilityParams,
   };
 
   export { Logs as Logs };

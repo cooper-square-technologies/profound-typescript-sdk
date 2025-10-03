@@ -25,7 +25,7 @@ export default tseslint.config(
         {
           patterns: [
             {
-              regex: '^profound(/.*)?',
+              regex: '^profoundai(/.*)?',
               message: 'Use a relative import, not a package import.',
             },
           ],
@@ -34,7 +34,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ['tests/**', 'examples/**'],
+    files: ['tests/**', 'examples/**', 'packages/**'],
     rules: {
       'no-restricted-imports': 'off',
     },

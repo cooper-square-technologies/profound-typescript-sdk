@@ -10,14 +10,14 @@ export class Raw extends APIResource {
   /**
    * Get identified bot logs with filters
    */
-  getBots(body: RawGetBotsParams, options?: RequestOptions): APIPromise<RawGetBotsResponse> {
+  bots(body: RawBotsParams, options?: RequestOptions): APIPromise<RawBotsResponse> {
     return this._client.post('/v1/logs/raw/bots', { body, ...options });
   }
 
   /**
    * Get all logs with filters
    */
-  getLogs(body: RawGetLogsParams, options?: RequestOptions): APIPromise<RawGetLogsResponse> {
+  logs(body: RawLogsParams, options?: RequestOptions): APIPromise<RawLogsResponse> {
     return this._client.post('/v1/logs/raw', { body, ...options });
   }
 }
@@ -25,13 +25,13 @@ export class Raw extends APIResource {
 /**
  * Base response model for reports.
  */
-export type RawGetBotsResponse = Array<RawGetBotsResponse.UnionMember0> | ReportsAPI.Response;
+export type RawBotsResponse = Array<RawBotsResponse.LogVisitBotList> | ReportsAPI.Response;
 
-export namespace RawGetBotsResponse {
+export namespace RawBotsResponse {
   /**
    * DB Model for a bot visit.
    */
-  export interface UnionMember0 {
+  export interface LogVisitBotList {
     bot_name: string;
 
     bot_provider: string;
@@ -67,13 +67,13 @@ export namespace RawGetBotsResponse {
 /**
  * Base response model for reports.
  */
-export type RawGetLogsResponse = Array<RawGetLogsResponse.UnionMember0> | ReportsAPI.Response;
+export type RawLogsResponse = Array<RawLogsResponse.LogVisitList> | ReportsAPI.Response;
 
-export namespace RawGetLogsResponse {
+export namespace RawLogsResponse {
   /**
    * DB Model for a log visit.
    */
-  export interface UnionMember0 {
+  export interface LogVisitList {
     host: string;
 
     ip: string;
@@ -100,7 +100,7 @@ export namespace RawGetLogsResponse {
   }
 }
 
-export interface RawGetBotsParams {
+export interface RawBotsParams {
   /**
    * Domain to query logs for.
    */
@@ -145,7 +145,7 @@ export interface RawGetBotsParams {
    * List of filters to apply to the report. Each filter has an operator, field, and
    * value.
    */
-  filters?: Array<RawGetBotsParams.Filter>;
+  filters?: Array<RawBotsParams.Filter>;
 
   /**
    * Custom ordering of the report results.
@@ -167,7 +167,7 @@ export interface RawGetBotsParams {
   pagination?: PromptsAPI.Pagination;
 }
 
-export namespace RawGetBotsParams {
+export namespace RawBotsParams {
   export interface Filter {
     field:
       | 'method'
@@ -200,7 +200,7 @@ export namespace RawGetBotsParams {
   }
 }
 
-export interface RawGetLogsParams {
+export interface RawLogsParams {
   /**
    * Domain to query logs for.
    */
@@ -246,7 +246,7 @@ export interface RawGetLogsParams {
    * List of filters to apply to the report. Each filter has an operator, field, and
    * value.
    */
-  filters?: Array<RawGetLogsParams.Filter>;
+  filters?: Array<RawLogsParams.Filter>;
 
   /**
    * Custom ordering of the report results.
@@ -268,7 +268,7 @@ export interface RawGetLogsParams {
   pagination?: PromptsAPI.Pagination;
 }
 
-export namespace RawGetLogsParams {
+export namespace RawLogsParams {
   export interface Filter {
     field: 'method' | 'path' | 'status_code' | 'ip' | 'user_agent' | 'referer' | 'query_params';
 
@@ -293,9 +293,9 @@ export namespace RawGetLogsParams {
 
 export declare namespace Raw {
   export {
-    type RawGetBotsResponse as RawGetBotsResponse,
-    type RawGetLogsResponse as RawGetLogsResponse,
-    type RawGetBotsParams as RawGetBotsParams,
-    type RawGetLogsParams as RawGetLogsParams,
+    type RawBotsResponse as RawBotsResponse,
+    type RawLogsResponse as RawLogsResponse,
+    type RawBotsParams as RawBotsParams,
+    type RawLogsParams as RawLogsParams,
   };
 }

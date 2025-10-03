@@ -1,21 +1,18 @@
 # Profound TypeScript API Library
 
-[![NPM version](<https://img.shields.io/npm/v/profound.svg?label=npm%20(stable)>)](https://npmjs.org/package/profound) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/profound)
+[![NPM version](<https://img.shields.io/npm/v/profoundai.svg?label=npm%20(stable)>)](https://npmjs.org/package/profoundai) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/profoundai)
 
 This library provides convenient access to the Profound REST API from server-side TypeScript or JavaScript.
 
-The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.tryprofound.com](https://docs.tryprofound.com). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainless.com/).
 
 ## Installation
 
 ```sh
-npm install git+ssh://git@github.com:stainless-sdks/profound-typescript.git
+npm install profoundai
 ```
-
-> [!NOTE]
-> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install profound`
 
 ## Usage
 
@@ -23,11 +20,13 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import Profound from 'profound';
+import Profound from 'profoundai';
 
-const client = new Profound();
+const client = new Profound({
+  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted
+});
 
-const orgItems = await client.org.categories.list();
+const orgItems = await client.organizations.categories.list();
 ```
 
 ### Request & Response types
@@ -36,11 +35,13 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import Profound from 'profound';
+import Profound from 'profoundai';
 
-const client = new Profound();
+const client = new Profound({
+  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted
+});
 
-const orgItems: Profound.Org.CategoryListResponse = await client.org.categories.list();
+const orgItems: Profound.Organizations.CategoryListResponse = await client.organizations.categories.list();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -53,7 +54,7 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const orgItems = await client.org.categories.list().catch(async (err) => {
+const orgItems = await client.organizations.categories.list().catch(async (err) => {
   if (err instanceof Profound.APIError) {
     console.log(err.status); // 400
     console.log(err.name); // BadRequestError
@@ -93,7 +94,7 @@ const client = new Profound({
 });
 
 // Or, configure per-request:
-await client.org.categories.list({
+await client.organizations.categories.list({
   maxRetries: 5,
 });
 ```
@@ -110,7 +111,7 @@ const client = new Profound({
 });
 
 // Override per-request:
-await client.org.categories.list({
+await client.organizations.categories.list({
   timeout: 5 * 1000,
 });
 ```
@@ -133,11 +134,11 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new Profound();
 
-const response = await client.org.categories.list().asResponse();
+const response = await client.organizations.categories.list().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: orgItems, response: raw } = await client.org.categories.list().withResponse();
+const { data: orgItems, response: raw } = await client.organizations.categories.list().withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(orgItems);
 ```
@@ -156,7 +157,7 @@ The log level can be configured in two ways:
 2. Using the `logLevel` client option (overrides the environment variable if set)
 
 ```ts
-import Profound from 'profound';
+import Profound from 'profoundai';
 
 const client = new Profound({
   logLevel: 'debug', // Show all log messages
@@ -184,7 +185,7 @@ When providing a custom logger, the `logLevel` option still controls which messa
 below the configured level will not be sent to your logger.
 
 ```ts
-import Profound from 'profound';
+import Profound from 'profoundai';
 import pino from 'pino';
 
 const logger = pino();
@@ -219,7 +220,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.org.categories.list({
+client.organizations.categories.list({
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',
@@ -253,7 +254,7 @@ globalThis.fetch = fetch;
 Or pass it to the client:
 
 ```ts
-import Profound from 'profound';
+import Profound from 'profoundai';
 import fetch from 'my-fetch';
 
 const client = new Profound({ fetch });
@@ -264,7 +265,7 @@ const client = new Profound({ fetch });
 If you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)
 
 ```ts
-import Profound from 'profound';
+import Profound from 'profoundai';
 
 const client = new Profound({
   fetchOptions: {
@@ -281,7 +282,7 @@ options to requests:
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg" align="top" width="18" height="21"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>
 
 ```ts
-import Profound from 'profound';
+import Profound from 'profoundai';
 import * as undici from 'undici';
 
 const proxyAgent = new undici.ProxyAgent('http://localhost:8888');
@@ -295,7 +296,7 @@ const client = new Profound({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg" align="top" width="18" height="21"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>
 
 ```ts
-import Profound from 'profound';
+import Profound from 'profoundai';
 
 const client = new Profound({
   fetchOptions: {
@@ -307,7 +308,7 @@ const client = new Profound({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg" align="top" width="18" height="21"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>
 
 ```ts
-import Profound from 'npm:profound';
+import Profound from 'npm:profoundai';
 
 const httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });
 const client = new Profound({
@@ -329,7 +330,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/profound-typescript/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/cooper-square-technologies/profound-typescript-sdk/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 

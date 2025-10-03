@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Profound from 'profound';
+import Profound from 'profoundai';
 
 const client = new Profound({
   apiKey: 'My API Key',
@@ -9,8 +9,8 @@ const client = new Profound({
 
 describe('resource reports', () => {
   // Prism tests are disabled
-  test.skip('queryCitations: only required params', async () => {
-    const responsePromise = client.reports.queryCitations({
+  test.skip('citations: only required params', async () => {
+    const responsePromise = client.reports.citations({
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: '2019-12-27T18:11:19.117Z',
       metrics: ['count'],
@@ -26,8 +26,8 @@ describe('resource reports', () => {
   });
 
   // Prism tests are disabled
-  test.skip('queryCitations: required and optional params', async () => {
-    const response = await client.reports.queryCitations({
+  test.skip('citations: required and optional params', async () => {
+    const response = await client.reports.citations({
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: '2019-12-27T18:11:19.117Z',
       metrics: ['count'],
@@ -41,8 +41,8 @@ describe('resource reports', () => {
   });
 
   // Prism tests are disabled
-  test.skip('querySentiment: only required params', async () => {
-    const responsePromise = client.reports.querySentiment({
+  test.skip('sentiment: only required params', async () => {
+    const responsePromise = client.reports.sentiment({
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: '2019-12-27T18:11:19.117Z',
       metrics: ['positive'],
@@ -58,8 +58,8 @@ describe('resource reports', () => {
   });
 
   // Prism tests are disabled
-  test.skip('querySentiment: required and optional params', async () => {
-    const response = await client.reports.querySentiment({
+  test.skip('sentiment: required and optional params', async () => {
+    const response = await client.reports.sentiment({
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: '2019-12-27T18:11:19.117Z',
       metrics: ['positive'],
@@ -73,8 +73,8 @@ describe('resource reports', () => {
   });
 
   // Prism tests are disabled
-  test.skip('queryVisibility: only required params', async () => {
-    const responsePromise = client.reports.queryVisibility({
+  test.skip('visibility: only required params', async () => {
+    const responsePromise = client.reports.visibility({
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: '2019-12-27T18:11:19.117Z',
       metrics: ['share_of_voice'],
@@ -90,8 +90,8 @@ describe('resource reports', () => {
   });
 
   // Prism tests are disabled
-  test.skip('queryVisibility: required and optional params', async () => {
-    const response = await client.reports.queryVisibility({
+  test.skip('visibility: required and optional params', async () => {
+    const response = await client.reports.visibility({
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: '2019-12-27T18:11:19.117Z',
       metrics: ['share_of_voice'],

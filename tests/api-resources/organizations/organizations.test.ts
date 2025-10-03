@@ -1,16 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Profound from 'profound';
+import Profound from 'profoundai';
 
 const client = new Profound({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource org', () => {
+describe('resource organizations', () => {
   // Prism tests are disabled
-  test.skip('retrieveDomains', async () => {
-    const responsePromise = client.org.retrieveDomains();
+  test.skip('domains', async () => {
+    const responsePromise = client.organizations.domains();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,8 +21,8 @@ describe('resource org', () => {
   });
 
   // Prism tests are disabled
-  test.skip('retrieveModels', async () => {
-    const responsePromise = client.org.retrieveModels();
+  test.skip('models', async () => {
+    const responsePromise = client.organizations.models();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -33,8 +33,8 @@ describe('resource org', () => {
   });
 
   // Prism tests are disabled
-  test.skip('retrieveRegions', async () => {
-    const responsePromise = client.org.retrieveRegions();
+  test.skip('regions', async () => {
+    const responsePromise = client.organizations.regions();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

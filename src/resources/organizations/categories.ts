@@ -17,21 +17,21 @@ export class Categories extends APIResource {
   /**
    * Get Category Prompts
    */
-  retrievePrompts(categoryID: string, options?: RequestOptions): APIPromise<CategoryRetrievePromptsResponse> {
+  prompts(categoryID: string, options?: RequestOptions): APIPromise<CategoryPromptsResponse> {
     return this._client.get(path`/v1/org/categories/${categoryID}/prompts`, options);
   }
 
   /**
    * Get the organization tags for a specific category.
    */
-  retrieveTags(categoryID: string, options?: RequestOptions): APIPromise<CategoryRetrieveTagsResponse> {
+  tags(categoryID: string, options?: RequestOptions): APIPromise<CategoryTagsResponse> {
     return this._client.get(path`/v1/org/categories/${categoryID}/tags`, options);
   }
 
   /**
    * Get the organization categories.
    */
-  retrieveTopics(categoryID: string, options?: RequestOptions): APIPromise<CategoryRetrieveTopicsResponse> {
+  topics(categoryID: string, options?: RequestOptions): APIPromise<CategoryTopicsResponse> {
     return this._client.get(path`/v1/org/categories/${categoryID}/topics`, options);
   }
 }
@@ -44,11 +44,11 @@ export interface OrgItem {
 
 export type CategoryListResponse = Array<OrgItem>;
 
-export interface CategoryRetrievePromptsResponse {
-  data: Array<CategoryRetrievePromptsResponse.Data>;
+export interface CategoryPromptsResponse {
+  data: Array<CategoryPromptsResponse.Data>;
 }
 
-export namespace CategoryRetrievePromptsResponse {
+export namespace CategoryPromptsResponse {
   export interface Data {
     id: string;
 
@@ -68,16 +68,16 @@ export namespace CategoryRetrievePromptsResponse {
   }
 }
 
-export type CategoryRetrieveTagsResponse = Array<OrgItem>;
+export type CategoryTagsResponse = Array<OrgItem>;
 
-export type CategoryRetrieveTopicsResponse = Array<OrgItem>;
+export type CategoryTopicsResponse = Array<OrgItem>;
 
 export declare namespace Categories {
   export {
     type OrgItem as OrgItem,
     type CategoryListResponse as CategoryListResponse,
-    type CategoryRetrievePromptsResponse as CategoryRetrievePromptsResponse,
-    type CategoryRetrieveTagsResponse as CategoryRetrieveTagsResponse,
-    type CategoryRetrieveTopicsResponse as CategoryRetrieveTopicsResponse,
+    type CategoryPromptsResponse as CategoryPromptsResponse,
+    type CategoryTagsResponse as CategoryTagsResponse,
+    type CategoryTopicsResponse as CategoryTopicsResponse,
   };
 }
