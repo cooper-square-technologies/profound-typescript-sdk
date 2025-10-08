@@ -1,3 +1,9 @@
+# Shared
+
+Types:
+
+- <code><a href="./src/resources/shared.ts">Pagination</a></code>
+
 # Organizations
 
 Types:
@@ -33,7 +39,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/prompts.ts">Pagination</a></code>
 - <code><a href="./src/resources/prompts.ts">PromptAnswersResponse</a></code>
 
 Methods:

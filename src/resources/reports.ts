@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as PromptsAPI from './prompts';
+import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
@@ -147,7 +147,7 @@ export interface ReportCitationsParams {
   /**
    * Pagination settings for the report results.
    */
-  pagination?: PromptsAPI.Pagination;
+  pagination?: Shared.Pagination;
 }
 
 export namespace ReportCitationsParams {
@@ -223,7 +223,7 @@ export interface ReportSentimentParams {
   /**
    * Pagination settings for the report results.
    */
-  pagination?: PromptsAPI.Pagination;
+  pagination?: Shared.Pagination;
 }
 
 export namespace ReportSentimentParams {
@@ -299,7 +299,7 @@ export interface ReportVisibilityParams {
   /**
    * Pagination settings for the report results.
    */
-  pagination?: PromptsAPI.Pagination;
+  pagination?: Shared.Pagination;
 }
 
 export namespace ReportVisibilityParams {

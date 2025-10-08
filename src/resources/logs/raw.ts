@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import * as PromptsAPI from '../prompts';
 import * as ReportsAPI from '../reports';
+import * as Shared from '../shared';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -164,7 +164,7 @@ export interface RawBotsParams {
   /**
    * Pagination settings for the report results.
    */
-  pagination?: PromptsAPI.Pagination;
+  pagination?: Shared.Pagination;
 }
 
 export namespace RawBotsParams {
@@ -265,7 +265,7 @@ export interface RawLogsParams {
   /**
    * Pagination settings for the report results.
    */
-  pagination?: PromptsAPI.Pagination;
+  pagination?: Shared.Pagination;
 }
 
 export namespace RawLogsParams {
