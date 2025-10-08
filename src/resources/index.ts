@@ -10,9 +10,9 @@ export {
 export { Prompts, type Pagination, type PromptAnswersResponse, type PromptAnswersParams } from './prompts';
 export {
   Reports,
-  type Info,
-  type Response,
-  type Result,
+  type ReportInfo,
+  type ReportResponse,
+  type ReportResult,
   type ReportCitationsResponse,
   type ReportCitationsParams,
   type ReportSentimentParams,

@@ -18,14 +18,14 @@ import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import { Pagination, PromptAnswersParams, PromptAnswersResponse, Prompts } from './resources/prompts';
 import {
-  Info,
   ReportCitationsParams,
   ReportCitationsResponse,
+  ReportInfo,
+  ReportResponse,
+  ReportResult,
   ReportSentimentParams,
   ReportVisibilityParams,
   Reports,
-  Response,
-  Result,
 } from './resources/reports';
 import { Logs } from './resources/logs/logs';
 import {
@@ -761,9 +761,9 @@ export declare namespace Profound {
 
   export {
     Reports as Reports,
-    type Info as Info,
-    type Response as Response,
-    type Result as Result,
+    type ReportInfo as ReportInfo,
+    type ReportResponse as ReportResponse,
+    type ReportResult as ReportResult,
     type ReportCitationsResponse as ReportCitationsResponse,
     type ReportCitationsParams as ReportCitationsParams,
     type ReportSentimentParams as ReportSentimentParams,

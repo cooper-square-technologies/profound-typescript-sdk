@@ -25,7 +25,7 @@ export class Raw extends APIResource {
 /**
  * Base response model for reports.
  */
-export type RawBotsResponse = Array<RawBotsResponse.LogVisitBotList> | ReportsAPI.Response;
+export type RawBotsResponse = Array<RawBotsResponse.LogVisitBotList> | ReportsAPI.ReportResponse;
 
 export namespace RawBotsResponse {
   /**
@@ -67,7 +67,7 @@ export namespace RawBotsResponse {
 /**
  * Base response model for reports.
  */
-export type RawLogsResponse = Array<RawLogsResponse.LogVisitList> | ReportsAPI.Response;
+export type RawLogsResponse = Array<RawLogsResponse.LogVisitList> | ReportsAPI.ReportResponse;
 
 export namespace RawLogsResponse {
   /**
