@@ -16,7 +16,7 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { Pagination, PromptAnswersParams, PromptAnswersResponse, Prompts } from './resources/prompts';
+import { PromptAnswersParams, PromptAnswersResponse, Prompts } from './resources/prompts';
 import {
   ReportCitationsParams,
   ReportCitationsResponse,
@@ -754,7 +754,6 @@ export declare namespace Profound {
 
   export {
     Prompts as Prompts,
-    type Pagination as Pagination,
     type PromptAnswersResponse as PromptAnswersResponse,
     type PromptAnswersParams as PromptAnswersParams,
   };
@@ -771,4 +770,6 @@ export declare namespace Profound {
   };
 
   export { Logs as Logs };
+
+  export type Pagination = API.Pagination;
 }
