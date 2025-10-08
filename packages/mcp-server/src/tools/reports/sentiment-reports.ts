@@ -60,7 +60,7 @@ export const tool: Tool = {
         description: 'Dimensions to group the report by.',
         items: {
           type: 'string',
-          enum: ['theme', 'date', 'region', 'topic', 'model', 'asset_name', 'tag'],
+          enum: ['theme', 'date', 'region', 'topic', 'model', 'asset_name', 'tag', 'prompt'],
         },
       },
       filters: {

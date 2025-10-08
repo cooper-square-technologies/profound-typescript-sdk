@@ -122,7 +122,7 @@ export interface ReportCitationsParams {
   /**
    * Dimensions to group the report by.
    */
-  dimensions?: Array<'hostname' | 'path' | 'date' | 'region' | 'topic' | 'model' | 'tag'>;
+  dimensions?: Array<'hostname' | 'path' | 'date' | 'region' | 'topic' | 'model' | 'tag' | 'prompt'>;
 
   /**
    * List of filters to apply to the report. Each filter has an operator, field, and
@@ -198,7 +198,7 @@ export interface ReportSentimentParams {
   /**
    * Dimensions to group the report by.
    */
-  dimensions?: Array<'theme' | 'date' | 'region' | 'topic' | 'model' | 'asset_name' | 'tag'>;
+  dimensions?: Array<'theme' | 'date' | 'region' | 'topic' | 'model' | 'asset_name' | 'tag' | 'prompt'>;
 
   /**
    * List of filters to apply to the report. Each filter has an operator, field, and
