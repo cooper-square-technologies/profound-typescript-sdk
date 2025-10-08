@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
@@ -11,21 +12,6 @@ export class Prompts extends APIResource {
   answers(body: PromptAnswersParams, options?: RequestOptions): APIPromise<PromptAnswersResponse> {
     return this._client.post('/v1/prompts/answers', { body, ...options });
   }
-}
-
-/**
- * Report pagination model.
- */
-export interface Pagination {
-  /**
-   * Maximum number of results to return. Default is 10,000, maximum is 50,000.
-   */
-  limit?: number;
-
-  /**
-   * Offset for the results. Used for pagination.
-   */
-  offset?: number;
 }
 
 /**
@@ -86,7 +72,7 @@ export interface PromptAnswersParams {
   /**
    * Pagination parameters for the results. Default is 10,000 rows with no offset.
    */
-  pagination?: Pagination;
+  pagination?: Shared.Pagination;
 }
 
 export namespace PromptAnswersParams {
@@ -144,7 +130,6 @@ export namespace PromptAnswersParams {
 
 export declare namespace Prompts {
   export {
-    type Pagination as Pagination,
     type PromptAnswersResponse as PromptAnswersResponse,
     type PromptAnswersParams as PromptAnswersParams,
   };

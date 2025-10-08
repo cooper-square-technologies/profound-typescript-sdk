@@ -1,3 +1,9 @@
+# Shared
+
+Types:
+
+- <code><a href="./src/resources/shared.ts">Pagination</a></code>
+
 # Organizations
 
 Types:
@@ -33,7 +39,6 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/prompts.ts">Pagination</a></code>
 - <code><a href="./src/resources/prompts.ts">PromptAnswersResponse</a></code>
 
 Methods:
@@ -44,16 +49,16 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/reports.ts">Info</a></code>
-- <code><a href="./src/resources/reports.ts">Response</a></code>
-- <code><a href="./src/resources/reports.ts">Result</a></code>
+- <code><a href="./src/resources/reports.ts">ReportInfo</a></code>
+- <code><a href="./src/resources/reports.ts">ReportResponse</a></code>
+- <code><a href="./src/resources/reports.ts">ReportResult</a></code>
 - <code><a href="./src/resources/reports.ts">ReportCitationsResponse</a></code>
 
 Methods:
 
 - <code title="post /v1/reports/citations">client.reports.<a href="./src/resources/reports.ts">citations</a>({ ...params }) -> ReportCitationsResponse</code>
-- <code title="post /v1/reports/sentiment">client.reports.<a href="./src/resources/reports.ts">sentiment</a>({ ...params }) -> Response</code>
-- <code title="post /v1/reports/visibility">client.reports.<a href="./src/resources/reports.ts">visibility</a>({ ...params }) -> Response</code>
+- <code title="post /v1/reports/sentiment">client.reports.<a href="./src/resources/reports.ts">sentiment</a>({ ...params }) -> ReportResponse</code>
+- <code title="post /v1/reports/visibility">client.reports.<a href="./src/resources/reports.ts">visibility</a>({ ...params }) -> ReportResponse</code>
 
 # Logs
 

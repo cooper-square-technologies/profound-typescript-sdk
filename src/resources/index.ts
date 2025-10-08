@@ -1,5 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+export * from './shared';
 export { Logs } from './logs/logs';
 export {
   Organizations,
@@ -7,12 +8,12 @@ export {
   type OrganizationModelsResponse,
   type OrganizationRegionsResponse,
 } from './organizations/organizations';
-export { Prompts, type Pagination, type PromptAnswersResponse, type PromptAnswersParams } from './prompts';
+export { Prompts, type PromptAnswersResponse, type PromptAnswersParams } from './prompts';
 export {
   Reports,
-  type Info,
-  type Response,
-  type Result,
+  type ReportInfo,
+  type ReportResponse,
+  type ReportResult,
   type ReportCitationsResponse,
   type ReportCitationsParams,
   type ReportSentimentParams,

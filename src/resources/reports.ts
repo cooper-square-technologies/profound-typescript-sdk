@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as PromptsAPI from './prompts';
+import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
@@ -28,7 +28,7 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.reports.sentiment({
+   * const reportResponse = await client.reports.sentiment({
    *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
    *   end_date: '2019-12-27T18:11:19.117Z',
    *   metrics: ['positive'],
@@ -36,7 +36,7 @@ export class Reports extends APIResource {
    * });
    * ```
    */
-  sentiment(body: ReportSentimentParams, options?: RequestOptions): APIPromise<Response> {
+  sentiment(body: ReportSentimentParams, options?: RequestOptions): APIPromise<ReportResponse> {
     return this._client.post('/v1/reports/sentiment', { body, ...options });
   }
 
@@ -45,7 +45,7 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.reports.visibility({
+   * const reportResponse = await client.reports.visibility({
    *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
    *   end_date: '2019-12-27T18:11:19.117Z',
    *   metrics: ['share_of_voice'],
@@ -53,7 +53,7 @@ export class Reports extends APIResource {
    * });
    * ```
    */
-  visibility(body: ReportVisibilityParams, options?: RequestOptions): APIPromise<Response> {
+  visibility(body: ReportVisibilityParams, options?: RequestOptions): APIPromise<ReportResponse> {
     return this._client.post('/v1/reports/visibility', { body, ...options });
   }
 }
@@ -61,7 +61,7 @@ export class Reports extends APIResource {
 /**
  * Base model for report information.
  */
-export interface Info {
+export interface ReportInfo {
   total_rows: number;
 
   query?: { [key: string]: unknown } | null;
@@ -70,31 +70,31 @@ export interface Info {
 /**
  * Base response model for reports.
  */
-export interface Response {
-  data: Array<Result>;
+export interface ReportResponse {
+  data: Array<ReportResult>;
 
   /**
    * Base model for report information.
    */
-  info: Info;
+  info: ReportInfo;
 }
 
 /**
  * Base model for report results.
  */
-export interface Result {
+export interface ReportResult {
   dimensions: Array<string>;
 
   metrics: Array<number>;
 }
 
 export interface ReportCitationsResponse {
-  data: Array<Result>;
+  data: Array<ReportResult>;
 
   /**
    * Base model for report information.
    */
-  info: Info;
+  info: ReportInfo;
 }
 
 export interface ReportCitationsParams {
@@ -122,7 +122,7 @@ export interface ReportCitationsParams {
   /**
    * Dimensions to group the report by.
    */
-  dimensions?: Array<'hostname' | 'path' | 'date' | 'region' | 'topic' | 'model' | 'tag'>;
+  dimensions?: Array<'hostname' | 'path' | 'date' | 'region' | 'topic' | 'model' | 'tag' | 'prompt'>;
 
   /**
    * List of filters to apply to the report. Each filter has an operator, field, and
@@ -147,7 +147,7 @@ export interface ReportCitationsParams {
   /**
    * Pagination settings for the report results.
    */
-  pagination?: PromptsAPI.Pagination;
+  pagination?: Shared.Pagination;
 }
 
 export namespace ReportCitationsParams {
@@ -198,7 +198,7 @@ export interface ReportSentimentParams {
   /**
    * Dimensions to group the report by.
    */
-  dimensions?: Array<'theme' | 'date' | 'region' | 'topic' | 'model' | 'asset_name' | 'tag'>;
+  dimensions?: Array<'theme' | 'date' | 'region' | 'topic' | 'model' | 'asset_name' | 'tag' | 'prompt'>;
 
   /**
    * List of filters to apply to the report. Each filter has an operator, field, and
@@ -223,7 +223,7 @@ export interface ReportSentimentParams {
   /**
    * Pagination settings for the report results.
    */
-  pagination?: PromptsAPI.Pagination;
+  pagination?: Shared.Pagination;
 }
 
 export namespace ReportSentimentParams {
@@ -299,7 +299,7 @@ export interface ReportVisibilityParams {
   /**
    * Pagination settings for the report results.
    */
-  pagination?: PromptsAPI.Pagination;
+  pagination?: Shared.Pagination;
 }
 
 export namespace ReportVisibilityParams {
@@ -327,9 +327,9 @@ export namespace ReportVisibilityParams {
 
 export declare namespace Reports {
   export {
-    type Info as Info,
-    type Response as Response,
-    type Result as Result,
+    type ReportInfo as ReportInfo,
+    type ReportResponse as ReportResponse,
+    type ReportResult as ReportResult,
     type ReportCitationsResponse as ReportCitationsResponse,
     type ReportCitationsParams as ReportCitationsParams,
     type ReportSentimentParams as ReportSentimentParams,

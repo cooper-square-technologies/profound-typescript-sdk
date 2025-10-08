@@ -28,7 +28,7 @@
     "PROFOUND_API_KEY": {
       "title": "api_key",
       "description": "API Key",
-      "required": false,
+      "required": true,
       "type": "string"
     }
   },
