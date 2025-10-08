@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.2.0 (2025-10-08)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.1.0...v0.2.0)
+
+### ⚠ BREAKING CHANGES
+
+* **api:** move Pagination to shared models
+* **api:** rename reports models
+
+### Features
+
+* **api:** api update ([7aa950b](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/7aa950bd5779f612fe2e4551eb6381532141215d))
+* **api:** manual updates ([9a16334](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/9a1633479f1529dcd4e33c9384822c26ba7488e6))
+* **api:** move Pagination to shared models ([756ce08](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/756ce08a9b68514c3e5a319ee2417c2efc237f82))
+* **api:** rename reports models ([c4b33e3](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/c4b33e38329f85fec2cab5a2d701919c4020b76e))
+
+
+### Chores
+
+* **internal:** use npm pack for build uploads ([6c76770](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/6c76770679922b4ed20d2e532267616c96bd8948))
+* **jsdoc:** fix [@link](https://github.com/link) annotations to refer only to parts of the package‘s public interface ([0d0d946](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/0d0d946ef14ce8414453f92c6b70fa569c5e46e6))
+
 ## 0.1.0 (2025-10-03)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.0.1...v0.1.0)
