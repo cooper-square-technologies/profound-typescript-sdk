@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.1 (2025-10-09)
+
+Full Changelog: [v0.2.0...v0.2.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.2.0...v0.2.1)
+
+### Chores
+
+* extract some types in mcp docs ([a017378](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/a0173783583425507ff019a103696d6869f95ad9))
+
 ## 0.2.0 (2025-10-08)
 
 Full Changelog: [v0.1.0...v0.2.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.1.0...v0.2.0)
