@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'models_organizations',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nGet the organization models.\n\n# Response Schema\n```json\n{\n  type: 'array',\n  title: 'Response Get Models V1 Org Models Get',\n  items: {\n    $ref: '#/$defs/org_item'\n  },\n  $defs: {\n    org_item: {\n      type: 'object',\n      title: 'OrgItem',\n      properties: {\n        id: {\n          type: 'string',\n          title: 'Id'\n        },\n        name: {\n          type: 'string',\n          title: 'Name'\n        }\n      },\n      required: [        'id',\n        'name'\n      ]\n    }\n  }\n}\n```",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nGet the organization models.\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/organization_models_response',\n  $defs: {\n    organization_models_response: {\n      type: 'array',\n      title: 'Response Get Models V1 Org Models Get',\n      items: {\n        $ref: '#/$defs/org_item'\n      }\n    },\n    org_item: {\n      type: 'object',\n      title: 'OrgItem',\n      properties: {\n        id: {\n          type: 'string',\n          title: 'Id'\n        },\n        name: {\n          type: 'string',\n          title: 'Name'\n        }\n      },\n      required: [        'id',\n        'name'\n      ]\n    }\n  }\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {
