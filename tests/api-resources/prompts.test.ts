@@ -43,6 +43,7 @@ describe('resource prompts', () => {
         region: true,
         response: true,
         run_id: true,
+        search_queries: true,
         tags: true,
         themes: true,
         topic: true,
