@@ -50,6 +50,8 @@ export namespace PromptAnswersResponse {
 
     run_id?: string | null;
 
+    search_queries?: Array<string> | null;
+
     tags?: Array<string> | null;
 
     themes?: Array<string> | null;
@@ -119,6 +121,8 @@ export namespace PromptAnswersParams {
     response?: boolean;
 
     run_id?: boolean;
+
+    search_queries?: boolean;
 
     tags?: boolean;
 
