@@ -36,7 +36,7 @@ export namespace RawBotsResponse {
 
     bot_provider: string;
 
-    bot_types: Array<'ai_assistant' | 'ai_training' | 'index'>;
+    bot_types: Array<'ai_assistant' | 'ai_training' | 'index' | 'ai_agent'>;
 
     host: string;
 
