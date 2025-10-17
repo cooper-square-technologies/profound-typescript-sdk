@@ -122,7 +122,9 @@ export interface ReportCitationsParams {
   /**
    * Dimensions to group the report by.
    */
-  dimensions?: Array<'hostname' | 'path' | 'date' | 'region' | 'topic' | 'model' | 'tag' | 'prompt'>;
+  dimensions?: Array<
+    'hostname' | 'path' | 'date' | 'region' | 'topic' | 'model' | 'tag' | 'prompt' | 'url' | 'root_domain'
+  >;
 
   /**
    * List of filters to apply to the report. Each filter has an operator, field, and
@@ -152,7 +154,7 @@ export interface ReportCitationsParams {
 
 export namespace ReportCitationsParams {
   export interface Filter {
-    field: 'hostname' | 'path' | 'region' | 'topic' | 'model' | 'tag';
+    field: 'hostname' | 'path' | 'region' | 'topic' | 'model' | 'tag' | 'url' | 'root_domain' | 'prompt_type';
 
     operator:
       | 'is'
