@@ -60,7 +60,18 @@ export const tool: Tool = {
         description: 'Dimensions to group the report by.',
         items: {
           type: 'string',
-          enum: ['hostname', 'path', 'date', 'region', 'topic', 'model', 'tag', 'prompt'],
+          enum: [
+            'hostname',
+            'path',
+            'date',
+            'region',
+            'topic',
+            'model',
+            'tag',
+            'prompt',
+            'url',
+            'root_domain',
+          ],
         },
       },
       filters: {
@@ -69,12 +80,23 @@ export const tool: Tool = {
         description: 'List of filters to apply to the report. Each filter has an operator, field, and value.',
         items: {
           type: 'object',
-          title: "Filter[Literal['hostname', 'path', 'region', 'topic', 'model', 'tag']]",
+          title:
+            "Filter[Literal['hostname', 'path', 'region', 'topic', 'model', 'tag', 'url', 'root_domain', 'prompt_type']]",
           properties: {
             field: {
               type: 'string',
               title: 'Field',
-              enum: ['hostname', 'path', 'region', 'topic', 'model', 'tag'],
+              enum: [
+                'hostname',
+                'path',
+                'region',
+                'topic',
+                'model',
+                'tag',
+                'url',
+                'root_domain',
+                'prompt_type',
+              ],
             },
             operator: {
               type: 'string',
