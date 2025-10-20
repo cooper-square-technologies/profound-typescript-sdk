@@ -38,7 +38,7 @@ export const tool: Tool = {
         title: 'Metrics',
         items: {
           type: 'string',
-          enum: ['share_of_voice', 'mentions_count', 'visibility_score'],
+          enum: ['share_of_voice', 'mentions_count', 'visibility_score', 'executions'],
         },
       },
       start_date: {
