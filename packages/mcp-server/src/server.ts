@@ -34,7 +34,7 @@ export const newMcpServer = () =>
   new McpServer(
     {
       name: 'profoundai_api',
-      version: '0.7.0',
+      version: '0.7.1',
     },
     { capabilities: { tools: {}, logging: {} } },
   );
