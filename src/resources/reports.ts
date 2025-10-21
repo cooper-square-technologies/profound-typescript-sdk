@@ -260,7 +260,7 @@ export interface ReportVisibilityParams {
    */
   end_date: string;
 
-  metrics: Array<'share_of_voice' | 'mentions_count' | 'visibility_score'>;
+  metrics: Array<'share_of_voice' | 'mentions_count' | 'visibility_score' | 'executions'>;
 
   /**
    * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or
