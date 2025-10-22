@@ -410,10 +410,10 @@ export const renderApproveContent = async (message: string, status: string, redi
       <h1 class="text-2xl font-heading font-bold mb-4 text-gray-900">${message}</h1>
       <p class="mb-8 text-gray-600">You will be redirected back to the application shortly.</p>
       <a
-        href="/"
+        href="${redirectUrl}"
         class="inline-block py-2 px-4 bg-primary text-white rounded-md font-medium hover:bg-primary/90 transition-colors"
       >
-        Return to Home
+        Return to application
       </a>
       ${raw(`
                 <script>
