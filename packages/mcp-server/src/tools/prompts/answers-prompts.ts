@@ -1,6 +1,5 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { maybeFilter } from 'profound-mcp/filtering';
 import { Metadata, asTextContentResult } from 'profound-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
@@ -17,8 +16,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'answers_prompts',
-  description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nGet the answers for the prompts.\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/prompt_answers_response',\n  $defs: {\n    prompt_answers_response: {\n      type: 'object',\n      title: 'AnswersResponse',\n      description: 'Response for the answers endpoint.',\n      properties: {\n        data: {\n          type: 'array',\n          title: 'Data',\n          items: {\n            type: 'object',\n            title: 'AnswersRawData',\n            description: 'Raw data for the answers endpoint.',\n            properties: {\n              asset: {\n                type: 'string',\n                title: 'Asset'\n              },\n              citations: {\n                type: 'array',\n                title: 'Citations',\n                items: {\n                  type: 'string'\n                }\n              },\n              created_at: {\n                type: 'string',\n                title: 'Created At',\n                format: 'date-time'\n              },\n              mentions: {\n                type: 'array',\n                title: 'Mentions',\n                items: {\n                  type: 'string'\n                }\n              },\n              model: {\n                type: 'string',\n                title: 'Model'\n              },\n              prompt: {\n                type: 'string',\n                title: 'Prompt'\n              },\n              prompt_id: {\n                type: 'string',\n                title: 'Prompt Id'\n              },\n              prompt_type: {\n                type: 'string',\n                title: 'Prompt Type'\n              },\n              region: {\n                type: 'string',\n                title: 'Region'\n              },\n              response: {\n                type: 'string',\n                title: 'Response'\n              },\n              run_id: {\n                type: 'string',\n                title: 'Run Id'\n              },\n              search_queries: {\n                type: 'array',\n                title: 'Search Queries',\n                items: {\n                  type: 'string'\n                }\n              },\n              tags: {\n                type: 'array',\n                title: 'Tags',\n                items: {\n                  type: 'string'\n                }\n              },\n              themes: {\n                type: 'array',\n                title: 'Themes',\n                items: {\n                  type: 'string'\n                }\n              },\n              topic: {\n                type: 'string',\n                title: 'Topic'\n              }\n            }\n          }\n        },\n        info: {\n          type: 'object',\n          title: 'Info',\n          additionalProperties: true\n        }\n      },\n      required: [        'data',\n        'info'\n      ]\n    }\n  }\n}\n```",
+  description: 'Get the answers for the prompts.',
   inputSchema: {
     type: 'object',
     properties: {
@@ -39,61 +37,193 @@ export const tool: Tool = {
       filters: {
         type: 'array',
         title: 'Filters',
+        description: 'List of filters to apply to the answers report.',
         items: {
-          type: 'object',
-          title: "Filter[Literal['region', 'topic', 'model', 'prompt_type', 'prompt', 'tag']]",
-          properties: {
-            field: {
-              type: 'string',
-              title: 'Field',
-              enum: ['region', 'topic', 'model', 'prompt_type', 'prompt', 'tag'],
-            },
-            operator: {
-              type: 'string',
-              title: 'Operator',
-              enum: [
-                'is',
-                'not_is',
-                'in',
-                'not_in',
-                'contains',
-                'not_contains',
-                'contains_case_insensitive',
-                'not_contains_case_insensitive',
-                'matches',
-              ],
-            },
-            value: {
-              anyOf: [
-                {
+          anyOf: [
+            {
+              type: 'object',
+              title: 'RegionIdFilter',
+              properties: {
+                field: {
                   type: 'string',
-                  title: 'FilterStringValue',
+                  title: 'Field',
+                  description: '- `region` - Deprecated',
+                  enum: ['region_id', 'region'],
                 },
-                {
-                  type: 'array',
-                  title: 'FilterStringListValue',
-                  items: {
-                    type: 'string',
-                  },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: ['is', 'not_is', 'in', 'not_in'],
                 },
-                {
-                  type: 'integer',
-                  title: 'FilterIntegerValue',
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
                 },
-                {
-                  type: 'array',
-                  title: 'FilterIntegerListValue',
-                  items: {
-                    type: 'integer',
-                  },
-                },
-              ],
-              title: 'Value',
-              description:
-                'Value for the filter. Can be a single value or a list of depending on the operator.',
+              },
+              required: ['field', 'operator', 'value'],
             },
-          },
-          required: ['field', 'operator', 'value'],
+            {
+              type: 'object',
+              title: 'ModelIdFilter',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  description: '- `model` - Deprecated',
+                  enum: ['model_id', 'model'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: ['is', 'not_is', 'in', 'not_in'],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'TagIdFilter',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  description: '- `tag` - Deprecated',
+                  enum: ['tag_id', 'tag'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: ['is', 'not_is', 'in', 'not_in'],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'PromptTypeFilter',
+              description: 'Filter by prompt type (visibility or sentiment)',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['prompt_type'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: [
+                    'is',
+                    'not_is',
+                    'in',
+                    'not_in',
+                    'contains',
+                    'not_contains',
+                    'matches',
+                    'contains_case_insensitive',
+                    'not_contains_case_insensitive',
+                  ],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                      enum: ['visibility', 'sentiment'],
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                        enum: ['visibility', 'sentiment'],
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'PromptFilter',
+              description: 'Filter by prompt text',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['prompt'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: [
+                    'is',
+                    'not_is',
+                    'in',
+                    'not_in',
+                    'contains',
+                    'not_contains',
+                    'matches',
+                    'contains_case_insensitive',
+                    'not_contains_case_insensitive',
+                  ],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+          ],
+          description: 'Filter by prompt type (visibility or sentiment)',
         },
       },
       include: {
@@ -165,12 +295,6 @@ export const tool: Tool = {
       pagination: {
         $ref: '#/$defs/pagination',
       },
-      jq_filter: {
-        type: 'string',
-        title: 'jq Filter',
-        description:
-          'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
-      },
     },
     required: ['category_id', 'end_date', 'start_date'],
     $defs: {
@@ -197,8 +321,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Profound, args: Record<string, unknown> | undefined) => {
-  const { jq_filter, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(jq_filter, await client.prompts.answers(body)));
+  const body = args as any;
+  return asTextContentResult(await client.prompts.answers(body));
 };
 
 export default { metadata, tool, handler };

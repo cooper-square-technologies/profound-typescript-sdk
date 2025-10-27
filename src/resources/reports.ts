@@ -127,10 +127,19 @@ export interface ReportCitationsParams {
   >;
 
   /**
-   * List of filters to apply to the report. Each filter has an operator, field, and
-   * value.
+   * List of filters to apply to the citations report.
    */
-  filters?: Array<ReportCitationsParams.Filter>;
+  filters?: Array<
+    | ReportCitationsParams.HostnameFilter
+    | ReportCitationsParams.AppModelsAnswerEngineInsightsFiltersPathFilter
+    | ReportCitationsParams.RegionIDFilter
+    | ReportCitationsParams.TopicIDFilter
+    | ReportCitationsParams.ModelIDFilter
+    | ReportCitationsParams.TagIDFilter
+    | ReportCitationsParams.URLFilter
+    | ReportCitationsParams.RootDomainFilter
+    | ReportCitationsParams.PromptTypeFilter
+  >;
 
   /**
    * Custom ordering of the report results.
@@ -153,8 +162,11 @@ export interface ReportCitationsParams {
 }
 
 export namespace ReportCitationsParams {
-  export interface Filter {
-    field: 'hostname' | 'path' | 'region' | 'topic' | 'model' | 'tag' | 'url' | 'root_domain' | 'prompt_type';
+  /**
+   * Filter by hostname
+   */
+  export interface HostnameFilter {
+    field: 'hostname';
 
     operator:
       | 'is'
@@ -163,15 +175,135 @@ export namespace ReportCitationsParams {
       | 'not_in'
       | 'contains'
       | 'not_contains'
+      | 'matches'
       | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive'
-      | 'matches';
+      | 'not_contains_case_insensitive';
 
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by URL path
+   */
+  export interface AppModelsAnswerEngineInsightsFiltersPathFilter {
+    field: 'path';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  export interface RegionIDFilter {
     /**
-     * Value for the filter. Can be a single value or a list of depending on the
-     * operator.
+     * - `region` - Deprecated
      */
-    value: string | Array<string> | number | Array<number>;
+    field: 'region_id' | 'region';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface TopicIDFilter {
+    /**
+     * - `topic` - Deprecated
+     */
+    field: 'topic_id' | 'topic';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface ModelIDFilter {
+    /**
+     * - `model` - Deprecated
+     */
+    field: 'model_id' | 'model';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface TagIDFilter {
+    /**
+     * - `tag` - Deprecated
+     */
+    field: 'tag_id' | 'tag';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by URL
+   */
+  export interface URLFilter {
+    field: 'url';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by root domain
+   */
+  export interface RootDomainFilter {
+    field: 'root_domain';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by prompt type (visibility or sentiment)
+   */
+  export interface PromptTypeFilter {
+    field: 'prompt_type';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: 'visibility' | 'sentiment' | Array<'visibility' | 'sentiment'>;
   }
 }
 
@@ -203,10 +335,17 @@ export interface ReportSentimentParams {
   dimensions?: Array<'theme' | 'date' | 'region' | 'topic' | 'model' | 'asset_name' | 'tag' | 'prompt'>;
 
   /**
-   * List of filters to apply to the report. Each filter has an operator, field, and
-   * value.
+   * List of filters to apply to the sentiment report.
    */
-  filters?: Array<ReportSentimentParams.Filter>;
+  filters?: Array<
+    | ReportSentimentParams.AssetNameFilter
+    | ReportSentimentParams.ThemeFilter
+    | ReportSentimentParams.RegionIDFilter
+    | ReportSentimentParams.TopicIDFilter
+    | ReportSentimentParams.ModelIDFilter
+    | ReportSentimentParams.TagIDFilter
+    | ReportSentimentParams.PromptFilter
+  >;
 
   /**
    * Custom ordering of the report results.
@@ -229,8 +368,11 @@ export interface ReportSentimentParams {
 }
 
 export namespace ReportSentimentParams {
-  export interface Filter {
-    field: 'asset_name' | 'theme' | 'region' | 'topic' | 'model' | 'tag';
+  /**
+   * Filter by asset name
+   */
+  export interface AssetNameFilter {
+    field: 'asset_name';
 
     operator:
       | 'is'
@@ -239,15 +381,95 @@ export namespace ReportSentimentParams {
       | 'not_in'
       | 'contains'
       | 'not_contains'
+      | 'matches'
       | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive'
-      | 'matches';
+      | 'not_contains_case_insensitive';
 
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by theme
+   */
+  export interface ThemeFilter {
+    field: 'theme';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  export interface RegionIDFilter {
     /**
-     * Value for the filter. Can be a single value or a list of depending on the
-     * operator.
+     * - `region` - Deprecated
      */
-    value: string | Array<string> | number | Array<number>;
+    field: 'region_id' | 'region';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface TopicIDFilter {
+    /**
+     * - `topic` - Deprecated
+     */
+    field: 'topic_id' | 'topic';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface ModelIDFilter {
+    /**
+     * - `model` - Deprecated
+     */
+    field: 'model_id' | 'model';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface TagIDFilter {
+    /**
+     * - `tag` - Deprecated
+     */
+    field: 'tag_id' | 'tag';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by prompt text
+   */
+  export interface PromptFilter {
+    field: 'prompt';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
   }
 }
 
@@ -279,10 +501,16 @@ export interface ReportVisibilityParams {
   dimensions?: Array<'date' | 'region' | 'topic' | 'model' | 'asset_name' | 'prompt' | 'tag'>;
 
   /**
-   * List of filters to apply to the report. Each filter has an operator, field, and
-   * value.
+   * List of filters to apply to the visibility report.
    */
-  filters?: Array<ReportVisibilityParams.Filter>;
+  filters?: Array<
+    | ReportVisibilityParams.RegionIDFilter
+    | ReportVisibilityParams.ModelIDFilter
+    | ReportVisibilityParams.TopicIDFilter
+    | ReportVisibilityParams.AssetNameFilter
+    | ReportVisibilityParams.TagIDFilter
+    | ReportVisibilityParams.PromptFilter
+  >;
 
   /**
    * Custom ordering of the report results.
@@ -305,8 +533,44 @@ export interface ReportVisibilityParams {
 }
 
 export namespace ReportVisibilityParams {
-  export interface Filter {
-    field: 'region' | 'topic' | 'model' | 'asset_name' | 'prompt' | 'tag';
+  export interface RegionIDFilter {
+    /**
+     * - `region` - Deprecated
+     */
+    field: 'region_id' | 'region';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface ModelIDFilter {
+    /**
+     * - `model` - Deprecated
+     */
+    field: 'model_id' | 'model';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface TopicIDFilter {
+    /**
+     * - `topic` - Deprecated
+     */
+    field: 'topic_id' | 'topic';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by asset name
+   */
+  export interface AssetNameFilter {
+    field: 'asset_name';
 
     operator:
       | 'is'
@@ -315,15 +579,42 @@ export namespace ReportVisibilityParams {
       | 'not_in'
       | 'contains'
       | 'not_contains'
+      | 'matches'
       | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive'
-      | 'matches';
+      | 'not_contains_case_insensitive';
 
+    value: string | Array<string>;
+  }
+
+  export interface TagIDFilter {
     /**
-     * Value for the filter. Can be a single value or a list of depending on the
-     * operator.
+     * - `tag` - Deprecated
      */
-    value: string | Array<string> | number | Array<number>;
+    field: 'tag_id' | 'tag';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by prompt text
+   */
+  export interface PromptFilter {
+    field: 'prompt';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
   }
 }
 
