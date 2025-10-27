@@ -142,10 +142,20 @@ export interface RawBotsParams {
   end_date?: string;
 
   /**
-   * List of filters to apply to the report. Each filter has an operator, field, and
-   * value.
+   * List of filters to apply to the bots logs query.
    */
-  filters?: Array<RawBotsParams.Filter>;
+  filters?: Array<
+    | RawBotsParams.BotNameFilter
+    | RawBotsParams.BotProviderFilter
+    | RawBotsParams.BotTypesFilter
+    | RawBotsParams.MethodFilter
+    | RawBotsParams.AppModelsAgentAnalyticsFiltersPathFilter
+    | RawBotsParams.StatusCodeFilter
+    | RawBotsParams.IPFilter
+    | RawBotsParams.UserAgentFilter
+    | RawBotsParams.RefererFilter
+    | RawBotsParams.QueryParamsFilter
+  >;
 
   /**
    * Custom ordering of the report results.
@@ -168,18 +178,11 @@ export interface RawBotsParams {
 }
 
 export namespace RawBotsParams {
-  export interface Filter {
-    field:
-      | 'method'
-      | 'path'
-      | 'status_code'
-      | 'ip'
-      | 'user_agent'
-      | 'referer'
-      | 'query_params'
-      | 'bot_name'
-      | 'bot_provider'
-      | 'bot_types';
+  /**
+   * Filter by bot name
+   */
+  export interface BotNameFilter {
+    field: 'bot_name';
 
     operator:
       | 'is'
@@ -188,15 +191,182 @@ export namespace RawBotsParams {
       | 'not_in'
       | 'contains'
       | 'not_contains'
+      | 'matches'
       | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive'
-      | 'matches';
+      | 'not_contains_case_insensitive';
 
-    /**
-     * Value for the filter. Can be a single value or a list of depending on the
-     * operator.
-     */
-    value: string | Array<string> | number | Array<number>;
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by bot provider
+   */
+  export interface BotProviderFilter {
+    field: 'bot_provider';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by bot types (ai_assistant, ai_training, or index)
+   */
+  export interface BotTypesFilter {
+    field: 'bot_types';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: 'ai_assistant' | 'ai_training' | 'index' | Array<'ai_assistant' | 'ai_training' | 'index'>;
+  }
+
+  /**
+   * Filter by HTTP method
+   */
+  export interface MethodFilter {
+    field: 'method';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by request path
+   */
+  export interface AppModelsAgentAnalyticsFiltersPathFilter {
+    field: 'path';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by HTTP status code
+   */
+  export interface StatusCodeFilter {
+    field: 'status_code';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: number | Array<number>;
+  }
+
+  /**
+   * Filter by IP address
+   */
+  export interface IPFilter {
+    field: 'ip';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by user agent
+   */
+  export interface UserAgentFilter {
+    field: 'user_agent';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by referer
+   */
+  export interface RefererFilter {
+    field: 'referer';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by query parameters
+   */
+  export interface QueryParamsFilter {
+    field: 'query_params';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
   }
 }
 
@@ -243,10 +413,21 @@ export interface RawLogsParams {
   end_date?: string;
 
   /**
-   * List of filters to apply to the report. Each filter has an operator, field, and
-   * value.
+   * Filters to apply to the logs query.
    */
-  filters?: Array<RawLogsParams.Filter>;
+  filters?: Array<
+    | RawLogsParams.MethodFilter
+    | RawLogsParams.HostFilter
+    | RawLogsParams.AppModelsAgentAnalyticsFiltersPathFilter
+    | RawLogsParams.StatusCodeFilter
+    | RawLogsParams.IPFilter
+    | RawLogsParams.UserAgentFilter
+    | RawLogsParams.RefererFilter
+    | RawLogsParams.ProviderFilter
+    | RawLogsParams.QueryParamsFilter
+    | RawLogsParams.BytesSentFilter
+    | RawLogsParams.DurationMsFilter
+  >;
 
   /**
    * Custom ordering of the report results.
@@ -269,8 +450,11 @@ export interface RawLogsParams {
 }
 
 export namespace RawLogsParams {
-  export interface Filter {
-    field: 'method' | 'path' | 'status_code' | 'ip' | 'user_agent' | 'referer' | 'query_params';
+  /**
+   * Filter by HTTP method
+   */
+  export interface MethodFilter {
+    field: 'method';
 
     operator:
       | 'is'
@@ -279,15 +463,184 @@ export namespace RawLogsParams {
       | 'not_in'
       | 'contains'
       | 'not_contains'
+      | 'matches'
       | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive'
-      | 'matches';
+      | 'not_contains_case_insensitive';
 
-    /**
-     * Value for the filter. Can be a single value or a list of depending on the
-     * operator.
-     */
-    value: string | Array<string> | number | Array<number>;
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by host
+   */
+  export interface HostFilter {
+    field: 'host';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by request path
+   */
+  export interface AppModelsAgentAnalyticsFiltersPathFilter {
+    field: 'path';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by HTTP status code
+   */
+  export interface StatusCodeFilter {
+    field: 'status_code';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: number | Array<number>;
+  }
+
+  /**
+   * Filter by IP address
+   */
+  export interface IPFilter {
+    field: 'ip';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by user agent
+   */
+  export interface UserAgentFilter {
+    field: 'user_agent';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by referer
+   */
+  export interface RefererFilter {
+    field: 'referer';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by provider
+   */
+  export interface ProviderFilter {
+    field: 'provider';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by query parameters
+   */
+  export interface QueryParamsFilter {
+    field: 'query_params';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by bytes sent
+   */
+  export interface BytesSentFilter {
+    field: 'bytes_sent';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: number | Array<number>;
+  }
+
+  /**
+   * Filter by duration in milliseconds
+   */
+  export interface DurationMsFilter {
+    field: 'duration_ms';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: number | Array<number>;
   }
 }
 

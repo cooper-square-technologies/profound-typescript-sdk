@@ -1,6 +1,5 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { maybeFilter } from 'profound-mcp/filtering';
 import { Metadata, asTextContentResult } from 'profound-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
@@ -17,8 +16,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'sentiment_reports',
-  description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nGet citations for a given category.\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/report_response',\n  $defs: {\n    report_response: {\n      type: 'object',\n      title: 'Response',\n      description: 'Base response model for reports.',\n      properties: {\n        data: {\n          type: 'array',\n          title: 'Data',\n          items: {\n            $ref: '#/$defs/report_result'\n          }\n        },\n        info: {\n          $ref: '#/$defs/report_info'\n        }\n      },\n      required: [        'data',\n        'info'\n      ]\n    },\n    report_result: {\n      type: 'object',\n      title: 'Result',\n      description: 'Base model for report results.',\n      properties: {\n        dimensions: {\n          type: 'array',\n          title: 'Dimensions',\n          items: {\n            type: 'string'\n          }\n        },\n        metrics: {\n          type: 'array',\n          title: 'Metrics',\n          items: {\n            type: 'number'\n          }\n        }\n      },\n      required: [        'dimensions',\n        'metrics'\n      ]\n    },\n    report_info: {\n      type: 'object',\n      title: 'Info',\n      description: 'Base model for report information.',\n      properties: {\n        total_rows: {\n          type: 'integer',\n          title: 'Total Rows'\n        },\n        query: {\n          type: 'object',\n          title: 'Query',\n          additionalProperties: true\n        }\n      },\n      required: [        'total_rows'\n      ]\n    }\n  }\n}\n```",
+  description: 'Get citations for a given category.',
   inputSchema: {
     type: 'object',
     properties: {
@@ -66,62 +64,265 @@ export const tool: Tool = {
       filters: {
         type: 'array',
         title: 'Filters',
-        description: 'List of filters to apply to the report. Each filter has an operator, field, and value.',
+        description: 'List of filters to apply to the sentiment report.',
         items: {
-          type: 'object',
-          title: "Filter[Literal['asset_name', 'theme', 'region', 'topic', 'model', 'tag']]",
-          properties: {
-            field: {
-              type: 'string',
-              title: 'Field',
-              enum: ['asset_name', 'theme', 'region', 'topic', 'model', 'tag'],
-            },
-            operator: {
-              type: 'string',
-              title: 'Operator',
-              enum: [
-                'is',
-                'not_is',
-                'in',
-                'not_in',
-                'contains',
-                'not_contains',
-                'contains_case_insensitive',
-                'not_contains_case_insensitive',
-                'matches',
-              ],
-            },
-            value: {
-              anyOf: [
-                {
+          anyOf: [
+            {
+              type: 'object',
+              title: 'AssetNameFilter',
+              description: 'Filter by asset name',
+              properties: {
+                field: {
                   type: 'string',
-                  title: 'FilterStringValue',
+                  title: 'Field',
+                  enum: ['asset_name'],
                 },
-                {
-                  type: 'array',
-                  title: 'FilterStringListValue',
-                  items: {
-                    type: 'string',
-                  },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: [
+                    'is',
+                    'not_is',
+                    'in',
+                    'not_in',
+                    'contains',
+                    'not_contains',
+                    'matches',
+                    'contains_case_insensitive',
+                    'not_contains_case_insensitive',
+                  ],
                 },
-                {
-                  type: 'integer',
-                  title: 'FilterIntegerValue',
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
                 },
-                {
-                  type: 'array',
-                  title: 'FilterIntegerListValue',
-                  items: {
-                    type: 'integer',
-                  },
-                },
-              ],
-              title: 'Value',
-              description:
-                'Value for the filter. Can be a single value or a list of depending on the operator.',
+              },
+              required: ['field', 'operator', 'value'],
             },
-          },
-          required: ['field', 'operator', 'value'],
+            {
+              type: 'object',
+              title: 'ThemeFilter',
+              description: 'Filter by theme',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['theme'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: [
+                    'is',
+                    'not_is',
+                    'in',
+                    'not_in',
+                    'contains',
+                    'not_contains',
+                    'matches',
+                    'contains_case_insensitive',
+                    'not_contains_case_insensitive',
+                  ],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'RegionIdFilter',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  description: '- `region` - Deprecated',
+                  enum: ['region_id', 'region'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: ['is', 'not_is', 'in', 'not_in'],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'TopicIdFilter',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  description: '- `topic` - Deprecated',
+                  enum: ['topic_id', 'topic'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: ['is', 'not_is', 'in', 'not_in'],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'ModelIdFilter',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  description: '- `model` - Deprecated',
+                  enum: ['model_id', 'model'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: ['is', 'not_is', 'in', 'not_in'],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'TagIdFilter',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  description: '- `tag` - Deprecated',
+                  enum: ['tag_id', 'tag'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: ['is', 'not_is', 'in', 'not_in'],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'PromptFilter',
+              description: 'Filter by prompt text',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['prompt'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: [
+                    'is',
+                    'not_is',
+                    'in',
+                    'not_in',
+                    'contains',
+                    'not_contains',
+                    'matches',
+                    'contains_case_insensitive',
+                    'not_contains_case_insensitive',
+                  ],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+          ],
+          description: 'Filter by asset name',
         },
       },
       order_by: {
@@ -133,12 +334,6 @@ export const tool: Tool = {
       },
       pagination: {
         $ref: '#/$defs/pagination',
-      },
-      jq_filter: {
-        type: 'string',
-        title: 'jq Filter',
-        description:
-          'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
       },
     },
     required: ['category_id', 'end_date', 'metrics', 'start_date'],
@@ -166,8 +361,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Profound, args: Record<string, unknown> | undefined) => {
-  const { jq_filter, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(jq_filter, await client.reports.sentiment(body)));
+  const body = args as any;
+  return asTextContentResult(await client.reports.sentiment(body));
 };
 
 export default { metadata, tool, handler };
