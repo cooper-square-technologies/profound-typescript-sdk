@@ -67,7 +67,16 @@ export interface PromptAnswersParams {
 
   start_date: string;
 
-  filters?: Array<PromptAnswersParams.Filter>;
+  /**
+   * List of filters to apply to the answers report.
+   */
+  filters?: Array<
+    | PromptAnswersParams.RegionIDFilter
+    | PromptAnswersParams.ModelIDFilter
+    | PromptAnswersParams.TagIDFilter
+    | PromptAnswersParams.PromptTypeFilter
+    | PromptAnswersParams.PromptFilter
+  >;
 
   include?: PromptAnswersParams.Include;
 
@@ -78,8 +87,44 @@ export interface PromptAnswersParams {
 }
 
 export namespace PromptAnswersParams {
-  export interface Filter {
-    field: 'region' | 'topic' | 'model' | 'prompt_type' | 'prompt' | 'tag';
+  export interface RegionIDFilter {
+    /**
+     * - `region` - Deprecated
+     */
+    field: 'region_id' | 'region';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface ModelIDFilter {
+    /**
+     * - `model` - Deprecated
+     */
+    field: 'model_id' | 'model';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface TagIDFilter {
+    /**
+     * - `tag` - Deprecated
+     */
+    field: 'tag_id' | 'tag';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by prompt type (visibility or sentiment)
+   */
+  export interface PromptTypeFilter {
+    field: 'prompt_type';
 
     operator:
       | 'is'
@@ -88,15 +133,31 @@ export namespace PromptAnswersParams {
       | 'not_in'
       | 'contains'
       | 'not_contains'
+      | 'matches'
       | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive'
-      | 'matches';
+      | 'not_contains_case_insensitive';
 
-    /**
-     * Value for the filter. Can be a single value or a list of depending on the
-     * operator.
-     */
-    value: string | Array<string> | number | Array<number>;
+    value: 'visibility' | 'sentiment' | Array<'visibility' | 'sentiment'>;
+  }
+
+  /**
+   * Filter by prompt text
+   */
+  export interface PromptFilter {
+    field: 'prompt';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
   }
 
   export interface Include {

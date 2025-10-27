@@ -30,7 +30,7 @@ describe('resource prompts', () => {
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: '2019-12-27T18:11:19.117Z',
       start_date: '2019-12-27T18:11:19.117Z',
-      filters: [{ field: 'region', operator: 'is', value: 'string' }],
+      filters: [{ field: 'region_id', operator: 'is', value: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' }],
       include: {
         asset: true,
         citations: true,

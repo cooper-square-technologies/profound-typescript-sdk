@@ -98,7 +98,7 @@ describe('resource reports', () => {
       start_date: '2019-12-27T18:11:19.117Z',
       date_interval: 'day',
       dimensions: ['date'],
-      filters: [{ field: 'region', operator: 'is', value: 'string' }],
+      filters: [{ field: 'region_id', operator: 'is', value: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' }],
       order_by: { date: 'asc' },
       pagination: { limit: 1, offset: 0 },
     });

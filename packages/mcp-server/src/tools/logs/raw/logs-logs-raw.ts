@@ -1,6 +1,5 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { maybeFilter } from 'profound-mcp/filtering';
 import { Metadata, asTextContentResult } from 'profound-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
@@ -17,8 +16,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'logs_logs_raw',
-  description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nGet all logs with filters\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/raw_logs_response',\n  $defs: {\n    raw_logs_response: {\n      anyOf: [        {\n          type: 'array',\n          title: 'LogVisitList',\n          items: {\n            type: 'object',\n            title: 'LogVisit',\n            description: 'DB Model for a log visit.',\n            properties: {\n              host: {\n                type: 'string',\n                title: 'Host'\n              },\n              ip: {\n                type: 'string',\n                title: 'Ip'\n              },\n              method: {\n                type: 'string',\n                title: 'Method'\n              },\n              org_id: {\n                type: 'string',\n                title: 'Org Id'\n              },\n              path: {\n                type: 'string',\n                title: 'Path'\n              },\n              status_code: {\n                type: 'integer',\n                title: 'Status Code'\n              },\n              timestamp: {\n                type: 'string',\n                title: 'Timestamp',\n                format: 'date-time'\n              },\n              user_agent: {\n                type: 'string',\n                title: 'User Agent'\n              },\n              bytes_sent: {\n                type: 'integer',\n                title: 'Bytes Sent'\n              },\n              duration_ms: {\n                type: 'integer',\n                title: 'Duration Ms'\n              },\n              query_params: {\n                type: 'object',\n                title: 'Query Params',\n                additionalProperties: true\n              },\n              referer: {\n                type: 'string',\n                title: 'Referer'\n              }\n            },\n            required: [              'host',\n              'ip',\n              'method',\n              'org_id',\n              'path',\n              'status_code',\n              'timestamp',\n              'user_agent'\n            ]\n          }\n        },\n        {\n          $ref: '#/$defs/report_response'\n        }\n      ],\n      title: 'Response Get Logs V1 Logs Raw Post',\n      description: 'Base response model for reports.'\n    },\n    report_response: {\n      type: 'object',\n      title: 'Response',\n      description: 'Base response model for reports.',\n      properties: {\n        data: {\n          type: 'array',\n          title: 'Data',\n          items: {\n            $ref: '#/$defs/report_result'\n          }\n        },\n        info: {\n          $ref: '#/$defs/report_info'\n        }\n      },\n      required: [        'data',\n        'info'\n      ]\n    },\n    report_result: {\n      type: 'object',\n      title: 'Result',\n      description: 'Base model for report results.',\n      properties: {\n        dimensions: {\n          type: 'array',\n          title: 'Dimensions',\n          items: {\n            type: 'string'\n          }\n        },\n        metrics: {\n          type: 'array',\n          title: 'Metrics',\n          items: {\n            type: 'number'\n          }\n        }\n      },\n      required: [        'dimensions',\n        'metrics'\n      ]\n    },\n    report_info: {\n      type: 'object',\n      title: 'Info',\n      description: 'Base model for report information.',\n      properties: {\n        total_rows: {\n          type: 'integer',\n          title: 'Total Rows'\n        },\n        query: {\n          type: 'object',\n          title: 'Query',\n          additionalProperties: true\n        }\n      },\n      required: [        'total_rows'\n      ]\n    }\n  }\n}\n```",
+  description: 'Get all logs with filters',
   inputSchema: {
     type: 'object',
     properties: {
@@ -78,63 +76,443 @@ export const tool: Tool = {
       filters: {
         type: 'array',
         title: 'Filters',
-        description: 'List of filters to apply to the report. Each filter has an operator, field, and value.',
+        description: 'Filters to apply to the logs query.',
         items: {
-          type: 'object',
-          title:
-            "Filter[Literal['method', 'path', 'status_code', 'ip', 'user_agent', 'referer', 'query_params']]",
-          properties: {
-            field: {
-              type: 'string',
-              title: 'Field',
-              enum: ['method', 'path', 'status_code', 'ip', 'user_agent', 'referer', 'query_params'],
-            },
-            operator: {
-              type: 'string',
-              title: 'Operator',
-              enum: [
-                'is',
-                'not_is',
-                'in',
-                'not_in',
-                'contains',
-                'not_contains',
-                'contains_case_insensitive',
-                'not_contains_case_insensitive',
-                'matches',
-              ],
-            },
-            value: {
-              anyOf: [
-                {
+          anyOf: [
+            {
+              type: 'object',
+              title: 'MethodFilter',
+              description: 'Filter by HTTP method',
+              properties: {
+                field: {
                   type: 'string',
-                  title: 'FilterStringValue',
+                  title: 'Field',
+                  enum: ['method'],
                 },
-                {
-                  type: 'array',
-                  title: 'FilterStringListValue',
-                  items: {
-                    type: 'string',
-                  },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: [
+                    'is',
+                    'not_is',
+                    'in',
+                    'not_in',
+                    'contains',
+                    'not_contains',
+                    'matches',
+                    'contains_case_insensitive',
+                    'not_contains_case_insensitive',
+                  ],
                 },
-                {
-                  type: 'integer',
-                  title: 'FilterIntegerValue',
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
                 },
-                {
-                  type: 'array',
-                  title: 'FilterIntegerListValue',
-                  items: {
-                    type: 'integer',
-                  },
-                },
-              ],
-              title: 'Value',
-              description:
-                'Value for the filter. Can be a single value or a list of depending on the operator.',
+              },
+              required: ['field', 'operator', 'value'],
             },
-          },
-          required: ['field', 'operator', 'value'],
+            {
+              type: 'object',
+              title: 'HostFilter',
+              description: 'Filter by host',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['host'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: [
+                    'is',
+                    'not_is',
+                    'in',
+                    'not_in',
+                    'contains',
+                    'not_contains',
+                    'matches',
+                    'contains_case_insensitive',
+                    'not_contains_case_insensitive',
+                  ],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'PathFilter',
+              description: 'Filter by request path',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['path'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: [
+                    'is',
+                    'not_is',
+                    'in',
+                    'not_in',
+                    'contains',
+                    'not_contains',
+                    'matches',
+                    'contains_case_insensitive',
+                    'not_contains_case_insensitive',
+                  ],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'StatusCodeFilter',
+              description: 'Filter by HTTP status code',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['status_code'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: ['is', 'not_is', 'in', 'not_in'],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'integer',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'integer',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'IpFilter',
+              description: 'Filter by IP address',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['ip'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: [
+                    'is',
+                    'not_is',
+                    'in',
+                    'not_in',
+                    'contains',
+                    'not_contains',
+                    'matches',
+                    'contains_case_insensitive',
+                    'not_contains_case_insensitive',
+                  ],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'UserAgentFilter',
+              description: 'Filter by user agent',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['user_agent'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: [
+                    'is',
+                    'not_is',
+                    'in',
+                    'not_in',
+                    'contains',
+                    'not_contains',
+                    'matches',
+                    'contains_case_insensitive',
+                    'not_contains_case_insensitive',
+                  ],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'RefererFilter',
+              description: 'Filter by referer',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['referer'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: [
+                    'is',
+                    'not_is',
+                    'in',
+                    'not_in',
+                    'contains',
+                    'not_contains',
+                    'matches',
+                    'contains_case_insensitive',
+                    'not_contains_case_insensitive',
+                  ],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'ProviderFilter',
+              description: 'Filter by provider',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['provider'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: [
+                    'is',
+                    'not_is',
+                    'in',
+                    'not_in',
+                    'contains',
+                    'not_contains',
+                    'matches',
+                    'contains_case_insensitive',
+                    'not_contains_case_insensitive',
+                  ],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'QueryParamsFilter',
+              description: 'Filter by query parameters',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['query_params'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: [
+                    'is',
+                    'not_is',
+                    'in',
+                    'not_in',
+                    'contains',
+                    'not_contains',
+                    'matches',
+                    'contains_case_insensitive',
+                    'not_contains_case_insensitive',
+                  ],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'BytesSentFilter',
+              description: 'Filter by bytes sent',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['bytes_sent'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: ['is', 'not_is', 'in', 'not_in'],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'integer',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'integer',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'DurationMsFilter',
+              description: 'Filter by duration in milliseconds',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['duration_ms'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: ['is', 'not_is', 'in', 'not_in'],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'integer',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'integer',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+          ],
+          description: 'Filter by HTTP method',
         },
       },
       order_by: {
@@ -146,12 +524,6 @@ export const tool: Tool = {
       },
       pagination: {
         $ref: '#/$defs/pagination',
-      },
-      jq_filter: {
-        type: 'string',
-        title: 'jq Filter',
-        description:
-          'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
       },
     },
     required: ['domain', 'metrics', 'start_date'],
@@ -179,8 +551,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Profound, args: Record<string, unknown> | undefined) => {
-  const { jq_filter, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(jq_filter, await client.logs.raw.logs(body)));
+  const body = args as any;
+  return asTextContentResult(await client.logs.raw.logs(body));
 };
 
 export default { metadata, tool, handler };
