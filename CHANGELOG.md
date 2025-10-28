@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.0 (2025-10-28)
+
+Full Changelog: [v0.8.0...v0.9.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.8.0...v0.9.0)
+
+### Features
+
+* **api:** api update ([af0e77d](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/af0e77d048ca074ae375b8d5fc97c906a81892f0))
+
 ## 0.8.0 (2025-10-27)
 
 Full Changelog: [v0.7.1...v0.8.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.7.1...v0.8.0)
