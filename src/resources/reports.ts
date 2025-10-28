@@ -316,7 +316,7 @@ export interface ReportSentimentParams {
    */
   end_date: string;
 
-  metrics: Array<'positive' | 'negative'>;
+  metrics: Array<'positive' | 'negative' | 'ocurrences'>;
 
   /**
    * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or
@@ -332,7 +332,9 @@ export interface ReportSentimentParams {
   /**
    * Dimensions to group the report by.
    */
-  dimensions?: Array<'theme' | 'date' | 'region' | 'topic' | 'model' | 'asset_name' | 'tag' | 'prompt'>;
+  dimensions?: Array<
+    'theme' | 'date' | 'region' | 'topic' | 'model' | 'asset_name' | 'tag' | 'prompt' | 'sentiment_type'
+  >;
 
   /**
    * List of filters to apply to the sentiment report.
