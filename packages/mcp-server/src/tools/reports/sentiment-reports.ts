@@ -36,7 +36,7 @@ export const tool: Tool = {
         title: 'Metrics',
         items: {
           type: 'string',
-          enum: ['positive', 'negative'],
+          enum: ['positive', 'negative', 'ocurrences'],
         },
       },
       start_date: {
@@ -58,7 +58,17 @@ export const tool: Tool = {
         description: 'Dimensions to group the report by.',
         items: {
           type: 'string',
-          enum: ['theme', 'date', 'region', 'topic', 'model', 'asset_name', 'tag', 'prompt'],
+          enum: [
+            'theme',
+            'date',
+            'region',
+            'topic',
+            'model',
+            'asset_name',
+            'tag',
+            'prompt',
+            'sentiment_type',
+          ],
         },
       },
       filters: {
