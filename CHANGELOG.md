@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.1 (2025-10-31)
+
+Full Changelog: [v0.9.0...v0.9.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.9.0...v0.9.1)
+
+### Bug Fixes
+
+* **mcpb:** pin @anthropic-ai/mcpb version ([072d8ec](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/072d8ecf97078a23b7ba63701f0b3fc402a061e1))
+
 ## 0.9.0 (2025-10-28)
 
 Full Changelog: [v0.8.0...v0.9.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.8.0...v0.9.0)
