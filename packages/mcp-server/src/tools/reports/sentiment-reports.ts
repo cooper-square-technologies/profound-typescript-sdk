@@ -36,7 +36,7 @@ export const tool: Tool = {
         title: 'Metrics',
         items: {
           type: 'string',
-          enum: ['positive', 'negative', 'ocurrences'],
+          enum: ['positive', 'negative', 'occurrences'],
         },
       },
       start_date: {
