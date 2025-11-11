@@ -1,5 +1,38 @@
 # Changelog
 
+## 0.10.0 (2025-11-11)
+
+Full Changelog: [v0.9.0...v0.10.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.9.0...v0.10.0)
+
+### Features
+
+* **api:** api update ([97cbfbf](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/97cbfbf69be9a343c145c9c9509c8469797bb044))
+* **mcp:** allow to authenticate using `x-api-key` header ([146b1a1](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/146b1a145ca4eb0651aa58e0ce5491af8ded8f0a))
+* **mcp:** enable optional code execution tool on http mcp servers ([74b6fc2](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/74b6fc2f2825ba07de6d8dd38810353361d7447c))
+
+
+### Bug Fixes
+
+* **mcpb:** pin @anthropic-ai/mcpb version ([7b1c7ea](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/7b1c7ea65e6847fce9d95babb9fbf9da33e90bef))
+
+
+### Chores
+
+* **internal:** codegen related update ([fdc5da9](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/fdc5da9778e550583872dec50c71f0559db92ed0))
+* **internal:** codegen related update ([8b49431](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/8b494310abc2f5afbcccecc7ddc0361f1b8f434f))
+* **internal:** grammar fix (it's -&gt; its) ([8b95a05](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/8b95a05c0ff0e37355cb1bbb1ad11bcdcc476ce2))
+* mcp code tool explicit error message when missing a run function ([ebd6209](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/ebd6209d5defbcfcb58c16dda5d40b8930e2acd4))
+* **mcp:** add friendlier MCP code tool errors on incorrect method invocations ([619daf5](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/619daf59ee3664d7d34c758067298b7a67a3eb72))
+* **mcp:** add line numbers to code tool errors ([8569fdb](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/8569fdbc57768050be8bce779c7e7a4da56737b6))
+* **mcp:** clarify http auth error ([090a243](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/090a2437beb28e704dc7967a45ae3997e75b380b))
+* use structured error when code execution tool errors ([f1e204c](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/f1e204cb21e7f218beee7da6304c70c4106633b8))
+
+
+### Documentation
+
+* **mcp:** add a README button for one-click add to Cursor ([fdc3a6e](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/fdc3a6eb5e90003942803f5f0e95ae50c07498af))
+* **mcp:** add a README link to add server to VS Code or Claude Code ([ad2422a](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/ad2422a02daf1422246cc77cc7e74a1e8936226c))
+
 ## 0.9.0 (2025-10-28)
 
 Full Changelog: [v0.8.0...v0.9.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.8.0...v0.9.0)
