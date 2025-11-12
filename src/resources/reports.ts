@@ -316,7 +316,7 @@ export interface ReportSentimentParams {
    */
   end_date: string;
 
-  metrics: Array<'positive' | 'negative' | 'ocurrences'>;
+  metrics: Array<'positive' | 'negative' | 'occurrences'>;
 
   /**
    * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or
