@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.10.1 (2025-11-13)
+
+Full Changelog: [v0.10.0...v0.10.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.10.0...v0.10.1)
+
+### Bug Fixes
+
+* **mcp:** return tool execution error on jq failure ([cd43107](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/cd43107a6c6e244027aa962d4cf1d52708f70166))
+
+
+### Chores
+
+* **mcp:** upgrade jq-web ([ffe7988](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/ffe798843483106810f3d4b3d383f96023355307))
+
 ## 0.10.0 (2025-11-11)
 
 Full Changelog: [v0.9.0...v0.10.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.9.0...v0.10.0)
