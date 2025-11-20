@@ -45,6 +45,7 @@ const fuse = new Fuse(
     'client.organizations.domains',
     'client.organizations.models',
     'client.organizations.regions',
+    'client.organizations.categories.assets',
     'client.organizations.categories.list',
     'client.organizations.categories.prompts',
     'client.organizations.categories.tags',
