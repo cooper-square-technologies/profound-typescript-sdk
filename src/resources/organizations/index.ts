@@ -4,6 +4,7 @@ export {
   Categories,
   type OrgItem,
   type CategoryListResponse,
+  type CategoryAssetsResponse,
   type CategoryPromptsResponse,
   type CategoryTagsResponse,
   type CategoryTopicsResponse,
