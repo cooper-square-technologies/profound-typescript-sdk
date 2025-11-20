@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.11.0 (2025-11-20)
+
+Full Changelog: [v0.10.1...v0.11.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.10.1...v0.11.0)
+
+### Features
+
+* **api:** add assets endpoint ([74c3793](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/74c3793fe4671126c8e186f95c7b6a0ebaeb581c))
+
 ## 0.10.1 (2025-11-13)
 
 Full Changelog: [v0.10.0...v0.10.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.10.0...v0.10.1)
