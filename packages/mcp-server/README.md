@@ -247,6 +247,7 @@ The following tools are available in this MCP server.
 ### Resource `organizations.categories`:
 
 - `list_organizations_categories` (`read`): Get the organization categories.
+- `assets_organizations_categories` (`read`): Get Category Assets
 - `prompts_organizations_categories` (`read`): Get Category Prompts
 - `tags_organizations_categories` (`read`): Get the organization tags for a specific category.
 - `topics_organizations_categories` (`read`): Get the organization categories.

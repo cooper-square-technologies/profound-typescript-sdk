@@ -24,6 +24,7 @@ Types:
 
 - <code><a href="./src/resources/organizations/categories.ts">OrgItem</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryListResponse</a></code>
+- <code><a href="./src/resources/organizations/categories.ts">CategoryAssetsResponse</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryPromptsResponse</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryTagsResponse</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryTopicsResponse</a></code>
@@ -31,6 +32,7 @@ Types:
 Methods:
 
 - <code title="get /v1/org/categories">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">list</a>() -> CategoryListResponse</code>
+- <code title="get /v1/org/categories/{category_id}/assets">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">assets</a>(categoryID) -> CategoryAssetsResponse</code>
 - <code title="get /v1/org/categories/{category_id}/prompts">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">prompts</a>(categoryID) -> CategoryPromptsResponse</code>
 - <code title="get /v1/org/categories/{category_id}/tags">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">tags</a>(categoryID) -> CategoryTagsResponse</code>
 - <code title="get /v1/org/categories/{category_id}/topics">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">topics</a>(categoryID) -> CategoryTopicsResponse</code>

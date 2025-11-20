@@ -15,6 +15,13 @@ export class Categories extends APIResource {
   }
 
   /**
+   * Get Category Assets
+   */
+  assets(categoryID: string, options?: RequestOptions): APIPromise<CategoryAssetsResponse> {
+    return this._client.get(path`/v1/org/categories/${categoryID}/assets`, options);
+  }
+
+  /**
    * Get Category Prompts
    */
   prompts(categoryID: string, options?: RequestOptions): APIPromise<CategoryPromptsResponse> {
@@ -43,6 +50,24 @@ export interface OrgItem {
 }
 
 export type CategoryListResponse = Array<OrgItem>;
+
+export type CategoryAssetsResponse = Array<CategoryAssetsResponse.CategoryAssetsResponseItem>;
+
+export namespace CategoryAssetsResponse {
+  export interface CategoryAssetsResponseItem {
+    id: string;
+
+    created_at: string;
+
+    is_owned: boolean;
+
+    name: string;
+
+    website: string;
+
+    alternate_domains?: Array<string> | null;
+  }
+}
 
 export interface CategoryPromptsResponse {
   data: Array<CategoryPromptsResponse.Data>;
@@ -76,6 +101,7 @@ export declare namespace Categories {
   export {
     type OrgItem as OrgItem,
     type CategoryListResponse as CategoryListResponse,
+    type CategoryAssetsResponse as CategoryAssetsResponse,
     type CategoryPromptsResponse as CategoryPromptsResponse,
     type CategoryTagsResponse as CategoryTagsResponse,
     type CategoryTopicsResponse as CategoryTopicsResponse,

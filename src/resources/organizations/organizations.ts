@@ -4,6 +4,7 @@ import { APIResource } from '../../core/resource';
 import * as CategoriesAPI from './categories';
 import {
   Categories,
+  CategoryAssetsResponse,
   CategoryListResponse,
   CategoryPromptsResponse,
   CategoryTagsResponse,
@@ -67,6 +68,7 @@ export declare namespace Organizations {
     Categories as Categories,
     type OrgItem as OrgItem,
     type CategoryListResponse as CategoryListResponse,
+    type CategoryAssetsResponse as CategoryAssetsResponse,
     type CategoryPromptsResponse as CategoryPromptsResponse,
     type CategoryTagsResponse as CategoryTagsResponse,
     type CategoryTopicsResponse as CategoryTopicsResponse,
