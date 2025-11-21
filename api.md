@@ -9,12 +9,14 @@ Types:
 Types:
 
 - <code><a href="./src/resources/organizations/organizations.ts">OrganizationDomainsResponse</a></code>
+- <code><a href="./src/resources/organizations/organizations.ts">OrganizationListAssetsResponse</a></code>
 - <code><a href="./src/resources/organizations/organizations.ts">OrganizationModelsResponse</a></code>
 - <code><a href="./src/resources/organizations/organizations.ts">OrganizationRegionsResponse</a></code>
 
 Methods:
 
 - <code title="get /v1/org/domains">client.organizations.<a href="./src/resources/organizations/organizations.ts">domains</a>() -> OrganizationDomainsResponse</code>
+- <code title="get /v1/org/assets">client.organizations.<a href="./src/resources/organizations/organizations.ts">listAssets</a>() -> OrganizationListAssetsResponse</code>
 - <code title="get /v1/org/models">client.organizations.<a href="./src/resources/organizations/organizations.ts">models</a>() -> OrganizationModelsResponse</code>
 - <code title="get /v1/org/regions">client.organizations.<a href="./src/resources/organizations/organizations.ts">regions</a>() -> OrganizationRegionsResponse</code>
 

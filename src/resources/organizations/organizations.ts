@@ -25,6 +25,13 @@ export class Organizations extends APIResource {
   }
 
   /**
+   * Get Assets
+   */
+  listAssets(options?: RequestOptions): APIPromise<OrganizationListAssetsResponse> {
+    return this._client.get('/v1/org/assets', options);
+  }
+
+  /**
    * Get the organization models.
    */
   models(options?: RequestOptions): APIPromise<OrganizationModelsResponse> {
@@ -51,6 +58,28 @@ export namespace OrganizationDomainsResponse {
   }
 }
 
+export interface OrganizationListAssetsResponse {
+  data: Array<OrganizationListAssetsResponse.Data>;
+}
+
+export namespace OrganizationListAssetsResponse {
+  export interface Data {
+    id: string;
+
+    category: CategoriesAPI.OrgItem;
+
+    created_at: string;
+
+    is_owned: boolean;
+
+    name: string;
+
+    website: string;
+
+    alternate_domains?: Array<string> | null;
+  }
+}
+
 export type OrganizationModelsResponse = Array<CategoriesAPI.OrgItem>;
 
 export type OrganizationRegionsResponse = Array<CategoriesAPI.OrgItem>;
@@ -60,6 +89,7 @@ Organizations.Categories = Categories;
 export declare namespace Organizations {
   export {
     type OrganizationDomainsResponse as OrganizationDomainsResponse,
+    type OrganizationListAssetsResponse as OrganizationListAssetsResponse,
     type OrganizationModelsResponse as OrganizationModelsResponse,
     type OrganizationRegionsResponse as OrganizationRegionsResponse,
   };

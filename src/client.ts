@@ -30,6 +30,7 @@ import {
 import { Logs } from './resources/logs/logs';
 import {
   OrganizationDomainsResponse,
+  OrganizationListAssetsResponse,
   OrganizationModelsResponse,
   OrganizationRegionsResponse,
   Organizations,
@@ -748,6 +749,7 @@ export declare namespace Profound {
   export {
     Organizations as Organizations,
     type OrganizationDomainsResponse as OrganizationDomainsResponse,
+    type OrganizationListAssetsResponse as OrganizationListAssetsResponse,
     type OrganizationModelsResponse as OrganizationModelsResponse,
     type OrganizationRegionsResponse as OrganizationRegionsResponse,
   };

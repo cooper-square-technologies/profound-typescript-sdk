@@ -241,6 +241,7 @@ The following tools are available in this MCP server.
 ### Resource `organizations`:
 
 - `domains_organizations` (`read`): Get the organization domains.
+- `list_assets_organizations` (`read`): Get Assets
 - `models_organizations` (`read`): Get the organization models.
 - `regions_organizations` (`read`): Get the organization regions.
 
