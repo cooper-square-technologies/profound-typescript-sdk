@@ -43,6 +43,7 @@ function getRunFunctionNode(
 const fuse = new Fuse(
   [
     'client.organizations.domains',
+    'client.organizations.listAssets',
     'client.organizations.models',
     'client.organizations.regions',
     'client.organizations.categories.assets',

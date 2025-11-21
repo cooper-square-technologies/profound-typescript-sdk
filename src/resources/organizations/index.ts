@@ -12,6 +12,7 @@ export {
 export {
   Organizations,
   type OrganizationDomainsResponse,
+  type OrganizationListAssetsResponse,
   type OrganizationModelsResponse,
   type OrganizationRegionsResponse,
 } from './organizations';

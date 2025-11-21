@@ -5,6 +5,7 @@ import { Metadata, Endpoint, HandlerFunction } from './types';
 export { Metadata, Endpoint, HandlerFunction };
 
 import domains_organizations from './organizations/domains-organizations';
+import list_assets_organizations from './organizations/list-assets-organizations';
 import models_organizations from './organizations/models-organizations';
 import regions_organizations from './organizations/regions-organizations';
 import list_organizations_categories from './organizations/categories/list-organizations-categories';
@@ -26,6 +27,7 @@ function addEndpoint(endpoint: Endpoint) {
 }
 
 addEndpoint(domains_organizations);
+addEndpoint(list_assets_organizations);
 addEndpoint(models_organizations);
 addEndpoint(regions_organizations);
 addEndpoint(list_organizations_categories);

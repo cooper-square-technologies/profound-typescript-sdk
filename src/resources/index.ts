@@ -5,6 +5,7 @@ export { Logs } from './logs/logs';
 export {
   Organizations,
   type OrganizationDomainsResponse,
+  type OrganizationListAssetsResponse,
   type OrganizationModelsResponse,
   type OrganizationRegionsResponse,
 } from './organizations/organizations';
