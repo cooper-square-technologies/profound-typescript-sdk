@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.12.0 (2025-11-21)
+
+Full Changelog: [v0.11.0...v0.12.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.11.0...v0.12.0)
+
+### Features
+
+* **api:** added `get /v1/org/assets` ([70015a9](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/70015a9d859c91e9251f5d4a14272487668401f8))
+
 ## 0.11.0 (2025-11-20)
 
 Full Changelog: [v0.10.1...v0.11.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.10.1...v0.11.0)
