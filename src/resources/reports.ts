@@ -333,7 +333,16 @@ export interface ReportSentimentParams {
    * Dimensions to group the report by.
    */
   dimensions?: Array<
-    'theme' | 'date' | 'region' | 'topic' | 'model' | 'asset_name' | 'tag' | 'prompt' | 'sentiment_type'
+    | 'theme'
+    | 'date'
+    | 'region'
+    | 'topic'
+    | 'model'
+    | 'asset_id'
+    | 'asset_name'
+    | 'tag'
+    | 'prompt'
+    | 'sentiment_type'
   >;
 
   /**
@@ -500,7 +509,7 @@ export interface ReportVisibilityParams {
   /**
    * Dimensions to group the report by.
    */
-  dimensions?: Array<'date' | 'region' | 'topic' | 'model' | 'asset_name' | 'prompt' | 'tag'>;
+  dimensions?: Array<'date' | 'region' | 'topic' | 'model' | 'asset_id' | 'asset_name' | 'prompt' | 'tag'>;
 
   /**
    * List of filters to apply to the visibility report.

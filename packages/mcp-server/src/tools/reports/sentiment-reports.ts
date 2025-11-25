@@ -64,6 +64,7 @@ export const tool: Tool = {
             'region',
             'topic',
             'model',
+            'asset_id',
             'asset_name',
             'tag',
             'prompt',
