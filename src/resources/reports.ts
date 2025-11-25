@@ -333,7 +333,16 @@ export interface ReportSentimentParams {
    * Dimensions to group the report by.
    */
   dimensions?: Array<
-    'theme' | 'date' | 'region' | 'topic' | 'model' | 'asset_name' | 'tag' | 'prompt' | 'sentiment_type'
+    | 'theme'
+    | 'date'
+    | 'region'
+    | 'topic'
+    | 'model'
+    | 'asset_id'
+    | 'asset_name'
+    | 'tag'
+    | 'prompt'
+    | 'sentiment_type'
   >;
 
   /**
@@ -500,7 +509,7 @@ export interface ReportVisibilityParams {
   /**
    * Dimensions to group the report by.
    */
-  dimensions?: Array<'date' | 'region' | 'topic' | 'model' | 'asset_name' | 'prompt' | 'tag'>;
+  dimensions?: Array<'date' | 'region' | 'topic' | 'model' | 'asset_id' | 'asset_name' | 'prompt' | 'tag'>;
 
   /**
    * List of filters to apply to the visibility report.
@@ -509,7 +518,6 @@ export interface ReportVisibilityParams {
     | ReportVisibilityParams.RegionIDFilter
     | ReportVisibilityParams.ModelIDFilter
     | ReportVisibilityParams.TopicIDFilter
-    | ReportVisibilityParams.AssetNameFilter
     | ReportVisibilityParams.TagIDFilter
     | ReportVisibilityParams.PromptFilter
   >;
@@ -564,26 +572,6 @@ export namespace ReportVisibilityParams {
     field: 'topic_id' | 'topic';
 
     operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  /**
-   * Filter by asset name
-   */
-  export interface AssetNameFilter {
-    field: 'asset_name';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
 
     value: string | Array<string>;
   }
