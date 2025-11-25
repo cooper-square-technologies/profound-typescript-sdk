@@ -518,6 +518,7 @@ export interface ReportVisibilityParams {
     | ReportVisibilityParams.RegionIDFilter
     | ReportVisibilityParams.ModelIDFilter
     | ReportVisibilityParams.TopicIDFilter
+    | ReportVisibilityParams.AssetNameFilter
     | ReportVisibilityParams.TagIDFilter
     | ReportVisibilityParams.PromptFilter
   >;
@@ -572,6 +573,26 @@ export namespace ReportVisibilityParams {
     field: 'topic_id' | 'topic';
 
     operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by asset name
+   */
+  export interface AssetNameFilter {
+    field: 'asset_name';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
 
     value: string | Array<string>;
   }
