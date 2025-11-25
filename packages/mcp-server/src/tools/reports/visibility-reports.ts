@@ -165,6 +165,48 @@ export const tool: Tool = {
             },
             {
               type: 'object',
+              title: 'AssetNameFilter',
+              description: 'Filter by asset name',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['asset_name'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: [
+                    'is',
+                    'not_is',
+                    'in',
+                    'not_in',
+                    'contains',
+                    'not_contains',
+                    'matches',
+                    'contains_case_insensitive',
+                    'not_contains_case_insensitive',
+                  ],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
               title: 'TagIdFilter',
               properties: {
                 field: {
@@ -238,7 +280,7 @@ export const tool: Tool = {
               required: ['field', 'operator', 'value'],
             },
           ],
-          description: 'Filter by prompt text',
+          description: 'Filter by asset name',
         },
       },
       order_by: {
