@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.14.0 (2025-11-26)
+
+Full Changelog: [v0.13.0...v0.14.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.13.0...v0.14.0)
+
+### Features
+
+* **mcp:** add detail field to docs search tool ([f20d415](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/f20d4151e288b6f63c88e0edeecd6ba063b2ac8a))
+
 ## 0.13.0 (2025-11-25)
 
 Full Changelog: [v0.12.0...v0.13.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.12.0...v0.13.0)
