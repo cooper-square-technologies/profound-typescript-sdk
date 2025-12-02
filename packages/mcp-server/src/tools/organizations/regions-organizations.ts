@@ -41,7 +41,7 @@ export const handler = async (client: Profound, args: Record<string, unknown> | 
   try {
     return asTextContentResult(await maybeFilter(jq_filter, await client.organizations.regions()));
   } catch (error) {
-    if (isJqError(error)) {
+    if (error instanceof Profound.APIError || isJqError(error)) {
       return asErrorResult(error.message);
     }
     throw error;
