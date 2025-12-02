@@ -222,6 +222,37 @@ export const tool: Tool = {
               },
               required: ['field', 'operator', 'value'],
             },
+            {
+              type: 'object',
+              title: 'PersonaIdFilter',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['persona_id'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: ['is', 'not_is', 'in', 'not_in'],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
           ],
           description: 'Filter by prompt type (visibility or sentiment)',
         },
@@ -249,6 +280,10 @@ export const tool: Tool = {
           model: {
             type: 'boolean',
             title: 'Model',
+          },
+          persona: {
+            type: 'boolean',
+            title: 'Persona',
           },
           prompt: {
             type: 'boolean',
