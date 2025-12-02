@@ -47,7 +47,7 @@ export const handler = async (client: Profound, args: Record<string, unknown> | 
       await maybeFilter(jq_filter, await client.organizations.categories.prompts(category_id)),
     );
   } catch (error) {
-    if (isJqError(error)) {
+    if (error instanceof Profound.APIError || isJqError(error)) {
       return asErrorResult(error.message);
     }
     throw error;
