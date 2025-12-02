@@ -38,6 +38,8 @@ export namespace PromptAnswersResponse {
 
     model?: string | null;
 
+    persona?: string | null;
+
     prompt?: string | null;
 
     prompt_id?: string | null;
@@ -76,6 +78,7 @@ export interface PromptAnswersParams {
     | PromptAnswersParams.TagIDFilter
     | PromptAnswersParams.PromptTypeFilter
     | PromptAnswersParams.PromptFilter
+    | PromptAnswersParams.PersonaIDFilter
   >;
 
   include?: PromptAnswersParams.Include;
@@ -160,6 +163,14 @@ export namespace PromptAnswersParams {
     value: string | Array<string>;
   }
 
+  export interface PersonaIDFilter {
+    field: 'persona_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
   export interface Include {
     asset?: boolean;
 
@@ -170,6 +181,8 @@ export namespace PromptAnswersParams {
     mentions?: boolean;
 
     model?: boolean;
+
+    persona?: boolean;
 
     prompt?: boolean;
 
