@@ -58,7 +58,7 @@ export const tool: Tool = {
         description: 'Dimensions to group the report by.',
         items: {
           type: 'string',
-          enum: ['date', 'region', 'topic', 'model', 'asset_id', 'asset_name', 'prompt', 'tag'],
+          enum: ['date', 'region', 'topic', 'model', 'asset_id', 'asset_name', 'prompt', 'tag', 'persona'],
         },
       },
       filters: {
@@ -261,6 +261,37 @@ export const tool: Tool = {
                     'contains_case_insensitive',
                     'not_contains_case_insensitive',
                   ],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'PersonaIdFilter',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['persona_id'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: ['is', 'not_is', 'in', 'not_in'],
                 },
                 value: {
                   anyOf: [
