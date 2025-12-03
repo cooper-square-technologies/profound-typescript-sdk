@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.14.0 (2025-12-03)
+
+Full Changelog: [v0.13.0...v0.14.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.13.0...v0.14.0)
+
+### Features
+
+* **api:** api update ([9fc8fb3](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/9fc8fb354d4bd740fe7182a3d93f7445cdce3c11))
+* **api:** api update ([a20bc1d](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/a20bc1d2721be6ab61219fcf070059a1e4df856e))
+* **mcp:** add detail field to docs search tool ([f20d415](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/f20d4151e288b6f63c88e0edeecd6ba063b2ac8a))
+* **mcp:** return logs on code tool errors ([d841366](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/d841366d2a3dd4d67dc7c6e4311e45437dca4527))
+
+
+### Bug Fixes
+
+* **mcp:** return tool execution error on api error ([f2db6d7](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/f2db6d79573b6b5f5cd52be3678b4a01d6020616))
+
+
+### Chores
+
+* **client:** fix logger property type ([3f023d9](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/3f023d97d004f1d40d9b5c5215aced861614f080))
+* **internal:** upgrade eslint ([10ee79c](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/10ee79c3a80e86c03a70ebc53a99eabc58bdc50c))
+
 ## 0.13.0 (2025-11-25)
 
 Full Changelog: [v0.12.0...v0.13.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.12.0...v0.13.0)
