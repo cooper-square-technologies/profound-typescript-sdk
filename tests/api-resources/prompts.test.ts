@@ -37,6 +37,7 @@ describe('resource prompts', () => {
         created_at: true,
         mentions: true,
         model: true,
+        persona: true,
         prompt: true,
         prompt_id: true,
         prompt_type: true,

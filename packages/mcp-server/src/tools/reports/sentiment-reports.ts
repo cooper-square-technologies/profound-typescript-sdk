@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { Metadata, asTextContentResult } from 'profound-mcp/tools/types';
+import { Metadata, asErrorResult, asTextContentResult } from 'profound-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import Profound from 'profoundai';
@@ -69,6 +69,7 @@ export const tool: Tool = {
             'tag',
             'prompt',
             'sentiment_type',
+            'persona',
           ],
         },
       },
@@ -332,6 +333,37 @@ export const tool: Tool = {
               },
               required: ['field', 'operator', 'value'],
             },
+            {
+              type: 'object',
+              title: 'PersonaIdFilter',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['persona_id'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: ['is', 'not_is', 'in', 'not_in'],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
           ],
           description: 'Filter by asset name',
         },
@@ -373,7 +405,14 @@ export const tool: Tool = {
 
 export const handler = async (client: Profound, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  return asTextContentResult(await client.reports.sentiment(body));
+  try {
+    return asTextContentResult(await client.reports.sentiment(body));
+  } catch (error) {
+    if (error instanceof Profound.APIError) {
+      return asErrorResult(error.message);
+    }
+    throw error;
+  }
 };
 
 export default { metadata, tool, handler };
