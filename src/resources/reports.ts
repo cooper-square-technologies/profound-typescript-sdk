@@ -123,7 +123,17 @@ export interface ReportCitationsParams {
    * Dimensions to group the report by.
    */
   dimensions?: Array<
-    'hostname' | 'path' | 'date' | 'region' | 'topic' | 'model' | 'tag' | 'prompt' | 'url' | 'root_domain'
+    | 'hostname'
+    | 'path'
+    | 'date'
+    | 'region'
+    | 'topic'
+    | 'model'
+    | 'tag'
+    | 'prompt'
+    | 'url'
+    | 'root_domain'
+    | 'persona'
   >;
 
   /**
@@ -139,6 +149,7 @@ export interface ReportCitationsParams {
     | ReportCitationsParams.URLFilter
     | ReportCitationsParams.RootDomainFilter
     | ReportCitationsParams.PromptTypeFilter
+    | ReportCitationsParams.PersonaIDFilter
   >;
 
   /**
@@ -305,6 +316,14 @@ export namespace ReportCitationsParams {
 
     value: 'visibility' | 'sentiment' | Array<'visibility' | 'sentiment'>;
   }
+
+  export interface PersonaIDFilter {
+    field: 'persona_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
 }
 
 export interface ReportSentimentParams {
@@ -343,6 +362,7 @@ export interface ReportSentimentParams {
     | 'tag'
     | 'prompt'
     | 'sentiment_type'
+    | 'persona'
   >;
 
   /**
@@ -356,6 +376,7 @@ export interface ReportSentimentParams {
     | ReportSentimentParams.ModelIDFilter
     | ReportSentimentParams.TagIDFilter
     | ReportSentimentParams.PromptFilter
+    | ReportSentimentParams.PersonaIDFilter
   >;
 
   /**
@@ -482,6 +503,14 @@ export namespace ReportSentimentParams {
 
     value: string | Array<string>;
   }
+
+  export interface PersonaIDFilter {
+    field: 'persona_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
 }
 
 export interface ReportVisibilityParams {
@@ -509,7 +538,9 @@ export interface ReportVisibilityParams {
   /**
    * Dimensions to group the report by.
    */
-  dimensions?: Array<'date' | 'region' | 'topic' | 'model' | 'asset_id' | 'asset_name' | 'prompt' | 'tag'>;
+  dimensions?: Array<
+    'date' | 'region' | 'topic' | 'model' | 'asset_id' | 'asset_name' | 'prompt' | 'tag' | 'persona'
+  >;
 
   /**
    * List of filters to apply to the visibility report.
@@ -521,6 +552,7 @@ export interface ReportVisibilityParams {
     | ReportVisibilityParams.AssetNameFilter
     | ReportVisibilityParams.TagIDFilter
     | ReportVisibilityParams.PromptFilter
+    | ReportVisibilityParams.PersonaIDFilter
   >;
 
   /**
@@ -624,6 +656,14 @@ export namespace ReportVisibilityParams {
       | 'matches'
       | 'contains_case_insensitive'
       | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  export interface PersonaIDFilter {
+    field: 'persona_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
 
     value: string | Array<string>;
   }

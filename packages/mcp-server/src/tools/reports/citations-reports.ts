@@ -69,6 +69,7 @@ export const tool: Tool = {
             'prompt',
             'url',
             'root_domain',
+            'persona',
           ],
         },
       },
@@ -410,6 +411,37 @@ export const tool: Tool = {
                       items: {
                         type: 'string',
                         enum: ['visibility', 'sentiment'],
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'PersonaIdFilter',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['persona_id'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: ['is', 'not_is', 'in', 'not_in'],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
                       },
                     },
                   ],

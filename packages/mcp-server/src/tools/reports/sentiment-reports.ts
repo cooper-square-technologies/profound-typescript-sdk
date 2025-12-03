@@ -69,6 +69,7 @@ export const tool: Tool = {
             'tag',
             'prompt',
             'sentiment_type',
+            'persona',
           ],
         },
       },
@@ -314,6 +315,37 @@ export const tool: Tool = {
                     'contains_case_insensitive',
                     'not_contains_case_insensitive',
                   ],
+                },
+                value: {
+                  anyOf: [
+                    {
+                      type: 'string',
+                    },
+                    {
+                      type: 'array',
+                      items: {
+                        type: 'string',
+                      },
+                    },
+                  ],
+                  title: 'Value',
+                },
+              },
+              required: ['field', 'operator', 'value'],
+            },
+            {
+              type: 'object',
+              title: 'PersonaIdFilter',
+              properties: {
+                field: {
+                  type: 'string',
+                  title: 'Field',
+                  enum: ['persona_id'],
+                },
+                operator: {
+                  type: 'string',
+                  title: 'Operator',
+                  enum: ['is', 'not_is', 'in', 'not_in'],
                 },
                 value: {
                   anyOf: [
