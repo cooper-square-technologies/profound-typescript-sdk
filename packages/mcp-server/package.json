@@ -1,6 +1,6 @@
 {
   "name": "profound-mcp",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "description": "The official MCP Server for the Profound API",
   "author": "Profound <support@tryprofound.com>",
   "types": "dist/index.d.ts",
@@ -32,7 +32,7 @@
   "dependencies": {
     "profoundai": "file:../../dist/",
     "@cloudflare/cabidela": "^0.2.4",
-    "@modelcontextprotocol/sdk": "^1.11.5",
+    "@modelcontextprotocol/sdk": "^1.24.0",
     "@valtown/deno-http-worker": "^0.0.21",
     "cors": "^2.8.5",
     "express": "^5.1.0",
