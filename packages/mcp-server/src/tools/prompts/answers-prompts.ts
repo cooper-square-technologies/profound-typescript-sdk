@@ -281,6 +281,10 @@ export const tool: Tool = {
             type: 'boolean',
             title: 'Model',
           },
+          model_id: {
+            type: 'boolean',
+            title: 'Model Id',
+          },
           persona: {
             type: 'boolean',
             title: 'Persona',
