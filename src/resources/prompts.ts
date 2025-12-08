@@ -38,6 +38,8 @@ export namespace PromptAnswersResponse {
 
     model?: string | null;
 
+    model_id?: string | null;
+
     persona?: string | null;
 
     prompt?: string | null;
@@ -181,6 +183,8 @@ export namespace PromptAnswersParams {
     mentions?: boolean;
 
     model?: boolean;
+
+    model_id?: boolean;
 
     persona?: boolean;
 
