@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.15.0 (2025-12-12)
+
+Full Changelog: [v0.14.0...v0.15.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.14.0...v0.15.0)
+
+### Features
+
+* **api:** api update ([79981ef](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/79981ef09c36079c01aa0b35f954e1bcfd60213b))
+* **api:** api update ([7181767](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/7181767087a7c6063ce316f4deacd7858708ab07))
+* **mcp:** add typescript check to code execution tool ([1d457f2](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/1d457f2a585670e6aa630831714ca848bb8aed55))
+* **mcp:** handle code mode calls in the Stainless API ([86f0d1a](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/86f0d1ab96a805e5a4abc61ee20c72335fa3299a))
+
+
+### Bug Fixes
+
+* **mcp:** add client instantiation options to code tool ([fbf7900](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/fbf7900f4802cb806e21fe5f25262061caa58045))
+* **mcp:** correct code tool API endpoint ([f87e3a3](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/f87e3a3434897b09ae0791f1ddb5fceb5d788226))
+* **mcp:** return correct lines on typescript errors ([f1035b0](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/f1035b056d52612cff6805cb15d7ce4ad01763d3))
+
+
+### Chores
+
+* **internal:** codegen related update ([b0c512e](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/b0c512ee3b0d1889abb373466c4e18c4449eff14))
+* **internal:** codegen related update ([4598ec2](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/4598ec2b4730c701d82c46920078aeb8a93e0112))
+* **mcp:** update lockfile ([afa4605](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/afa46050a14cd57cb1e9c5ebe2f8c3b1002de03a))
+* use latest @modelcontextprotocol/sdk ([eab5239](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/eab523975ce5f489e5d26ceb12ba7f130d7a0fdd))
+
 ## 0.14.0 (2025-12-03)
 
 Full Changelog: [v0.13.0...v0.14.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.13.0...v0.14.0)
