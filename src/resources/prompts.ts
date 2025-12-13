@@ -38,6 +38,8 @@ export namespace PromptAnswersResponse {
 
     model?: string | null;
 
+    model_id?: string | null;
+
     persona?: string | null;
 
     prompt?: string | null;
@@ -54,11 +56,21 @@ export namespace PromptAnswersResponse {
 
     search_queries?: Array<string> | null;
 
+    sentiment_themes?: Array<Data.SentimentTheme> | null;
+
     tags?: Array<string> | null;
 
     themes?: Array<string> | null;
 
     topic?: string | null;
+  }
+
+  export namespace Data {
+    export interface SentimentTheme {
+      name: string;
+
+      type: 'positive' | 'negative';
+    }
   }
 }
 
@@ -182,6 +194,8 @@ export namespace PromptAnswersParams {
 
     model?: boolean;
 
+    model_id?: boolean;
+
     persona?: boolean;
 
     prompt?: boolean;
@@ -198,8 +212,13 @@ export namespace PromptAnswersParams {
 
     search_queries?: boolean;
 
+    sentiment_themes?: boolean;
+
     tags?: boolean;
 
+    /**
+     * @deprecated Use 'sentiment_themes' instead
+     */
     themes?: boolean;
 
     topic?: boolean;

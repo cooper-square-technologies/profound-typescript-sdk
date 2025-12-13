@@ -281,6 +281,10 @@ export const tool: Tool = {
             type: 'boolean',
             title: 'Model',
           },
+          model_id: {
+            type: 'boolean',
+            title: 'Model Id',
+          },
           persona: {
             type: 'boolean',
             title: 'Persona',
@@ -313,6 +317,10 @@ export const tool: Tool = {
             type: 'boolean',
             title: 'Search Queries',
           },
+          sentiment_themes: {
+            type: 'boolean',
+            title: 'Sentiment Themes',
+          },
           tags: {
             type: 'boolean',
             title: 'Tags',
@@ -320,6 +328,7 @@ export const tool: Tool = {
           themes: {
             type: 'boolean',
             title: 'Themes',
+            description: "Use 'sentiment_themes' instead",
           },
           topic: {
             type: 'boolean',
