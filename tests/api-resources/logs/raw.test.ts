@@ -33,7 +33,7 @@ describe('resource raw', () => {
       date_interval: 'day',
       dimensions: ['method'],
       end_date: '2019-12-27T18:11:19.117Z',
-      filters: [{ field: 'bot_name', operator: 'is', value: 'string' }],
+      filters: [{ field: 'bot_name', operator: 'is', value: 'Amazonbot' }],
       order_by: { date: 'asc' },
       pagination: { limit: 1, offset: 0 },
     });
