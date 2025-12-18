@@ -179,7 +179,7 @@ export interface RawBotsParams {
 
 export namespace RawBotsParams {
   /**
-   * Filter by bot name
+   * Filter by bot name (user agent)
    */
   export interface BotNameFilter {
     field: 'bot_name';
@@ -195,7 +195,67 @@ export namespace RawBotsParams {
       | 'contains_case_insensitive'
       | 'not_contains_case_insensitive';
 
-    value: string | Array<string>;
+    value:
+      | 'Amazonbot'
+      | 'ClaudeBot'
+      | 'Claude-User'
+      | 'Claude-SearchBot'
+      | 'Applebot'
+      | 'Applebot-Extended'
+      | 'Bytespider'
+      | 'DeepSeek'
+      | 'DuckAssistBot'
+      | 'DuckDuckBot'
+      | 'Googlebot'
+      | 'Googlebot-News'
+      | 'Googlebot-Video'
+      | 'Googlebot-Image'
+      | 'Google-Extended'
+      | 'Storebot-Google'
+      | 'Google-CloudVertexBot'
+      | 'meta-externalfetcher'
+      | 'meta-externalagent'
+      | 'bingbot'
+      | 'MicrosoftPreview'
+      | 'ChatGPT-User'
+      | 'GPTBot'
+      | 'OAI-SearchBot'
+      | 'OAI-Operator'
+      | 'PerplexityBot'
+      | 'Perplexity-User'
+      | 'Grok-PageBrowser'
+      | 'YouBot'
+      | Array<
+          | 'Amazonbot'
+          | 'ClaudeBot'
+          | 'Claude-User'
+          | 'Claude-SearchBot'
+          | 'Applebot'
+          | 'Applebot-Extended'
+          | 'Bytespider'
+          | 'DeepSeek'
+          | 'DuckAssistBot'
+          | 'DuckDuckBot'
+          | 'Googlebot'
+          | 'Googlebot-News'
+          | 'Googlebot-Video'
+          | 'Googlebot-Image'
+          | 'Google-Extended'
+          | 'Storebot-Google'
+          | 'Google-CloudVertexBot'
+          | 'meta-externalfetcher'
+          | 'meta-externalagent'
+          | 'bingbot'
+          | 'MicrosoftPreview'
+          | 'ChatGPT-User'
+          | 'GPTBot'
+          | 'OAI-SearchBot'
+          | 'OAI-Operator'
+          | 'PerplexityBot'
+          | 'Perplexity-User'
+          | 'Grok-PageBrowser'
+          | 'YouBot'
+        >;
   }
 
   /**
@@ -215,7 +275,41 @@ export namespace RawBotsParams {
       | 'contains_case_insensitive'
       | 'not_contains_case_insensitive';
 
-    value: string | Array<string>;
+    value:
+      | 'openai'
+      | 'anthropic'
+      | 'chatgpt'
+      | 'deepseek'
+      | 'google'
+      | 'microsoft'
+      | 'perplexity'
+      | 'apple'
+      | 'bytedance'
+      | 'amazon'
+      | 'meta'
+      | 'duckduckgo'
+      | 'you'
+      | 'xai'
+      | 'grok'
+      | 'gemini'
+      | Array<
+          | 'openai'
+          | 'anthropic'
+          | 'chatgpt'
+          | 'deepseek'
+          | 'google'
+          | 'microsoft'
+          | 'perplexity'
+          | 'apple'
+          | 'bytedance'
+          | 'amazon'
+          | 'meta'
+          | 'duckduckgo'
+          | 'you'
+          | 'xai'
+          | 'grok'
+          | 'gemini'
+        >;
   }
 
   /**
