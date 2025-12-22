@@ -134,6 +134,7 @@ export interface ReportCitationsParams {
     | 'url'
     | 'root_domain'
     | 'persona'
+    | 'citation_category'
   >;
 
   /**
