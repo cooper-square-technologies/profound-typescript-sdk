@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.16.0 (2025-12-22)
+
+Full Changelog: [v0.15.0...v0.16.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.15.0...v0.16.0)
+
+### ⚠ BREAKING CHANGES
+
+* **mcp:** remove deprecated tool schemes
+* **mcp:** **Migration:** To migrate, simply modify the command used to invoke the MCP server. Currently, the only supported tool scheme is code mode. Now, starting the server with just `node /path/to/mcp/server` or `npx package-name` will invoke code tools: changing your command to one of these is likely all you will need to do.
+
+### Features
+
+* **api:** api update ([045927c](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/045927cad3af9496d79724ffc3a8f0fd1f623f7d))
+* **api:** api update ([514b66b](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/514b66b5b3b5ffc425f28e3a03028da151575f96))
+* **api:** api update ([57d0f87](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/57d0f87cf27754f08968ceb9aab23c476cecbb7f))
+
+
+### Bug Fixes
+
+* **mcp:** pass base url to code tool ([40a8889](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/40a8889f4594cf7e1272bf8991405477c9592c7b))
+
+
+### Chores
+
+* **mcp:** remove deprecated tool schemes ([0001e47](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/0001e4751370124f7ee2812ad8229d582de3e81b))
+
 ## 0.15.0 (2025-12-12)
 
 Full Changelog: [v0.14.0...v0.15.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.14.0...v0.15.0)
