@@ -6,8 +6,6 @@ This library provides convenient access to the Profound REST API from server-sid
 
 The REST API documentation can be found on [docs.tryprofound.com](https://docs.tryprofound.com). The full API of this library can be found in [api.md](api.md).
 
-It is generated with [Stainless](https://www.stainless.com/).
-
 ## Installation
 
 ```sh
