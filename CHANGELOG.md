@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.16.1 (2026-01-06)
+
+Full Changelog: [v0.16.0...v0.16.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.16.0...v0.16.1)
+
+### Chores
+
+* **internal:** codegen related update ([e21a17d](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/e21a17d44b09f665724e6bef33c6cf78e299631c))
+
 ## 0.16.0 (2025-12-30)
 
 Full Changelog: [v0.15.0...v0.16.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.15.0...v0.16.0)
