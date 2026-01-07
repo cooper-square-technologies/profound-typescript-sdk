@@ -50,7 +50,8 @@ const client = new Profound({
   apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted
 });
 
-const orgItems: Profound.Organizations.CategoryListResponse = await client.organizations.categories.list();
+const orgItems: Profound.Organizations.CategoryListResponse =
+  await client.organizations.categories.list();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -147,7 +148,9 @@ const response = await client.organizations.categories.list().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: orgItems, response: raw } = await client.organizations.categories.list().withResponse();
+const { data: orgItems, response: raw } = await client.organizations.categories
+  .list()
+  .withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(orgItems);
 ```
