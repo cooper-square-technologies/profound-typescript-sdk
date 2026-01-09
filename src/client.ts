@@ -20,6 +20,8 @@ import { PromptAnswersParams, PromptAnswersResponse, Prompts } from './resources
 import {
   ReportCitationsParams,
   ReportCitationsResponse,
+  ReportGetBotsReportParams,
+  ReportGetReferralsReportParams,
   ReportInfo,
   ReportResponse,
   ReportResult,
@@ -30,6 +32,7 @@ import {
 import { Logs } from './resources/logs/logs';
 import {
   OrganizationDomainsResponse,
+  OrganizationGetPersonasResponse,
   OrganizationListAssetsResponse,
   OrganizationModelsResponse,
   OrganizationRegionsResponse,
@@ -749,6 +752,7 @@ export declare namespace Profound {
   export {
     Organizations as Organizations,
     type OrganizationDomainsResponse as OrganizationDomainsResponse,
+    type OrganizationGetPersonasResponse as OrganizationGetPersonasResponse,
     type OrganizationListAssetsResponse as OrganizationListAssetsResponse,
     type OrganizationModelsResponse as OrganizationModelsResponse,
     type OrganizationRegionsResponse as OrganizationRegionsResponse,
@@ -767,6 +771,8 @@ export declare namespace Profound {
     type ReportResult as ReportResult,
     type ReportCitationsResponse as ReportCitationsResponse,
     type ReportCitationsParams as ReportCitationsParams,
+    type ReportGetBotsReportParams as ReportGetBotsReportParams,
+    type ReportGetReferralsReportParams as ReportGetReferralsReportParams,
     type ReportSentimentParams as ReportSentimentParams,
     type ReportVisibilityParams as ReportVisibilityParams,
   };

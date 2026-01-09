@@ -22,6 +22,16 @@ export class Categories extends APIResource {
   }
 
   /**
+   * Get Category Personas
+   */
+  getCategoryPersonas(
+    categoryID: string,
+    options?: RequestOptions,
+  ): APIPromise<CategoryGetCategoryPersonasResponse> {
+    return this._client.get(path`/v1/org/categories/${categoryID}/personas`, options);
+  }
+
+  /**
    * Get Category Prompts
    */
   prompts(categoryID: string, options?: RequestOptions): APIPromise<CategoryPromptsResponse> {
@@ -69,6 +79,52 @@ export namespace CategoryAssetsResponse {
   }
 }
 
+export interface CategoryGetCategoryPersonasResponse {
+  data: Array<CategoryGetCategoryPersonasResponse.Data>;
+}
+
+export namespace CategoryGetCategoryPersonasResponse {
+  export interface Data {
+    id: string;
+
+    name: string;
+
+    persona: Data.Persona;
+  }
+
+  export namespace Data {
+    export interface Persona {
+      behavior: Persona.Behavior;
+
+      demographics: Persona.Demographics;
+
+      employment: Persona.Employment;
+    }
+
+    export namespace Persona {
+      export interface Behavior {
+        motivations?: string | null;
+
+        painPoints?: string | null;
+      }
+
+      export interface Demographics {
+        ageRange?: Array<string>;
+      }
+
+      export interface Employment {
+        companySize?: Array<string>;
+
+        industry?: Array<string>;
+
+        jobTitle?: Array<string>;
+
+        roleSeniority?: Array<string>;
+      }
+    }
+  }
+}
+
 export interface CategoryPromptsResponse {
   data: Array<CategoryPromptsResponse.Data>;
 }
@@ -102,6 +158,7 @@ export declare namespace Categories {
     type OrgItem as OrgItem,
     type CategoryListResponse as CategoryListResponse,
     type CategoryAssetsResponse as CategoryAssetsResponse,
+    type CategoryGetCategoryPersonasResponse as CategoryGetCategoryPersonasResponse,
     type CategoryPromptsResponse as CategoryPromptsResponse,
     type CategoryTagsResponse as CategoryTagsResponse,
     type CategoryTopicsResponse as CategoryTopicsResponse,

@@ -47,6 +47,80 @@ describe('resource reports', () => {
   });
 
   // Prism tests are disabled
+  test.skip('getBotsReport: only required params', async () => {
+    const responsePromise = client.reports.getBotsReport({
+      domain: 'domain',
+      metrics: ['count'],
+      start_date: '2019-12-27T18:11:19.117Z',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Prism tests are disabled
+  test.skip('getBotsReport: required and optional params', async () => {
+    const response = await client.reports.getBotsReport({
+      domain: 'domain',
+      metrics: ['count'],
+      start_date: '2019-12-27T18:11:19.117Z',
+      date_interval: 'day',
+      dimensions: ['date'],
+      end_date: '2019-12-27T18:11:19.117Z',
+      filters: [
+        {
+          field: 'path',
+          operator: 'is',
+          value: 'string',
+        },
+      ],
+      order_by: { date: 'asc' },
+      pagination: { limit: 1, offset: 0 },
+    });
+  });
+
+  // Prism tests are disabled
+  test.skip('getReferralsReport: only required params', async () => {
+    const responsePromise = client.reports.getReferralsReport({
+      domain: 'domain',
+      metrics: ['visits'],
+      start_date: '2019-12-27T18:11:19.117Z',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Prism tests are disabled
+  test.skip('getReferralsReport: required and optional params', async () => {
+    const response = await client.reports.getReferralsReport({
+      domain: 'domain',
+      metrics: ['visits'],
+      start_date: '2019-12-27T18:11:19.117Z',
+      date_interval: 'day',
+      dimensions: ['date'],
+      end_date: '2019-12-27T18:11:19.117Z',
+      filters: [
+        {
+          field: 'path',
+          operator: 'is',
+          value: 'string',
+        },
+      ],
+      order_by: { date: 'asc' },
+      pagination: { limit: 1, offset: 0 },
+    });
+  });
+
+  // Prism tests are disabled
   test.skip('sentiment: only required params', async () => {
     const responsePromise = client.reports.sentiment({
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',

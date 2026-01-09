@@ -21,6 +21,18 @@ describe('resource organizations', () => {
   });
 
   // Prism tests are disabled
+  test.skip('getPersonas', async () => {
+    const responsePromise = client.organizations.getPersonas();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Prism tests are disabled
   test.skip('listAssets', async () => {
     const responsePromise = client.organizations.listAssets();
     const rawResponse = await responsePromise.asResponse();
