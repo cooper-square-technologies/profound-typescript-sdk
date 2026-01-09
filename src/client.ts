@@ -29,6 +29,7 @@ import {
   ReportVisibilityParams,
   Reports,
 } from './resources/reports';
+import { Content } from './resources/content/content';
 import { Logs } from './resources/logs/logs';
 import {
   OrganizationDomainsResponse,
@@ -739,12 +740,14 @@ export class Profound {
   prompts: API.Prompts = new API.Prompts(this);
   reports: API.Reports = new API.Reports(this);
   logs: API.Logs = new API.Logs(this);
+  content: API.Content = new API.Content(this);
 }
 
 Profound.Organizations = Organizations;
 Profound.Prompts = Prompts;
 Profound.Reports = Reports;
 Profound.Logs = Logs;
+Profound.Content = Content;
 
 export declare namespace Profound {
   export type RequestOptions = Opts.RequestOptions;
@@ -778,6 +781,8 @@ export declare namespace Profound {
   };
 
   export { Logs as Logs };
+
+  export { Content as Content };
 
   export type Pagination = API.Pagination;
 }

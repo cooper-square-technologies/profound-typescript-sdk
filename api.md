@@ -83,3 +83,17 @@ Methods:
 
 - <code title="post /v1/logs/raw/bots">client.logs.raw.<a href="./src/resources/logs/raw.ts">bots</a>({ ...params }) -> RawBotsResponse</code>
 - <code title="post /v1/logs/raw">client.logs.raw.<a href="./src/resources/logs/raw.ts">logs</a>({ ...params }) -> RawLogsResponse</code>
+
+# Content
+
+## Optimization
+
+Types:
+
+- <code><a href="./src/resources/content/optimization.ts">OptimizationRetrieveResponse</a></code>
+- <code><a href="./src/resources/content/optimization.ts">OptimizationListResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/content/{asset_id}/optimization/{content_id}">client.content.optimization.<a href="./src/resources/content/optimization.ts">retrieve</a>(contentID, { ...params }) -> OptimizationRetrieveResponse</code>
+- <code title="get /v1/content/{asset_id}/optimization">client.content.optimization.<a href="./src/resources/content/optimization.ts">list</a>(assetID, { ...params }) -> OptimizationListResponse</code>
