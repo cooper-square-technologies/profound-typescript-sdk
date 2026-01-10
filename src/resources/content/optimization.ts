@@ -149,19 +149,17 @@ export interface OptimizationListResponse {
 
 export namespace OptimizationListResponse {
   export interface Data {
+    id: string;
+
     created_at: string;
-
-    dify_workflow_run_id: string;
-
-    document_title: string;
-
-    document_version: number;
 
     extracted_input: string | null;
 
-    extracted_type: string | null;
+    status: string;
 
-    latest_workflow_step: string | null;
+    title: string;
+
+    type: string;
   }
 
   export interface Info {
