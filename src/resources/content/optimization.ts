@@ -109,7 +109,7 @@ export namespace OptimizationRetrieveResponse {
       export interface User {
         metadata: { [key: string]: number | string };
 
-        type: string;
+        type: 'file' | 'text' | 'url';
 
         value: string;
       }
@@ -159,7 +159,7 @@ export namespace OptimizationListResponse {
 
     title: string;
 
-    type: string;
+    type: 'file' | 'text' | 'url';
   }
 
   export interface Info {
