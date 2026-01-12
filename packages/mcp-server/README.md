@@ -54,7 +54,7 @@ If you use Claude Code, you can install the MCP server by running the command be
 environment variables in Claude Code's `.claude.json`, which can be found in your home directory.
 
 ```
-claude mcp add --transport stdio profoundai_api --env PROFOUND_API_KEY="Your PROFOUND_API_KEY here." -- npx -y profound-mcp
+claude mcp add profound_mcp_api --env PROFOUND_API_KEY="Your PROFOUND_API_KEY here." -- npx -y profound-mcp
 ```
 
 ## Code Mode

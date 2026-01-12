@@ -20,6 +20,8 @@ import { PromptAnswersParams, PromptAnswersResponse, Prompts } from './resources
 import {
   ReportCitationsParams,
   ReportCitationsResponse,
+  ReportGetBotsReportParams,
+  ReportGetReferralsReportParams,
   ReportInfo,
   ReportResponse,
   ReportResult,
@@ -27,9 +29,11 @@ import {
   ReportVisibilityParams,
   Reports,
 } from './resources/reports';
+import { Content } from './resources/content/content';
 import { Logs } from './resources/logs/logs';
 import {
   OrganizationDomainsResponse,
+  OrganizationGetPersonasResponse,
   OrganizationListAssetsResponse,
   OrganizationModelsResponse,
   OrganizationRegionsResponse,
@@ -736,12 +740,14 @@ export class Profound {
   prompts: API.Prompts = new API.Prompts(this);
   reports: API.Reports = new API.Reports(this);
   logs: API.Logs = new API.Logs(this);
+  content: API.Content = new API.Content(this);
 }
 
 Profound.Organizations = Organizations;
 Profound.Prompts = Prompts;
 Profound.Reports = Reports;
 Profound.Logs = Logs;
+Profound.Content = Content;
 
 export declare namespace Profound {
   export type RequestOptions = Opts.RequestOptions;
@@ -749,6 +755,7 @@ export declare namespace Profound {
   export {
     Organizations as Organizations,
     type OrganizationDomainsResponse as OrganizationDomainsResponse,
+    type OrganizationGetPersonasResponse as OrganizationGetPersonasResponse,
     type OrganizationListAssetsResponse as OrganizationListAssetsResponse,
     type OrganizationModelsResponse as OrganizationModelsResponse,
     type OrganizationRegionsResponse as OrganizationRegionsResponse,
@@ -767,11 +774,15 @@ export declare namespace Profound {
     type ReportResult as ReportResult,
     type ReportCitationsResponse as ReportCitationsResponse,
     type ReportCitationsParams as ReportCitationsParams,
+    type ReportGetBotsReportParams as ReportGetBotsReportParams,
+    type ReportGetReferralsReportParams as ReportGetReferralsReportParams,
     type ReportSentimentParams as ReportSentimentParams,
     type ReportVisibilityParams as ReportVisibilityParams,
   };
 
   export { Logs as Logs };
+
+  export { Content as Content };
 
   export type Pagination = API.Pagination;
 }

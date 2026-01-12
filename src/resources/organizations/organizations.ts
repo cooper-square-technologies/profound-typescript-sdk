@@ -5,6 +5,7 @@ import * as CategoriesAPI from './categories';
 import {
   Categories,
   CategoryAssetsResponse,
+  CategoryGetCategoryPersonasResponse,
   CategoryListResponse,
   CategoryPromptsResponse,
   CategoryTagsResponse,
@@ -22,6 +23,13 @@ export class Organizations extends APIResource {
    */
   domains(options?: RequestOptions): APIPromise<OrganizationDomainsResponse> {
     return this._client.get('/v1/org/domains', options);
+  }
+
+  /**
+   * Get Personas
+   */
+  getPersonas(options?: RequestOptions): APIPromise<OrganizationGetPersonasResponse> {
+    return this._client.get('/v1/org/personas', options);
   }
 
   /**
@@ -58,6 +66,54 @@ export namespace OrganizationDomainsResponse {
   }
 }
 
+export interface OrganizationGetPersonasResponse {
+  data: Array<OrganizationGetPersonasResponse.Data>;
+}
+
+export namespace OrganizationGetPersonasResponse {
+  export interface Data {
+    id: string;
+
+    category: CategoriesAPI.OrgItem;
+
+    name: string;
+
+    persona: Data.Persona;
+  }
+
+  export namespace Data {
+    export interface Persona {
+      behavior: Persona.Behavior;
+
+      demographics: Persona.Demographics;
+
+      employment: Persona.Employment;
+    }
+
+    export namespace Persona {
+      export interface Behavior {
+        motivations?: string | null;
+
+        painPoints?: string | null;
+      }
+
+      export interface Demographics {
+        ageRange?: Array<string>;
+      }
+
+      export interface Employment {
+        companySize?: Array<string>;
+
+        industry?: Array<string>;
+
+        jobTitle?: Array<string>;
+
+        roleSeniority?: Array<string>;
+      }
+    }
+  }
+}
+
 export interface OrganizationListAssetsResponse {
   data: Array<OrganizationListAssetsResponse.Data>;
 }
@@ -89,6 +145,7 @@ Organizations.Categories = Categories;
 export declare namespace Organizations {
   export {
     type OrganizationDomainsResponse as OrganizationDomainsResponse,
+    type OrganizationGetPersonasResponse as OrganizationGetPersonasResponse,
     type OrganizationListAssetsResponse as OrganizationListAssetsResponse,
     type OrganizationModelsResponse as OrganizationModelsResponse,
     type OrganizationRegionsResponse as OrganizationRegionsResponse,
@@ -99,6 +156,7 @@ export declare namespace Organizations {
     type OrgItem as OrgItem,
     type CategoryListResponse as CategoryListResponse,
     type CategoryAssetsResponse as CategoryAssetsResponse,
+    type CategoryGetCategoryPersonasResponse as CategoryGetCategoryPersonasResponse,
     type CategoryPromptsResponse as CategoryPromptsResponse,
     type CategoryTagsResponse as CategoryTagsResponse,
     type CategoryTopicsResponse as CategoryTopicsResponse,

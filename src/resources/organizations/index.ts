@@ -5,6 +5,7 @@ export {
   type OrgItem,
   type CategoryListResponse,
   type CategoryAssetsResponse,
+  type CategoryGetCategoryPersonasResponse,
   type CategoryPromptsResponse,
   type CategoryTagsResponse,
   type CategoryTopicsResponse,
@@ -12,6 +13,7 @@ export {
 export {
   Organizations,
   type OrganizationDomainsResponse,
+  type OrganizationGetPersonasResponse,
   type OrganizationListAssetsResponse,
   type OrganizationModelsResponse,
   type OrganizationRegionsResponse,
