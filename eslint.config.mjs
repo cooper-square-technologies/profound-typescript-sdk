@@ -25,7 +25,7 @@ export default tseslint.config(
         {
           patterns: [
             {
-              regex: '^profoundai(/.*)?',
+              regex: '^@try-profound/profound(/.*)?',
               message: 'Use a relative import, not a package import.',
             },
           ],

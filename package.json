@@ -1,5 +1,5 @@
 {
-  "name": "profoundai",
+  "name": "@try-profound/profound",
   "version": "0.17.0",
   "description": "The official TypeScript library for the Profound API",
   "author": "Profound <support@tryprofound.com>",
