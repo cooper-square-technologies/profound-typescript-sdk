@@ -23,7 +23,7 @@ For clients with a configuration JSON, it might look something like this:
 ```json
 {
   "mcpServers": {
-    "profoundai_api": {
+    "try_profound_profound_api": {
       "command": "npx",
       "args": ["-y", "profound-mcp"],
       "env": {
@@ -88,7 +88,7 @@ A configuration JSON for this server might look like this, assuming the server i
 ```json
 {
   "mcpServers": {
-    "profoundai_api": {
+    "try_profound_profound_api": {
       "url": "http://localhost:3000",
       "headers": {
         "X-API-Key": "My API Key"
