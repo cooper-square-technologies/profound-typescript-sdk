@@ -1,10 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIPromise } from '@try-profound/profound/core/api-promise';
+import { APIPromise } from 'profoundai/core/api-promise';
 
 import util from 'node:util';
-import Profound from '@try-profound/profound';
-import { APIUserAbortError } from '@try-profound/profound';
+import Profound from 'profoundai';
+import { APIUserAbortError } from 'profoundai';
 const defaultFetch = fetch;
 
 describe('instantiate client', () => {

@@ -7,20 +7,20 @@ import {
   ListToolsRequestSchema,
   SetLevelRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
-import { ClientOptions } from '@try-profound/profound';
-import Profound from '@try-profound/profound';
+import { ClientOptions } from 'profoundai';
+import Profound from 'profoundai';
 import { codeTool } from './code-tool';
 import docsSearchTool from './docs-search-tool';
 import { McpOptions } from './options';
 import { HandlerFunction, McpTool } from './types';
 
 export { McpOptions } from './options';
-export { ClientOptions } from '@try-profound/profound';
+export { ClientOptions } from 'profoundai';
 
 export const newMcpServer = () =>
   new McpServer(
     {
-      name: 'try_profound_profound_api',
+      name: 'profoundai_api',
       version: '0.17.0',
     },
     { capabilities: { tools: {}, logging: {} } },
