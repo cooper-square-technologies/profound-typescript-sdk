@@ -201,6 +201,7 @@ export interface ReportCitationsParams {
     | ReportCitationsParams.RootDomainFilter
     | ReportCitationsParams.PromptTypeFilter
     | ReportCitationsParams.PersonaIDFilter
+    | ReportCitationsParams.CitationCategoryFilter
   >;
 
   /**
@@ -372,6 +373,26 @@ export namespace ReportCitationsParams {
     field: 'persona_id';
 
     operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by citation category
+   */
+  export interface CitationCategoryFilter {
+    field: 'citation_category';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
 
     value: string | Array<string>;
   }
