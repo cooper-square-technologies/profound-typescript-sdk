@@ -55,12 +55,12 @@ $ cd profound-typescript-sdk
 # With yarn
 $ yarn link
 $ cd ../my-package
-$ yarn link profoundai
+$ yarn link @try-profound/profound
 
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global profoundai
+$ pnpm link -—global @try-profound/profound
 ```
 
 ## Running tests

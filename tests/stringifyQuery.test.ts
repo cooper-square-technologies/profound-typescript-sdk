@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { Profound } from 'profoundai';
+import { Profound } from '@try-profound/profound';
 
 const { stringifyQuery } = Profound.prototype as any;
 
