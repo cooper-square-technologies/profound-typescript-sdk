@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { IncomingMessage } from 'node:http';
-import { ClientOptions } from '@try-profound/profound';
+import { ClientOptions } from 'profoundai';
 
 export const parseAuthHeaders = (req: IncomingMessage): Partial<ClientOptions> => {
   const apiKey =
