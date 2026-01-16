@@ -18,7 +18,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      id-token: write
 
     steps:
       - uses: actions/checkout@v4
@@ -40,10 +39,12 @@ jobs:
             PATHS_RELEASED='[\".\", \"packages/mcp-server\"]'
           fi
           yarn tsn scripts/publish-packages.ts "{ \"paths_released\": \"$PATHS_RELEASED\" }"
+        env:
+          NPM_TOKEN: ${{ secrets.PROFOUND_NPM_TOKEN || secrets.NPM_TOKEN }}
 
       - name: Upload MCP Server DXT GitHub release asset
         run: |
           gh release upload ${{ github.event.release.tag_name }} \
-            packages/mcp-server/try_profound_profound_api.mcpb
+            packages/mcp-server/profoundai_api.mcpb
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

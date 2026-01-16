@@ -8,8 +8,8 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "paths": {
-      "@try-profound/profound/*": ["./src/*"],
-      "@try-profound/profound": ["./src/index.ts"]
+      "profoundai/*": ["./src/*"],
+      "profoundai": ["./src/index.ts"]
     },
     "noEmit": true,
 
