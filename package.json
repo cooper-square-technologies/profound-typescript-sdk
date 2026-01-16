@@ -1,6 +1,6 @@
 {
-  "name": "profoundai",
-  "version": "0.17.0",
+  "name": "@try-profound/profound",
+  "version": "0.18.0",
   "description": "The official TypeScript library for the Profound API",
   "author": "Profound <support@tryprofound.com>",
   "types": "dist/index.d.ts",
