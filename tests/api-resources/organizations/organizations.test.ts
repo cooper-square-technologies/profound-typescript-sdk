@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Profound from '@try-profound/profound';
+import Profound from 'profoundai';
 
 const client = new Profound({
   apiKey: 'My API Key',

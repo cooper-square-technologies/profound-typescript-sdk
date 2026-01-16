@@ -8,7 +8,7 @@ node scripts/utils/check-version.cjs
 
 # Build into dist and will publish the package from there,
 # so that src/resources/foo.ts becomes <package root>/resources/foo.js
-# This way importing from `"@try-profound/profound/resources/foo"` works
+# This way importing from `"profoundai/resources/foo"` works
 # even with `"moduleResolution": "node"`
 
 rm -rf dist; mkdir dist
@@ -42,8 +42,8 @@ node scripts/utils/postprocess-files.cjs
 
 # make sure that nothing crashes when we require the output CJS or
 # import the output ESM
-(cd dist && node -e 'require("@try-profound/profound")')
-(cd dist && node -e 'import("@try-profound/profound")' --input-type=module)
+(cd dist && node -e 'require("profoundai")')
+(cd dist && node -e 'import("profoundai")' --input-type=module)
 
 if [ -e ./scripts/build-deno ]
 then

@@ -30,7 +30,7 @@
     "fix": "eslint --fix --ext ts,js ."
   },
   "dependencies": {
-    "@try-profound/profound": "file:../../dist/",
+    "profoundai": "file:../../dist/",
     "@cloudflare/cabidela": "^0.2.4",
     "@modelcontextprotocol/sdk": "^1.24.0",
     "@valtown/deno-http-worker": "^0.0.21",
