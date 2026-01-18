@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.18.1 (2026-01-17)
+
+Full Changelog: [v0.18.0...v0.18.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.18.0...v0.18.1)
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([6ee962e](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/6ee962e5c267ea73db1a96b7420d182bdbee6b9b))
+
 ## 0.18.0 (2026-01-16)
 
 Full Changelog: [v0.17.0...v0.18.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.17.0...v0.18.0)
