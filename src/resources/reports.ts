@@ -207,14 +207,11 @@ export interface ReportCitationsParams {
   /**
    * Custom ordering of the report results.
    *
-   * The order is a record of key-value pairs where:
+   *     The order is a record of key-value pairs where:
+   *     - `key` is the field to order by, which can be a metric and/or `date`, `hostname`, `path` dimensions
+   *     - `value` is the direction of the order, either `asc` for ascending or `desc` for descending.
    *
-   * - key is the field to order by, which can be a metric or dimension
-   * - value is the direction of the order, either 'asc' for ascending or 'desc' for
-   *   descending.
-   *
-   * When not specified, the default order is the first metric in the query
-   * descending.
+   *     When not specified, the default order is the first metric in the query descending.
    */
   order_by?: { [key: string]: 'asc' | 'desc' };
 
@@ -432,7 +429,7 @@ export interface ReportGetBotsReportParams {
    * Filters for bots report.
    */
   filters?: Array<
-    | ReportGetBotsReportParams.AppModelsAgentAnalyticsFiltersPathFilter
+    | ReportGetBotsReportParams.PathFilter
     | ReportGetBotsReportParams.BotNameFilter
     | ReportGetBotsReportParams.BotProviderFilter
   >;
@@ -461,7 +458,7 @@ export namespace ReportGetBotsReportParams {
   /**
    * Filter by request path
    */
-  export interface AppModelsAgentAnalyticsFiltersPathFilter {
+  export interface PathFilter {
     field: 'path';
 
     operator:
@@ -647,8 +644,7 @@ export interface ReportGetReferralsReportParams {
    * Filters for referrals report.
    */
   filters?: Array<
-    | ReportGetReferralsReportParams.AppModelsAgentAnalyticsFiltersPathFilter
-    | ReportGetReferralsReportParams.ReferralSourceFilter
+    ReportGetReferralsReportParams.PathFilter | ReportGetReferralsReportParams.ReferralSourceFilter
   >;
 
   /**
@@ -675,7 +671,7 @@ export namespace ReportGetReferralsReportParams {
   /**
    * Filter by request path
    */
-  export interface AppModelsAgentAnalyticsFiltersPathFilter {
+  export interface PathFilter {
     field: 'path';
 
     operator:
