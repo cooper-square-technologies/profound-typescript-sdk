@@ -128,6 +128,8 @@ export namespace OrganizationListAssetsResponse {
 
     is_owned: boolean;
 
+    logo_url: string;
+
     name: string;
 
     website: string;
