@@ -192,7 +192,7 @@ export interface ReportCitationsParams {
    */
   filters?: Array<
     | ReportCitationsParams.HostnameFilter
-    | ReportCitationsParams.PathFilter
+    | ReportCitationsParams.AppModelsAnswerEngineInsightsFiltersPathFilter
     | ReportCitationsParams.RegionIDFilter
     | ReportCitationsParams.TopicIDFilter
     | ReportCitationsParams.ModelIDFilter
@@ -245,7 +245,7 @@ export namespace ReportCitationsParams {
   /**
    * Filter by URL path
    */
-  export interface PathFilter {
+  export interface AppModelsAnswerEngineInsightsFiltersPathFilter {
     field: 'path';
 
     operator:
@@ -429,7 +429,7 @@ export interface ReportGetBotsReportParams {
    * Filters for bots report.
    */
   filters?: Array<
-    | ReportGetBotsReportParams.AppModelsAgentAnalyticsFiltersPathFilter
+    | ReportGetBotsReportParams.PathFilter
     | ReportGetBotsReportParams.BotNameFilter
     | ReportGetBotsReportParams.BotProviderFilter
   >;
@@ -458,7 +458,7 @@ export namespace ReportGetBotsReportParams {
   /**
    * Filter by request path
    */
-  export interface AppModelsAgentAnalyticsFiltersPathFilter {
+  export interface PathFilter {
     field: 'path';
 
     operator:
@@ -644,8 +644,7 @@ export interface ReportGetReferralsReportParams {
    * Filters for referrals report.
    */
   filters?: Array<
-    | ReportGetReferralsReportParams.AppModelsAgentAnalyticsFiltersPathFilter
-    | ReportGetReferralsReportParams.ReferralSourceFilter
+    ReportGetReferralsReportParams.PathFilter | ReportGetReferralsReportParams.ReferralSourceFilter
   >;
 
   /**
@@ -672,7 +671,7 @@ export namespace ReportGetReferralsReportParams {
   /**
    * Filter by request path
    */
-  export interface AppModelsAgentAnalyticsFiltersPathFilter {
+  export interface PathFilter {
     field: 'path';
 
     operator:
