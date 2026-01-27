@@ -195,6 +195,7 @@ export interface ReportCitationsParams {
     | ReportCitationsParams.PathFilter
     | ReportCitationsParams.RegionIDFilter
     | ReportCitationsParams.TopicIDFilter
+    | ReportCitationsParams.TopicNameFilter
     | ReportCitationsParams.ModelIDFilter
     | ReportCitationsParams.TagIDFilter
     | ReportCitationsParams.URLFilter
@@ -280,6 +281,26 @@ export namespace ReportCitationsParams {
     field: 'topic_id' | 'topic';
 
     operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by topic name
+   */
+  export interface TopicNameFilter {
+    field: 'topic_name';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
 
     value: string | Array<string>;
   }
@@ -781,6 +802,7 @@ export interface ReportSentimentParams {
     | ReportSentimentParams.ThemeFilter
     | ReportSentimentParams.RegionIDFilter
     | ReportSentimentParams.TopicIDFilter
+    | ReportSentimentParams.TopicNameFilter
     | ReportSentimentParams.ModelIDFilter
     | ReportSentimentParams.TagIDFilter
     | ReportSentimentParams.PromptFilter
@@ -866,6 +888,26 @@ export namespace ReportSentimentParams {
     field: 'topic_id' | 'topic';
 
     operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by topic name
+   */
+  export interface TopicNameFilter {
+    field: 'topic_name';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
 
     value: string | Array<string>;
   }
@@ -957,6 +999,7 @@ export interface ReportVisibilityParams {
     | ReportVisibilityParams.RegionIDFilter
     | ReportVisibilityParams.ModelIDFilter
     | ReportVisibilityParams.TopicIDFilter
+    | ReportVisibilityParams.TopicNameFilter
     | ReportVisibilityParams.AssetNameFilter
     | ReportVisibilityParams.TagIDFilter
     | ReportVisibilityParams.PromptFilter
@@ -1013,6 +1056,26 @@ export namespace ReportVisibilityParams {
     field: 'topic_id' | 'topic';
 
     operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by topic name
+   */
+  export interface TopicNameFilter {
+    field: 'topic_name';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
 
     value: string | Array<string>;
   }
