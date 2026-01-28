@@ -2,7 +2,7 @@
 
 import { McpTool, Metadata, ToolCallResult, asErrorResult, asTextContentResult } from './types';
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { readEnv, readEnvOrError } from './server';
+import { readEnv, requireValue } from './server';
 import { WorkerInput, WorkerOutput } from './code-tool-types';
 import { Profound } from 'profoundai';
 
@@ -69,7 +69,10 @@ export function codeTool(): McpTool {
         ...(stainlessAPIKey && { Authorization: stainlessAPIKey }),
         'Content-Type': 'application/json',
         client_envs: JSON.stringify({
-          PROFOUND_API_KEY: readEnvOrError('PROFOUND_API_KEY') ?? client.apiKey ?? undefined,
+          PROFOUND_API_KEY: requireValue(
+            readEnv('PROFOUND_API_KEY') ?? client.apiKey,
+            'set PROFOUND_API_KEY environment variable or provide apiKey client option',
+          ),
           PROFOUND_BASE_URL: readEnv('PROFOUND_BASE_URL') ?? client.baseURL ?? undefined,
         }),
       },
