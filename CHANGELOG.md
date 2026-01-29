@@ -1,5 +1,47 @@
 # Changelog
 
+## 0.21.0 (2026-01-29)
+
+Full Changelog: [v0.20.0...v0.21.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.20.0...v0.21.0)
+
+### Features
+
+* **api:** api update ([acb920f](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/acb920f55213e094c0e81b11cdd226c1074a1a0d))
+* **api:** api update ([356ec85](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/356ec85c395c6ab9aa41eb4a56bf011ef68a2890))
+* **api:** api update ([e59c531](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/e59c5312dc1680735d26ac6a4bcdaf15d779c05a))
+* **api:** api update ([b87e8a4](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/b87e8a44f75965a89512ab814752a06323f7954f))
+* **api:** api update ([6053754](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/6053754045e17d78d10a30d2296a265e50e2322f))
+* **api:** api update ([adcebe9](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/adcebe988322f34685a55bfc3de120a1168d293c))
+* **api:** api update ([5416b81](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/5416b81780aa184c8f15bdd8da077555a2398c50))
+* **api:** api update ([306c3c5](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/306c3c59d7e9610e8b5a90874ef4a1c23e17dc0c))
+* **api:** api update ([56e8569](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/56e8569daa4353581ef1aa8fb65825b7ac634436))
+* **api:** api update ([4d775aa](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/4d775aaf843ec5ac6e3805c6b2342e9d76648647))
+* **api:** api update ([291b7cc](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/291b7ccbb482684d1a50dd6764479a0aeaf77f86))
+* **api:** api update ([a04dc3b](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/a04dc3b843add7bd02889efd25d189d32a1414a8))
+* **api:** api update ([a2e353b](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/a2e353b471a0ee44e20c63348df083381ec24811))
+* **api:** api update ([1131d63](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/1131d638736201f9b9ff8646b9e698a42dc8331e))
+* **api:** api update ([0c65ca7](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/0c65ca78da4d5c751cc330fe27d6d5fc5b4a2138))
+* **api:** api update ([86b786b](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/86b786bd96a382b73657a2467af058bdea8d43bc))
+* **api:** api update ([9dae2d6](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/9dae2d6c9836bd61e28906de5f8d08addd129dc2))
+* **api:** api update ([58a9612](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/58a961261e316c50da0773fde24df977f8d9910b))
+* **api:** api update ([6422aba](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/6422aba486ab5a395d59667c3b5042d06abef057))
+* **api:** api update ([e555343](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/e5553432089cccf436b28feee7e1217dda7900e7))
+* **api:** api update ([f286863](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/f286863caa49c92092eaa1aa53a74cfbe22b484b))
+* **api:** api update ([18ad03c](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/18ad03cfcae091a12499416ef59e70d893b9f2d5))
+
+
+### Bug Fixes
+
+* **docs:** fix mcp installation instructions for remote servers ([247426b](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/247426b3aec618c2c311014462065345d008b960))
+* **mcp:** allow falling back for required env variables ([96ec37f](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/96ec37f66ffc013b26ed058fe6599df83bffcc18))
+
+
+### Chores
+
+* **internal:** codegen related update ([6549468](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/6549468595d97b549a8f2960c86cba1e3cb47fe5))
+* **internal:** upgrade wrangler version ([d54436d](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/d54436d6a3859c8f80aa29ba1cd0b0e2c450edc7))
+* **mcp:** up tsconfig lib version to es2022 ([3116458](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/3116458ea3679920eb88a18b2a683fa06bf7cdcb))
+
 ## 0.20.0 (2026-01-27)
 
 Full Changelog: [v0.19.0...v0.20.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.19.0...v0.20.0)
