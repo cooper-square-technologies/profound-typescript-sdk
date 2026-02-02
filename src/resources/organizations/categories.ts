@@ -153,7 +153,15 @@ export namespace CategoryPromptsResponse {
 
 export type CategoryTagsResponse = Array<OrgItem>;
 
-export type CategoryTopicsResponse = Array<OrgItem>;
+export type CategoryTopicsResponse = Array<CategoryTopicsResponse.CategoryTopicsResponseItem>;
+
+export namespace CategoryTopicsResponse {
+  export interface CategoryTopicsResponseItem {
+    id: string;
+
+    name: string;
+  }
+}
 
 export declare namespace Categories {
   export {
