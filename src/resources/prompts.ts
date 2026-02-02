@@ -20,7 +20,7 @@ export class Prompts extends APIResource {
 export interface PromptAnswersResponse {
   data: Array<PromptAnswersResponse.Data>;
 
-  info: { [key: string]: unknown };
+  info: PromptAnswersResponse.Info;
 }
 
 export namespace PromptAnswersResponse {
@@ -72,6 +72,10 @@ export namespace PromptAnswersResponse {
       type: 'positive' | 'negative';
     }
   }
+
+  export interface Info {
+    total_rows: number;
+  }
 }
 
 export interface PromptAnswersParams {
@@ -91,6 +95,7 @@ export interface PromptAnswersParams {
     | PromptAnswersParams.PromptTypeFilter
     | PromptAnswersParams.PromptFilter
     | PromptAnswersParams.PersonaIDFilter
+    | PromptAnswersParams.TopicIDFilter
   >;
 
   include?: PromptAnswersParams.Include;
@@ -177,6 +182,17 @@ export namespace PromptAnswersParams {
 
   export interface PersonaIDFilter {
     field: 'persona_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface TopicIDFilter {
+    /**
+     * - `topic` - Deprecated
+     */
+    field: 'topic_id' | 'topic';
 
     operator: 'is' | 'not_is' | 'in' | 'not_in';
 
