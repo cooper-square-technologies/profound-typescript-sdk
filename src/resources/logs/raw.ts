@@ -153,7 +153,7 @@ export interface RawBotsParams {
     | RawBotsParams.BotProviderFilter
     | RawBotsParams.BotTypesFilter
     | RawBotsParams.MethodFilter
-    | RawBotsParams.ProfoundAgentAnalyticsFiltersPathFilter
+    | RawBotsParams.PathFilter
     | RawBotsParams.StatusCodeFilter
     | RawBotsParams.IPFilter
     | RawBotsParams.UserAgentFilter
@@ -359,7 +359,7 @@ export namespace RawBotsParams {
   /**
    * Filter by request path
    */
-  export interface ProfoundAgentAnalyticsFiltersPathFilter {
+  export interface PathFilter {
     field: 'path';
 
     operator:
@@ -516,7 +516,7 @@ export interface RawLogsParams {
   filters?: Array<
     | RawLogsParams.MethodFilter
     | RawLogsParams.HostFilter
-    | RawLogsParams.ProfoundAgentAnalyticsFiltersPathFilter
+    | RawLogsParams.PathFilter
     | RawLogsParams.StatusCodeFilter
     | RawLogsParams.IPFilter
     | RawLogsParams.UserAgentFilter
@@ -591,7 +591,7 @@ export namespace RawLogsParams {
   /**
    * Filter by request path
    */
-  export interface ProfoundAgentAnalyticsFiltersPathFilter {
+  export interface PathFilter {
     field: 'path';
 
     operator:
