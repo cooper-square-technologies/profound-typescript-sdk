@@ -39,6 +39,7 @@ describe('resource prompts', () => {
       ],
       include: {
         asset: true,
+        asset_id: true,
         citations: true,
         created_at: true,
         mentions: true,
