@@ -28,6 +28,7 @@ import {
   ReportSentimentParams,
   ReportVisibilityParams,
   Reports,
+  TopicNameFilter,
 } from './resources/reports';
 import { Content } from './resources/content/content';
 import { Logs } from './resources/logs/logs';
@@ -779,6 +780,7 @@ export declare namespace Profound {
     type ReportInfo as ReportInfo,
     type ReportResponse as ReportResponse,
     type ReportResult as ReportResult,
+    type TopicNameFilter as TopicNameFilter,
     type ReportCitationsResponse as ReportCitationsResponse,
     type ReportCitationsParams as ReportCitationsParams,
     type ReportGetBotsReportParams as ReportGetBotsReportParams,
@@ -791,5 +793,12 @@ export declare namespace Profound {
 
   export { Content as Content };
 
+  export type ModelIDFilter = API.ModelIDFilter;
   export type Pagination = API.Pagination;
+  export type PathFilter = API.PathFilter;
+  export type PersonaIDFilter = API.PersonaIDFilter;
+  export type PromptFilter = API.PromptFilter;
+  export type RegionIDFilter = API.RegionIDFilter;
+  export type TagIDFilter = API.TagIDFilter;
+  export type TopicIDFilter = API.TopicIDFilter;
 }
