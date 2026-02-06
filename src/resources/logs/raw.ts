@@ -153,7 +153,7 @@ export interface RawBotsParams {
     | RawBotsParams.BotProviderFilter
     | RawBotsParams.BotTypesFilter
     | RawBotsParams.MethodFilter
-    | RawBotsParams.PathFilter
+    | Shared.PathFilter
     | RawBotsParams.StatusCodeFilter
     | RawBotsParams.IPFilter
     | RawBotsParams.UserAgentFilter
@@ -357,26 +357,6 @@ export namespace RawBotsParams {
   }
 
   /**
-   * Filter by request path
-   */
-  export interface PathFilter {
-    field: 'path';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
-
-  /**
    * Filter by HTTP status code
    */
   export interface StatusCodeFilter {
@@ -516,7 +496,7 @@ export interface RawLogsParams {
   filters?: Array<
     | RawLogsParams.MethodFilter
     | RawLogsParams.HostFilter
-    | RawLogsParams.PathFilter
+    | Shared.PathFilter
     | RawLogsParams.StatusCodeFilter
     | RawLogsParams.IPFilter
     | RawLogsParams.UserAgentFilter
@@ -573,26 +553,6 @@ export namespace RawLogsParams {
    */
   export interface HostFilter {
     field: 'host';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
-
-  /**
-   * Filter by request path
-   */
-  export interface PathFilter {
-    field: 'path';
 
     operator:
       | 'is'
