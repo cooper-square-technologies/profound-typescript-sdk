@@ -1,5 +1,25 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+/**
+ * Filter by asset name
+ */
+export interface AssetNameFilter {
+  field: 'asset_name';
+
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
+
+  value: string | Array<string>;
+}
+
 export interface ModelIDFilter {
   /**
    * - `model` - Deprecated

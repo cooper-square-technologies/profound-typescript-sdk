@@ -2,6 +2,7 @@
 
 Types:
 
+- <code><a href="./src/resources/shared.ts">AssetNameFilter</a></code>
 - <code><a href="./src/resources/shared.ts">ModelIDFilter</a></code>
 - <code><a href="./src/resources/shared.ts">Pagination</a></code>
 - <code><a href="./src/resources/shared.ts">PathFilter</a></code>
