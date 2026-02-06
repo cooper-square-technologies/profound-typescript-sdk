@@ -685,7 +685,7 @@ export interface ReportSentimentParams {
    * List of filters to apply to the sentiment report.
    */
   filters?: Array<
-    | ReportSentimentParams.AssetNameFilter
+    | Shared.AssetNameFilter
     | ReportSentimentParams.ThemeFilter
     | Shared.RegionIDFilter
     | Shared.TopicIDFilter
@@ -717,26 +717,6 @@ export interface ReportSentimentParams {
 }
 
 export namespace ReportSentimentParams {
-  /**
-   * Filter by asset name
-   */
-  export interface AssetNameFilter {
-    field: 'asset_name';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
-
   /**
    * Filter by theme
    */
@@ -795,7 +775,7 @@ export interface ReportVisibilityParams {
     | Shared.ModelIDFilter
     | Shared.TopicIDFilter
     | TopicNameFilter
-    | ReportVisibilityParams.AssetNameFilter
+    | Shared.AssetNameFilter
     | Shared.TagIDFilter
     | Shared.PromptFilter
     | Shared.PersonaIDFilter
@@ -819,28 +799,6 @@ export interface ReportVisibilityParams {
    * Pagination settings for the report results.
    */
   pagination?: Shared.Pagination;
-}
-
-export namespace ReportVisibilityParams {
-  /**
-   * Filter by asset name
-   */
-  export interface AssetNameFilter {
-    field: 'asset_name';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
 }
 
 export declare namespace Reports {

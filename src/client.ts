@@ -793,6 +793,7 @@ export declare namespace Profound {
 
   export { Content as Content };
 
+  export type AssetNameFilter = API.AssetNameFilter;
   export type ModelIDFilter = API.ModelIDFilter;
   export type Pagination = API.Pagination;
   export type PathFilter = API.PathFilter;
