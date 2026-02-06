@@ -30,6 +30,8 @@ export namespace PromptAnswersResponse {
   export interface Data {
     asset?: string | null;
 
+    asset_id?: string | null;
+
     citations?: Array<string> | null;
 
     created_at?: string | null;
@@ -96,6 +98,8 @@ export interface PromptAnswersParams {
     | Shared.PromptFilter
     | Shared.PersonaIDFilter
     | Shared.TopicIDFilter
+    | PromptAnswersParams.AssetIDFilter
+    | PromptAnswersParams.AssetNameFilter
   >;
 
   include?: PromptAnswersParams.Include;
@@ -127,8 +131,38 @@ export namespace PromptAnswersParams {
     value: 'visibility' | 'sentiment' | Array<'visibility' | 'sentiment'>;
   }
 
+  export interface AssetIDFilter {
+    field: 'asset_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by asset name
+   */
+  export interface AssetNameFilter {
+    field: 'asset_name';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
   export interface Include {
     asset?: boolean;
+
+    asset_id?: boolean;
 
     citations?: boolean;
 

@@ -176,7 +176,11 @@ export interface ReportCitationsParams {
    */
   end_date: string;
 
-  metrics: Array<'count' | 'share_of_voice'>;
+  /**
+   * Metrics to include. `share_of_voice` is deprecated, use `citation_share`
+   * instead.
+   */
+  metrics: Array<'count' | 'citation_share'>;
 
   /**
    * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or
@@ -212,7 +216,7 @@ export interface ReportCitationsParams {
    */
   filters?: Array<
     | ReportCitationsParams.HostnameFilter
-    | ReportCitationsParams.ProfoundAnswerEngineInsightsFiltersPathFilter
+    | Shared.PathFilter
     | Shared.RegionIDFilter
     | Shared.TopicIDFilter
     | TopicNameFilter
@@ -248,26 +252,6 @@ export namespace ReportCitationsParams {
    */
   export interface HostnameFilter {
     field: 'hostname';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
-
-  /**
-   * Filter by URL path
-   */
-  export interface ProfoundAnswerEngineInsightsFiltersPathFilter {
-    field: 'path';
 
     operator:
       | 'is'
