@@ -138,6 +138,26 @@ export interface ReportResult {
   metrics: Array<number>;
 }
 
+/**
+ * Filter by topic name
+ */
+export interface TopicNameFilter {
+  field: 'topic_name';
+
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
+
+  value: string | Array<string>;
+}
+
 export interface ReportCitationsResponse {
   data: Array<ReportResult>;
 
@@ -193,15 +213,15 @@ export interface ReportCitationsParams {
   filters?: Array<
     | ReportCitationsParams.HostnameFilter
     | ReportCitationsParams.ProfoundAnswerEngineInsightsFiltersPathFilter
-    | ReportCitationsParams.RegionIDFilter
-    | ReportCitationsParams.TopicIDFilter
-    | ReportCitationsParams.TopicNameFilter
-    | ReportCitationsParams.ModelIDFilter
-    | ReportCitationsParams.TagIDFilter
+    | Shared.RegionIDFilter
+    | Shared.TopicIDFilter
+    | TopicNameFilter
+    | Shared.ModelIDFilter
+    | Shared.TagIDFilter
     | ReportCitationsParams.URLFilter
     | ReportCitationsParams.RootDomainFilter
     | ReportCitationsParams.PromptTypeFilter
-    | ReportCitationsParams.PersonaIDFilter
+    | Shared.PersonaIDFilter
     | ReportCitationsParams.CitationCategoryFilter
   >;
 
@@ -259,70 +279,6 @@ export namespace ReportCitationsParams {
       | 'matches'
       | 'contains_case_insensitive'
       | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
-
-  export interface RegionIDFilter {
-    /**
-     * - `region` - Deprecated
-     */
-    field: 'region_id' | 'region';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  export interface TopicIDFilter {
-    /**
-     * - `topic` - Deprecated
-     */
-    field: 'topic_id' | 'topic';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  /**
-   * Filter by topic name
-   */
-  export interface TopicNameFilter {
-    field: 'topic_name';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
-
-  export interface ModelIDFilter {
-    /**
-     * - `model` - Deprecated
-     */
-    field: 'model_id' | 'model';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  export interface TagIDFilter {
-    /**
-     * - `tag` - Deprecated
-     */
-    field: 'tag_id' | 'tag';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
 
     value: string | Array<string>;
   }
@@ -387,14 +343,6 @@ export namespace ReportCitationsParams {
     value: 'visibility' | 'sentiment' | Array<'visibility' | 'sentiment'>;
   }
 
-  export interface PersonaIDFilter {
-    field: 'persona_id';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
   /**
    * Filter by citation category
    */
@@ -450,9 +398,7 @@ export interface ReportGetBotsReportParams {
    * Filters for bots report.
    */
   filters?: Array<
-    | ReportGetBotsReportParams.PathFilter
-    | ReportGetBotsReportParams.BotNameFilter
-    | ReportGetBotsReportParams.BotProviderFilter
+    Shared.PathFilter | ReportGetBotsReportParams.BotNameFilter | ReportGetBotsReportParams.BotProviderFilter
   >;
 
   /**
@@ -476,26 +422,6 @@ export interface ReportGetBotsReportParams {
 }
 
 export namespace ReportGetBotsReportParams {
-  /**
-   * Filter by request path
-   */
-  export interface PathFilter {
-    field: 'path';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
-
   /**
    * Filter by bot name (user agent)
    */
@@ -664,9 +590,7 @@ export interface ReportGetReferralsReportParams {
   /**
    * Filters for referrals report.
    */
-  filters?: Array<
-    ReportGetReferralsReportParams.PathFilter | ReportGetReferralsReportParams.ReferralSourceFilter
-  >;
+  filters?: Array<Shared.PathFilter | ReportGetReferralsReportParams.ReferralSourceFilter>;
 
   /**
    * Custom ordering of the report results.
@@ -689,26 +613,6 @@ export interface ReportGetReferralsReportParams {
 }
 
 export namespace ReportGetReferralsReportParams {
-  /**
-   * Filter by request path
-   */
-  export interface PathFilter {
-    field: 'path';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
-
   /**
    * Filter by referral source
    */
@@ -799,13 +703,13 @@ export interface ReportSentimentParams {
   filters?: Array<
     | ReportSentimentParams.AssetNameFilter
     | ReportSentimentParams.ThemeFilter
-    | ReportSentimentParams.RegionIDFilter
-    | ReportSentimentParams.TopicIDFilter
-    | ReportSentimentParams.TopicNameFilter
-    | ReportSentimentParams.ModelIDFilter
-    | ReportSentimentParams.TagIDFilter
-    | ReportSentimentParams.PromptFilter
-    | ReportSentimentParams.PersonaIDFilter
+    | Shared.RegionIDFilter
+    | Shared.TopicIDFilter
+    | TopicNameFilter
+    | Shared.ModelIDFilter
+    | Shared.TagIDFilter
+    | Shared.PromptFilter
+    | Shared.PersonaIDFilter
   >;
 
   /**
@@ -868,98 +772,6 @@ export namespace ReportSentimentParams {
 
     value: string | Array<string>;
   }
-
-  export interface RegionIDFilter {
-    /**
-     * - `region` - Deprecated
-     */
-    field: 'region_id' | 'region';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  export interface TopicIDFilter {
-    /**
-     * - `topic` - Deprecated
-     */
-    field: 'topic_id' | 'topic';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  /**
-   * Filter by topic name
-   */
-  export interface TopicNameFilter {
-    field: 'topic_name';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
-
-  export interface ModelIDFilter {
-    /**
-     * - `model` - Deprecated
-     */
-    field: 'model_id' | 'model';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  export interface TagIDFilter {
-    /**
-     * - `tag` - Deprecated
-     */
-    field: 'tag_id' | 'tag';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  /**
-   * Filter by prompt text
-   */
-  export interface PromptFilter {
-    field: 'prompt';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
-
-  export interface PersonaIDFilter {
-    field: 'persona_id';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
 }
 
 export interface ReportVisibilityParams {
@@ -995,14 +807,14 @@ export interface ReportVisibilityParams {
    * List of filters to apply to the visibility report.
    */
   filters?: Array<
-    | ReportVisibilityParams.RegionIDFilter
-    | ReportVisibilityParams.ModelIDFilter
-    | ReportVisibilityParams.TopicIDFilter
-    | ReportVisibilityParams.TopicNameFilter
+    | Shared.RegionIDFilter
+    | Shared.ModelIDFilter
+    | Shared.TopicIDFilter
+    | TopicNameFilter
     | ReportVisibilityParams.AssetNameFilter
-    | ReportVisibilityParams.TagIDFilter
-    | ReportVisibilityParams.PromptFilter
-    | ReportVisibilityParams.PersonaIDFilter
+    | Shared.TagIDFilter
+    | Shared.PromptFilter
+    | Shared.PersonaIDFilter
   >;
 
   /**
@@ -1026,59 +838,6 @@ export interface ReportVisibilityParams {
 }
 
 export namespace ReportVisibilityParams {
-  export interface RegionIDFilter {
-    /**
-     * - `region` - Deprecated
-     */
-    field: 'region_id' | 'region';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  export interface ModelIDFilter {
-    /**
-     * - `model` - Deprecated
-     */
-    field: 'model_id' | 'model';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  export interface TopicIDFilter {
-    /**
-     * - `topic` - Deprecated
-     */
-    field: 'topic_id' | 'topic';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  /**
-   * Filter by topic name
-   */
-  export interface TopicNameFilter {
-    field: 'topic_name';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
-
   /**
    * Filter by asset name
    */
@@ -1098,45 +857,6 @@ export namespace ReportVisibilityParams {
 
     value: string | Array<string>;
   }
-
-  export interface TagIDFilter {
-    /**
-     * - `tag` - Deprecated
-     */
-    field: 'tag_id' | 'tag';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  /**
-   * Filter by prompt text
-   */
-  export interface PromptFilter {
-    field: 'prompt';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
-
-  export interface PersonaIDFilter {
-    field: 'persona_id';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
 }
 
 export declare namespace Reports {
@@ -1144,6 +864,7 @@ export declare namespace Reports {
     type ReportInfo as ReportInfo,
     type ReportResponse as ReportResponse,
     type ReportResult as ReportResult,
+    type TopicNameFilter as TopicNameFilter,
     type ReportCitationsResponse as ReportCitationsResponse,
     type ReportCitationsParams as ReportCitationsParams,
     type ReportGetBotsReportParams as ReportGetBotsReportParams,

@@ -2,7 +2,14 @@
 
 Types:
 
+- <code><a href="./src/resources/shared.ts">ModelIDFilter</a></code>
 - <code><a href="./src/resources/shared.ts">Pagination</a></code>
+- <code><a href="./src/resources/shared.ts">PathFilter</a></code>
+- <code><a href="./src/resources/shared.ts">PersonaIDFilter</a></code>
+- <code><a href="./src/resources/shared.ts">PromptFilter</a></code>
+- <code><a href="./src/resources/shared.ts">RegionIDFilter</a></code>
+- <code><a href="./src/resources/shared.ts">TagIDFilter</a></code>
+- <code><a href="./src/resources/shared.ts">TopicIDFilter</a></code>
 
 # Organizations
 
@@ -60,6 +67,7 @@ Types:
 - <code><a href="./src/resources/reports.ts">ReportInfo</a></code>
 - <code><a href="./src/resources/reports.ts">ReportResponse</a></code>
 - <code><a href="./src/resources/reports.ts">ReportResult</a></code>
+- <code><a href="./src/resources/reports.ts">TopicNameFilter</a></code>
 - <code><a href="./src/resources/reports.ts">ReportCitationsResponse</a></code>
 
 Methods:

@@ -17,6 +17,7 @@ export {
   type ReportInfo,
   type ReportResponse,
   type ReportResult,
+  type TopicNameFilter,
   type ReportCitationsResponse,
   type ReportCitationsParams,
   type ReportGetBotsReportParams,
