@@ -180,7 +180,7 @@ export interface ReportCitationsParams {
    * Metrics to include. `share_of_voice` is deprecated, use `citation_share`
    * instead.
    */
-  metrics: Array<'count' | 'citation_share'>;
+  metrics: Array<'count' | 'citation_share' | 'share_of_voice'>;
 
   /**
    * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or

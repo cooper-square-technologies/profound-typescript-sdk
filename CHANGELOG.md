@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.24.0 (2026-02-10)
+
+Full Changelog: [v0.23.0...v0.24.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.23.0...v0.24.0)
+
+### Features
+
+* **api:** api update ([549ae51](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/549ae51184543a42e65826b3111b5824e343519a))
+
+
+### Chores
+
+* **internal:** add health check to MCP server when running in HTTP mode ([334249e](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/334249e5de1697f1911285283e04fca69b4ddc62))
+* **internal:** allow basic filtering of methods allowed for MCP code mode ([9c6d4c3](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/9c6d4c3185de3540d90bfc94b7b438987ae0a297))
+* **internal:** always generate MCP server dockerfiles and upgrade associated dependencies ([ed2da7f](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/ed2da7fbf43fed501700ccceb59c525dd70e3416))
+* **internal:** upgrade hono ([f64b14d](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/f64b14d914314a06ae23b2a75db11b120b11944b))
+
 ## 0.23.0 (2026-02-06)
 
 Full Changelog: [v0.22.0...v0.23.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.22.0...v0.23.0)
