@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.24.1 (2026-02-14)
+
+Full Changelog: [v0.24.0...v0.24.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.24.0...v0.24.1)
+
+### Chores
+
+* **internal:** avoid type checking errors with ts-reset ([f0e1a42](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/f0e1a426b6a16df07f42ff4fe8d04da9e5b64373))
+* **internal:** improve layout of generated MCP server files ([3772448](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/3772448cb05b90aa60aada850e9511431baafd6a))
+* **mcp:** forward STAINLESS_API_KEY to docs search endpoint ([bdae83a](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/bdae83a07c8a8f3ebc49d0f7d9a4133b65ca5d34))
+
 ## 0.24.0 (2026-02-10)
 
 Full Changelog: [v0.23.0...v0.24.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.23.0...v0.24.0)
