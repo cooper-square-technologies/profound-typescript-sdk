@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-  "name": "mcp",
+	"name": "profoundai-api-mcp-server",
 	"main": "src/index.ts",
 	"compatibility_date": "2025-03-10",
 	"compatibility_flags": ["nodejs_compat"],
@@ -25,7 +25,7 @@
 	"kv_namespaces": [
 		{
 			"binding": "OAUTH_KV",
-			"id": "b1d35310274d4db78bc7b6088f5194bc"
+			"id": "ae6fe7d7993146a9b8d54d87f73b0bdf"
 		}
 	],
 	"observability": {

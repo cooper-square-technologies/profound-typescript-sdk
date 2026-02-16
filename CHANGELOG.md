@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.25.2 (2026-02-16)
+
+Full Changelog: [v0.25.1...v0.25.2](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.25.1...v0.25.2)
+
+### Chores
+
+* remove custom code ([a551d11](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/a551d1124d160af8f268fbef63de0cfa859b4cde))
+
 ## 0.25.1 (2026-02-16)
 
 Full Changelog: [v0.25.0...v0.25.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.25.0...v0.25.1)
