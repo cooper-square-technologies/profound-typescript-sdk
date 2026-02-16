@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.25.1 (2026-02-16)
+
+Full Changelog: [v0.25.0...v0.25.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.25.0...v0.25.1)
+
+### Bug Fixes
+
+* **mcp:** rename worker name ([20eefa5](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/20eefa517993f24c72651e18e00b1e5a796acf13))
+
 ## 0.25.0 (2026-02-16)
 
 Full Changelog: [v0.24.0...v0.25.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.24.0...v0.25.0)
