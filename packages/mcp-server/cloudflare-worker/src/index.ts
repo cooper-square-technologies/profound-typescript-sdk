@@ -74,8 +74,7 @@ export type ClientProperty = {
   options?: { label: string; value: string }[];
 };
 
-// Export the OAuth handler as the default
-export default new OAuthProvider({
+const oauthProvider = new OAuthProvider({
   apiHandlers: {
     // @ts-expect-error
     '/sse': MyMCP.serveSSE('/sse'), // legacy SSE
@@ -89,3 +88,26 @@ export default new OAuthProvider({
   tokenEndpoint: '/token',
   clientRegistrationEndpoint: '/register',
 });
+
+const apiKeyPath = '/mcp';
+const apiKeyHeader = 'x-api-key';
+
+function isApiKeyRequest(request: Request) {
+  const url = new URL(request.url);
+  const apiKey = request.headers.get(apiKeyHeader);
+  return url.pathname === apiKeyPath && apiKey;
+}
+
+export default {
+  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+    if (isApiKeyRequest(request)) {
+      ctx.props = {
+        ...ctx.props,
+        clientProps: { ...ctx.props.clientProps, apiKey: request.headers.get(apiKeyHeader) },
+      };
+      return MyMCP.serve(apiKeyPath).fetch(request, env, ctx);
+    }
+
+    return oauthProvider.fetch(request, env, ctx);
+  },
+};
