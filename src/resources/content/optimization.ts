@@ -84,11 +84,11 @@ export namespace OptimizationRetrieveResponse {
     }
 
     export interface Inputs {
-      prompt: Inputs.Prompt;
+      prompt: Inputs.Prompt | null;
 
       top_citations: Array<string>;
 
-      topic: Inputs.Topic;
+      topic: Inputs.Topic | null;
 
       user: Inputs.User;
     }
