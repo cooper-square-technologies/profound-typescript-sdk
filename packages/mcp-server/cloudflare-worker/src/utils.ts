@@ -267,20 +267,16 @@ export const renderApproveContent = async (message: string, status: string, redi
       </div>
       <h1 class="text-2xl font-heading font-bold mb-4 text-gray-900">${message}</h1>
       <p class="mb-8 text-gray-600">You will be redirected back to the application shortly.</p>
-      <button
-        onclick="goBackToApp()"
+      <a
+        href="/"
         class="inline-block py-2 px-4 bg-primary text-white rounded-md font-medium hover:bg-primary/90 transition-colors"
       >
-        Return to application
-      </button>
+        Return to Home
+      </a>
       ${raw(`
                 <script>
-                    function goBackToApp() {
-                        window.location.href = "${redirectUrl}";
-                    }
-                
                     setTimeout(() => {
-                        goBackTopApp()
+                        window.location.href = "${redirectUrl}";
                     }, 2000);
                 </script>
             `)}
