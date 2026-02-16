@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.26.0 (2026-02-16)
+
+Full Changelog: [v0.25.2...v0.26.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.25.2...v0.26.0)
+
+### Features
+
+* **mcp:** allow to authenticate using `x-api-key` header ([e6aa4f2](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/e6aa4f2fd8f1c7ca5f76ece6ad1f7bb928476714))
+
+
+### Bug Fixes
+
+* **mcp:** go back button ([b0b716e](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/b0b716e082b91c90a5f93f5e6ae9ee4022978a1d))
+* **mcp:** wrangler configuration ([c53a516](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/c53a516722adff436ac15d11326e9fdd4021fc22))
+
+
+### Documentation
+
+* remove Stainless reference ([e8c47ea](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/e8c47ea93ebb64fd435480a205faf666aceb9d67))
+
+
+### Styles
+
+* format ([340248a](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/340248a1e7792d48d7ba524627659676200b0f51))
+
 ## 0.25.2 (2026-02-16)
 
 Full Changelog: [v0.25.1...v0.25.2](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.25.1...v0.25.2)
