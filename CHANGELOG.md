@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.26.1 (2026-02-18)
+
+Full Changelog: [v0.26.0...v0.26.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.26.0...v0.26.1)
+
+### Chores
+
+* **internal/client:** fix form-urlencoded requests ([e337cee](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/e337ceea876d433c7d8ba6960383fed3f577951d))
+* **internal:** allow setting x-stainless-api-key header on mcp server requests ([c305cea](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/c305cea7bea8f7c7e603ed3a35f4ca5c4969ebbe))
+
 ## 0.26.0 (2026-02-16)
 
 Full Changelog: [v0.25.2...v0.26.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.25.2...v0.26.0)
