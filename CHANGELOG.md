@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.26.2 (2026-02-19)
+
+Full Changelog: [v0.26.1...v0.26.2](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.26.1...v0.26.2)
+
+### Chores
+
+* **internal:** cache fetch instruction calls in MCP server ([f3c1482](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/f3c14824f12aa91abab0e4c33b643f6fdb546b3b))
+
 ## 0.26.1 (2026-02-18)
 
 Full Changelog: [v0.26.0...v0.26.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.26.0...v0.26.1)
