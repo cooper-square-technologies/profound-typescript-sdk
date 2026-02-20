@@ -1,7 +1,7 @@
 {
   "dxt_version": "0.2",
   "name": "profound-mcp",
-  "version": "0.25.1",
+  "version": "0.26.3",
   "description": "The official MCP Server for the Profound API",
   "author": {
     "name": "Profound",
@@ -18,7 +18,9 @@
     "entry_point": "index.js",
     "mcp_config": {
       "command": "node",
-      "args": ["${__dirname}/index.js"],
+      "args": [
+        "${__dirname}/index.js"
+      ],
       "env": {
         "PROFOUND_API_KEY": "${user_config.PROFOUND_API_KEY}"
       }
@@ -39,5 +41,7 @@
       "node": ">=18.0.0"
     }
   },
-  "keywords": ["api"]
+  "keywords": [
+    "api"
+  ]
 }

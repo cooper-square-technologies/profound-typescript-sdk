@@ -8,7 +8,7 @@ const client = new Profound({
 });
 
 describe('resource prompts', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('answers: only required params', async () => {
     const responsePromise = client.prompts.answers({
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -24,7 +24,7 @@ describe('resource prompts', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('answers: required and optional params', async () => {
     const response = await client.prompts.answers({
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',

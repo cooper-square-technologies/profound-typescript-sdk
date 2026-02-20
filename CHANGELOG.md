@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.26.3 (2026-02-20)
+
+Full Changelog: [v0.26.2...v0.26.3](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.26.2...v0.26.3)
+
+### Bug Fixes
+
+* **mcp:** initialize SDK lazily to avoid failing the connection on init errors ([d58bb6c](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/d58bb6ce77dbc1521d96c8970b65a0c6f3ea5227))
+
+
+### Chores
+
+* **internal:** remove mock server code ([d02883d](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/d02883d95e9d49f37a2d526cf9898734af7a6392))
+* **mcp:** correctly update version in sync with sdk ([5a51eb0](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/5a51eb085d2dfd1e25ea25abe85035cdcec60da2))
+* update mock server docs ([8f1e2bb](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/8f1e2bb3b6b01fcc78f81f873605a4fd9c49d8f0))
+
 ## 0.26.2 (2026-02-19)
 
 Full Changelog: [v0.26.1...v0.26.2](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.26.1...v0.26.2)
