@@ -8,7 +8,7 @@ const client = new Profound({
 });
 
 describe('resource organizations', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('domains', async () => {
     const responsePromise = client.organizations.domains();
     const rawResponse = await responsePromise.asResponse();
@@ -20,7 +20,7 @@ describe('resource organizations', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('getPersonas', async () => {
     const responsePromise = client.organizations.getPersonas();
     const rawResponse = await responsePromise.asResponse();
@@ -32,7 +32,7 @@ describe('resource organizations', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('listAssets', async () => {
     const responsePromise = client.organizations.listAssets();
     const rawResponse = await responsePromise.asResponse();
@@ -44,7 +44,7 @@ describe('resource organizations', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('models', async () => {
     const responsePromise = client.organizations.models();
     const rawResponse = await responsePromise.asResponse();
@@ -56,7 +56,7 @@ describe('resource organizations', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('regions', async () => {
     const responsePromise = client.organizations.regions();
     const rawResponse = await responsePromise.asResponse();

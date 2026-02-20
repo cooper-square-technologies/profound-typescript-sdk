@@ -8,7 +8,7 @@ const client = new Profound({
 });
 
 describe('resource reports', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('citations: only required params', async () => {
     const responsePromise = client.reports.citations({
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -25,7 +25,7 @@ describe('resource reports', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('citations: required and optional params', async () => {
     const response = await client.reports.citations({
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -46,7 +46,7 @@ describe('resource reports', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('getBotsReport: only required params', async () => {
     const responsePromise = client.reports.getBotsReport({
       domain: 'domain',
@@ -62,7 +62,7 @@ describe('resource reports', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('getBotsReport: required and optional params', async () => {
     const response = await client.reports.getBotsReport({
       domain: 'domain',
@@ -83,7 +83,7 @@ describe('resource reports', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('getReferralsReport: only required params', async () => {
     const responsePromise = client.reports.getReferralsReport({
       domain: 'domain',
@@ -99,7 +99,7 @@ describe('resource reports', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('getReferralsReport: required and optional params', async () => {
     const response = await client.reports.getReferralsReport({
       domain: 'domain',
@@ -120,7 +120,7 @@ describe('resource reports', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('sentiment: only required params', async () => {
     const responsePromise = client.reports.sentiment({
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -137,7 +137,7 @@ describe('resource reports', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('sentiment: required and optional params', async () => {
     const response = await client.reports.sentiment({
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -158,7 +158,7 @@ describe('resource reports', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('visibility: only required params', async () => {
     const responsePromise = client.reports.visibility({
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -175,7 +175,7 @@ describe('resource reports', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('visibility: required and optional params', async () => {
     const response = await client.reports.visibility({
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',

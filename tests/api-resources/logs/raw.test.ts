@@ -8,7 +8,7 @@ const client = new Profound({
 });
 
 describe('resource raw', () => {
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('bots: only required params', async () => {
     const responsePromise = client.logs.raw.bots({
       domain: 'domain',
@@ -24,7 +24,7 @@ describe('resource raw', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('bots: required and optional params', async () => {
     const response = await client.logs.raw.bots({
       domain: 'domain',
@@ -45,7 +45,7 @@ describe('resource raw', () => {
     });
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('logs: only required params', async () => {
     const responsePromise = client.logs.raw.logs({
       domain: 'domain',
@@ -61,7 +61,7 @@ describe('resource raw', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // Prism tests are disabled
+  // Mock server tests are disabled
   test.skip('logs: required and optional params', async () => {
     const response = await client.logs.raw.logs({
       domain: 'domain',
