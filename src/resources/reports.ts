@@ -764,17 +764,7 @@ export interface ReportVisibilityParams {
    * Dimensions to group the report by.
    */
   dimensions?: Array<
-    | 'date'
-    | 'region'
-    | 'topic'
-    | 'topic_id'
-    | 'model'
-    | 'asset_id'
-    | 'asset_name'
-    | 'prompt'
-    | 'prompt_id'
-    | 'tag'
-    | 'persona'
+    'date' | 'region' | 'topic' | 'model' | 'asset_id' | 'asset_name' | 'prompt' | 'tag' | 'persona'
   >;
 
   /**
@@ -787,7 +777,6 @@ export interface ReportVisibilityParams {
     | TopicNameFilter
     | Shared.AssetNameFilter
     | Shared.TagIDFilter
-    | ReportVisibilityParams.PromptIDFilter
     | Shared.PromptFilter
     | Shared.PersonaIDFilter
   >;
@@ -810,16 +799,6 @@ export interface ReportVisibilityParams {
    * Pagination settings for the report results.
    */
   pagination?: Shared.Pagination;
-}
-
-export namespace ReportVisibilityParams {
-  export interface PromptIDFilter {
-    field: 'prompt_id';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
 }
 
 export declare namespace Reports {
