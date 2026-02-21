@@ -57,7 +57,6 @@ describe('resource prompts', () => {
         tags: true,
         themes: true,
         topic: true,
-        topic_id: true,
       },
       pagination: { limit: 1, offset: 0 },
     });
