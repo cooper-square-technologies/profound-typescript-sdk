@@ -65,8 +65,6 @@ export namespace PromptAnswersResponse {
     themes?: Array<string> | null;
 
     topic?: string | null;
-
-    topic_id?: string | null;
   }
 
   export namespace Data {
@@ -182,8 +180,6 @@ export namespace PromptAnswersParams {
     themes?: boolean;
 
     topic?: boolean;
-
-    topic_id?: boolean;
   }
 }
 
