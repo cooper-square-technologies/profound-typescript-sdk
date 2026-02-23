@@ -191,7 +191,7 @@ export interface ReportCitationsParams {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'day' | 'week' | 'month' | 'year';
+  date_interval?: 'day' | 'week' | 'month' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
@@ -365,7 +365,7 @@ export interface ReportGetBotsReportParams {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'day' | 'week' | 'month' | 'year';
+  date_interval?: 'day' | 'week' | 'month' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
@@ -558,7 +558,7 @@ export interface ReportGetReferralsReportParams {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'day' | 'week' | 'month' | 'year';
+  date_interval?: 'day' | 'week' | 'month' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
@@ -662,7 +662,7 @@ export interface ReportSentimentParams {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'day' | 'week' | 'month' | 'year';
+  date_interval?: 'day' | 'week' | 'month' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
@@ -758,7 +758,7 @@ export interface ReportVisibilityParams {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'day' | 'week' | 'month' | 'year';
+  date_interval?: 'day' | 'week' | 'month' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
