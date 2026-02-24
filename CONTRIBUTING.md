@@ -60,7 +60,7 @@ $ yarn link profoundai
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global profoundai
+$ pnpm link --global profoundai
 ```
 
 ## Running tests
