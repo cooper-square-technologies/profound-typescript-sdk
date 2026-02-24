@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.29.0 (2026-02-24)
+
+Full Changelog: [v0.28.0...v0.29.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.28.0...v0.29.0)
+
+### Features
+
+* **api:** api update ([7db74a6](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/7db74a60fc48e147de5dff8471ed917e0657d2eb))
+
+
+### Bug Fixes
+
+* **docs/contributing:** correct pnpm link command ([a439ad1](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/a439ad1f5b83dcafef813d292270d952750e7593))
+
+
+### Chores
+
+* **internal:** update agents version ([558db37](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/558db375f7678391d314c612d70a86a455f3fc0f))
+* **internal:** upgrade @modelcontextprotocol/sdk and hono ([f995f00](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/f995f00aa5809af31b350486f19d41f61c36a094))
+
 ## 0.28.0 (2026-02-23)
 
 Full Changelog: [v0.27.0...v0.28.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.27.0...v0.28.0)
