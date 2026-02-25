@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.29.1 (2026-02-25)
+
+Full Changelog: [v0.29.0...v0.29.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.29.0...v0.29.1)
+
+### Chores
+
+* **internal:** codegen related update ([ac1639f](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/ac1639fdc656642b18a158719232b54bef31dbcb))
+* **internal:** make MCP code execution location configurable via a flag ([27362df](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/27362dfeb67b465dcd017b1692cc5983492c8cee))
+
 ## 0.29.0 (2026-02-24)
 
 Full Changelog: [v0.28.0...v0.29.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.28.0...v0.29.0)
