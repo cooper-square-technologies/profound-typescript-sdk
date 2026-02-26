@@ -227,6 +227,8 @@ export interface ReportCitationsParams {
     | ReportCitationsParams.PromptTypeFilter
     | Shared.PersonaIDFilter
     | ReportCitationsParams.CitationCategoryFilter
+    | Shared.PromptFilter
+    | ReportCitationsParams.PromptIDFilter
   >;
 
   /**
@@ -343,6 +345,14 @@ export namespace ReportCitationsParams {
       | 'matches'
       | 'contains_case_insensitive'
       | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  export interface PromptIDFilter {
+    field: 'prompt_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
 
     value: string | Array<string>;
   }
