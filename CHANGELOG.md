@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.29.2 (2026-02-26)
+
+Full Changelog: [v0.29.1...v0.29.2](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.29.1...v0.29.2)
+
+### Chores
+
+* **internal:** fix MCP Dockerfiles so they can be built without buildkit ([305c0da](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/305c0da07e84d85c719f89b103e5d5df47f4f17c))
+* **internal:** fix MCP Dockerfiles so they can be built without buildkit ([84e9619](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/84e96191982fee87c34aeba0715caedcaa1171e8))
+
 ## 0.29.1 (2026-02-25)
 
 Full Changelog: [v0.29.0...v0.29.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.29.0...v0.29.1)
