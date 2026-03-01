@@ -20,7 +20,7 @@ export const newMcpServer = async (stainlessApiKey: string | undefined) =>
   new McpServer(
     {
       name: 'profoundai_api',
-      version: '0.29.2',
+      version: '0.30.0',
     },
     {
       instructions: await getInstructions(stainlessApiKey),
@@ -156,12 +156,16 @@ export async function initMcpServer(params: {
  * Selects the tools to include in the MCP Server based on the provided options.
  */
 export function selectTools(options?: McpOptions): McpTool[] {
-  const includedTools = [
-    codeTool({
-      blockedMethods: blockedMethodsForCodeTool(options),
-      codeExecutionMode: options?.codeExecutionMode ?? 'stainless-sandbox',
-    }),
-  ];
+  const includedTools = [];
+
+  if (options?.includeCodeTool ?? true) {
+    includedTools.push(
+      codeTool({
+        blockedMethods: blockedMethodsForCodeTool(options),
+        codeExecutionMode: options?.codeExecutionMode ?? 'stainless-sandbox',
+      }),
+    );
+  }
   if (options?.includeDocsTools ?? true) {
     includedTools.push(docsSearchTool);
   }
