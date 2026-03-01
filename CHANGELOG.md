@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.30.0 (2026-03-01)
+
+Full Changelog: [v0.29.2...v0.30.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.29.2...v0.30.0)
+
+### Features
+
+* **api:** api update ([5a702b2](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/5a702b2bc85191b914ee9194b723777126210fd9))
+* **mcp:** add an option to disable code tool ([1a86238](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/1a8623890ccb341b57a56c2de1eee781b6c585f4))
+
+
+### Bug Fixes
+
+* **mcp:** update prompt ([7a29549](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/7a295496732e6733196123cf13bdc61314d809ee))
+
+
+### Chores
+
+* **internal:** move stringifyQuery implementation to internal function ([83349d7](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/83349d7437eec6833cf5eb2ef0ed7e4571567ec3))
+
 ## 0.29.2 (2026-02-26)
 
 Full Changelog: [v0.29.1...v0.29.2](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.29.1...v0.29.2)
