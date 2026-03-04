@@ -695,6 +695,7 @@ export interface ReportSentimentParams {
    * List of filters to apply to the sentiment report.
    */
   filters?: Array<
+    | ReportSentimentParams.AssetIDFilter
     | Shared.AssetNameFilter
     | ReportSentimentParams.ThemeFilter
     | Shared.RegionIDFilter
@@ -727,6 +728,14 @@ export interface ReportSentimentParams {
 }
 
 export namespace ReportSentimentParams {
+  export interface AssetIDFilter {
+    field: 'asset_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
   /**
    * Filter by theme
    */

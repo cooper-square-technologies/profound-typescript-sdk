@@ -148,9 +148,9 @@ describe('resource reports', () => {
       dimensions: ['theme'],
       filters: [
         {
-          field: 'asset_name',
+          field: 'asset_id',
           operator: 'is',
-          value: 'string',
+          value: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         },
       ],
       order_by: { date: 'asc' },
