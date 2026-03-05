@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.31.0 (2026-03-04)
+
+Full Changelog: [v0.30.0...v0.31.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.30.0...v0.31.0)
+
+### Features
+
+* **api:** api update ([880e39a](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/880e39a47a7ff5a88469b8dc43fa8d3498755fa7))
+
+
+### Chores
+
+* **internal:** codegen related update ([bdc7580](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/bdc758052731177beb02f3e07ab30799fe70c6e1))
+* **internal:** use x-stainless-mcp-client-envs header for MCP remote code tool calls ([d2ffbcf](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/d2ffbcf7c4a741a5e96f58deaf472a0885dd55c6))
+* **mcp-server:** return access instructions for 404 without API key ([41e037c](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/41e037c9244848097bc46940ea4fe398e2238301))
+
 ## 0.30.0 (2026-03-01)
 
 Full Changelog: [v0.29.2...v0.30.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.29.2...v0.30.0)
