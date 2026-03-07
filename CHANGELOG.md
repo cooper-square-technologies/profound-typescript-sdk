@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.31.1 (2026-03-07)
+
+Full Changelog: [v0.31.0...v0.31.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.31.0...v0.31.1)
+
+### Bug Fixes
+
+* **client:** preserve URL params already embedded in path ([6b96528](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/6b96528d7439bf425196941cac547e394435007f))
+* fix request delays for retrying to be more respectful of high requested delays ([fb78500](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/fb78500ab51a02c9e06e095c7426cacca57b9811))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([f7e34c2](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/f7e34c25617f7b9080e2a136c7c60542a9ef3a25))
+* **mcp-server:** improve instructions ([e79f3d4](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/e79f3d4eafed6b3ad17f36285edc6ef96690cf4d))
+
 ## 0.31.0 (2026-03-04)
 
 Full Changelog: [v0.30.0...v0.31.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.30.0...v0.31.0)
