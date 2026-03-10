@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.31.2 (2026-03-10)
+
+Full Changelog: [v0.31.1...v0.31.2](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.31.1...v0.31.2)
+
+### Chores
+
+* **internal:** update dependencies to address dependabot vulnerabilities ([0376b2e](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/0376b2ec02d1376e5215161b561a0fb727570e31))
+
 ## 0.31.1 (2026-03-07)
 
 Full Changelog: [v0.31.0...v0.31.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.31.0...v0.31.1)
