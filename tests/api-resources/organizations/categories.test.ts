@@ -59,6 +59,27 @@ describe('resource categories', () => {
   });
 
   // Mock server tests are disabled
+  test.skip('prompts: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.organizations.categories.prompts(
+        '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        {
+          cursor: 'cursor',
+          limit: 1,
+          order_dir: 'asc',
+          platform_id: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+          prompt_type: ['visibility'],
+          region_id: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+          tag_id: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+          topic_id: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Profound.NotFoundError);
+  });
+
+  // Mock server tests are disabled
   test.skip('tags', async () => {
     const responsePromise = client.organizations.categories.tags('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
     const rawResponse = await responsePromise.asResponse();

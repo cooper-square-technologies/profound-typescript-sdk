@@ -2,13 +2,13 @@
 
 export {
   Categories,
-  type OrgItem,
   type CategoryListResponse,
   type CategoryAssetsResponse,
   type CategoryGetCategoryPersonasResponse,
   type CategoryPromptsResponse,
   type CategoryTagsResponse,
   type CategoryTopicsResponse,
+  type CategoryPromptsParams,
 } from './categories';
 export {
   Organizations,

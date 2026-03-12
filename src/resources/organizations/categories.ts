@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import * as CategoriesAPI from './categories';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -34,8 +33,12 @@ export class Categories extends APIResource {
   /**
    * Get Category Prompts
    */
-  prompts(categoryID: string, options?: RequestOptions): APIPromise<CategoryPromptsResponse> {
-    return this._client.get(path`/v1/org/categories/${categoryID}/prompts`, options);
+  prompts(
+    categoryID: string,
+    query: CategoryPromptsParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CategoryPromptsResponse> {
+    return this._client.get(path`/v1/org/categories/${categoryID}/prompts`, { query, ...options });
   }
 
   /**
@@ -53,13 +56,18 @@ export class Categories extends APIResource {
   }
 }
 
-export interface OrgItem {
-  id: string;
+export type CategoryListResponse = Array<CategoryListResponse.CategoryListResponseItem>;
 
-  name: string;
+export namespace CategoryListResponse {
+  /**
+   * Generic id+name reference used across domain boundaries.
+   */
+  export interface CategoryListResponseItem {
+    id: string;
+
+    name: string;
+  }
 }
-
-export type CategoryListResponse = Array<OrgItem>;
 
 export type CategoryAssetsResponse = Array<CategoryAssetsResponse.CategoryAssetsResponseItem>;
 
@@ -129,6 +137,8 @@ export namespace CategoryGetCategoryPersonasResponse {
 
 export interface CategoryPromptsResponse {
   data: Array<CategoryPromptsResponse.Data>;
+
+  info: CategoryPromptsResponse.Info;
 }
 
 export namespace CategoryPromptsResponse {
@@ -137,21 +147,81 @@ export namespace CategoryPromptsResponse {
 
     created_at: string;
 
-    platforms: Array<CategoriesAPI.OrgItem>;
+    platforms: Array<Data.Platform>;
 
     prompt: string;
 
     prompt_type: string;
 
-    regions: Array<CategoriesAPI.OrgItem>;
+    regions: Array<Data.Region>;
 
-    topic: CategoriesAPI.OrgItem;
+    /**
+     * Generic id+name reference used across domain boundaries.
+     */
+    topic: Data.Topic;
 
-    tags?: Array<CategoriesAPI.OrgItem>;
+    tags?: Array<Data.Tag>;
+  }
+
+  export namespace Data {
+    /**
+     * Generic id+name reference used across domain boundaries.
+     */
+    export interface Platform {
+      id: string;
+
+      name: string;
+    }
+
+    /**
+     * Generic id+name reference used across domain boundaries.
+     */
+    export interface Region {
+      id: string;
+
+      name: string;
+    }
+
+    /**
+     * Generic id+name reference used across domain boundaries.
+     */
+    export interface Topic {
+      id: string;
+
+      name: string;
+    }
+
+    /**
+     * Generic id+name reference used across domain boundaries.
+     */
+    export interface Tag {
+      id: string;
+
+      name: string;
+    }
+  }
+
+  export interface Info {
+    limit: number;
+
+    next_cursor: string | null;
+
+    total_rows: number;
   }
 }
 
-export type CategoryTagsResponse = Array<OrgItem>;
+export type CategoryTagsResponse = Array<CategoryTagsResponse.CategoryTagsResponseItem>;
+
+export namespace CategoryTagsResponse {
+  /**
+   * Generic id+name reference used across domain boundaries.
+   */
+  export interface CategoryTagsResponseItem {
+    id: string;
+
+    name: string;
+  }
+}
 
 export type CategoryTopicsResponse = Array<CategoryTopicsResponse.CategoryTopicsResponseItem>;
 
@@ -163,14 +233,32 @@ export namespace CategoryTopicsResponse {
   }
 }
 
+export interface CategoryPromptsParams {
+  cursor?: string | null;
+
+  limit?: number;
+
+  order_dir?: 'asc' | 'desc';
+
+  platform_id?: Array<string>;
+
+  prompt_type?: Array<'visibility' | 'sentiment'>;
+
+  region_id?: Array<string>;
+
+  tag_id?: Array<string>;
+
+  topic_id?: Array<string>;
+}
+
 export declare namespace Categories {
   export {
-    type OrgItem as OrgItem,
     type CategoryListResponse as CategoryListResponse,
     type CategoryAssetsResponse as CategoryAssetsResponse,
     type CategoryGetCategoryPersonasResponse as CategoryGetCategoryPersonasResponse,
     type CategoryPromptsResponse as CategoryPromptsResponse,
     type CategoryTagsResponse as CategoryTagsResponse,
     type CategoryTopicsResponse as CategoryTopicsResponse,
+    type CategoryPromptsParams as CategoryPromptsParams,
   };
 }

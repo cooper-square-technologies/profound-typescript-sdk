@@ -35,7 +35,7 @@ const client = new Profound({
   apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted
 });
 
-const orgItems = await client.organizations.categories.list();
+const categories = await client.organizations.categories.list();
 ```
 
 ### Request & Response types
@@ -50,7 +50,7 @@ const client = new Profound({
   apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted
 });
 
-const orgItems: Profound.Organizations.CategoryListResponse =
+const categories: Profound.Organizations.CategoryListResponse =
   await client.organizations.categories.list();
 ```
 
@@ -64,7 +64,7 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const orgItems = await client.organizations.categories.list().catch(async (err) => {
+const categories = await client.organizations.categories.list().catch(async (err) => {
   if (err instanceof Profound.APIError) {
     console.log(err.status); // 400
     console.log(err.name); // BadRequestError
@@ -148,11 +148,11 @@ const response = await client.organizations.categories.list().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: orgItems, response: raw } = await client.organizations.categories
+const { data: categories, response: raw } = await client.organizations.categories
   .list()
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(orgItems);
+console.log(categories);
 ```
 
 ### Logging
