@@ -7,10 +7,10 @@ import {
   CategoryAssetsResponse,
   CategoryGetCategoryPersonasResponse,
   CategoryListResponse,
+  CategoryPromptsParams,
   CategoryPromptsResponse,
   CategoryTagsResponse,
   CategoryTopicsResponse,
-  OrgItem,
 } from './categories';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
@@ -74,7 +74,10 @@ export namespace OrganizationGetPersonasResponse {
   export interface Data {
     id: string;
 
-    category: CategoriesAPI.OrgItem;
+    /**
+     * Generic id+name reference used across domain boundaries.
+     */
+    category: Data.Category;
 
     name: string;
 
@@ -82,6 +85,15 @@ export namespace OrganizationGetPersonasResponse {
   }
 
   export namespace Data {
+    /**
+     * Generic id+name reference used across domain boundaries.
+     */
+    export interface Category {
+      id: string;
+
+      name: string;
+    }
+
     export interface Persona {
       behavior: Persona.Behavior;
 
@@ -122,7 +134,10 @@ export namespace OrganizationListAssetsResponse {
   export interface Data {
     id: string;
 
-    category: CategoriesAPI.OrgItem;
+    /**
+     * Generic id+name reference used across domain boundaries.
+     */
+    category: Data.Category;
 
     created_at: string;
 
@@ -136,11 +151,44 @@ export namespace OrganizationListAssetsResponse {
 
     alternate_domains?: Array<string> | null;
   }
+
+  export namespace Data {
+    /**
+     * Generic id+name reference used across domain boundaries.
+     */
+    export interface Category {
+      id: string;
+
+      name: string;
+    }
+  }
 }
 
-export type OrganizationModelsResponse = Array<CategoriesAPI.OrgItem>;
+export type OrganizationModelsResponse = Array<OrganizationModelsResponse.OrganizationModelsResponseItem>;
 
-export type OrganizationRegionsResponse = Array<CategoriesAPI.OrgItem>;
+export namespace OrganizationModelsResponse {
+  /**
+   * Generic id+name reference used across domain boundaries.
+   */
+  export interface OrganizationModelsResponseItem {
+    id: string;
+
+    name: string;
+  }
+}
+
+export type OrganizationRegionsResponse = Array<OrganizationRegionsResponse.OrganizationRegionsResponseItem>;
+
+export namespace OrganizationRegionsResponse {
+  /**
+   * Generic id+name reference used across domain boundaries.
+   */
+  export interface OrganizationRegionsResponseItem {
+    id: string;
+
+    name: string;
+  }
+}
 
 Organizations.Categories = Categories;
 
@@ -155,12 +203,12 @@ export declare namespace Organizations {
 
   export {
     Categories as Categories,
-    type OrgItem as OrgItem,
     type CategoryListResponse as CategoryListResponse,
     type CategoryAssetsResponse as CategoryAssetsResponse,
     type CategoryGetCategoryPersonasResponse as CategoryGetCategoryPersonasResponse,
     type CategoryPromptsResponse as CategoryPromptsResponse,
     type CategoryTagsResponse as CategoryTagsResponse,
     type CategoryTopicsResponse as CategoryTopicsResponse,
+    type CategoryPromptsParams as CategoryPromptsParams,
   };
 }

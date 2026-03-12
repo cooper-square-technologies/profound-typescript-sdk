@@ -224,7 +224,7 @@ export interface ReportCitationsParams {
     | Shared.TagIDFilter
     | ReportCitationsParams.URLFilter
     | ReportCitationsParams.RootDomainFilter
-    | ReportCitationsParams.PromptTypeFilter
+    | ReportCitationsParams.ProfoundAnswerEngineInsightsFiltersPromptTypeFilter
     | Shared.PersonaIDFilter
     | ReportCitationsParams.CitationCategoryFilter
     | Shared.PromptFilter
@@ -312,7 +312,7 @@ export namespace ReportCitationsParams {
   /**
    * Filter by prompt type (visibility or sentiment)
    */
-  export interface PromptTypeFilter {
+  export interface ProfoundAnswerEngineInsightsFiltersPromptTypeFilter {
     field: 'prompt_type';
 
     operator:

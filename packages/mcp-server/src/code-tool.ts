@@ -30,7 +30,7 @@ For example:
 
 \`\`\`
 async function run(client) {
-  const orgItems = await client.organizations.categories.list();
+  const categories = await client.organizations.categories.list();
 }
 \`\`\`
 
