@@ -12,6 +12,11 @@ export {
 } from './categories';
 export {
   Organizations,
+  type NamedResource,
+  type PersonaProfile,
+  type PersonaProfileBehavior,
+  type PersonaProfileDemographics,
+  type PersonaProfileEmployment,
   type OrganizationDomainsResponse,
   type OrganizationGetPersonasResponse,
   type OrganizationListAssetsResponse,
