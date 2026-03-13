@@ -96,7 +96,7 @@ export interface PromptAnswersParams {
     | Shared.RegionIDFilter
     | Shared.ModelIDFilter
     | Shared.TagIDFilter
-    | PromptAnswersParams.PromptTypeFilter
+    | PromptAnswersParams.ProfoundAnswerEngineInsightsFiltersPromptTypeFilter
     | Shared.PromptFilter
     | Shared.PersonaIDFilter
     | Shared.TopicIDFilter
@@ -116,7 +116,7 @@ export namespace PromptAnswersParams {
   /**
    * Filter by prompt type (visibility or sentiment)
    */
-  export interface PromptTypeFilter {
+  export interface ProfoundAnswerEngineInsightsFiltersPromptTypeFilter {
     field: 'prompt_type';
 
     operator:
