@@ -34,12 +34,17 @@ import {
 import { Content } from './resources/content/content';
 import { Logs } from './resources/logs/logs';
 import {
+  NamedResource,
   OrganizationDomainsResponse,
   OrganizationGetPersonasResponse,
   OrganizationListAssetsResponse,
   OrganizationModelsResponse,
   OrganizationRegionsResponse,
   Organizations,
+  PersonaProfile,
+  PersonaProfileBehavior,
+  PersonaProfileDemographics,
+  PersonaProfileEmployment,
 } from './resources/organizations/organizations';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -756,6 +761,11 @@ export declare namespace Profound {
 
   export {
     Organizations as Organizations,
+    type NamedResource as NamedResource,
+    type PersonaProfile as PersonaProfile,
+    type PersonaProfileBehavior as PersonaProfileBehavior,
+    type PersonaProfileDemographics as PersonaProfileDemographics,
+    type PersonaProfileEmployment as PersonaProfileEmployment,
     type OrganizationDomainsResponse as OrganizationDomainsResponse,
     type OrganizationGetPersonasResponse as OrganizationGetPersonasResponse,
     type OrganizationListAssetsResponse as OrganizationListAssetsResponse,

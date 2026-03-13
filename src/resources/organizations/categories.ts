@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as OrganizationsAPI from './organizations';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -56,18 +57,7 @@ export class Categories extends APIResource {
   }
 }
 
-export type CategoryListResponse = Array<CategoryListResponse.CategoryListResponseItem>;
-
-export namespace CategoryListResponse {
-  /**
-   * Generic id+name reference used across domain boundaries.
-   */
-  export interface CategoryListResponseItem {
-    id: string;
-
-    name: string;
-  }
-}
+export type CategoryListResponse = Array<OrganizationsAPI.NamedResource>;
 
 export type CategoryAssetsResponse = Array<CategoryAssetsResponse.CategoryAssetsResponseItem>;
 
@@ -99,39 +89,7 @@ export namespace CategoryGetCategoryPersonasResponse {
 
     name: string;
 
-    persona: Data.Persona;
-  }
-
-  export namespace Data {
-    export interface Persona {
-      behavior: Persona.Behavior;
-
-      demographics: Persona.Demographics;
-
-      employment: Persona.Employment;
-    }
-
-    export namespace Persona {
-      export interface Behavior {
-        motivations?: string | null;
-
-        painPoints?: string | null;
-      }
-
-      export interface Demographics {
-        ageRange?: Array<string>;
-      }
-
-      export interface Employment {
-        companySize?: Array<string>;
-
-        industry?: Array<string>;
-
-        jobTitle?: Array<string>;
-
-        roleSeniority?: Array<string>;
-      }
-    }
+    persona: OrganizationsAPI.PersonaProfile;
   }
 }
 
@@ -147,58 +105,20 @@ export namespace CategoryPromptsResponse {
 
     created_at: string;
 
-    platforms: Array<Data.Platform>;
+    platforms: Array<OrganizationsAPI.NamedResource>;
 
     prompt: string;
 
     prompt_type: string;
 
-    regions: Array<Data.Region>;
+    regions: Array<OrganizationsAPI.NamedResource>;
 
     /**
      * Generic id+name reference used across domain boundaries.
      */
-    topic: Data.Topic;
+    topic: OrganizationsAPI.NamedResource;
 
-    tags?: Array<Data.Tag>;
-  }
-
-  export namespace Data {
-    /**
-     * Generic id+name reference used across domain boundaries.
-     */
-    export interface Platform {
-      id: string;
-
-      name: string;
-    }
-
-    /**
-     * Generic id+name reference used across domain boundaries.
-     */
-    export interface Region {
-      id: string;
-
-      name: string;
-    }
-
-    /**
-     * Generic id+name reference used across domain boundaries.
-     */
-    export interface Topic {
-      id: string;
-
-      name: string;
-    }
-
-    /**
-     * Generic id+name reference used across domain boundaries.
-     */
-    export interface Tag {
-      id: string;
-
-      name: string;
-    }
+    tags?: Array<OrganizationsAPI.NamedResource>;
   }
 
   export interface Info {
@@ -210,18 +130,7 @@ export namespace CategoryPromptsResponse {
   }
 }
 
-export type CategoryTagsResponse = Array<CategoryTagsResponse.CategoryTagsResponseItem>;
-
-export namespace CategoryTagsResponse {
-  /**
-   * Generic id+name reference used across domain boundaries.
-   */
-  export interface CategoryTagsResponseItem {
-    id: string;
-
-    name: string;
-  }
-}
+export type CategoryTagsResponse = Array<OrganizationsAPI.NamedResource>;
 
 export type CategoryTopicsResponse = Array<CategoryTopicsResponse.CategoryTopicsResponseItem>;
 

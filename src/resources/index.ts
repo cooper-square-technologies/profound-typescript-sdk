@@ -5,6 +5,11 @@ export { Content } from './content/content';
 export { Logs } from './logs/logs';
 export {
   Organizations,
+  type NamedResource,
+  type PersonaProfile,
+  type PersonaProfileBehavior,
+  type PersonaProfileDemographics,
+  type PersonaProfileEmployment,
   type OrganizationDomainsResponse,
   type OrganizationGetPersonasResponse,
   type OrganizationListAssetsResponse,
