@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.32.0 (2026-03-13)
+
+Full Changelog: [v0.31.2...v0.32.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.31.2...v0.32.0)
+
+### Features
+
+* **api:** api update ([d96119c](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/d96119ca383c171185eaf455150b223e03e8046e))
+
+
+### Chores
+
+* **internal:** bump @modelcontextprotocol/sdk, @hono/node-server, and minimatch ([1f97433](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/1f974334a031e0de544b6f897ed14b9e10104152))
+* use proper capitalization for WebSockets ([21803f7](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/21803f74d82d3fdea4a69fe10eeff205623ce1b0))
+
 ## 0.31.2 (2026-03-10)
 
 Full Changelog: [v0.31.1...v0.31.2](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.31.1...v0.31.2)
