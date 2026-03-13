@@ -20,7 +20,7 @@ export const newMcpServer = async (stainlessApiKey: string | undefined) =>
   new McpServer(
     {
       name: 'profoundai_api',
-      version: '0.32.1',
+      version: '0.33.0',
     },
     {
       instructions: await getInstructions(stainlessApiKey),
