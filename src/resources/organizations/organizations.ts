@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as OrganizationsAPI from './organizations';
 import * as CategoriesAPI from './categories';
 import {
   Categories,
@@ -54,6 +55,43 @@ export class Organizations extends APIResource {
   }
 }
 
+/**
+ * Generic id+name reference used across domain boundaries.
+ */
+export interface NamedResource {
+  id: string;
+
+  name: string;
+}
+
+export interface PersonaProfile {
+  behavior: PersonaProfileBehavior;
+
+  demographics: PersonaProfileDemographics;
+
+  employment: PersonaProfileEmployment;
+}
+
+export interface PersonaProfileBehavior {
+  motivations?: string | null;
+
+  painPoints?: string | null;
+}
+
+export interface PersonaProfileDemographics {
+  ageRange?: Array<string>;
+}
+
+export interface PersonaProfileEmployment {
+  companySize?: Array<string>;
+
+  industry?: Array<string>;
+
+  jobTitle?: Array<string>;
+
+  roleSeniority?: Array<string>;
+}
+
 export type OrganizationDomainsResponse = Array<OrganizationDomainsResponse.OrganizationDomainsResponseItem>;
 
 export namespace OrganizationDomainsResponse {
@@ -77,52 +115,11 @@ export namespace OrganizationGetPersonasResponse {
     /**
      * Generic id+name reference used across domain boundaries.
      */
-    category: Data.Category;
+    category: OrganizationsAPI.NamedResource;
 
     name: string;
 
-    persona: Data.Persona;
-  }
-
-  export namespace Data {
-    /**
-     * Generic id+name reference used across domain boundaries.
-     */
-    export interface Category {
-      id: string;
-
-      name: string;
-    }
-
-    export interface Persona {
-      behavior: Persona.Behavior;
-
-      demographics: Persona.Demographics;
-
-      employment: Persona.Employment;
-    }
-
-    export namespace Persona {
-      export interface Behavior {
-        motivations?: string | null;
-
-        painPoints?: string | null;
-      }
-
-      export interface Demographics {
-        ageRange?: Array<string>;
-      }
-
-      export interface Employment {
-        companySize?: Array<string>;
-
-        industry?: Array<string>;
-
-        jobTitle?: Array<string>;
-
-        roleSeniority?: Array<string>;
-      }
-    }
+    persona: OrganizationsAPI.PersonaProfile;
   }
 }
 
@@ -137,7 +134,7 @@ export namespace OrganizationListAssetsResponse {
     /**
      * Generic id+name reference used across domain boundaries.
      */
-    category: Data.Category;
+    category: OrganizationsAPI.NamedResource;
 
     created_at: string;
 
@@ -151,49 +148,21 @@ export namespace OrganizationListAssetsResponse {
 
     alternate_domains?: Array<string> | null;
   }
-
-  export namespace Data {
-    /**
-     * Generic id+name reference used across domain boundaries.
-     */
-    export interface Category {
-      id: string;
-
-      name: string;
-    }
-  }
 }
 
-export type OrganizationModelsResponse = Array<OrganizationModelsResponse.OrganizationModelsResponseItem>;
+export type OrganizationModelsResponse = Array<NamedResource>;
 
-export namespace OrganizationModelsResponse {
-  /**
-   * Generic id+name reference used across domain boundaries.
-   */
-  export interface OrganizationModelsResponseItem {
-    id: string;
-
-    name: string;
-  }
-}
-
-export type OrganizationRegionsResponse = Array<OrganizationRegionsResponse.OrganizationRegionsResponseItem>;
-
-export namespace OrganizationRegionsResponse {
-  /**
-   * Generic id+name reference used across domain boundaries.
-   */
-  export interface OrganizationRegionsResponseItem {
-    id: string;
-
-    name: string;
-  }
-}
+export type OrganizationRegionsResponse = Array<NamedResource>;
 
 Organizations.Categories = Categories;
 
 export declare namespace Organizations {
   export {
+    type NamedResource as NamedResource,
+    type PersonaProfile as PersonaProfile,
+    type PersonaProfileBehavior as PersonaProfileBehavior,
+    type PersonaProfileDemographics as PersonaProfileDemographics,
+    type PersonaProfileEmployment as PersonaProfileEmployment,
     type OrganizationDomainsResponse as OrganizationDomainsResponse,
     type OrganizationGetPersonasResponse as OrganizationGetPersonasResponse,
     type OrganizationListAssetsResponse as OrganizationListAssetsResponse,

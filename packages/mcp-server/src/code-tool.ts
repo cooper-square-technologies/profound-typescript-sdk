@@ -25,7 +25,7 @@ For example:
 
 \`\`\`
 async function run(client) {
-  const categories = await client.organizations.categories.list();
+  const namedResources = await client.organizations.categories.list();
 }
 \`\`\`
 

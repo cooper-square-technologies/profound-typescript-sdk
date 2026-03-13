@@ -16,6 +16,11 @@ Types:
 
 Types:
 
+- <code><a href="./src/resources/organizations/organizations.ts">NamedResource</a></code>
+- <code><a href="./src/resources/organizations/organizations.ts">PersonaProfile</a></code>
+- <code><a href="./src/resources/organizations/organizations.ts">PersonaProfileBehavior</a></code>
+- <code><a href="./src/resources/organizations/organizations.ts">PersonaProfileDemographics</a></code>
+- <code><a href="./src/resources/organizations/organizations.ts">PersonaProfileEmployment</a></code>
 - <code><a href="./src/resources/organizations/organizations.ts">OrganizationDomainsResponse</a></code>
 - <code><a href="./src/resources/organizations/organizations.ts">OrganizationGetPersonasResponse</a></code>
 - <code><a href="./src/resources/organizations/organizations.ts">OrganizationListAssetsResponse</a></code>
