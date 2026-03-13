@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.32.1 (2026-03-13)
+
+Full Changelog: [v0.32.0...v0.32.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.32.0...v0.32.1)
+
+### Chores
+
+* **internal:** make generated MCP servers compatible with Cloudflare worker environments ([f3509ba](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/f3509ba631ab0e02a159635807d16919856ddc89))
+
 ## 0.32.0 (2026-03-13)
 
 Full Changelog: [v0.31.2...v0.32.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.31.2...v0.32.0)
