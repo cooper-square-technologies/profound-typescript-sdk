@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.33.2 (2026-03-16)
+
+Full Changelog: [v0.33.1...v0.33.2](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.33.1...v0.33.2)
+
+### Chores
+
+* **internal:** support x-stainless-mcp-client-permissions headers in MCP servers ([2235c51](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/2235c51f00c4cd219ffdb0f1d3f3d65cf93120d5))
+
 ## 0.33.1 (2026-03-16)
 
 Full Changelog: [v0.33.0...v0.33.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.33.0...v0.33.1)
