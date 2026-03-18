@@ -93,13 +93,13 @@ export interface PromptAnswersParams {
    * List of filters to apply to the answers report.
    */
   filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TagIDFilter
+    | PromptAnswersParams.ProfoundAnswerEngineInsightsFiltersRegionIDFilter
+    | PromptAnswersParams.ProfoundAnswerEngineInsightsFiltersModelIDFilter
+    | PromptAnswersParams.ProfoundAnswerEngineInsightsFiltersTagIDFilter
     | PromptAnswersParams.ProfoundAnswerEngineInsightsFiltersPromptTypeFilter
     | Shared.PromptFilter
-    | Shared.PersonaIDFilter
-    | Shared.TopicIDFilter
+    | PromptAnswersParams.ProfoundAnswerEngineInsightsFiltersPersonaIDFilter
+    | PromptAnswersParams.ProfoundAnswerEngineInsightsFiltersTopicIDFilter
     | PromptAnswersParams.AssetIDFilter
     | Shared.AssetNameFilter
   >;
@@ -113,6 +113,39 @@ export interface PromptAnswersParams {
 }
 
 export namespace PromptAnswersParams {
+  export interface ProfoundAnswerEngineInsightsFiltersRegionIDFilter {
+    /**
+     * - `region` - Deprecated
+     */
+    field: 'region_id' | 'region';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface ProfoundAnswerEngineInsightsFiltersModelIDFilter {
+    /**
+     * - `model` - Deprecated
+     */
+    field: 'model_id' | 'model';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface ProfoundAnswerEngineInsightsFiltersTagIDFilter {
+    /**
+     * - `tag` - Deprecated
+     */
+    field: 'tag_id' | 'tag';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
   /**
    * Filter by prompt type (visibility or sentiment)
    */
@@ -131,6 +164,25 @@ export namespace PromptAnswersParams {
       | 'not_contains_case_insensitive';
 
     value: 'visibility' | 'sentiment' | Array<'visibility' | 'sentiment'>;
+  }
+
+  export interface ProfoundAnswerEngineInsightsFiltersPersonaIDFilter {
+    field: 'persona_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface ProfoundAnswerEngineInsightsFiltersTopicIDFilter {
+    /**
+     * - `topic` - Deprecated
+     */
+    field: 'topic_id' | 'topic';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
   }
 
   export interface AssetIDFilter {
