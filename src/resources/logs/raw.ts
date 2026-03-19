@@ -175,6 +175,8 @@ export interface RawBotsParams {
    */
   order_by?: { [key: string]: 'asc' | 'desc' };
 
+  organization_id?: string | null;
+
   /**
    * Pagination settings for the report results.
    */
@@ -520,6 +522,8 @@ export interface RawLogsParams {
    * descending.
    */
   order_by?: { [key: string]: 'asc' | 'desc' };
+
+  organization_id?: string | null;
 
   /**
    * Pagination settings for the report results.

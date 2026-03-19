@@ -463,6 +463,8 @@ export interface ReportGetBotsReportParams {
    */
   order_by?: { [key: string]: 'asc' | 'desc' };
 
+  organization_id?: string | null;
+
   /**
    * Pagination settings for the report results.
    */
@@ -653,6 +655,8 @@ export interface ReportGetReferralsReportParams {
    * descending.
    */
   order_by?: { [key: string]: 'asc' | 'desc' };
+
+  organization_id?: string | null;
 
   /**
    * Pagination settings for the report results.
