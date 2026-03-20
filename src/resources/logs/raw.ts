@@ -117,7 +117,7 @@ export interface RawBotsParams {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'day' | 'week' | 'month' | 'year' | 'relative_week';
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
@@ -467,7 +467,7 @@ export interface RawLogsParams {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'day' | 'week' | 'month' | 'year' | 'relative_week';
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
