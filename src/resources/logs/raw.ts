@@ -117,7 +117,7 @@ export interface RawBotsParams {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'day' | 'week' | 'month' | 'year' | 'relative_week';
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
@@ -174,6 +174,8 @@ export interface RawBotsParams {
    * descending.
    */
   order_by?: { [key: string]: 'asc' | 'desc' };
+
+  organization_id?: string | null;
 
   /**
    * Pagination settings for the report results.
@@ -465,7 +467,7 @@ export interface RawLogsParams {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'day' | 'week' | 'month' | 'year' | 'relative_week';
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
@@ -520,6 +522,8 @@ export interface RawLogsParams {
    * descending.
    */
   order_by?: { [key: string]: 'asc' | 'desc' };
+
+  organization_id?: string | null;
 
   /**
    * Pagination settings for the report results.

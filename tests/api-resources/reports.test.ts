@@ -32,7 +32,7 @@ describe('resource reports', () => {
       end_date: '2019-12-27T18:11:19.117Z',
       metrics: ['count'],
       start_date: '2019-12-27T18:11:19.117Z',
-      date_interval: 'day',
+      date_interval: 'hour',
       dimensions: ['hostname'],
       filters: [
         {
@@ -68,7 +68,7 @@ describe('resource reports', () => {
       domain: 'domain',
       metrics: ['count'],
       start_date: '2019-12-27T18:11:19.117Z',
-      date_interval: 'day',
+      date_interval: 'hour',
       dimensions: ['date'],
       end_date: '2019-12-27T18:11:19.117Z',
       filters: [
@@ -79,6 +79,7 @@ describe('resource reports', () => {
         },
       ],
       order_by: { date: 'asc' },
+      organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       pagination: { limit: 1, offset: 0 },
     });
   });
@@ -105,7 +106,7 @@ describe('resource reports', () => {
       domain: 'domain',
       metrics: ['visits'],
       start_date: '2019-12-27T18:11:19.117Z',
-      date_interval: 'day',
+      date_interval: 'hour',
       dimensions: ['date'],
       end_date: '2019-12-27T18:11:19.117Z',
       filters: [
@@ -116,6 +117,7 @@ describe('resource reports', () => {
         },
       ],
       order_by: { date: 'asc' },
+      organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       pagination: { limit: 1, offset: 0 },
     });
   });
@@ -144,7 +146,7 @@ describe('resource reports', () => {
       end_date: '2019-12-27T18:11:19.117Z',
       metrics: ['positive'],
       start_date: '2019-12-27T18:11:19.117Z',
-      date_interval: 'day',
+      date_interval: 'hour',
       dimensions: ['theme'],
       filters: [
         {
@@ -182,7 +184,7 @@ describe('resource reports', () => {
       end_date: '2019-12-27T18:11:19.117Z',
       metrics: ['share_of_voice'],
       start_date: '2019-12-27T18:11:19.117Z',
-      date_interval: 'day',
+      date_interval: 'hour',
       dimensions: ['date'],
       filters: [
         {

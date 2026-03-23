@@ -20,17 +20,6 @@ export interface AssetNameFilter {
   value: string | Array<string>;
 }
 
-export interface ModelIDFilter {
-  /**
-   * - `model` - Deprecated
-   */
-  field: 'model_id' | 'model';
-
-  operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-  value: string | Array<string>;
-}
-
 /**
  * Report pagination model.
  */
@@ -66,14 +55,6 @@ export interface PathFilter {
   value: string | Array<string>;
 }
 
-export interface PersonaIDFilter {
-  field: 'persona_id';
-
-  operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-  value: string | Array<string>;
-}
-
 /**
  * Filter by prompt text
  */
@@ -90,39 +71,6 @@ export interface PromptFilter {
     | 'matches'
     | 'contains_case_insensitive'
     | 'not_contains_case_insensitive';
-
-  value: string | Array<string>;
-}
-
-export interface RegionIDFilter {
-  /**
-   * - `region` - Deprecated
-   */
-  field: 'region_id' | 'region';
-
-  operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-  value: string | Array<string>;
-}
-
-export interface TagIDFilter {
-  /**
-   * - `tag` - Deprecated
-   */
-  field: 'tag_id' | 'tag';
-
-  operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-  value: string | Array<string>;
-}
-
-export interface TopicIDFilter {
-  /**
-   * - `topic` - Deprecated
-   */
-  field: 'topic_id' | 'topic';
-
-  operator: 'is' | 'not_is' | 'in' | 'not_in';
 
   value: string | Array<string>;
 }

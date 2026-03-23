@@ -191,7 +191,7 @@ export interface ReportCitationsParams {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'day' | 'week' | 'month' | 'year' | 'relative_week';
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
@@ -219,18 +219,18 @@ export interface ReportCitationsParams {
   filters?: Array<
     | ReportCitationsParams.HostnameFilter
     | Shared.PathFilter
-    | Shared.RegionIDFilter
-    | Shared.TopicIDFilter
+    | ReportCitationsParams.ProfoundAnswerEngineInsightsFiltersRegionIDFilter
+    | ReportCitationsParams.ProfoundAnswerEngineInsightsFiltersTopicIDFilter
     | TopicNameFilter
-    | Shared.ModelIDFilter
-    | Shared.TagIDFilter
+    | ReportCitationsParams.ProfoundAnswerEngineInsightsFiltersModelIDFilter
+    | ReportCitationsParams.ProfoundAnswerEngineInsightsFiltersTagIDFilter
     | ReportCitationsParams.URLFilter
     | ReportCitationsParams.RootDomainFilter
     | ReportCitationsParams.ProfoundAnswerEngineInsightsFiltersPromptTypeFilter
-    | Shared.PersonaIDFilter
+    | ReportCitationsParams.ProfoundAnswerEngineInsightsFiltersPersonaIDFilter
     | ReportCitationsParams.CitationCategoryFilter
     | Shared.PromptFilter
-    | ReportCitationsParams.PromptIDFilter
+    | ReportCitationsParams.ProfoundAnswerEngineInsightsFiltersPromptIDFilter
   >;
 
   /**
@@ -267,6 +267,50 @@ export namespace ReportCitationsParams {
       | 'matches'
       | 'contains_case_insensitive'
       | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  export interface ProfoundAnswerEngineInsightsFiltersRegionIDFilter {
+    /**
+     * - `region` - Deprecated
+     */
+    field: 'region_id' | 'region';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface ProfoundAnswerEngineInsightsFiltersTopicIDFilter {
+    /**
+     * - `topic` - Deprecated
+     */
+    field: 'topic_id' | 'topic';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface ProfoundAnswerEngineInsightsFiltersModelIDFilter {
+    /**
+     * - `model` - Deprecated
+     */
+    field: 'model_id' | 'model';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface ProfoundAnswerEngineInsightsFiltersTagIDFilter {
+    /**
+     * - `tag` - Deprecated
+     */
+    field: 'tag_id' | 'tag';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
 
     value: string | Array<string>;
   }
@@ -331,6 +375,14 @@ export namespace ReportCitationsParams {
     value: 'visibility' | 'sentiment' | Array<'visibility' | 'sentiment'>;
   }
 
+  export interface ProfoundAnswerEngineInsightsFiltersPersonaIDFilter {
+    field: 'persona_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
   /**
    * Filter by citation category
    */
@@ -351,7 +403,7 @@ export namespace ReportCitationsParams {
     value: string | Array<string>;
   }
 
-  export interface PromptIDFilter {
+  export interface ProfoundAnswerEngineInsightsFiltersPromptIDFilter {
     field: 'prompt_id';
 
     operator: 'is' | 'not_is' | 'in' | 'not_in';
@@ -377,7 +429,7 @@ export interface ReportGetBotsReportParams {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'day' | 'week' | 'month' | 'year' | 'relative_week';
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
@@ -410,6 +462,8 @@ export interface ReportGetBotsReportParams {
    * descending.
    */
   order_by?: { [key: string]: 'asc' | 'desc' };
+
+  organization_id?: string | null;
 
   /**
    * Pagination settings for the report results.
@@ -570,7 +624,7 @@ export interface ReportGetReferralsReportParams {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'day' | 'week' | 'month' | 'year' | 'relative_week';
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
@@ -601,6 +655,8 @@ export interface ReportGetReferralsReportParams {
    * descending.
    */
   order_by?: { [key: string]: 'asc' | 'desc' };
+
+  organization_id?: string | null;
 
   /**
    * Pagination settings for the report results.
@@ -674,7 +730,7 @@ export interface ReportSentimentParams {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'day' | 'week' | 'month' | 'year' | 'relative_week';
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
@@ -702,13 +758,13 @@ export interface ReportSentimentParams {
     | ReportSentimentParams.AssetIDFilter
     | Shared.AssetNameFilter
     | ReportSentimentParams.ThemeFilter
-    | Shared.RegionIDFilter
-    | Shared.TopicIDFilter
+    | ReportSentimentParams.ProfoundAnswerEngineInsightsFiltersRegionIDFilter
+    | ReportSentimentParams.ProfoundAnswerEngineInsightsFiltersTopicIDFilter
     | TopicNameFilter
-    | Shared.ModelIDFilter
-    | Shared.TagIDFilter
+    | ReportSentimentParams.ProfoundAnswerEngineInsightsFiltersModelIDFilter
+    | ReportSentimentParams.ProfoundAnswerEngineInsightsFiltersTagIDFilter
     | Shared.PromptFilter
-    | Shared.PersonaIDFilter
+    | ReportSentimentParams.ProfoundAnswerEngineInsightsFiltersPersonaIDFilter
   >;
 
   /**
@@ -759,6 +815,58 @@ export namespace ReportSentimentParams {
 
     value: string | Array<string>;
   }
+
+  export interface ProfoundAnswerEngineInsightsFiltersRegionIDFilter {
+    /**
+     * - `region` - Deprecated
+     */
+    field: 'region_id' | 'region';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface ProfoundAnswerEngineInsightsFiltersTopicIDFilter {
+    /**
+     * - `topic` - Deprecated
+     */
+    field: 'topic_id' | 'topic';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface ProfoundAnswerEngineInsightsFiltersModelIDFilter {
+    /**
+     * - `model` - Deprecated
+     */
+    field: 'model_id' | 'model';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface ProfoundAnswerEngineInsightsFiltersTagIDFilter {
+    /**
+     * - `tag` - Deprecated
+     */
+    field: 'tag_id' | 'tag';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface ProfoundAnswerEngineInsightsFiltersPersonaIDFilter {
+    field: 'persona_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
 }
 
 export interface ReportVisibilityParams {
@@ -783,7 +891,7 @@ export interface ReportVisibilityParams {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'day' | 'week' | 'month' | 'year' | 'relative_week';
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
@@ -806,15 +914,15 @@ export interface ReportVisibilityParams {
    * List of filters to apply to the visibility report.
    */
   filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
+    | ReportVisibilityParams.ProfoundAnswerEngineInsightsFiltersRegionIDFilter
+    | ReportVisibilityParams.ProfoundAnswerEngineInsightsFiltersModelIDFilter
+    | ReportVisibilityParams.ProfoundAnswerEngineInsightsFiltersTopicIDFilter
     | TopicNameFilter
     | Shared.AssetNameFilter
-    | Shared.TagIDFilter
-    | ReportVisibilityParams.PromptIDFilter
+    | ReportVisibilityParams.ProfoundAnswerEngineInsightsFiltersTagIDFilter
+    | ReportVisibilityParams.ProfoundAnswerEngineInsightsFiltersPromptIDFilter
     | Shared.PromptFilter
-    | Shared.PersonaIDFilter
+    | ReportVisibilityParams.ProfoundAnswerEngineInsightsFiltersPersonaIDFilter
   >;
 
   /**
@@ -838,8 +946,60 @@ export interface ReportVisibilityParams {
 }
 
 export namespace ReportVisibilityParams {
-  export interface PromptIDFilter {
+  export interface ProfoundAnswerEngineInsightsFiltersRegionIDFilter {
+    /**
+     * - `region` - Deprecated
+     */
+    field: 'region_id' | 'region';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface ProfoundAnswerEngineInsightsFiltersModelIDFilter {
+    /**
+     * - `model` - Deprecated
+     */
+    field: 'model_id' | 'model';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface ProfoundAnswerEngineInsightsFiltersTopicIDFilter {
+    /**
+     * - `topic` - Deprecated
+     */
+    field: 'topic_id' | 'topic';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface ProfoundAnswerEngineInsightsFiltersTagIDFilter {
+    /**
+     * - `tag` - Deprecated
+     */
+    field: 'tag_id' | 'tag';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface ProfoundAnswerEngineInsightsFiltersPromptIDFilter {
     field: 'prompt_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface ProfoundAnswerEngineInsightsFiltersPersonaIDFilter {
+    field: 'persona_id';
 
     operator: 'is' | 'not_is' | 'in' | 'not_in';
 

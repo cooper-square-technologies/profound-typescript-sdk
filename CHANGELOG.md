@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.35.0 (2026-03-23)
+
+Full Changelog: [v0.34.0...v0.35.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.34.0...v0.35.0)
+
+### Features
+
+* **api:** api update ([d9da1a0](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/d9da1a0a562d2908fd89bd4ce68cc1f349fa7e3f))
+* **api:** api update ([b6ff5fd](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/b6ff5fdb0425b88d77fe889aba3452cfb0d2a350))
+* **api:** api update ([ef4f506](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/ef4f5065ee50401437e57b8cb84f821245565327))
+
+
+### Chores
+
+* **internal:** fix MCP server TS errors that occur with required client options ([73fc6a8](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/73fc6a80d2739c6334ed2fc165b7893d862c34d8))
+* **internal:** update gitignore ([ea4f798](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/ea4f798a2c4cb828611abd8614fb123fde079d22))
+
 ## 0.34.0 (2026-03-17)
 
 Full Changelog: [v0.33.2...v0.34.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.33.2...v0.34.0)
