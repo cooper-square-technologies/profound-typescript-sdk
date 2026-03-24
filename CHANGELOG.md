@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.35.1 (2026-03-24)
+
+Full Changelog: [v0.35.0...v0.35.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.35.0...v0.35.1)
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([593a111](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/593a11140631cd4e94f5b5d877d4506163905c5d))
+
 ## 0.35.0 (2026-03-23)
 
 Full Changelog: [v0.34.0...v0.35.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.34.0...v0.35.0)
