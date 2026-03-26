@@ -183,6 +183,17 @@ export class Reports extends APIResource {
 }
 
 /**
+ * Filter by prompt UUID.
+ */
+export interface PromptIDFilter {
+  field: 'prompt_id';
+
+  operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+  value: string | Array<string>;
+}
+
+/**
  * Base model for report information.
  */
 export interface ReportInfo {
@@ -300,11 +311,11 @@ export interface ReportCitationsParams {
     | Shared.TagIDFilter
     | ReportCitationsParams.URLFilter
     | ReportCitationsParams.RootDomainFilter
-    | ReportCitationsParams.PromptTypeFilter
+    | Shared.PromptTypeFilter
     | Shared.PersonaIDFilter
     | ReportCitationsParams.CitationCategoryFilter
     | Shared.PromptFilter
-    | ReportCitationsParams.PromptIDFilter
+    | PromptIDFilter
   >;
 
   /**
@@ -386,26 +397,6 @@ export namespace ReportCitationsParams {
   }
 
   /**
-   * Filter by prompt type (visibility or sentiment).
-   */
-  export interface PromptTypeFilter {
-    field: 'prompt_type';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: 'visibility' | 'sentiment' | Array<'visibility' | 'sentiment'>;
-  }
-
-  /**
    * Filter by citation category
    */
   export interface CitationCategoryFilter {
@@ -421,17 +412,6 @@ export namespace ReportCitationsParams {
       | 'matches'
       | 'contains_case_insensitive'
       | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
-
-  /**
-   * Filter by prompt UUID.
-   */
-  export interface PromptIDFilter {
-    field: 'prompt_id';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
 
     value: string | Array<string>;
   }
@@ -470,9 +450,7 @@ export interface ReportGetBotsReportParams {
   /**
    * Filters for bots report.
    */
-  filters?: Array<
-    Shared.PathFilter | ReportGetBotsReportParams.BotNameFilter | ReportGetBotsReportParams.BotProviderFilter
-  >;
+  filters?: Array<Shared.PathFilter | Shared.BotNameFilter | Shared.BotProviderFilter>;
 
   /**
    * Custom ordering of the report results.
@@ -494,142 +472,6 @@ export interface ReportGetBotsReportParams {
    * Pagination settings for the report results.
    */
   pagination?: Shared.Pagination;
-}
-
-export namespace ReportGetBotsReportParams {
-  /**
-   * Filter by bot name (user agent)
-   */
-  export interface BotNameFilter {
-    field: 'bot_name';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value:
-      | 'Amazonbot'
-      | 'ClaudeBot'
-      | 'Claude-User'
-      | 'Claude-SearchBot'
-      | 'Applebot'
-      | 'Applebot-Extended'
-      | 'Bytespider'
-      | 'DeepSeek'
-      | 'DuckAssistBot'
-      | 'DuckDuckBot'
-      | 'Googlebot'
-      | 'Googlebot-News'
-      | 'Googlebot-Video'
-      | 'Googlebot-Image'
-      | 'Google-Extended'
-      | 'Storebot-Google'
-      | 'Google-CloudVertexBot'
-      | 'meta-externalfetcher'
-      | 'meta-externalagent'
-      | 'bingbot'
-      | 'MicrosoftPreview'
-      | 'ChatGPT-User'
-      | 'GPTBot'
-      | 'OAI-SearchBot'
-      | 'OAI-Operator'
-      | 'PerplexityBot'
-      | 'Perplexity-User'
-      | 'Grok-PageBrowser'
-      | 'YouBot'
-      | Array<
-          | 'Amazonbot'
-          | 'ClaudeBot'
-          | 'Claude-User'
-          | 'Claude-SearchBot'
-          | 'Applebot'
-          | 'Applebot-Extended'
-          | 'Bytespider'
-          | 'DeepSeek'
-          | 'DuckAssistBot'
-          | 'DuckDuckBot'
-          | 'Googlebot'
-          | 'Googlebot-News'
-          | 'Googlebot-Video'
-          | 'Googlebot-Image'
-          | 'Google-Extended'
-          | 'Storebot-Google'
-          | 'Google-CloudVertexBot'
-          | 'meta-externalfetcher'
-          | 'meta-externalagent'
-          | 'bingbot'
-          | 'MicrosoftPreview'
-          | 'ChatGPT-User'
-          | 'GPTBot'
-          | 'OAI-SearchBot'
-          | 'OAI-Operator'
-          | 'PerplexityBot'
-          | 'Perplexity-User'
-          | 'Grok-PageBrowser'
-          | 'YouBot'
-        >;
-  }
-
-  /**
-   * Filter by bot provider
-   */
-  export interface BotProviderFilter {
-    field: 'bot_provider';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value:
-      | 'openai'
-      | 'anthropic'
-      | 'chatgpt'
-      | 'deepseek'
-      | 'google'
-      | 'microsoft'
-      | 'perplexity'
-      | 'apple'
-      | 'bytedance'
-      | 'amazon'
-      | 'meta'
-      | 'duckduckgo'
-      | 'you'
-      | 'xai'
-      | 'grok'
-      | 'gemini'
-      | Array<
-          | 'openai'
-          | 'anthropic'
-          | 'chatgpt'
-          | 'deepseek'
-          | 'google'
-          | 'microsoft'
-          | 'perplexity'
-          | 'apple'
-          | 'bytedance'
-          | 'amazon'
-          | 'meta'
-          | 'duckduckgo'
-          | 'you'
-          | 'xai'
-          | 'grok'
-          | 'gemini'
-        >;
-  }
 }
 
 export interface ReportGetBotsReportV2Params {
@@ -667,8 +509,8 @@ export interface ReportGetBotsReportV2Params {
    */
   filters?: Array<
     | Shared.PathFilter
-    | ReportGetBotsReportV2Params.BotNameFilter
-    | ReportGetBotsReportV2Params.BotProviderFilter
+    | Shared.BotNameFilter
+    | Shared.BotProviderFilter
     | ReportGetBotsReportV2Params.BotTypeFilter
   >;
 
@@ -695,140 +537,6 @@ export interface ReportGetBotsReportV2Params {
 }
 
 export namespace ReportGetBotsReportV2Params {
-  /**
-   * Filter by bot name (user agent)
-   */
-  export interface BotNameFilter {
-    field: 'bot_name';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value:
-      | 'Amazonbot'
-      | 'ClaudeBot'
-      | 'Claude-User'
-      | 'Claude-SearchBot'
-      | 'Applebot'
-      | 'Applebot-Extended'
-      | 'Bytespider'
-      | 'DeepSeek'
-      | 'DuckAssistBot'
-      | 'DuckDuckBot'
-      | 'Googlebot'
-      | 'Googlebot-News'
-      | 'Googlebot-Video'
-      | 'Googlebot-Image'
-      | 'Google-Extended'
-      | 'Storebot-Google'
-      | 'Google-CloudVertexBot'
-      | 'meta-externalfetcher'
-      | 'meta-externalagent'
-      | 'bingbot'
-      | 'MicrosoftPreview'
-      | 'ChatGPT-User'
-      | 'GPTBot'
-      | 'OAI-SearchBot'
-      | 'OAI-Operator'
-      | 'PerplexityBot'
-      | 'Perplexity-User'
-      | 'Grok-PageBrowser'
-      | 'YouBot'
-      | Array<
-          | 'Amazonbot'
-          | 'ClaudeBot'
-          | 'Claude-User'
-          | 'Claude-SearchBot'
-          | 'Applebot'
-          | 'Applebot-Extended'
-          | 'Bytespider'
-          | 'DeepSeek'
-          | 'DuckAssistBot'
-          | 'DuckDuckBot'
-          | 'Googlebot'
-          | 'Googlebot-News'
-          | 'Googlebot-Video'
-          | 'Googlebot-Image'
-          | 'Google-Extended'
-          | 'Storebot-Google'
-          | 'Google-CloudVertexBot'
-          | 'meta-externalfetcher'
-          | 'meta-externalagent'
-          | 'bingbot'
-          | 'MicrosoftPreview'
-          | 'ChatGPT-User'
-          | 'GPTBot'
-          | 'OAI-SearchBot'
-          | 'OAI-Operator'
-          | 'PerplexityBot'
-          | 'Perplexity-User'
-          | 'Grok-PageBrowser'
-          | 'YouBot'
-        >;
-  }
-
-  /**
-   * Filter by bot provider
-   */
-  export interface BotProviderFilter {
-    field: 'bot_provider';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value:
-      | 'openai'
-      | 'anthropic'
-      | 'chatgpt'
-      | 'deepseek'
-      | 'google'
-      | 'microsoft'
-      | 'perplexity'
-      | 'apple'
-      | 'bytedance'
-      | 'amazon'
-      | 'meta'
-      | 'duckduckgo'
-      | 'you'
-      | 'xai'
-      | 'grok'
-      | 'gemini'
-      | Array<
-          | 'openai'
-          | 'anthropic'
-          | 'chatgpt'
-          | 'deepseek'
-          | 'google'
-          | 'microsoft'
-          | 'perplexity'
-          | 'apple'
-          | 'bytedance'
-          | 'amazon'
-          | 'meta'
-          | 'duckduckgo'
-          | 'you'
-          | 'xai'
-          | 'grok'
-          | 'gemini'
-        >;
-  }
-
   /**
    * Filter by bot_type column (v2 hourly table only)
    */
@@ -1118,9 +826,9 @@ export interface ReportQueryFanoutsParams {
     | Shared.ModelIDFilter
     | Shared.TopicIDFilter
     | Shared.TagIDFilter
-    | ReportQueryFanoutsParams.PromptIDFilter
+    | PromptIDFilter
     | Shared.PersonaIDFilter
-    | ReportQueryFanoutsParams.PromptTypeFilter
+    | Shared.PromptTypeFilter
   >;
 
   /**
@@ -1133,39 +841,6 @@ export interface ReportQueryFanoutsParams {
    * Pagination settings for the report results.
    */
   pagination?: Shared.Pagination;
-}
-
-export namespace ReportQueryFanoutsParams {
-  /**
-   * Filter by prompt UUID.
-   */
-  export interface PromptIDFilter {
-    field: 'prompt_id';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  /**
-   * Filter by prompt type (visibility or sentiment).
-   */
-  export interface PromptTypeFilter {
-    field: 'prompt_type';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: 'visibility' | 'sentiment' | Array<'visibility' | 'sentiment'>;
-  }
 }
 
 export interface ReportSentimentParams {
@@ -1326,7 +1001,7 @@ export interface ReportVisibilityParams {
     | TopicNameFilter
     | Shared.AssetNameFilter
     | Shared.TagIDFilter
-    | ReportVisibilityParams.PromptIDFilter
+    | PromptIDFilter
     | Shared.PromptFilter
     | Shared.PersonaIDFilter
   >;
@@ -1351,21 +1026,9 @@ export interface ReportVisibilityParams {
   pagination?: Shared.Pagination;
 }
 
-export namespace ReportVisibilityParams {
-  /**
-   * Filter by prompt UUID.
-   */
-  export interface PromptIDFilter {
-    field: 'prompt_id';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-}
-
 export declare namespace Reports {
   export {
+    type PromptIDFilter as PromptIDFilter,
     type ReportInfo as ReportInfo,
     type ReportResponse as ReportResponse,
     type ReportResult as ReportResult,

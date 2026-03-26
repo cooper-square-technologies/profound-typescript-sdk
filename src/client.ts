@@ -26,6 +26,7 @@ import {
 } from './resources/prompt-volumes';
 import { PromptAnswersParams, PromptAnswersResponse, Prompts } from './resources/prompts';
 import {
+  PromptIDFilter,
   ReportCitationsParams,
   ReportCitationsResponse,
   ReportGetBotsReportParams,
@@ -793,6 +794,7 @@ export declare namespace Profound {
 
   export {
     Reports as Reports,
+    type PromptIDFilter as PromptIDFilter,
     type ReportInfo as ReportInfo,
     type ReportResponse as ReportResponse,
     type ReportResult as ReportResult,
@@ -821,11 +823,14 @@ export declare namespace Profound {
   };
 
   export type AssetNameFilter = API.AssetNameFilter;
+  export type BotNameFilter = API.BotNameFilter;
+  export type BotProviderFilter = API.BotProviderFilter;
   export type ModelIDFilter = API.ModelIDFilter;
   export type Pagination = API.Pagination;
   export type PathFilter = API.PathFilter;
   export type PersonaIDFilter = API.PersonaIDFilter;
   export type PromptFilter = API.PromptFilter;
+  export type PromptTypeFilter = API.PromptTypeFilter;
   export type RegionIDFilter = API.RegionIDFilter;
   export type TagIDFilter = API.TagIDFilter;
   export type TopicIDFilter = API.TopicIDFilter;
