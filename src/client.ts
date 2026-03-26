@@ -17,13 +17,23 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
+import {
+  PromptVolumeCreateVolumeParams,
+  PromptVolumeCreateVolumeResponse,
+  PromptVolumeListCitationPromptsParams,
+  PromptVolumeListCitationPromptsResponse,
+  PromptVolumes,
+} from './resources/prompt-volumes';
 import { PromptAnswersParams, PromptAnswersResponse, Prompts } from './resources/prompts';
 import {
   ReportCitationsParams,
   ReportCitationsResponse,
   ReportGetBotsReportParams,
+  ReportGetBotsReportV2Params,
   ReportGetReferralsReportParams,
+  ReportGetReferralsReportV2Params,
   ReportInfo,
+  ReportQueryFanoutsParams,
   ReportResponse,
   ReportResult,
   ReportSentimentParams,
@@ -748,6 +758,7 @@ export class Profound {
   reports: API.Reports = new API.Reports(this);
   logs: API.Logs = new API.Logs(this);
   content: API.Content = new API.Content(this);
+  promptVolumes: API.PromptVolumes = new API.PromptVolumes(this);
 }
 
 Profound.Organizations = Organizations;
@@ -755,6 +766,7 @@ Profound.Prompts = Prompts;
 Profound.Reports = Reports;
 Profound.Logs = Logs;
 Profound.Content = Content;
+Profound.PromptVolumes = PromptVolumes;
 
 export declare namespace Profound {
   export type RequestOptions = Opts.RequestOptions;
@@ -788,7 +800,10 @@ export declare namespace Profound {
     type ReportCitationsResponse as ReportCitationsResponse,
     type ReportCitationsParams as ReportCitationsParams,
     type ReportGetBotsReportParams as ReportGetBotsReportParams,
+    type ReportGetBotsReportV2Params as ReportGetBotsReportV2Params,
     type ReportGetReferralsReportParams as ReportGetReferralsReportParams,
+    type ReportGetReferralsReportV2Params as ReportGetReferralsReportV2Params,
+    type ReportQueryFanoutsParams as ReportQueryFanoutsParams,
     type ReportSentimentParams as ReportSentimentParams,
     type ReportVisibilityParams as ReportVisibilityParams,
   };
@@ -796,6 +811,14 @@ export declare namespace Profound {
   export { Logs as Logs };
 
   export { Content as Content };
+
+  export {
+    PromptVolumes as PromptVolumes,
+    type PromptVolumeCreateVolumeResponse as PromptVolumeCreateVolumeResponse,
+    type PromptVolumeListCitationPromptsResponse as PromptVolumeListCitationPromptsResponse,
+    type PromptVolumeCreateVolumeParams as PromptVolumeCreateVolumeParams,
+    type PromptVolumeListCitationPromptsParams as PromptVolumeListCitationPromptsParams,
+  };
 
   export type AssetNameFilter = API.AssetNameFilter;
   export type ModelIDFilter = API.ModelIDFilter;
