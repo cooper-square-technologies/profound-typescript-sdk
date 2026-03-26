@@ -149,8 +149,8 @@ export interface RawBotsParams {
    * List of filters to apply to the bots logs query.
    */
   filters?: Array<
-    | RawBotsParams.BotNameFilter
-    | RawBotsParams.BotProviderFilter
+    | Shared.BotNameFilter
+    | Shared.BotProviderFilter
     | RawBotsParams.BotTypesFilter
     | RawBotsParams.MethodFilter
     | Shared.PathFilter
@@ -184,140 +184,6 @@ export interface RawBotsParams {
 }
 
 export namespace RawBotsParams {
-  /**
-   * Filter by bot name (user agent)
-   */
-  export interface BotNameFilter {
-    field: 'bot_name';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value:
-      | 'Amazonbot'
-      | 'ClaudeBot'
-      | 'Claude-User'
-      | 'Claude-SearchBot'
-      | 'Applebot'
-      | 'Applebot-Extended'
-      | 'Bytespider'
-      | 'DeepSeek'
-      | 'DuckAssistBot'
-      | 'DuckDuckBot'
-      | 'Googlebot'
-      | 'Googlebot-News'
-      | 'Googlebot-Video'
-      | 'Googlebot-Image'
-      | 'Google-Extended'
-      | 'Storebot-Google'
-      | 'Google-CloudVertexBot'
-      | 'meta-externalfetcher'
-      | 'meta-externalagent'
-      | 'bingbot'
-      | 'MicrosoftPreview'
-      | 'ChatGPT-User'
-      | 'GPTBot'
-      | 'OAI-SearchBot'
-      | 'OAI-Operator'
-      | 'PerplexityBot'
-      | 'Perplexity-User'
-      | 'Grok-PageBrowser'
-      | 'YouBot'
-      | Array<
-          | 'Amazonbot'
-          | 'ClaudeBot'
-          | 'Claude-User'
-          | 'Claude-SearchBot'
-          | 'Applebot'
-          | 'Applebot-Extended'
-          | 'Bytespider'
-          | 'DeepSeek'
-          | 'DuckAssistBot'
-          | 'DuckDuckBot'
-          | 'Googlebot'
-          | 'Googlebot-News'
-          | 'Googlebot-Video'
-          | 'Googlebot-Image'
-          | 'Google-Extended'
-          | 'Storebot-Google'
-          | 'Google-CloudVertexBot'
-          | 'meta-externalfetcher'
-          | 'meta-externalagent'
-          | 'bingbot'
-          | 'MicrosoftPreview'
-          | 'ChatGPT-User'
-          | 'GPTBot'
-          | 'OAI-SearchBot'
-          | 'OAI-Operator'
-          | 'PerplexityBot'
-          | 'Perplexity-User'
-          | 'Grok-PageBrowser'
-          | 'YouBot'
-        >;
-  }
-
-  /**
-   * Filter by bot provider
-   */
-  export interface BotProviderFilter {
-    field: 'bot_provider';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value:
-      | 'openai'
-      | 'anthropic'
-      | 'chatgpt'
-      | 'deepseek'
-      | 'google'
-      | 'microsoft'
-      | 'perplexity'
-      | 'apple'
-      | 'bytedance'
-      | 'amazon'
-      | 'meta'
-      | 'duckduckgo'
-      | 'you'
-      | 'xai'
-      | 'grok'
-      | 'gemini'
-      | Array<
-          | 'openai'
-          | 'anthropic'
-          | 'chatgpt'
-          | 'deepseek'
-          | 'google'
-          | 'microsoft'
-          | 'perplexity'
-          | 'apple'
-          | 'bytedance'
-          | 'amazon'
-          | 'meta'
-          | 'duckduckgo'
-          | 'you'
-          | 'xai'
-          | 'grok'
-          | 'gemini'
-        >;
-  }
-
   /**
    * Filter by bot types (ai_assistant, ai_training, or index)
    */

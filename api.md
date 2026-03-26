@@ -3,11 +3,14 @@
 Types:
 
 - <code><a href="./src/resources/shared.ts">AssetNameFilter</a></code>
+- <code><a href="./src/resources/shared.ts">BotNameFilter</a></code>
+- <code><a href="./src/resources/shared.ts">BotProviderFilter</a></code>
 - <code><a href="./src/resources/shared.ts">ModelIDFilter</a></code>
 - <code><a href="./src/resources/shared.ts">Pagination</a></code>
 - <code><a href="./src/resources/shared.ts">PathFilter</a></code>
 - <code><a href="./src/resources/shared.ts">PersonaIDFilter</a></code>
 - <code><a href="./src/resources/shared.ts">PromptFilter</a></code>
+- <code><a href="./src/resources/shared.ts">PromptTypeFilter</a></code>
 - <code><a href="./src/resources/shared.ts">RegionIDFilter</a></code>
 - <code><a href="./src/resources/shared.ts">TagIDFilter</a></code>
 - <code><a href="./src/resources/shared.ts">TopicIDFilter</a></code>
@@ -69,6 +72,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/reports.ts">PromptIDFilter</a></code>
 - <code><a href="./src/resources/reports.ts">ReportInfo</a></code>
 - <code><a href="./src/resources/reports.ts">ReportResponse</a></code>
 - <code><a href="./src/resources/reports.ts">ReportResult</a></code>

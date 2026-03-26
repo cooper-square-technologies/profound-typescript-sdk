@@ -96,7 +96,7 @@ export interface PromptAnswersParams {
     | Shared.RegionIDFilter
     | Shared.ModelIDFilter
     | Shared.TagIDFilter
-    | PromptAnswersParams.PromptTypeFilter
+    | Shared.PromptTypeFilter
     | Shared.PromptFilter
     | Shared.PersonaIDFilter
     | Shared.TopicIDFilter
@@ -113,26 +113,6 @@ export interface PromptAnswersParams {
 }
 
 export namespace PromptAnswersParams {
-  /**
-   * Filter by prompt type (visibility or sentiment).
-   */
-  export interface PromptTypeFilter {
-    field: 'prompt_type';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: 'visibility' | 'sentiment' | Array<'visibility' | 'sentiment'>;
-  }
-
   export interface AssetIDFilter {
     field: 'asset_id';
 

@@ -26,6 +26,7 @@ export {
 export { Prompts, type PromptAnswersResponse, type PromptAnswersParams } from './prompts';
 export {
   Reports,
+  type PromptIDFilter,
   type ReportInfo,
   type ReportResponse,
   type ReportResult,
