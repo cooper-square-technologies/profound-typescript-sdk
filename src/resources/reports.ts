@@ -51,6 +51,39 @@ export class Reports extends APIResource {
   }
 
   /**
+   * Get bot traffic report from the hourly aggregated materialized view (UTC-based).
+   *
+   * Supports date_interval="day" (default, UTC daily buckets) or "hour" (UTC hourly
+   * buckets).
+   *
+   * Metrics:
+   *
+   * - count: unique bot visits
+   * - citations: unique citation events (ai_assistant bot type)
+   * - indexing: unique indexing events (index bot type)
+   * - training: unique training events (ai_training bot type)
+   * - last_visit: most recent visit timestamp
+   *
+   * Dimensions:
+   *
+   * - date, path, bot_name, bot_provider, bot_type
+   *
+   * @example
+   * ```ts
+   * const reportResponse = await client.reports.getBotsReportV2(
+   *   {
+   *     domain: 'domain',
+   *     metrics: ['count'],
+   *     start_date: '2019-12-27T18:11:19.117Z',
+   *   },
+   * );
+   * ```
+   */
+  getBotsReportV2(body: ReportGetBotsReportV2Params, options?: RequestOptions): APIPromise<ReportResponse> {
+    return this._client.post('/v2/reports/bots', { body, ...options });
+  }
+
+  /**
    * Get referral traffic report from the daily aggregated materialized view.
    *
    * This endpoint queries pre-aggregated daily referral data, making it efficient
@@ -71,6 +104,47 @@ export class Reports extends APIResource {
     options?: RequestOptions,
   ): APIPromise<ReportResponse> {
     return this._client.post('/v1/reports/referrals', { body, ...options });
+  }
+
+  /**
+   * Get referral traffic report from the hourly aggregated materialized view
+   * (UTC-based).
+   *
+   * Supports date_interval="day" (default, UTC daily buckets) or "hour" (UTC hourly
+   * buckets).
+   *
+   * @example
+   * ```ts
+   * const reportResponse =
+   *   await client.reports.getReferralsReportV2({
+   *     domain: 'domain',
+   *     metrics: ['visits'],
+   *     start_date: '2019-12-27T18:11:19.117Z',
+   *   });
+   * ```
+   */
+  getReferralsReportV2(
+    body: ReportGetReferralsReportV2Params,
+    options?: RequestOptions,
+  ): APIPromise<ReportResponse> {
+    return this._client.post('/v2/reports/referrals', { body, ...options });
+  }
+
+  /**
+   * Query Fanouts
+   *
+   * @example
+   * ```ts
+   * const reportResponse = await client.reports.queryFanouts({
+   *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *   end_date: '2019-12-27T18:11:19.117Z',
+   *   metrics: ['fanouts_per_execution'],
+   *   start_date: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
+   */
+  queryFanouts(body: ReportQueryFanoutsParams, options?: RequestOptions): APIPromise<ReportResponse> {
+    return this._client.post('/v1/reports/query-fanouts', { body, ...options });
   }
 
   /**
@@ -558,6 +632,229 @@ export namespace ReportGetBotsReportParams {
   }
 }
 
+export interface ReportGetBotsReportV2Params {
+  /**
+   * Domain to query logs for.
+   */
+  domain: string;
+
+  metrics: Array<'count' | 'citations' | 'indexing' | 'training' | 'last_visit'>;
+
+  /**
+   * Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS,
+   * or full ISO timestamp.
+   */
+  start_date: string;
+
+  /**
+   * Date interval for the report. (only used with date dimension)
+   */
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
+
+  /**
+   * Dimensions to group the report by.
+   */
+  dimensions?: Array<'date' | 'hour' | 'path' | 'bot_name' | 'bot_provider' | 'bot_type'>;
+
+  /**
+   * End date in UTC. Accepts same formats as start_date. Defaults to now UTC if
+   * omitted.
+   */
+  end_date?: string;
+
+  /**
+   * Filters for bots report.
+   */
+  filters?: Array<
+    | Shared.PathFilter
+    | ReportGetBotsReportV2Params.BotNameFilter
+    | ReportGetBotsReportV2Params.BotProviderFilter
+    | ReportGetBotsReportV2Params.BotTypeFilter
+  >;
+
+  /**
+   * Custom ordering of the report results.
+   *
+   * The order is a record of key-value pairs where:
+   *
+   * - key is the field to order by, which can be a metric or dimension
+   * - value is the direction of the order, either 'asc' for ascending or 'desc' for
+   *   descending.
+   *
+   * When not specified, the default order is the first metric in the query
+   * descending.
+   */
+  order_by?: { [key: string]: 'asc' | 'desc' };
+
+  organization_id?: string | null;
+
+  /**
+   * Pagination settings for the report results.
+   */
+  pagination?: Shared.Pagination;
+}
+
+export namespace ReportGetBotsReportV2Params {
+  /**
+   * Filter by bot name (user agent)
+   */
+  export interface BotNameFilter {
+    field: 'bot_name';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value:
+      | 'Amazonbot'
+      | 'ClaudeBot'
+      | 'Claude-User'
+      | 'Claude-SearchBot'
+      | 'Applebot'
+      | 'Applebot-Extended'
+      | 'Bytespider'
+      | 'DeepSeek'
+      | 'DuckAssistBot'
+      | 'DuckDuckBot'
+      | 'Googlebot'
+      | 'Googlebot-News'
+      | 'Googlebot-Video'
+      | 'Googlebot-Image'
+      | 'Google-Extended'
+      | 'Storebot-Google'
+      | 'Google-CloudVertexBot'
+      | 'meta-externalfetcher'
+      | 'meta-externalagent'
+      | 'bingbot'
+      | 'MicrosoftPreview'
+      | 'ChatGPT-User'
+      | 'GPTBot'
+      | 'OAI-SearchBot'
+      | 'OAI-Operator'
+      | 'PerplexityBot'
+      | 'Perplexity-User'
+      | 'Grok-PageBrowser'
+      | 'YouBot'
+      | Array<
+          | 'Amazonbot'
+          | 'ClaudeBot'
+          | 'Claude-User'
+          | 'Claude-SearchBot'
+          | 'Applebot'
+          | 'Applebot-Extended'
+          | 'Bytespider'
+          | 'DeepSeek'
+          | 'DuckAssistBot'
+          | 'DuckDuckBot'
+          | 'Googlebot'
+          | 'Googlebot-News'
+          | 'Googlebot-Video'
+          | 'Googlebot-Image'
+          | 'Google-Extended'
+          | 'Storebot-Google'
+          | 'Google-CloudVertexBot'
+          | 'meta-externalfetcher'
+          | 'meta-externalagent'
+          | 'bingbot'
+          | 'MicrosoftPreview'
+          | 'ChatGPT-User'
+          | 'GPTBot'
+          | 'OAI-SearchBot'
+          | 'OAI-Operator'
+          | 'PerplexityBot'
+          | 'Perplexity-User'
+          | 'Grok-PageBrowser'
+          | 'YouBot'
+        >;
+  }
+
+  /**
+   * Filter by bot provider
+   */
+  export interface BotProviderFilter {
+    field: 'bot_provider';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value:
+      | 'openai'
+      | 'anthropic'
+      | 'chatgpt'
+      | 'deepseek'
+      | 'google'
+      | 'microsoft'
+      | 'perplexity'
+      | 'apple'
+      | 'bytedance'
+      | 'amazon'
+      | 'meta'
+      | 'duckduckgo'
+      | 'you'
+      | 'xai'
+      | 'grok'
+      | 'gemini'
+      | Array<
+          | 'openai'
+          | 'anthropic'
+          | 'chatgpt'
+          | 'deepseek'
+          | 'google'
+          | 'microsoft'
+          | 'perplexity'
+          | 'apple'
+          | 'bytedance'
+          | 'amazon'
+          | 'meta'
+          | 'duckduckgo'
+          | 'you'
+          | 'xai'
+          | 'grok'
+          | 'gemini'
+        >;
+  }
+
+  /**
+   * Filter by bot_type column (v2 hourly table only)
+   */
+  export interface BotTypeFilter {
+    field: 'bot_type';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value:
+      | 'ai_assistant'
+      | 'ai_training'
+      | 'index'
+      | 'ai_agent'
+      | Array<'ai_assistant' | 'ai_training' | 'index' | 'ai_agent'>;
+  }
+}
+
 export interface ReportGetReferralsReportParams {
   /**
    * Domain to query logs for.
@@ -658,6 +955,216 @@ export namespace ReportGetReferralsReportParams {
           | 'internal'
           | 'other'
         >;
+  }
+}
+
+export interface ReportGetReferralsReportV2Params {
+  /**
+   * Domain to query logs for.
+   */
+  domain: string;
+
+  metrics: Array<'visits' | 'last_visit'>;
+
+  /**
+   * Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS,
+   * or full ISO timestamp.
+   */
+  start_date: string;
+
+  /**
+   * Date interval for the report. (only used with date dimension)
+   */
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
+
+  /**
+   * Dimensions to group the report by.
+   */
+  dimensions?: Array<'date' | 'hour' | 'path' | 'referral_source' | 'referral_type'>;
+
+  /**
+   * End date in UTC. Accepts same formats as start_date. Defaults to now UTC if
+   * omitted.
+   */
+  end_date?: string;
+
+  /**
+   * Filters for referrals report.
+   */
+  filters?: Array<
+    | Shared.PathFilter
+    | ReportGetReferralsReportV2Params.ReferralSourceFilter
+    | ReportGetReferralsReportV2Params.ReferralTypeFilter
+  >;
+
+  /**
+   * Custom ordering of the report results.
+   *
+   * The order is a record of key-value pairs where:
+   *
+   * - key is the field to order by, which can be a metric or dimension
+   * - value is the direction of the order, either 'asc' for ascending or 'desc' for
+   *   descending.
+   *
+   * When not specified, the default order is the first metric in the query
+   * descending.
+   */
+  order_by?: { [key: string]: 'asc' | 'desc' };
+
+  organization_id?: string | null;
+
+  /**
+   * Pagination settings for the report results.
+   */
+  pagination?: Shared.Pagination;
+}
+
+export namespace ReportGetReferralsReportV2Params {
+  /**
+   * Filter by referral source
+   */
+  export interface ReferralSourceFilter {
+    field: 'referral_source';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value:
+      | 'openai'
+      | 'none'
+      | 'anthropic'
+      | 'deepseek'
+      | 'perplexity'
+      | 'you'
+      | 'grok'
+      | 'microsoft'
+      | 'gemini'
+      | 'internal'
+      | 'other'
+      | Array<
+          | 'openai'
+          | 'none'
+          | 'anthropic'
+          | 'deepseek'
+          | 'perplexity'
+          | 'you'
+          | 'grok'
+          | 'microsoft'
+          | 'gemini'
+          | 'internal'
+          | 'other'
+        >;
+  }
+
+  /**
+   * Filter by referral type
+   */
+  export interface ReferralTypeFilter {
+    field: 'referral_type';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: 'internal' | 'referer' | 'utm' | 'none' | Array<'internal' | 'referer' | 'utm' | 'none'>;
+  }
+}
+
+export interface ReportQueryFanoutsParams {
+  category_id: string;
+
+  /**
+   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
+   */
+  end_date: string;
+
+  metrics: Array<'fanouts_per_execution' | 'total_fanouts' | 'share'>;
+
+  /**
+   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
+   */
+  start_date: string;
+
+  /**
+   * Date interval for the report. (only used with date dimension)
+   */
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
+
+  /**
+   * Dimensions to group the report by.
+   */
+  dimensions?: Array<'prompt' | 'query' | 'model' | 'region' | 'date'>;
+
+  /**
+   * Filters to apply to the query fanout report.
+   */
+  filters?: Array<
+    | Shared.RegionIDFilter
+    | Shared.ModelIDFilter
+    | Shared.TopicIDFilter
+    | Shared.TagIDFilter
+    | ReportQueryFanoutsParams.PromptIDFilter
+    | Shared.PersonaIDFilter
+    | ReportQueryFanoutsParams.PromptTypeFilter
+  >;
+
+  /**
+   * Custom ordering. Keys must be a requested metric or the `date` dimension. Values
+   * are `asc` or `desc`. Defaults to first metric descending.
+   */
+  order_by?: { [key: string]: 'asc' | 'desc' };
+
+  /**
+   * Pagination settings for the report results.
+   */
+  pagination?: Shared.Pagination;
+}
+
+export namespace ReportQueryFanoutsParams {
+  /**
+   * Filter by prompt UUID.
+   */
+  export interface PromptIDFilter {
+    field: 'prompt_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by prompt type (visibility or sentiment).
+   */
+  export interface PromptTypeFilter {
+    field: 'prompt_type';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: 'visibility' | 'sentiment' | Array<'visibility' | 'sentiment'>;
   }
 }
 
@@ -866,7 +1373,10 @@ export declare namespace Reports {
     type ReportCitationsResponse as ReportCitationsResponse,
     type ReportCitationsParams as ReportCitationsParams,
     type ReportGetBotsReportParams as ReportGetBotsReportParams,
+    type ReportGetBotsReportV2Params as ReportGetBotsReportV2Params,
     type ReportGetReferralsReportParams as ReportGetReferralsReportParams,
+    type ReportGetReferralsReportV2Params as ReportGetReferralsReportV2Params,
+    type ReportQueryFanoutsParams as ReportQueryFanoutsParams,
     type ReportSentimentParams as ReportSentimentParams,
     type ReportVisibilityParams as ReportVisibilityParams,
   };
