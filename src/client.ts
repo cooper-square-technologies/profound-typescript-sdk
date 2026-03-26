@@ -798,7 +798,12 @@ export declare namespace Profound {
   export { Content as Content };
 
   export type AssetNameFilter = API.AssetNameFilter;
+  export type ModelIDFilter = API.ModelIDFilter;
   export type Pagination = API.Pagination;
   export type PathFilter = API.PathFilter;
+  export type PersonaIDFilter = API.PersonaIDFilter;
   export type PromptFilter = API.PromptFilter;
+  export type RegionIDFilter = API.RegionIDFilter;
+  export type TagIDFilter = API.TagIDFilter;
+  export type TopicIDFilter = API.TopicIDFilter;
 }
