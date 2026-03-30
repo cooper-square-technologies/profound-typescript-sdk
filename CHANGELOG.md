@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.36.0 (2026-03-30)
+
+Full Changelog: [v0.35.1...v0.36.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.35.1...v0.36.0)
+
+### Features
+
+* **api:** api update ([91922ec](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/91922ec4ed91bbbf16cd54d24dc1524b4e576582))
+* **api:** bots and referrals reports v2 ([f7a3430](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/f7a343066160194e3c269e0b1500e2fe2dd5d9d8))
+* **api:** shared models ([a6fb9ed](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/a6fb9edf666797847486e5c7d694f3324cfad8ce))
+
+
+### Bug Fixes
+
+* **mcp:** bump agents version in cloudflare worker MCP servers ([e824fed](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/e824fedcc11560d785c82514890328ba3a27250d))
+
+
+### Chores
+
+* **ci:** escape input path in publish-npm workflow ([1a67217](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/1a6721724d0be349da44ba145c9dbc4b050ea8c3))
+* **internal:** codegen related update ([b6719d2](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/b6719d2fb6e953c0950d6511f032f4eac113f2ef))
+* **internal:** improve local docs search for MCP servers ([e277b13](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/e277b13ca6e2111b7e4d9ad7a1d3ae5c6859336b))
+* **internal:** support custom-instructions-path flag in MCP servers ([c02987f](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/c02987f13ecc980f7ead7b78f354f60879496669))
+* **internal:** support local docs search in MCP servers ([8680ef6](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/8680ef67690333982725177918d769972d46dab1))
+* **mcp-server:** add support for session id, forward client info ([6c71d9a](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/6c71d9ab56fdfba943a9afd8217e495121f43033))
+
 ## 0.35.1 (2026-03-24)
 
 Full Changelog: [v0.35.0...v0.35.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.35.0...v0.35.1)
