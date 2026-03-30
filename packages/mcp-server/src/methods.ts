@@ -95,10 +95,28 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/reports/bots',
   },
   {
+    clientCallName: 'client.reports.getBotsReportV2',
+    fullyQualifiedName: 'reports.getBotsReportV2',
+    httpMethod: 'post',
+    httpPath: '/v2/reports/bots',
+  },
+  {
     clientCallName: 'client.reports.getReferralsReport',
     fullyQualifiedName: 'reports.getReferralsReport',
     httpMethod: 'post',
     httpPath: '/v1/reports/referrals',
+  },
+  {
+    clientCallName: 'client.reports.getReferralsReportV2',
+    fullyQualifiedName: 'reports.getReferralsReportV2',
+    httpMethod: 'post',
+    httpPath: '/v2/reports/referrals',
+  },
+  {
+    clientCallName: 'client.reports.queryFanouts',
+    fullyQualifiedName: 'reports.queryFanouts',
+    httpMethod: 'post',
+    httpPath: '/v1/reports/query-fanouts',
   },
   {
     clientCallName: 'client.reports.sentiment',
@@ -135,6 +153,18 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'content.optimization.list',
     httpMethod: 'get',
     httpPath: '/v1/content/{asset_id}/optimization',
+  },
+  {
+    clientCallName: 'client.promptVolumes.createVolume',
+    fullyQualifiedName: 'promptVolumes.createVolume',
+    httpMethod: 'post',
+    httpPath: '/v1/prompt-volumes/volume',
+  },
+  {
+    clientCallName: 'client.promptVolumes.listCitationPrompts',
+    fullyQualifiedName: 'promptVolumes.listCitationPrompts',
+    httpMethod: 'get',
+    httpPath: '/v1/prompt-volumes/citation-prompts',
   },
 ];
 

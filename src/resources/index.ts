@@ -16,9 +16,17 @@ export {
   type OrganizationModelsResponse,
   type OrganizationRegionsResponse,
 } from './organizations/organizations';
+export {
+  PromptVolumes,
+  type PromptVolumeCreateVolumeResponse,
+  type PromptVolumeListCitationPromptsResponse,
+  type PromptVolumeCreateVolumeParams,
+  type PromptVolumeListCitationPromptsParams,
+} from './prompt-volumes';
 export { Prompts, type PromptAnswersResponse, type PromptAnswersParams } from './prompts';
 export {
   Reports,
+  type PromptIDFilter,
   type ReportInfo,
   type ReportResponse,
   type ReportResult,
@@ -26,7 +34,10 @@ export {
   type ReportCitationsResponse,
   type ReportCitationsParams,
   type ReportGetBotsReportParams,
+  type ReportGetBotsReportV2Params,
   type ReportGetReferralsReportParams,
+  type ReportGetReferralsReportV2Params,
+  type ReportQueryFanoutsParams,
   type ReportSentimentParams,
   type ReportVisibilityParams,
 } from './reports';

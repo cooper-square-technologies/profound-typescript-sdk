@@ -3,9 +3,17 @@
 Types:
 
 - <code><a href="./src/resources/shared.ts">AssetNameFilter</a></code>
+- <code><a href="./src/resources/shared.ts">BotNameFilter</a></code>
+- <code><a href="./src/resources/shared.ts">BotProviderFilter</a></code>
+- <code><a href="./src/resources/shared.ts">ModelIDFilter</a></code>
 - <code><a href="./src/resources/shared.ts">Pagination</a></code>
 - <code><a href="./src/resources/shared.ts">PathFilter</a></code>
+- <code><a href="./src/resources/shared.ts">PersonaIDFilter</a></code>
 - <code><a href="./src/resources/shared.ts">PromptFilter</a></code>
+- <code><a href="./src/resources/shared.ts">PromptTypeFilter</a></code>
+- <code><a href="./src/resources/shared.ts">RegionIDFilter</a></code>
+- <code><a href="./src/resources/shared.ts">TagIDFilter</a></code>
+- <code><a href="./src/resources/shared.ts">TopicIDFilter</a></code>
 
 # Organizations
 
@@ -64,6 +72,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/reports.ts">PromptIDFilter</a></code>
 - <code><a href="./src/resources/reports.ts">ReportInfo</a></code>
 - <code><a href="./src/resources/reports.ts">ReportResponse</a></code>
 - <code><a href="./src/resources/reports.ts">ReportResult</a></code>
@@ -74,7 +83,10 @@ Methods:
 
 - <code title="post /v1/reports/citations">client.reports.<a href="./src/resources/reports.ts">citations</a>({ ...params }) -> ReportCitationsResponse</code>
 - <code title="post /v1/reports/bots">client.reports.<a href="./src/resources/reports.ts">getBotsReport</a>({ ...params }) -> ReportResponse</code>
+- <code title="post /v2/reports/bots">client.reports.<a href="./src/resources/reports.ts">getBotsReportV2</a>({ ...params }) -> ReportResponse</code>
 - <code title="post /v1/reports/referrals">client.reports.<a href="./src/resources/reports.ts">getReferralsReport</a>({ ...params }) -> ReportResponse</code>
+- <code title="post /v2/reports/referrals">client.reports.<a href="./src/resources/reports.ts">getReferralsReportV2</a>({ ...params }) -> ReportResponse</code>
+- <code title="post /v1/reports/query-fanouts">client.reports.<a href="./src/resources/reports.ts">queryFanouts</a>({ ...params }) -> ReportResponse</code>
 - <code title="post /v1/reports/sentiment">client.reports.<a href="./src/resources/reports.ts">sentiment</a>({ ...params }) -> ReportResponse</code>
 - <code title="post /v1/reports/visibility">client.reports.<a href="./src/resources/reports.ts">visibility</a>({ ...params }) -> ReportResponse</code>
 
@@ -105,3 +117,15 @@ Methods:
 
 - <code title="get /v1/content/{asset_id}/optimization/{content_id}">client.content.optimization.<a href="./src/resources/content/optimization.ts">retrieve</a>(contentID, { ...params }) -> OptimizationRetrieveResponse</code>
 - <code title="get /v1/content/{asset_id}/optimization">client.content.optimization.<a href="./src/resources/content/optimization.ts">list</a>(assetID, { ...params }) -> OptimizationListResponse</code>
+
+# PromptVolumes
+
+Types:
+
+- <code><a href="./src/resources/prompt-volumes.ts">PromptVolumeCreateVolumeResponse</a></code>
+- <code><a href="./src/resources/prompt-volumes.ts">PromptVolumeListCitationPromptsResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/prompt-volumes/volume">client.promptVolumes.<a href="./src/resources/prompt-volumes.ts">createVolume</a>({ ...params }) -> unknown</code>
+- <code title="get /v1/prompt-volumes/citation-prompts">client.promptVolumes.<a href="./src/resources/prompt-volumes.ts">listCitationPrompts</a>({ ...params }) -> unknown</code>
