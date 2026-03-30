@@ -1,7 +1,7 @@
 import { makeOAuthConsent } from './app';
 import { McpAgent } from 'agents/mcp';
 import OAuthProvider from '@cloudflare/workers-oauth-provider';
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { initMcpServer } from 'profound-mcp/server';
 import type { McpOptions } from 'profound-mcp/options';
 import type { ClientOptions } from 'profoundai';
@@ -34,7 +34,7 @@ const serverConfig: ServerConfig = {
 };
 
 export class MyMCP extends McpAgent<Env, unknown, MCPProps> {
-  server = new Server(
+  server = new McpServer(
     { name: 'profound', version: pkg.version },
     { capabilities: { tools: {}, logging: {} } },
   );
