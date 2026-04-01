@@ -309,6 +309,7 @@ export interface ReportCitationsParams {
     | TopicNameFilter
     | Shared.ModelIDFilter
     | Shared.TagIDFilter
+    | ReportCitationsParams.TagNameFilter
     | ReportCitationsParams.URLFilter
     | ReportCitationsParams.RootDomainFilter
     | Shared.PromptTypeFilter
@@ -341,6 +342,26 @@ export namespace ReportCitationsParams {
    */
   export interface HostnameFilter {
     field: 'hostname';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by tag name.
+   */
+  export interface TagNameFilter {
+    field: 'tag_name';
 
     operator:
       | 'is'
@@ -896,6 +917,7 @@ export interface ReportSentimentParams {
     | TopicNameFilter
     | Shared.ModelIDFilter
     | Shared.TagIDFilter
+    | ReportSentimentParams.TagNameFilter
     | Shared.PromptFilter
     | Shared.PersonaIDFilter
   >;
@@ -934,6 +956,26 @@ export namespace ReportSentimentParams {
    */
   export interface ThemeFilter {
     field: 'theme';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by tag name.
+   */
+  export interface TagNameFilter {
+    field: 'tag_name';
 
     operator:
       | 'is'
@@ -1001,6 +1043,7 @@ export interface ReportVisibilityParams {
     | TopicNameFilter
     | Shared.AssetNameFilter
     | Shared.TagIDFilter
+    | ReportVisibilityParams.TagNameFilter
     | PromptIDFilter
     | Shared.PromptFilter
     | Shared.PersonaIDFilter
@@ -1024,6 +1067,28 @@ export interface ReportVisibilityParams {
    * Pagination settings for the report results.
    */
   pagination?: Shared.Pagination;
+}
+
+export namespace ReportVisibilityParams {
+  /**
+   * Filter by tag name.
+   */
+  export interface TagNameFilter {
+    field: 'tag_name';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
 }
 
 export declare namespace Reports {
