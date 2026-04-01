@@ -105,6 +105,8 @@ export namespace CategoryPromptsResponse {
 
     created_at: string;
 
+    language: string;
+
     platforms: Array<OrganizationsAPI.NamedResource>;
 
     prompt: string;
@@ -117,6 +119,8 @@ export namespace CategoryPromptsResponse {
      * Generic id+name reference used across domain boundaries.
      */
     topic: OrganizationsAPI.NamedResource;
+
+    personas?: Array<OrganizationsAPI.NamedResource>;
 
     tags?: Array<OrganizationsAPI.NamedResource>;
   }
@@ -148,6 +152,8 @@ export interface CategoryPromptsParams {
   limit?: number;
 
   order_dir?: 'asc' | 'desc';
+
+  persona_id?: Array<string>;
 
   platform_id?: Array<string>;
 

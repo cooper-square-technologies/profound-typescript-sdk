@@ -68,6 +68,7 @@ describe('resource categories', () => {
           cursor: 'cursor',
           limit: 1,
           order_dir: 'asc',
+          persona_id: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
           platform_id: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
           prompt_type: ['visibility'],
           region_id: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
