@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.37.0 (2026-04-02)
+
+Full Changelog: [v0.36.0...v0.37.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.36.0...v0.37.0)
+
+### Features
+
+* **api:** api update ([a36f9be](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/a36f9be39f5d383025fdec914c9ba10a63a977af))
+* **api:** api update ([044385b](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/044385b8eed3c3e94b7b5ec09ea609a5e56769eb))
+* **api:** api update ([9a0b7a5](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/9a0b7a5d2cc3123248033f78b201f7fa5874aa5e))
+* **api:** api update ([0c9d316](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/0c9d3161cb2274fa32d9746ea4b45426ea3e6ba3))
+* **api:** api update ([0ab418b](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/0ab418b4faf7776d082eca6284d88aec68c74819))
+* **api:** api update ([5d33732](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/5d33732eb87b682e26d2f3f0a3bcf036b0256067))
+* **api:** api update ([2092b1b](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/2092b1bc1c8b15242f98ebb89796da5f787660a0))
+
+
+### Chores
+
+* **internal:** fix MCP docker image builds in yarn projects ([28a1945](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/28a19458bcfe897c8aad9718de374a4d92340254))
+* **internal:** improve local docs search for MCP servers ([aabe58f](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/aabe58f0fd4cb4e16047efe03ce0d1d4de1c6e13))
+* **internal:** support type annotations when running MCP in local execution mode ([60725a5](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/60725a5cf63c0d8b67665f102ed9a328b7af7465))
+* **internal:** use link instead of file in MCP server package.json files ([e10e7d2](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/e10e7d2ded618a8e55cd79a5f1c109d4661eac57))
+* **mcp-server:** log client info ([4c5c907](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/4c5c907728b536ca0c48bf38a259909046fe7408))
+
 ## 0.36.0 (2026-03-30)
 
 Full Changelog: [v0.35.1...v0.36.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.35.1...v0.36.0)
