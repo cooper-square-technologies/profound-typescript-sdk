@@ -32,7 +32,8 @@ export class Categories extends APIResource {
   }
 
   /**
-   * Get Category Prompts
+   * Retrieve prompts in a category with optional filtering by type, topic, tag,
+   * region, platform, or persona. Supports cursor-based pagination.
    */
   prompts(
     categoryID: string,
@@ -147,22 +148,49 @@ export namespace CategoryTopicsResponse {
 }
 
 export interface CategoryPromptsParams {
+  /**
+   * Pagination cursor from a previous response.
+   */
   cursor?: string | null;
 
+  /**
+   * Maximum number of prompts to return.
+   */
   limit?: number;
 
+  /**
+   * Sort direction by creation date.
+   */
   order_dir?: 'asc' | 'desc';
 
+  /**
+   * Filter by persona IDs.
+   */
   persona_id?: Array<string>;
 
+  /**
+   * Filter by platform IDs.
+   */
   platform_id?: Array<string>;
 
+  /**
+   * Filter by prompt type.
+   */
   prompt_type?: Array<'visibility' | 'sentiment'>;
 
+  /**
+   * Filter by region IDs.
+   */
   region_id?: Array<string>;
 
+  /**
+   * Filter by tag IDs.
+   */
   tag_id?: Array<string>;
 
+  /**
+   * Filter by topic IDs.
+   */
   topic_id?: Array<string>;
 }
 
