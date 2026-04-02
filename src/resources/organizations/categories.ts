@@ -116,6 +116,8 @@ export namespace CategoryPromptsResponse {
 
     regions: Array<OrganizationsAPI.NamedResource>;
 
+    status: 'active' | 'disabled';
+
     /**
      * Generic id+name reference used across domain boundaries.
      */
@@ -184,6 +186,11 @@ export interface CategoryPromptsParams {
    * Filter by region IDs.
    */
   region_id?: Array<string>;
+
+  /**
+   * Filter by prompt status.
+   */
+  status?: Array<'active' | 'disabled'>;
 
   /**
    * Filter by tag IDs.
