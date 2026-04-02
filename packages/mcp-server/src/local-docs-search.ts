@@ -223,9 +223,9 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     stainlessPath: '(resource) organizations.categories > (method) topics',
     qualified: 'client.organizations.categories.topics',
     params: ['category_id: string;'],
-    response: '{ id: string; name: string; }[]',
+    response: "{ id: string; name: string; status: 'active' | 'disabled'; }[]",
     markdown:
-      "## topics\n\n`client.organizations.categories.topics(category_id: string): { id: string; name: string; }[]`\n\n**get** `/v1/org/categories/{category_id}/topics`\n\nGet the topics for a specific category.\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ id: string; name: string; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.topics('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
+      "## topics\n\n`client.organizations.categories.topics(category_id: string): { id: string; name: string; status: 'active' | 'disabled'; }[]`\n\n**get** `/v1/org/categories/{category_id}/topics`\n\nGet the topics for a specific category.\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ id: string; name: string; status: 'active' | 'disabled'; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.topics('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
     perLanguage: {
       http: {
         example:

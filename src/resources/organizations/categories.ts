@@ -144,6 +144,8 @@ export namespace CategoryTopicsResponse {
     id: string;
 
     name: string;
+
+    status: 'active' | 'disabled';
   }
 }
 
