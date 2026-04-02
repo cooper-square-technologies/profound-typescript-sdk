@@ -72,6 +72,7 @@ describe('resource categories', () => {
           platform_id: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
           prompt_type: ['visibility'],
           region_id: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+          status: ['active'],
           tag_id: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
           topic_id: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
         },
