@@ -534,7 +534,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     name: 'get_referrals_report',
     endpoint: '/v1/reports/referrals',
     httpMethod: 'post',
-    summary: 'Get Referrals Report',
+    summary: 'Get Referrals Report V1',
     description:
       'Get referral traffic report from the daily aggregated materialized view.\n\nThis endpoint queries pre-aggregated daily referral data, making it efficient\nfor large date ranges and high-traffic sites.',
     stainlessPath: '(resource) reports > (method) get_referrals_report',
@@ -576,7 +576,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     name: 'get_bots_report',
     endpoint: '/v1/reports/bots',
     httpMethod: 'post',
-    summary: 'Get Bots Report',
+    summary: 'Get Bots Report V1',
     description:
       'Get bot traffic report from the daily aggregated materialized view.\n\nThis endpoint queries pre-aggregated daily bot data, making it efficient\nfor large date ranges and high-traffic sites.\n\nMetrics:\n- count: unique bot visits\n- citations: unique citation events\n- indexing: unique indexing events\n- training: unique training events\n- last_visit: most recent visit timestamp',
     stainlessPath: '(resource) reports > (method) get_bots_report',
@@ -618,7 +618,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     name: 'get_referrals_report_v2',
     endpoint: '/v2/reports/referrals',
     httpMethod: 'post',
-    summary: 'Get Referrals Report',
+    summary: 'Get Referrals Report V2',
     description:
       'Get referral traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval="day" (default, UTC daily buckets) or "hour" (UTC hourly buckets).',
     stainlessPath: '(resource) reports > (method) get_referrals_report_v2',
@@ -660,7 +660,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     name: 'get_bots_report_v2',
     endpoint: '/v2/reports/bots',
     httpMethod: 'post',
-    summary: 'Get Bots Report',
+    summary: 'Get Bots Report V2',
     description:
       'Get bot traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval="day" (default, UTC daily buckets) or "hour" (UTC hourly buckets).\n\nMetrics:\n- count: unique bot visits\n- citations: unique citation events (ai_assistant bot type)\n- indexing: unique indexing events (index bot type)\n- training: unique training events (ai_training bot type)\n- last_visit: most recent visit timestamp\n\nDimensions:\n- date, path, bot_name, bot_provider, bot_type',
     stainlessPath: '(resource) reports > (method) get_bots_report_v2',
