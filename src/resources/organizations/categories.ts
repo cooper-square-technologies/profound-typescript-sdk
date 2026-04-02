@@ -44,14 +44,14 @@ export class Categories extends APIResource {
   }
 
   /**
-   * Get the organization tags for a specific category.
+   * Get the tags for a specific category.
    */
   tags(categoryID: string, options?: RequestOptions): APIPromise<CategoryTagsResponse> {
     return this._client.get(path`/v1/org/categories/${categoryID}/tags`, options);
   }
 
   /**
-   * Get the organization categories.
+   * Get the topics for a specific category.
    */
   topics(categoryID: string, options?: RequestOptions): APIPromise<CategoryTopicsResponse> {
     return this._client.get(path`/v1/org/categories/${categoryID}/topics`, options);

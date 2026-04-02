@@ -219,13 +219,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     endpoint: '/v1/org/categories/{category_id}/topics',
     httpMethod: 'get',
     summary: 'Get Category Topics',
-    description: 'Get the organization categories.',
+    description: 'Get the topics for a specific category.',
     stainlessPath: '(resource) organizations.categories > (method) topics',
     qualified: 'client.organizations.categories.topics',
     params: ['category_id: string;'],
     response: '{ id: string; name: string; }[]',
     markdown:
-      "## topics\n\n`client.organizations.categories.topics(category_id: string): { id: string; name: string; }[]`\n\n**get** `/v1/org/categories/{category_id}/topics`\n\nGet the organization categories.\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ id: string; name: string; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.topics('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
+      "## topics\n\n`client.organizations.categories.topics(category_id: string): { id: string; name: string; }[]`\n\n**get** `/v1/org/categories/{category_id}/topics`\n\nGet the topics for a specific category.\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ id: string; name: string; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.topics('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
     perLanguage: {
       http: {
         example:
@@ -248,13 +248,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     endpoint: '/v1/org/categories/{category_id}/tags',
     httpMethod: 'get',
     summary: 'Get Category Tags',
-    description: 'Get the organization tags for a specific category.',
+    description: 'Get the tags for a specific category.',
     stainlessPath: '(resource) organizations.categories > (method) tags',
     qualified: 'client.organizations.categories.tags',
     params: ['category_id: string;'],
     response: '{ id: string; name: string; }[]',
     markdown:
-      "## tags\n\n`client.organizations.categories.tags(category_id: string): object[]`\n\n**get** `/v1/org/categories/{category_id}/tags`\n\nGet the organization tags for a specific category.\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ id: string; name: string; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst namedResources = await client.organizations.categories.tags('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(namedResources);\n```",
+      "## tags\n\n`client.organizations.categories.tags(category_id: string): object[]`\n\n**get** `/v1/org/categories/{category_id}/tags`\n\nGet the tags for a specific category.\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ id: string; name: string; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst namedResources = await client.organizations.categories.tags('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(namedResources);\n```",
     perLanguage: {
       http: {
         example:
