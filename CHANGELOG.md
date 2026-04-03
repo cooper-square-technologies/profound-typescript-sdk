@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.37.1 (2026-04-03)
+
+Full Changelog: [v0.37.0...v0.37.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.37.0...v0.37.1)
+
+### Bug Fixes
+
+* **mcp-server:** update cloudflare worker imports for current profound-mcp API ([668b5ec](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/668b5eca32128d14db116111b4544d844a522187))
+* **mcp-server:** use McpServer instead of deprecated Server ([b0253a2](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/b0253a22d7ab3194ea785a16147ba3f4bede4b3a))
+
 ## 0.37.0 (2026-04-02)
 
 Full Changelog: [v0.36.0...v0.37.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.36.0...v0.37.0)
