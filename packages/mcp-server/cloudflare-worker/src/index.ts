@@ -1,7 +1,11 @@
 import { makeOAuthConsent } from './app';
 import { McpAgent } from 'agents/mcp';
 import OAuthProvider from '@cloudflare/workers-oauth-provider';
-import { McpOptions, initMcpServer, server, ClientOptions } from 'profound-mcp/server';
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { initMcpServer } from 'profound-mcp/server';
+import type { McpOptions } from 'profound-mcp/options';
+import type { ClientOptions } from 'profoundai';
+import pkg from '../../package.json';
 import type { ExportedHandler } from '@cloudflare/workers-types';
 
 type MCPProps = {
@@ -30,7 +34,10 @@ const serverConfig: ServerConfig = {
 };
 
 export class MyMCP extends McpAgent<Env, unknown, MCPProps> {
-  server = server;
+  server = new McpServer(
+    { name: 'profound', version: pkg.version },
+    { capabilities: { tools: {}, logging: {} } },
+  );
 
   async init() {
     initMcpServer({
