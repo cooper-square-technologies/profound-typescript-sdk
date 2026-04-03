@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.37.2 (2026-04-03)
+
+Full Changelog: [v0.37.1...v0.37.2](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.37.1...v0.37.2)
+
+### Bug Fixes
+
+* **mcp-server:** enhance logger configuration and handle optional clientConfig ([c614b4a](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/c614b4ae09436e14cdb62a30274eb14953c08b61))
+
 ## 0.37.1 (2026-04-03)
 
 Full Changelog: [v0.37.0...v0.37.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.37.0...v0.37.1)
