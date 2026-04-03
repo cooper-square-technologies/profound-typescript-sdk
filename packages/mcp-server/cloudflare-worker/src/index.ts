@@ -2,6 +2,7 @@ import { makeOAuthConsent } from './app';
 import { McpAgent } from 'agents/mcp';
 import OAuthProvider from '@cloudflare/workers-oauth-provider';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { configureLogger } from 'profound-mcp/logger';
 import { initMcpServer } from 'profound-mcp/server';
 import type { McpOptions } from 'profound-mcp/options';
 import type { ClientOptions } from 'profoundai';
@@ -10,7 +11,7 @@ import type { ExportedHandler } from '@cloudflare/workers-types';
 
 type MCPProps = {
   clientProps: ClientOptions;
-  clientConfig: McpOptions;
+  clientConfig?: McpOptions;
 };
 
 /**
@@ -40,10 +41,14 @@ export class MyMCP extends McpAgent<Env, unknown, MCPProps> {
   );
 
   async init() {
-    initMcpServer({
-      server: this.server,
-      clientOptions: this.props.clientProps,
-      mcpOptions: this.props.clientConfig,
+    configureLogger({
+      level: 'info',
+      pretty: false,
+    });
+    await initMcpServer({
+      server: this.server.server,
+      clientOptions: this.props?.clientProps,
+      mcpOptions: this.props?.clientConfig,
     });
   }
 }
@@ -108,9 +113,11 @@ function isApiKeyRequest(request: Request) {
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     if (isApiKeyRequest(request)) {
-      ctx.props = {
-        ...ctx.props,
-        clientProps: { ...ctx.props.clientProps, apiKey: request.headers.get(apiKeyHeader) },
+      const key = request.headers.get(apiKeyHeader)!;
+      const prev: Partial<MCPProps> = (ctx as { props?: Partial<MCPProps> }).props ?? {};
+      (ctx as { props?: MCPProps }).props = {
+        ...prev,
+        clientProps: { ...(prev.clientProps ?? {}), apiKey: key },
       };
       return MyMCP.serve(apiKeyPath).fetch(request, env, ctx);
     }
