@@ -40,6 +40,7 @@ import {
   ReportSentimentParams,
   ReportVisibilityParams,
   Reports,
+  TagNameFilter,
   TopicNameFilter,
 } from './resources/reports';
 import { Content } from './resources/content/content';
@@ -798,6 +799,7 @@ export declare namespace Profound {
     type ReportInfo as ReportInfo,
     type ReportResponse as ReportResponse,
     type ReportResult as ReportResult,
+    type TagNameFilter as TagNameFilter,
     type TopicNameFilter as TopicNameFilter,
     type ReportCitationsResponse as ReportCitationsResponse,
     type ReportCitationsParams as ReportCitationsParams,
