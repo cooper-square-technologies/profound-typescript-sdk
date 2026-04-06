@@ -76,6 +76,7 @@ Types:
 - <code><a href="./src/resources/reports.ts">ReportInfo</a></code>
 - <code><a href="./src/resources/reports.ts">ReportResponse</a></code>
 - <code><a href="./src/resources/reports.ts">ReportResult</a></code>
+- <code><a href="./src/resources/reports.ts">TagNameFilter</a></code>
 - <code><a href="./src/resources/reports.ts">TopicNameFilter</a></code>
 - <code><a href="./src/resources/reports.ts">ReportCitationsResponse</a></code>
 

@@ -224,6 +224,26 @@ export interface ReportResult {
 }
 
 /**
+ * Filter by tag name.
+ */
+export interface TagNameFilter {
+  field: 'tag_name';
+
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
+
+  value: string | Array<string>;
+}
+
+/**
  * Filter by topic name
  */
 export interface TopicNameFilter {
@@ -309,7 +329,7 @@ export interface ReportCitationsParams {
     | TopicNameFilter
     | Shared.ModelIDFilter
     | Shared.TagIDFilter
-    | ReportCitationsParams.TagNameFilter
+    | TagNameFilter
     | ReportCitationsParams.URLFilter
     | ReportCitationsParams.RootDomainFilter
     | Shared.PromptTypeFilter
@@ -342,26 +362,6 @@ export namespace ReportCitationsParams {
    */
   export interface HostnameFilter {
     field: 'hostname';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
-
-  /**
-   * Filter by tag name.
-   */
-  export interface TagNameFilter {
-    field: 'tag_name';
 
     operator:
       | 'is'
@@ -917,7 +917,7 @@ export interface ReportSentimentParams {
     | TopicNameFilter
     | Shared.ModelIDFilter
     | Shared.TagIDFilter
-    | ReportSentimentParams.TagNameFilter
+    | TagNameFilter
     | Shared.PromptFilter
     | Shared.PersonaIDFilter
   >;
@@ -956,26 +956,6 @@ export namespace ReportSentimentParams {
    */
   export interface ThemeFilter {
     field: 'theme';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
-
-  /**
-   * Filter by tag name.
-   */
-  export interface TagNameFilter {
-    field: 'tag_name';
 
     operator:
       | 'is'
@@ -1043,7 +1023,7 @@ export interface ReportVisibilityParams {
     | TopicNameFilter
     | Shared.AssetNameFilter
     | Shared.TagIDFilter
-    | ReportVisibilityParams.TagNameFilter
+    | TagNameFilter
     | PromptIDFilter
     | Shared.PromptFilter
     | Shared.PersonaIDFilter
@@ -1069,34 +1049,13 @@ export interface ReportVisibilityParams {
   pagination?: Shared.Pagination;
 }
 
-export namespace ReportVisibilityParams {
-  /**
-   * Filter by tag name.
-   */
-  export interface TagNameFilter {
-    field: 'tag_name';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
-}
-
 export declare namespace Reports {
   export {
     type PromptIDFilter as PromptIDFilter,
     type ReportInfo as ReportInfo,
     type ReportResponse as ReportResponse,
     type ReportResult as ReportResult,
+    type TagNameFilter as TagNameFilter,
     type TopicNameFilter as TopicNameFilter,
     type ReportCitationsResponse as ReportCitationsResponse,
     type ReportCitationsParams as ReportCitationsParams,

@@ -30,6 +30,7 @@ export {
   type ReportInfo,
   type ReportResponse,
   type ReportResult,
+  type TagNameFilter,
   type TopicNameFilter,
   type ReportCitationsResponse,
   type ReportCitationsParams,
