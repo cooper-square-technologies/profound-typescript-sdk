@@ -325,6 +325,7 @@ export interface ReportCitationsParams {
     | ReportCitationsParams.HostnameFilter
     | Shared.PathFilter
     | Shared.RegionIDFilter
+    | ReportCitationsParams.RegionNameFilter
     | Shared.TopicIDFilter
     | TopicNameFilter
     | Shared.ModelIDFilter
@@ -362,6 +363,26 @@ export namespace ReportCitationsParams {
    */
   export interface HostnameFilter {
     field: 'hostname';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by region name.
+   */
+  export interface RegionNameFilter {
+    field: 'region_name';
 
     operator:
       | 'is'
@@ -844,6 +865,7 @@ export interface ReportQueryFanoutsParams {
    */
   filters?: Array<
     | Shared.RegionIDFilter
+    | ReportQueryFanoutsParams.RegionNameFilter
     | Shared.ModelIDFilter
     | Shared.TopicIDFilter
     | Shared.TagIDFilter
@@ -862,6 +884,28 @@ export interface ReportQueryFanoutsParams {
    * Pagination settings for the report results.
    */
   pagination?: Shared.Pagination;
+}
+
+export namespace ReportQueryFanoutsParams {
+  /**
+   * Filter by region name.
+   */
+  export interface RegionNameFilter {
+    field: 'region_name';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
 }
 
 export interface ReportSentimentParams {
@@ -913,6 +957,7 @@ export interface ReportSentimentParams {
     | Shared.AssetNameFilter
     | ReportSentimentParams.ThemeFilter
     | Shared.RegionIDFilter
+    | ReportSentimentParams.RegionNameFilter
     | Shared.TopicIDFilter
     | TopicNameFilter
     | Shared.ModelIDFilter
@@ -956,6 +1001,26 @@ export namespace ReportSentimentParams {
    */
   export interface ThemeFilter {
     field: 'theme';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * Filter by region name.
+   */
+  export interface RegionNameFilter {
+    field: 'region_name';
 
     operator:
       | 'is'
@@ -1018,6 +1083,7 @@ export interface ReportVisibilityParams {
    */
   filters?: Array<
     | Shared.RegionIDFilter
+    | ReportVisibilityParams.RegionNameFilter
     | Shared.ModelIDFilter
     | Shared.TopicIDFilter
     | TopicNameFilter
@@ -1047,6 +1113,28 @@ export interface ReportVisibilityParams {
    * Pagination settings for the report results.
    */
   pagination?: Shared.Pagination;
+}
+
+export namespace ReportVisibilityParams {
+  /**
+   * Filter by region name.
+   */
+  export interface RegionNameFilter {
+    field: 'region_name';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
 }
 
 export declare namespace Reports {

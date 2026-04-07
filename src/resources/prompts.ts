@@ -94,6 +94,7 @@ export interface PromptAnswersParams {
    */
   filters?: Array<
     | Shared.RegionIDFilter
+    | PromptAnswersParams.RegionNameFilter
     | Shared.ModelIDFilter
     | Shared.TagIDFilter
     | Shared.PromptTypeFilter
@@ -113,6 +114,26 @@ export interface PromptAnswersParams {
 }
 
 export namespace PromptAnswersParams {
+  /**
+   * Filter by region name.
+   */
+  export interface RegionNameFilter {
+    field: 'region_name';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
   export interface AssetIDFilter {
     field: 'asset_id';
 
