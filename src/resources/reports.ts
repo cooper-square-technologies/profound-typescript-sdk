@@ -224,6 +224,26 @@ export interface ReportResult {
 }
 
 /**
+ * Filter by tag name.
+ */
+export interface TagNameFilter {
+  field: 'tag_name';
+
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
+
+  value: string | Array<string>;
+}
+
+/**
  * Filter by topic name
  */
 export interface TopicNameFilter {
@@ -305,11 +325,12 @@ export interface ReportCitationsParams {
     | ReportCitationsParams.HostnameFilter
     | Shared.PathFilter
     | Shared.RegionIDFilter
+    | ReportCitationsParams.RegionNameFilter
     | Shared.TopicIDFilter
     | TopicNameFilter
     | Shared.ModelIDFilter
     | Shared.TagIDFilter
-    | ReportCitationsParams.TagNameFilter
+    | TagNameFilter
     | ReportCitationsParams.URLFilter
     | ReportCitationsParams.RootDomainFilter
     | Shared.PromptTypeFilter
@@ -358,10 +379,10 @@ export namespace ReportCitationsParams {
   }
 
   /**
-   * Filter by tag name.
+   * Filter by region name.
    */
-  export interface TagNameFilter {
-    field: 'tag_name';
+  export interface RegionNameFilter {
+    field: 'region_name';
 
     operator:
       | 'is'
@@ -844,6 +865,7 @@ export interface ReportQueryFanoutsParams {
    */
   filters?: Array<
     | Shared.RegionIDFilter
+    | ReportQueryFanoutsParams.RegionNameFilter
     | Shared.ModelIDFilter
     | Shared.TopicIDFilter
     | Shared.TagIDFilter
@@ -862,6 +884,28 @@ export interface ReportQueryFanoutsParams {
    * Pagination settings for the report results.
    */
   pagination?: Shared.Pagination;
+}
+
+export namespace ReportQueryFanoutsParams {
+  /**
+   * Filter by region name.
+   */
+  export interface RegionNameFilter {
+    field: 'region_name';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
 }
 
 export interface ReportSentimentParams {
@@ -913,11 +957,12 @@ export interface ReportSentimentParams {
     | Shared.AssetNameFilter
     | ReportSentimentParams.ThemeFilter
     | Shared.RegionIDFilter
+    | ReportSentimentParams.RegionNameFilter
     | Shared.TopicIDFilter
     | TopicNameFilter
     | Shared.ModelIDFilter
     | Shared.TagIDFilter
-    | ReportSentimentParams.TagNameFilter
+    | TagNameFilter
     | Shared.PromptFilter
     | Shared.PersonaIDFilter
   >;
@@ -972,10 +1017,10 @@ export namespace ReportSentimentParams {
   }
 
   /**
-   * Filter by tag name.
+   * Filter by region name.
    */
-  export interface TagNameFilter {
-    field: 'tag_name';
+  export interface RegionNameFilter {
+    field: 'region_name';
 
     operator:
       | 'is'
@@ -1038,12 +1083,13 @@ export interface ReportVisibilityParams {
    */
   filters?: Array<
     | Shared.RegionIDFilter
+    | ReportVisibilityParams.RegionNameFilter
     | Shared.ModelIDFilter
     | Shared.TopicIDFilter
     | TopicNameFilter
     | Shared.AssetNameFilter
     | Shared.TagIDFilter
-    | ReportVisibilityParams.TagNameFilter
+    | TagNameFilter
     | PromptIDFilter
     | Shared.PromptFilter
     | Shared.PersonaIDFilter
@@ -1071,10 +1117,10 @@ export interface ReportVisibilityParams {
 
 export namespace ReportVisibilityParams {
   /**
-   * Filter by tag name.
+   * Filter by region name.
    */
-  export interface TagNameFilter {
-    field: 'tag_name';
+  export interface RegionNameFilter {
+    field: 'region_name';
 
     operator:
       | 'is'
@@ -1097,6 +1143,7 @@ export declare namespace Reports {
     type ReportInfo as ReportInfo,
     type ReportResponse as ReportResponse,
     type ReportResult as ReportResult,
+    type TagNameFilter as TagNameFilter,
     type TopicNameFilter as TopicNameFilter,
     type ReportCitationsResponse as ReportCitationsResponse,
     type ReportCitationsParams as ReportCitationsParams,

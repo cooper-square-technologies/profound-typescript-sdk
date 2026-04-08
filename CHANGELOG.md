@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.38.0 (2026-04-08)
+
+Full Changelog: [v0.37.2...v0.38.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.37.2...v0.38.0)
+
+### Features
+
+* **api:** api update ([0dfbb2e](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/0dfbb2e44bb97a9870fd506e103e51be3872320e))
+* **api:** shared `TagNameFilter` ([8d52454](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/8d524545fd217b684f887af197702d3452441b07))
+
+
+### Chores
+
+* **internal:** codegen related update ([0e05446](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/0e05446ffbcd07ceeb02a9d49415174c145ee1d4))
+* **internal:** fix MCP server import ordering ([4a46d9c](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/4a46d9c51c626253d48531adfc69f9cb1a80e8e1))
+* **mcp-server:** increase local docs search result count from 5 to 10 ([cdd0363](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/cdd036365f1c377a991b65762fd821328f345813))
+
 ## 0.37.2 (2026-04-03)
 
 Full Changelog: [v0.37.1...v0.37.2](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.37.1...v0.37.2)
