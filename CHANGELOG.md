@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.39.0 (2026-04-10)
+
+Full Changelog: [v0.38.0...v0.39.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.38.0...v0.39.0)
+
+### Features
+
+* **prompt-volumes:** remove ([5fdabcc](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/5fdabcc2c2121e605cdf55206f60a6d4410f5434))
+
+
+### Chores
+
+* **internal:** show error causes in MCP servers when running in local mode ([29f350d](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/29f350db63a38b6b0f28171397fe47a9af4a7aca))
+
 ## 0.38.0 (2026-04-08)
 
 Full Changelog: [v0.37.2...v0.38.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.37.2...v0.38.0)

@@ -118,15 +118,3 @@ Methods:
 
 - <code title="get /v1/content/{asset_id}/optimization/{content_id}">client.content.optimization.<a href="./src/resources/content/optimization.ts">retrieve</a>(contentID, { ...params }) -> OptimizationRetrieveResponse</code>
 - <code title="get /v1/content/{asset_id}/optimization">client.content.optimization.<a href="./src/resources/content/optimization.ts">list</a>(assetID, { ...params }) -> OptimizationListResponse</code>
-
-# PromptVolumes
-
-Types:
-
-- <code><a href="./src/resources/prompt-volumes.ts">PromptVolumeCreateVolumeResponse</a></code>
-- <code><a href="./src/resources/prompt-volumes.ts">PromptVolumeListCitationPromptsResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/prompt-volumes/volume">client.promptVolumes.<a href="./src/resources/prompt-volumes.ts">createVolume</a>({ ...params }) -> unknown</code>
-- <code title="get /v1/prompt-volumes/citation-prompts">client.promptVolumes.<a href="./src/resources/prompt-volumes.ts">listCitationPrompts</a>({ ...params }) -> unknown</code>
