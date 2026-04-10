@@ -132,8 +132,6 @@ const fuse = new Fuse(
     'client.logs.raw.logs',
     'client.content.optimization.list',
     'client.content.optimization.retrieve',
-    'client.promptVolumes.createVolume',
-    'client.promptVolumes.listCitationPrompts',
   ],
   { threshold: 1, shouldSort: true },
 );

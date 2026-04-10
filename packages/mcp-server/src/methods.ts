@@ -154,18 +154,6 @@ export const sdkMethods: SdkMethod[] = [
     httpMethod: 'get',
     httpPath: '/v1/content/{asset_id}/optimization',
   },
-  {
-    clientCallName: 'client.promptVolumes.createVolume',
-    fullyQualifiedName: 'promptVolumes.createVolume',
-    httpMethod: 'post',
-    httpPath: '/v1/prompt-volumes/volume',
-  },
-  {
-    clientCallName: 'client.promptVolumes.listCitationPrompts',
-    fullyQualifiedName: 'promptVolumes.listCitationPrompts',
-    httpMethod: 'get',
-    httpPath: '/v1/prompt-volumes/citation-prompts',
-  },
 ];
 
 function allowedMethodsForCodeTool(options: McpOptions | undefined): SdkMethod[] | undefined {
