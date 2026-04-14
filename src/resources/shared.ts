@@ -169,7 +169,7 @@ export interface ModelIDFilter {
 }
 
 /**
- * Report pagination model.
+ * Offset-based pagination parameters.
  */
 export interface Pagination {
   /**
