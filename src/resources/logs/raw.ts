@@ -9,6 +9,8 @@ import { RequestOptions } from '../../internal/request-options';
 export class Raw extends APIResource {
   /**
    * Get identified bot logs with filters
+   *
+   * @deprecated
    */
   bots(body: RawBotsParams, options?: RequestOptions): APIPromise<RawBotsResponse> {
     return this._client.post('/v1/logs/raw/bots', { body, ...options });
@@ -16,6 +18,8 @@ export class Raw extends APIResource {
 
   /**
    * Get all logs with filters
+   *
+   * @deprecated
    */
   logs(body: RawLogsParams, options?: RequestOptions): APIPromise<RawLogsResponse> {
     return this._client.post('/v1/logs/raw', { body, ...options });

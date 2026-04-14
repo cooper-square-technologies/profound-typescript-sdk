@@ -53,8 +53,8 @@ export class Reports extends APIResource {
   /**
    * Get bot traffic report from the hourly aggregated materialized view (UTC-based).
    *
-   * Supports date_interval="day" (default, UTC daily buckets) or "hour" (UTC hourly
-   * buckets).
+   * Supports date_interval="hour", calendar intervals through "year", "quarter", and
+   * "relative_week".
    *
    * Metrics:
    *
@@ -110,8 +110,8 @@ export class Reports extends APIResource {
    * Get referral traffic report from the hourly aggregated materialized view
    * (UTC-based).
    *
-   * Supports date_interval="day" (default, UTC daily buckets) or "hour" (UTC hourly
-   * buckets).
+   * Supports date_interval="hour", calendar intervals through "year", "quarter", and
+   * "relative_week".
    *
    * @example
    * ```ts
@@ -296,7 +296,7 @@ export interface ReportCitationsParams {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
@@ -533,7 +533,7 @@ export interface ReportGetBotsReportV2Params {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
@@ -725,7 +725,7 @@ export interface ReportGetReferralsReportV2Params {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
@@ -853,7 +853,7 @@ export interface ReportQueryFanoutsParams {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
@@ -928,7 +928,7 @@ export interface ReportSentimentParams {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
@@ -1059,7 +1059,7 @@ export interface ReportVisibilityParams {
   /**
    * Date interval for the report. (only used with date dimension)
    */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
 
   /**
    * Dimensions to group the report by.
