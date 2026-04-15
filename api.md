@@ -118,3 +118,27 @@ Methods:
 
 - <code title="get /v1/content/{asset_id}/optimization/{content_id}">client.content.optimization.<a href="./src/resources/content/optimization.ts">retrieve</a>(contentID, { ...params }) -> OptimizationRetrieveResponse</code>
 - <code title="get /v1/content/{asset_id}/optimization">client.content.optimization.<a href="./src/resources/content/optimization.ts">list</a>(assetID, { ...params }) -> OptimizationListResponse</code>
+
+# Agents
+
+Types:
+
+- <code><a href="./src/resources/agents/agents.ts">AgentRetrieveResponse</a></code>
+- <code><a href="./src/resources/agents/agents.ts">AgentListResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/agents/{agent_id}">client.agents.<a href="./src/resources/agents/agents.ts">retrieve</a>(agentID, { ...params }) -> AgentRetrieveResponse</code>
+- <code title="get /v1/agents">client.agents.<a href="./src/resources/agents/agents.ts">list</a>({ ...params }) -> AgentListResponse</code>
+
+## Runs
+
+Types:
+
+- <code><a href="./src/resources/agents/runs.ts">RunRetrieveResponse</a></code>
+- <code><a href="./src/resources/agents/runs.ts">RunStartResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/agents/{agent_id}/runs/{run_id}">client.agents.runs.<a href="./src/resources/agents/runs.ts">retrieve</a>(runID, { ...params }) -> RunRetrieveResponse</code>
+- <code title="post /v1/agents/{agent_id}/runs">client.agents.runs.<a href="./src/resources/agents/runs.ts">start</a>(agentID, { ...params }) -> RunStartResponse</code>

@@ -36,6 +36,13 @@ import {
   TagNameFilter,
   TopicNameFilter,
 } from './resources/reports';
+import {
+  AgentListParams,
+  AgentListResponse,
+  AgentRetrieveParams,
+  AgentRetrieveResponse,
+  Agents,
+} from './resources/agents/agents';
 import { Content } from './resources/content/content';
 import { Logs } from './resources/logs/logs';
 import {
@@ -753,6 +760,7 @@ export class Profound {
   reports: API.Reports = new API.Reports(this);
   logs: API.Logs = new API.Logs(this);
   content: API.Content = new API.Content(this);
+  agents: API.Agents = new API.Agents(this);
 }
 
 Profound.Organizations = Organizations;
@@ -760,6 +768,7 @@ Profound.Prompts = Prompts;
 Profound.Reports = Reports;
 Profound.Logs = Logs;
 Profound.Content = Content;
+Profound.Agents = Agents;
 
 export declare namespace Profound {
   export type RequestOptions = Opts.RequestOptions;
@@ -806,6 +815,14 @@ export declare namespace Profound {
   export { Logs as Logs };
 
   export { Content as Content };
+
+  export {
+    Agents as Agents,
+    type AgentRetrieveResponse as AgentRetrieveResponse,
+    type AgentListResponse as AgentListResponse,
+    type AgentRetrieveParams as AgentRetrieveParams,
+    type AgentListParams as AgentListParams,
+  };
 
   export type AssetNameFilter = API.AssetNameFilter;
   export type BotNameFilter = API.BotNameFilter;

@@ -881,6 +881,127 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
     },
   },
+  {
+    name: 'list',
+    endpoint: '/v1/agents',
+    httpMethod: 'get',
+    summary: 'List agents',
+    description:
+      'List agents available to your organization.\n\nAgent status reflects whether an agent has ever been published. `published`\nagents have a live published version. `draft` agents have not been\npublished yet.',
+    stainlessPath: '(resource) agents > (method) list',
+    qualified: 'client.agents.list',
+    params: ['limit?: number;', 'next_cursor?: string;', "statuses?: 'published' | 'draft'[];"],
+    response:
+      "{ data: { id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }[]; pagination?: { limit?: number; next_cursor?: string; }; }",
+    markdown:
+      "## list\n\n`client.agents.list(limit?: number, next_cursor?: string, statuses?: 'published' | 'draft'[]): { data: object[]; pagination?: object; }`\n\n**get** `/v1/agents`\n\nList agents available to your organization.\n\nAgent status reflects whether an agent has ever been published. `published`\nagents have a live published version. `draft` agents have not been\npublished yet.\n\n### Parameters\n\n- `limit?: number`\n\n- `next_cursor?: string`\n\n- `statuses?: 'published' | 'draft'[]`\n  Optional status filter. Use `published` to list agents that have a live published version, or `draft` to list agents that have not been published yet. Defaults to `published`.\n\n### Returns\n\n- `{ data: { id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }[]; pagination?: { limit?: number; next_cursor?: string; }; }`\n  Paginated list of agents.\n\n  - `data: { id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }[]`\n  - `pagination?: { limit?: number; next_cursor?: string; }`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst agents = await client.agents.list();\n\nconsole.log(agents);\n```",
+    perLanguage: {
+      http: {
+        example: 'curl https://api.tryprofound.com/v1/agents \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+      python: {
+        method: 'agents.list',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nagents = client.agents.list()\nprint(agents.data)',
+      },
+      typescript: {
+        method: 'client.agents.list',
+        example:
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst agents = await client.agents.list();\n\nconsole.log(agents.data);",
+      },
+    },
+  },
+  {
+    name: 'retrieve',
+    endpoint: '/v1/agents/{agent_id}',
+    httpMethod: 'get',
+    summary: 'Get an agent',
+    description:
+      'Retrieve an agent and its schema details.\n\nAgents can have both a live published version and a draft version with newer\nunpublished changes. Use the `version` parameter to choose which state to return.',
+    stainlessPath: '(resource) agents > (method) retrieve',
+    qualified: 'client.agents.retrieve',
+    params: ['agent_id: string;', "version?: 'published' | 'draft';"],
+    response:
+      "{ id: string; created_at: string; name: string; organization_id: string; schema: { input: object; output: object; }; status: 'draft' | 'published' | 'unknown'; description?: string; }",
+    markdown:
+      "## retrieve\n\n`client.agents.retrieve(agent_id: string, version?: 'published' | 'draft'): { id: string; created_at: string; name: string; organization_id: string; schema: object; status: 'draft' | 'published' | 'unknown'; description?: string; }`\n\n**get** `/v1/agents/{agent_id}`\n\nRetrieve an agent and its schema details.\n\nAgents can have both a live published version and a draft version with newer\nunpublished changes. Use the `version` parameter to choose which state to return.\n\n### Parameters\n\n- `agent_id: string`\n  The ID of the agent to retrieve.\n\n- `version?: 'published' | 'draft'`\n  Version of the agent to retrieve. Use `published` for the live version, or `draft` for the latest unpublished changes for the same agent. Defaults to `published`.\n\n### Returns\n\n- `{ id: string; created_at: string; name: string; organization_id: string; schema: { input: object; output: object; }; status: 'draft' | 'published' | 'unknown'; description?: string; }`\n  Detailed information for an agent.\n\n  - `id: string`\n  - `created_at: string`\n  - `name: string`\n  - `organization_id: string`\n  - `schema: { input: object; output: object; }`\n  - `status: 'draft' | 'published' | 'unknown'`\n  - `description?: string`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst agent = await client.agents.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(agent);\n```",
+    perLanguage: {
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/agents/$AGENT_ID \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+      python: {
+        method: 'agents.retrieve',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nagent = client.agents.retrieve(\n    agent_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(agent.id)',
+      },
+      typescript: {
+        method: 'client.agents.retrieve',
+        example:
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst agent = await client.agents.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(agent.id);",
+      },
+    },
+  },
+  {
+    name: 'start',
+    endpoint: '/v1/agents/{agent_id}/runs',
+    httpMethod: 'post',
+    summary: 'Run an agent',
+    description: 'Start a new run for an agent.',
+    stainlessPath: '(resource) agents.runs > (method) start',
+    qualified: 'client.agents.runs.start',
+    params: ['agent_id: string;', 'inputs?: object;'],
+    response:
+      "{ id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; started_at?: string; }",
+    markdown:
+      "## start\n\n`client.agents.runs.start(agent_id: string, inputs?: object): { id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; started_at?: string; }`\n\n**post** `/v1/agents/{agent_id}/runs`\n\nStart a new run for an agent.\n\n### Parameters\n\n- `agent_id: string`\n  The ID of the agent to run.\n\n- `inputs?: object`\n  Input values for the run. Keys should match the property names defined in `schema.input`.\n\n### Returns\n\n- `{ id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; started_at?: string; }`\n  Run details returned after a run request is accepted.\n\n  - `id: string`\n  - `agent_id: string`\n  - `status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'`\n  - `started_at?: string`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.agents.runs.start('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
+    perLanguage: {
+      http: {
+        example:
+          "curl https://api.tryprofound.com/v1/agents/$AGENT_ID/runs \\\n    -H 'Content-Type: application/json' \\\n    -H \"X-API-Key: $PROFOUND_API_KEY\" \\\n    -d '{}'",
+      },
+      python: {
+        method: 'agents.runs.start',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.agents.runs.start(\n    agent_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response.id)',
+      },
+      typescript: {
+        method: 'client.agents.runs.start',
+        example:
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.agents.runs.start('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response.id);",
+      },
+    },
+  },
+  {
+    name: 'retrieve',
+    endpoint: '/v1/agents/{agent_id}/runs/{run_id}',
+    httpMethod: 'get',
+    summary: 'Get an agent run',
+    description: 'Retrieve the current status and result details for an agent run.',
+    stainlessPath: '(resource) agents.runs > (method) retrieve',
+    qualified: 'client.agents.runs.retrieve',
+    params: ['agent_id: string;', 'run_id: string;'],
+    response:
+      "{ id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; error?: object; finished_at?: string; outputs?: object; started_at?: string; }",
+    markdown:
+      "## retrieve\n\n`client.agents.runs.retrieve(agent_id: string, run_id: string): { id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; error?: object; finished_at?: string; outputs?: object; started_at?: string; }`\n\n**get** `/v1/agents/{agent_id}/runs/{run_id}`\n\nRetrieve the current status and result details for an agent run.\n\n### Parameters\n\n- `agent_id: string`\n  The ID of the agent that owns the run.\n\n- `run_id: string`\n  The ID of the run to retrieve.\n\n### Returns\n\n- `{ id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; error?: object; finished_at?: string; outputs?: object; started_at?: string; }`\n  Status and result details for an agent run.\n\n  - `id: string`\n  - `agent_id: string`\n  - `status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'`\n  - `error?: object`\n  - `finished_at?: string`\n  - `outputs?: object`\n  - `started_at?: string`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst run = await client.agents.runs.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { agent_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(run);\n```",
+    perLanguage: {
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/agents/$AGENT_ID/runs/$RUN_ID \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+      python: {
+        method: 'agents.runs.retrieve',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nrun = client.agents.runs.retrieve(\n    run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    agent_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(run.id)',
+      },
+      typescript: {
+        method: 'client.agents.runs.retrieve',
+        example:
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst run = await client.agents.runs.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  agent_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(run.id);",
+      },
+    },
+  },
 ];
 
 const EMBEDDED_READMES: { language: string; content: string }[] = [
