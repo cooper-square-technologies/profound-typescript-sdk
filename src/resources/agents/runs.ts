@@ -21,7 +21,7 @@ export class Runs extends APIResource {
   /**
    * Start a new run for an agent.
    */
-  start(agentID: string, body: RunStartParams, options?: RequestOptions): APIPromise<RunStartResponse> {
+  run(agentID: string, body: RunRunParams, options?: RequestOptions): APIPromise<RunRunResponse> {
     return this._client.post(path`/v1/agents/${agentID}/runs`, { body, ...options });
   }
 }
@@ -71,7 +71,7 @@ export interface RunRetrieveResponse {
 /**
  * Run details returned after a run request is accepted.
  */
-export interface RunStartResponse {
+export interface RunRunResponse {
   /**
    * Unique ID for the accepted run.
    */
@@ -100,7 +100,7 @@ export interface RunRetrieveParams {
   agent_id: string;
 }
 
-export interface RunStartParams {
+export interface RunRunParams {
   /**
    * Input values for the run. Keys should match the property names defined in
    * `schema.input`.
@@ -111,8 +111,8 @@ export interface RunStartParams {
 export declare namespace Runs {
   export {
     type RunRetrieveResponse as RunRetrieveResponse,
-    type RunStartResponse as RunStartResponse,
+    type RunRunResponse as RunRunResponse,
     type RunRetrieveParams as RunRetrieveParams,
-    type RunStartParams as RunStartParams,
+    type RunRunParams as RunRunParams,
   };
 }

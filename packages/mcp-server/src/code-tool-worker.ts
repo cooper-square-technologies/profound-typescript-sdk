@@ -135,7 +135,7 @@ const fuse = new Fuse(
     'client.agents.list',
     'client.agents.retrieve',
     'client.agents.runs.retrieve',
-    'client.agents.runs.start',
+    'client.agents.runs.run',
   ],
   { threshold: 1, shouldSort: true },
 );
