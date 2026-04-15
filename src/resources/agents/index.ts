@@ -9,8 +9,8 @@ export {
 } from './agents';
 export {
   Runs,
+  type RunCreateResponse,
   type RunRetrieveResponse,
-  type RunRunResponse,
+  type RunCreateParams,
   type RunRetrieveParams,
-  type RunRunParams,
 } from './runs';

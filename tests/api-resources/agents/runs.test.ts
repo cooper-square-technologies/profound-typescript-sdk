@@ -9,6 +9,18 @@ const client = new Profound({
 
 describe('resource runs', () => {
   // Mock server tests are disabled
+  test.skip('create', async () => {
+    const responsePromise = client.agents.runs.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {});
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
   test.skip('retrieve: only required params', async () => {
     const responsePromise = client.agents.runs.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       agent_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -27,17 +39,5 @@ describe('resource runs', () => {
     const response = await client.agents.runs.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       agent_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
-  });
-
-  // Mock server tests are disabled
-  test.skip('run', async () => {
-    const responsePromise = client.agents.runs.run('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {});
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
   });
 });

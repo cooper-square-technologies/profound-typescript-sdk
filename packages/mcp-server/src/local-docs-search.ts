@@ -943,32 +943,32 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
-    name: 'run',
+    name: 'create',
     endpoint: '/v1/agents/{agent_id}/runs',
     httpMethod: 'post',
     summary: 'Run an agent',
     description: 'Start a new run for an agent.',
-    stainlessPath: '(resource) agents.runs > (method) run',
-    qualified: 'client.agents.runs.run',
+    stainlessPath: '(resource) agents.runs > (method) create',
+    qualified: 'client.agents.runs.create',
     params: ['agent_id: string;', 'inputs?: object;'],
     response:
       "{ id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; started_at?: string; }",
     markdown:
-      "## run\n\n`client.agents.runs.run(agent_id: string, inputs?: object): { id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; started_at?: string; }`\n\n**post** `/v1/agents/{agent_id}/runs`\n\nStart a new run for an agent.\n\n### Parameters\n\n- `agent_id: string`\n  The ID of the agent to run.\n\n- `inputs?: object`\n  Input values for the run. Keys should match the property names defined in `schema.input`.\n\n### Returns\n\n- `{ id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; started_at?: string; }`\n  Run details returned after a run request is accepted.\n\n  - `id: string`\n  - `agent_id: string`\n  - `status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'`\n  - `started_at?: string`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.agents.runs.run('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
+      "## create\n\n`client.agents.runs.create(agent_id: string, inputs?: object): { id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; started_at?: string; }`\n\n**post** `/v1/agents/{agent_id}/runs`\n\nStart a new run for an agent.\n\n### Parameters\n\n- `agent_id: string`\n  The ID of the agent to run.\n\n- `inputs?: object`\n  Input values for the run. Keys should match the property names defined in `schema.input`.\n\n### Returns\n\n- `{ id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; started_at?: string; }`\n  Run details returned after a run request is accepted.\n\n  - `id: string`\n  - `agent_id: string`\n  - `status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'`\n  - `started_at?: string`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst run = await client.agents.runs.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(run);\n```",
     perLanguage: {
       http: {
         example:
           "curl https://api.tryprofound.com/v1/agents/$AGENT_ID/runs \\\n    -H 'Content-Type: application/json' \\\n    -H \"X-API-Key: $PROFOUND_API_KEY\" \\\n    -d '{}'",
       },
       python: {
-        method: 'agents.runs.run',
+        method: 'agents.runs.create',
         example:
-          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.agents.runs.run(\n    agent_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response.id)',
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nrun = client.agents.runs.create(\n    agent_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(run.id)',
       },
       typescript: {
-        method: 'client.agents.runs.run',
+        method: 'client.agents.runs.create',
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.agents.runs.run('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response.id);",
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst run = await client.agents.runs.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(run.id);",
       },
     },
   },
