@@ -132,6 +132,10 @@ const fuse = new Fuse(
     'client.logs.raw.logs',
     'client.content.optimization.list',
     'client.content.optimization.retrieve',
+    'client.agents.list',
+    'client.agents.retrieve',
+    'client.agents.runs.retrieve',
+    'client.agents.runs.start',
   ],
   { threshold: 1, shouldSort: true },
 );

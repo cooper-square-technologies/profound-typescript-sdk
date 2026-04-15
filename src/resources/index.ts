@@ -1,6 +1,13 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export * from './shared';
+export {
+  Agents,
+  type AgentRetrieveResponse,
+  type AgentListResponse,
+  type AgentRetrieveParams,
+  type AgentListParams,
+} from './agents/agents';
 export { Content } from './content/content';
 export { Logs } from './logs/logs';
 export {
