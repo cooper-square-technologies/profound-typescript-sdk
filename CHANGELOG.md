@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.41.0 (2026-04-15)
+
+Full Changelog: [v0.40.0...v0.41.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.40.0...v0.41.0)
+
+### Features
+
+* **api:** add agent api methods ([b87c35a](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/b87c35a43b011ac03cd028c730ef7c1c4678abda))
+* **api:** api update ([a9c86ab](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/a9c86abbefabc321aab10bda1e4d143afdb2719f))
+* **api:** change start_run to just agents.runs.run(...) ([6417e91](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/6417e919388078ccf42532e8e8a96a2ff6244196))
+* **api:** switch agents.runs.run to .create ([5d5f651](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/5d5f6517c37ae4386c4edc0d86aef0504ade17fc))
+
 ## 0.40.0 (2026-04-14)
 
 Full Changelog: [v0.39.0...v0.40.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.39.0...v0.40.0)

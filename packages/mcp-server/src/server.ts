@@ -28,7 +28,7 @@ export const newMcpServer = async ({
   new McpServer(
     {
       name: 'profoundai_api',
-      version: '0.40.0',
+      version: '0.41.0',
     },
     {
       instructions: await getInstructions({ stainlessApiKey, customInstructionsPath }),
