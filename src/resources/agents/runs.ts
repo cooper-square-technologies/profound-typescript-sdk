@@ -7,6 +7,13 @@ import { path } from '../../internal/utils/path';
 
 export class Runs extends APIResource {
   /**
+   * Start a new run for an agent.
+   */
+  create(agentID: string, body: RunCreateParams, options?: RequestOptions): APIPromise<RunCreateResponse> {
+    return this._client.post(path`/v1/agents/${agentID}/runs`, { body, ...options });
+  }
+
+  /**
    * Retrieve the current status and result details for an agent run.
    */
   retrieve(
@@ -17,13 +24,31 @@ export class Runs extends APIResource {
     const { agent_id } = params;
     return this._client.get(path`/v1/agents/${agent_id}/runs/${runID}`, options);
   }
+}
+
+/**
+ * Run details returned after a run request is accepted.
+ */
+export interface RunCreateResponse {
+  /**
+   * Unique ID for the accepted run.
+   */
+  id: string;
 
   /**
-   * Start a new run for an agent.
+   * Unique ID of the agent for this run.
    */
-  run(agentID: string, body: RunRunParams, options?: RequestOptions): APIPromise<RunRunResponse> {
-    return this._client.post(path`/v1/agents/${agentID}/runs`, { body, ...options });
-  }
+  agent_id: string;
+
+  /**
+   * Initial status of the accepted run.
+   */
+  status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown';
+
+  /**
+   * When the run started, if execution began immediately.
+   */
+  started_at?: string | null;
 }
 
 /**
@@ -68,29 +93,12 @@ export interface RunRetrieveResponse {
   started_at?: string | null;
 }
 
-/**
- * Run details returned after a run request is accepted.
- */
-export interface RunRunResponse {
+export interface RunCreateParams {
   /**
-   * Unique ID for the accepted run.
+   * Input values for the run. Keys should match the property names defined in
+   * `schema.input`.
    */
-  id: string;
-
-  /**
-   * Unique ID of the agent for this run.
-   */
-  agent_id: string;
-
-  /**
-   * Initial status of the accepted run.
-   */
-  status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown';
-
-  /**
-   * When the run started, if execution began immediately.
-   */
-  started_at?: string | null;
+  inputs?: { [key: string]: unknown };
 }
 
 export interface RunRetrieveParams {
@@ -100,19 +108,11 @@ export interface RunRetrieveParams {
   agent_id: string;
 }
 
-export interface RunRunParams {
-  /**
-   * Input values for the run. Keys should match the property names defined in
-   * `schema.input`.
-   */
-  inputs?: { [key: string]: unknown };
-}
-
 export declare namespace Runs {
   export {
+    type RunCreateResponse as RunCreateResponse,
     type RunRetrieveResponse as RunRetrieveResponse,
-    type RunRunResponse as RunRunResponse,
+    type RunCreateParams as RunCreateParams,
     type RunRetrieveParams as RunRetrieveParams,
-    type RunRunParams as RunRunParams,
   };
 }

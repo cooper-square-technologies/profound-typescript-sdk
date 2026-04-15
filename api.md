@@ -135,10 +135,10 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/agents/runs.ts">RunCreateResponse</a></code>
 - <code><a href="./src/resources/agents/runs.ts">RunRetrieveResponse</a></code>
-- <code><a href="./src/resources/agents/runs.ts">RunRunResponse</a></code>
 
 Methods:
 
+- <code title="post /v1/agents/{agent_id}/runs">client.agents.runs.<a href="./src/resources/agents/runs.ts">create</a>(agentID, { ...params }) -> RunCreateResponse</code>
 - <code title="get /v1/agents/{agent_id}/runs/{run_id}">client.agents.runs.<a href="./src/resources/agents/runs.ts">retrieve</a>(runID, { ...params }) -> RunRetrieveResponse</code>
-- <code title="post /v1/agents/{agent_id}/runs">client.agents.runs.<a href="./src/resources/agents/runs.ts">run</a>(agentID, { ...params }) -> RunRunResponse</code>

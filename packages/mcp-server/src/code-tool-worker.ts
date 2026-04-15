@@ -134,8 +134,8 @@ const fuse = new Fuse(
     'client.content.optimization.retrieve',
     'client.agents.list',
     'client.agents.retrieve',
+    'client.agents.runs.create',
     'client.agents.runs.retrieve',
-    'client.agents.runs.run',
   ],
   { threshold: 1, shouldSort: true },
 );
