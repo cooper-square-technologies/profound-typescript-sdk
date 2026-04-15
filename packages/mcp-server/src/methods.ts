@@ -154,6 +154,30 @@ export const sdkMethods: SdkMethod[] = [
     httpMethod: 'get',
     httpPath: '/v1/content/{asset_id}/optimization',
   },
+  {
+    clientCallName: 'client.agents.retrieve',
+    fullyQualifiedName: 'agents.retrieve',
+    httpMethod: 'get',
+    httpPath: '/v1/agents/{agent_id}',
+  },
+  {
+    clientCallName: 'client.agents.list',
+    fullyQualifiedName: 'agents.list',
+    httpMethod: 'get',
+    httpPath: '/v1/agents',
+  },
+  {
+    clientCallName: 'client.agents.runs.create',
+    fullyQualifiedName: 'agents.runs.create',
+    httpMethod: 'post',
+    httpPath: '/v1/agents/{agent_id}/runs',
+  },
+  {
+    clientCallName: 'client.agents.runs.retrieve',
+    fullyQualifiedName: 'agents.runs.retrieve',
+    httpMethod: 'get',
+    httpPath: '/v1/agents/{agent_id}/runs/{run_id}',
+  },
 ];
 
 function allowedMethodsForCodeTool(options: McpOptions | undefined): SdkMethod[] | undefined {
