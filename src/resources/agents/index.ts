@@ -10,7 +10,7 @@ export {
 export {
   Runs,
   type RunRetrieveResponse,
-  type RunStartResponse,
+  type RunRunResponse,
   type RunRetrieveParams,
-  type RunStartParams,
+  type RunRunParams,
 } from './runs';

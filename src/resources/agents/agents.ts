@@ -2,7 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import * as RunsAPI from './runs';
-import { RunRetrieveParams, RunRetrieveResponse, RunStartParams, RunStartResponse, Runs } from './runs';
+import { RunRetrieveParams, RunRetrieveResponse, RunRunParams, RunRunResponse, Runs } from './runs';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -201,8 +201,8 @@ export declare namespace Agents {
   export {
     Runs as Runs,
     type RunRetrieveResponse as RunRetrieveResponse,
-    type RunStartResponse as RunStartResponse,
+    type RunRunResponse as RunRunResponse,
     type RunRetrieveParams as RunRetrieveParams,
-    type RunStartParams as RunStartParams,
+    type RunRunParams as RunRunParams,
   };
 }
