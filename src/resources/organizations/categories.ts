@@ -123,6 +123,8 @@ export namespace CategoryPromptsResponse {
      */
     topic: OrganizationsAPI.NamedResource;
 
+    updated_at: string;
+
     personas?: Array<OrganizationsAPI.NamedResource>;
 
     tags?: Array<OrganizationsAPI.NamedResource>;
