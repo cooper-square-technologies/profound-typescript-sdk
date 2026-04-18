@@ -834,6 +834,7 @@ export declare namespace Profound {
   export type PromptFilter = API.PromptFilter;
   export type PromptTypeFilter = API.PromptTypeFilter;
   export type RegionIDFilter = API.RegionIDFilter;
+  export type RegionNameFilter = API.RegionNameFilter;
   export type TagIDFilter = API.TagIDFilter;
   export type TopicIDFilter = API.TopicIDFilter;
 }
