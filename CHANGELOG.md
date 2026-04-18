@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.42.0 (2026-04-18)
+
+Full Changelog: [v0.41.0...v0.42.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.41.0...v0.42.0)
+
+### Features
+
+* **api:** api update ([d7cd8ff](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/d7cd8ff4b7aa84c854c02c0a7e7b6f01bad4c35f))
+* **filter:** add region name ([748cd32](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/748cd327d74c8d5fb16ba23a46063f374edde85c))
+
 ## 0.41.0 (2026-04-15)
 
 Full Changelog: [v0.40.0...v0.41.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.40.0...v0.41.0)

@@ -269,6 +269,26 @@ export interface RegionIDFilter {
 }
 
 /**
+ * Filter by region name.
+ */
+export interface RegionNameFilter {
+  field: 'region_name';
+
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
+
+  value: string | Array<string>;
+}
+
+/**
  * Filter by tag (prompt group) UUID.
  */
 export interface TagIDFilter {

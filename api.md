@@ -12,6 +12,7 @@ Types:
 - <code><a href="./src/resources/shared.ts">PromptFilter</a></code>
 - <code><a href="./src/resources/shared.ts">PromptTypeFilter</a></code>
 - <code><a href="./src/resources/shared.ts">RegionIDFilter</a></code>
+- <code><a href="./src/resources/shared.ts">RegionNameFilter</a></code>
 - <code><a href="./src/resources/shared.ts">TagIDFilter</a></code>
 - <code><a href="./src/resources/shared.ts">TopicIDFilter</a></code>
 
