@@ -8,10 +8,13 @@ import { path } from '../../internal/utils/path';
 
 export class Categories extends APIResource {
   /**
-   * Get the organization categories.
+   * Get the organization categories, one row per (category, organization) pair.
    */
-  list(options?: RequestOptions): APIPromise<CategoryListResponse> {
-    return this._client.get('/v1/org/categories', options);
+  list(
+    query: CategoryListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CategoryListResponse> {
+    return this._client.get('/v1/org/categories', { query, ...options });
   }
 
   /**
@@ -58,7 +61,28 @@ export class Categories extends APIResource {
   }
 }
 
-export type CategoryListResponse = Array<OrganizationsAPI.NamedResource>;
+export type CategoryListResponse = Array<CategoryListResponse.CategoryListResponseItem>;
+
+export namespace CategoryListResponse {
+  /**
+   * A category annotated with the organization that owns it.
+   */
+  export interface CategoryListResponseItem {
+    id: string;
+
+    name: string;
+
+    organization: CategoryListResponseItem.Organization;
+  }
+
+  export namespace CategoryListResponseItem {
+    export interface Organization {
+      id: string;
+
+      name: string | null;
+    }
+  }
+}
 
 export type CategoryAssetsResponse = Array<CategoryAssetsResponse.CategoryAssetsResponseItem>;
 
@@ -153,6 +177,16 @@ export namespace CategoryTopicsResponse {
   }
 }
 
+export interface CategoryListParams {
+  /**
+   * Restrict results to one or more organizations the caller belongs to. Repeat the
+   * parameter to target multiple orgs (e.g.
+   * `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from
+   * every organization the caller has access to.
+   */
+  organization_ids?: Array<string> | null;
+}
+
 export interface CategoryPromptsParams {
   /**
    * Pagination cursor from a previous response.
@@ -213,6 +247,7 @@ export declare namespace Categories {
     type CategoryPromptsResponse as CategoryPromptsResponse,
     type CategoryTagsResponse as CategoryTagsResponse,
     type CategoryTopicsResponse as CategoryTopicsResponse,
+    type CategoryListParams as CategoryListParams,
     type CategoryPromptsParams as CategoryPromptsParams,
   };
 }

@@ -8,6 +8,7 @@ export {
   type CategoryPromptsResponse,
   type CategoryTagsResponse,
   type CategoryTopicsResponse,
+  type CategoryListParams,
   type CategoryPromptsParams,
 } from './categories';
 export {
@@ -22,4 +23,8 @@ export {
   type OrganizationListAssetsResponse,
   type OrganizationModelsResponse,
   type OrganizationRegionsResponse,
+  type OrganizationDomainsParams,
+  type OrganizationGetPersonasParams,
+  type OrganizationListAssetsParams,
+  type OrganizationRegionsParams,
 } from './organizations';
