@@ -22,6 +22,10 @@ export {
   type OrganizationListAssetsResponse,
   type OrganizationModelsResponse,
   type OrganizationRegionsResponse,
+  type OrganizationDomainsParams,
+  type OrganizationGetPersonasParams,
+  type OrganizationListAssetsParams,
+  type OrganizationRegionsParams,
 } from './organizations/organizations';
 export { Prompts, type PromptAnswersResponse, type PromptAnswersParams } from './prompts';
 export {

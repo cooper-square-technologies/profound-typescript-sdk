@@ -47,10 +47,14 @@ import { Content } from './resources/content/content';
 import { Logs } from './resources/logs/logs';
 import {
   NamedResource,
+  OrganizationDomainsParams,
   OrganizationDomainsResponse,
+  OrganizationGetPersonasParams,
   OrganizationGetPersonasResponse,
+  OrganizationListAssetsParams,
   OrganizationListAssetsResponse,
   OrganizationModelsResponse,
+  OrganizationRegionsParams,
   OrganizationRegionsResponse,
   Organizations,
   PersonaProfile,
@@ -785,6 +789,10 @@ export declare namespace Profound {
     type OrganizationListAssetsResponse as OrganizationListAssetsResponse,
     type OrganizationModelsResponse as OrganizationModelsResponse,
     type OrganizationRegionsResponse as OrganizationRegionsResponse,
+    type OrganizationDomainsParams as OrganizationDomainsParams,
+    type OrganizationGetPersonasParams as OrganizationGetPersonasParams,
+    type OrganizationListAssetsParams as OrganizationListAssetsParams,
+    type OrganizationRegionsParams as OrganizationRegionsParams,
   };
 
   export {
