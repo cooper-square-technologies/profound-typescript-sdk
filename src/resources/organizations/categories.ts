@@ -224,7 +224,7 @@ export interface CategoryPromptsParams {
   region_id?: Array<string>;
 
   /**
-   * Filter by prompt status.
+   * Filter by prompt status. Defaults to `active` only.
    */
   status?: Array<'active' | 'disabled'>;
 
