@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.43.0 (2026-04-23)
+
+Full Changelog: [v0.42.0...v0.43.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.42.0...v0.43.0)
+
+### Features
+
+* **api:** add organizations and prompts methods ([cbabe29](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/cbabe297fbe0d105cae58137178f1eb5d226dd79))
+* **api:** api update ([6b413d6](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/6b413d60361a0a0a097d6486a707ac8fba013826))
+* **api:** api update ([b112967](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/b1129678a61b40b8feea0734c9af5d4ac13863c8))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([ed34885](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/ed348853834648b308c308170c0b2fbd328c162e))
+
 ## 0.42.0 (2026-04-18)
 
 Full Changelog: [v0.41.0...v0.42.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.41.0...v0.42.0)

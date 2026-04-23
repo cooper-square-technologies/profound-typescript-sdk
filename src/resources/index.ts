@@ -12,16 +12,23 @@ export { Content } from './content/content';
 export { Logs } from './logs/logs';
 export {
   Organizations,
+  type Category,
   type NamedResource,
+  type Organization,
   type PersonaProfile,
   type PersonaProfileBehavior,
   type PersonaProfileDemographics,
   type PersonaProfileEmployment,
+  type OrganizationListResponse,
   type OrganizationDomainsResponse,
   type OrganizationGetPersonasResponse,
   type OrganizationListAssetsResponse,
   type OrganizationModelsResponse,
   type OrganizationRegionsResponse,
+  type OrganizationDomainsParams,
+  type OrganizationGetPersonasParams,
+  type OrganizationListAssetsParams,
+  type OrganizationRegionsParams,
 } from './organizations/organizations';
 export { Prompts, type PromptAnswersResponse, type PromptAnswersParams } from './prompts';
 export {
