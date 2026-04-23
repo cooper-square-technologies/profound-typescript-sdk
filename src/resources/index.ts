@@ -12,11 +12,14 @@ export { Content } from './content/content';
 export { Logs } from './logs/logs';
 export {
   Organizations,
+  type Category,
   type NamedResource,
+  type Organization,
   type PersonaProfile,
   type PersonaProfileBehavior,
   type PersonaProfileDemographics,
   type PersonaProfileEmployment,
+  type OrganizationListResponse,
   type OrganizationDomainsResponse,
   type OrganizationGetPersonasResponse,
   type OrganizationListAssetsResponse,

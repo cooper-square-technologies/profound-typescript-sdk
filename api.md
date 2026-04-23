@@ -20,11 +20,14 @@ Types:
 
 Types:
 
+- <code><a href="./src/resources/organizations/organizations.ts">Category</a></code>
 - <code><a href="./src/resources/organizations/organizations.ts">NamedResource</a></code>
+- <code><a href="./src/resources/organizations/organizations.ts">Organization</a></code>
 - <code><a href="./src/resources/organizations/organizations.ts">PersonaProfile</a></code>
 - <code><a href="./src/resources/organizations/organizations.ts">PersonaProfileBehavior</a></code>
 - <code><a href="./src/resources/organizations/organizations.ts">PersonaProfileDemographics</a></code>
 - <code><a href="./src/resources/organizations/organizations.ts">PersonaProfileEmployment</a></code>
+- <code><a href="./src/resources/organizations/organizations.ts">OrganizationListResponse</a></code>
 - <code><a href="./src/resources/organizations/organizations.ts">OrganizationDomainsResponse</a></code>
 - <code><a href="./src/resources/organizations/organizations.ts">OrganizationGetPersonasResponse</a></code>
 - <code><a href="./src/resources/organizations/organizations.ts">OrganizationListAssetsResponse</a></code>
@@ -33,6 +36,7 @@ Types:
 
 Methods:
 
+- <code title="get /v1/org">client.organizations.<a href="./src/resources/organizations/organizations.ts">list</a>() -> OrganizationListResponse</code>
 - <code title="get /v1/org/domains">client.organizations.<a href="./src/resources/organizations/organizations.ts">domains</a>({ ...params }) -> OrganizationDomainsResponse</code>
 - <code title="get /v1/org/personas">client.organizations.<a href="./src/resources/organizations/organizations.ts">getPersonas</a>({ ...params }) -> OrganizationGetPersonasResponse</code>
 - <code title="get /v1/org/assets">client.organizations.<a href="./src/resources/organizations/organizations.ts">listAssets</a>({ ...params }) -> OrganizationListAssetsResponse</code>
@@ -43,21 +47,30 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/organizations/categories.ts">FieldDiff</a></code>
+- <code><a href="./src/resources/organizations/categories.ts">IDOrName</a></code>
+- <code><a href="./src/resources/organizations/categories.ts">NamedResourceDiffList</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryListResponse</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryAssetsResponse</a></code>
+- <code><a href="./src/resources/organizations/categories.ts">CategoryCreatePromptsResponse</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryGetCategoryPersonasResponse</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryPromptsResponse</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryTagsResponse</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryTopicsResponse</a></code>
+- <code><a href="./src/resources/organizations/categories.ts">CategoryUpdatePromptStatusResponse</a></code>
+- <code><a href="./src/resources/organizations/categories.ts">CategoryUpdatePromptsResponse</a></code>
 
 Methods:
 
 - <code title="get /v1/org/categories">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">list</a>({ ...params }) -> CategoryListResponse</code>
 - <code title="get /v1/org/categories/{category_id}/assets">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">assets</a>(categoryID) -> CategoryAssetsResponse</code>
+- <code title="post /v1/org/categories/{category_id}/prompts">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">createPrompts</a>(categoryID, { ...params }) -> CategoryCreatePromptsResponse</code>
 - <code title="get /v1/org/categories/{category_id}/personas">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">getCategoryPersonas</a>(categoryID) -> CategoryGetCategoryPersonasResponse</code>
 - <code title="get /v1/org/categories/{category_id}/prompts">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">prompts</a>(categoryID, { ...params }) -> CategoryPromptsResponse</code>
 - <code title="get /v1/org/categories/{category_id}/tags">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">tags</a>(categoryID) -> CategoryTagsResponse</code>
 - <code title="get /v1/org/categories/{category_id}/topics">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">topics</a>(categoryID) -> CategoryTopicsResponse</code>
+- <code title="patch /v1/org/categories/{category_id}/prompts/status">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">updatePromptStatus</a>(categoryID, { ...params }) -> CategoryUpdatePromptStatusResponse</code>
+- <code title="patch /v1/org/categories/{category_id}/prompts">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">updatePrompts</a>(categoryID, { ...params }) -> CategoryUpdatePromptsResponse</code>
 
 # Prompts
 

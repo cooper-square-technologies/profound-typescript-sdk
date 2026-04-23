@@ -6,6 +6,8 @@ import * as CategoriesAPI from './categories';
 import {
   Categories,
   CategoryAssetsResponse,
+  CategoryCreatePromptsParams,
+  CategoryCreatePromptsResponse,
   CategoryGetCategoryPersonasResponse,
   CategoryListParams,
   CategoryListResponse,
@@ -13,12 +15,28 @@ import {
   CategoryPromptsResponse,
   CategoryTagsResponse,
   CategoryTopicsResponse,
+  CategoryUpdatePromptStatusParams,
+  CategoryUpdatePromptStatusResponse,
+  CategoryUpdatePromptsParams,
+  CategoryUpdatePromptsResponse,
+  FieldDiff,
+  IDOrName,
+  NamedResourceDiffList,
 } from './categories';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 
 export class Organizations extends APIResource {
   categories: CategoriesAPI.Categories = new CategoriesAPI.Categories(this._client);
+
+  /**
+   * Return every organization the caller's API key grants access to. Use this to
+   * discover organization IDs before calling endpoints that accept an
+   * `organization_id` filter.
+   */
+  list(options?: RequestOptions): APIPromise<OrganizationListResponse> {
+    return this._client.get('/v1/org', options);
+  }
 
   /**
    * Get the organization domains.
@@ -75,6 +93,12 @@ export class Organizations extends APIResource {
   }
 }
 
+export interface Category {
+  id: string;
+
+  name: string;
+}
+
 /**
  * Generic id+name reference used across domain boundaries.
  */
@@ -82,6 +106,12 @@ export interface NamedResource {
   id: string;
 
   name: string;
+}
+
+export interface Organization {
+  id: string;
+
+  name: string | null;
 }
 
 export interface PersonaProfile {
@@ -112,6 +142,8 @@ export interface PersonaProfileEmployment {
   roleSeniority?: Array<string>;
 }
 
+export type OrganizationListResponse = Array<Organization>;
+
 export type OrganizationDomainsResponse = Array<OrganizationDomainsResponse.OrganizationDomainsResponseItem>;
 
 export namespace OrganizationDomainsResponse {
@@ -125,15 +157,7 @@ export namespace OrganizationDomainsResponse {
 
     name: string;
 
-    organization: OrganizationDomainsResponseItem.Organization;
-  }
-
-  export namespace OrganizationDomainsResponseItem {
-    export interface Organization {
-      id: string;
-
-      name: string | null;
-    }
+    organization: OrganizationsAPI.Organization;
   }
 }
 
@@ -145,27 +169,13 @@ export namespace OrganizationGetPersonasResponse {
   export interface Data {
     id: string;
 
-    category: Data.Category;
+    category: OrganizationsAPI.Category;
 
     name: string;
 
-    organization: Data.Organization;
+    organization: OrganizationsAPI.Organization;
 
     persona: OrganizationsAPI.PersonaProfile;
-  }
-
-  export namespace Data {
-    export interface Category {
-      id: string;
-
-      name: string;
-    }
-
-    export interface Organization {
-      id: string;
-
-      name: string | null;
-    }
   }
 }
 
@@ -177,7 +187,7 @@ export namespace OrganizationListAssetsResponse {
   export interface Data {
     id: string;
 
-    category: Data.Category;
+    category: OrganizationsAPI.Category;
 
     created_at: string;
 
@@ -187,25 +197,11 @@ export namespace OrganizationListAssetsResponse {
 
     name: string;
 
-    organization: Data.Organization;
+    organization: OrganizationsAPI.Organization;
 
     website: string;
 
     alternate_domains?: Array<string> | null;
-  }
-
-  export namespace Data {
-    export interface Category {
-      id: string;
-
-      name: string;
-    }
-
-    export interface Organization {
-      id: string;
-
-      name: string | null;
-    }
   }
 }
 
@@ -257,11 +253,14 @@ Organizations.Categories = Categories;
 
 export declare namespace Organizations {
   export {
+    type Category as Category,
     type NamedResource as NamedResource,
+    type Organization as Organization,
     type PersonaProfile as PersonaProfile,
     type PersonaProfileBehavior as PersonaProfileBehavior,
     type PersonaProfileDemographics as PersonaProfileDemographics,
     type PersonaProfileEmployment as PersonaProfileEmployment,
+    type OrganizationListResponse as OrganizationListResponse,
     type OrganizationDomainsResponse as OrganizationDomainsResponse,
     type OrganizationGetPersonasResponse as OrganizationGetPersonasResponse,
     type OrganizationListAssetsResponse as OrganizationListAssetsResponse,
@@ -275,13 +274,22 @@ export declare namespace Organizations {
 
   export {
     Categories as Categories,
+    type FieldDiff as FieldDiff,
+    type IDOrName as IDOrName,
+    type NamedResourceDiffList as NamedResourceDiffList,
     type CategoryListResponse as CategoryListResponse,
     type CategoryAssetsResponse as CategoryAssetsResponse,
+    type CategoryCreatePromptsResponse as CategoryCreatePromptsResponse,
     type CategoryGetCategoryPersonasResponse as CategoryGetCategoryPersonasResponse,
     type CategoryPromptsResponse as CategoryPromptsResponse,
     type CategoryTagsResponse as CategoryTagsResponse,
     type CategoryTopicsResponse as CategoryTopicsResponse,
+    type CategoryUpdatePromptStatusResponse as CategoryUpdatePromptStatusResponse,
+    type CategoryUpdatePromptsResponse as CategoryUpdatePromptsResponse,
     type CategoryListParams as CategoryListParams,
+    type CategoryCreatePromptsParams as CategoryCreatePromptsParams,
     type CategoryPromptsParams as CategoryPromptsParams,
+    type CategoryUpdatePromptStatusParams as CategoryUpdatePromptStatusParams,
+    type CategoryUpdatePromptsParams as CategoryUpdatePromptsParams,
   };
 }
