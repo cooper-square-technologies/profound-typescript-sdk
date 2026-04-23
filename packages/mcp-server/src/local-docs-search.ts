@@ -117,7 +117,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     response:
       '{ id: string; created_at: string; name: string; organization: { id: string; name: string; }; }[]',
     markdown:
-      "## domains\n\n`client.organizations.domains(organization_ids?: string[]): { id: string; created_at: string; name: string; organization: object; }[]`\n\n**get** `/v1/org/domains`\n\nGet the organization domains.\n\n### Parameters\n\n- `organization_ids?: string[]`\n  Restrict results to one or more organizations the caller belongs to. Repeat the parameter to target multiple orgs (e.g. `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from every organization the caller has access to.\n\n### Returns\n\n- `{ id: string; created_at: string; name: string; organization: { id: string; name: string; }; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.domains();\n\nconsole.log(response);\n```",
+      "## domains\n\n`client.organizations.domains(organization_ids?: string[]): { id: string; created_at: string; name: string; organization: organization; }[]`\n\n**get** `/v1/org/domains`\n\nGet the organization domains.\n\n### Parameters\n\n- `organization_ids?: string[]`\n  Restrict results to one or more organizations the caller belongs to. Repeat the parameter to target multiple orgs (e.g. `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from every organization the caller has access to.\n\n### Returns\n\n- `{ id: string; created_at: string; name: string; organization: { id: string; name: string; }; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.domains();\n\nconsole.log(response);\n```",
     perLanguage: {
       http: {
         example: 'curl https://api.tryprofound.com/v1/org/domains \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
@@ -145,9 +145,9 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     qualified: 'client.organizations.listAssets',
     params: ['organization_ids?: string[];'],
     response:
-      '{ data: { id: string; category: { id: string; name: string; }; created_at: string; is_owned: boolean; logo_url: string; name: string; organization: { id: string; name: string; }; website: string; alternate_domains?: string[]; }[]; }',
+      '{ data: { id: string; category: object; created_at: string; is_owned: boolean; logo_url: string; name: string; organization: object; website: string; alternate_domains?: string[]; }[]; }',
     markdown:
-      "## list_assets\n\n`client.organizations.listAssets(organization_ids?: string[]): { data: object[]; }`\n\n**get** `/v1/org/assets`\n\nGet the organization assets, one row per (asset, organization) pair.\n\nAn asset's category can belong to multiple organizations; one asset row is\nemitted per owning org so no association is silently dropped.\n\n### Parameters\n\n- `organization_ids?: string[]`\n  Restrict results to one or more organizations the caller belongs to. Repeat the parameter to target multiple orgs (e.g. `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from every organization the caller has access to.\n\n### Returns\n\n- `{ data: { id: string; category: { id: string; name: string; }; created_at: string; is_owned: boolean; logo_url: string; name: string; organization: { id: string; name: string; }; website: string; alternate_domains?: string[]; }[]; }`\n\n  - `data: { id: string; category: { id: string; name: string; }; created_at: string; is_owned: boolean; logo_url: string; name: string; organization: { id: string; name: string; }; website: string; alternate_domains?: string[]; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.listAssets();\n\nconsole.log(response);\n```",
+      "## list_assets\n\n`client.organizations.listAssets(organization_ids?: string[]): { data: object[]; }`\n\n**get** `/v1/org/assets`\n\nGet the organization assets, one row per (asset, organization) pair.\n\nAn asset's category can belong to multiple organizations; one asset row is\nemitted per owning org so no association is silently dropped.\n\n### Parameters\n\n- `organization_ids?: string[]`\n  Restrict results to one or more organizations the caller belongs to. Repeat the parameter to target multiple orgs (e.g. `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from every organization the caller has access to.\n\n### Returns\n\n- `{ data: { id: string; category: object; created_at: string; is_owned: boolean; logo_url: string; name: string; organization: object; website: string; alternate_domains?: string[]; }[]; }`\n\n  - `data: { id: string; category: { id: string; name: string; }; created_at: string; is_owned: boolean; logo_url: string; name: string; organization: { id: string; name: string; }; website: string; alternate_domains?: string[]; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.listAssets();\n\nconsole.log(response);\n```",
     perLanguage: {
       http: {
         example: 'curl https://api.tryprofound.com/v1/org/assets \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
@@ -175,9 +175,9 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     qualified: 'client.organizations.getPersonas',
     params: ['organization_ids?: string[];'],
     response:
-      '{ data: { id: string; category: { id: string; name: string; }; name: string; organization: { id: string; name: string; }; persona: object; }[]; }',
+      '{ data: { id: string; category: object; name: string; organization: object; persona: object; }[]; }',
     markdown:
-      "## get_personas\n\n`client.organizations.getPersonas(organization_ids?: string[]): { data: object[]; }`\n\n**get** `/v1/org/personas`\n\nGet the organization personas, one row per (persona, organization) pair.\n\nSame (item, org) fan-out as ``get_assets``: a persona's category can be\nowned by multiple orgs, and each owning org gets its own row so no\nassociation is silently dropped.\n\n### Parameters\n\n- `organization_ids?: string[]`\n  Restrict results to one or more organizations the caller belongs to. Repeat the parameter to target multiple orgs (e.g. `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from every organization the caller has access to.\n\n### Returns\n\n- `{ data: { id: string; category: { id: string; name: string; }; name: string; organization: { id: string; name: string; }; persona: object; }[]; }`\n\n  - `data: { id: string; category: { id: string; name: string; }; name: string; organization: { id: string; name: string; }; persona: { behavior: object; demographics: object; employment: object; }; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.getPersonas();\n\nconsole.log(response);\n```",
+      "## get_personas\n\n`client.organizations.getPersonas(organization_ids?: string[]): { data: object[]; }`\n\n**get** `/v1/org/personas`\n\nGet the organization personas, one row per (persona, organization) pair.\n\nSame (item, org) fan-out as ``get_assets``: a persona's category can be\nowned by multiple orgs, and each owning org gets its own row so no\nassociation is silently dropped.\n\n### Parameters\n\n- `organization_ids?: string[]`\n  Restrict results to one or more organizations the caller belongs to. Repeat the parameter to target multiple orgs (e.g. `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from every organization the caller has access to.\n\n### Returns\n\n- `{ data: { id: string; category: object; name: string; organization: object; persona: object; }[]; }`\n\n  - `data: { id: string; category: { id: string; name: string; }; name: string; organization: { id: string; name: string; }; persona: { behavior: object; demographics: object; employment: object; }; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.getPersonas();\n\nconsole.log(response);\n```",
     perLanguage: {
       http: {
         example: 'curl https://api.tryprofound.com/v1/org/personas \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
@@ -196,6 +196,34 @@ const EMBEDDED_METHODS: MethodEntry[] = [
   },
   {
     name: 'list',
+    endpoint: '/v1/org',
+    httpMethod: 'get',
+    summary: 'List organizations',
+    description:
+      "Return every organization the caller's API key grants access to. Use this to discover organization IDs before calling endpoints that accept an `organization_id` filter.",
+    stainlessPath: '(resource) organizations > (method) list',
+    qualified: 'client.organizations.list',
+    response: '{ id: string; name: string; }[]',
+    markdown:
+      "## list\n\n`client.organizations.list(): object[]`\n\n**get** `/v1/org`\n\nReturn every organization the caller's API key grants access to. Use this to discover organization IDs before calling endpoints that accept an `organization_id` filter.\n\n### Returns\n\n- `{ id: string; name: string; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst organizations = await client.organizations.list();\n\nconsole.log(organizations);\n```",
+    perLanguage: {
+      http: {
+        example: 'curl https://api.tryprofound.com/v1/org \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+      python: {
+        method: 'organizations.list',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\norganizations = client.organizations.list()\nprint(organizations)',
+      },
+      typescript: {
+        method: 'client.organizations.list',
+        example:
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst organizations = await client.organizations.list();\n\nconsole.log(organizations);",
+      },
+    },
+  },
+  {
+    name: 'list',
     endpoint: '/v1/org/categories',
     httpMethod: 'get',
     summary: 'Get Categories',
@@ -205,7 +233,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     params: ['organization_ids?: string[];'],
     response: '{ id: string; name: string; organization: { id: string; name: string; }; }[]',
     markdown:
-      "## list\n\n`client.organizations.categories.list(organization_ids?: string[]): { id: string; name: string; organization: object; }[]`\n\n**get** `/v1/org/categories`\n\nGet the organization categories, one row per (category, organization) pair.\n\n### Parameters\n\n- `organization_ids?: string[]`\n  Restrict results to one or more organizations the caller belongs to. Repeat the parameter to target multiple orgs (e.g. `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from every organization the caller has access to.\n\n### Returns\n\n- `{ id: string; name: string; organization: { id: string; name: string; }; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst categories = await client.organizations.categories.list();\n\nconsole.log(categories);\n```",
+      "## list\n\n`client.organizations.categories.list(organization_ids?: string[]): { id: string; name: string; organization: organization; }[]`\n\n**get** `/v1/org/categories`\n\nGet the organization categories, one row per (category, organization) pair.\n\n### Parameters\n\n- `organization_ids?: string[]`\n  Restrict results to one or more organizations the caller belongs to. Repeat the parameter to target multiple orgs (e.g. `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from every organization the caller has access to.\n\n### Returns\n\n- `{ id: string; name: string; organization: { id: string; name: string; }; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst categories = await client.organizations.categories.list();\n\nconsole.log(categories);\n```",
     perLanguage: {
       http: {
         example:
@@ -380,6 +408,111 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.organizations.categories.getCategoryPersonas',
         example:
           "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.categories.getCategoryPersonas(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n);\n\nconsole.log(response.data);",
+      },
+    },
+  },
+  {
+    name: 'create_prompts',
+    endpoint: '/v1/org/categories/{category_id}/prompts',
+    httpMethod: 'post',
+    summary: 'Create prompts',
+    description:
+      'Create one or more prompts in a category. Topics and tags are auto-created if referenced by name and not yet existing. Use dry_run to preview without persisting.',
+    stainlessPath: '(resource) organizations.categories > (method) create_prompts',
+    qualified: 'client.organizations.categories.createPrompts',
+    params: [
+      'category_id: string;',
+      'prompts: { language: string; platforms: { id?: string; name?: string; }[]; prompt: string; regions: { id?: string; name?: string; }[]; topic: { id?: string; name?: string; }; asset?: { id?: string; name?: string; }; personas?: { id?: string; name?: string; }[]; prompt_type?: string; tags?: { id?: string; name?: string; }[]; }[];',
+      'dry_run?: boolean;',
+    ],
+    response:
+      '{ dry_run: boolean; created?: number; prompts?: { id: string; language: string; prompt: string; prompt_type: string; topic: object; asset?: object; personas?: object[]; platforms?: object[]; regions?: object[]; tags?: object[]; }[]; tags_created?: number; topics_created?: number; }',
+    markdown:
+      "## create_prompts\n\n`client.organizations.categories.createPrompts(category_id: string, prompts: { language: string; platforms: object[]; prompt: string; regions: object[]; topic: object; asset?: object; personas?: object[]; prompt_type?: string; tags?: object[]; }[], dry_run?: boolean): { dry_run: boolean; created?: number; prompts?: object[]; tags_created?: number; topics_created?: number; }`\n\n**post** `/v1/org/categories/{category_id}/prompts`\n\nCreate one or more prompts in a category. Topics and tags are auto-created if referenced by name and not yet existing. Use dry_run to preview without persisting.\n\n### Parameters\n\n- `category_id: string`\n\n- `prompts: { language: string; platforms: { id?: string; name?: string; }[]; prompt: string; regions: { id?: string; name?: string; }[]; topic: { id?: string; name?: string; }; asset?: { id?: string; name?: string; }; personas?: { id?: string; name?: string; }[]; prompt_type?: string; tags?: { id?: string; name?: string; }[]; }[]`\n  List of prompts to create.\n\n- `dry_run?: boolean`\n  When true, validate and preview changes without persisting them.\n\n### Returns\n\n- `{ dry_run: boolean; created?: number; prompts?: { id: string; language: string; prompt: string; prompt_type: string; topic: object; asset?: object; personas?: object[]; platforms?: object[]; regions?: object[]; tags?: object[]; }[]; tags_created?: number; topics_created?: number; }`\n  Response from creating prompts.\n\n  - `dry_run: boolean`\n  - `created?: number`\n  - `prompts?: { id: string; language: string; prompt: string; prompt_type: string; topic: { id: string; name: string; }; asset?: { id: string; name: string; }; personas?: { id: string; name: string; }[]; platforms?: { id: string; name: string; }[]; regions?: { id: string; name: string; }[]; tags?: { id: string; name: string; }[]; }[]`\n  - `tags_created?: number`\n  - `topics_created?: number`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.createPrompts('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { prompts: [{\n  language: 'language',\n  platforms: [{}],\n  prompt: 'x',\n  regions: [{}],\n  topic: {},\n}] });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/prompts \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "prompts": [\n            {\n              "language": "language",\n              "platforms": [\n                {}\n              ],\n              "prompt": "x",\n              "regions": [\n                {}\n              ],\n              "topic": {}\n            }\n          ]\n        }\'',
+      },
+      python: {
+        method: 'organizations.categories.create_prompts',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.organizations.categories.create_prompts(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    prompts=[{\n        "language": "language",\n        "platforms": [{}],\n        "prompt": "x",\n        "regions": [{}],\n        "topic": {},\n    }],\n)\nprint(response.dry_run)',
+      },
+      typescript: {
+        method: 'client.organizations.categories.createPrompts',
+        example:
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.categories.createPrompts(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  {\n    prompts: [\n      {\n        language: 'language',\n        platforms: [{}],\n        prompt: 'x',\n        regions: [{}],\n        topic: {},\n      },\n    ],\n  },\n);\n\nconsole.log(response.dry_run);",
+      },
+    },
+  },
+  {
+    name: 'update_prompts',
+    endpoint: '/v1/org/categories/{category_id}/prompts',
+    httpMethod: 'patch',
+    summary: 'Update prompts',
+    description:
+      'Update one or more existing prompts. Only provided fields are changed. Dimension fields (regions, platforms, personas, tags) replace the full set when provided. Use dry_run to preview without persisting.',
+    stainlessPath: '(resource) organizations.categories > (method) update_prompts',
+    qualified: 'client.organizations.categories.updatePrompts',
+    params: [
+      'category_id: string;',
+      'prompts: { id: string; asset?: { id?: string; name?: string; }; language?: string; personas?: { id?: string; name?: string; }[]; platforms?: { id?: string; name?: string; }[]; prompt?: string; prompt_type?: string; regions?: { id?: string; name?: string; }[]; tags?: { id?: string; name?: string; }[]; topic?: { id?: string; name?: string; }; }[];',
+      'dry_run?: boolean;',
+    ],
+    response:
+      '{ dry_run: boolean; prompts?: { id: string; asset?: object; language?: object; personas?: object; platforms?: object; prompt?: object; prompt_type?: object; regions?: object; tags?: object; topic?: object; }[]; tags_created?: number; topics_created?: number; updated?: number; }',
+    markdown:
+      "## update_prompts\n\n`client.organizations.categories.updatePrompts(category_id: string, prompts: { id: string; asset?: object; language?: string; personas?: object[]; platforms?: object[]; prompt?: string; prompt_type?: string; regions?: object[]; tags?: object[]; topic?: object; }[], dry_run?: boolean): { dry_run: boolean; prompts?: object[]; tags_created?: number; topics_created?: number; updated?: number; }`\n\n**patch** `/v1/org/categories/{category_id}/prompts`\n\nUpdate one or more existing prompts. Only provided fields are changed. Dimension fields (regions, platforms, personas, tags) replace the full set when provided. Use dry_run to preview without persisting.\n\n### Parameters\n\n- `category_id: string`\n\n- `prompts: { id: string; asset?: { id?: string; name?: string; }; language?: string; personas?: { id?: string; name?: string; }[]; platforms?: { id?: string; name?: string; }[]; prompt?: string; prompt_type?: string; regions?: { id?: string; name?: string; }[]; tags?: { id?: string; name?: string; }[]; topic?: { id?: string; name?: string; }; }[]`\n  List of prompt updates. Each entry must include an `id` and at least one field to change.\n\n- `dry_run?: boolean`\n  When true, validate and preview changes without persisting them.\n\n### Returns\n\n- `{ dry_run: boolean; prompts?: { id: string; asset?: object; language?: object; personas?: object; platforms?: object; prompt?: object; prompt_type?: object; regions?: object; tags?: object; topic?: object; }[]; tags_created?: number; topics_created?: number; updated?: number; }`\n  Response from updating prompts.\n\n  - `dry_run: boolean`\n  - `prompts?: { id: string; asset?: { new?: object; old?: object; }; language?: { new?: object; old?: object; }; personas?: { added?: object[]; removed?: object[]; }; platforms?: { added?: object[]; removed?: object[]; }; prompt?: { new?: object; old?: object; }; prompt_type?: { new?: object; old?: object; }; regions?: { added?: object[]; removed?: object[]; }; tags?: { added?: object[]; removed?: object[]; }; topic?: { new?: object; old?: object; }; }[]`\n  - `tags_created?: number`\n  - `topics_created?: number`\n  - `updated?: number`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.updatePrompts('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { prompts: [{ id: 'id' }] });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/prompts \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "prompts": [\n            {\n              "id": "id"\n            }\n          ]\n        }\'',
+      },
+      python: {
+        method: 'organizations.categories.update_prompts',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.organizations.categories.update_prompts(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    prompts=[{\n        "id": "id"\n    }],\n)\nprint(response.dry_run)',
+      },
+      typescript: {
+        method: 'client.organizations.categories.updatePrompts',
+        example:
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.categories.updatePrompts(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  { prompts: [{ id: 'id' }] },\n);\n\nconsole.log(response.dry_run);",
+      },
+    },
+  },
+  {
+    name: 'update_prompt_status',
+    endpoint: '/v1/org/categories/{category_id}/prompts/status',
+    httpMethod: 'patch',
+    summary: 'Update prompt status',
+    description:
+      "Bulk-update the status of one or more prompts. Prompts already in the target status are skipped. Use dry_run to preview without persisting.\n\nStatus options:\n- 'active': Prompts will run daily.\n- 'disabled': Prompts will not run moving forward, but historical data is preserved.\n- 'deleted': Prompts are deleted along with historical data",
+    stainlessPath: '(resource) organizations.categories > (method) update_prompt_status',
+    qualified: 'client.organizations.categories.updatePromptStatus',
+    params: [
+      'category_id: string;',
+      'prompt_ids: string[];',
+      "status: 'active' | 'disabled' | 'deleted';",
+      'dry_run?: boolean;',
+    ],
+    response: '{ dry_run: boolean; updated_prompts?: number; }',
+    markdown:
+      "## update_prompt_status\n\n`client.organizations.categories.updatePromptStatus(category_id: string, prompt_ids: string[], status: 'active' | 'disabled' | 'deleted', dry_run?: boolean): { dry_run: boolean; updated_prompts?: number; }`\n\n**patch** `/v1/org/categories/{category_id}/prompts/status`\n\nBulk-update the status of one or more prompts. Prompts already in the target status are skipped. Use dry_run to preview without persisting.\n\nStatus options:\n- 'active': Prompts will run daily.\n- 'disabled': Prompts will not run moving forward, but historical data is preserved.\n- 'deleted': Prompts are deleted along with historical data\n\n### Parameters\n\n- `category_id: string`\n\n- `prompt_ids: string[]`\n  IDs of the prompts to update.\n\n- `status: 'active' | 'disabled' | 'deleted'`\n  Target status: 'active', 'disabled', or 'deleted'.\n\n- `dry_run?: boolean`\n  When true, validate and preview changes without persisting them.\n\n### Returns\n\n- `{ dry_run: boolean; updated_prompts?: number; }`\n  Response from updating prompt statuses.\n\n  - `dry_run: boolean`\n  - `updated_prompts?: number`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.updatePromptStatus('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { prompt_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'], status: 'active' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/prompts/status \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "prompt_ids": [\n            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n          ],\n          "status": "active"\n        }\'',
+      },
+      python: {
+        method: 'organizations.categories.update_prompt_status',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.organizations.categories.update_prompt_status(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    prompt_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],\n    status="active",\n)\nprint(response.dry_run)',
+      },
+      typescript: {
+        method: 'client.organizations.categories.updatePromptStatus',
+        example:
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.categories.updatePromptStatus(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  { prompt_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'], status: 'active' },\n);\n\nconsole.log(response.dry_run);",
       },
     },
   },

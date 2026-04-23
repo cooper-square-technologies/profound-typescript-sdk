@@ -11,6 +11,12 @@ export type SdkMethod = {
 
 export const sdkMethods: SdkMethod[] = [
   {
+    clientCallName: 'client.organizations.list',
+    fullyQualifiedName: 'organizations.list',
+    httpMethod: 'get',
+    httpPath: '/v1/org',
+  },
+  {
     clientCallName: 'client.organizations.domains',
     fullyQualifiedName: 'organizations.domains',
     httpMethod: 'get',
@@ -53,6 +59,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/org/categories/{category_id}/assets',
   },
   {
+    clientCallName: 'client.organizations.categories.createPrompts',
+    fullyQualifiedName: 'organizations.categories.createPrompts',
+    httpMethod: 'post',
+    httpPath: '/v1/org/categories/{category_id}/prompts',
+  },
+  {
     clientCallName: 'client.organizations.categories.getCategoryPersonas',
     fullyQualifiedName: 'organizations.categories.getCategoryPersonas',
     httpMethod: 'get',
@@ -75,6 +87,18 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'organizations.categories.topics',
     httpMethod: 'get',
     httpPath: '/v1/org/categories/{category_id}/topics',
+  },
+  {
+    clientCallName: 'client.organizations.categories.updatePromptStatus',
+    fullyQualifiedName: 'organizations.categories.updatePromptStatus',
+    httpMethod: 'patch',
+    httpPath: '/v1/org/categories/{category_id}/prompts/status',
+  },
+  {
+    clientCallName: 'client.organizations.categories.updatePrompts',
+    fullyQualifiedName: 'organizations.categories.updatePrompts',
+    httpMethod: 'patch',
+    httpPath: '/v1/org/categories/{category_id}/prompts',
   },
   {
     clientCallName: 'client.prompts.answers',
