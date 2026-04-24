@@ -98,6 +98,9 @@ export interface PromptFilter {
 
 /**
  * Filter by prompt type (visibility or sentiment).
+ *
+ * .. deprecated:: Use :class:`AnalysisTypeFilter` instead. `prompt_type` is
+ * normalised to `analysis_type` at parse time.
  */
 export interface PromptTypeFilter {
   field: 'prompt_type';

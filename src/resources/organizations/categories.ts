@@ -217,14 +217,14 @@ export namespace CategoryCreatePromptsResponse {
     prompt: string;
 
     /**
-     * The internal prompt type ('open-ended' or 'brand-direct').
-     */
-    prompt_type: string;
-
-    /**
      * Resolved topic.
      */
     topic: OrganizationsAPI.NamedResource;
+
+    /**
+     * Analysis types assigned to this prompt.
+     */
+    analysis_types?: Array<'visibility' | 'sentiment' | 'accuracy'>;
 
     /**
      * Generic id+name reference used across domain boundaries.
@@ -285,8 +285,6 @@ export namespace CategoryPromptsResponse {
 
     prompt: string;
 
-    prompt_type: string;
-
     regions: Array<OrganizationsAPI.NamedResource>;
 
     status: 'active' | 'disabled';
@@ -298,7 +296,14 @@ export namespace CategoryPromptsResponse {
 
     updated_at: string;
 
+    analysis_types?: Array<'visibility' | 'sentiment' | 'accuracy'>;
+
     personas?: Array<OrganizationsAPI.NamedResource>;
+
+    /**
+     * @deprecated
+     */
+    prompt_type?: string;
 
     tags?: Array<OrganizationsAPI.NamedResource>;
   }
@@ -385,6 +390,11 @@ export namespace CategoryUpdatePromptsResponse {
     /**
      * Shows the old and new value for a changed field.
      */
+    analysis_types?: CategoriesAPI.FieldDiff | null;
+
+    /**
+     * Shows the old and new value for a changed field.
+     */
     asset?: CategoriesAPI.FieldDiff | null;
 
     /**
@@ -406,11 +416,6 @@ export namespace CategoryUpdatePromptsResponse {
      * Shows the old and new value for a changed field.
      */
     prompt?: CategoriesAPI.FieldDiff | null;
-
-    /**
-     * Shows the old and new value for a changed field.
-     */
-    prompt_type?: CategoriesAPI.FieldDiff | null;
 
     /**
      * Shows which resources were added or removed.
@@ -482,6 +487,12 @@ export namespace CategoryCreatePromptsParams {
     topic: CategoriesAPI.IDOrName;
 
     /**
+     * Analysis types: 'visibility', 'sentiment', 'accuracy'. Defaults to
+     * ['visibility'].
+     */
+    analysis_types?: Array<'visibility' | 'sentiment' | 'accuracy'> | null;
+
+    /**
      * Reference by id, name, or both. Plain strings work too: UUIDs become id lookups,
      * other strings become name lookups.
      */
@@ -493,7 +504,7 @@ export namespace CategoryCreatePromptsParams {
     personas?: Array<CategoriesAPI.IDOrName>;
 
     /**
-     * 'Visibility' (open-ended) or 'Sentiment' (brand-direct). Defaults to Visibility.
+     * @deprecated Deprecated. Use analysis_types instead. 'Visibility' or 'Sentiment'.
      */
     prompt_type?: string | null;
 
@@ -505,6 +516,11 @@ export namespace CategoryCreatePromptsParams {
 }
 
 export interface CategoryPromptsParams {
+  /**
+   * Filter by analysis type (visibility, sentiment, accuracy).
+   */
+  analysis_type?: Array<'visibility' | 'sentiment' | 'accuracy'>;
+
   /**
    * Pagination cursor from a previous response.
    */
@@ -531,7 +547,7 @@ export interface CategoryPromptsParams {
   platform_id?: Array<string>;
 
   /**
-   * Filter by prompt type.
+   * @deprecated Deprecated. Use analysis_type instead.
    */
   prompt_type?: Array<'visibility' | 'sentiment'>;
 
@@ -598,6 +614,11 @@ export namespace CategoryUpdatePromptsParams {
     id: string;
 
     /**
+     * New analysis types. Replaces all existing analysis types on the prompt.
+     */
+    analysis_types?: Array<'visibility' | 'sentiment' | 'accuracy'> | null;
+
+    /**
      * Reference by id, name, or both. Plain strings work too: UUIDs become id lookups,
      * other strings become name lookups.
      */
@@ -624,7 +645,7 @@ export namespace CategoryUpdatePromptsParams {
     prompt?: string | null;
 
     /**
-     * 'Visibility' or 'Sentiment'.
+     * @deprecated Deprecated. Use analysis_types instead.
      */
     prompt_type?: string | null;
 
