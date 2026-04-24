@@ -63,18 +63,18 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## regions\n\n`client.organizations.regions(organization_ids?: string[]): object[]`\n\n**get** `/v1/org/regions`\n\nGet the organization regions.\n\n### Parameters\n\n- `organization_ids?: string[]`\n  Restrict results to one or more organizations the caller belongs to. Repeat the parameter to target multiple orgs (e.g. `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from every organization the caller has access to.\n\n### Returns\n\n- `{ id: string; name: string; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst namedResources = await client.organizations.regions();\n\nconsole.log(namedResources);\n```",
     perLanguage: {
-      http: {
-        example: 'curl https://api.tryprofound.com/v1/org/regions \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      typescript: {
+        method: 'client.organizations.regions',
+        example:
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst namedResources = await client.organizations.regions();\n\nconsole.log(namedResources);",
       },
       python: {
         method: 'organizations.regions',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nnamed_resources = client.organizations.regions()\nprint(named_resources)',
       },
-      typescript: {
-        method: 'client.organizations.regions',
-        example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst namedResources = await client.organizations.regions();\n\nconsole.log(namedResources);",
+      http: {
+        example: 'curl https://api.tryprofound.com/v1/org/regions \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },
@@ -90,18 +90,18 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## models\n\n`client.organizations.models(): object[]`\n\n**get** `/v1/org/models`\n\nGet the organization models.\n\n### Returns\n\n- `{ id: string; name: string; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst namedResources = await client.organizations.models();\n\nconsole.log(namedResources);\n```",
     perLanguage: {
-      http: {
-        example: 'curl https://api.tryprofound.com/v1/org/models \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      typescript: {
+        method: 'client.organizations.models',
+        example:
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst namedResources = await client.organizations.models();\n\nconsole.log(namedResources);",
       },
       python: {
         method: 'organizations.models',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nnamed_resources = client.organizations.models()\nprint(named_resources)',
       },
-      typescript: {
-        method: 'client.organizations.models',
-        example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst namedResources = await client.organizations.models();\n\nconsole.log(namedResources);",
+      http: {
+        example: 'curl https://api.tryprofound.com/v1/org/models \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },
@@ -119,18 +119,18 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## domains\n\n`client.organizations.domains(organization_ids?: string[]): { id: string; created_at: string; name: string; organization: organization; }[]`\n\n**get** `/v1/org/domains`\n\nGet the organization domains.\n\n### Parameters\n\n- `organization_ids?: string[]`\n  Restrict results to one or more organizations the caller belongs to. Repeat the parameter to target multiple orgs (e.g. `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from every organization the caller has access to.\n\n### Returns\n\n- `{ id: string; created_at: string; name: string; organization: { id: string; name: string; }; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.domains();\n\nconsole.log(response);\n```",
     perLanguage: {
-      http: {
-        example: 'curl https://api.tryprofound.com/v1/org/domains \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      typescript: {
+        method: 'client.organizations.domains',
+        example:
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.domains();\n\nconsole.log(response);",
       },
       python: {
         method: 'organizations.domains',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.organizations.domains()\nprint(response)',
       },
-      typescript: {
-        method: 'client.organizations.domains',
-        example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.domains();\n\nconsole.log(response);",
+      http: {
+        example: 'curl https://api.tryprofound.com/v1/org/domains \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },
@@ -149,18 +149,18 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list_assets\n\n`client.organizations.listAssets(organization_ids?: string[]): { data: object[]; }`\n\n**get** `/v1/org/assets`\n\nGet the organization assets, one row per (asset, organization) pair.\n\nAn asset's category can belong to multiple organizations; one asset row is\nemitted per owning org so no association is silently dropped.\n\n### Parameters\n\n- `organization_ids?: string[]`\n  Restrict results to one or more organizations the caller belongs to. Repeat the parameter to target multiple orgs (e.g. `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from every organization the caller has access to.\n\n### Returns\n\n- `{ data: { id: string; category: object; created_at: string; is_owned: boolean; logo_url: string; name: string; organization: object; website: string; alternate_domains?: string[]; }[]; }`\n\n  - `data: { id: string; category: { id: string; name: string; }; created_at: string; is_owned: boolean; logo_url: string; name: string; organization: { id: string; name: string; }; website: string; alternate_domains?: string[]; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.listAssets();\n\nconsole.log(response);\n```",
     perLanguage: {
-      http: {
-        example: 'curl https://api.tryprofound.com/v1/org/assets \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      typescript: {
+        method: 'client.organizations.listAssets',
+        example:
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.listAssets();\n\nconsole.log(response.data);",
       },
       python: {
         method: 'organizations.list_assets',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.organizations.list_assets()\nprint(response.data)',
       },
-      typescript: {
-        method: 'client.organizations.listAssets',
-        example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.listAssets();\n\nconsole.log(response.data);",
+      http: {
+        example: 'curl https://api.tryprofound.com/v1/org/assets \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },
@@ -179,18 +179,18 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## get_personas\n\n`client.organizations.getPersonas(organization_ids?: string[]): { data: object[]; }`\n\n**get** `/v1/org/personas`\n\nGet the organization personas, one row per (persona, organization) pair.\n\nSame (item, org) fan-out as ``get_assets``: a persona's category can be\nowned by multiple orgs, and each owning org gets its own row so no\nassociation is silently dropped.\n\n### Parameters\n\n- `organization_ids?: string[]`\n  Restrict results to one or more organizations the caller belongs to. Repeat the parameter to target multiple orgs (e.g. `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from every organization the caller has access to.\n\n### Returns\n\n- `{ data: { id: string; category: object; name: string; organization: object; persona: object; }[]; }`\n\n  - `data: { id: string; category: { id: string; name: string; }; name: string; organization: { id: string; name: string; }; persona: { behavior: object; demographics: object; employment: object; }; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.getPersonas();\n\nconsole.log(response);\n```",
     perLanguage: {
-      http: {
-        example: 'curl https://api.tryprofound.com/v1/org/personas \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      typescript: {
+        method: 'client.organizations.getPersonas',
+        example:
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.getPersonas();\n\nconsole.log(response.data);",
       },
       python: {
         method: 'organizations.get_personas',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.organizations.get_personas()\nprint(response.data)',
       },
-      typescript: {
-        method: 'client.organizations.getPersonas',
-        example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.getPersonas();\n\nconsole.log(response.data);",
+      http: {
+        example: 'curl https://api.tryprofound.com/v1/org/personas \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },
@@ -207,18 +207,18 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.organizations.list(): object[]`\n\n**get** `/v1/org`\n\nReturn every organization the caller's API key grants access to. Use this to discover organization IDs before calling endpoints that accept an `organization_id` filter.\n\n### Returns\n\n- `{ id: string; name: string; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst organizations = await client.organizations.list();\n\nconsole.log(organizations);\n```",
     perLanguage: {
-      http: {
-        example: 'curl https://api.tryprofound.com/v1/org \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      typescript: {
+        method: 'client.organizations.list',
+        example:
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst organizations = await client.organizations.list();\n\nconsole.log(organizations);",
       },
       python: {
         method: 'organizations.list',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\norganizations = client.organizations.list()\nprint(organizations)',
       },
-      typescript: {
-        method: 'client.organizations.list',
-        example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst organizations = await client.organizations.list();\n\nconsole.log(organizations);",
+      http: {
+        example: 'curl https://api.tryprofound.com/v1/org \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },
@@ -235,19 +235,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.organizations.categories.list(organization_ids?: string[]): { id: string; name: string; organization: organization; }[]`\n\n**get** `/v1/org/categories`\n\nGet the organization categories, one row per (category, organization) pair.\n\n### Parameters\n\n- `organization_ids?: string[]`\n  Restrict results to one or more organizations the caller belongs to. Repeat the parameter to target multiple orgs (e.g. `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from every organization the caller has access to.\n\n### Returns\n\n- `{ id: string; name: string; organization: { id: string; name: string; }; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst categories = await client.organizations.categories.list();\n\nconsole.log(categories);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.organizations.categories.list',
         example:
-          'curl https://api.tryprofound.com/v1/org/categories \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst categories = await client.organizations.categories.list();\n\nconsole.log(categories);",
       },
       python: {
         method: 'organizations.categories.list',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\ncategories = client.organizations.categories.list()\nprint(categories)',
       },
-      typescript: {
-        method: 'client.organizations.categories.list',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst categories = await client.organizations.categories.list();\n\nconsole.log(categories);",
+          'curl https://api.tryprofound.com/v1/org/categories \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },
@@ -264,19 +264,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## topics\n\n`client.organizations.categories.topics(category_id: string): { id: string; name: string; status: 'active' | 'disabled'; }[]`\n\n**get** `/v1/org/categories/{category_id}/topics`\n\nGet the topics for a specific category.\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ id: string; name: string; status: 'active' | 'disabled'; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.topics('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.organizations.categories.topics',
         example:
-          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/topics \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.categories.topics(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n);\n\nconsole.log(response);",
       },
       python: {
         method: 'organizations.categories.topics',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.organizations.categories.topics(\n    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response)',
       },
-      typescript: {
-        method: 'client.organizations.categories.topics',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.categories.topics(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n);\n\nconsole.log(response);",
+          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/topics \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },
@@ -293,19 +293,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## tags\n\n`client.organizations.categories.tags(category_id: string): object[]`\n\n**get** `/v1/org/categories/{category_id}/tags`\n\nGet the tags for a specific category.\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ id: string; name: string; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst namedResources = await client.organizations.categories.tags('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(namedResources);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.organizations.categories.tags',
         example:
-          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/tags \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst namedResources = await client.organizations.categories.tags(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n);\n\nconsole.log(namedResources);",
       },
       python: {
         method: 'organizations.categories.tags',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nnamed_resources = client.organizations.categories.tags(\n    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(named_resources)',
       },
-      typescript: {
-        method: 'client.organizations.categories.tags',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst namedResources = await client.organizations.categories.tags(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n);\n\nconsole.log(namedResources);",
+          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/tags \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },
@@ -336,19 +336,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## prompts\n\n`client.organizations.categories.prompts(category_id: string, cursor?: string, limit?: number, order_dir?: 'asc' | 'desc', persona_id?: string[], platform_id?: string[], prompt_type?: 'visibility' | 'sentiment'[], region_id?: string[], status?: 'active' | 'disabled'[], tag_id?: string[], topic_id?: string[]): { data: object[]; info: object; }`\n\n**get** `/v1/org/categories/{category_id}/prompts`\n\nRetrieve prompts in a category with optional filtering by type, topic, tag, region, platform, or persona. Supports cursor-based pagination.\n\n### Parameters\n\n- `category_id: string`\n\n- `cursor?: string`\n  Pagination cursor from a previous response.\n\n- `limit?: number`\n  Maximum number of prompts to return.\n\n- `order_dir?: 'asc' | 'desc'`\n  Sort direction by creation date.\n\n- `persona_id?: string[]`\n  Filter by persona IDs.\n\n- `platform_id?: string[]`\n  Filter by platform IDs.\n\n- `prompt_type?: 'visibility' | 'sentiment'[]`\n  Filter by prompt type.\n\n- `region_id?: string[]`\n  Filter by region IDs.\n\n- `status?: 'active' | 'disabled'[]`\n  Filter by prompt status. Defaults to `active` only.\n\n- `tag_id?: string[]`\n  Filter by tag IDs.\n\n- `topic_id?: string[]`\n  Filter by topic IDs.\n\n### Returns\n\n- `{ data: { id: string; created_at: string; language: string; platforms: object[]; prompt: string; prompt_type: string; regions: object[]; status: 'active' | 'disabled'; topic: object; updated_at: string; personas?: object[]; tags?: object[]; }[]; info: { limit: number; next_cursor: string; total_rows: number; }; }`\n\n  - `data: { id: string; created_at: string; language: string; platforms: { id: string; name: string; }[]; prompt: string; prompt_type: string; regions: { id: string; name: string; }[]; status: 'active' | 'disabled'; topic: { id: string; name: string; }; updated_at: string; personas?: { id: string; name: string; }[]; tags?: { id: string; name: string; }[]; }[]`\n  - `info: { limit: number; next_cursor: string; total_rows: number; }`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.prompts('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.organizations.categories.prompts',
         example:
-          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/prompts \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.categories.prompts(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n);\n\nconsole.log(response.data);",
       },
       python: {
         method: 'organizations.categories.prompts',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.organizations.categories.prompts(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response.data)',
       },
-      typescript: {
-        method: 'client.organizations.categories.prompts',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.categories.prompts(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n);\n\nconsole.log(response.data);",
+          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/prompts \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },
@@ -366,19 +366,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## assets\n\n`client.organizations.categories.assets(category_id: string): { id: string; created_at: string; is_owned: boolean; logo_url: string; name: string; website: string; alternate_domains?: string[]; }[]`\n\n**get** `/v1/org/categories/{category_id}/assets`\n\nGet Category Assets\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ id: string; created_at: string; is_owned: boolean; logo_url: string; name: string; website: string; alternate_domains?: string[]; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.assets('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.organizations.categories.assets',
         example:
-          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/assets \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.categories.assets(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n);\n\nconsole.log(response);",
       },
       python: {
         method: 'organizations.categories.assets',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.organizations.categories.assets(\n    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response)',
       },
-      typescript: {
-        method: 'client.organizations.categories.assets',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.categories.assets(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n);\n\nconsole.log(response);",
+          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/assets \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },
@@ -395,19 +395,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## get_category_personas\n\n`client.organizations.categories.getCategoryPersonas(category_id: string): { data: object[]; }`\n\n**get** `/v1/org/categories/{category_id}/personas`\n\nGet Category Personas\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ data: { id: string; name: string; persona: object; }[]; }`\n\n  - `data: { id: string; name: string; persona: { behavior: object; demographics: object; employment: object; }; }[]`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.getCategoryPersonas('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.organizations.categories.getCategoryPersonas',
         example:
-          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/personas \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.categories.getCategoryPersonas(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n);\n\nconsole.log(response.data);",
       },
       python: {
         method: 'organizations.categories.get_category_personas',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.organizations.categories.get_category_personas(\n    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response.data)',
       },
-      typescript: {
-        method: 'client.organizations.categories.getCategoryPersonas',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.categories.getCategoryPersonas(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n);\n\nconsole.log(response.data);",
+          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/personas \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },
@@ -430,19 +430,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## create_prompts\n\n`client.organizations.categories.createPrompts(category_id: string, prompts: { language: string; platforms: object[]; prompt: string; regions: object[]; topic: object; asset?: object; personas?: object[]; prompt_type?: string; tags?: object[]; }[], dry_run?: boolean): { dry_run: boolean; created?: number; prompts?: object[]; tags_created?: number; topics_created?: number; }`\n\n**post** `/v1/org/categories/{category_id}/prompts`\n\nCreate one or more prompts in a category. Topics and tags are auto-created if referenced by name and not yet existing. Use dry_run to preview without persisting.\n\n### Parameters\n\n- `category_id: string`\n\n- `prompts: { language: string; platforms: { id?: string; name?: string; }[]; prompt: string; regions: { id?: string; name?: string; }[]; topic: { id?: string; name?: string; }; asset?: { id?: string; name?: string; }; personas?: { id?: string; name?: string; }[]; prompt_type?: string; tags?: { id?: string; name?: string; }[]; }[]`\n  List of prompts to create.\n\n- `dry_run?: boolean`\n  When true, validate and preview changes without persisting them.\n\n### Returns\n\n- `{ dry_run: boolean; created?: number; prompts?: { id: string; language: string; prompt: string; prompt_type: string; topic: object; asset?: object; personas?: object[]; platforms?: object[]; regions?: object[]; tags?: object[]; }[]; tags_created?: number; topics_created?: number; }`\n  Response from creating prompts.\n\n  - `dry_run: boolean`\n  - `created?: number`\n  - `prompts?: { id: string; language: string; prompt: string; prompt_type: string; topic: { id: string; name: string; }; asset?: { id: string; name: string; }; personas?: { id: string; name: string; }[]; platforms?: { id: string; name: string; }[]; regions?: { id: string; name: string; }[]; tags?: { id: string; name: string; }[]; }[]`\n  - `tags_created?: number`\n  - `topics_created?: number`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.createPrompts('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { prompts: [{\n  language: 'language',\n  platforms: [{}],\n  prompt: 'x',\n  regions: [{}],\n  topic: {},\n}] });\n\nconsole.log(response);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.organizations.categories.createPrompts',
         example:
-          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/prompts \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "prompts": [\n            {\n              "language": "language",\n              "platforms": [\n                {}\n              ],\n              "prompt": "x",\n              "regions": [\n                {}\n              ],\n              "topic": {}\n            }\n          ]\n        }\'',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.categories.createPrompts(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  {\n    prompts: [\n      {\n        language: 'language',\n        platforms: [{}],\n        prompt: 'x',\n        regions: [{}],\n        topic: {},\n      },\n    ],\n  },\n);\n\nconsole.log(response.dry_run);",
       },
       python: {
         method: 'organizations.categories.create_prompts',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.organizations.categories.create_prompts(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    prompts=[{\n        "language": "language",\n        "platforms": [{}],\n        "prompt": "x",\n        "regions": [{}],\n        "topic": {},\n    }],\n)\nprint(response.dry_run)',
       },
-      typescript: {
-        method: 'client.organizations.categories.createPrompts',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.categories.createPrompts(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  {\n    prompts: [\n      {\n        language: 'language',\n        platforms: [{}],\n        prompt: 'x',\n        regions: [{}],\n        topic: {},\n      },\n    ],\n  },\n);\n\nconsole.log(response.dry_run);",
+          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/prompts \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "prompts": [\n            {\n              "language": "language",\n              "platforms": [\n                {}\n              ],\n              "prompt": "x",\n              "regions": [\n                {}\n              ],\n              "topic": {}\n            }\n          ]\n        }\'',
       },
     },
   },
@@ -465,19 +465,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## update_prompts\n\n`client.organizations.categories.updatePrompts(category_id: string, prompts: { id: string; asset?: object; language?: string; personas?: object[]; platforms?: object[]; prompt?: string; prompt_type?: string; regions?: object[]; tags?: object[]; topic?: object; }[], dry_run?: boolean): { dry_run: boolean; prompts?: object[]; tags_created?: number; topics_created?: number; updated?: number; }`\n\n**patch** `/v1/org/categories/{category_id}/prompts`\n\nUpdate one or more existing prompts. Only provided fields are changed. Dimension fields (regions, platforms, personas, tags) replace the full set when provided. Use dry_run to preview without persisting.\n\n### Parameters\n\n- `category_id: string`\n\n- `prompts: { id: string; asset?: { id?: string; name?: string; }; language?: string; personas?: { id?: string; name?: string; }[]; platforms?: { id?: string; name?: string; }[]; prompt?: string; prompt_type?: string; regions?: { id?: string; name?: string; }[]; tags?: { id?: string; name?: string; }[]; topic?: { id?: string; name?: string; }; }[]`\n  List of prompt updates. Each entry must include an `id` and at least one field to change.\n\n- `dry_run?: boolean`\n  When true, validate and preview changes without persisting them.\n\n### Returns\n\n- `{ dry_run: boolean; prompts?: { id: string; asset?: object; language?: object; personas?: object; platforms?: object; prompt?: object; prompt_type?: object; regions?: object; tags?: object; topic?: object; }[]; tags_created?: number; topics_created?: number; updated?: number; }`\n  Response from updating prompts.\n\n  - `dry_run: boolean`\n  - `prompts?: { id: string; asset?: { new?: object; old?: object; }; language?: { new?: object; old?: object; }; personas?: { added?: object[]; removed?: object[]; }; platforms?: { added?: object[]; removed?: object[]; }; prompt?: { new?: object; old?: object; }; prompt_type?: { new?: object; old?: object; }; regions?: { added?: object[]; removed?: object[]; }; tags?: { added?: object[]; removed?: object[]; }; topic?: { new?: object; old?: object; }; }[]`\n  - `tags_created?: number`\n  - `topics_created?: number`\n  - `updated?: number`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.updatePrompts('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { prompts: [{ id: 'id' }] });\n\nconsole.log(response);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.organizations.categories.updatePrompts',
         example:
-          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/prompts \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "prompts": [\n            {\n              "id": "id"\n            }\n          ]\n        }\'',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.categories.updatePrompts(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  { prompts: [{ id: 'id' }] },\n);\n\nconsole.log(response.dry_run);",
       },
       python: {
         method: 'organizations.categories.update_prompts',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.organizations.categories.update_prompts(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    prompts=[{\n        "id": "id"\n    }],\n)\nprint(response.dry_run)',
       },
-      typescript: {
-        method: 'client.organizations.categories.updatePrompts',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.categories.updatePrompts(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  { prompts: [{ id: 'id' }] },\n);\n\nconsole.log(response.dry_run);",
+          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/prompts \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "prompts": [\n            {\n              "id": "id"\n            }\n          ]\n        }\'',
       },
     },
   },
@@ -500,19 +500,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## update_prompt_status\n\n`client.organizations.categories.updatePromptStatus(category_id: string, prompt_ids: string[], status: 'active' | 'disabled' | 'deleted', dry_run?: boolean): { dry_run: boolean; updated_prompts?: number; }`\n\n**patch** `/v1/org/categories/{category_id}/prompts/status`\n\nBulk-update the status of one or more prompts. Prompts already in the target status are skipped. Use dry_run to preview without persisting.\n\nStatus options:\n- 'active': Prompts will run daily.\n- 'disabled': Prompts will not run moving forward, but historical data is preserved.\n- 'deleted': Prompts are deleted along with historical data\n\n### Parameters\n\n- `category_id: string`\n\n- `prompt_ids: string[]`\n  IDs of the prompts to update.\n\n- `status: 'active' | 'disabled' | 'deleted'`\n  Target status: 'active', 'disabled', or 'deleted'.\n\n- `dry_run?: boolean`\n  When true, validate and preview changes without persisting them.\n\n### Returns\n\n- `{ dry_run: boolean; updated_prompts?: number; }`\n  Response from updating prompt statuses.\n\n  - `dry_run: boolean`\n  - `updated_prompts?: number`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.updatePromptStatus('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { prompt_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'], status: 'active' });\n\nconsole.log(response);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.organizations.categories.updatePromptStatus',
         example:
-          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/prompts/status \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "prompt_ids": [\n            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n          ],\n          "status": "active"\n        }\'',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.categories.updatePromptStatus(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  { prompt_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'], status: 'active' },\n);\n\nconsole.log(response.dry_run);",
       },
       python: {
         method: 'organizations.categories.update_prompt_status',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.organizations.categories.update_prompt_status(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    prompt_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],\n    status="active",\n)\nprint(response.dry_run)',
       },
-      typescript: {
-        method: 'client.organizations.categories.updatePromptStatus',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.categories.updatePromptStatus(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  { prompt_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'], status: 'active' },\n);\n\nconsole.log(response.dry_run);",
+          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/prompts/status \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "prompt_ids": [\n            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n          ],\n          "status": "active"\n        }\'',
       },
     },
   },
@@ -537,19 +537,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## answers\n\n`client.prompts.answers(category_id: string, end_date: string, start_date: string, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include?: { asset?: boolean; asset_id?: boolean; citations?: boolean; created_at?: boolean; mentions?: boolean; model?: boolean; model_id?: boolean; persona?: boolean; prompt?: boolean; prompt_id?: boolean; prompt_type?: boolean; region?: boolean; response?: boolean; run_id?: boolean; search_queries?: boolean; sentiment_themes?: boolean; tags?: boolean; themes?: boolean; topic?: boolean; topic_id?: boolean; }, pagination?: { limit?: number; offset?: number; }): { data: object[]; info: object; }`\n\n**post** `/v1/prompts/answers`\n\nGet the answers for the prompts.\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n  List of filters to apply to the answers report.\n\n- `include?: { asset?: boolean; asset_id?: boolean; citations?: boolean; created_at?: boolean; mentions?: boolean; model?: boolean; model_id?: boolean; persona?: boolean; prompt?: boolean; prompt_id?: boolean; prompt_type?: boolean; region?: boolean; response?: boolean; run_id?: boolean; search_queries?: boolean; sentiment_themes?: boolean; tags?: boolean; themes?: boolean; topic?: boolean; topic_id?: boolean; }`\n  - `asset?: boolean`\n  - `asset_id?: boolean`\n  - `citations?: boolean`\n  - `created_at?: boolean`\n  - `mentions?: boolean`\n  - `model?: boolean`\n  - `model_id?: boolean`\n  - `persona?: boolean`\n  - `prompt?: boolean`\n  - `prompt_id?: boolean`\n  - `prompt_type?: boolean`\n  - `region?: boolean`\n  - `response?: boolean`\n  - `run_id?: boolean`\n  - `search_queries?: boolean`\n  - `sentiment_themes?: boolean`\n  - `tags?: boolean`\n  - `themes?: boolean`\n    Use 'sentiment_themes' instead\n  - `topic?: boolean`\n  - `topic_id?: boolean`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination parameters for the results. Default is 10,000 rows with no offset.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { asset?: string; asset_id?: string; citations?: string[]; created_at?: string; mentions?: string[]; model?: string; model_id?: string; persona?: string; prompt?: string; prompt_id?: string; prompt_type?: string; region?: string; response?: string; run_id?: string; search_queries?: string[]; sentiment_themes?: { name: string; type: 'positive' | 'negative'; }[]; tags?: string[]; themes?: string[]; topic?: string; topic_id?: string; }[]; info: { total_rows: number; }; }`\n  Response for the answers endpoint.\n\n  - `data: { asset?: string; asset_id?: string; citations?: string[]; created_at?: string; mentions?: string[]; model?: string; model_id?: string; persona?: string; prompt?: string; prompt_id?: string; prompt_type?: string; region?: string; response?: string; run_id?: string; search_queries?: string[]; sentiment_themes?: { name: string; type: 'positive' | 'negative'; }[]; tags?: string[]; themes?: string[]; topic?: string; topic_id?: string; }[]`\n  - `info: { total_rows: number; }`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.prompts.answers({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.prompts.answers',
         example:
-          'curl https://api.tryprofound.com/v1/prompts/answers \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.prompts.answers({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
       },
       python: {
         method: 'prompts.answers',
         example:
           'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.prompts.answers(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
       },
-      typescript: {
-        method: 'client.prompts.answers',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.prompts.answers({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+          'curl https://api.tryprofound.com/v1/prompts/answers \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
       },
     },
   },
@@ -577,19 +577,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## citations\n\n`client.reports.citations(category_id: string, end_date: string, metrics: 'count' | 'citation_share' | 'share_of_voice'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'citation_category'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[], order_by?: object, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v1/reports/citations`\n\nGet citations for a given category.\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `metrics: 'count' | 'citation_share' | 'share_of_voice'[]`\n  Metrics to include. `share_of_voice` is deprecated, use `citation_share` instead.\n\n- `start_date: string`\n  Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: string[]`\n  Dimensions to group the report by.\n\n- `filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'citation_category'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[]`\n  List of filters to apply to the citations report.\n\n- `order_by?: object`\n  \n    Custom ordering of the report results.\n\n    The order is a record of key-value pairs where:\n    - `key` is the field to order by, which can be a metric and/or `date`, `hostname`, `path` dimensions\n    - `value` is the direction of the order, either `asc` for ascending or `desc` for descending.\n\n    When not specified, the default order is the first metric in the query descending.\n            \n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.reports.citations({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.reports.citations',
         example:
-          'curl https://api.tryprofound.com/v1/reports/citations \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.citations({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
       },
       python: {
         method: 'reports.citations',
         example:
           'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.citations(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    metrics=["count"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
       },
-      typescript: {
-        method: 'client.reports.citations',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.citations({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+          'curl https://api.tryprofound.com/v1/reports/citations \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
       },
     },
   },
@@ -617,19 +617,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## visibility\n\n`client.reports.visibility(category_id: string, end_date: string, metrics: 'share_of_voice' | 'mentions_count' | 'visibility_score' | 'executions' | 'average_position'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[], order_by?: object, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v1/reports/visibility`\n\nQuery visibility report.\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `metrics: 'share_of_voice' | 'mentions_count' | 'visibility_score' | 'executions' | 'average_position'[]`\n\n- `start_date: string`\n  Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: string[]`\n  Dimensions to group the report by.\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[]`\n  List of filters to apply to the visibility report.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.visibility({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['share_of_voice'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.reports.visibility',
         example:
-          'curl https://api.tryprofound.com/v1/reports/visibility \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "share_of_voice"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.visibility({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['share_of_voice'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
       },
       python: {
         method: 'reports.visibility',
         example:
           'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nreport_response = client.reports.visibility(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    metrics=["share_of_voice"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(report_response.data)',
       },
-      typescript: {
-        method: 'client.reports.visibility',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.visibility({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['share_of_voice'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
+          'curl https://api.tryprofound.com/v1/reports/visibility \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "share_of_voice"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
       },
     },
   },
@@ -657,19 +657,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## sentiment\n\n`client.reports.sentiment(category_id: string, end_date: string, metrics: 'positive' | 'negative' | 'occurrences'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], filters?: { field: 'asset_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; } | { field: 'theme'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[], order_by?: object, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v1/reports/sentiment`\n\nGet citations for a given category.\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `metrics: 'positive' | 'negative' | 'occurrences'[]`\n\n- `start_date: string`\n  Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: string[]`\n  Dimensions to group the report by.\n\n- `filters?: { field: 'asset_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; } | { field: 'theme'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[]`\n  List of filters to apply to the sentiment report.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.sentiment({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['positive'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.reports.sentiment',
         example:
-          'curl https://api.tryprofound.com/v1/reports/sentiment \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "positive"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.sentiment({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['positive'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
       },
       python: {
         method: 'reports.sentiment',
         example:
           'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nreport_response = client.reports.sentiment(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    metrics=["positive"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(report_response.data)',
       },
-      typescript: {
-        method: 'client.reports.sentiment',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.sentiment({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['positive'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
+          'curl https://api.tryprofound.com/v1/reports/sentiment \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "positive"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
       },
     },
   },
@@ -699,19 +699,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## get_referrals_report\n\n`client.reports.getReferralsReport(domain: string, metrics: 'visits' | 'last_visit'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week', dimensions?: 'date' | 'path' | 'referral_source'[], end_date?: string, filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; }[], order_by?: object, organization_id?: string, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v1/reports/referrals`\n\nGet referral traffic report from the daily aggregated materialized view.\n\nThis endpoint queries pre-aggregated daily referral data, making it efficient\nfor large date ranges and high-traffic sites.\n\n### Parameters\n\n- `domain: string`\n  Domain to query logs for.\n\n- `metrics: 'visits' | 'last_visit'[]`\n\n- `start_date: string`\n  Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: 'date' | 'path' | 'referral_source'[]`\n  Dimensions to group the report by.\n\n- `end_date?: string`\n  End date for logs. Accepts same formats as start_date. Defaults to now if omitted.\n\n- `filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; }[]`\n  Filters for referrals report.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `organization_id?: string`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.getReferralsReport({\n  domain: 'domain',\n  metrics: ['visits'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.reports.getReferralsReport',
         example:
-          'curl https://api.tryprofound.com/v1/reports/referrals \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "visits"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.getReferralsReport({\n  domain: 'domain',\n  metrics: ['visits'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
       },
       python: {
         method: 'reports.get_referrals_report',
         example:
           'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nreport_response = client.reports.get_referrals_report(\n    domain="domain",\n    metrics=["visits"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(report_response.data)',
       },
-      typescript: {
-        method: 'client.reports.getReferralsReport',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.getReferralsReport({\n  domain: 'domain',\n  metrics: ['visits'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
+          'curl https://api.tryprofound.com/v1/reports/referrals \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "visits"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
       },
     },
   },
@@ -741,19 +741,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## get_bots_report\n\n`client.reports.getBotsReport(domain: string, metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week', dimensions?: 'date' | 'path' | 'bot_name' | 'bot_provider'[], end_date?: string, filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; }[], order_by?: object, organization_id?: string, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v1/reports/bots`\n\nGet bot traffic report from the daily aggregated materialized view.\n\nThis endpoint queries pre-aggregated daily bot data, making it efficient\nfor large date ranges and high-traffic sites.\n\nMetrics:\n- count: unique bot visits\n- citations: unique citation events\n- indexing: unique indexing events\n- training: unique training events\n- last_visit: most recent visit timestamp\n\n### Parameters\n\n- `domain: string`\n  Domain to query logs for.\n\n- `metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[]`\n\n- `start_date: string`\n  Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: 'date' | 'path' | 'bot_name' | 'bot_provider'[]`\n  Dimensions to group the report by.\n\n- `end_date?: string`\n  End date for logs. Accepts same formats as start_date. Defaults to now if omitted.\n\n- `filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; }[]`\n  Filters for bots report.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `organization_id?: string`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.getBotsReport({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.reports.getBotsReport',
         example:
-          'curl https://api.tryprofound.com/v1/reports/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.getBotsReport({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
       },
       python: {
         method: 'reports.get_bots_report',
         example:
           'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nreport_response = client.reports.get_bots_report(\n    domain="domain",\n    metrics=["count"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(report_response.data)',
       },
-      typescript: {
-        method: 'client.reports.getBotsReport',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.getBotsReport({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
+          'curl https://api.tryprofound.com/v1/reports/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
       },
     },
   },
@@ -783,19 +783,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## get_referrals_report_v2\n\n`client.reports.getReferralsReportV2(domain: string, metrics: 'visits' | 'last_visit'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'date' | 'hour' | 'path' | 'referral_source' | 'referral_type'[], end_date?: string, filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; } | { field: 'referral_type'; operator: string; value: 'internal' | 'referer' | 'utm' | 'none' | 'internal' | 'referer' | 'utm' | 'none'[]; }[], order_by?: object, organization_id?: string, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v2/reports/referrals`\n\nGet referral traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval=\"hour\", calendar intervals through \"year\", \"quarter\", and \"relative_week\".\n\n### Parameters\n\n- `domain: string`\n  Domain to query logs for.\n\n- `metrics: 'visits' | 'last_visit'[]`\n\n- `start_date: string`\n  Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: 'date' | 'hour' | 'path' | 'referral_source' | 'referral_type'[]`\n  Dimensions to group the report by.\n\n- `end_date?: string`\n  End date in UTC. Accepts same formats as start_date. Defaults to now UTC if omitted.\n\n- `filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; } | { field: 'referral_type'; operator: string; value: 'internal' | 'referer' | 'utm' | 'none' | 'internal' | 'referer' | 'utm' | 'none'[]; }[]`\n  Filters for referrals report.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `organization_id?: string`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.getReferralsReportV2({\n  domain: 'domain',\n  metrics: ['visits'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.reports.getReferralsReportV2',
         example:
-          'curl https://api.tryprofound.com/v2/reports/referrals \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "visits"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.getReferralsReportV2({\n  domain: 'domain',\n  metrics: ['visits'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
       },
       python: {
         method: 'reports.get_referrals_report_v2',
         example:
           'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nreport_response = client.reports.get_referrals_report_v2(\n    domain="domain",\n    metrics=["visits"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(report_response.data)',
       },
-      typescript: {
-        method: 'client.reports.getReferralsReportV2',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.getReferralsReportV2({\n  domain: 'domain',\n  metrics: ['visits'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
+          'curl https://api.tryprofound.com/v2/reports/referrals \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "visits"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
       },
     },
   },
@@ -825,19 +825,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## get_bots_report_v2\n\n`client.reports.getBotsReportV2(domain: string, metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'date' | 'hour' | 'path' | 'bot_name' | 'bot_provider' | 'bot_type'[], end_date?: string, filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; } | { field: 'bot_type'; operator: string; value: string; }[], order_by?: object, organization_id?: string, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v2/reports/bots`\n\nGet bot traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval=\"hour\", calendar intervals through \"year\", \"quarter\", and \"relative_week\".\n\nMetrics:\n- count: unique bot visits\n- citations: unique citation events (ai_assistant bot type)\n- indexing: unique indexing events (index bot type)\n- training: unique training events (ai_training bot type)\n- last_visit: most recent visit timestamp\n\nDimensions:\n- date, path, bot_name, bot_provider, bot_type\n\n### Parameters\n\n- `domain: string`\n  Domain to query logs for.\n\n- `metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[]`\n\n- `start_date: string`\n  Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: 'date' | 'hour' | 'path' | 'bot_name' | 'bot_provider' | 'bot_type'[]`\n  Dimensions to group the report by.\n\n- `end_date?: string`\n  End date in UTC. Accepts same formats as start_date. Defaults to now UTC if omitted.\n\n- `filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; } | { field: 'bot_type'; operator: string; value: string; }[]`\n  Filters for bots report.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `organization_id?: string`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.getBotsReportV2({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.reports.getBotsReportV2',
         example:
-          'curl https://api.tryprofound.com/v2/reports/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.getBotsReportV2({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
       },
       python: {
         method: 'reports.get_bots_report_v2',
         example:
           'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nreport_response = client.reports.get_bots_report_v2(\n    domain="domain",\n    metrics=["count"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(report_response.data)',
       },
-      typescript: {
-        method: 'client.reports.getBotsReportV2',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.getBotsReportV2({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
+          'curl https://api.tryprofound.com/v2/reports/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
       },
     },
   },
@@ -865,19 +865,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## query_fanouts\n\n`client.reports.queryFanouts(category_id: string, end_date: string, metrics: 'fanouts_per_execution' | 'total_fanouts' | 'share'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'prompt' | 'query' | 'model' | 'region' | 'date'[], filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; }[], order_by?: object, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v1/reports/query-fanouts`\n\nQuery Fanouts\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `metrics: 'fanouts_per_execution' | 'total_fanouts' | 'share'[]`\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: 'prompt' | 'query' | 'model' | 'region' | 'date'[]`\n  Dimensions to group the report by.\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; }[]`\n  Filters to apply to the query fanout report.\n\n- `order_by?: object`\n  Custom ordering. Keys must be a requested metric or the ``date`` dimension. Values are ``asc`` or ``desc``. Defaults to first metric descending.\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.queryFanouts({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['fanouts_per_execution'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.reports.queryFanouts',
         example:
-          'curl https://api.tryprofound.com/v1/reports/query-fanouts \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "fanouts_per_execution"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.queryFanouts({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['fanouts_per_execution'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
       },
       python: {
         method: 'reports.query_fanouts',
         example:
           'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nreport_response = client.reports.query_fanouts(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    metrics=["fanouts_per_execution"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(report_response.data)',
       },
-      typescript: {
-        method: 'client.reports.queryFanouts',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.queryFanouts({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['fanouts_per_execution'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
+          'curl https://api.tryprofound.com/v1/reports/query-fanouts \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "fanouts_per_execution"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
       },
     },
   },
@@ -906,19 +906,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## logs\n\n`client.logs.raw.logs(domain: string, metrics: 'count'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week', dimensions?: string[], end_date?: string, filters?: { field: 'method'; operator: string; value: string | string[]; } | { field: 'host'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'status_code'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: number | number[]; } | { field: 'ip'; operator: string; value: string | string[]; } | { field: 'user_agent'; operator: string; value: string | string[]; } | { field: 'referer'; operator: string; value: string | string[]; } | { field: 'provider'; operator: string; value: string | string[]; } | { field: 'query_params'; operator: string; value: string | string[]; } | { field: 'bytes_sent'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: number | number[]; } | { field: 'duration_ms'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: number | number[]; }[], order_by?: object, organization_id?: string, pagination?: { limit?: number; offset?: number; }): { host: string; ip: string; method: string; org_id: string; path: string; status_code: number; timestamp: string; user_agent: string; bytes_sent?: number; duration_ms?: number; query_params?: object; referer?: string; }[] | object`\n\n**post** `/v1/logs/raw`\n\nGet all logs with filters\n\n### Parameters\n\n- `domain: string`\n  Domain to query logs for.\n\n- `metrics: 'count'[]`\n\n- `start_date: string`\n  Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: string[]`\n  Dimensions to group the report by.\n\n- `end_date?: string`\n  End date for logs. Accepts same formats as start_date. Defaults to now if omitted.\n\n- `filters?: { field: 'method'; operator: string; value: string | string[]; } | { field: 'host'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'status_code'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: number | number[]; } | { field: 'ip'; operator: string; value: string | string[]; } | { field: 'user_agent'; operator: string; value: string | string[]; } | { field: 'referer'; operator: string; value: string | string[]; } | { field: 'provider'; operator: string; value: string | string[]; } | { field: 'query_params'; operator: string; value: string | string[]; } | { field: 'bytes_sent'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: number | number[]; } | { field: 'duration_ms'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: number | number[]; }[]`\n  Filters to apply to the logs query.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `organization_id?: string`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ host: string; ip: string; method: string; org_id: string; path: string; status_code: number; timestamp: string; user_agent: string; bytes_sent?: number; duration_ms?: number; query_params?: object; referer?: string; }[] | { data: object[]; info: object; }`\n  Base response model for reports.\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.logs.raw.logs({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.logs.raw.logs',
         example:
-          'curl https://api.tryprofound.com/v1/logs/raw \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.logs.raw.logs({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);",
       },
       python: {
         method: 'logs.raw.logs',
         example:
           'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.logs.raw.logs(\n    domain="domain",\n    metrics=["count"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response)',
       },
-      typescript: {
-        method: 'client.logs.raw.logs',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.logs.raw.logs({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);",
+          'curl https://api.tryprofound.com/v1/logs/raw \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
       },
     },
   },
@@ -947,19 +947,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## bots\n\n`client.logs.raw.bots(domain: string, metrics: 'count'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week', dimensions?: string[], end_date?: string, filters?: { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; } | { field: 'bot_types'; operator: string; value: 'ai_assistant' | 'ai_training' | 'index' | 'ai_assistant' | 'ai_training' | 'index'[]; } | { field: 'method'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'status_code'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: number | number[]; } | { field: 'ip'; operator: string; value: string | string[]; } | { field: 'user_agent'; operator: string; value: string | string[]; } | { field: 'referer'; operator: string; value: string | string[]; } | { field: 'query_params'; operator: string; value: string | string[]; }[], order_by?: object, organization_id?: string, pagination?: { limit?: number; offset?: number; }): { bot_name: string; bot_provider: string; bot_types: 'ai_assistant' | 'ai_training' | 'index' | 'ai_agent'[]; host: string; ip: string; method: string; org_id: string; path: string; status_code: number; timestamp: string; user_agent: string; bytes_sent?: number; duration_ms?: number; query_params?: object; referer?: string; }[] | object`\n\n**post** `/v1/logs/raw/bots`\n\nGet identified bot logs with filters\n\n### Parameters\n\n- `domain: string`\n  Domain to query logs for.\n\n- `metrics: 'count'[]`\n\n- `start_date: string`\n  Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: string[]`\n  Dimensions to group the report by.\n\n- `end_date?: string`\n  End date for logs. Accepts same formats as start_date. Defaults to now if omitted.\n\n- `filters?: { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; } | { field: 'bot_types'; operator: string; value: 'ai_assistant' | 'ai_training' | 'index' | 'ai_assistant' | 'ai_training' | 'index'[]; } | { field: 'method'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'status_code'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: number | number[]; } | { field: 'ip'; operator: string; value: string | string[]; } | { field: 'user_agent'; operator: string; value: string | string[]; } | { field: 'referer'; operator: string; value: string | string[]; } | { field: 'query_params'; operator: string; value: string | string[]; }[]`\n  List of filters to apply to the bots logs query.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `organization_id?: string`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ bot_name: string; bot_provider: string; bot_types: 'ai_assistant' | 'ai_training' | 'index' | 'ai_agent'[]; host: string; ip: string; method: string; org_id: string; path: string; status_code: number; timestamp: string; user_agent: string; bytes_sent?: number; duration_ms?: number; query_params?: object; referer?: string; }[] | { data: object[]; info: object; }`\n  Base response model for reports.\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst response = await client.logs.raw.bots({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.logs.raw.bots',
         example:
-          'curl https://api.tryprofound.com/v1/logs/raw/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.logs.raw.bots({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);",
       },
       python: {
         method: 'logs.raw.bots',
         example:
           'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.logs.raw.bots(\n    domain="domain",\n    metrics=["count"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response)',
       },
-      typescript: {
-        method: 'client.logs.raw.bots',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.logs.raw.bots({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);",
+          'curl https://api.tryprofound.com/v1/logs/raw/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
       },
     },
   },
@@ -977,19 +977,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.content.optimization.list(asset_id: string, limit?: number, offset?: number): { data: object[]; info: object; }`\n\n**get** `/v1/content/{asset_id}/optimization`\n\nOptimization List\n\n### Parameters\n\n- `asset_id: string`\n\n- `limit?: number`\n  Maximum number of results to return\n\n- `offset?: number`\n  Offset for pagination\n\n### Returns\n\n- `{ data: { id: string; created_at: string; extracted_input: string; status: string; title: string; type: 'file' | 'text' | 'url'; }[]; info: { query: { asset_id: string; pagination?: pagination; }; total_rows: number; }; }`\n\n  - `data: { id: string; created_at: string; extracted_input: string; status: string; title: string; type: 'file' | 'text' | 'url'; }[]`\n  - `info: { query: { asset_id: string; pagination?: { limit?: number; offset?: number; }; }; total_rows: number; }`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst optimizations = await client.content.optimization.list('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(optimizations);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.content.optimization.list',
         example:
-          'curl https://api.tryprofound.com/v1/content/$ASSET_ID/optimization \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst optimizations = await client.content.optimization.list(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n);\n\nconsole.log(optimizations.data);",
       },
       python: {
         method: 'content.optimization.list',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\noptimizations = client.content.optimization.list(\n    asset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(optimizations.data)',
       },
-      typescript: {
-        method: 'client.content.optimization.list',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst optimizations = await client.content.optimization.list(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n);\n\nconsole.log(optimizations.data);",
+          'curl https://api.tryprofound.com/v1/content/$ASSET_ID/optimization \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },
@@ -1007,19 +1007,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.content.optimization.retrieve(asset_id: string, content_id: string): { data: object; }`\n\n**get** `/v1/content/{asset_id}/optimization/{content_id}`\n\nOptimization Analysis\n\n### Parameters\n\n- `asset_id: string`\n\n- `content_id: string`\n\n### Returns\n\n- `{ data: { aeo_content_score: { target_zone: object; value: number; }; analysis: { breakdown: object[]; }; content: { format: 'markdown' | 'html'; value: string; }; inputs: { prompt: object; top_citations: string[]; topic: object; user: object; }; recommendations: { impact: object; status: 'done' | 'pending'; suggestion: object; title: string; }[]; }; }`\n\n  - `data: { aeo_content_score: { target_zone: { high: number; low: number; }; value: number; }; analysis: { breakdown: { score: number; title: string; weight: number; }[]; }; content: { format: 'markdown' | 'html'; value: string; }; inputs: { prompt: { id: string; name: string; }; top_citations: string[]; topic: { id: string; name: string; }; user: { metadata: object; type: 'file' | 'text' | 'url'; value: string; }; }; recommendations: { impact: { score: number; section: string; }; status: 'done' | 'pending'; suggestion: { rationale: string; text: string; }; title: string; }[]; }`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst optimization = await client.content.optimization.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { asset_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(optimization);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.content.optimization.retrieve',
         example:
-          'curl https://api.tryprofound.com/v1/content/$ASSET_ID/optimization/$CONTENT_ID \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst optimization = await client.content.optimization.retrieve(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  { asset_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },\n);\n\nconsole.log(optimization.data);",
       },
       python: {
         method: 'content.optimization.retrieve',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\noptimization = client.content.optimization.retrieve(\n    content_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    asset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(optimization.data)',
       },
-      typescript: {
-        method: 'client.content.optimization.retrieve',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst optimization = await client.content.optimization.retrieve(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  { asset_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },\n);\n\nconsole.log(optimization.data);",
+          'curl https://api.tryprofound.com/v1/content/$ASSET_ID/optimization/$CONTENT_ID \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },
@@ -1038,18 +1038,18 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## list\n\n`client.agents.list(limit?: number, next_cursor?: string, statuses?: 'published' | 'draft'[]): { data: object[]; pagination?: object; }`\n\n**get** `/v1/agents`\n\nList agents available to your organization.\n\nAgent status reflects whether an agent has ever been published. `published`\nagents have a live published version. `draft` agents have not been\npublished yet.\n\n### Parameters\n\n- `limit?: number`\n\n- `next_cursor?: string`\n\n- `statuses?: 'published' | 'draft'[]`\n  Optional status filter. Use `published` to list agents that have a live published version, or `draft` to list agents that have not been published yet. Defaults to `published`.\n\n### Returns\n\n- `{ data: { id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }[]; pagination?: { limit?: number; next_cursor?: string; }; }`\n  Paginated list of agents.\n\n  - `data: { id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }[]`\n  - `pagination?: { limit?: number; next_cursor?: string; }`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst agents = await client.agents.list();\n\nconsole.log(agents);\n```",
     perLanguage: {
-      http: {
-        example: 'curl https://api.tryprofound.com/v1/agents \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      typescript: {
+        method: 'client.agents.list',
+        example:
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst agents = await client.agents.list();\n\nconsole.log(agents.data);",
       },
       python: {
         method: 'agents.list',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nagents = client.agents.list()\nprint(agents.data)',
       },
-      typescript: {
-        method: 'client.agents.list',
-        example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst agents = await client.agents.list();\n\nconsole.log(agents.data);",
+      http: {
+        example: 'curl https://api.tryprofound.com/v1/agents \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },
@@ -1068,19 +1068,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.agents.retrieve(agent_id: string, version?: 'published' | 'draft'): { id: string; created_at: string; name: string; organization_id: string; schema: object; status: 'draft' | 'published' | 'unknown'; description?: string; }`\n\n**get** `/v1/agents/{agent_id}`\n\nRetrieve an agent and its schema details.\n\nAgents can have both a live published version and a draft version with newer\nunpublished changes. Use the `version` parameter to choose which state to return.\n\n### Parameters\n\n- `agent_id: string`\n  The ID of the agent to retrieve.\n\n- `version?: 'published' | 'draft'`\n  Version of the agent to retrieve. Use `published` for the live version, or `draft` for the latest unpublished changes for the same agent. Defaults to `published`.\n\n### Returns\n\n- `{ id: string; created_at: string; name: string; organization_id: string; schema: { input: object; output: object; }; status: 'draft' | 'published' | 'unknown'; description?: string; }`\n  Detailed information for an agent.\n\n  - `id: string`\n  - `created_at: string`\n  - `name: string`\n  - `organization_id: string`\n  - `schema: { input: object; output: object; }`\n  - `status: 'draft' | 'published' | 'unknown'`\n  - `description?: string`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst agent = await client.agents.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(agent);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.agents.retrieve',
         example:
-          'curl https://api.tryprofound.com/v1/agents/$AGENT_ID \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst agent = await client.agents.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(agent.id);",
       },
       python: {
         method: 'agents.retrieve',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nagent = client.agents.retrieve(\n    agent_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(agent.id)',
       },
-      typescript: {
-        method: 'client.agents.retrieve',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst agent = await client.agents.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(agent.id);",
+          'curl https://api.tryprofound.com/v1/agents/$AGENT_ID \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },
@@ -1098,19 +1098,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## create\n\n`client.agents.runs.create(agent_id: string, inputs?: object): { id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; started_at?: string; }`\n\n**post** `/v1/agents/{agent_id}/runs`\n\nStart a new run for an agent.\n\n### Parameters\n\n- `agent_id: string`\n  The ID of the agent to run.\n\n- `inputs?: object`\n  Input values for the run. Keys should match the property names defined in `schema.input`.\n\n### Returns\n\n- `{ id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; started_at?: string; }`\n  Run details returned after a run request is accepted.\n\n  - `id: string`\n  - `agent_id: string`\n  - `status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'`\n  - `started_at?: string`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst run = await client.agents.runs.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(run);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.agents.runs.create',
         example:
-          "curl https://api.tryprofound.com/v1/agents/$AGENT_ID/runs \\\n    -H 'Content-Type: application/json' \\\n    -H \"X-API-Key: $PROFOUND_API_KEY\" \\\n    -d '{}'",
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst run = await client.agents.runs.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(run.id);",
       },
       python: {
         method: 'agents.runs.create',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nrun = client.agents.runs.create(\n    agent_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(run.id)',
       },
-      typescript: {
-        method: 'client.agents.runs.create',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst run = await client.agents.runs.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(run.id);",
+          "curl https://api.tryprofound.com/v1/agents/$AGENT_ID/runs \\\n    -H 'Content-Type: application/json' \\\n    -H \"X-API-Key: $PROFOUND_API_KEY\" \\\n    -d '{}'",
       },
     },
   },
@@ -1128,19 +1128,19 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     markdown:
       "## retrieve\n\n`client.agents.runs.retrieve(agent_id: string, run_id: string): { id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; error?: object; finished_at?: string; outputs?: object; started_at?: string; }`\n\n**get** `/v1/agents/{agent_id}/runs/{run_id}`\n\nRetrieve the current status and result details for an agent run.\n\n### Parameters\n\n- `agent_id: string`\n  The ID of the agent that owns the run.\n\n- `run_id: string`\n  The ID of the run to retrieve.\n\n### Returns\n\n- `{ id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; error?: object; finished_at?: string; outputs?: object; started_at?: string; }`\n  Status and result details for an agent run.\n\n  - `id: string`\n  - `agent_id: string`\n  - `status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'`\n  - `error?: object`\n  - `finished_at?: string`\n  - `outputs?: object`\n  - `started_at?: string`\n\n### Example\n\n```typescript\nimport Profound from 'profoundai';\n\nconst client = new Profound();\n\nconst run = await client.agents.runs.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { agent_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(run);\n```",
     perLanguage: {
-      http: {
+      typescript: {
+        method: 'client.agents.runs.retrieve',
         example:
-          'curl https://api.tryprofound.com/v1/agents/$AGENT_ID/runs/$RUN_ID \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst run = await client.agents.runs.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  agent_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(run.id);",
       },
       python: {
         method: 'agents.runs.retrieve',
         example:
           'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nrun = client.agents.runs.retrieve(\n    run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    agent_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(run.id)',
       },
-      typescript: {
-        method: 'client.agents.runs.retrieve',
+      http: {
         example:
-          "import Profound from 'profoundai';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst run = await client.agents.runs.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  agent_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(run.id);",
+          'curl https://api.tryprofound.com/v1/agents/$AGENT_ID/runs/$RUN_ID \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },
