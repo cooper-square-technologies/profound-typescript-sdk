@@ -10,23 +10,15 @@ export class Optimization extends APIResource {
   /**
    * Optimization Analysis
    */
-  retrieve(
-    contentID: string,
-    params: OptimizationRetrieveParams,
-    options?: RequestOptions,
-  ): APIPromise<OptimizationRetrieveResponse> {
-    const { asset_id } = params;
+  retrieve(contentID: string, params: OptimizationRetrieveParams, options?: RequestOptions): APIPromise<OptimizationRetrieveResponse> {
+    const { asset_id } = params
     return this._client.get(path`/v1/content/${asset_id}/optimization/${contentID}`, options);
   }
 
   /**
    * Optimization List
    */
-  list(
-    assetID: string,
-    query: OptimizationListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<OptimizationListResponse> {
+  list(assetID: string, query: OptimizationListParams | null | undefined = {}, options?: RequestOptions): APIPromise<OptimizationListResponse> {
     return this._client.get(path`/v1/content/${assetID}/optimization`, { query, ...options });
   }
 }
@@ -201,6 +193,6 @@ export declare namespace Optimization {
     type OptimizationRetrieveResponse as OptimizationRetrieveResponse,
     type OptimizationListResponse as OptimizationListResponse,
     type OptimizationRetrieveParams as OptimizationRetrieveParams,
-    type OptimizationListParams as OptimizationListParams,
+    type OptimizationListParams as OptimizationListParams
   };
 }

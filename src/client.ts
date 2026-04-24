@@ -18,64 +18,16 @@ import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import { PromptAnswersParams, PromptAnswersResponse, Prompts } from './resources/prompts';
-import {
-  PromptIDFilter,
-  ReportCitationsParams,
-  ReportCitationsResponse,
-  ReportGetBotsReportParams,
-  ReportGetBotsReportV2Params,
-  ReportGetReferralsReportParams,
-  ReportGetReferralsReportV2Params,
-  ReportInfo,
-  ReportQueryFanoutsParams,
-  ReportResponse,
-  ReportResult,
-  ReportSentimentParams,
-  ReportVisibilityParams,
-  Reports,
-  TagNameFilter,
-  TopicNameFilter,
-} from './resources/reports';
-import {
-  AgentListParams,
-  AgentListResponse,
-  AgentRetrieveParams,
-  AgentRetrieveResponse,
-  Agents,
-} from './resources/agents/agents';
+import { PromptIDFilter, ReportCitationsParams, ReportCitationsResponse, ReportGetBotsReportParams, ReportGetBotsReportV2Params, ReportGetReferralsReportParams, ReportGetReferralsReportV2Params, ReportInfo, ReportQueryFanoutsParams, ReportResponse, ReportResult, ReportSentimentParams, ReportVisibilityParams, Reports, TagNameFilter, TopicNameFilter } from './resources/reports';
+import { AgentListParams, AgentListResponse, AgentRetrieveParams, AgentRetrieveResponse, Agents } from './resources/agents/agents';
 import { Content } from './resources/content/content';
 import { Logs } from './resources/logs/logs';
-import {
-  Category,
-  NamedResource,
-  Organization,
-  OrganizationDomainsParams,
-  OrganizationDomainsResponse,
-  OrganizationGetPersonasParams,
-  OrganizationGetPersonasResponse,
-  OrganizationListAssetsParams,
-  OrganizationListAssetsResponse,
-  OrganizationListResponse,
-  OrganizationModelsResponse,
-  OrganizationRegionsParams,
-  OrganizationRegionsResponse,
-  Organizations,
-  PersonaProfile,
-  PersonaProfileBehavior,
-  PersonaProfileDemographics,
-  PersonaProfileEmployment,
-} from './resources/organizations/organizations';
+import { Category, NamedResource, Organization, OrganizationDomainsParams, OrganizationDomainsResponse, OrganizationGetPersonasParams, OrganizationGetPersonasResponse, OrganizationListAssetsParams, OrganizationListAssetsResponse, OrganizationListResponse, OrganizationModelsResponse, OrganizationRegionsParams, OrganizationRegionsResponse, Organizations, PersonaProfile, PersonaProfileBehavior, PersonaProfileDemographics, PersonaProfileEmployment } from './resources/organizations/organizations';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
 import { readEnv } from './internal/utils/env';
-import {
-  type LogLevel,
-  type Logger,
-  formatRequestDetails,
-  loggerFor,
-  parseLogLevel,
-} from './internal/utils/log';
+import { type LogLevel, type Logger, formatRequestDetails, loggerFor, parseLogLevel } from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
 
 export interface ClientOptions {
@@ -154,7 +106,7 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Profound API.
+ * API Client for interfacing with the Profound API. 
  */
 export class Profound {
   apiKey: string;
@@ -190,7 +142,7 @@ export class Profound {
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
       throw new Errors.ProfoundError(
-        "The PROFOUND_API_KEY environment variable is missing or empty; either provide it, or instantiate the Profound client with an apiKey option, like new Profound({ apiKey: 'My API Key' }).",
+        'The PROFOUND_API_KEY environment variable is missing or empty; either provide it, or instantiate the Profound client with an apiKey option, like new Profound({ apiKey: \'My API Key\' }).'
       );
     }
 
@@ -206,10 +158,7 @@ export class Profound {
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
     this.logLevel = defaultLogLevel;
-    this.logLevel =
-      parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
-      parseLogLevel(readEnv('PROFOUND_LOG'), "process.env['PROFOUND_LOG']", this) ??
-      defaultLogLevel;
+    this.logLevel = parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ?? parseLogLevel(readEnv('PROFOUND_LOG'), 'process.env[\'PROFOUND_LOG\']', this) ?? defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
     this.maxRetries = options.maxRetries ?? 2;
     this.fetch = options.fetch ?? Shims.getDefaultFetch();
@@ -234,7 +183,7 @@ export class Profound {
       fetch: this.fetch,
       fetchOptions: this.fetchOptions,
       apiKey: this.apiKey,
-      ...options,
+      ...options
     });
     return client;
   }
@@ -247,7 +196,7 @@ export class Profound {
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
-    return this._options.defaultQuery;
+    return this._options.defaultQuery
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
@@ -279,11 +228,7 @@ export class Profound {
     return Errors.APIError.generate(status, error, message, headers);
   }
 
-  buildURL(
-    path: string,
-    query: Record<string, unknown> | null | undefined,
-    defaultBaseURL?: string | undefined,
-  ): string {
+  buildURL(path: string, query: Record<string, unknown> | null | undefined, defaultBaseURL?: string | undefined): string {
     const baseURL = (!this.#baseURLOverridden() && defaultBaseURL) || this.baseURL;
     const url =
       isAbsoluteURL(path) ?
@@ -371,9 +316,7 @@ export class Profound {
 
     await this.prepareOptions(options);
 
-    const { req, url, timeout } = await this.buildRequest(options, {
-      retryCount: maxRetries - retriesRemaining,
-    });
+    const { req, url, timeout } = await this.buildRequest(options, { retryCount: maxRetries - retriesRemaining });
 
     await this.prepareRequest(req, { url, options });
 
@@ -382,16 +325,7 @@ export class Profound {
     const retryLogStr = retryOfRequestLogID === undefined ? '' : `, retryOf: ${retryOfRequestLogID}`;
     const startTime = Date.now();
 
-    loggerFor(this).debug(
-      `[${requestLogID}] sending request`,
-      formatRequestDetails({
-        retryOfRequestLogID,
-        method: options.method,
-        url,
-        options,
-        headers: req.headers,
-      }),
-    );
+    loggerFor(this).debug(`[${requestLogID}] sending request`, formatRequestDetails({ retryOfRequestLogID, method: options.method, url, options, headers: req.headers }));
 
     if (options.signal?.aborted) {
       throw new Errors.APIUserAbortError();
@@ -410,45 +344,21 @@ export class Profound {
       // deno throws "TypeError: error sending request for url (https://example/): client error (Connect): tcp connect error: Operation timed out (os error 60): Operation timed out (os error 60)"
       // undici throws "TypeError: fetch failed" with cause "ConnectTimeoutError: Connect Timeout Error (attempted address: example:443, timeout: 1ms)"
       // others do not provide enough information to distinguish timeouts from other connection errors
-      const isTimeout =
-        isAbortError(response) ||
-        /timed? ?out/i.test(String(response) + ('cause' in response ? String(response.cause) : ''));
+      const isTimeout = isAbortError(response) || /timed? ?out/i.test(String(response) + ('cause' in response ? String(response.cause) : ''))
       if (retriesRemaining) {
-        loggerFor(this).info(
-          `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - ${retryMessage}`,
-        );
-        loggerFor(this).debug(
-          `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (${retryMessage})`,
-          formatRequestDetails({
-            retryOfRequestLogID,
-            url,
-            durationMs: headersTime - startTime,
-            message: response.message,
-          }),
-        );
+        loggerFor(this).info(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - ${retryMessage}`)
+        loggerFor(this).debug(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (${retryMessage})`, formatRequestDetails({ retryOfRequestLogID, url, durationMs: headersTime - startTime, message: response.message }));
         return this.retryRequest(options, retriesRemaining, retryOfRequestLogID ?? requestLogID);
       }
-      loggerFor(this).info(
-        `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - error; no more retries left`,
-      );
-      loggerFor(this).debug(
-        `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (error; no more retries left)`,
-        formatRequestDetails({
-          retryOfRequestLogID,
-          url,
-          durationMs: headersTime - startTime,
-          message: response.message,
-        }),
-      );
+      loggerFor(this).info(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - error; no more retries left`)
+      loggerFor(this).debug(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (error; no more retries left)`, formatRequestDetails({ retryOfRequestLogID, url, durationMs: headersTime - startTime, message: response.message }));
       if (isTimeout) {
         throw new Errors.APIConnectionTimeoutError();
       }
       throw new Errors.APIConnectionError({ cause: response });
     }
 
-    const responseInfo = `[${requestLogID}${retryLogStr}] ${req.method} ${url} ${
-      response.ok ? 'succeeded' : 'failed'
-    } with status ${response.status} in ${headersTime - startTime}ms`;
+    const responseInfo = `[${requestLogID}${retryLogStr}] ${req.method} ${url} ${response.ok ? 'succeeded' : 'failed'} with status ${response.status} in ${headersTime - startTime}ms`;
 
     if (!response.ok) {
       const shouldRetry = await this.shouldRetry(response);
@@ -457,60 +367,27 @@ export class Profound {
 
         // We don't need the body of this response.
         await Shims.CancelReadableStream(response.body);
-        loggerFor(this).info(`${responseInfo} - ${retryMessage}`);
-        loggerFor(this).debug(
-          `[${requestLogID}] response error (${retryMessage})`,
-          formatRequestDetails({
-            retryOfRequestLogID,
-            url: response.url,
-            status: response.status,
-            headers: response.headers,
-            durationMs: headersTime - startTime,
-          }),
-        );
-        return this.retryRequest(
-          options,
-          retriesRemaining,
-          retryOfRequestLogID ?? requestLogID,
-          response.headers,
-        );
+        loggerFor(this).info(`${responseInfo} - ${retryMessage}`)
+        loggerFor(this).debug(`[${requestLogID}] response error (${retryMessage})`, formatRequestDetails({ retryOfRequestLogID, url: response.url, status: response.status, headers: response.headers, durationMs: headersTime - startTime }));
+        return this.retryRequest(options, retriesRemaining, retryOfRequestLogID ?? requestLogID, response.headers);
       }
 
       const retryMessage = shouldRetry ? `error; no more retries left` : `error; not retryable`;
 
-      loggerFor(this).info(`${responseInfo} - ${retryMessage}`);
+      loggerFor(this).info(`${responseInfo} - ${retryMessage}`)
 
       const errText = await response.text().catch((err: any) => castToError(err).message);
       const errJSON = safeJSON(errText) as any;
       const errMessage = errJSON ? undefined : errText;
 
-      loggerFor(this).debug(
-        `[${requestLogID}] response error (${retryMessage})`,
-        formatRequestDetails({
-          retryOfRequestLogID,
-          url: response.url,
-          status: response.status,
-          headers: response.headers,
-          message: errMessage,
-          durationMs: Date.now() - startTime,
-        }),
-      );
+      loggerFor(this).debug(`[${requestLogID}] response error (${retryMessage})`, formatRequestDetails({ retryOfRequestLogID, url: response.url, status: response.status, headers: response.headers, message: errMessage, durationMs: Date.now() - startTime }));
 
       const err = this.makeStatusError(response.status, errJSON, errMessage, response.headers);
       throw err;
     }
 
-    loggerFor(this).info(responseInfo);
-    loggerFor(this).debug(
-      `[${requestLogID}] response start`,
-      formatRequestDetails({
-        retryOfRequestLogID,
-        url: response.url,
-        status: response.status,
-        headers: response.headers,
-        durationMs: headersTime - startTime,
-      }),
-    );
+    loggerFor(this).info(responseInfo)
+    loggerFor(this).debug(`[${requestLogID}] response start`, formatRequestDetails({ retryOfRequestLogID, url: response.url, status: response.status, headers: response.headers, durationMs: headersTime - startTime }));
 
     return { response, options, controller, requestLogID, retryOfRequestLogID, startTime };
   }
@@ -527,9 +404,7 @@ export class Profound {
 
     const timeout = setTimeout(abort, ms);
 
-    const isReadableBody =
-      ((globalThis as any).ReadableStream && options.body instanceof (globalThis as any).ReadableStream) ||
-      (typeof options.body === 'object' && options.body !== null && Symbol.asyncIterator in options.body);
+    const isReadableBody = ((globalThis as any).ReadableStream && options.body instanceof (globalThis as any).ReadableStream) || (typeof options.body === "object" && options.body !== null && Symbol.asyncIterator in options.body);
 
     const fetchOptions: RequestInit = {
       signal: controller.signal as any,
@@ -544,6 +419,7 @@ export class Profound {
     }
 
     try {
+
       // use undefined this binding; fetch errors if bound to something else in browser/cloudflare
       return await this.fetch.call(undefined, url, fetchOptions);
     } finally {
@@ -644,12 +520,11 @@ export class Profound {
     const req: FinalizedRequestInit = {
       method,
       headers: reqHeaders,
-      ...(options.signal && { signal: options.signal }),
-      ...((globalThis as any).ReadableStream &&
-        body instanceof (globalThis as any).ReadableStream && { duplex: 'half' }),
+      ...(options.signal && { signal: options.signal}),
+      ...((globalThis as any).ReadableStream && body instanceof (globalThis as any).ReadableStream && { duplex: "half" }),
       ...(body && { body }),
-      ...((this.fetchOptions as any) ?? {}),
-      ...((options.fetchOptions as any) ?? {}),
+      ...(this.fetchOptions as any ?? {}),
+      ...(options.fetchOptions as any ?? {}),
     };
 
     return { req, url, timeout: options.timeout };
@@ -674,17 +549,15 @@ export class Profound {
 
     const headers = buildHeaders([
       idempotencyHeaders,
-      {
-        Accept: 'application/json',
-        'User-Agent': this.getUserAgent(),
-        'X-Stainless-Retry-Count': String(retryCount),
-        ...(options.timeout ? { 'X-Stainless-Timeout': String(Math.trunc(options.timeout / 1000)) } : {}),
-        ...getPlatformHeaders(),
-      },
+      {Accept: 'application/json',
+      'User-Agent': this.getUserAgent(),
+      'X-Stainless-Retry-Count': String(retryCount),
+      ...(options.timeout ? { 'X-Stainless-Timeout': String(Math.trunc(options.timeout / 1000)) } : {}),
+      ...getPlatformHeaders()},
       await this.authHeaders(options),
       this._options.defaultHeaders,
       bodyHeaders,
-      options.headers,
+      options.headers
     ]);
 
     this.validateHeaders(headers);
@@ -711,9 +584,11 @@ export class Profound {
       ArrayBuffer.isView(body) ||
       body instanceof ArrayBuffer ||
       body instanceof DataView ||
-      (typeof body === 'string' &&
+      (
+        typeof body === 'string' &&
         // Preserve legacy string encoding behavior for now
-        headers.values.has('content-type')) ||
+        headers.values.has('content-type')
+      ) ||
       // `Blob` is superset of `File`
       ((globalThis as any).Blob && body instanceof (globalThis as any).Blob) ||
       // `FormData` -> `multipart/form-data`
@@ -744,7 +619,7 @@ export class Profound {
   }
 
   static Profound = this;
-  static DEFAULT_TIMEOUT = 60000; // 1 minute
+  static DEFAULT_TIMEOUT = 60000 // 1 minute
 
   static ProfoundError = Errors.ProfoundError;
   static APIError = Errors.APIError;
@@ -778,77 +653,81 @@ Profound.Content = Content;
 Profound.Agents = Agents;
 
 export declare namespace Profound {
-  export type RequestOptions = Opts.RequestOptions;
+      export type RequestOptions = Opts.RequestOptions;
 
-  export {
-    Organizations as Organizations,
-    type Category as Category,
-    type NamedResource as NamedResource,
-    type Organization as Organization,
-    type PersonaProfile as PersonaProfile,
-    type PersonaProfileBehavior as PersonaProfileBehavior,
-    type PersonaProfileDemographics as PersonaProfileDemographics,
-    type PersonaProfileEmployment as PersonaProfileEmployment,
-    type OrganizationListResponse as OrganizationListResponse,
-    type OrganizationDomainsResponse as OrganizationDomainsResponse,
-    type OrganizationGetPersonasResponse as OrganizationGetPersonasResponse,
-    type OrganizationListAssetsResponse as OrganizationListAssetsResponse,
-    type OrganizationModelsResponse as OrganizationModelsResponse,
-    type OrganizationRegionsResponse as OrganizationRegionsResponse,
-    type OrganizationDomainsParams as OrganizationDomainsParams,
-    type OrganizationGetPersonasParams as OrganizationGetPersonasParams,
-    type OrganizationListAssetsParams as OrganizationListAssetsParams,
-    type OrganizationRegionsParams as OrganizationRegionsParams,
-  };
+      export {
+  Organizations as Organizations,
+  type Category as Category,
+  type NamedResource as NamedResource,
+  type Organization as Organization,
+  type PersonaProfile as PersonaProfile,
+  type PersonaProfileBehavior as PersonaProfileBehavior,
+  type PersonaProfileDemographics as PersonaProfileDemographics,
+  type PersonaProfileEmployment as PersonaProfileEmployment,
+  type OrganizationListResponse as OrganizationListResponse,
+  type OrganizationDomainsResponse as OrganizationDomainsResponse,
+  type OrganizationGetPersonasResponse as OrganizationGetPersonasResponse,
+  type OrganizationListAssetsResponse as OrganizationListAssetsResponse,
+  type OrganizationModelsResponse as OrganizationModelsResponse,
+  type OrganizationRegionsResponse as OrganizationRegionsResponse,
+  type OrganizationDomainsParams as OrganizationDomainsParams,
+  type OrganizationGetPersonasParams as OrganizationGetPersonasParams,
+  type OrganizationListAssetsParams as OrganizationListAssetsParams,
+  type OrganizationRegionsParams as OrganizationRegionsParams
+};
 
-  export {
-    Prompts as Prompts,
-    type PromptAnswersResponse as PromptAnswersResponse,
-    type PromptAnswersParams as PromptAnswersParams,
-  };
+export {
+  Prompts as Prompts,
+  type PromptAnswersResponse as PromptAnswersResponse,
+  type PromptAnswersParams as PromptAnswersParams
+};
 
-  export {
-    Reports as Reports,
-    type PromptIDFilter as PromptIDFilter,
-    type ReportInfo as ReportInfo,
-    type ReportResponse as ReportResponse,
-    type ReportResult as ReportResult,
-    type TagNameFilter as TagNameFilter,
-    type TopicNameFilter as TopicNameFilter,
-    type ReportCitationsResponse as ReportCitationsResponse,
-    type ReportCitationsParams as ReportCitationsParams,
-    type ReportGetBotsReportParams as ReportGetBotsReportParams,
-    type ReportGetBotsReportV2Params as ReportGetBotsReportV2Params,
-    type ReportGetReferralsReportParams as ReportGetReferralsReportParams,
-    type ReportGetReferralsReportV2Params as ReportGetReferralsReportV2Params,
-    type ReportQueryFanoutsParams as ReportQueryFanoutsParams,
-    type ReportSentimentParams as ReportSentimentParams,
-    type ReportVisibilityParams as ReportVisibilityParams,
-  };
+export {
+  Reports as Reports,
+  type PromptIDFilter as PromptIDFilter,
+  type ReportInfo as ReportInfo,
+  type ReportResponse as ReportResponse,
+  type ReportResult as ReportResult,
+  type TagNameFilter as TagNameFilter,
+  type TopicNameFilter as TopicNameFilter,
+  type ReportCitationsResponse as ReportCitationsResponse,
+  type ReportCitationsParams as ReportCitationsParams,
+  type ReportGetBotsReportParams as ReportGetBotsReportParams,
+  type ReportGetBotsReportV2Params as ReportGetBotsReportV2Params,
+  type ReportGetReferralsReportParams as ReportGetReferralsReportParams,
+  type ReportGetReferralsReportV2Params as ReportGetReferralsReportV2Params,
+  type ReportQueryFanoutsParams as ReportQueryFanoutsParams,
+  type ReportSentimentParams as ReportSentimentParams,
+  type ReportVisibilityParams as ReportVisibilityParams
+};
 
-  export { Logs as Logs };
+export {
+  Logs as Logs
+};
 
-  export { Content as Content };
+export {
+  Content as Content
+};
 
-  export {
-    Agents as Agents,
-    type AgentRetrieveResponse as AgentRetrieveResponse,
-    type AgentListResponse as AgentListResponse,
-    type AgentRetrieveParams as AgentRetrieveParams,
-    type AgentListParams as AgentListParams,
-  };
+export {
+  Agents as Agents,
+  type AgentRetrieveResponse as AgentRetrieveResponse,
+  type AgentListResponse as AgentListResponse,
+  type AgentRetrieveParams as AgentRetrieveParams,
+  type AgentListParams as AgentListParams
+};
 
-  export type AssetNameFilter = API.AssetNameFilter;
-  export type BotNameFilter = API.BotNameFilter;
-  export type BotProviderFilter = API.BotProviderFilter;
-  export type ModelIDFilter = API.ModelIDFilter;
-  export type Pagination = API.Pagination;
-  export type PathFilter = API.PathFilter;
-  export type PersonaIDFilter = API.PersonaIDFilter;
-  export type PromptFilter = API.PromptFilter;
-  export type PromptTypeFilter = API.PromptTypeFilter;
-  export type RegionIDFilter = API.RegionIDFilter;
-  export type RegionNameFilter = API.RegionNameFilter;
-  export type TagIDFilter = API.TagIDFilter;
-  export type TopicIDFilter = API.TopicIDFilter;
-}
+export type AssetNameFilter = API.AssetNameFilter;
+export type BotNameFilter = API.BotNameFilter;
+export type BotProviderFilter = API.BotProviderFilter;
+export type ModelIDFilter = API.ModelIDFilter;
+export type Pagination = API.Pagination;
+export type PathFilter = API.PathFilter;
+export type PersonaIDFilter = API.PersonaIDFilter;
+export type PromptFilter = API.PromptFilter;
+export type PromptTypeFilter = API.PromptTypeFilter;
+export type RegionIDFilter = API.RegionIDFilter;
+export type RegionNameFilter = API.RegionNameFilter;
+export type TagIDFilter = API.TagIDFilter;
+export type TopicIDFilter = API.TopicIDFilter;
+    }

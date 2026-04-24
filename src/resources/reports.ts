@@ -99,10 +99,7 @@ export class Reports extends APIResource {
    *   });
    * ```
    */
-  getReferralsReport(
-    body: ReportGetReferralsReportParams,
-    options?: RequestOptions,
-  ): APIPromise<ReportResponse> {
+  getReferralsReport(body: ReportGetReferralsReportParams, options?: RequestOptions): APIPromise<ReportResponse> {
     return this._client.post('/v1/reports/referrals', { body, ...options });
   }
 
@@ -123,10 +120,7 @@ export class Reports extends APIResource {
    *   });
    * ```
    */
-  getReferralsReportV2(
-    body: ReportGetReferralsReportV2Params,
-    options?: RequestOptions,
-  ): APIPromise<ReportResponse> {
+  getReferralsReportV2(body: ReportGetReferralsReportV2Params, options?: RequestOptions): APIPromise<ReportResponse> {
     return this._client.post('/v2/reports/referrals', { body, ...options });
   }
 
@@ -229,16 +223,7 @@ export interface ReportResult {
 export interface TagNameFilter {
   field: 'tag_name';
 
-  operator:
-    | 'is'
-    | 'not_is'
-    | 'in'
-    | 'not_in'
-    | 'contains'
-    | 'not_contains'
-    | 'matches'
-    | 'contains_case_insensitive'
-    | 'not_contains_case_insensitive';
+  operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
 
   value: string | Array<string>;
 }
@@ -249,16 +234,7 @@ export interface TagNameFilter {
 export interface TopicNameFilter {
   field: 'topic_name';
 
-  operator:
-    | 'is'
-    | 'not_is'
-    | 'in'
-    | 'not_in'
-    | 'contains'
-    | 'not_contains'
-    | 'matches'
-    | 'contains_case_insensitive'
-    | 'not_contains_case_insensitive';
+  operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
 
   value: string | Array<string>;
 }
@@ -301,44 +277,12 @@ export interface ReportCitationsParams {
   /**
    * Dimensions to group the report by.
    */
-  dimensions?: Array<
-    | 'hostname'
-    | 'path'
-    | 'date'
-    | 'region'
-    | 'topic'
-    | 'topic_id'
-    | 'model'
-    | 'tag'
-    | 'prompt'
-    | 'prompt_id'
-    | 'url'
-    | 'root_domain'
-    | 'persona'
-    | 'citation_category'
-  >;
+  dimensions?: Array<'hostname' | 'path' | 'date' | 'region' | 'topic' | 'topic_id' | 'model' | 'tag' | 'prompt' | 'prompt_id' | 'url' | 'root_domain' | 'persona' | 'citation_category'>;
 
   /**
    * List of filters to apply to the citations report.
    */
-  filters?: Array<
-    | ReportCitationsParams.HostnameFilter
-    | Shared.PathFilter
-    | Shared.RegionIDFilter
-    | Shared.RegionNameFilter
-    | Shared.TopicIDFilter
-    | TopicNameFilter
-    | Shared.ModelIDFilter
-    | Shared.TagIDFilter
-    | TagNameFilter
-    | ReportCitationsParams.URLFilter
-    | ReportCitationsParams.RootDomainFilter
-    | Shared.PromptTypeFilter
-    | Shared.PersonaIDFilter
-    | ReportCitationsParams.CitationCategoryFilter
-    | Shared.PromptFilter
-    | PromptIDFilter
-  >;
+  filters?: Array<ReportCitationsParams.HostnameFilter | Shared.PathFilter | Shared.RegionIDFilter | Shared.RegionNameFilter | Shared.TopicIDFilter | TopicNameFilter | Shared.ModelIDFilter | Shared.TagIDFilter | TagNameFilter | ReportCitationsParams.URLFilter | ReportCitationsParams.RootDomainFilter | Shared.PromptTypeFilter | Shared.PersonaIDFilter | ReportCitationsParams.CitationCategoryFilter | Shared.PromptFilter | PromptIDFilter>;
 
   /**
    * Custom ordering of the report results.
@@ -364,16 +308,7 @@ export namespace ReportCitationsParams {
   export interface HostnameFilter {
     field: 'hostname';
 
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
+    operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
 
     value: string | Array<string>;
   }
@@ -384,16 +319,7 @@ export namespace ReportCitationsParams {
   export interface URLFilter {
     field: 'url';
 
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
+    operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
 
     value: string | Array<string>;
   }
@@ -404,16 +330,7 @@ export namespace ReportCitationsParams {
   export interface RootDomainFilter {
     field: 'root_domain';
 
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
+    operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
 
     value: string | Array<string>;
   }
@@ -424,16 +341,7 @@ export namespace ReportCitationsParams {
   export interface CitationCategoryFilter {
     field: 'citation_category';
 
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
+    operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
 
     value: string | Array<string>;
   }
@@ -529,12 +437,7 @@ export interface ReportGetBotsReportV2Params {
   /**
    * Filters for bots report.
    */
-  filters?: Array<
-    | Shared.PathFilter
-    | Shared.BotNameFilter
-    | Shared.BotProviderFilter
-    | ReportGetBotsReportV2Params.BotTypeFilter
-  >;
+  filters?: Array<Shared.PathFilter | Shared.BotNameFilter | Shared.BotProviderFilter | ReportGetBotsReportV2Params.BotTypeFilter>;
 
   /**
    * Custom ordering of the report results.
@@ -565,23 +468,9 @@ export namespace ReportGetBotsReportV2Params {
   export interface BotTypeFilter {
     field: 'bot_type';
 
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
+    operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
 
-    value:
-      | 'ai_assistant'
-      | 'ai_training'
-      | 'index'
-      | 'ai_agent'
-      | Array<'ai_assistant' | 'ai_training' | 'index' | 'ai_agent'>;
+    value: 'ai_assistant' | 'ai_training' | 'index' | 'ai_agent' | Array<'ai_assistant' | 'ai_training' | 'index' | 'ai_agent'>;
   }
 }
 
@@ -649,42 +538,9 @@ export namespace ReportGetReferralsReportParams {
   export interface ReferralSourceFilter {
     field: 'referral_source';
 
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
+    operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
 
-    value:
-      | 'openai'
-      | 'none'
-      | 'anthropic'
-      | 'deepseek'
-      | 'perplexity'
-      | 'you'
-      | 'grok'
-      | 'microsoft'
-      | 'gemini'
-      | 'internal'
-      | 'other'
-      | Array<
-          | 'openai'
-          | 'none'
-          | 'anthropic'
-          | 'deepseek'
-          | 'perplexity'
-          | 'you'
-          | 'grok'
-          | 'microsoft'
-          | 'gemini'
-          | 'internal'
-          | 'other'
-        >;
+    value: 'openai' | 'none' | 'anthropic' | 'deepseek' | 'perplexity' | 'you' | 'grok' | 'microsoft' | 'gemini' | 'internal' | 'other' | Array<'openai' | 'none' | 'anthropic' | 'deepseek' | 'perplexity' | 'you' | 'grok' | 'microsoft' | 'gemini' | 'internal' | 'other'>;
   }
 }
 
@@ -721,11 +577,7 @@ export interface ReportGetReferralsReportV2Params {
   /**
    * Filters for referrals report.
    */
-  filters?: Array<
-    | Shared.PathFilter
-    | ReportGetReferralsReportV2Params.ReferralSourceFilter
-    | ReportGetReferralsReportV2Params.ReferralTypeFilter
-  >;
+  filters?: Array<Shared.PathFilter | ReportGetReferralsReportV2Params.ReferralSourceFilter | ReportGetReferralsReportV2Params.ReferralTypeFilter>;
 
   /**
    * Custom ordering of the report results.
@@ -756,42 +608,9 @@ export namespace ReportGetReferralsReportV2Params {
   export interface ReferralSourceFilter {
     field: 'referral_source';
 
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
+    operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
 
-    value:
-      | 'openai'
-      | 'none'
-      | 'anthropic'
-      | 'deepseek'
-      | 'perplexity'
-      | 'you'
-      | 'grok'
-      | 'microsoft'
-      | 'gemini'
-      | 'internal'
-      | 'other'
-      | Array<
-          | 'openai'
-          | 'none'
-          | 'anthropic'
-          | 'deepseek'
-          | 'perplexity'
-          | 'you'
-          | 'grok'
-          | 'microsoft'
-          | 'gemini'
-          | 'internal'
-          | 'other'
-        >;
+    value: 'openai' | 'none' | 'anthropic' | 'deepseek' | 'perplexity' | 'you' | 'grok' | 'microsoft' | 'gemini' | 'internal' | 'other' | Array<'openai' | 'none' | 'anthropic' | 'deepseek' | 'perplexity' | 'you' | 'grok' | 'microsoft' | 'gemini' | 'internal' | 'other'>;
   }
 
   /**
@@ -800,16 +619,7 @@ export namespace ReportGetReferralsReportV2Params {
   export interface ReferralTypeFilter {
     field: 'referral_type';
 
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
+    operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
 
     value: 'internal' | 'referer' | 'utm' | 'none' | Array<'internal' | 'referer' | 'utm' | 'none'>;
   }
@@ -843,16 +653,7 @@ export interface ReportQueryFanoutsParams {
   /**
    * Filters to apply to the query fanout report.
    */
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.RegionNameFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.PromptTypeFilter
-  >;
+  filters?: Array<Shared.RegionIDFilter | Shared.RegionNameFilter | Shared.ModelIDFilter | Shared.TopicIDFilter | Shared.TagIDFilter | PromptIDFilter | Shared.PersonaIDFilter | Shared.PromptTypeFilter>;
 
   /**
    * Custom ordering. Keys must be a requested metric or the `date` dimension. Values
@@ -891,39 +692,12 @@ export interface ReportSentimentParams {
   /**
    * Dimensions to group the report by.
    */
-  dimensions?: Array<
-    | 'theme'
-    | 'date'
-    | 'region'
-    | 'topic'
-    | 'topic_id'
-    | 'model'
-    | 'asset_id'
-    | 'asset_name'
-    | 'tag'
-    | 'prompt'
-    | 'prompt_id'
-    | 'sentiment_type'
-    | 'persona'
-  >;
+  dimensions?: Array<'theme' | 'date' | 'region' | 'topic' | 'topic_id' | 'model' | 'asset_id' | 'asset_name' | 'tag' | 'prompt' | 'prompt_id' | 'sentiment_type' | 'persona'>;
 
   /**
    * List of filters to apply to the sentiment report.
    */
-  filters?: Array<
-    | ReportSentimentParams.AssetIDFilter
-    | Shared.AssetNameFilter
-    | ReportSentimentParams.ThemeFilter
-    | Shared.RegionIDFilter
-    | Shared.RegionNameFilter
-    | Shared.TopicIDFilter
-    | TopicNameFilter
-    | Shared.ModelIDFilter
-    | Shared.TagIDFilter
-    | TagNameFilter
-    | Shared.PromptFilter
-    | Shared.PersonaIDFilter
-  >;
+  filters?: Array<ReportSentimentParams.AssetIDFilter | Shared.AssetNameFilter | ReportSentimentParams.ThemeFilter | Shared.RegionIDFilter | Shared.RegionNameFilter | Shared.TopicIDFilter | TopicNameFilter | Shared.ModelIDFilter | Shared.TagIDFilter | TagNameFilter | Shared.PromptFilter | Shared.PersonaIDFilter>;
 
   /**
    * Custom ordering of the report results.
@@ -960,16 +734,7 @@ export namespace ReportSentimentParams {
   export interface ThemeFilter {
     field: 'theme';
 
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
+    operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
 
     value: string | Array<string>;
   }
@@ -984,9 +749,7 @@ export interface ReportVisibilityParams {
    */
   end_date: string;
 
-  metrics: Array<
-    'share_of_voice' | 'mentions_count' | 'visibility_score' | 'executions' | 'average_position'
-  >;
+  metrics: Array<'share_of_voice' | 'mentions_count' | 'visibility_score' | 'executions' | 'average_position'>;
 
   /**
    * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or
@@ -1002,36 +765,12 @@ export interface ReportVisibilityParams {
   /**
    * Dimensions to group the report by.
    */
-  dimensions?: Array<
-    | 'date'
-    | 'region'
-    | 'topic'
-    | 'topic_id'
-    | 'model'
-    | 'asset_id'
-    | 'asset_name'
-    | 'prompt'
-    | 'prompt_id'
-    | 'tag'
-    | 'persona'
-  >;
+  dimensions?: Array<'date' | 'region' | 'topic' | 'topic_id' | 'model' | 'asset_id' | 'asset_name' | 'prompt' | 'prompt_id' | 'tag' | 'persona'>;
 
   /**
    * List of filters to apply to the visibility report.
    */
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.RegionNameFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | TopicNameFilter
-    | Shared.AssetNameFilter
-    | Shared.TagIDFilter
-    | TagNameFilter
-    | PromptIDFilter
-    | Shared.PromptFilter
-    | Shared.PersonaIDFilter
-  >;
+  filters?: Array<Shared.RegionIDFilter | Shared.RegionNameFilter | Shared.ModelIDFilter | Shared.TopicIDFilter | TopicNameFilter | Shared.AssetNameFilter | Shared.TagIDFilter | TagNameFilter | PromptIDFilter | Shared.PromptFilter | Shared.PersonaIDFilter>;
 
   /**
    * Custom ordering of the report results.
@@ -1069,6 +808,6 @@ export declare namespace Reports {
     type ReportGetReferralsReportV2Params as ReportGetReferralsReportV2Params,
     type ReportQueryFanoutsParams as ReportQueryFanoutsParams,
     type ReportSentimentParams as ReportSentimentParams,
-    type ReportVisibilityParams as ReportVisibilityParams,
+    type ReportVisibilityParams as ReportVisibilityParams
   };
 }

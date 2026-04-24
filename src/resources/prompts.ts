@@ -92,18 +92,7 @@ export interface PromptAnswersParams {
   /**
    * List of filters to apply to the answers report.
    */
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.RegionNameFilter
-    | Shared.ModelIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptTypeFilter
-    | Shared.PromptFilter
-    | Shared.PersonaIDFilter
-    | Shared.TopicIDFilter
-    | PromptAnswersParams.AssetIDFilter
-    | Shared.AssetNameFilter
-  >;
+  filters?: Array<Shared.RegionIDFilter | Shared.RegionNameFilter | Shared.ModelIDFilter | Shared.TagIDFilter | Shared.PromptTypeFilter | Shared.PromptFilter | Shared.PersonaIDFilter | Shared.TopicIDFilter | PromptAnswersParams.AssetIDFilter | Shared.AssetNameFilter>;
 
   include?: PromptAnswersParams.Include;
 
@@ -171,6 +160,6 @@ export namespace PromptAnswersParams {
 export declare namespace Prompts {
   export {
     type PromptAnswersResponse as PromptAnswersResponse,
-    type PromptAnswersParams as PromptAnswersParams,
+    type PromptAnswersParams as PromptAnswersParams
   };
 }
