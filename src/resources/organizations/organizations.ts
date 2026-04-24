@@ -3,26 +3,7 @@
 import { APIResource } from '../../core/resource';
 import * as OrganizationsAPI from './organizations';
 import * as CategoriesAPI from './categories';
-import {
-  Categories,
-  CategoryAssetsResponse,
-  CategoryCreatePromptsParams,
-  CategoryCreatePromptsResponse,
-  CategoryGetCategoryPersonasResponse,
-  CategoryListParams,
-  CategoryListResponse,
-  CategoryPromptsParams,
-  CategoryPromptsResponse,
-  CategoryTagsResponse,
-  CategoryTopicsResponse,
-  CategoryUpdatePromptStatusParams,
-  CategoryUpdatePromptStatusResponse,
-  CategoryUpdatePromptsParams,
-  CategoryUpdatePromptsResponse,
-  FieldDiff,
-  IDOrName,
-  NamedResourceDiffList,
-} from './categories';
+import { Categories, CategoryAssetsResponse, CategoryCreatePromptsParams, CategoryCreatePromptsResponse, CategoryGetCategoryPersonasResponse, CategoryListParams, CategoryListResponse, CategoryPromptsParams, CategoryPromptsResponse, CategoryTagsResponse, CategoryTopicsResponse, CategoryUpdatePromptStatusParams, CategoryUpdatePromptStatusResponse, CategoryUpdatePromptsParams, CategoryUpdatePromptsResponse, FieldDiff, IDOrName, NamedResourceDiffList } from './categories';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -41,10 +22,7 @@ export class Organizations extends APIResource {
   /**
    * Get the organization domains.
    */
-  domains(
-    query: OrganizationDomainsParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<OrganizationDomainsResponse> {
+  domains(query: OrganizationDomainsParams | null | undefined = {}, options?: RequestOptions): APIPromise<OrganizationDomainsResponse> {
     return this._client.get('/v1/org/domains', { query, ...options });
   }
 
@@ -55,10 +33,7 @@ export class Organizations extends APIResource {
    * multiple orgs, and each owning org gets its own row so no association is
    * silently dropped.
    */
-  getPersonas(
-    query: OrganizationGetPersonasParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<OrganizationGetPersonasResponse> {
+  getPersonas(query: OrganizationGetPersonasParams | null | undefined = {}, options?: RequestOptions): APIPromise<OrganizationGetPersonasResponse> {
     return this._client.get('/v1/org/personas', { query, ...options });
   }
 
@@ -68,10 +43,7 @@ export class Organizations extends APIResource {
    * An asset's category can belong to multiple organizations; one asset row is
    * emitted per owning org so no association is silently dropped.
    */
-  listAssets(
-    query: OrganizationListAssetsParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<OrganizationListAssetsResponse> {
+  listAssets(query: OrganizationListAssetsParams | null | undefined = {}, options?: RequestOptions): APIPromise<OrganizationListAssetsResponse> {
     return this._client.get('/v1/org/assets', { query, ...options });
   }
 
@@ -85,10 +57,7 @@ export class Organizations extends APIResource {
   /**
    * Get the organization regions.
    */
-  regions(
-    query: OrganizationRegionsParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<OrganizationRegionsResponse> {
+  regions(query: OrganizationRegionsParams | null | undefined = {}, options?: RequestOptions): APIPromise<OrganizationRegionsResponse> {
     return this._client.get('/v1/org/regions', { query, ...options });
   }
 }
@@ -142,9 +111,9 @@ export interface PersonaProfileEmployment {
   roleSeniority?: Array<string>;
 }
 
-export type OrganizationListResponse = Array<Organization>;
+export type OrganizationListResponse = Array<Organization>
 
-export type OrganizationDomainsResponse = Array<OrganizationDomainsResponse.OrganizationDomainsResponseItem>;
+export type OrganizationDomainsResponse = Array<OrganizationDomainsResponse.OrganizationDomainsResponseItem>
 
 export namespace OrganizationDomainsResponse {
   /**
@@ -205,9 +174,9 @@ export namespace OrganizationListAssetsResponse {
   }
 }
 
-export type OrganizationModelsResponse = Array<NamedResource>;
+export type OrganizationModelsResponse = Array<NamedResource>
 
-export type OrganizationRegionsResponse = Array<NamedResource>;
+export type OrganizationRegionsResponse = Array<NamedResource>
 
 export interface OrganizationDomainsParams {
   /**
@@ -269,7 +238,7 @@ export declare namespace Organizations {
     type OrganizationDomainsParams as OrganizationDomainsParams,
     type OrganizationGetPersonasParams as OrganizationGetPersonasParams,
     type OrganizationListAssetsParams as OrganizationListAssetsParams,
-    type OrganizationRegionsParams as OrganizationRegionsParams,
+    type OrganizationRegionsParams as OrganizationRegionsParams
   };
 
   export {
@@ -290,6 +259,6 @@ export declare namespace Organizations {
     type CategoryCreatePromptsParams as CategoryCreatePromptsParams,
     type CategoryPromptsParams as CategoryPromptsParams,
     type CategoryUpdatePromptStatusParams as CategoryUpdatePromptStatusParams,
-    type CategoryUpdatePromptsParams as CategoryUpdatePromptsParams,
+    type CategoryUpdatePromptsParams as CategoryUpdatePromptsParams
   };
 }

@@ -59,8 +59,8 @@ function getTSDiagnostics(code: string): string[] {
   const codeWithImport = [
     'import { Profound } from "profoundai";',
     functionSource.type === 'declaration' ?
-      `async function run(${functionSource.client}: Profound)`
-    : `const run: (${functionSource.client}: Profound) => Promise<unknown> =`,
+      `async function run(${functionSource.client}: Profound)` :
+      `const run: (${functionSource.client}: Profound) => Promise<unknown> =`,
     functionSource.code,
   ].join('\n');
   const sourcePath = path.resolve('code.ts');
@@ -108,38 +108,38 @@ function getTSDiagnostics(code: string): string[] {
 
 const fuse = new Fuse(
   [
-    'client.organizations.domains',
-    'client.organizations.getPersonas',
-    'client.organizations.list',
-    'client.organizations.listAssets',
-    'client.organizations.models',
-    'client.organizations.regions',
-    'client.organizations.categories.assets',
-    'client.organizations.categories.createPrompts',
-    'client.organizations.categories.getCategoryPersonas',
-    'client.organizations.categories.list',
-    'client.organizations.categories.prompts',
-    'client.organizations.categories.tags',
-    'client.organizations.categories.topics',
-    'client.organizations.categories.updatePromptStatus',
-    'client.organizations.categories.updatePrompts',
-    'client.prompts.answers',
-    'client.reports.citations',
-    'client.reports.getBotsReport',
-    'client.reports.getBotsReportV2',
-    'client.reports.getReferralsReport',
-    'client.reports.getReferralsReportV2',
-    'client.reports.queryFanouts',
-    'client.reports.sentiment',
-    'client.reports.visibility',
-    'client.logs.raw.bots',
-    'client.logs.raw.logs',
-    'client.content.optimization.list',
-    'client.content.optimization.retrieve',
-    'client.agents.list',
-    'client.agents.retrieve',
-    'client.agents.runs.create',
-    'client.agents.runs.retrieve',
+    "client.organizations.domains",
+    "client.organizations.getPersonas",
+    "client.organizations.list",
+    "client.organizations.listAssets",
+    "client.organizations.models",
+    "client.organizations.regions",
+    "client.organizations.categories.assets",
+    "client.organizations.categories.createPrompts",
+    "client.organizations.categories.getCategoryPersonas",
+    "client.organizations.categories.list",
+    "client.organizations.categories.prompts",
+    "client.organizations.categories.tags",
+    "client.organizations.categories.topics",
+    "client.organizations.categories.updatePromptStatus",
+    "client.organizations.categories.updatePrompts",
+    "client.prompts.answers",
+    "client.reports.citations",
+    "client.reports.getBotsReport",
+    "client.reports.getBotsReportV2",
+    "client.reports.getReferralsReport",
+    "client.reports.getReferralsReportV2",
+    "client.reports.queryFanouts",
+    "client.reports.sentiment",
+    "client.reports.visibility",
+    "client.logs.raw.bots",
+    "client.logs.raw.logs",
+    "client.content.optimization.list",
+    "client.content.optimization.retrieve",
+    "client.agents.list",
+    "client.agents.retrieve",
+    "client.agents.runs.create",
+    "client.agents.runs.retrieve"
   ],
   { threshold: 1, shouldSort: true },
 );
@@ -222,12 +222,7 @@ function parseError(code: string, error: unknown): string | undefined {
     // Deno uses V8; the first "<anonymous>:LINE:COLUMN" is the top of stack.
     const lineNumber = error.stack?.match(/<anonymous>:([0-9]+):[0-9]+/)?.[1];
     // -1 for the zero-based indexing
-    const line =
-      lineNumber &&
-      code
-        .split('\n')
-        .at(parseInt(lineNumber, 10) - 1)
-        ?.trim();
+    const line = lineNumber && code.split('\n').at(parseInt(lineNumber, 10) - 1)?.trim();
     return line ? `${message}\n  at line ${lineNumber}\n    ${line}` : message;
   } catch {
     return message;
@@ -239,9 +234,8 @@ const fetch = async (req: Request): Promise<Response> => {
 
   const runFunctionSource = code ? getRunFunctionSource(code) : null;
   if (!runFunctionSource) {
-    const message =
-      code ?
-        'The code is missing a top-level `run` function.'
+    const message = code
+      ? 'The code is missing a top-level `run` function.'
       : 'The code argument is missing. Provide one containing a top-level `run` function.';
     return Response.json(
       {
@@ -286,7 +280,7 @@ const fetch = async (req: Request): Promise<Response> => {
   try {
     let run_ = async (client: any) => {};
     run_ = (await tseval(`${code}\nexport default run;`)).default;
-    const result = await run_(makeSdkProxy(client, { path: ['client'] }));
+    const result = await run_(makeSdkProxy(client, { path: ["client"] }));
     return Response.json({
       is_error: false,
       result,

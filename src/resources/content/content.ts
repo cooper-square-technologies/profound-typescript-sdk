@@ -2,13 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import * as OptimizationAPI from './optimization';
-import {
-  Optimization,
-  OptimizationListParams,
-  OptimizationListResponse,
-  OptimizationRetrieveParams,
-  OptimizationRetrieveResponse,
-} from './optimization';
+import { Optimization, OptimizationListParams, OptimizationListResponse, OptimizationRetrieveParams, OptimizationRetrieveResponse } from './optimization';
 
 export class Content extends APIResource {
   optimization: OptimizationAPI.Optimization = new OptimizationAPI.Optimization(this._client);
@@ -22,6 +16,6 @@ export declare namespace Content {
     type OptimizationRetrieveResponse as OptimizationRetrieveResponse,
     type OptimizationListResponse as OptimizationListResponse,
     type OptimizationRetrieveParams as OptimizationRetrieveParams,
-    type OptimizationListParams as OptimizationListParams,
+    type OptimizationListParams as OptimizationListParams
   };
 }
