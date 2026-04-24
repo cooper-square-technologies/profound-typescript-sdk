@@ -282,7 +282,7 @@ export interface ReportCitationsParams {
   /**
    * List of filters to apply to the citations report.
    */
-  filters?: Array<ReportCitationsParams.HostnameFilter | Shared.PathFilter | Shared.RegionIDFilter | Shared.RegionNameFilter | Shared.TopicIDFilter | TopicNameFilter | Shared.ModelIDFilter | Shared.TagIDFilter | TagNameFilter | ReportCitationsParams.URLFilter | ReportCitationsParams.RootDomainFilter | Shared.PromptTypeFilter | Shared.PersonaIDFilter | ReportCitationsParams.CitationCategoryFilter | Shared.PromptFilter | PromptIDFilter>;
+  filters?: Array<ReportCitationsParams.HostnameFilter | Shared.PathFilter | Shared.RegionIDFilter | Shared.RegionNameFilter | Shared.TopicIDFilter | TopicNameFilter | Shared.ModelIDFilter | Shared.TagIDFilter | TagNameFilter | ReportCitationsParams.URLFilter | ReportCitationsParams.RootDomainFilter | ReportCitationsParams.AnalysisTypeFilter | Shared.PromptTypeFilter | Shared.PersonaIDFilter | ReportCitationsParams.CitationCategoryFilter | Shared.PromptFilter | PromptIDFilter>;
 
   /**
    * Custom ordering of the report results.
@@ -333,6 +333,17 @@ export namespace ReportCitationsParams {
     operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
 
     value: string | Array<string>;
+  }
+
+  /**
+   * Filter by analysis type (visibility, sentiment, or accuracy).
+   */
+  export interface AnalysisTypeFilter {
+    field: 'analysis_type';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
+
+    value: 'visibility' | 'sentiment' | 'accuracy' | Array<'visibility' | 'sentiment' | 'accuracy'>;
   }
 
   /**
@@ -653,7 +664,7 @@ export interface ReportQueryFanoutsParams {
   /**
    * Filters to apply to the query fanout report.
    */
-  filters?: Array<Shared.RegionIDFilter | Shared.RegionNameFilter | Shared.ModelIDFilter | Shared.TopicIDFilter | Shared.TagIDFilter | PromptIDFilter | Shared.PersonaIDFilter | Shared.PromptTypeFilter>;
+  filters?: Array<Shared.RegionIDFilter | Shared.RegionNameFilter | Shared.ModelIDFilter | Shared.TopicIDFilter | Shared.TagIDFilter | PromptIDFilter | Shared.PersonaIDFilter | ReportQueryFanoutsParams.AnalysisTypeFilter | Shared.PromptTypeFilter>;
 
   /**
    * Custom ordering. Keys must be a requested metric or the `date` dimension. Values
@@ -665,6 +676,19 @@ export interface ReportQueryFanoutsParams {
    * Pagination settings for the report results.
    */
   pagination?: Shared.Pagination;
+}
+
+export namespace ReportQueryFanoutsParams {
+  /**
+   * Filter by analysis type (visibility, sentiment, or accuracy).
+   */
+  export interface AnalysisTypeFilter {
+    field: 'analysis_type';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
+
+    value: 'visibility' | 'sentiment' | 'accuracy' | Array<'visibility' | 'sentiment' | 'accuracy'>;
+  }
 }
 
 export interface ReportSentimentParams {

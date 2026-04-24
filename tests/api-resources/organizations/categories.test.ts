@@ -63,6 +63,7 @@ describe('resource categories', () => {
     prompt: 'x',
     regions: [{ id: 'id', name: 'name' }],
     topic: { id: 'id', name: 'name' },
+    analysis_types: ['visibility'],
     asset: { id: 'id', name: 'name' },
     personas: [{ id: 'id', name: 'name' }],
     prompt_type: 'prompt_type',
@@ -98,6 +99,7 @@ describe('resource categories', () => {
   test.skip('prompts: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(client.organizations.categories.prompts('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+    analysis_type: ['visibility'],
     cursor: 'cursor',
     limit: 1,
     order_dir: 'asc',
@@ -174,6 +176,7 @@ describe('resource categories', () => {
   test.skip('updatePrompts: required and optional params', async () => {
     const response = await client.organizations.categories.updatePrompts('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { prompts: [{
     id: 'id',
+    analysis_types: ['visibility'],
     asset: { id: 'id', name: 'name' },
     language: 'language',
     personas: [{ id: 'id', name: 'name' }],
