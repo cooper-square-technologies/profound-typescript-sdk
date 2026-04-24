@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.43.1 (2026-04-24)
+
+Full Changelog: [v0.43.0...v0.43.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.43.0...v0.43.1)
+
+### Chores
+
+* restructure docs search code ([d9d610e](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/d9d610e944072abd664ce1a48d1fad594fed765d))
+
 ## 0.43.0 (2026-04-23)
 
 Full Changelog: [v0.42.0...v0.43.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.42.0...v0.43.0)
