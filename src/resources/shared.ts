@@ -2,6 +2,17 @@
 
 
 /**
+ * Filter by analysis type (visibility, sentiment, or accuracy).
+ */
+export interface AnalysisTypeFilter {
+  field: 'analysis_type';
+
+  operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
+
+  value: 'visibility' | 'sentiment' | 'accuracy' | Array<'visibility' | 'sentiment' | 'accuracy'>;
+}
+
+/**
  * Filter by asset name
  */
 export interface AssetNameFilter {

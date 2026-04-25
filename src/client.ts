@@ -717,6 +717,7 @@ export {
   type AgentListParams as AgentListParams
 };
 
+export type AnalysisTypeFilter = API.AnalysisTypeFilter;
 export type AssetNameFilter = API.AssetNameFilter;
 export type BotNameFilter = API.BotNameFilter;
 export type BotProviderFilter = API.BotProviderFilter;

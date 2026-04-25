@@ -94,7 +94,7 @@ export interface PromptAnswersParams {
   /**
    * List of filters to apply to the answers report.
    */
-  filters?: Array<Shared.RegionIDFilter | Shared.RegionNameFilter | Shared.ModelIDFilter | Shared.TagIDFilter | PromptAnswersParams.AnalysisTypeFilter | Shared.PromptTypeFilter | Shared.PromptFilter | Shared.PersonaIDFilter | Shared.TopicIDFilter | PromptAnswersParams.AssetIDFilter | Shared.AssetNameFilter>;
+  filters?: Array<Shared.RegionIDFilter | Shared.RegionNameFilter | Shared.ModelIDFilter | Shared.TagIDFilter | Shared.AnalysisTypeFilter | Shared.PromptTypeFilter | Shared.PromptFilter | Shared.PersonaIDFilter | Shared.TopicIDFilter | PromptAnswersParams.AssetIDFilter | Shared.AssetNameFilter>;
 
   include?: PromptAnswersParams.Include;
 
@@ -105,17 +105,6 @@ export interface PromptAnswersParams {
 }
 
 export namespace PromptAnswersParams {
-  /**
-   * Filter by analysis type (visibility, sentiment, or accuracy).
-   */
-  export interface AnalysisTypeFilter {
-    field: 'analysis_type';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
-
-    value: 'visibility' | 'sentiment' | 'accuracy' | Array<'visibility' | 'sentiment' | 'accuracy'>;
-  }
-
   export interface AssetIDFilter {
     field: 'asset_id';
 
