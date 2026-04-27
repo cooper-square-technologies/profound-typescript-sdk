@@ -49,6 +49,7 @@ describe('resource prompts', () => {
     response: true,
     run_id: true,
     search_queries: true,
+    search_triggered: true,
     sentiment_themes: true,
     tags: true,
     themes: true,

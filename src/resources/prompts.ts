@@ -60,6 +60,8 @@ export namespace PromptAnswersResponse {
 
     search_queries?: Array<string> | null;
 
+    search_triggered?: boolean | null;
+
     sentiment_themes?: Array<Data.SentimentTheme> | null;
 
     tags?: Array<string> | null;
@@ -148,6 +150,8 @@ export namespace PromptAnswersParams {
     run_id?: boolean;
 
     search_queries?: boolean;
+
+    search_triggered?: boolean;
 
     sentiment_themes?: boolean;
 
