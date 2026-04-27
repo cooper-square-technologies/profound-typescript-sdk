@@ -11,7 +11,10 @@ export class Categories extends APIResource {
   /**
    * Get the organization categories, one row per (category, organization) pair.
    */
-  list(query: CategoryListParams | null | undefined = {}, options?: RequestOptions): APIPromise<CategoryListResponse> {
+  list(
+    query: CategoryListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CategoryListResponse> {
     return this._client.get('/v1/org/categories', { query, ...options });
   }
 
@@ -27,14 +30,21 @@ export class Categories extends APIResource {
    * referenced by name and not yet existing. Use dry_run to preview without
    * persisting.
    */
-  createPrompts(categoryID: string, body: CategoryCreatePromptsParams, options?: RequestOptions): APIPromise<CategoryCreatePromptsResponse> {
+  createPrompts(
+    categoryID: string,
+    body: CategoryCreatePromptsParams,
+    options?: RequestOptions,
+  ): APIPromise<CategoryCreatePromptsResponse> {
     return this._client.post(path`/v1/org/categories/${categoryID}/prompts`, { body, ...options });
   }
 
   /**
    * Get Category Personas
    */
-  getCategoryPersonas(categoryID: string, options?: RequestOptions): APIPromise<CategoryGetCategoryPersonasResponse> {
+  getCategoryPersonas(
+    categoryID: string,
+    options?: RequestOptions,
+  ): APIPromise<CategoryGetCategoryPersonasResponse> {
     return this._client.get(path`/v1/org/categories/${categoryID}/personas`, options);
   }
 
@@ -42,7 +52,11 @@ export class Categories extends APIResource {
    * Retrieve prompts in a category with optional filtering by type, topic, tag,
    * region, platform, or persona. Supports cursor-based pagination.
    */
-  prompts(categoryID: string, query: CategoryPromptsParams | null | undefined = {}, options?: RequestOptions): APIPromise<CategoryPromptsResponse> {
+  prompts(
+    categoryID: string,
+    query: CategoryPromptsParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CategoryPromptsResponse> {
     return this._client.get(path`/v1/org/categories/${categoryID}/prompts`, { query, ...options });
   }
 
@@ -71,7 +85,11 @@ export class Categories extends APIResource {
    *   preserved.
    * - 'deleted': Prompts are deleted along with historical data
    */
-  updatePromptStatus(categoryID: string, body: CategoryUpdatePromptStatusParams, options?: RequestOptions): APIPromise<CategoryUpdatePromptStatusResponse> {
+  updatePromptStatus(
+    categoryID: string,
+    body: CategoryUpdatePromptStatusParams,
+    options?: RequestOptions,
+  ): APIPromise<CategoryUpdatePromptStatusResponse> {
     return this._client.patch(path`/v1/org/categories/${categoryID}/prompts/status`, { body, ...options });
   }
 
@@ -80,7 +98,11 @@ export class Categories extends APIResource {
    * fields (regions, platforms, personas, tags) replace the full set when provided.
    * Use dry_run to preview without persisting.
    */
-  updatePrompts(categoryID: string, body: CategoryUpdatePromptsParams, options?: RequestOptions): APIPromise<CategoryUpdatePromptsResponse> {
+  updatePrompts(
+    categoryID: string,
+    body: CategoryUpdatePromptsParams,
+    options?: RequestOptions,
+  ): APIPromise<CategoryUpdatePromptsResponse> {
     return this._client.patch(path`/v1/org/categories/${categoryID}/prompts`, { body, ...options });
   }
 }
@@ -131,7 +153,7 @@ export interface NamedResourceDiffList {
   removed?: Array<OrganizationsAPI.NamedResource>;
 }
 
-export type CategoryListResponse = Array<CategoryListResponse.CategoryListResponseItem>
+export type CategoryListResponse = Array<CategoryListResponse.CategoryListResponseItem>;
 
 export namespace CategoryListResponse {
   /**
@@ -146,7 +168,7 @@ export namespace CategoryListResponse {
   }
 }
 
-export type CategoryAssetsResponse = Array<CategoryAssetsResponse.CategoryAssetsResponseItem>
+export type CategoryAssetsResponse = Array<CategoryAssetsResponse.CategoryAssetsResponseItem>;
 
 export namespace CategoryAssetsResponse {
   export interface CategoryAssetsResponseItem {
@@ -317,9 +339,9 @@ export namespace CategoryPromptsResponse {
   }
 }
 
-export type CategoryTagsResponse = Array<OrganizationsAPI.NamedResource>
+export type CategoryTagsResponse = Array<OrganizationsAPI.NamedResource>;
 
-export type CategoryTopicsResponse = Array<CategoryTopicsResponse.CategoryTopicsResponseItem>
+export type CategoryTopicsResponse = Array<CategoryTopicsResponse.CategoryTopicsResponseItem>;
 
 export namespace CategoryTopicsResponse {
   export interface CategoryTopicsResponseItem {
@@ -685,6 +707,6 @@ export declare namespace Categories {
     type CategoryCreatePromptsParams as CategoryCreatePromptsParams,
     type CategoryPromptsParams as CategoryPromptsParams,
     type CategoryUpdatePromptStatusParams as CategoryUpdatePromptStatusParams,
-    type CategoryUpdatePromptsParams as CategoryUpdatePromptsParams
+    type CategoryUpdatePromptsParams as CategoryUpdatePromptsParams,
   };
 }

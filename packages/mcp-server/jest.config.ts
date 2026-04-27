@@ -10,9 +10,7 @@ const config: JestConfigWithTsJest = {
     '^profound-mcp$': '<rootDir>/src/index.ts',
     '^profound-mcp/(.*)$': '<rootDir>/src/$1',
   },
-  modulePathIgnorePatterns: [
-    '<rootDir>/dist/',
-  ],
+  modulePathIgnorePatterns: ['<rootDir>/dist/'],
   testPathIgnorePatterns: ['scripts'],
 };
 

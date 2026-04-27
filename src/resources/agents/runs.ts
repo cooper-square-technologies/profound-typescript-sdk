@@ -16,8 +16,12 @@ export class Runs extends APIResource {
   /**
    * Retrieve the current status and result details for an agent run.
    */
-  retrieve(runID: string, params: RunRetrieveParams, options?: RequestOptions): APIPromise<RunRetrieveResponse> {
-    const { agent_id } = params
+  retrieve(
+    runID: string,
+    params: RunRetrieveParams,
+    options?: RequestOptions,
+  ): APIPromise<RunRetrieveResponse> {
+    const { agent_id } = params;
     return this._client.get(path`/v1/agents/${agent_id}/runs/${runID}`, options);
   }
 }
@@ -109,6 +113,6 @@ export declare namespace Runs {
     type RunCreateResponse as RunCreateResponse,
     type RunRetrieveResponse as RunRetrieveResponse,
     type RunCreateParams as RunCreateParams,
-    type RunRetrieveParams as RunRetrieveParams
+    type RunRetrieveParams as RunRetrieveParams,
   };
 }

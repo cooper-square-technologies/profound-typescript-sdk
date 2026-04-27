@@ -1,4 +1,42 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { Categories, type FieldDiff, type IDOrName, type NamedResourceDiffList, type CategoryListResponse, type CategoryAssetsResponse, type CategoryCreatePromptsResponse, type CategoryGetCategoryPersonasResponse, type CategoryPromptsResponse, type CategoryTagsResponse, type CategoryTopicsResponse, type CategoryUpdatePromptStatusResponse, type CategoryUpdatePromptsResponse, type CategoryListParams, type CategoryCreatePromptsParams, type CategoryPromptsParams, type CategoryUpdatePromptStatusParams, type CategoryUpdatePromptsParams } from './categories';;
-export { Organizations, type Category, type NamedResource, type Organization, type PersonaProfile, type PersonaProfileBehavior, type PersonaProfileDemographics, type PersonaProfileEmployment, type OrganizationListResponse, type OrganizationDomainsResponse, type OrganizationGetPersonasResponse, type OrganizationListAssetsResponse, type OrganizationModelsResponse, type OrganizationRegionsResponse, type OrganizationDomainsParams, type OrganizationGetPersonasParams, type OrganizationListAssetsParams, type OrganizationRegionsParams } from './organizations';;
+export {
+  Categories,
+  type FieldDiff,
+  type IDOrName,
+  type NamedResourceDiffList,
+  type CategoryListResponse,
+  type CategoryAssetsResponse,
+  type CategoryCreatePromptsResponse,
+  type CategoryGetCategoryPersonasResponse,
+  type CategoryPromptsResponse,
+  type CategoryTagsResponse,
+  type CategoryTopicsResponse,
+  type CategoryUpdatePromptStatusResponse,
+  type CategoryUpdatePromptsResponse,
+  type CategoryListParams,
+  type CategoryCreatePromptsParams,
+  type CategoryPromptsParams,
+  type CategoryUpdatePromptStatusParams,
+  type CategoryUpdatePromptsParams,
+} from './categories';
+export {
+  Organizations,
+  type Category,
+  type NamedResource,
+  type Organization,
+  type PersonaProfile,
+  type PersonaProfileBehavior,
+  type PersonaProfileDemographics,
+  type PersonaProfileEmployment,
+  type OrganizationListResponse,
+  type OrganizationDomainsResponse,
+  type OrganizationGetPersonasResponse,
+  type OrganizationListAssetsResponse,
+  type OrganizationModelsResponse,
+  type OrganizationRegionsResponse,
+  type OrganizationDomainsParams,
+  type OrganizationGetPersonasParams,
+  type OrganizationListAssetsParams,
+  type OrganizationRegionsParams,
+} from './organizations';

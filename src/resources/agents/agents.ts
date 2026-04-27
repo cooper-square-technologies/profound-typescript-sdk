@@ -17,7 +17,11 @@ export class Agents extends APIResource {
    * unpublished changes. Use the `version` parameter to choose which state to
    * return.
    */
-  retrieve(agentID: string, query: AgentRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<AgentRetrieveResponse> {
+  retrieve(
+    agentID: string,
+    query: AgentRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AgentRetrieveResponse> {
     return this._client.get(path`/v1/agents/${agentID}`, { query, ...options });
   }
 
@@ -28,7 +32,10 @@ export class Agents extends APIResource {
    * agents have a live published version. `draft` agents have not been published
    * yet.
    */
-  list(query: AgentListParams | null | undefined = {}, options?: RequestOptions): APIPromise<AgentListResponse> {
+  list(
+    query: AgentListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AgentListResponse> {
     return this._client.get('/v1/agents', { query, ...options });
   }
 }
@@ -188,7 +195,7 @@ export declare namespace Agents {
     type AgentRetrieveResponse as AgentRetrieveResponse,
     type AgentListResponse as AgentListResponse,
     type AgentRetrieveParams as AgentRetrieveParams,
-    type AgentListParams as AgentListParams
+    type AgentListParams as AgentListParams,
   };
 
   export {
@@ -196,6 +203,6 @@ export declare namespace Agents {
     type RunCreateResponse as RunCreateResponse,
     type RunRetrieveResponse as RunRetrieveResponse,
     type RunCreateParams as RunCreateParams,
-    type RunRetrieveParams as RunRetrieveParams
+    type RunRetrieveParams as RunRetrieveParams,
   };
 }

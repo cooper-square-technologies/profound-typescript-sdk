@@ -2,17 +2,20 @@
 
 import Profound from 'profoundai';
 
-const client = new Profound({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
+const client = new Profound({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+});
 
 describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('citations: only required params', async () => {
     const responsePromise = client.reports.citations({
-    category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    end_date: '2019-12-27T18:11:19.117Z',
-    metrics: ['count'],
-    start_date: '2019-12-27T18:11:19.117Z',
-  });
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      end_date: '2019-12-27T18:11:19.117Z',
+      metrics: ['count'],
+      start_date: '2019-12-27T18:11:19.117Z',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -25,29 +28,31 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('citations: required and optional params', async () => {
     const response = await client.reports.citations({
-    category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    end_date: '2019-12-27T18:11:19.117Z',
-    metrics: ['count'],
-    start_date: '2019-12-27T18:11:19.117Z',
-    date_interval: 'hour',
-    dimensions: ['hostname'],
-    filters: [{
-    field: 'hostname',
-    operator: 'is',
-    value: 'string',
-  }],
-    order_by: { date: 'asc' },
-    pagination: { limit: 1, offset: 0 },
-  });
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      end_date: '2019-12-27T18:11:19.117Z',
+      metrics: ['count'],
+      start_date: '2019-12-27T18:11:19.117Z',
+      date_interval: 'hour',
+      dimensions: ['hostname'],
+      filters: [
+        {
+          field: 'hostname',
+          operator: 'is',
+          value: 'string',
+        },
+      ],
+      order_by: { date: 'asc' },
+      pagination: { limit: 1, offset: 0 },
+    });
   });
 
   // Mock server tests are disabled
   test.skip('getBotsReport: only required params', async () => {
     const responsePromise = client.reports.getBotsReport({
-    domain: 'domain',
-    metrics: ['count'],
-    start_date: '2019-12-27T18:11:19.117Z',
-  });
+      domain: 'domain',
+      metrics: ['count'],
+      start_date: '2019-12-27T18:11:19.117Z',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -60,30 +65,32 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('getBotsReport: required and optional params', async () => {
     const response = await client.reports.getBotsReport({
-    domain: 'domain',
-    metrics: ['count'],
-    start_date: '2019-12-27T18:11:19.117Z',
-    date_interval: 'hour',
-    dimensions: ['date'],
-    end_date: '2019-12-27T18:11:19.117Z',
-    filters: [{
-    field: 'path',
-    operator: 'is',
-    value: 'string',
-  }],
-    order_by: { date: 'asc' },
-    organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    pagination: { limit: 1, offset: 0 },
-  });
+      domain: 'domain',
+      metrics: ['count'],
+      start_date: '2019-12-27T18:11:19.117Z',
+      date_interval: 'hour',
+      dimensions: ['date'],
+      end_date: '2019-12-27T18:11:19.117Z',
+      filters: [
+        {
+          field: 'path',
+          operator: 'is',
+          value: 'string',
+        },
+      ],
+      order_by: { date: 'asc' },
+      organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      pagination: { limit: 1, offset: 0 },
+    });
   });
 
   // Mock server tests are disabled
   test.skip('getBotsReportV2: only required params', async () => {
     const responsePromise = client.reports.getBotsReportV2({
-    domain: 'domain',
-    metrics: ['count'],
-    start_date: '2019-12-27T18:11:19.117Z',
-  });
+      domain: 'domain',
+      metrics: ['count'],
+      start_date: '2019-12-27T18:11:19.117Z',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -96,30 +103,32 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('getBotsReportV2: required and optional params', async () => {
     const response = await client.reports.getBotsReportV2({
-    domain: 'domain',
-    metrics: ['count'],
-    start_date: '2019-12-27T18:11:19.117Z',
-    date_interval: 'hour',
-    dimensions: ['date'],
-    end_date: '2019-12-27T18:11:19.117Z',
-    filters: [{
-    field: 'path',
-    operator: 'is',
-    value: 'string',
-  }],
-    order_by: { date: 'asc' },
-    organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    pagination: { limit: 1, offset: 0 },
-  });
+      domain: 'domain',
+      metrics: ['count'],
+      start_date: '2019-12-27T18:11:19.117Z',
+      date_interval: 'hour',
+      dimensions: ['date'],
+      end_date: '2019-12-27T18:11:19.117Z',
+      filters: [
+        {
+          field: 'path',
+          operator: 'is',
+          value: 'string',
+        },
+      ],
+      order_by: { date: 'asc' },
+      organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      pagination: { limit: 1, offset: 0 },
+    });
   });
 
   // Mock server tests are disabled
   test.skip('getReferralsReport: only required params', async () => {
     const responsePromise = client.reports.getReferralsReport({
-    domain: 'domain',
-    metrics: ['visits'],
-    start_date: '2019-12-27T18:11:19.117Z',
-  });
+      domain: 'domain',
+      metrics: ['visits'],
+      start_date: '2019-12-27T18:11:19.117Z',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -132,30 +141,32 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('getReferralsReport: required and optional params', async () => {
     const response = await client.reports.getReferralsReport({
-    domain: 'domain',
-    metrics: ['visits'],
-    start_date: '2019-12-27T18:11:19.117Z',
-    date_interval: 'hour',
-    dimensions: ['date'],
-    end_date: '2019-12-27T18:11:19.117Z',
-    filters: [{
-    field: 'path',
-    operator: 'is',
-    value: 'string',
-  }],
-    order_by: { date: 'asc' },
-    organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    pagination: { limit: 1, offset: 0 },
-  });
+      domain: 'domain',
+      metrics: ['visits'],
+      start_date: '2019-12-27T18:11:19.117Z',
+      date_interval: 'hour',
+      dimensions: ['date'],
+      end_date: '2019-12-27T18:11:19.117Z',
+      filters: [
+        {
+          field: 'path',
+          operator: 'is',
+          value: 'string',
+        },
+      ],
+      order_by: { date: 'asc' },
+      organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      pagination: { limit: 1, offset: 0 },
+    });
   });
 
   // Mock server tests are disabled
   test.skip('getReferralsReportV2: only required params', async () => {
     const responsePromise = client.reports.getReferralsReportV2({
-    domain: 'domain',
-    metrics: ['visits'],
-    start_date: '2019-12-27T18:11:19.117Z',
-  });
+      domain: 'domain',
+      metrics: ['visits'],
+      start_date: '2019-12-27T18:11:19.117Z',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -168,31 +179,33 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('getReferralsReportV2: required and optional params', async () => {
     const response = await client.reports.getReferralsReportV2({
-    domain: 'domain',
-    metrics: ['visits'],
-    start_date: '2019-12-27T18:11:19.117Z',
-    date_interval: 'hour',
-    dimensions: ['date'],
-    end_date: '2019-12-27T18:11:19.117Z',
-    filters: [{
-    field: 'path',
-    operator: 'is',
-    value: 'string',
-  }],
-    order_by: { date: 'asc' },
-    organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    pagination: { limit: 1, offset: 0 },
-  });
+      domain: 'domain',
+      metrics: ['visits'],
+      start_date: '2019-12-27T18:11:19.117Z',
+      date_interval: 'hour',
+      dimensions: ['date'],
+      end_date: '2019-12-27T18:11:19.117Z',
+      filters: [
+        {
+          field: 'path',
+          operator: 'is',
+          value: 'string',
+        },
+      ],
+      order_by: { date: 'asc' },
+      organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      pagination: { limit: 1, offset: 0 },
+    });
   });
 
   // Mock server tests are disabled
   test.skip('queryFanouts: only required params', async () => {
     const responsePromise = client.reports.queryFanouts({
-    category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    end_date: '2019-12-27T18:11:19.117Z',
-    metrics: ['fanouts_per_execution'],
-    start_date: '2019-12-27T18:11:19.117Z',
-  });
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      end_date: '2019-12-27T18:11:19.117Z',
+      metrics: ['fanouts_per_execution'],
+      start_date: '2019-12-27T18:11:19.117Z',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -205,30 +218,32 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('queryFanouts: required and optional params', async () => {
     const response = await client.reports.queryFanouts({
-    category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    end_date: '2019-12-27T18:11:19.117Z',
-    metrics: ['fanouts_per_execution'],
-    start_date: '2019-12-27T18:11:19.117Z',
-    date_interval: 'hour',
-    dimensions: ['prompt'],
-    filters: [{
-    field: 'region_id',
-    operator: 'is',
-    value: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-  }],
-    order_by: { fanouts_per_execution: 'desc' },
-    pagination: { limit: 1, offset: 0 },
-  });
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      end_date: '2019-12-27T18:11:19.117Z',
+      metrics: ['fanouts_per_execution'],
+      start_date: '2019-12-27T18:11:19.117Z',
+      date_interval: 'hour',
+      dimensions: ['prompt'],
+      filters: [
+        {
+          field: 'region_id',
+          operator: 'is',
+          value: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        },
+      ],
+      order_by: { fanouts_per_execution: 'desc' },
+      pagination: { limit: 1, offset: 0 },
+    });
   });
 
   // Mock server tests are disabled
   test.skip('sentiment: only required params', async () => {
     const responsePromise = client.reports.sentiment({
-    category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    end_date: '2019-12-27T18:11:19.117Z',
-    metrics: ['positive'],
-    start_date: '2019-12-27T18:11:19.117Z',
-  });
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      end_date: '2019-12-27T18:11:19.117Z',
+      metrics: ['positive'],
+      start_date: '2019-12-27T18:11:19.117Z',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -241,30 +256,32 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('sentiment: required and optional params', async () => {
     const response = await client.reports.sentiment({
-    category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    end_date: '2019-12-27T18:11:19.117Z',
-    metrics: ['positive'],
-    start_date: '2019-12-27T18:11:19.117Z',
-    date_interval: 'hour',
-    dimensions: ['theme'],
-    filters: [{
-    field: 'asset_id',
-    operator: 'is',
-    value: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-  }],
-    order_by: { date: 'asc' },
-    pagination: { limit: 1, offset: 0 },
-  });
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      end_date: '2019-12-27T18:11:19.117Z',
+      metrics: ['positive'],
+      start_date: '2019-12-27T18:11:19.117Z',
+      date_interval: 'hour',
+      dimensions: ['theme'],
+      filters: [
+        {
+          field: 'asset_id',
+          operator: 'is',
+          value: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        },
+      ],
+      order_by: { date: 'asc' },
+      pagination: { limit: 1, offset: 0 },
+    });
   });
 
   // Mock server tests are disabled
   test.skip('visibility: only required params', async () => {
     const responsePromise = client.reports.visibility({
-    category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    end_date: '2019-12-27T18:11:19.117Z',
-    metrics: ['share_of_voice'],
-    start_date: '2019-12-27T18:11:19.117Z',
-  });
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      end_date: '2019-12-27T18:11:19.117Z',
+      metrics: ['share_of_voice'],
+      start_date: '2019-12-27T18:11:19.117Z',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -277,19 +294,21 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('visibility: required and optional params', async () => {
     const response = await client.reports.visibility({
-    category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-    end_date: '2019-12-27T18:11:19.117Z',
-    metrics: ['share_of_voice'],
-    start_date: '2019-12-27T18:11:19.117Z',
-    date_interval: 'hour',
-    dimensions: ['date'],
-    filters: [{
-    field: 'region_id',
-    operator: 'is',
-    value: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-  }],
-    order_by: { date: 'asc' },
-    pagination: { limit: 1, offset: 0 },
-  });
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      end_date: '2019-12-27T18:11:19.117Z',
+      metrics: ['share_of_voice'],
+      start_date: '2019-12-27T18:11:19.117Z',
+      date_interval: 'hour',
+      dimensions: ['date'],
+      filters: [
+        {
+          field: 'region_id',
+          operator: 'is',
+          value: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        },
+      ],
+      order_by: { date: 'asc' },
+      pagination: { limit: 1, offset: 0 },
+    });
   });
 });

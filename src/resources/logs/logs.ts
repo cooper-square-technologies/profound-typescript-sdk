@@ -16,6 +16,6 @@ export declare namespace Logs {
     type RawBotsResponse as RawBotsResponse,
     type RawLogsResponse as RawLogsResponse,
     type RawBotsParams as RawBotsParams,
-    type RawLogsParams as RawLogsParams
+    type RawLogsParams as RawLogsParams,
   };
 }
