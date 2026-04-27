@@ -1,13 +1,21 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-
 /**
  * Filter by analysis type (visibility, sentiment, or accuracy).
  */
 export interface AnalysisTypeFilter {
   field: 'analysis_type';
 
-  operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
 
   value: 'visibility' | 'sentiment' | 'accuracy' | Array<'visibility' | 'sentiment' | 'accuracy'>;
 }
@@ -18,7 +26,16 @@ export interface AnalysisTypeFilter {
 export interface AssetNameFilter {
   field: 'asset_name';
 
-  operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
 
   value: string | Array<string>;
 }
@@ -29,9 +46,78 @@ export interface AssetNameFilter {
 export interface BotNameFilter {
   field: 'bot_name';
 
-  operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
 
-  value: 'Amazonbot' | 'ClaudeBot' | 'Claude-User' | 'Claude-SearchBot' | 'Applebot' | 'Applebot-Extended' | 'Bytespider' | 'DeepSeek' | 'DuckAssistBot' | 'DuckDuckBot' | 'Googlebot' | 'Googlebot-News' | 'Googlebot-Video' | 'Googlebot-Image' | 'Google-Extended' | 'Storebot-Google' | 'Google-CloudVertexBot' | 'meta-externalfetcher' | 'meta-externalagent' | 'bingbot' | 'MicrosoftPreview' | 'ChatGPT-User' | 'GPTBot' | 'OAI-SearchBot' | 'OAI-Operator' | 'PerplexityBot' | 'Perplexity-User' | 'Grok-PageBrowser' | 'YouBot' | Array<'Amazonbot' | 'ClaudeBot' | 'Claude-User' | 'Claude-SearchBot' | 'Applebot' | 'Applebot-Extended' | 'Bytespider' | 'DeepSeek' | 'DuckAssistBot' | 'DuckDuckBot' | 'Googlebot' | 'Googlebot-News' | 'Googlebot-Video' | 'Googlebot-Image' | 'Google-Extended' | 'Storebot-Google' | 'Google-CloudVertexBot' | 'meta-externalfetcher' | 'meta-externalagent' | 'bingbot' | 'MicrosoftPreview' | 'ChatGPT-User' | 'GPTBot' | 'OAI-SearchBot' | 'OAI-Operator' | 'PerplexityBot' | 'Perplexity-User' | 'Grok-PageBrowser' | 'YouBot'>;
+  value:
+    | 'Amazonbot'
+    | 'ClaudeBot'
+    | 'Claude-User'
+    | 'Claude-SearchBot'
+    | 'Applebot'
+    | 'Applebot-Extended'
+    | 'Bytespider'
+    | 'DeepSeek'
+    | 'DuckAssistBot'
+    | 'DuckDuckBot'
+    | 'Googlebot'
+    | 'Googlebot-News'
+    | 'Googlebot-Video'
+    | 'Googlebot-Image'
+    | 'Google-Extended'
+    | 'Storebot-Google'
+    | 'Google-CloudVertexBot'
+    | 'meta-externalfetcher'
+    | 'meta-externalagent'
+    | 'bingbot'
+    | 'MicrosoftPreview'
+    | 'ChatGPT-User'
+    | 'GPTBot'
+    | 'OAI-SearchBot'
+    | 'OAI-Operator'
+    | 'PerplexityBot'
+    | 'Perplexity-User'
+    | 'Grok-PageBrowser'
+    | 'YouBot'
+    | Array<
+        | 'Amazonbot'
+        | 'ClaudeBot'
+        | 'Claude-User'
+        | 'Claude-SearchBot'
+        | 'Applebot'
+        | 'Applebot-Extended'
+        | 'Bytespider'
+        | 'DeepSeek'
+        | 'DuckAssistBot'
+        | 'DuckDuckBot'
+        | 'Googlebot'
+        | 'Googlebot-News'
+        | 'Googlebot-Video'
+        | 'Googlebot-Image'
+        | 'Google-Extended'
+        | 'Storebot-Google'
+        | 'Google-CloudVertexBot'
+        | 'meta-externalfetcher'
+        | 'meta-externalagent'
+        | 'bingbot'
+        | 'MicrosoftPreview'
+        | 'ChatGPT-User'
+        | 'GPTBot'
+        | 'OAI-SearchBot'
+        | 'OAI-Operator'
+        | 'PerplexityBot'
+        | 'Perplexity-User'
+        | 'Grok-PageBrowser'
+        | 'YouBot'
+      >;
 }
 
 /**
@@ -40,9 +126,52 @@ export interface BotNameFilter {
 export interface BotProviderFilter {
   field: 'bot_provider';
 
-  operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
 
-  value: 'openai' | 'anthropic' | 'chatgpt' | 'deepseek' | 'google' | 'microsoft' | 'perplexity' | 'apple' | 'bytedance' | 'amazon' | 'meta' | 'duckduckgo' | 'you' | 'xai' | 'grok' | 'gemini' | Array<'openai' | 'anthropic' | 'chatgpt' | 'deepseek' | 'google' | 'microsoft' | 'perplexity' | 'apple' | 'bytedance' | 'amazon' | 'meta' | 'duckduckgo' | 'you' | 'xai' | 'grok' | 'gemini'>;
+  value:
+    | 'openai'
+    | 'anthropic'
+    | 'chatgpt'
+    | 'deepseek'
+    | 'google'
+    | 'microsoft'
+    | 'perplexity'
+    | 'apple'
+    | 'bytedance'
+    | 'amazon'
+    | 'meta'
+    | 'duckduckgo'
+    | 'you'
+    | 'xai'
+    | 'grok'
+    | 'gemini'
+    | Array<
+        | 'openai'
+        | 'anthropic'
+        | 'chatgpt'
+        | 'deepseek'
+        | 'google'
+        | 'microsoft'
+        | 'perplexity'
+        | 'apple'
+        | 'bytedance'
+        | 'amazon'
+        | 'meta'
+        | 'duckduckgo'
+        | 'you'
+        | 'xai'
+        | 'grok'
+        | 'gemini'
+      >;
 }
 
 /**
@@ -80,7 +209,16 @@ export interface Pagination {
 export interface PathFilter {
   field: 'path';
 
-  operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
 
   value: string | Array<string>;
 }
@@ -102,7 +240,16 @@ export interface PersonaIDFilter {
 export interface PromptFilter {
   field: 'prompt';
 
-  operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
 
   value: string | Array<string>;
 }
@@ -116,7 +263,16 @@ export interface PromptFilter {
 export interface PromptTypeFilter {
   field: 'prompt_type';
 
-  operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
 
   value: 'visibility' | 'sentiment' | Array<'visibility' | 'sentiment'>;
 }
@@ -141,7 +297,16 @@ export interface RegionIDFilter {
 export interface RegionNameFilter {
   field: 'region_name';
 
-  operator: 'is' | 'not_is' | 'in' | 'not_in' | 'contains' | 'not_contains' | 'matches' | 'contains_case_insensitive' | 'not_contains_case_insensitive';
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
 
   value: string | Array<string>;
 }

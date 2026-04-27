@@ -16,16 +16,18 @@ const serverConfig: ServerConfig = {
   orgName: 'Profound',
   instructionsUrl: undefined, // Set a url for where you show users how to get an API key
   logoUrl: undefined, // Set a custom logo url to appear during the OAuth flow
-  clientProperties: [{
-  key: 'apiKey',
-  label: 'API Key',
-  description: 'API Key',
-  required: true,
-  default: undefined,
-  placeholder: 'My API Key',
-  type: 'password',
-}],
-};;
+  clientProperties: [
+    {
+      key: 'apiKey',
+      label: 'API Key',
+      description: 'API Key',
+      required: true,
+      default: undefined,
+      placeholder: 'My API Key',
+      type: 'password',
+    },
+  ],
+};
 
 export class MyMCP extends McpAgent<Env, unknown, MCPProps> {
   server = server;
