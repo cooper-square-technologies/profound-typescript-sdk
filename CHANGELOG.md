@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.44.0 (2026-04-28)
+
+Full Changelog: [v0.43.1...v0.44.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.43.1...v0.44.0)
+
+### Features
+
+* **api:** api update ([0ee8a74](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/0ee8a74330763ec8485e52d96e9393f5eabc106f))
+* **api:** api update ([81aa7e9](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/81aa7e9d740dc67a7f0428bb90443ac319ff8a5c))
+* **api:** api update ([10ae397](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/10ae3974d116636c7396367af7a02d8a911518c8))
+* **api:** shared `AnalysisTypeFilter` ([eb14a71](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/eb14a71c862a5c0bcdaaf9fdab375edcc259be3e))
+* support setting headers via env ([4c324e3](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/4c324e3c6187da694a87b67d90b128cfff6dc8e5))
+
+
+### Chores
+
+* **formatter:** run prettier and eslint separately ([6e60c56](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/6e60c5678057ee496ef8592911c05af2d2a36678))
+* **internal:** codegen related update ([9962d39](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/9962d39dd271bf59b3cd6c4d4bd1025d58d04cf9))
+
 ## 0.43.1 (2026-04-24)
 
 Full Changelog: [v0.43.0...v0.43.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.43.0...v0.43.1)
