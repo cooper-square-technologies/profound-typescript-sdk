@@ -333,6 +333,7 @@ export interface ReportCitationsParams {
     | TagNameFilter
     | ReportCitationsParams.URLFilter
     | ReportCitationsParams.RootDomainFilter
+    | Shared.AnalysisTypeFilter
     | Shared.PromptTypeFilter
     | Shared.PersonaIDFilter
     | ReportCitationsParams.CitationCategoryFilter
@@ -344,7 +345,7 @@ export interface ReportCitationsParams {
    * Custom ordering of the report results.
    *
    *     The order is a record of key-value pairs where:
-   *     - `key` is the field to order by, which can be a metric and/or `date`, `hostname`, `path` dimensions
+   *     - `key` is the field to order by, which can be a metric or dimension
    *     - `value` is the direction of the order, either `asc` for ascending or `desc` for descending.
    *
    *     When not specified, the default order is the first metric in the query descending.
@@ -851,6 +852,7 @@ export interface ReportQueryFanoutsParams {
     | Shared.TagIDFilter
     | PromptIDFilter
     | Shared.PersonaIDFilter
+    | Shared.AnalysisTypeFilter
     | Shared.PromptTypeFilter
   >;
 

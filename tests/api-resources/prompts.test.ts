@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Profound from 'profoundai';
+import Profound from '@profoundai/client';
 
 const client = new Profound({
   apiKey: 'My API Key',
@@ -38,6 +38,7 @@ describe('resource prompts', () => {
         },
       ],
       include: {
+        analysis_types: true,
         asset: true,
         asset_id: true,
         citations: true,
@@ -53,6 +54,7 @@ describe('resource prompts', () => {
         response: true,
         run_id: true,
         search_queries: true,
+        search_triggered: true,
         sentiment_themes: true,
         tags: true,
         themes: true,

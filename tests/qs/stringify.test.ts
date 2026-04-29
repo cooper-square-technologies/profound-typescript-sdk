@@ -1,7 +1,7 @@
 import iconv from 'iconv-lite';
-import { stringify } from 'profoundai/internal/qs';
-import { encode } from 'profoundai/internal/qs/utils';
-import { StringifyOptions } from 'profoundai/internal/qs/types';
+import { stringify } from '@profoundai/client/internal/qs';
+import { encode } from '@profoundai/client/internal/qs/utils';
+import { StringifyOptions } from '@profoundai/client/internal/qs/types';
 import { empty_test_cases } from './empty-keys-cases';
 import assert from 'assert';
 

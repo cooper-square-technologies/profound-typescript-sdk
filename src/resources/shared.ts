@@ -1,6 +1,26 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 /**
+ * Filter by analysis type (visibility, sentiment, or accuracy).
+ */
+export interface AnalysisTypeFilter {
+  field: 'analysis_type';
+
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
+
+  value: 'visibility' | 'sentiment' | 'accuracy' | Array<'visibility' | 'sentiment' | 'accuracy'>;
+}
+
+/**
  * Filter by asset name
  */
 export interface AssetNameFilter {
@@ -236,6 +256,9 @@ export interface PromptFilter {
 
 /**
  * Filter by prompt type (visibility or sentiment).
+ *
+ * .. deprecated:: Use :class:`AnalysisTypeFilter` instead. `prompt_type` is
+ * normalised to `analysis_type` at parse time.
  */
 export interface PromptTypeFilter {
   field: 'prompt_type';

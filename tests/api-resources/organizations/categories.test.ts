@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Profound from 'profoundai';
+import Profound from '@profoundai/client';
 
 const client = new Profound({
   apiKey: 'My API Key',
@@ -80,6 +80,7 @@ describe('resource categories', () => {
             prompt: 'x',
             regions: [{ id: 'id', name: 'name' }],
             topic: { id: 'id', name: 'name' },
+            analysis_types: ['visibility'],
             asset: { id: 'id', name: 'name' },
             personas: [{ id: 'id', name: 'name' }],
             prompt_type: 'prompt_type',
@@ -124,6 +125,7 @@ describe('resource categories', () => {
       client.organizations.categories.prompts(
         '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
         {
+          analysis_type: ['visibility'],
           cursor: 'cursor',
           limit: 1,
           order_dir: 'asc',
@@ -214,6 +216,7 @@ describe('resource categories', () => {
         prompts: [
           {
             id: 'id',
+            analysis_types: ['visibility'],
             asset: { id: 'id', name: 'name' },
             language: 'language',
             personas: [{ id: 'id', name: 'name' }],

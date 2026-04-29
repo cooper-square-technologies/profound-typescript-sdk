@@ -1,5 +1,5 @@
-import { multipartFormRequestOptions, createForm } from 'profoundai/internal/uploads';
-import { toFile } from 'profoundai/core/uploads';
+import { multipartFormRequestOptions, createForm } from '@profoundai/client/internal/uploads';
+import { toFile } from '@profoundai/client/core/uploads';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {

@@ -28,6 +28,8 @@ export namespace PromptAnswersResponse {
    * Raw data for the answers endpoint.
    */
   export interface Data {
+    analysis_types?: Array<string> | null;
+
     asset?: string | null;
 
     asset_id?: string | null;
@@ -57,6 +59,8 @@ export namespace PromptAnswersResponse {
     run_id?: string | null;
 
     search_queries?: Array<string> | null;
+
+    search_triggered?: boolean | null;
 
     sentiment_themes?: Array<Data.SentimentTheme> | null;
 
@@ -97,6 +101,7 @@ export interface PromptAnswersParams {
     | Shared.RegionNameFilter
     | Shared.ModelIDFilter
     | Shared.TagIDFilter
+    | Shared.AnalysisTypeFilter
     | Shared.PromptTypeFilter
     | Shared.PromptFilter
     | Shared.PersonaIDFilter
@@ -123,6 +128,8 @@ export namespace PromptAnswersParams {
   }
 
   export interface Include {
+    analysis_types?: boolean;
+
     asset?: boolean;
 
     asset_id?: boolean;
@@ -143,6 +150,9 @@ export namespace PromptAnswersParams {
 
     prompt_id?: boolean;
 
+    /**
+     * @deprecated
+     */
     prompt_type?: boolean;
 
     region?: boolean;
@@ -152,6 +162,8 @@ export namespace PromptAnswersParams {
     run_id?: boolean;
 
     search_queries?: boolean;
+
+    search_triggered?: boolean;
 
     sentiment_themes?: boolean;
 
