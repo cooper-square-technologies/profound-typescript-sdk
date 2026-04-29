@@ -3,5 +3,8 @@ CHANGELOG.md
 /node_modules
 /deno
 
+# release-please reformats this file when bumping versions in a way that's non-prettier-compliant
+packages/mcp-server/manifest.json
+
 # don't format tsc output, will break source maps
 dist
