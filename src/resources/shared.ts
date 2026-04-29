@@ -20,6 +20,14 @@ export interface AnalysisTypeFilter {
   value: 'visibility' | 'sentiment' | 'accuracy' | Array<'visibility' | 'sentiment' | 'accuracy'>;
 }
 
+export interface AssetIDFilter {
+  field: 'asset_id';
+
+  operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+  value: string | Array<string>;
+}
+
 /**
  * Filter by asset name
  */
@@ -172,6 +180,21 @@ export interface BotProviderFilter {
         | 'grok'
         | 'gemini'
       >;
+}
+
+/**
+ * Cursor-based pagination metadata.
+ */
+export interface CursorPagination {
+  /**
+   * Maximum number of results to return. Default is 10,000, maximum is 50,000.
+   */
+  limit?: number;
+
+  /**
+   * Token for the next page, if more results are available.
+   */
+  next_cursor?: string | null;
 }
 
 /**

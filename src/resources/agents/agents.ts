@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
 import * as RunsAPI from './runs';
 import { RunCreateParams, RunCreateResponse, RunRetrieveParams, RunRetrieveResponse, Runs } from './runs';
 import { APIPromise } from '../../core/api-promise';
@@ -111,7 +112,7 @@ export interface AgentListResponse {
   /**
    * Cursor pagination details for this response.
    */
-  pagination?: AgentListResponse.Pagination;
+  pagination?: Shared.CursorPagination;
 }
 
 export namespace AgentListResponse {
@@ -148,21 +149,6 @@ export namespace AgentListResponse {
      * Short description of the agent, if provided.
      */
     description?: string | null;
-  }
-
-  /**
-   * Cursor pagination details for this response.
-   */
-  export interface Pagination {
-    /**
-     * Maximum number of results to return. Default is 10,000, maximum is 50,000.
-     */
-    limit?: number;
-
-    /**
-     * Token for the next page, if more results are available.
-     */
-    next_cursor?: string | null;
   }
 }
 
