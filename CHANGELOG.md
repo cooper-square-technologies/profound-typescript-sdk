@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.44.0 (2026-04-29)
+
+Full Changelog: [v0.43.1...v0.44.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.43.1...v0.44.0)
+
+### Features
+
+* **api:** api update ([0ee8a74](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/0ee8a74330763ec8485e52d96e9393f5eabc106f))
+* **api:** api update ([81aa7e9](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/81aa7e9d740dc67a7f0428bb90443ac319ff8a5c))
+* **api:** api update ([10ae397](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/10ae3974d116636c7396367af7a02d8a911518c8))
+* **api:** package rename, enable trusted publishing ([817673d](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/817673ddfd0a777921a8f28afe966868ecec43e8))
+* **api:** package rename, enable trusted publishing ([412111a](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/412111a26ab6e3045675d40aca0561c5f0f8af75))
+* **api:** shared `AnalysisTypeFilter` ([eb14a71](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/eb14a71c862a5c0bcdaaf9fdab375edcc259be3e))
+* support setting headers via env ([4c324e3](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/4c324e3c6187da694a87b67d90b128cfff6dc8e5))
+
+
+### Bug Fixes
+
+* **mcp:** update cloudflare worker imports to renamed packages ([9f3fae6](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/9f3fae6aaed2c4170b685fa4acc21ad7266c89ad))
+* **mcp:** update cloudflare worker imports to renamed packages ([d62dc58](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/d62dc58081074621ccd9d99f5e6ae3acbff2dfce))
+
+
+### Chores
+
+* **format:** run eslint and prettier separately ([b997ec6](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/b997ec60c8db59630ffc1a6c7df8361c1da8f8fb))
+* **formatter:** run prettier and eslint separately ([6e60c56](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/6e60c5678057ee496ef8592911c05af2d2a36678))
+* ignore manifest.json in prettier ([de580fb](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/de580fb18072169c744437b31926572ddd31c382))
+* ignore manifest.json in prettier ([a93a999](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/a93a99936833a670d9c77cf981517c3beaebd440))
+* **internal:** codegen related update ([9962d39](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/9962d39dd271bf59b3cd6c4d4bd1025d58d04cf9))
+
 ## 0.43.1 (2026-04-24)
 
 Full Changelog: [v0.43.0...v0.43.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.43.0...v0.43.1)
