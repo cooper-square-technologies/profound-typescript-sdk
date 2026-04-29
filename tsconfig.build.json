@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "profoundai/*": ["./dist/src/*"],
-      "profoundai": ["./dist/src/index.ts"]
+      "@profoundai/client/*": ["./dist/src/*"],
+      "@profoundai/client": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,

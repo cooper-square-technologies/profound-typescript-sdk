@@ -3,7 +3,7 @@ import { McpAgent } from 'agents/mcp';
 import OAuthProvider from '@cloudflare/workers-oauth-provider';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { configureLogger } from 'profound-mcp/logger';
-import { initMcpServer } from 'profound-mcp/server';
+import { initMcpServer } from '@profoundai/mcp/server';
 import type { McpOptions } from 'profound-mcp/options';
 import type { ClientOptions } from 'profoundai';
 import pkg from '../../package.json';

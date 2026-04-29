@@ -7,8 +7,8 @@ import {
   ListToolsRequestSchema,
   SetLevelRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
-import { ClientOptions } from 'profoundai';
-import Profound from 'profoundai';
+import { ClientOptions } from '@profoundai/client';
+import Profound from '@profoundai/client';
 import { codeTool } from './code-tool';
 import docsSearchTool from './docs-search-tool';
 import { setLocalSearch } from './docs-search-tool';
@@ -27,7 +27,7 @@ export const newMcpServer = async ({
 }) =>
   new McpServer(
     {
-      name: 'profoundai_api',
+      name: 'profoundai_client_api',
       version: '0.43.1',
     },
     {
