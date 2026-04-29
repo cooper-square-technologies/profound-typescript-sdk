@@ -1,5 +1,5 @@
 {
-  "name": "profound-mcp",
+  "name": "@profoundai/mcp",
   "version": "0.43.1",
   "description": "The official MCP Server for the Profound API",
   "author": "Profound <support@tryprofound.com>",
@@ -30,7 +30,7 @@
     "fix": "eslint --fix ."
   },
   "dependencies": {
-    "profoundai": "link:../../dist/",
+    "@profoundai/client": "link:../../dist/",
     "ajv": "^8.18.0",
     "@cloudflare/cabidela": "^0.2.4",
     "@hono/node-server": "^1.19.10",
@@ -78,8 +78,8 @@
     "tsconfig-paths": "^4.0.0"
   },
   "imports": {
-    "profound-mcp": ".",
-    "profound-mcp/*": "./src/*"
+    "@profoundai/mcp": ".",
+    "@profoundai/mcp/*": "./src/*"
   },
   "exports": {
     ".": {

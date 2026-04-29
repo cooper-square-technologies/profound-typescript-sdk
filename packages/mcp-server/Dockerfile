@@ -3,10 +3,10 @@
 # This Dockerfile builds a Docker image for the MCP Server.
 #
 # To build the image locally:
-#   docker build -f packages/mcp-server/Dockerfile -t profound-mcp:local .
+#   docker build -f packages/mcp-server/Dockerfile -t @profoundai/mcp:local .
 #
 # To run the image:
-#   docker run -i profound-mcp:local [OPTIONS]
+#   docker run -i @profoundai/mcp:local [OPTIONS]
 #
 # Common options:
 #   --tool=<name>              Include specific tools
@@ -16,7 +16,7 @@
 #   --transport=<type>         Set transport type (stdio or http)
 #
 # For a full list of options:
-#   docker run -i profound-mcp:local --help
+#   docker run -i @profoundai/mcp:local --help
 #
 # Note: The MCP server uses stdio transport by default. Docker's -i flag
 # enables interactive mode, allowing the container to communicate over stdin/stdout.
@@ -37,7 +37,7 @@ COPY . .
 RUN yarn install --frozen-lockfile && \
     yarn build && \
     # Remove the symlink to the SDK so it doesn't interfere with the explicit COPY below
-    rm -Rf packages/mcp-server/node_modules/profoundai
+    rm -Rf packages/mcp-server/node_modules/@profoundai/client
 
 FROM denoland/deno:alpine-2.7.1
 
@@ -58,8 +58,8 @@ COPY --from=builder /build/packages/mcp-server/dist ./
 # Copy node_modules from mcp-server (includes all production deps)
 COPY --from=builder /build/packages/mcp-server/node_modules ./node_modules
 
-# Copy the built profoundai into node_modules
-COPY --from=builder /build/dist ./node_modules/profoundai
+# Copy the built @profoundai/client into node_modules
+COPY --from=builder /build/dist ./node_modules/@profoundai/client
 
 # Change ownership to nodejs user
 RUN chown -R nodejs:nodejs /app

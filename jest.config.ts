@@ -7,8 +7,8 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^profoundai$': '<rootDir>/src/index.ts',
-    '^profoundai/(.*)$': '<rootDir>/src/$1',
+    '^@profoundai/client$': '<rootDir>/src/index.ts',
+    '^@profoundai/client/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',
