@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.44.1 (2026-04-29)
+
+Full Changelog: [v0.44.0...v0.44.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.44.0...v0.44.1)
+
+### Chores
+
+* avoid formatting file that gets changed during releases ([98a28fc](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/98a28fca020a925bb07713f194cd6277fdfa08ce))
+
 ## 0.44.0 (2026-04-29)
 
 Full Changelog: [v0.43.1...v0.44.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.43.1...v0.44.0)
