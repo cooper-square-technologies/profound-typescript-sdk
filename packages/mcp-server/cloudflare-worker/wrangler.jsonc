@@ -28,6 +28,7 @@
       "id": "b1d35310274d4db78bc7b6088f5194bc"
     }
   ],
+  "logpush": true,
   "observability": {
     "enabled": true
   },
