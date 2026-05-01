@@ -883,6 +883,123 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'stream_citations',
+    endpoint: '/v1/reports/citations/stream',
+    httpMethod: 'post',
+    summary: 'Stream Citations',
+    description: 'Stream Citations',
+    stainlessPath: '(resource) reports > (method) stream_citations',
+    qualified: 'client.reports.streamCitations',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      "metrics: 'count' | 'citation_share' | 'share_of_voice'[];",
+      'start_date: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      'dimensions?: string[];',
+      "filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: 'visibility' | 'sentiment' | 'accuracy' | 'visibility' | 'sentiment' | 'accuracy'[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'citation_category'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[];",
+      'order_by?: object;',
+      'pagination?: { limit?: number; offset?: number; };',
+    ],
+    response: '{ query: object; total_rows: number; } | object',
+    markdown:
+      "## stream_citations\n\n`client.reports.streamCitations(category_id: string, end_date: string, metrics: 'count' | 'citation_share' | 'share_of_voice'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: 'visibility' | 'sentiment' | 'accuracy' | 'visibility' | 'sentiment' | 'accuracy'[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'citation_category'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[], order_by?: object, pagination?: { limit?: number; offset?: number; }): { query: object; total_rows: number; } | object`\n\n**post** `/v1/reports/citations/stream`\n\nStream Citations\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `metrics: 'count' | 'citation_share' | 'share_of_voice'[]`\n  Metrics to include. `share_of_voice` is deprecated, use `citation_share` instead.\n\n- `start_date: string`\n  Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: string[]`\n  Dimensions to group the report by.\n\n- `filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: 'visibility' | 'sentiment' | 'accuracy' | 'visibility' | 'sentiment' | 'accuracy'[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'citation_category'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[]`\n  List of filters to apply to the citations report.\n\n- `order_by?: object`\n  \n    Custom ordering of the report results.\n\n    The order is a record of key-value pairs where:\n    - `key` is the field to order by, which can be a metric or dimension\n    - `value` is the direction of the order, either `asc` for ascending or `desc` for descending.\n\n    When not specified, the default order is the first metric in the query descending.\n            \n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ query: object; total_rows: number; } | object`\n  A streamed citations report row payload.\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst stream = await client.reports.streamCitations({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\nfor await (const reportStreamCitationsResponse of stream) {\n  console.log(reportStreamCitationsResponse);\n}\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.streamCitations',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.streamCitations({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'reports.stream_citations',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nfor report in client.reports.stream_citations(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    metrics=["count"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n):\n  print(report)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/citations/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'stream_visibility',
+    endpoint: '/v1/reports/visibility/stream',
+    httpMethod: 'post',
+    summary: 'Stream Visibility',
+    description: 'Stream Visibility',
+    stainlessPath: '(resource) reports > (method) stream_visibility',
+    qualified: 'client.reports.streamVisibility',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      "metrics: 'share_of_voice' | 'mentions_count' | 'visibility_score' | 'executions' | 'average_position'[];",
+      'start_date: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      'dimensions?: string[];',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[];",
+      'order_by?: object;',
+      'pagination?: { limit?: number; offset?: number; };',
+    ],
+    response: '{ query: object; total_rows: number; } | object',
+    markdown:
+      "## stream_visibility\n\n`client.reports.streamVisibility(category_id: string, end_date: string, metrics: 'share_of_voice' | 'mentions_count' | 'visibility_score' | 'executions' | 'average_position'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[], order_by?: object, pagination?: { limit?: number; offset?: number; }): { query: object; total_rows: number; } | object`\n\n**post** `/v1/reports/visibility/stream`\n\nStream Visibility\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `metrics: 'share_of_voice' | 'mentions_count' | 'visibility_score' | 'executions' | 'average_position'[]`\n\n- `start_date: string`\n  Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: string[]`\n  Dimensions to group the report by.\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[]`\n  List of filters to apply to the visibility report.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ query: object; total_rows: number; } | object`\n  A streamed visibility report row payload.\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst stream = await client.reports.streamVisibility({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['share_of_voice'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\nfor await (const reportStreamVisibilityResponse of stream) {\n  console.log(reportStreamVisibilityResponse);\n}\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.streamVisibility',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.streamVisibility({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['share_of_voice'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'reports.stream_visibility',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nfor report in client.reports.stream_visibility(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    metrics=["share_of_voice"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n):\n  print(report)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/visibility/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "share_of_voice"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'stream_sentiment',
+    endpoint: '/v1/reports/sentiment/stream',
+    httpMethod: 'post',
+    summary: 'Stream Sentiment',
+    description: 'Stream Sentiment',
+    stainlessPath: '(resource) reports > (method) stream_sentiment',
+    qualified: 'client.reports.streamSentiment',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      "metrics: 'positive' | 'negative' | 'occurrences'[];",
+      'start_date: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      'dimensions?: string[];',
+      "filters?: { field: 'asset_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; } | { field: 'theme'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[];",
+      'order_by?: object;',
+      'pagination?: { limit?: number; offset?: number; };',
+    ],
+    response: '{ query: object; total_rows: number; } | object',
+    markdown:
+      "## stream_sentiment\n\n`client.reports.streamSentiment(category_id: string, end_date: string, metrics: 'positive' | 'negative' | 'occurrences'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], filters?: { field: 'asset_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; } | { field: 'theme'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[], order_by?: object, pagination?: { limit?: number; offset?: number; }): { query: object; total_rows: number; } | object`\n\n**post** `/v1/reports/sentiment/stream`\n\nStream Sentiment\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `metrics: 'positive' | 'negative' | 'occurrences'[]`\n\n- `start_date: string`\n  Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: string[]`\n  Dimensions to group the report by.\n\n- `filters?: { field: 'asset_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; } | { field: 'theme'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[]`\n  List of filters to apply to the sentiment report.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ query: object; total_rows: number; } | object`\n  A streamed sentiment report row payload.\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst stream = await client.reports.streamSentiment({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['positive'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\nfor await (const reportStreamSentimentResponse of stream) {\n  console.log(reportStreamSentimentResponse);\n}\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.streamSentiment',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.streamSentiment({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['positive'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'reports.stream_sentiment',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nfor report in client.reports.stream_sentiment(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    metrics=["positive"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n):\n  print(report)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/sentiment/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "positive"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
     name: 'logs',
     endpoint: '/v1/logs/raw',
     httpMethod: 'post',
@@ -1037,7 +1154,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     response:
       "{ data: { id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }[]; pagination?: { limit?: number; next_cursor?: string; }; }",
     markdown:
-      "## list\n\n`client.agents.list(limit?: number, next_cursor?: string, statuses?: 'published' | 'draft'[]): { data: object[]; pagination?: object; }`\n\n**get** `/v1/agents`\n\nList agents available to your organization.\n\nAgent status reflects whether an agent has ever been published. `published`\nagents have a live published version. `draft` agents have not been\npublished yet.\n\n### Parameters\n\n- `limit?: number`\n\n- `next_cursor?: string`\n\n- `statuses?: 'published' | 'draft'[]`\n  Optional status filter. Use `published` to list agents that have a live published version, or `draft` to list agents that have not been published yet. Defaults to `published`.\n\n### Returns\n\n- `{ data: { id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }[]; pagination?: { limit?: number; next_cursor?: string; }; }`\n  Paginated list of agents.\n\n  - `data: { id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }[]`\n  - `pagination?: { limit?: number; next_cursor?: string; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst agents = await client.agents.list();\n\nconsole.log(agents);\n```",
+      "## list\n\n`client.agents.list(limit?: number, next_cursor?: string, statuses?: 'published' | 'draft'[]): { data: object[]; pagination?: cursor_pagination; }`\n\n**get** `/v1/agents`\n\nList agents available to your organization.\n\nAgent status reflects whether an agent has ever been published. `published`\nagents have a live published version. `draft` agents have not been\npublished yet.\n\n### Parameters\n\n- `limit?: number`\n\n- `next_cursor?: string`\n\n- `statuses?: 'published' | 'draft'[]`\n  Optional status filter. Use `published` to list agents that have a live published version, or `draft` to list agents that have not been published yet. Defaults to `published`.\n\n### Returns\n\n- `{ data: { id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }[]; pagination?: { limit?: number; next_cursor?: string; }; }`\n  Paginated list of agents.\n\n  - `data: { id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }[]`\n  - `pagination?: { limit?: number; next_cursor?: string; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst agents = await client.agents.list();\n\nconsole.log(agents);\n```",
     perLanguage: {
       typescript: {
         method: 'client.agents.list',
@@ -1142,6 +1259,236 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.tryprofound.com/v1/agents/$AGENT_ID/runs/$RUN_ID \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'list',
+    endpoint: '/v1/knowledge-bases',
+    httpMethod: 'get',
+    summary: 'List Knowledge Bases',
+    description: 'List knowledge bases accessible to the API key.',
+    stainlessPath: '(resource) knowledge_bases > (method) list',
+    qualified: 'client.knowledgeBases.list',
+    params: ['organization_id?: string;'],
+    response:
+      '{ data: { id: string; created_at: string; name: string; description?: string; slug?: string; }[]; pagination?: { limit?: number; next_cursor?: string; }; }',
+    markdown:
+      "## list\n\n`client.knowledgeBases.list(organization_id?: string): { data: object[]; pagination?: cursor_pagination; }`\n\n**get** `/v1/knowledge-bases`\n\nList knowledge bases accessible to the API key.\n\n### Parameters\n\n- `organization_id?: string`\n  Organization scope for API keys that can access multiple organizations.\n\n### Returns\n\n- `{ data: { id: string; created_at: string; name: string; description?: string; slug?: string; }[]; pagination?: { limit?: number; next_cursor?: string; }; }`\n\n  - `data: { id: string; created_at: string; name: string; description?: string; slug?: string; }[]`\n  - `pagination?: { limit?: number; next_cursor?: string; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst knowledgeBases = await client.knowledgeBases.list();\n\nconsole.log(knowledgeBases);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.knowledgeBases.list',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst knowledgeBases = await client.knowledgeBases.list();\n\nconsole.log(knowledgeBases.data);",
+      },
+      python: {
+        method: 'knowledge_bases.list',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nknowledge_bases = client.knowledge_bases.list()\nprint(knowledge_bases.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/knowledge-bases \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'search',
+    endpoint: '/v1/knowledge-bases/{knowledge_base_id}/search',
+    httpMethod: 'post',
+    summary: 'Search Knowledge Base',
+    description: 'Search a knowledge base and return matching snippets or pages.',
+    stainlessPath: '(resource) knowledge_bases > (method) search',
+    qualified: 'client.knowledgeBases.search',
+    params: [
+      'knowledge_base_id: string;',
+      'query: string;',
+      'top_k: number;',
+      'organization_id?: string;',
+      'filters?: { folders?: string[]; tags?: string[]; };',
+      'return_full_page?: boolean;',
+    ],
+    response:
+      '{ data: { id: string; content: string; metadata: object; score: number; }[]; pagination?: { limit?: number; next_cursor?: string; }; }',
+    markdown:
+      "## search\n\n`client.knowledgeBases.search(knowledge_base_id: string, query: string, top_k: number, organization_id?: string, filters?: { folders?: string[]; tags?: string[]; }, return_full_page?: boolean): { data: object[]; pagination?: cursor_pagination; }`\n\n**post** `/v1/knowledge-bases/{knowledge_base_id}/search`\n\nSearch a knowledge base and return matching snippets or pages.\n\n### Parameters\n\n- `knowledge_base_id: string`\n  Unique knowledge base ID.\n\n- `query: string`\n  Search query.\n\n- `top_k: number`\n  Maximum number of results to return.\n\n- `organization_id?: string`\n  Organization scope for API keys that can access multiple organizations.\n\n- `filters?: { folders?: string[]; tags?: string[]; }`\n  Optional search filters.\n  - `folders?: string[]`\n    Optional folder paths to search within. Currently limited to one folder.\n  - `tags?: string[]`\n    Optional tags to match. Documents with any matching tag are included.\n\n- `return_full_page?: boolean`\n  Return full page content instead of snippets.\n\n### Returns\n\n- `{ data: { id: string; content: string; metadata: object; score: number; }[]; pagination?: { limit?: number; next_cursor?: string; }; }`\n\n  - `data: { id: string; content: string; metadata: object; score: number; }[]`\n  - `pagination?: { limit?: number; next_cursor?: string; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.knowledgeBases.search('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { query: 'x', top_k: 1 });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.knowledgeBases.search',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.knowledgeBases.search('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  query: 'x',\n  top_k: 1,\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'knowledge_bases.search',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.knowledge_bases.search(\n    knowledge_base_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    query="x",\n    top_k=1,\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/knowledge-bases/$KNOWLEDGE_BASE_ID/search \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "query": "x",\n          "top_k": 1\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create',
+    endpoint: '/v1/knowledge-bases/{knowledge_base_id}/documents',
+    httpMethod: 'post',
+    summary: 'Add Document',
+    description: 'Add a document to a knowledge base using JSON text or multipart file upload.',
+    stainlessPath: '(resource) knowledge_bases.documents > (method) create',
+    qualified: 'client.knowledgeBases.documents.create',
+    params: [
+      'knowledge_base_id: string;',
+      'name: string;',
+      'text: string;',
+      'organization_id?: string;',
+      'folder?: string;',
+    ],
+    response: '{ message: string; name: string; path: string; folder?: string; }',
+    markdown:
+      "## create\n\n`client.knowledgeBases.documents.create(knowledge_base_id: string, name: string, text: string, organization_id?: string, folder?: string): { message: string; name: string; path: string; folder?: string; }`\n\n**post** `/v1/knowledge-bases/{knowledge_base_id}/documents`\n\nAdd a document to a knowledge base using JSON text or multipart file upload.\n\n### Parameters\n\n- `knowledge_base_id: string`\n  Unique knowledge base ID.\n\n- `name: string`\n  Unique document name.\n\n- `text: string`\n  Text content to add to the document.\n\n- `organization_id?: string`\n  Organization scope for API keys that can access multiple organizations.\n\n- `folder?: string`\n  Folder path to add the document under.\n\n### Returns\n\n- `{ message: string; name: string; path: string; folder?: string; }`\n\n  - `message: string`\n  - `name: string`\n  - `path: string`\n  - `folder?: string`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst document = await client.knowledgeBases.documents.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { name: 'x', text: 'x' });\n\nconsole.log(document);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.knowledgeBases.documents.create',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst document = await client.knowledgeBases.documents.create(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  { name: 'x', text: 'x' },\n);\n\nconsole.log(document.message);",
+      },
+      python: {
+        method: 'knowledge_bases.documents.create',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\ndocument = client.knowledge_bases.documents.create(\n    knowledge_base_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    name="x",\n    text="x",\n)\nprint(document.message)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/knowledge-bases/$KNOWLEDGE_BASE_ID/documents \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "name": "x",\n          "text": "x"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'update',
+    endpoint: '/v1/knowledge-bases/{knowledge_base_id}/documents',
+    httpMethod: 'put',
+    summary: 'Update Document',
+    description: 'Overwrite a knowledge base document using JSON text or multipart file upload.',
+    stainlessPath: '(resource) knowledge_bases.documents > (method) update',
+    qualified: 'client.knowledgeBases.documents.update',
+    params: [
+      'knowledge_base_id: string;',
+      'name: string;',
+      'text: string;',
+      'organization_id?: string;',
+      'folder?: string;',
+    ],
+    response: '{ message: string; name: string; path: string; folder?: string; }',
+    markdown:
+      "## update\n\n`client.knowledgeBases.documents.update(knowledge_base_id: string, name: string, text: string, organization_id?: string, folder?: string): { message: string; name: string; path: string; folder?: string; }`\n\n**put** `/v1/knowledge-bases/{knowledge_base_id}/documents`\n\nOverwrite a knowledge base document using JSON text or multipart file upload.\n\n### Parameters\n\n- `knowledge_base_id: string`\n  Unique knowledge base ID.\n\n- `name: string`\n  Document name or path to update.\n\n- `text: string`\n  Replacement text content for the document.\n\n- `organization_id?: string`\n  Organization scope for API keys that can access multiple organizations.\n\n- `folder?: string`\n  Folder path containing the document.\n\n### Returns\n\n- `{ message: string; name: string; path: string; folder?: string; }`\n\n  - `message: string`\n  - `name: string`\n  - `path: string`\n  - `folder?: string`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst document = await client.knowledgeBases.documents.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { name: 'x', text: 'x' });\n\nconsole.log(document);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.knowledgeBases.documents.update',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst document = await client.knowledgeBases.documents.update(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  { name: 'x', text: 'x' },\n);\n\nconsole.log(document.message);",
+      },
+      python: {
+        method: 'knowledge_bases.documents.update',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\ndocument = client.knowledge_bases.documents.update(\n    knowledge_base_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    name="x",\n    text="x",\n)\nprint(document.message)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/knowledge-bases/$KNOWLEDGE_BASE_ID/documents \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "name": "x",\n          "text": "x"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'delete',
+    endpoint: '/v1/knowledge-bases/{knowledge_base_id}/documents',
+    httpMethod: 'delete',
+    summary: 'Delete Document',
+    description: 'Delete an existing document from a knowledge base.',
+    stainlessPath: '(resource) knowledge_bases.documents > (method) delete',
+    qualified: 'client.knowledgeBases.documents.delete',
+    params: ['knowledge_base_id: string;', 'name: string;', 'organization_id?: string;'],
+    response: '{ message: string; name: string; path: string; folder?: string; }',
+    markdown:
+      "## delete\n\n`client.knowledgeBases.documents.delete(knowledge_base_id: string, name: string, organization_id?: string): { message: string; name: string; path: string; folder?: string; }`\n\n**delete** `/v1/knowledge-bases/{knowledge_base_id}/documents`\n\nDelete an existing document from a knowledge base.\n\n### Parameters\n\n- `knowledge_base_id: string`\n  Unique knowledge base ID.\n\n- `name: string`\n  Document path to delete.\n\n- `organization_id?: string`\n  Organization scope for API keys that can access multiple organizations.\n\n### Returns\n\n- `{ message: string; name: string; path: string; folder?: string; }`\n\n  - `message: string`\n  - `name: string`\n  - `path: string`\n  - `folder?: string`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst document = await client.knowledgeBases.documents.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { name: 'x' });\n\nconsole.log(document);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.knowledgeBases.documents.delete',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst document = await client.knowledgeBases.documents.delete(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  { name: 'x' },\n);\n\nconsole.log(document.message);",
+      },
+      python: {
+        method: 'knowledge_bases.documents.delete',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\ndocument = client.knowledge_bases.documents.delete(\n    knowledge_base_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    name="x",\n)\nprint(document.message)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/knowledge-bases/$KNOWLEDGE_BASE_ID/documents \\\n    -X DELETE \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'create',
+    endpoint: '/v1/knowledge-bases/{knowledge_base_id}/folders',
+    httpMethod: 'post',
+    summary: 'Add Folder',
+    description: 'Create an empty folder at the requested knowledge base path.',
+    stainlessPath: '(resource) knowledge_bases.folders > (method) create',
+    qualified: 'client.knowledgeBases.folders.create',
+    params: ['knowledge_base_id: string;', 'path: string;', 'organization_id?: string;'],
+    response: '{ message: string; path: string; }',
+    markdown:
+      "## create\n\n`client.knowledgeBases.folders.create(knowledge_base_id: string, path: string, organization_id?: string): { message: string; path: string; }`\n\n**post** `/v1/knowledge-bases/{knowledge_base_id}/folders`\n\nCreate an empty folder at the requested knowledge base path.\n\n### Parameters\n\n- `knowledge_base_id: string`\n  Unique knowledge base ID.\n\n- `path: string`\n  Folder path to create.\n\n- `organization_id?: string`\n  Organization scope for API keys that can access multiple organizations.\n\n### Returns\n\n- `{ message: string; path: string; }`\n\n  - `message: string`\n  - `path: string`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst folder = await client.knowledgeBases.folders.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: 'x' });\n\nconsole.log(folder);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.knowledgeBases.folders.create',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst folder = await client.knowledgeBases.folders.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  path: 'x',\n});\n\nconsole.log(folder.message);",
+      },
+      python: {
+        method: 'knowledge_bases.folders.create',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nfolder = client.knowledge_bases.folders.create(\n    knowledge_base_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    path="x",\n)\nprint(folder.message)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/knowledge-bases/$KNOWLEDGE_BASE_ID/folders \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "path": "x"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'delete',
+    endpoint: '/v1/knowledge-bases/{knowledge_base_id}/folders',
+    httpMethod: 'delete',
+    summary: 'Delete Folder',
+    description:
+      'Delete a folder. With recursive=false, non-empty folders return 409 and no contents are deleted.',
+    stainlessPath: '(resource) knowledge_bases.folders > (method) delete',
+    qualified: 'client.knowledgeBases.folders.delete',
+    params: [
+      'knowledge_base_id: string;',
+      'path: string;',
+      'organization_id?: string;',
+      'recursive?: boolean;',
+    ],
+    response: '{ message: string; path: string; }',
+    markdown:
+      "## delete\n\n`client.knowledgeBases.folders.delete(knowledge_base_id: string, path: string, organization_id?: string, recursive?: boolean): { message: string; path: string; }`\n\n**delete** `/v1/knowledge-bases/{knowledge_base_id}/folders`\n\nDelete a folder. With recursive=false, non-empty folders return 409 and no contents are deleted.\n\n### Parameters\n\n- `knowledge_base_id: string`\n  Unique knowledge base ID.\n\n- `path: string`\n  Folder path to delete.\n\n- `organization_id?: string`\n  Organization scope for API keys that can access multiple organizations.\n\n- `recursive?: boolean`\n  When false, only empty folders are deleted and non-empty folders return a conflict. When true, the folder and all contents are deleted.\n\n### Returns\n\n- `{ message: string; path: string; }`\n\n  - `message: string`\n  - `path: string`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst folder = await client.knowledgeBases.folders.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { path: 'x' });\n\nconsole.log(folder);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.knowledgeBases.folders.delete',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst folder = await client.knowledgeBases.folders.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  path: 'x',\n});\n\nconsole.log(folder.message);",
+      },
+      python: {
+        method: 'knowledge_bases.folders.delete',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nfolder = client.knowledge_bases.folders.delete(\n    knowledge_base_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    path="x",\n)\nprint(folder.message)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/knowledge-bases/$KNOWLEDGE_BASE_ID/folders \\\n    -X DELETE \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },

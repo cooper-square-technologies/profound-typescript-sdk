@@ -106,7 +106,7 @@ export interface PromptAnswersParams {
     | Shared.PromptFilter
     | Shared.PersonaIDFilter
     | Shared.TopicIDFilter
-    | PromptAnswersParams.AssetIDFilter
+    | Shared.AssetIDFilter
     | Shared.AssetNameFilter
   >;
 
@@ -119,14 +119,6 @@ export interface PromptAnswersParams {
 }
 
 export namespace PromptAnswersParams {
-  export interface AssetIDFilter {
-    field: 'asset_id';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
   export interface Include {
     analysis_types?: boolean;
 

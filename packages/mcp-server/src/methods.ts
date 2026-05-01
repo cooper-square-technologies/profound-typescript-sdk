@@ -149,6 +149,24 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/reports/sentiment',
   },
   {
+    clientCallName: 'client.reports.streamCitations',
+    fullyQualifiedName: 'reports.streamCitations',
+    httpMethod: 'post',
+    httpPath: '/v1/reports/citations/stream',
+  },
+  {
+    clientCallName: 'client.reports.streamSentiment',
+    fullyQualifiedName: 'reports.streamSentiment',
+    httpMethod: 'post',
+    httpPath: '/v1/reports/sentiment/stream',
+  },
+  {
+    clientCallName: 'client.reports.streamVisibility',
+    fullyQualifiedName: 'reports.streamVisibility',
+    httpMethod: 'post',
+    httpPath: '/v1/reports/visibility/stream',
+  },
+  {
     clientCallName: 'client.reports.visibility',
     fullyQualifiedName: 'reports.visibility',
     httpMethod: 'post',
@@ -201,6 +219,48 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'agents.runs.retrieve',
     httpMethod: 'get',
     httpPath: '/v1/agents/{agent_id}/runs/{run_id}',
+  },
+  {
+    clientCallName: 'client.knowledgeBases.list',
+    fullyQualifiedName: 'knowledgeBases.list',
+    httpMethod: 'get',
+    httpPath: '/v1/knowledge-bases',
+  },
+  {
+    clientCallName: 'client.knowledgeBases.search',
+    fullyQualifiedName: 'knowledgeBases.search',
+    httpMethod: 'post',
+    httpPath: '/v1/knowledge-bases/{knowledge_base_id}/search',
+  },
+  {
+    clientCallName: 'client.knowledgeBases.documents.create',
+    fullyQualifiedName: 'knowledgeBases.documents.create',
+    httpMethod: 'post',
+    httpPath: '/v1/knowledge-bases/{knowledge_base_id}/documents',
+  },
+  {
+    clientCallName: 'client.knowledgeBases.documents.update',
+    fullyQualifiedName: 'knowledgeBases.documents.update',
+    httpMethod: 'put',
+    httpPath: '/v1/knowledge-bases/{knowledge_base_id}/documents',
+  },
+  {
+    clientCallName: 'client.knowledgeBases.documents.delete',
+    fullyQualifiedName: 'knowledgeBases.documents.delete',
+    httpMethod: 'delete',
+    httpPath: '/v1/knowledge-bases/{knowledge_base_id}/documents',
+  },
+  {
+    clientCallName: 'client.knowledgeBases.folders.create',
+    fullyQualifiedName: 'knowledgeBases.folders.create',
+    httpMethod: 'post',
+    httpPath: '/v1/knowledge-bases/{knowledge_base_id}/folders',
+  },
+  {
+    clientCallName: 'client.knowledgeBases.folders.delete',
+    fullyQualifiedName: 'knowledgeBases.folders.delete',
+    httpMethod: 'delete',
+    httpPath: '/v1/knowledge-bases/{knowledge_base_id}/folders',
   },
 ];
 

@@ -20,6 +20,14 @@ export interface AnalysisTypeFilter {
   value: 'visibility' | 'sentiment' | 'accuracy' | Array<'visibility' | 'sentiment' | 'accuracy'>;
 }
 
+export interface AssetIDFilter {
+  field: 'asset_id';
+
+  operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+  value: string | Array<string>;
+}
+
 /**
  * Filter by asset name
  */
@@ -87,6 +95,16 @@ export interface BotNameFilter {
     | 'Perplexity-User'
     | 'Grok-PageBrowser'
     | 'YouBot'
+    | 'OpenClaw'
+    | 'baiduspider'
+    | 'CCBot'
+    | 'ERNIEBot'
+    | 'Gemini-Fetch'
+    | 'YandexBot'
+    | 'PetalBot'
+    | 'MistralAI-User'
+    | 'Slurp'
+    | 'Gemini-Deep-Research'
     | Array<
         | 'Amazonbot'
         | 'ClaudeBot'
@@ -117,6 +135,16 @@ export interface BotNameFilter {
         | 'Perplexity-User'
         | 'Grok-PageBrowser'
         | 'YouBot'
+        | 'OpenClaw'
+        | 'baiduspider'
+        | 'CCBot'
+        | 'ERNIEBot'
+        | 'Gemini-Fetch'
+        | 'YandexBot'
+        | 'PetalBot'
+        | 'MistralAI-User'
+        | 'Slurp'
+        | 'Gemini-Deep-Research'
       >;
 }
 
@@ -154,6 +182,13 @@ export interface BotProviderFilter {
     | 'xai'
     | 'grok'
     | 'gemini'
+    | 'mistral'
+    | 'huawei'
+    | 'yandex'
+    | 'baidu'
+    | 'yahoo'
+    | 'commoncrawl'
+    | 'openclaw'
     | Array<
         | 'openai'
         | 'anthropic'
@@ -171,7 +206,29 @@ export interface BotProviderFilter {
         | 'xai'
         | 'grok'
         | 'gemini'
+        | 'mistral'
+        | 'huawei'
+        | 'yandex'
+        | 'baidu'
+        | 'yahoo'
+        | 'commoncrawl'
+        | 'openclaw'
       >;
+}
+
+/**
+ * Cursor-based pagination metadata.
+ */
+export interface CursorPagination {
+  /**
+   * Maximum number of results to return. Default is 10,000, maximum is 50,000.
+   */
+  limit?: number;
+
+  /**
+   * Token for the next page, if more results are available.
+   */
+  next_cursor?: string | null;
 }
 
 /**
