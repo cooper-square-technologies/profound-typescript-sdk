@@ -34,6 +34,12 @@ import {
   ReportResponse,
   ReportResult,
   ReportSentimentParams,
+  ReportStreamCitationsParams,
+  ReportStreamCitationsResponse,
+  ReportStreamSentimentParams,
+  ReportStreamSentimentResponse,
+  ReportStreamVisibilityParams,
+  ReportStreamVisibilityResponse,
   ReportVisibilityParams,
   Reports,
   TagNameFilter,
@@ -56,6 +62,13 @@ import {
   Agents,
 } from './resources/agents/agents';
 import { Content } from './resources/content/content';
+import {
+  KnowledgeBaseListParams,
+  KnowledgeBaseListResponse,
+  KnowledgeBaseSearchParams,
+  KnowledgeBaseSearchResponse,
+  KnowledgeBases,
+} from './resources/knowledge-bases/knowledge-bases';
 import { Logs } from './resources/logs/logs';
 import {
   Category,
@@ -780,6 +793,7 @@ export class Profound {
   logs: API.Logs = new API.Logs(this);
   content: API.Content = new API.Content(this);
   agents: API.Agents = new API.Agents(this);
+  knowledgeBases: API.KnowledgeBases = new API.KnowledgeBases(this);
 }
 
 Profound.Organizations = Organizations;
@@ -788,6 +802,7 @@ Profound.Reports = Reports;
 Profound.Logs = Logs;
 Profound.Content = Content;
 Profound.Agents = Agents;
+Profound.KnowledgeBases = KnowledgeBases;
 
 export declare namespace Profound {
   export type RequestOptions = Opts.RequestOptions;
@@ -828,6 +843,9 @@ export declare namespace Profound {
     type TagNameFilter as TagNameFilter,
     type TopicNameFilter as TopicNameFilter,
     type ReportCitationsResponse as ReportCitationsResponse,
+    type ReportStreamCitationsResponse as ReportStreamCitationsResponse,
+    type ReportStreamSentimentResponse as ReportStreamSentimentResponse,
+    type ReportStreamVisibilityResponse as ReportStreamVisibilityResponse,
     type ReportCitationsParams as ReportCitationsParams,
     type ReportGetBotsReportParams as ReportGetBotsReportParams,
     type ReportGetBotsReportV2Params as ReportGetBotsReportV2Params,
@@ -835,6 +853,9 @@ export declare namespace Profound {
     type ReportGetReferralsReportV2Params as ReportGetReferralsReportV2Params,
     type ReportQueryFanoutsParams as ReportQueryFanoutsParams,
     type ReportSentimentParams as ReportSentimentParams,
+    type ReportStreamCitationsParams as ReportStreamCitationsParams,
+    type ReportStreamSentimentParams as ReportStreamSentimentParams,
+    type ReportStreamVisibilityParams as ReportStreamVisibilityParams,
     type ReportVisibilityParams as ReportVisibilityParams,
   };
 
@@ -850,10 +871,20 @@ export declare namespace Profound {
     type AgentListParams as AgentListParams,
   };
 
+  export {
+    KnowledgeBases as KnowledgeBases,
+    type KnowledgeBaseListResponse as KnowledgeBaseListResponse,
+    type KnowledgeBaseSearchResponse as KnowledgeBaseSearchResponse,
+    type KnowledgeBaseListParams as KnowledgeBaseListParams,
+    type KnowledgeBaseSearchParams as KnowledgeBaseSearchParams,
+  };
+
   export type AnalysisTypeFilter = API.AnalysisTypeFilter;
+  export type AssetIDFilter = API.AssetIDFilter;
   export type AssetNameFilter = API.AssetNameFilter;
   export type BotNameFilter = API.BotNameFilter;
   export type BotProviderFilter = API.BotProviderFilter;
+  export type CursorPagination = API.CursorPagination;
   export type ModelIDFilter = API.ModelIDFilter;
   export type Pagination = API.Pagination;
   export type PathFilter = API.PathFilter;

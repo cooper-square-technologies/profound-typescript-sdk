@@ -3,9 +3,11 @@
 Types:
 
 - <code><a href="./src/resources/shared.ts">AnalysisTypeFilter</a></code>
+- <code><a href="./src/resources/shared.ts">AssetIDFilter</a></code>
 - <code><a href="./src/resources/shared.ts">AssetNameFilter</a></code>
 - <code><a href="./src/resources/shared.ts">BotNameFilter</a></code>
 - <code><a href="./src/resources/shared.ts">BotProviderFilter</a></code>
+- <code><a href="./src/resources/shared.ts">CursorPagination</a></code>
 - <code><a href="./src/resources/shared.ts">ModelIDFilter</a></code>
 - <code><a href="./src/resources/shared.ts">Pagination</a></code>
 - <code><a href="./src/resources/shared.ts">PathFilter</a></code>
@@ -94,6 +96,9 @@ Types:
 - <code><a href="./src/resources/reports.ts">TagNameFilter</a></code>
 - <code><a href="./src/resources/reports.ts">TopicNameFilter</a></code>
 - <code><a href="./src/resources/reports.ts">ReportCitationsResponse</a></code>
+- <code><a href="./src/resources/reports.ts">ReportStreamCitationsResponse</a></code>
+- <code><a href="./src/resources/reports.ts">ReportStreamSentimentResponse</a></code>
+- <code><a href="./src/resources/reports.ts">ReportStreamVisibilityResponse</a></code>
 
 Methods:
 
@@ -104,6 +109,9 @@ Methods:
 - <code title="post /v2/reports/referrals">client.reports.<a href="./src/resources/reports.ts">getReferralsReportV2</a>({ ...params }) -> ReportResponse</code>
 - <code title="post /v1/reports/query-fanouts">client.reports.<a href="./src/resources/reports.ts">queryFanouts</a>({ ...params }) -> ReportResponse</code>
 - <code title="post /v1/reports/sentiment">client.reports.<a href="./src/resources/reports.ts">sentiment</a>({ ...params }) -> ReportResponse</code>
+- <code title="post /v1/reports/citations/stream">client.reports.<a href="./src/resources/reports.ts">streamCitations</a>({ ...params }) -> ReportStreamCitationsResponse</code>
+- <code title="post /v1/reports/sentiment/stream">client.reports.<a href="./src/resources/reports.ts">streamSentiment</a>({ ...params }) -> ReportStreamSentimentResponse</code>
+- <code title="post /v1/reports/visibility/stream">client.reports.<a href="./src/resources/reports.ts">streamVisibility</a>({ ...params }) -> ReportStreamVisibilityResponse</code>
 - <code title="post /v1/reports/visibility">client.reports.<a href="./src/resources/reports.ts">visibility</a>({ ...params }) -> ReportResponse</code>
 
 # Logs
@@ -157,3 +165,41 @@ Methods:
 
 - <code title="post /v1/agents/{agent_id}/runs">client.agents.runs.<a href="./src/resources/agents/runs.ts">create</a>(agentID, { ...params }) -> RunCreateResponse</code>
 - <code title="get /v1/agents/{agent_id}/runs/{run_id}">client.agents.runs.<a href="./src/resources/agents/runs.ts">retrieve</a>(runID, { ...params }) -> RunRetrieveResponse</code>
+
+# KnowledgeBases
+
+Types:
+
+- <code><a href="./src/resources/knowledge-bases/knowledge-bases.ts">KnowledgeBaseListResponse</a></code>
+- <code><a href="./src/resources/knowledge-bases/knowledge-bases.ts">KnowledgeBaseSearchResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/knowledge-bases">client.knowledgeBases.<a href="./src/resources/knowledge-bases/knowledge-bases.ts">list</a>({ ...params }) -> KnowledgeBaseListResponse</code>
+- <code title="post /v1/knowledge-bases/{knowledge_base_id}/search">client.knowledgeBases.<a href="./src/resources/knowledge-bases/knowledge-bases.ts">search</a>(knowledgeBaseID, { ...params }) -> KnowledgeBaseSearchResponse</code>
+
+## Documents
+
+Types:
+
+- <code><a href="./src/resources/knowledge-bases/documents.ts">DocumentCreateResponse</a></code>
+- <code><a href="./src/resources/knowledge-bases/documents.ts">DocumentUpdateResponse</a></code>
+- <code><a href="./src/resources/knowledge-bases/documents.ts">DocumentDeleteResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/knowledge-bases/{knowledge_base_id}/documents">client.knowledgeBases.documents.<a href="./src/resources/knowledge-bases/documents.ts">create</a>(knowledgeBaseID, { ...params }) -> DocumentCreateResponse</code>
+- <code title="put /v1/knowledge-bases/{knowledge_base_id}/documents">client.knowledgeBases.documents.<a href="./src/resources/knowledge-bases/documents.ts">update</a>(knowledgeBaseID, { ...params }) -> DocumentUpdateResponse</code>
+- <code title="delete /v1/knowledge-bases/{knowledge_base_id}/documents">client.knowledgeBases.documents.<a href="./src/resources/knowledge-bases/documents.ts">delete</a>(knowledgeBaseID, { ...params }) -> DocumentDeleteResponse</code>
+
+## Folders
+
+Types:
+
+- <code><a href="./src/resources/knowledge-bases/folders.ts">FolderCreateResponse</a></code>
+- <code><a href="./src/resources/knowledge-bases/folders.ts">FolderDeleteResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/knowledge-bases/{knowledge_base_id}/folders">client.knowledgeBases.folders.<a href="./src/resources/knowledge-bases/folders.ts">create</a>(knowledgeBaseID, { ...params }) -> FolderCreateResponse</code>
+- <code title="delete /v1/knowledge-bases/{knowledge_base_id}/folders">client.knowledgeBases.folders.<a href="./src/resources/knowledge-bases/folders.ts">delete</a>(knowledgeBaseID, { ...params }) -> FolderDeleteResponse</code>

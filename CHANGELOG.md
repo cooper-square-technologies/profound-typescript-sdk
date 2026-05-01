@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.45.0 (2026-05-01)
+
+Full Changelog: [v0.44.1...v0.45.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.44.1...v0.45.0)
+
+### Features
+
+* **api:** add streaming and knowledge base ([1ff54a2](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/1ff54a2cc85b6590fe83b05deab1e1088f97b0cc))
+* **api:** api update ([8b933b7](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/8b933b7e27df82ef22d9bb0911fc756c3b41877f))
+
+
+### Chores
+
+* **internal:** fix MCP cloudflare worker builds ([e2b0fbd](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/e2b0fbd81d135c0a2598ef967cfcfa59f979cfc1))
+* **internal:** version bump ([3d0ac7d](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/3d0ac7d342c97ec8b42e204f9e539a8c76924f74))
+
 ## 0.44.1 (2026-04-29)
 
 Full Changelog: [v0.44.0...v0.44.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.44.0...v0.44.1)

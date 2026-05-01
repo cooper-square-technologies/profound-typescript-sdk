@@ -9,6 +9,13 @@ export {
   type AgentListParams,
 } from './agents/agents';
 export { Content } from './content/content';
+export {
+  KnowledgeBases,
+  type KnowledgeBaseListResponse,
+  type KnowledgeBaseSearchResponse,
+  type KnowledgeBaseListParams,
+  type KnowledgeBaseSearchParams,
+} from './knowledge-bases/knowledge-bases';
 export { Logs } from './logs/logs';
 export {
   Organizations,
@@ -40,6 +47,9 @@ export {
   type TagNameFilter,
   type TopicNameFilter,
   type ReportCitationsResponse,
+  type ReportStreamCitationsResponse,
+  type ReportStreamSentimentResponse,
+  type ReportStreamVisibilityResponse,
   type ReportCitationsParams,
   type ReportGetBotsReportParams,
   type ReportGetBotsReportV2Params,
@@ -47,5 +57,8 @@ export {
   type ReportGetReferralsReportV2Params,
   type ReportQueryFanoutsParams,
   type ReportSentimentParams,
+  type ReportStreamCitationsParams,
+  type ReportStreamSentimentParams,
+  type ReportStreamVisibilityParams,
   type ReportVisibilityParams,
 } from './reports';
