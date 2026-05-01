@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "deploy": "wrangler deploy",
+    "deploy": "yarn install --frozen-lockfile && wrangler deploy",
     "dev": "wrangler dev",
     "format": "biome format --write",
     "lint:fix": "biome lint --fix",
@@ -11,17 +11,21 @@
     "cf-typegen": "wrangler types"
   },
   "devDependencies": {
-    "marked": "^15.0.11",
-    "typescript": "^5.8.3",
+    "marked": "15.0.11",
+    "typescript": "5.8.3",
     "workers-mcp": "0.1.0-3",
-    "wrangler": "^4.59.1"
+    "wrangler": "4.59.1"
   },
   "dependencies": {
-    "@cloudflare/workers-oauth-provider": "^0.0.5",
-    "@modelcontextprotocol/sdk": "^1.27.1",
-    "agents": "^0.8.5",
-    "hono": "^4.12.4",
-    "@profoundai/mcp": "latest",
-    "zod": "^3.24.4"
+    "@cloudflare/workers-oauth-provider": "0.0.5",
+    "@modelcontextprotocol/sdk": "1.27.1",
+    "@profoundai/client": "0.44.0",
+    "@profoundai/mcp": "0.44.0",
+    "agents": "0.8.5",
+    "hono": "4.12.4",
+    "zod": "3.24.4"
+  },
+  "resolutions": {
+    "@profoundai/client": "0.44.0"
   }
 }
