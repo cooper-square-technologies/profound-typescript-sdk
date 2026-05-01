@@ -95,6 +95,16 @@ export interface BotNameFilter {
     | 'Perplexity-User'
     | 'Grok-PageBrowser'
     | 'YouBot'
+    | 'OpenClaw'
+    | 'baiduspider'
+    | 'CCBot'
+    | 'ERNIEBot'
+    | 'Gemini-Fetch'
+    | 'YandexBot'
+    | 'PetalBot'
+    | 'MistralAI-User'
+    | 'Slurp'
+    | 'Gemini-Deep-Research'
     | Array<
         | 'Amazonbot'
         | 'ClaudeBot'
@@ -125,6 +135,16 @@ export interface BotNameFilter {
         | 'Perplexity-User'
         | 'Grok-PageBrowser'
         | 'YouBot'
+        | 'OpenClaw'
+        | 'baiduspider'
+        | 'CCBot'
+        | 'ERNIEBot'
+        | 'Gemini-Fetch'
+        | 'YandexBot'
+        | 'PetalBot'
+        | 'MistralAI-User'
+        | 'Slurp'
+        | 'Gemini-Deep-Research'
       >;
 }
 
@@ -162,6 +182,13 @@ export interface BotProviderFilter {
     | 'xai'
     | 'grok'
     | 'gemini'
+    | 'mistral'
+    | 'huawei'
+    | 'yandex'
+    | 'baidu'
+    | 'yahoo'
+    | 'commoncrawl'
+    | 'openclaw'
     | Array<
         | 'openai'
         | 'anthropic'
@@ -179,6 +206,13 @@ export interface BotProviderFilter {
         | 'xai'
         | 'grok'
         | 'gemini'
+        | 'mistral'
+        | 'huawei'
+        | 'yandex'
+        | 'baidu'
+        | 'yahoo'
+        | 'commoncrawl'
+        | 'openclaw'
       >;
 }
 
