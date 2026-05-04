@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.46.0 (2026-05-04)
+
+Full Changelog: [v0.45.0...v0.46.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.45.0...v0.46.0)
+
+### Features
+
+* **api:** dual auth yml ([3a3a334](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/3a3a334c46948c1b3a36a7690ef44e3ef84270fc))
+* **api:** update package name mcp - rollback package manager to yarn ([f97a387](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/f97a387a3d5e0126b879088deb91c072524df531))
+
+
+### Chores
+
+* **internal:** version bump ([2c74d97](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/2c74d976f80af17451479a301b2b1d0412a82607))
+
 ## 0.45.0 (2026-05-01)
 
 Full Changelog: [v0.44.1...v0.45.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.44.1...v0.45.0)
