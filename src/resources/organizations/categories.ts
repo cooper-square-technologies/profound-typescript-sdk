@@ -246,7 +246,7 @@ export namespace CategoryCreatePromptsResponse {
     /**
      * Analysis types assigned to this prompt.
      */
-    analysis_types?: Array<'visibility' | 'sentiment' | 'accuracy'>;
+    analysis_types?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'>;
 
     /**
      * Generic id+name reference used across domain boundaries.
@@ -318,7 +318,7 @@ export namespace CategoryPromptsResponse {
 
     updated_at: string;
 
-    analysis_types?: Array<'visibility' | 'sentiment' | 'accuracy'>;
+    analysis_types?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'>;
 
     personas?: Array<OrganizationsAPI.NamedResource>;
 
@@ -512,7 +512,7 @@ export namespace CategoryCreatePromptsParams {
      * Analysis types: 'visibility', 'sentiment', 'accuracy'. Defaults to
      * ['visibility'].
      */
-    analysis_types?: Array<'visibility' | 'sentiment' | 'accuracy'> | null;
+    analysis_types?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'> | null;
 
     /**
      * Reference by id, name, or both. Plain strings work too: UUIDs become id lookups,
@@ -541,7 +541,7 @@ export interface CategoryPromptsParams {
   /**
    * Filter by analysis type (visibility, sentiment, accuracy).
    */
-  analysis_type?: Array<'visibility' | 'sentiment' | 'accuracy'>;
+  analysis_type?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'>;
 
   /**
    * Pagination cursor from a previous response.
@@ -638,7 +638,7 @@ export namespace CategoryUpdatePromptsParams {
     /**
      * New analysis types. Replaces all existing analysis types on the prompt.
      */
-    analysis_types?: Array<'visibility' | 'sentiment' | 'accuracy'> | null;
+    analysis_types?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'> | null;
 
     /**
      * Reference by id, name, or both. Plain strings work too: UUIDs become id lookups,
