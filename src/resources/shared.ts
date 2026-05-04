@@ -17,7 +17,12 @@ export interface AnalysisTypeFilter {
     | 'contains_case_insensitive'
     | 'not_contains_case_insensitive';
 
-  value: 'visibility' | 'sentiment' | 'accuracy' | Array<'visibility' | 'sentiment' | 'accuracy'>;
+  value:
+    | 'visibility'
+    | 'sentiment'
+    | 'sentiment_v2'
+    | 'accuracy'
+    | Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'>;
 }
 
 export interface AssetIDFilter {
