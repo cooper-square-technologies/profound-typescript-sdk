@@ -10,7 +10,7 @@ import {
   asTextContentResult,
 } from './types';
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { readEnv, requireValue } from './util';
+import { readEnv } from './util';
 import { WorkerInput, WorkerOutput } from './code-tool-types';
 import { getLogger } from './logger';
 import { SdkMethod } from './methods';
@@ -143,10 +143,8 @@ const remoteStainlessHandler = async ({
   const codeModeEndpoint = readEnv('CODE_MODE_ENDPOINT_URL') ?? 'https://api.stainless.com/api/ai/code-tool';
 
   const localClientEnvs = {
-    PROFOUND_API_KEY: requireValue(
-      readEnv('PROFOUND_API_KEY') ?? client.apiKey,
-      'set PROFOUND_API_KEY environment variable or provide apiKey client option',
-    ),
+    PROFOUND_ACCESS_TOKEN: readEnv('PROFOUND_ACCESS_TOKEN') ?? client.accessToken ?? undefined,
+    PROFOUND_API_KEY: readEnv('PROFOUND_API_KEY') ?? client.apiKey ?? undefined,
     PROFOUND_BASE_URL: readEnv('PROFOUND_BASE_URL') ?? client.baseURL ?? undefined,
   };
   // Merge any upstream client envs from the request header, with upstream values taking precedence.
@@ -285,6 +283,7 @@ const localDenoHandler = async ({
       // reading from environment variables (including any upstreamClientEnvs).
       const opts = {
         ...(client.baseURL != null ? { baseURL: client.baseURL } : undefined),
+        ...(client.accessToken != null ? { accessToken: client.accessToken } : undefined),
         ...(client.apiKey != null ? { apiKey: client.apiKey } : undefined),
         defaultHeaders: {
           'X-Stainless-MCP': 'true',
