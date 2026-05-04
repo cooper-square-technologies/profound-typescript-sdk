@@ -25,7 +25,9 @@ describe('resource categories', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.organizations.categories.list(
-        { organization_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'] },
+        {
+          organization_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Profound.NotFoundError);

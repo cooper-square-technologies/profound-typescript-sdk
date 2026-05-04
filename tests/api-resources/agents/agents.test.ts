@@ -52,7 +52,7 @@ describe('resource agents', () => {
         {
           limit: 1,
           next_cursor: 'next_cursor',
-          statuses: ['published'],
+          statuses: ['published', 'draft'],
         },
         { path: '/_stainless_unknown_path' },
       ),
