@@ -8,8 +8,8 @@ import { makeOAuthConsent } from './app';
 import { McpAgent } from 'agents/mcp';
 import OAuthProvider from '@cloudflare/workers-oauth-provider';
 import { ClientOptions } from '@profoundai/client';
-import { McpOptions } from 'profound-dev-mcp/options';
-import { initMcpServer, newMcpServer } from 'profound-dev-mcp/server';
+import { McpOptions } from '@profoundai/mcp/options';
+import { initMcpServer, newMcpServer } from '@profoundai/mcp/server';
 import type { ExportedHandler } from '@cloudflare/workers-types';
 
 type MCPProps = {

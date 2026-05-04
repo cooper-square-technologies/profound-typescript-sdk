@@ -11,7 +11,7 @@ You can run the MCP Server directly via `npx`:
 ```sh
 export PROFOUND_ACCESS_TOKEN="My Access Token"
 export PROFOUND_API_KEY="My API Key"
-npx -y profound-dev-mcp@latest
+npx -y @profoundai/mcp@latest
 ```
 
 ### Via MCP Client
@@ -26,7 +26,7 @@ For clients with a configuration JSON, it might look something like this:
   "mcpServers": {
     "profoundai_client_api": {
       "command": "npx",
-      "args": ["-y", "profound-dev-mcp"],
+      "args": ["-y", "@profoundai/mcp"],
       "env": {
         "PROFOUND_ACCESS_TOKEN": "My Access Token",
         "PROFOUND_API_KEY": "My API Key"
@@ -41,14 +41,14 @@ For clients with a configuration JSON, it might look something like this:
 If you use Cursor, you can install the MCP server by using the button below. You will need to set your environment variables
 in Cursor's `mcp.json`, which can be found in Cursor Settings > Tools & MCP > New MCP Server.
 
-[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=profound-dev-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsInByb2ZvdW5kLWRldi1tY3AiXSwiZW52Ijp7IlBST0ZPVU5EX0FDQ0VTU19UT0tFTiI6Ik15IEFjY2VzcyBUb2tlbiIsIlBST0ZPVU5EX0FQSV9LRVkiOiJNeSBBUEkgS2V5In19)
+[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40profoundai%2Fmcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBwcm9mb3VuZGFpL21jcCJdLCJlbnYiOnsiUFJPRk9VTkRfQUNDRVNTX1RPS0VOIjoiTXkgQWNjZXNzIFRva2VuIiwiUFJPRk9VTkRfQVBJX0tFWSI6Ik15IEFQSSBLZXkifX0)
 
 ### VS Code
 
 If you use MCP, you can install the MCP server by clicking the link below. You will need to set your environment variables
 in VS Code's `mcp.json`, which can be found via Command Palette > MCP: Open User Configuration.
 
-[Open VS Code](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22profound-dev-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22profound-dev-mcp%22%5D%2C%22env%22%3A%7B%22PROFOUND_ACCESS_TOKEN%22%3A%22My%20Access%20Token%22%2C%22PROFOUND_API_KEY%22%3A%22My%20API%20Key%22%7D%7D)
+[Open VS Code](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40profoundai%2Fmcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40profoundai%2Fmcp%22%5D%2C%22env%22%3A%7B%22PROFOUND_ACCESS_TOKEN%22%3A%22My%20Access%20Token%22%2C%22PROFOUND_API_KEY%22%3A%22My%20API%20Key%22%7D%7D)
 
 ### Claude Code
 
@@ -56,7 +56,7 @@ If you use Claude Code, you can install the MCP server by running the command be
 environment variables in Claude Code's `.claude.json`, which can be found in your home directory.
 
 ```
-claude mcp add profound_dev_mcp_api --env PROFOUND_ACCESS_TOKEN="My Access Token" PROFOUND_API_KEY="My API Key" -- npx -y profound-dev-mcp
+claude mcp add profoundai_mcp_api --env PROFOUND_ACCESS_TOKEN="My Access Token" PROFOUND_API_KEY="My API Key" -- npx -y @profoundai/mcp
 ```
 
 ## Code Mode

@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "profound-dev-mcp/*": ["./dist/src/*"],
-      "profound-dev-mcp": ["./dist/src/index.ts"]
+      "@profoundai/mcp/*": ["./dist/src/*"],
+      "@profoundai/mcp": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,
