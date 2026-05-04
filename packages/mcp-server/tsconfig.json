@@ -8,8 +8,8 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "paths": {
-      "@profoundai/mcp/*": ["./src/*"],
-      "@profoundai/mcp": ["./src/index.ts"]
+      "profound-dev-mcp/*": ["./src/*"],
+      "profound-dev-mcp": ["./src/index.ts"]
     },
     "noEmit": true,
 

@@ -7,8 +7,8 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^@profoundai/mcp$': '<rootDir>/src/index.ts',
-    '^@profoundai/mcp/(.*)$': '<rootDir>/src/$1',
+    '^profound-dev-mcp$': '<rootDir>/src/index.ts',
+    '^profound-dev-mcp/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
   testPathIgnorePatterns: ['scripts'],

@@ -21,7 +21,7 @@
     "@modelcontextprotocol/sdk": "1.28.0",
     "agents": "~0.8.7",
     "hono": "^4.12.4",
-    "@profoundai/mcp": "latest",
+    "profound-dev-mcp": "latest",
     "@profoundai/client": "latest"
   },
   "// overrides": "agents pins @modelcontextprotocol/sdk exactly; the three override blocks below force npm/yarn/pnpm to dedupe to that same version. Keep all four @modelcontextprotocol/sdk values in sync. See src/index.ts for the full rationale.",

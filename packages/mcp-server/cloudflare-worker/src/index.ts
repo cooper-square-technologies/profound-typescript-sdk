@@ -8,8 +8,8 @@ import { makeOAuthConsent } from './app';
 import { McpAgent } from 'agents/mcp';
 import OAuthProvider from '@cloudflare/workers-oauth-provider';
 import { ClientOptions } from '@profoundai/client';
-import { McpOptions } from '@profoundai/mcp/options';
-import { initMcpServer, newMcpServer } from '@profoundai/mcp/server';
+import { McpOptions } from 'profound-dev-mcp/options';
+import { initMcpServer, newMcpServer } from 'profound-dev-mcp/server';
 import type { ExportedHandler } from '@cloudflare/workers-types';
 
 type MCPProps = {
@@ -26,11 +26,20 @@ const serverConfig: ServerConfig = {
   logoUrl: undefined, // Set a custom logo url to appear during the OAuth flow
   clientProperties: [
     {
+      key: 'accessToken',
+      label: 'Access Token',
+      description: 'WorkOS access token',
+      required: false,
+      default: null,
+      placeholder: 'My Access Token',
+      type: 'password',
+    },
+    {
       key: 'apiKey',
       label: 'API Key',
       description: 'API Key',
-      required: true,
-      default: undefined,
+      required: false,
+      default: null,
       placeholder: 'My API Key',
       type: 'password',
     },

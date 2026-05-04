@@ -93,9 +93,14 @@ import {
 
 export interface ClientOptions {
   /**
+   * WorkOS access token
+   */
+  accessToken?: string | null | undefined;
+
+  /**
    * API Key
    */
-  apiKey?: string | undefined;
+  apiKey?: string | null | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -170,7 +175,8 @@ export interface ClientOptions {
  * API Client for interfacing with the Profound API.
  */
 export class Profound {
-  apiKey: string;
+  accessToken: string | null;
+  apiKey: string | null;
 
   baseURL: string;
   maxRetries: number;
@@ -187,7 +193,8 @@ export class Profound {
   /**
    * API Client for interfacing with the Profound API.
    *
-   * @param {string | undefined} [opts.apiKey=process.env['PROFOUND_API_KEY'] ?? undefined]
+   * @param {string | null | undefined} [opts.accessToken=process.env['PROFOUND_ACCESS_TOKEN'] ?? null]
+   * @param {string | null | undefined} [opts.apiKey=process.env['PROFOUND_API_KEY'] ?? null]
    * @param {string} [opts.baseURL=process.env['PROFOUND_BASE_URL'] ?? https://api.tryprofound.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -198,16 +205,12 @@ export class Profound {
    */
   constructor({
     baseURL = readEnv('PROFOUND_BASE_URL'),
-    apiKey = readEnv('PROFOUND_API_KEY'),
+    accessToken = readEnv('PROFOUND_ACCESS_TOKEN') ?? null,
+    apiKey = readEnv('PROFOUND_API_KEY') ?? null,
     ...opts
   }: ClientOptions = {}) {
-    if (apiKey === undefined) {
-      throw new Errors.ProfoundError(
-        "The PROFOUND_API_KEY environment variable is missing or empty; either provide it, or instantiate the Profound client with an apiKey option, like new Profound({ apiKey: 'My API Key' }).",
-      );
-    }
-
     const options: ClientOptions = {
+      accessToken,
       apiKey,
       ...opts,
       baseURL: baseURL || `https://api.tryprofound.com`,
@@ -242,6 +245,7 @@ export class Profound {
 
     this._options = options;
 
+    this.accessToken = accessToken;
     this.apiKey = apiKey;
   }
 
@@ -258,6 +262,7 @@ export class Profound {
       logLevel: this.logLevel,
       fetch: this.fetch,
       fetchOptions: this.fetchOptions,
+      accessToken: this.accessToken,
       apiKey: this.apiKey,
       ...options,
     });
@@ -276,10 +281,40 @@ export class Profound {
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
-    return;
+    if (this.accessToken && values.get('authorization')) {
+      return;
+    }
+    if (nulls.has('authorization')) {
+      return;
+    }
+
+    if (this.apiKey && values.get('x-api-key')) {
+      return;
+    }
+    if (nulls.has('x-api-key')) {
+      return;
+    }
+
+    throw new Error(
+      'Could not resolve authentication method. Expected either accessToken or apiKey to be set. Or for one of the "Authorization" or "X-API-Key" headers to be explicitly omitted',
+    );
   }
 
   protected async authHeaders(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
+    return buildHeaders([await this.bearerAuth(opts), await this.apiKeyHeaderAuth(opts)]);
+  }
+
+  protected async bearerAuth(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
+    if (this.accessToken == null) {
+      return undefined;
+    }
+    return buildHeaders([{ Authorization: `Bearer ${this.accessToken}` }]);
+  }
+
+  protected async apiKeyHeaderAuth(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
+    if (this.apiKey == null) {
+      return undefined;
+    }
     return buildHeaders([{ 'X-API-Key': this.apiKey }]);
   }
 
