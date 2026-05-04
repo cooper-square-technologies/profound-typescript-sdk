@@ -22,15 +22,22 @@
         "${__dirname}/index.js"
       ],
       "env": {
+        "PROFOUND_ACCESS_TOKEN": "${user_config.PROFOUND_ACCESS_TOKEN}",
         "PROFOUND_API_KEY": "${user_config.PROFOUND_API_KEY}"
       }
     }
   },
   "user_config": {
+    "PROFOUND_ACCESS_TOKEN": {
+      "title": "access_token",
+      "description": "WorkOS access token",
+      "required": false,
+      "type": "string"
+    },
     "PROFOUND_API_KEY": {
       "title": "api_key",
       "description": "API Key",
-      "required": true,
+      "required": false,
       "type": "string"
     }
   },

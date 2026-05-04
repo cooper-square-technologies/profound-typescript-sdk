@@ -17,6 +17,10 @@ export type CLIOptions = McpOptions & {
 export type McpOptions = {
   includeCodeTool?: boolean | undefined;
   includeDocsTools?: boolean | undefined;
+  oAuthClientId: string;
+  oAuthClientSecret: string;
+  oAuthCookieSecret: string;
+  serverURL: string;
   stainlessApiKey?: string | undefined;
   docsSearchMode?: 'stainless-api' | 'local' | undefined;
   docsDir?: string | undefined;
@@ -83,10 +87,28 @@ export function parseCLIOptions(): CLIOptions {
       choices: ['code', 'docs'],
       description: 'Tools to explicitly disable',
     })
+    .option('oauth-client-id', {
+      type: 'string',
+      required: true,
+      description: 'OAuth Client ID for the MCP server to use when performing OAuth flows',
+    })
+    .option('oauth-client-secret', {
+      type: 'string',
+      required: true,
+      description: 'OAuth Client Secret for the MCP server to use when performing OAuth flows',
+    })
+    .option('oauth-cookie-secret', {
+      type: 'string',
+      description: 'Secret string used for signing browser cookies in the OAuth flow',
+    })
     .option('port', {
       type: 'number',
       default: 3000,
       description: 'Port to serve on if using http transport',
+    })
+    .option('server-url', {
+      type: 'string',
+      description: 'URL that should be shared with clients for external access to the MCP server',
     })
     .option('socket', { type: 'string', description: 'Unix socket to serve on if using http transport' })
     .option('stainless-api-key', {
@@ -130,6 +152,10 @@ export function parseCLIOptions(): CLIOptions {
   return {
     ...(includeCodeTool !== undefined && { includeCodeTool }),
     ...(includeDocsTools !== undefined && { includeDocsTools }),
+    oAuthClientId: argv.oauthClientId,
+    oAuthClientSecret: argv.oauthClientSecret,
+    oAuthCookieSecret: argv.oauthCookieSecret || crypto.randomUUID().replace(/-/g, ''),
+    serverURL: argv.serverUrl ? argv.serverUrl : `http://localhost:${argv.port ?? 3000}`,
     debug: !!argv.debug,
     stainlessApiKey: argv.stainlessApiKey,
     docsSearchMode: argv.docsSearchMode as 'stainless-api' | 'local' | undefined,
@@ -181,5 +207,9 @@ export function parseQueryOptions(defaultOptions: McpOptions, query: unknown): M
     codeExecutionMode: defaultOptions.codeExecutionMode,
     docsSearchMode: defaultOptions.docsSearchMode,
     docsDir: defaultOptions.docsDir,
+    oAuthClientId: defaultOptions.oAuthClientId,
+    oAuthClientSecret: defaultOptions.oAuthClientSecret,
+    oAuthCookieSecret: defaultOptions.oAuthCookieSecret,
+    serverURL: defaultOptions.serverURL,
   };
 }
