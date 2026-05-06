@@ -590,7 +590,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/reports/citations \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/reports/citations \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -630,7 +630,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/reports/visibility \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "share_of_voice"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/reports/visibility \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "share_of_voice"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -670,7 +670,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/reports/sentiment \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "positive"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/reports/sentiment \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "positive"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -712,7 +712,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/reports/referrals \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "visits"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/reports/referrals \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "visits"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -754,7 +754,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/reports/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/reports/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -796,7 +796,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v2/reports/referrals \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "visits"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v2/reports/referrals \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "visits"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -838,7 +838,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v2/reports/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v2/reports/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -878,7 +878,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/reports/query-fanouts \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "fanouts_per_execution"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/reports/query-fanouts \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "fanouts_per_execution"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "fanouts_per_execution": "desc"\n          }\n        }\'',
       },
     },
   },
@@ -917,7 +917,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/reports/citations/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/reports/citations/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -956,7 +956,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/reports/visibility/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "share_of_voice"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/reports/visibility/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "share_of_voice"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -995,7 +995,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/reports/sentiment/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "positive"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/reports/sentiment/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "positive"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -1036,7 +1036,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/logs/raw \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/logs/raw \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -1077,7 +1077,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/logs/raw/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/logs/raw/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
