@@ -17,6 +17,7 @@ import { getInstructions } from './instructions';
 import { McpOptions } from './options';
 import { blockedMethodsForCodeTool } from './methods';
 import { HandlerFunction, McpRequestContext, ToolCallResult, McpTool } from './types';
+import { readEnv } from './util';
 
 export const newMcpServer = async ({
   stainlessApiKey,
@@ -81,6 +82,7 @@ export async function initMcpServer(params: {
     if (!_client) {
       try {
         _client = new Profound({
+          ...{ environment: (readEnv('PROFOUND_ENVIRONMENT') || undefined) as any },
           logger,
           ...params.clientOptions,
           defaultHeaders: {

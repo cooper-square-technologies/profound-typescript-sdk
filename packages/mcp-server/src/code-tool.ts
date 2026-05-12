@@ -145,7 +145,10 @@ const remoteStainlessHandler = async ({
   const localClientEnvs = {
     PROFOUND_ACCESS_TOKEN: readEnv('PROFOUND_ACCESS_TOKEN') ?? client.accessToken ?? undefined,
     PROFOUND_API_KEY: readEnv('PROFOUND_API_KEY') ?? client.apiKey ?? undefined,
-    PROFOUND_BASE_URL: readEnv('PROFOUND_BASE_URL') ?? client.baseURL ?? undefined,
+    PROFOUND_BASE_URL:
+      readEnv('PROFOUND_BASE_URL') ?? readEnv('PROFOUND_ENVIRONMENT') ?
+        undefined
+      : client.baseURL ?? undefined,
   };
   // Merge any upstream client envs from the request header, with upstream values taking precedence.
   const mergedClientEnvs = { ...localClientEnvs, ...reqContext.upstreamClientEnvs };
@@ -162,7 +165,7 @@ const remoteStainlessHandler = async ({
       project_name: 'profound',
       code,
       intent,
-      client_opts: {},
+      client_opts: { environment: (readEnv('PROFOUND_ENVIRONMENT') || undefined) as any },
     } satisfies WorkerInput),
   });
 

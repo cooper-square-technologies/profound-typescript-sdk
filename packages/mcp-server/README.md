@@ -11,6 +11,7 @@ You can run the MCP Server directly via `npx`:
 ```sh
 export PROFOUND_ACCESS_TOKEN="My Access Token"
 export PROFOUND_API_KEY="My API Key"
+export PROFOUND_ENVIRONMENT="production"
 npx -y @profoundai/mcp@latest
 ```
 
@@ -29,7 +30,8 @@ For clients with a configuration JSON, it might look something like this:
       "args": ["-y", "@profoundai/mcp"],
       "env": {
         "PROFOUND_ACCESS_TOKEN": "My Access Token",
-        "PROFOUND_API_KEY": "My API Key"
+        "PROFOUND_API_KEY": "My API Key",
+        "PROFOUND_ENVIRONMENT": "production"
       }
     }
   }
