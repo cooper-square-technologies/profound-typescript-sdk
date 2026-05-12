@@ -41,6 +41,7 @@ describe('resource prompts', () => {
         analysis_types: true,
         asset: true,
         asset_id: true,
+        citation_details: true,
         citations: true,
         created_at: true,
         mentions: true,
@@ -60,6 +61,7 @@ describe('resource prompts', () => {
         themes: true,
         topic: true,
         topic_id: true,
+        web_search_results: true,
       },
       pagination: { limit: 1, offset: 0 },
     });

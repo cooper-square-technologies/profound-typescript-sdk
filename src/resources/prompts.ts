@@ -34,6 +34,8 @@ export namespace PromptAnswersResponse {
 
     asset_id?: string | null;
 
+    citation_details?: Array<Data.CitationDetail> | null;
+
     citations?: Array<string> | null;
 
     created_at?: string | null;
@@ -71,9 +73,37 @@ export namespace PromptAnswersResponse {
     topic?: string | null;
 
     topic_id?: string | null;
+
+    web_search_results?: Array<string> | null;
   }
 
   export namespace Data {
+    export interface CitationDetail {
+      clean_url: string;
+
+      hostname: string;
+
+      path: string;
+
+      title: string;
+
+      url: string;
+
+      groups?: Array<CitationDetail.Group> | null;
+
+      positions?: Array<number>;
+
+      text?: string | null;
+    }
+
+    export namespace CitationDetail {
+      export interface Group {
+        group_id: number;
+
+        group_position: number;
+      }
+    }
+
     export interface SentimentTheme {
       name: string;
 
@@ -126,6 +156,8 @@ export namespace PromptAnswersParams {
 
     asset_id?: boolean;
 
+    citation_details?: boolean;
+
     citations?: boolean;
 
     created_at?: boolean;
@@ -169,6 +201,8 @@ export namespace PromptAnswersParams {
     topic?: boolean;
 
     topic_id?: boolean;
+
+    web_search_results?: boolean;
   }
 }
 
