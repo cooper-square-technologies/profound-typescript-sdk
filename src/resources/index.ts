@@ -40,12 +40,15 @@ export {
 export { Prompts, type PromptAnswersResponse, type PromptAnswersParams } from './prompts';
 export {
   Reports,
+  type HostnameFilter,
   type PromptIDFilter,
   type ReportInfo,
   type ReportResponse,
   type ReportResult,
+  type RootDomainFilter,
   type TagNameFilter,
   type TopicNameFilter,
+  type URLFilter,
   type ReportCitationsResponse,
   type ReportStreamCitationsResponse,
   type ReportStreamSentimentResponse,
@@ -61,4 +64,4 @@ export {
   type ReportStreamSentimentParams,
   type ReportStreamVisibilityParams,
   type ReportVisibilityParams,
-} from './reports';
+} from './reports/reports';

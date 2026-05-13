@@ -89,30 +89,45 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/reports.ts">PromptIDFilter</a></code>
-- <code><a href="./src/resources/reports.ts">ReportInfo</a></code>
-- <code><a href="./src/resources/reports.ts">ReportResponse</a></code>
-- <code><a href="./src/resources/reports.ts">ReportResult</a></code>
-- <code><a href="./src/resources/reports.ts">TagNameFilter</a></code>
-- <code><a href="./src/resources/reports.ts">TopicNameFilter</a></code>
-- <code><a href="./src/resources/reports.ts">ReportCitationsResponse</a></code>
-- <code><a href="./src/resources/reports.ts">ReportStreamCitationsResponse</a></code>
-- <code><a href="./src/resources/reports.ts">ReportStreamSentimentResponse</a></code>
-- <code><a href="./src/resources/reports.ts">ReportStreamVisibilityResponse</a></code>
+- <code><a href="./src/resources/reports/reports.ts">HostnameFilter</a></code>
+- <code><a href="./src/resources/reports/reports.ts">PromptIDFilter</a></code>
+- <code><a href="./src/resources/reports/reports.ts">ReportInfo</a></code>
+- <code><a href="./src/resources/reports/reports.ts">ReportResponse</a></code>
+- <code><a href="./src/resources/reports/reports.ts">ReportResult</a></code>
+- <code><a href="./src/resources/reports/reports.ts">RootDomainFilter</a></code>
+- <code><a href="./src/resources/reports/reports.ts">TagNameFilter</a></code>
+- <code><a href="./src/resources/reports/reports.ts">TopicNameFilter</a></code>
+- <code><a href="./src/resources/reports/reports.ts">URLFilter</a></code>
+- <code><a href="./src/resources/reports/reports.ts">ReportCitationsResponse</a></code>
+- <code><a href="./src/resources/reports/reports.ts">ReportStreamCitationsResponse</a></code>
+- <code><a href="./src/resources/reports/reports.ts">ReportStreamSentimentResponse</a></code>
+- <code><a href="./src/resources/reports/reports.ts">ReportStreamVisibilityResponse</a></code>
 
 Methods:
 
-- <code title="post /v1/reports/citations">client.reports.<a href="./src/resources/reports.ts">citations</a>({ ...params }) -> ReportCitationsResponse</code>
-- <code title="post /v1/reports/bots">client.reports.<a href="./src/resources/reports.ts">getBotsReport</a>({ ...params }) -> ReportResponse</code>
-- <code title="post /v2/reports/bots">client.reports.<a href="./src/resources/reports.ts">getBotsReportV2</a>({ ...params }) -> ReportResponse</code>
-- <code title="post /v1/reports/referrals">client.reports.<a href="./src/resources/reports.ts">getReferralsReport</a>({ ...params }) -> ReportResponse</code>
-- <code title="post /v2/reports/referrals">client.reports.<a href="./src/resources/reports.ts">getReferralsReportV2</a>({ ...params }) -> ReportResponse</code>
-- <code title="post /v1/reports/query-fanouts">client.reports.<a href="./src/resources/reports.ts">queryFanouts</a>({ ...params }) -> ReportResponse</code>
-- <code title="post /v1/reports/sentiment">client.reports.<a href="./src/resources/reports.ts">sentiment</a>({ ...params }) -> ReportResponse</code>
-- <code title="post /v1/reports/citations/stream">client.reports.<a href="./src/resources/reports.ts">streamCitations</a>({ ...params }) -> ReportStreamCitationsResponse</code>
-- <code title="post /v1/reports/sentiment/stream">client.reports.<a href="./src/resources/reports.ts">streamSentiment</a>({ ...params }) -> ReportStreamSentimentResponse</code>
-- <code title="post /v1/reports/visibility/stream">client.reports.<a href="./src/resources/reports.ts">streamVisibility</a>({ ...params }) -> ReportStreamVisibilityResponse</code>
-- <code title="post /v1/reports/visibility">client.reports.<a href="./src/resources/reports.ts">visibility</a>({ ...params }) -> ReportResponse</code>
+- <code title="post /v1/reports/citations">client.reports.<a href="./src/resources/reports/reports.ts">citations</a>({ ...params }) -> ReportCitationsResponse</code>
+- <code title="post /v1/reports/bots">client.reports.<a href="./src/resources/reports/reports.ts">getBotsReport</a>({ ...params }) -> ReportResponse</code>
+- <code title="post /v2/reports/bots">client.reports.<a href="./src/resources/reports/reports.ts">getBotsReportV2</a>({ ...params }) -> ReportResponse</code>
+- <code title="post /v1/reports/referrals">client.reports.<a href="./src/resources/reports/reports.ts">getReferralsReport</a>({ ...params }) -> ReportResponse</code>
+- <code title="post /v2/reports/referrals">client.reports.<a href="./src/resources/reports/reports.ts">getReferralsReportV2</a>({ ...params }) -> ReportResponse</code>
+- <code title="post /v1/reports/query-fanouts">client.reports.<a href="./src/resources/reports/reports.ts">queryFanouts</a>({ ...params }) -> ReportResponse</code>
+- <code title="post /v1/reports/sentiment">client.reports.<a href="./src/resources/reports/reports.ts">sentiment</a>({ ...params }) -> ReportResponse</code>
+- <code title="post /v1/reports/citations/stream">client.reports.<a href="./src/resources/reports/reports.ts">streamCitations</a>({ ...params }) -> ReportStreamCitationsResponse</code>
+- <code title="post /v1/reports/sentiment/stream">client.reports.<a href="./src/resources/reports/reports.ts">streamSentiment</a>({ ...params }) -> ReportStreamSentimentResponse</code>
+- <code title="post /v1/reports/visibility/stream">client.reports.<a href="./src/resources/reports/reports.ts">streamVisibility</a>({ ...params }) -> ReportStreamVisibilityResponse</code>
+- <code title="post /v1/reports/visibility">client.reports.<a href="./src/resources/reports/reports.ts">visibility</a>({ ...params }) -> ReportResponse</code>
+
+## WebSearchResults
+
+Types:
+
+- <code><a href="./src/resources/reports/web-search-results.ts">WebSearchResultQueryResponse</a></code>
+- <code><a href="./src/resources/reports/web-search-results.ts">WebSearchResultStreamResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/reports/web-search-results">client.reports.webSearchResults.<a href="./src/resources/reports/web-search-results.ts">query</a>({ ...params }) -> WebSearchResultQueryResponse</code>
+- <code title="post /v1/reports/web-search-results/stream">client.reports.webSearchResults.<a href="./src/resources/reports/web-search-results.ts">stream</a>({ ...params }) -> WebSearchResultStreamResponse</code>
 
 # Logs
 

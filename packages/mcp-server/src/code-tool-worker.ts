@@ -135,6 +135,8 @@ const fuse = new Fuse(
     'client.reports.streamSentiment',
     'client.reports.streamVisibility',
     'client.reports.visibility',
+    'client.reports.webSearchResults.query',
+    'client.reports.webSearchResults.stream',
     'client.logs.raw.bots',
     'client.logs.raw.logs',
     'client.content.optimization.list',

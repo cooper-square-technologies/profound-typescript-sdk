@@ -21,30 +21,6 @@ import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
 import { PromptAnswersParams, PromptAnswersResponse, Prompts } from './resources/prompts';
-import {
-  PromptIDFilter,
-  ReportCitationsParams,
-  ReportCitationsResponse,
-  ReportGetBotsReportParams,
-  ReportGetBotsReportV2Params,
-  ReportGetReferralsReportParams,
-  ReportGetReferralsReportV2Params,
-  ReportInfo,
-  ReportQueryFanoutsParams,
-  ReportResponse,
-  ReportResult,
-  ReportSentimentParams,
-  ReportStreamCitationsParams,
-  ReportStreamCitationsResponse,
-  ReportStreamSentimentParams,
-  ReportStreamSentimentResponse,
-  ReportStreamVisibilityParams,
-  ReportStreamVisibilityResponse,
-  ReportVisibilityParams,
-  Reports,
-  TagNameFilter,
-  TopicNameFilter,
-} from './resources/reports';
 import { readEnv } from './internal/utils/env';
 import {
   type LogLevel,
@@ -90,6 +66,33 @@ import {
   PersonaProfileDemographics,
   PersonaProfileEmployment,
 } from './resources/organizations/organizations';
+import {
+  HostnameFilter,
+  PromptIDFilter,
+  ReportCitationsParams,
+  ReportCitationsResponse,
+  ReportGetBotsReportParams,
+  ReportGetBotsReportV2Params,
+  ReportGetReferralsReportParams,
+  ReportGetReferralsReportV2Params,
+  ReportInfo,
+  ReportQueryFanoutsParams,
+  ReportResponse,
+  ReportResult,
+  ReportSentimentParams,
+  ReportStreamCitationsParams,
+  ReportStreamCitationsResponse,
+  ReportStreamSentimentParams,
+  ReportStreamSentimentResponse,
+  ReportStreamVisibilityParams,
+  ReportStreamVisibilityResponse,
+  ReportVisibilityParams,
+  Reports,
+  RootDomainFilter,
+  TagNameFilter,
+  TopicNameFilter,
+  URLFilter,
+} from './resources/reports/reports';
 
 const environments = {
   production: 'https://api.tryprofound.com',
@@ -895,12 +898,15 @@ export declare namespace Profound {
 
   export {
     Reports as Reports,
+    type HostnameFilter as HostnameFilter,
     type PromptIDFilter as PromptIDFilter,
     type ReportInfo as ReportInfo,
     type ReportResponse as ReportResponse,
     type ReportResult as ReportResult,
+    type RootDomainFilter as RootDomainFilter,
     type TagNameFilter as TagNameFilter,
     type TopicNameFilter as TopicNameFilter,
+    type URLFilter as URLFilter,
     type ReportCitationsResponse as ReportCitationsResponse,
     type ReportStreamCitationsResponse as ReportStreamCitationsResponse,
     type ReportStreamSentimentResponse as ReportStreamSentimentResponse,

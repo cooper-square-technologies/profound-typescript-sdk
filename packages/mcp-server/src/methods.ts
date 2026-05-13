@@ -173,6 +173,18 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/reports/visibility',
   },
   {
+    clientCallName: 'client.reports.webSearchResults.query',
+    fullyQualifiedName: 'reports.webSearchResults.query',
+    httpMethod: 'post',
+    httpPath: '/v1/reports/web-search-results',
+  },
+  {
+    clientCallName: 'client.reports.webSearchResults.stream',
+    fullyQualifiedName: 'reports.webSearchResults.stream',
+    httpMethod: 'post',
+    httpPath: '/v1/reports/web-search-results/stream',
+  },
+  {
     clientCallName: 'client.logs.raw.bots',
     fullyQualifiedName: 'logs.raw.bots',
     httpMethod: 'post',
