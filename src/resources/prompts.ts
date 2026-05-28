@@ -89,6 +89,8 @@ export namespace PromptAnswersResponse {
 
       url: string;
 
+      citation_category?: string | null;
+
       groups?: Array<CitationDetail.Group> | null;
 
       positions?: Array<number>;
