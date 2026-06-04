@@ -4,7 +4,6 @@ Types:
 
 - <code><a href="./src/resources/shared.ts">AnalysisTypeFilter</a></code>
 - <code><a href="./src/resources/shared.ts">AssetIDFilter</a></code>
-- <code><a href="./src/resources/shared.ts">AssetNameFilter</a></code>
 - <code><a href="./src/resources/shared.ts">BotNameFilter</a></code>
 - <code><a href="./src/resources/shared.ts">BotProviderFilter</a></code>
 - <code><a href="./src/resources/shared.ts">CursorPagination</a></code>

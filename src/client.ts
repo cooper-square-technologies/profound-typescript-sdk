@@ -946,7 +946,6 @@ export declare namespace Profound {
 
   export type AnalysisTypeFilter = API.AnalysisTypeFilter;
   export type AssetIDFilter = API.AssetIDFilter;
-  export type AssetNameFilter = API.AssetNameFilter;
   export type BotNameFilter = API.BotNameFilter;
   export type BotProviderFilter = API.BotProviderFilter;
   export type CursorPagination = API.CursorPagination;

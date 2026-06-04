@@ -1066,7 +1066,7 @@ export interface ReportSentimentParams {
    */
   filters?: Array<
     | Shared.AssetIDFilter
-    | Shared.AssetNameFilter
+    | ReportSentimentParams.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
     | ReportSentimentParams.ThemeFilter
     | Shared.RegionIDFilter
     | Shared.RegionNameFilter
@@ -1100,6 +1100,26 @@ export interface ReportSentimentParams {
 }
 
 export namespace ReportSentimentParams {
+  /**
+   * Filter by asset name
+   */
+  export interface ProfoundAnswerEngineInsightsFiltersAssetNameFilter {
+    field: 'asset_name';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
   /**
    * Filter by theme
    */
@@ -1275,7 +1295,7 @@ export interface ReportStreamSentimentParams {
    */
   filters?: Array<
     | Shared.AssetIDFilter
-    | Shared.AssetNameFilter
+    | ReportStreamSentimentParams.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
     | ReportStreamSentimentParams.ThemeFilter
     | Shared.RegionIDFilter
     | Shared.RegionNameFilter
@@ -1309,6 +1329,26 @@ export interface ReportStreamSentimentParams {
 }
 
 export namespace ReportStreamSentimentParams {
+  /**
+   * Filter by asset name
+   */
+  export interface ProfoundAnswerEngineInsightsFiltersAssetNameFilter {
+    field: 'asset_name';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
   /**
    * Filter by theme
    */
@@ -1380,7 +1420,7 @@ export interface ReportStreamVisibilityParams {
     | Shared.ModelIDFilter
     | Shared.TopicIDFilter
     | TopicNameFilter
-    | Shared.AssetNameFilter
+    | ReportStreamVisibilityParams.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
     | Shared.TagIDFilter
     | TagNameFilter
     | PromptIDFilter
@@ -1406,6 +1446,28 @@ export interface ReportStreamVisibilityParams {
    * Offset-based pagination parameters.
    */
   pagination?: Shared.Pagination | null;
+}
+
+export namespace ReportStreamVisibilityParams {
+  /**
+   * Filter by asset name
+   */
+  export interface ProfoundAnswerEngineInsightsFiltersAssetNameFilter {
+    field: 'asset_name';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
 }
 
 export interface ReportVisibilityParams {
@@ -1458,7 +1520,7 @@ export interface ReportVisibilityParams {
     | Shared.ModelIDFilter
     | Shared.TopicIDFilter
     | TopicNameFilter
-    | Shared.AssetNameFilter
+    | ReportVisibilityParams.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
     | Shared.TagIDFilter
     | TagNameFilter
     | PromptIDFilter
@@ -1484,6 +1546,28 @@ export interface ReportVisibilityParams {
    * Pagination settings for the report results.
    */
   pagination?: Shared.Pagination;
+}
+
+export namespace ReportVisibilityParams {
+  /**
+   * Filter by asset name
+   */
+  export interface ProfoundAnswerEngineInsightsFiltersAssetNameFilter {
+    field: 'asset_name';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
 }
 
 Reports.WebSearchResults = WebSearchResults;
