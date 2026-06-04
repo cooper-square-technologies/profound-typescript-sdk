@@ -7,7 +7,7 @@ import { RequestOptions } from '../internal/request-options';
 
 export class Prompts extends APIResource {
   /**
-   * Get the answers for the prompts.
+   * Get Answers
    */
   answers(body: PromptAnswersParams, options?: RequestOptions): APIPromise<PromptAnswersResponse> {
     return this._client.post('/v1/prompts/answers', { body, ...options });
