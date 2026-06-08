@@ -1079,6 +1079,470 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'visibility',
+    endpoint: '/v1/reports/shopping/visibility',
+    httpMethod: 'post',
+    summary: 'Shopping Visibility',
+    description: 'Shopping Visibility',
+    stainlessPath: '(resource) reports.shopping > (method) visibility',
+    qualified: 'client.reports.shopping.visibility',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      "dimensions?: 'period' | 'asset_name' | 'date' | 'model_id' | 'topic_id' | 'region_id' | 'prompt_id' | 'prompt'[];",
+      'exclude_topic_ids?: boolean;',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
+      'include_asset?: string;',
+      'include_asset_only?: boolean;',
+      'include_count?: boolean;',
+      'include_no_tag?: boolean;',
+      'include_position_frequency?: boolean;',
+      'metrics?: string[];',
+      'order_by?: object;',
+      'owned_asset_names?: string[];',
+      'pagination?: { limit?: number; offset?: number; };',
+      "rank_by?: 'visibility_score' | 'average_position';",
+      'search_asset?: string;',
+      "tag_filter_type?: 'any' | 'all';",
+    ],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## visibility\n\n`client.reports.shopping.visibility(category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'period' | 'asset_name' | 'date' | 'model_id' | 'topic_id' | 'region_id' | 'prompt_id' | 'prompt'[], exclude_topic_ids?: boolean, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include_asset?: string, include_asset_only?: boolean, include_count?: boolean, include_no_tag?: boolean, include_position_frequency?: boolean, metrics?: string[], order_by?: object, owned_asset_names?: string[], pagination?: { limit?: number; offset?: number; }, rank_by?: 'visibility_score' | 'average_position', search_asset?: string, tag_filter_type?: 'any' | 'all'): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/visibility`\n\nShopping Visibility\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n\n- `dimensions?: 'period' | 'asset_name' | 'date' | 'model_id' | 'topic_id' | 'region_id' | 'prompt_id' | 'prompt'[]`\n\n- `exclude_topic_ids?: boolean`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n\n- `include_asset?: string`\n\n- `include_asset_only?: boolean`\n\n- `include_count?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `include_position_frequency?: boolean`\n\n- `metrics?: string[]`\n\n- `order_by?: object`\n\n- `owned_asset_names?: string[]`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n- `rank_by?: 'visibility_score' | 'average_position'`\n\n- `search_asset?: string`\n\n- `tag_filter_type?: 'any' | 'all'`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.visibility({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.visibility',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.visibility({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.visibility',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.visibility(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/visibility \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'item_visibility',
+    endpoint: '/v1/reports/shopping/item-visibility',
+    httpMethod: 'post',
+    summary: 'Shopping Item Visibility',
+    description: 'Shopping Item Visibility',
+    stainlessPath: '(resource) reports.shopping > (method) item_visibility',
+    qualified: 'client.reports.shopping.itemVisibility',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'competitor_limit?: number;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      'dimensions?: string[];',
+      'exclude_topic_ids?: boolean;',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
+      'include_competitors?: boolean;',
+      'include_count?: boolean;',
+      'include_items?: string[];',
+      'include_no_tag?: boolean;',
+      'include_position_frequency?: boolean;',
+      "merchant_filter_type?: 'any' | 'all';",
+      'metrics?: string[];',
+      'order_by?: object;',
+      'owned_asset_names?: string[];',
+      'pagination?: { limit?: number; offset?: number; };',
+      'search_item?: string;',
+      "tag_filter_type?: 'any' | 'all';",
+      'target_product?: string;',
+    ],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## item_visibility\n\n`client.reports.shopping.itemVisibility(category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, competitor_limit?: number, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], exclude_topic_ids?: boolean, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include_competitors?: boolean, include_count?: boolean, include_items?: string[], include_no_tag?: boolean, include_position_frequency?: boolean, merchant_filter_type?: 'any' | 'all', metrics?: string[], order_by?: object, owned_asset_names?: string[], pagination?: { limit?: number; offset?: number; }, search_item?: string, tag_filter_type?: 'any' | 'all', target_product?: string): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/item-visibility`\n\nShopping Item Visibility\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `competitor_limit?: number`\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n\n- `dimensions?: string[]`\n\n- `exclude_topic_ids?: boolean`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n\n- `include_competitors?: boolean`\n\n- `include_count?: boolean`\n\n- `include_items?: string[]`\n\n- `include_no_tag?: boolean`\n\n- `include_position_frequency?: boolean`\n\n- `merchant_filter_type?: 'any' | 'all'`\n\n- `metrics?: string[]`\n\n- `order_by?: object`\n\n- `owned_asset_names?: string[]`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n- `search_item?: string`\n\n- `tag_filter_type?: 'any' | 'all'`\n\n- `target_product?: string`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.itemVisibility({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.itemVisibility',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.itemVisibility({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.item_visibility',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.item_visibility(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/item-visibility \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'merchant_distribution',
+    endpoint: '/v1/reports/shopping/merchant-distribution',
+    httpMethod: 'post',
+    summary: 'Shopping Merchant Distribution',
+    description: 'Shopping Merchant Distribution',
+    stainlessPath: '(resource) reports.shopping > (method) merchant_distribution',
+    qualified: 'client.reports.shopping.merchantDistribution',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      "dimensions?: 'period' | 'merchant_name' | 'date' | 'owned_asset_name'[];",
+      'exclude_topic_ids?: boolean;',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
+      'include_count?: boolean;',
+      'include_no_tag?: boolean;',
+      'metrics?: string[];',
+      'order_by?: object;',
+      'owned_asset_names?: string[];',
+      'pagination?: { limit?: number; offset?: number; };',
+      'search_merchant?: string;',
+      "tag_filter_type?: 'any' | 'all';",
+    ],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## merchant_distribution\n\n`client.reports.shopping.merchantDistribution(category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'period' | 'merchant_name' | 'date' | 'owned_asset_name'[], exclude_topic_ids?: boolean, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include_count?: boolean, include_no_tag?: boolean, metrics?: string[], order_by?: object, owned_asset_names?: string[], pagination?: { limit?: number; offset?: number; }, search_merchant?: string, tag_filter_type?: 'any' | 'all'): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/merchant-distribution`\n\nShopping Merchant Distribution\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n\n- `dimensions?: 'period' | 'merchant_name' | 'date' | 'owned_asset_name'[]`\n\n- `exclude_topic_ids?: boolean`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n\n- `include_count?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `metrics?: string[]`\n\n- `order_by?: object`\n\n- `owned_asset_names?: string[]`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n- `search_merchant?: string`\n\n- `tag_filter_type?: 'any' | 'all'`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.merchantDistribution({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.merchantDistribution',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.merchantDistribution({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.merchant_distribution',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.merchant_distribution(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/merchant-distribution \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'merchant_visibility_by_brand',
+    endpoint: '/v1/reports/shopping/merchant-visibility-by-brand',
+    httpMethod: 'post',
+    summary: 'Shopping Merchant Visibility By Brand',
+    description: 'Shopping Merchant Visibility By Brand',
+    stainlessPath: '(resource) reports.shopping > (method) merchant_visibility_by_brand',
+    qualified: 'client.reports.shopping.merchantVisibilityByBrand',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      "dimensions?: 'period' | 'merchant_name' | 'brand_name'[];",
+      'exclude_topic_ids?: boolean;',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
+      'include_brand?: string;',
+      'include_brand_only?: boolean;',
+      'include_count?: boolean;',
+      'include_no_tag?: boolean;',
+      "metrics?: 'visibility_score' | 'share_of_voice' | 'average_position' | 'visibility_rank' | 'total_count'[];",
+      'order_by?: object;',
+      'owned_asset_names?: string[];',
+      'pagination?: { limit?: number; offset?: number; };',
+      'search_brand?: string;',
+      "tag_filter_type?: 'any' | 'all';",
+    ],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## merchant_visibility_by_brand\n\n`client.reports.shopping.merchantVisibilityByBrand(category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'period' | 'merchant_name' | 'brand_name'[], exclude_topic_ids?: boolean, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include_brand?: string, include_brand_only?: boolean, include_count?: boolean, include_no_tag?: boolean, metrics?: 'visibility_score' | 'share_of_voice' | 'average_position' | 'visibility_rank' | 'total_count'[], order_by?: object, owned_asset_names?: string[], pagination?: { limit?: number; offset?: number; }, search_brand?: string, tag_filter_type?: 'any' | 'all'): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/merchant-visibility-by-brand`\n\nShopping Merchant Visibility By Brand\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n\n- `dimensions?: 'period' | 'merchant_name' | 'brand_name'[]`\n\n- `exclude_topic_ids?: boolean`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n\n- `include_brand?: string`\n\n- `include_brand_only?: boolean`\n\n- `include_count?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `metrics?: 'visibility_score' | 'share_of_voice' | 'average_position' | 'visibility_rank' | 'total_count'[]`\n\n- `order_by?: object`\n\n- `owned_asset_names?: string[]`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n- `search_brand?: string`\n\n- `tag_filter_type?: 'any' | 'all'`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.merchantVisibilityByBrand({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.merchantVisibilityByBrand',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.merchantVisibilityByBrand({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.merchant_visibility_by_brand',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.merchant_visibility_by_brand(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/merchant-visibility-by-brand \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'merchant_by_items',
+    endpoint: '/v1/reports/shopping/merchant-by-items',
+    httpMethod: 'post',
+    summary: 'Shopping Merchant By Items',
+    description: 'Shopping Merchant By Items',
+    stainlessPath: '(resource) reports.shopping > (method) merchant_by_items',
+    qualified: 'client.reports.shopping.merchantByItems',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      'dimensions?: string[];',
+      'exclude_topic_ids?: boolean;',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
+      'include_count?: boolean;',
+      'include_no_tag?: boolean;',
+      "metrics?: 'merchant_visibility' | 'product_visibility' | 'product_rank' | 'avg_position' | 'total_count'[];",
+      'order_by?: object;',
+      'pagination?: { limit?: number; offset?: number; };',
+      'product_name?: string;',
+      "tag_filter_type?: 'any' | 'all';",
+    ],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## merchant_by_items\n\n`client.reports.shopping.merchantByItems(category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], exclude_topic_ids?: boolean, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include_count?: boolean, include_no_tag?: boolean, metrics?: 'merchant_visibility' | 'product_visibility' | 'product_rank' | 'avg_position' | 'total_count'[], order_by?: object, pagination?: { limit?: number; offset?: number; }, product_name?: string, tag_filter_type?: 'any' | 'all'): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/merchant-by-items`\n\nShopping Merchant By Items\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n\n- `dimensions?: string[]`\n\n- `exclude_topic_ids?: boolean`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n\n- `include_count?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `metrics?: 'merchant_visibility' | 'product_visibility' | 'product_rank' | 'avg_position' | 'total_count'[]`\n\n- `order_by?: object`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n- `product_name?: string`\n\n- `tag_filter_type?: 'any' | 'all'`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.merchantByItems({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.merchantByItems',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.merchantByItems({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.merchant_by_items',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.merchant_by_items(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/merchant-by-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'all_items_with_merchants',
+    endpoint: '/v1/reports/shopping/all-items-with-merchants',
+    httpMethod: 'post',
+    summary: 'Shopping All Items With Merchants',
+    description: 'Shopping All Items With Merchants',
+    stainlessPath: '(resource) reports.shopping > (method) all_items_with_merchants',
+    qualified: 'client.reports.shopping.allItemsWithMerchants',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      'dimensions?: string[];',
+      'exclude_topic_ids?: boolean;',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
+      'include_count?: boolean;',
+      'include_items?: string[];',
+      'include_no_tag?: boolean;',
+      "merchant_filter_type?: 'any' | 'all';",
+      'metrics?: string[];',
+      'order_by?: object;',
+      'owned_asset_names?: string[];',
+      'pagination?: { limit?: number; offset?: number; };',
+      "rank_by?: 'visibility' | 'average_position' | 'name';",
+      'search_item?: string;',
+      "sort_order?: 'asc' | 'desc';",
+      "tag_filter_type?: 'any' | 'all';",
+    ],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## all_items_with_merchants\n\n`client.reports.shopping.allItemsWithMerchants(category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], exclude_topic_ids?: boolean, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include_count?: boolean, include_items?: string[], include_no_tag?: boolean, merchant_filter_type?: 'any' | 'all', metrics?: string[], order_by?: object, owned_asset_names?: string[], pagination?: { limit?: number; offset?: number; }, rank_by?: 'visibility' | 'average_position' | 'name', search_item?: string, sort_order?: 'asc' | 'desc', tag_filter_type?: 'any' | 'all'): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/all-items-with-merchants`\n\nShopping All Items With Merchants\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n\n- `dimensions?: string[]`\n\n- `exclude_topic_ids?: boolean`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n\n- `include_count?: boolean`\n\n- `include_items?: string[]`\n\n- `include_no_tag?: boolean`\n\n- `merchant_filter_type?: 'any' | 'all'`\n\n- `metrics?: string[]`\n\n- `order_by?: object`\n\n- `owned_asset_names?: string[]`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n- `rank_by?: 'visibility' | 'average_position' | 'name'`\n\n- `search_item?: string`\n\n- `sort_order?: 'asc' | 'desc'`\n\n- `tag_filter_type?: 'any' | 'all'`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.allItemsWithMerchants({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.allItemsWithMerchants',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.allItemsWithMerchants({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.all_items_with_merchants',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.all_items_with_merchants(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/all-items-with-merchants \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'trigger_rate',
+    endpoint: '/v1/reports/shopping/trigger-rate',
+    httpMethod: 'post',
+    summary: 'Shopping Trigger Rate',
+    description: 'Shopping Trigger Rate',
+    stainlessPath: '(resource) reports.shopping > (method) trigger_rate',
+    qualified: 'client.reports.shopping.triggerRate',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      "dimensions?: 'period' | 'date' | 'model_id' | 'topic_id' | 'region_id' | 'persona_id' | 'prompt_id' | 'prompt'[];",
+      'exclude_topic_ids?: boolean;',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
+      'include_count?: boolean;',
+      'include_no_tag?: boolean;',
+      "metrics?: 'total_runs' | 'shopping_triggered_runs' | 'trigger_rate_percentage'[];",
+      'order_by?: object;',
+      'pagination?: { limit?: number; offset?: number; };',
+      "tag_filter_type?: 'any' | 'all';",
+    ],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## trigger_rate\n\n`client.reports.shopping.triggerRate(category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'period' | 'date' | 'model_id' | 'topic_id' | 'region_id' | 'persona_id' | 'prompt_id' | 'prompt'[], exclude_topic_ids?: boolean, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include_count?: boolean, include_no_tag?: boolean, metrics?: 'total_runs' | 'shopping_triggered_runs' | 'trigger_rate_percentage'[], order_by?: object, pagination?: { limit?: number; offset?: number; }, tag_filter_type?: 'any' | 'all'): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/trigger-rate`\n\nShopping Trigger Rate\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n\n- `dimensions?: 'period' | 'date' | 'model_id' | 'topic_id' | 'region_id' | 'persona_id' | 'prompt_id' | 'prompt'[]`\n\n- `exclude_topic_ids?: boolean`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n\n- `include_count?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `metrics?: 'total_runs' | 'shopping_triggered_runs' | 'trigger_rate_percentage'[]`\n\n- `order_by?: object`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n- `tag_filter_type?: 'any' | 'all'`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.triggerRate({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.triggerRate',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.triggerRate({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.trigger_rate',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.trigger_rate(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/trigger-rate \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'merchant_share',
+    endpoint: '/v1/reports/shopping/merchant-share',
+    httpMethod: 'post',
+    summary: 'Shopping Merchant Share',
+    description: 'Shopping Merchant Share',
+    stainlessPath: '(resource) reports.shopping > (method) merchant_share',
+    qualified: 'client.reports.shopping.merchantShare',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      "dimensions?: 'period' | 'topic_id' | 'prompt_id'[];",
+      'exclude_topic_ids?: boolean;',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
+      'include_count?: boolean;',
+      'include_no_tag?: boolean;',
+      "metrics?: 'merchant_share'[];",
+      'order_by?: object;',
+      'owned_asset_names?: string[];',
+      'pagination?: { limit?: number; offset?: number; };',
+      "tag_filter_type?: 'any' | 'all';",
+      'target_asset_names?: string[];',
+    ],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## merchant_share\n\n`client.reports.shopping.merchantShare(category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'period' | 'topic_id' | 'prompt_id'[], exclude_topic_ids?: boolean, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include_count?: boolean, include_no_tag?: boolean, metrics?: 'merchant_share'[], order_by?: object, owned_asset_names?: string[], pagination?: { limit?: number; offset?: number; }, tag_filter_type?: 'any' | 'all', target_asset_names?: string[]): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/merchant-share`\n\nShopping Merchant Share\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n\n- `dimensions?: 'period' | 'topic_id' | 'prompt_id'[]`\n\n- `exclude_topic_ids?: boolean`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n\n- `include_count?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `metrics?: 'merchant_share'[]`\n\n- `order_by?: object`\n\n- `owned_asset_names?: string[]`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n- `tag_filter_type?: 'any' | 'all'`\n\n- `target_asset_names?: string[]`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.merchantShare({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.merchantShare',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.merchantShare({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.merchant_share',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.merchant_share(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/merchant-share \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'product_merchant_urls',
+    endpoint: '/v1/reports/shopping/product-merchant-urls',
+    httpMethod: 'post',
+    summary: 'Shopping Product Merchant Urls',
+    description: 'Shopping Product Merchant Urls',
+    stainlessPath: '(resource) reports.shopping > (method) product_merchant_urls',
+    qualified: 'client.reports.shopping.productMerchantURLs',
+    params: ['category_id: string;', 'end_date: string;', 'product_names: string[];', 'start_date: string;'],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## product_merchant_urls\n\n`client.reports.shopping.productMerchantURLs(category_id: string, end_date: string, product_names: string[], start_date: string): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/product-merchant-urls`\n\nShopping Product Merchant Urls\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `product_names: string[]`\n\n- `start_date: string`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.productMerchantURLs({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  product_names: ['string'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.productMerchantURLs',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.productMerchantURLs({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  product_names: ['string'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.product_merchant_urls',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.product_merchant_urls(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    product_names=["string"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/product-merchant-urls \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "product_names": [\n            "string"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'executions',
+    endpoint: '/v1/reports/shopping/executions',
+    httpMethod: 'post',
+    summary: 'Shopping Executions',
+    description: 'Shopping Executions',
+    stainlessPath: '(resource) reports.shopping > (method) executions',
+    qualified: 'client.reports.shopping.executions',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      "analysis_filter_type?: 'any' | 'all';",
+      "analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[];",
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      'exclude_topic_ids?: boolean;',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
+      'include_count?: boolean;',
+      'include_no_tag?: boolean;',
+      'order_by?: object;',
+      'owned_asset_names?: string[];',
+      'pagination?: { limit?: number; offset?: number; };',
+      "tag_filter_type?: 'any' | 'all';",
+    ],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## executions\n\n`client.reports.shopping.executions(category_id: string, end_date: string, start_date: string, analysis_filter_type?: 'any' | 'all', analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[], comparison_end_date?: string, comparison_start_date?: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', exclude_topic_ids?: boolean, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include_count?: boolean, include_no_tag?: boolean, order_by?: object, owned_asset_names?: string[], pagination?: { limit?: number; offset?: number; }, tag_filter_type?: 'any' | 'all'): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/executions`\n\nShopping Executions\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `analysis_filter_type?: 'any' | 'all'`\n\n- `analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n\n- `exclude_topic_ids?: boolean`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n\n- `include_count?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `order_by?: object`\n\n- `owned_asset_names?: string[]`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n- `tag_filter_type?: 'any' | 'all'`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.executions({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.executions',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.executions({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.executions',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.executions(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/executions \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
     name: 'logs',
     endpoint: '/v1/logs/raw',
     httpMethod: 'post',

@@ -128,6 +128,37 @@ Methods:
 - <code title="post /v1/reports/web-search-results">client.reports.webSearchResults.<a href="./src/resources/reports/web-search-results.ts">query</a>({ ...params }) -> WebSearchResultQueryResponse</code>
 - <code title="post /v1/reports/web-search-results/stream">client.reports.webSearchResults.<a href="./src/resources/reports/web-search-results.ts">stream</a>({ ...params }) -> WebSearchResultStreamResponse</code>
 
+## Shopping
+
+Types:
+
+- <code><a href="./src/resources/reports/shopping.ts">BrandNameFilter</a></code>
+- <code><a href="./src/resources/reports/shopping.ts">MerchantNameFilter</a></code>
+- <code><a href="./src/resources/reports/shopping.ts">ProductNameFilter</a></code>
+- <code><a href="./src/resources/reports/shopping.ts">ShoppingAllItemsWithMerchantsResponse</a></code>
+- <code><a href="./src/resources/reports/shopping.ts">ShoppingExecutionsResponse</a></code>
+- <code><a href="./src/resources/reports/shopping.ts">ShoppingItemVisibilityResponse</a></code>
+- <code><a href="./src/resources/reports/shopping.ts">ShoppingMerchantByItemsResponse</a></code>
+- <code><a href="./src/resources/reports/shopping.ts">ShoppingMerchantDistributionResponse</a></code>
+- <code><a href="./src/resources/reports/shopping.ts">ShoppingMerchantShareResponse</a></code>
+- <code><a href="./src/resources/reports/shopping.ts">ShoppingMerchantVisibilityByBrandResponse</a></code>
+- <code><a href="./src/resources/reports/shopping.ts">ShoppingProductMerchantURLsResponse</a></code>
+- <code><a href="./src/resources/reports/shopping.ts">ShoppingTriggerRateResponse</a></code>
+- <code><a href="./src/resources/reports/shopping.ts">ShoppingVisibilityResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/reports/shopping/all-items-with-merchants">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">allItemsWithMerchants</a>({ ...params }) -> ShoppingAllItemsWithMerchantsResponse</code>
+- <code title="post /v1/reports/shopping/executions">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">executions</a>({ ...params }) -> ShoppingExecutionsResponse</code>
+- <code title="post /v1/reports/shopping/item-visibility">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">itemVisibility</a>({ ...params }) -> ShoppingItemVisibilityResponse</code>
+- <code title="post /v1/reports/shopping/merchant-by-items">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">merchantByItems</a>({ ...params }) -> ShoppingMerchantByItemsResponse</code>
+- <code title="post /v1/reports/shopping/merchant-distribution">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">merchantDistribution</a>({ ...params }) -> ShoppingMerchantDistributionResponse</code>
+- <code title="post /v1/reports/shopping/merchant-share">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">merchantShare</a>({ ...params }) -> ShoppingMerchantShareResponse</code>
+- <code title="post /v1/reports/shopping/merchant-visibility-by-brand">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">merchantVisibilityByBrand</a>({ ...params }) -> ShoppingMerchantVisibilityByBrandResponse</code>
+- <code title="post /v1/reports/shopping/product-merchant-urls">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">productMerchantURLs</a>({ ...params }) -> ShoppingProductMerchantURLsResponse</code>
+- <code title="post /v1/reports/shopping/trigger-rate">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">triggerRate</a>({ ...params }) -> ShoppingTriggerRateResponse</code>
+- <code title="post /v1/reports/shopping/visibility">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">visibility</a>({ ...params }) -> ShoppingVisibilityResponse</code>
+
 # Logs
 
 ## Raw

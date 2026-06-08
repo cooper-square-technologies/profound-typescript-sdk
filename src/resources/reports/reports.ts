@@ -2,6 +2,33 @@
 
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
+import * as ShoppingAPI from './shopping';
+import {
+  BrandNameFilter,
+  MerchantNameFilter,
+  ProductNameFilter,
+  Shopping,
+  ShoppingAllItemsWithMerchantsParams,
+  ShoppingAllItemsWithMerchantsResponse,
+  ShoppingExecutionsParams,
+  ShoppingExecutionsResponse,
+  ShoppingItemVisibilityParams,
+  ShoppingItemVisibilityResponse,
+  ShoppingMerchantByItemsParams,
+  ShoppingMerchantByItemsResponse,
+  ShoppingMerchantDistributionParams,
+  ShoppingMerchantDistributionResponse,
+  ShoppingMerchantShareParams,
+  ShoppingMerchantShareResponse,
+  ShoppingMerchantVisibilityByBrandParams,
+  ShoppingMerchantVisibilityByBrandResponse,
+  ShoppingProductMerchantURLsParams,
+  ShoppingProductMerchantURLsResponse,
+  ShoppingTriggerRateParams,
+  ShoppingTriggerRateResponse,
+  ShoppingVisibilityParams,
+  ShoppingVisibilityResponse,
+} from './shopping';
 import * as WebSearchResultsAPI from './web-search-results';
 import {
   WebSearchResultQueryParams,
@@ -19,6 +46,7 @@ export class Reports extends APIResource {
   webSearchResults: WebSearchResultsAPI.WebSearchResults = new WebSearchResultsAPI.WebSearchResults(
     this._client,
   );
+  shopping: ShoppingAPI.Shopping = new ShoppingAPI.Shopping(this._client);
 
   /**
    * Get citations for a given category.
@@ -1571,6 +1599,7 @@ export namespace ReportVisibilityParams {
 }
 
 Reports.WebSearchResults = WebSearchResults;
+Reports.Shopping = Shopping;
 
 export declare namespace Reports {
   export {
@@ -1606,5 +1635,32 @@ export declare namespace Reports {
     type WebSearchResultStreamResponse as WebSearchResultStreamResponse,
     type WebSearchResultQueryParams as WebSearchResultQueryParams,
     type WebSearchResultStreamParams as WebSearchResultStreamParams,
+  };
+
+  export {
+    Shopping as Shopping,
+    type BrandNameFilter as BrandNameFilter,
+    type MerchantNameFilter as MerchantNameFilter,
+    type ProductNameFilter as ProductNameFilter,
+    type ShoppingAllItemsWithMerchantsResponse as ShoppingAllItemsWithMerchantsResponse,
+    type ShoppingExecutionsResponse as ShoppingExecutionsResponse,
+    type ShoppingItemVisibilityResponse as ShoppingItemVisibilityResponse,
+    type ShoppingMerchantByItemsResponse as ShoppingMerchantByItemsResponse,
+    type ShoppingMerchantDistributionResponse as ShoppingMerchantDistributionResponse,
+    type ShoppingMerchantShareResponse as ShoppingMerchantShareResponse,
+    type ShoppingMerchantVisibilityByBrandResponse as ShoppingMerchantVisibilityByBrandResponse,
+    type ShoppingProductMerchantURLsResponse as ShoppingProductMerchantURLsResponse,
+    type ShoppingTriggerRateResponse as ShoppingTriggerRateResponse,
+    type ShoppingVisibilityResponse as ShoppingVisibilityResponse,
+    type ShoppingAllItemsWithMerchantsParams as ShoppingAllItemsWithMerchantsParams,
+    type ShoppingExecutionsParams as ShoppingExecutionsParams,
+    type ShoppingItemVisibilityParams as ShoppingItemVisibilityParams,
+    type ShoppingMerchantByItemsParams as ShoppingMerchantByItemsParams,
+    type ShoppingMerchantDistributionParams as ShoppingMerchantDistributionParams,
+    type ShoppingMerchantShareParams as ShoppingMerchantShareParams,
+    type ShoppingMerchantVisibilityByBrandParams as ShoppingMerchantVisibilityByBrandParams,
+    type ShoppingProductMerchantURLsParams as ShoppingProductMerchantURLsParams,
+    type ShoppingTriggerRateParams as ShoppingTriggerRateParams,
+    type ShoppingVisibilityParams as ShoppingVisibilityParams,
   };
 }
