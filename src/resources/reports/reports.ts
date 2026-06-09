@@ -656,11 +656,6 @@ export interface ReportGetBotsReportParams {
   filters?: Array<Shared.PathFilter | Shared.BotNameFilter | Shared.BotProviderFilter>;
 
   /**
-   * Numeric filters applied after report metrics are calculated.
-   */
-  metric_filters?: Array<ReportGetBotsReportParams.MetricFilter>;
-
-  /**
    * Custom ordering of the report results.
    *
    * The order is a record of key-value pairs where:
@@ -680,16 +675,6 @@ export interface ReportGetBotsReportParams {
    * Pagination settings for the report results.
    */
   pagination?: Shared.Pagination;
-}
-
-export namespace ReportGetBotsReportParams {
-  export interface MetricFilter {
-    field: string;
-
-    operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!=';
-
-    value: number;
-  }
 }
 
 export interface ReportGetBotsReportV2Params {
@@ -731,11 +716,6 @@ export interface ReportGetBotsReportV2Params {
     | Shared.BotProviderFilter
     | ReportGetBotsReportV2Params.BotTypeFilter
   >;
-
-  /**
-   * Numeric filters applied after report metrics are calculated.
-   */
-  metric_filters?: Array<ReportGetBotsReportV2Params.MetricFilter>;
 
   /**
    * Custom ordering of the report results.
@@ -784,14 +764,6 @@ export namespace ReportGetBotsReportV2Params {
       | 'ai_agent'
       | Array<'ai_assistant' | 'ai_training' | 'index' | 'ai_agent'>;
   }
-
-  export interface MetricFilter {
-    field: string;
-
-    operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!=';
-
-    value: number;
-  }
 }
 
 export interface ReportGetReferralsReportParams {
@@ -828,11 +800,6 @@ export interface ReportGetReferralsReportParams {
    * Filters for referrals report.
    */
   filters?: Array<Shared.PathFilter | ReportGetReferralsReportParams.ReferralSourceFilter>;
-
-  /**
-   * Numeric filters applied after report metrics are calculated.
-   */
-  metric_filters?: Array<ReportGetReferralsReportParams.MetricFilter>;
 
   /**
    * Custom ordering of the report results.
@@ -900,14 +867,6 @@ export namespace ReportGetReferralsReportParams {
           | 'other'
         >;
   }
-
-  export interface MetricFilter {
-    field: string;
-
-    operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!=';
-
-    value: number;
-  }
 }
 
 export interface ReportGetReferralsReportV2Params {
@@ -948,11 +907,6 @@ export interface ReportGetReferralsReportV2Params {
     | ReportGetReferralsReportV2Params.ReferralSourceFilter
     | ReportGetReferralsReportV2Params.ReferralTypeFilter
   >;
-
-  /**
-   * Numeric filters applied after report metrics are calculated.
-   */
-  metric_filters?: Array<ReportGetReferralsReportV2Params.MetricFilter>;
 
   /**
    * Custom ordering of the report results.
@@ -1039,14 +993,6 @@ export namespace ReportGetReferralsReportV2Params {
       | 'not_contains_case_insensitive';
 
     value: 'internal' | 'referer' | 'utm' | 'none' | Array<'internal' | 'referer' | 'utm' | 'none'>;
-  }
-
-  export interface MetricFilter {
-    field: string;
-
-    operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!=';
-
-    value: number;
   }
 }
 
