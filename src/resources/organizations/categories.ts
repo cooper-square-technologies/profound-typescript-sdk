@@ -348,7 +348,15 @@ export namespace CategoryPromptsResponse {
 
 export type CategoryRetrieveRegionsResponse = Array<OrganizationsAPI.NamedResource>;
 
-export type CategoryTagsResponse = Array<OrganizationsAPI.NamedResource>;
+export type CategoryTagsResponse = Array<CategoryTagsResponse.CategoryTagsResponseItem>;
+
+export namespace CategoryTagsResponse {
+  export interface CategoryTagsResponseItem {
+    id: string;
+
+    name: string;
+  }
+}
 
 export type CategoryTopicsResponse = Array<CategoryTopicsResponse.CategoryTopicsResponseItem>;
 
