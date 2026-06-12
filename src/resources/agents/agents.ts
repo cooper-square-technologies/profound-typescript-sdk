@@ -66,11 +66,6 @@ export interface AgentRetrieveResponse {
   organization_id: string;
 
   /**
-   * Input and output schemas for this agent.
-   */
-  schema: AgentRetrieveResponse.Schema;
-
-  /**
    * Current status of the agent.
    */
   status: 'draft' | 'published' | 'unknown';
@@ -79,11 +74,24 @@ export interface AgentRetrieveResponse {
    * Short description of the agent, if provided.
    */
   description?: string | null;
+
+  /**
+   * Schema metadata for an agent.
+   */
+  schema?: AgentRetrieveResponse.Schema | null;
+
+  /**
+   * Result of validating an agent's graph.
+   *
+   * Mirrors the report computed on every read, so callers can confirm a draft is
+   * publishable before calling publish.
+   */
+  validation?: AgentRetrieveResponse.Validation | null;
 }
 
 export namespace AgentRetrieveResponse {
   /**
-   * Input and output schemas for this agent.
+   * Schema metadata for an agent.
    */
   export interface Schema {
     /**
@@ -97,6 +105,66 @@ export namespace AgentRetrieveResponse {
      * `GET /v1/agents/{agent_id}/runs/{run_id}`.
      */
     output: { [key: string]: unknown };
+  }
+
+  /**
+   * Result of validating an agent's graph.
+   *
+   * Mirrors the report computed on every read, so callers can confirm a draft is
+   * publishable before calling publish.
+   */
+  export interface Validation {
+    /**
+     * Whether the agent's graph is valid and ready to publish.
+     */
+    valid: boolean;
+
+    /**
+     * Problems found while validating the graph. Empty when `valid` is true.
+     */
+    issues?: Array<Validation.Issue>;
+  }
+
+  export namespace Validation {
+    /**
+     * A single problem found while validating an agent's graph.
+     */
+    export interface Issue {
+      /**
+       * Stable machine-readable identifier for the kind of issue.
+       */
+      code: string;
+
+      /**
+       * Human-readable description of the issue.
+       */
+      message: string;
+
+      /**
+       * Name of the offending field on the node, if field-specific.
+       */
+      field?: string | null;
+
+      /**
+       * Display title of the affected field, if available.
+       */
+      field_title?: string | null;
+
+      /**
+       * ID of the node the issue applies to, if node-specific.
+       */
+      node_id?: string | null;
+
+      /**
+       * Display title of the affected node, if available.
+       */
+      node_title?: string | null;
+
+      /**
+       * The specific constraint that was violated, if available.
+       */
+      violation?: string | null;
+    }
   }
 }
 

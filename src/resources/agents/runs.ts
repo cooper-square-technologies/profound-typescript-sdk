@@ -8,6 +8,10 @@ import { path } from '../../internal/utils/path';
 export class Runs extends APIResource {
   /**
    * Start a new run for an agent.
+   *
+   * Runs always execute the agent's live published version, so the agent must be
+   * published first with `POST /v1/agents/{agent_id}/publish`. Unpublished drafts
+   * cannot be run.
    */
   create(
     agentID: string,
