@@ -518,6 +518,35 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'retrieve_regions',
+    endpoint: '/v1/org/categories/{category_id}/regions',
+    httpMethod: 'get',
+    summary: 'Get Category Regions',
+    description: 'Get the regions for a specific category.',
+    stainlessPath: '(resource) organizations.categories > (method) retrieve_regions',
+    qualified: 'client.organizations.categories.retrieveRegions',
+    params: ['category_id: string;'],
+    response: '{ id: string; name: string; }[]',
+    markdown:
+      "## retrieve_regions\n\n`client.organizations.categories.retrieveRegions(category_id: string): object[]`\n\n**get** `/v1/org/categories/{category_id}/regions`\n\nGet the regions for a specific category.\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ id: string; name: string; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst namedResources = await client.organizations.categories.retrieveRegions('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(namedResources);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.organizations.categories.retrieveRegions',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst namedResources = await client.organizations.categories.retrieveRegions(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n);\n\nconsole.log(namedResources);",
+      },
+      python: {
+        method: 'organizations.categories.retrieve_regions',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nnamed_resources = client.organizations.categories.retrieve_regions(\n    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(named_resources)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/regions \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
     name: 'answers',
     endpoint: '/v1/prompts/answers',
     httpMethod: 'post',
@@ -1752,6 +1781,68 @@ const EMBEDDED_METHODS: MethodEntry[] = [
   },
   {
     name: 'create',
+    endpoint: '/v1/agents',
+    httpMethod: 'post',
+    summary: 'Create an agent',
+    description:
+      'Create a new draft agent owned by the given organization.\n\n`organization_id` is required and you must be a member of it. The agent is created\nas a `draft`; publish it with `POST /v1/agents/{agent_id}/publish` once its graph\nis ready.',
+    stainlessPath: '(resource) agents > (method) create',
+    qualified: 'client.agents.create',
+    params: ['name: string;', 'organization_id: string;', 'description?: string;', 'graph?: object;'],
+    response:
+      "{ id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }",
+    markdown:
+      "## create\n\n`client.agents.create(name: string, organization_id: string, description?: string, graph?: object): { id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }`\n\n**post** `/v1/agents`\n\nCreate a new draft agent owned by the given organization.\n\n`organization_id` is required and you must be a member of it. The agent is created\nas a `draft`; publish it with `POST /v1/agents/{agent_id}/publish` once its graph\nis ready.\n\n### Parameters\n\n- `name: string`\n  Display name for the agent. Must be non-empty.\n\n- `organization_id: string`\n  ID of the organization that will own the agent. Required — Profound API keys are user-scoped, so the owning organization must be chosen explicitly. The caller must be a member of this organization.\n\n- `description?: string`\n  Short description of the agent.\n\n- `graph?: object`\n  Initial workflow graph for the agent's draft version. Optional — an agent can be created empty and have its graph filled in later.\n\n### Returns\n\n- `{ id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }`\n  Summary information for an agent.\n\n  - `id: string`\n  - `created_at: string`\n  - `name: string`\n  - `organization_id: string`\n  - `status: 'draft' | 'published' | 'unknown'`\n  - `description?: string`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst agent = await client.agents.create({ name: 'x', organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(agent);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.agents.create',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst agent = await client.agents.create({\n  name: 'x',\n  organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(agent.id);",
+      },
+      python: {
+        method: 'agents.create',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nagent = client.agents.create(\n    name="x",\n    organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(agent.id)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/agents \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "name": "x",\n          "organization_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'publish',
+    endpoint: '/v1/agents/{agent_id}/publish',
+    httpMethod: 'post',
+    summary: 'Publish an agent',
+    description:
+      "Publish an agent's latest draft as its live published version.\n\nYou must be a member of the agent's organization. Publishing promotes the current\ndraft graph to a new published version. A draft that cannot produce its declared\ninput/output contract is rejected with `422` and is not published.",
+    stainlessPath: '(resource) agents > (method) publish',
+    qualified: 'client.agents.publish',
+    params: ['agent_id: string;'],
+    response:
+      "{ id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }",
+    markdown:
+      "## publish\n\n`client.agents.publish(agent_id: string): { id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }`\n\n**post** `/v1/agents/{agent_id}/publish`\n\nPublish an agent's latest draft as its live published version.\n\nYou must be a member of the agent's organization. Publishing promotes the current\ndraft graph to a new published version. A draft that cannot produce its declared\ninput/output contract is rejected with `422` and is not published.\n\n### Parameters\n\n- `agent_id: string`\n  The ID of the agent to publish.\n\n### Returns\n\n- `{ id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }`\n  Summary information for an agent.\n\n  - `id: string`\n  - `created_at: string`\n  - `name: string`\n  - `organization_id: string`\n  - `status: 'draft' | 'published' | 'unknown'`\n  - `description?: string`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.agents.publish('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.agents.publish',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.agents.publish('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response.id);",
+      },
+      python: {
+        method: 'agents.publish',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.agents.publish(\n    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response.id)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/agents/$AGENT_ID/publish \\\n    -X POST \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'create',
     endpoint: '/v1/agents/{agent_id}/runs',
     httpMethod: 'post',
     summary: 'Run an agent',
@@ -1808,6 +1899,66 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.tryprofound.com/v1/agents/$AGENT_ID/runs/$RUN_ID \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'list',
+    endpoint: '/v1/agents/node-types',
+    httpMethod: 'get',
+    summary: 'List node types',
+    description:
+      'List the node types available for building agents.\n\nThe set is deterministic and does not depend on the caller, so the response\nis safe to cache across sessions. Integration-dependent and dynamic-schema\nnode types are intentionally excluded in v1.',
+    stainlessPath: '(resource) agents.node_types > (method) list',
+    qualified: 'client.agents.nodeTypes.list',
+    response: '{ data: { display_name: string; node_type: string; description?: string; }[]; }',
+    markdown:
+      "## list\n\n`client.agents.nodeTypes.list(): { data: object[]; }`\n\n**get** `/v1/agents/node-types`\n\nList the node types available for building agents.\n\nThe set is deterministic and does not depend on the caller, so the response\nis safe to cache across sessions. Integration-dependent and dynamic-schema\nnode types are intentionally excluded in v1.\n\n### Returns\n\n- `{ data: { display_name: string; node_type: string; description?: string; }[]; }`\n  List of node types available to v1 agent authors.\n\n  - `data: { display_name: string; node_type: string; description?: string; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst nodeTypes = await client.agents.nodeTypes.list();\n\nconsole.log(nodeTypes);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.agents.nodeTypes.list',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst nodeTypes = await client.agents.nodeTypes.list();\n\nconsole.log(nodeTypes.data);",
+      },
+      python: {
+        method: 'agents.node_types.list',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nnode_types = client.agents.node_types.list()\nprint(node_types.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/agents/node-types \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'retrieve_schema',
+    endpoint: '/v1/agents/node-types/{node_type}/schema',
+    httpMethod: 'get',
+    summary: 'Get a node type schema',
+    description:
+      "Retrieve the JSON schema and worked examples for a single node type.\n\nThe `schema` field is an opaque JSON Schema for the node's configuration.\nUse `schema_version` as a cache key — it bumps whenever the schema changes.",
+    stainlessPath: '(resource) agents.node_types > (method) retrieve_schema',
+    qualified: 'client.agents.nodeTypes.retrieveSchema',
+    params: ['node_type: string;'],
+    response:
+      '{ node_type: string; schema: object; schema_version: string; description?: string; examples?: object[]; }',
+    markdown:
+      "## retrieve_schema\n\n`client.agents.nodeTypes.retrieveSchema(node_type: string): { node_type: string; schema: object; schema_version: string; description?: string; examples?: object[]; }`\n\n**get** `/v1/agents/node-types/{node_type}/schema`\n\nRetrieve the JSON schema and worked examples for a single node type.\n\nThe `schema` field is an opaque JSON Schema for the node's configuration.\nUse `schema_version` as a cache key — it bumps whenever the schema changes.\n\n### Parameters\n\n- `node_type: string`\n  The node type to fetch the schema for, e.g. `llm`.\n\n### Returns\n\n- `{ node_type: string; schema: object; schema_version: string; description?: string; examples?: object[]; }`\n  JSON schema and worked examples for a single node type.\n\n  - `node_type: string`\n  - `schema: object`\n  - `schema_version: string`\n  - `description?: string`\n  - `examples?: object[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.agents.nodeTypes.retrieveSchema('node_type');\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.agents.nodeTypes.retrieveSchema',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.agents.nodeTypes.retrieveSchema('node_type');\n\nconsole.log(response.node_type);",
+      },
+      python: {
+        method: 'agents.node_types.retrieve_schema',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.agents.node_types.retrieve_schema(\n    "node_type",\n)\nprint(response.node_type)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/agents/node-types/$NODE_TYPE/schema \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },

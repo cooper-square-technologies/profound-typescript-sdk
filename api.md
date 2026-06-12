@@ -57,6 +57,7 @@ Types:
 - <code><a href="./src/resources/organizations/categories.ts">CategoryCreatePromptsResponse</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryGetCategoryPersonasResponse</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryPromptsResponse</a></code>
+- <code><a href="./src/resources/organizations/categories.ts">CategoryRetrieveRegionsResponse</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryTagsResponse</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryTopicsResponse</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryUpdatePromptStatusResponse</a></code>
@@ -69,6 +70,7 @@ Methods:
 - <code title="post /v1/org/categories/{category_id}/prompts">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">createPrompts</a>(categoryID, { ...params }) -> CategoryCreatePromptsResponse</code>
 - <code title="get /v1/org/categories/{category_id}/personas">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">getCategoryPersonas</a>(categoryID) -> CategoryGetCategoryPersonasResponse</code>
 - <code title="get /v1/org/categories/{category_id}/prompts">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">prompts</a>(categoryID, { ...params }) -> CategoryPromptsResponse</code>
+- <code title="get /v1/org/categories/{category_id}/regions">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">retrieveRegions</a>(categoryID) -> CategoryRetrieveRegionsResponse</code>
 - <code title="get /v1/org/categories/{category_id}/tags">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">tags</a>(categoryID) -> CategoryTagsResponse</code>
 - <code title="get /v1/org/categories/{category_id}/topics">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">topics</a>(categoryID) -> CategoryTopicsResponse</code>
 - <code title="patch /v1/org/categories/{category_id}/prompts/status">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">updatePromptStatus</a>(categoryID, { ...params }) -> CategoryUpdatePromptStatusResponse</code>
@@ -191,13 +193,17 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/agents/agents.ts">AgentCreateResponse</a></code>
 - <code><a href="./src/resources/agents/agents.ts">AgentRetrieveResponse</a></code>
 - <code><a href="./src/resources/agents/agents.ts">AgentListResponse</a></code>
+- <code><a href="./src/resources/agents/agents.ts">AgentPublishResponse</a></code>
 
 Methods:
 
+- <code title="post /v1/agents">client.agents.<a href="./src/resources/agents/agents.ts">create</a>({ ...params }) -> AgentCreateResponse</code>
 - <code title="get /v1/agents/{agent_id}">client.agents.<a href="./src/resources/agents/agents.ts">retrieve</a>(agentID, { ...params }) -> AgentRetrieveResponse</code>
 - <code title="get /v1/agents">client.agents.<a href="./src/resources/agents/agents.ts">list</a>({ ...params }) -> AgentListResponse</code>
+- <code title="post /v1/agents/{agent_id}/publish">client.agents.<a href="./src/resources/agents/agents.ts">publish</a>(agentID) -> AgentPublishResponse</code>
 
 ## Runs
 
@@ -210,6 +216,18 @@ Methods:
 
 - <code title="post /v1/agents/{agent_id}/runs">client.agents.runs.<a href="./src/resources/agents/runs.ts">create</a>(agentID, { ...params }) -> RunCreateResponse</code>
 - <code title="get /v1/agents/{agent_id}/runs/{run_id}">client.agents.runs.<a href="./src/resources/agents/runs.ts">retrieve</a>(runID, { ...params }) -> RunRetrieveResponse</code>
+
+## NodeTypes
+
+Types:
+
+- <code><a href="./src/resources/agents/node-types.ts">NodeTypeListResponse</a></code>
+- <code><a href="./src/resources/agents/node-types.ts">NodeTypeRetrieveSchemaResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/agents/node-types">client.agents.nodeTypes.<a href="./src/resources/agents/node-types.ts">list</a>() -> NodeTypeListResponse</code>
+- <code title="get /v1/agents/node-types/{node_type}/schema">client.agents.nodeTypes.<a href="./src/resources/agents/node-types.ts">retrieveSchema</a>(nodeType) -> NodeTypeRetrieveSchemaResponse</code>
 
 # KnowledgeBases
 

@@ -31,8 +31,11 @@ import {
 } from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
 import {
+  AgentCreateParams,
+  AgentCreateResponse,
   AgentListParams,
   AgentListResponse,
+  AgentPublishResponse,
   AgentRetrieveParams,
   AgentRetrieveResponse,
   Agents,
@@ -930,8 +933,11 @@ export declare namespace Profound {
 
   export {
     Agents as Agents,
+    type AgentCreateResponse as AgentCreateResponse,
     type AgentRetrieveResponse as AgentRetrieveResponse,
     type AgentListResponse as AgentListResponse,
+    type AgentPublishResponse as AgentPublishResponse,
+    type AgentCreateParams as AgentCreateParams,
     type AgentRetrieveParams as AgentRetrieveParams,
     type AgentListParams as AgentListParams,
   };

@@ -77,6 +77,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/org/categories/{category_id}/prompts',
   },
   {
+    clientCallName: 'client.organizations.categories.retrieveRegions',
+    fullyQualifiedName: 'organizations.categories.retrieveRegions',
+    httpMethod: 'get',
+    httpPath: '/v1/org/categories/{category_id}/regions',
+  },
+  {
     clientCallName: 'client.organizations.categories.tags',
     fullyQualifiedName: 'organizations.categories.tags',
     httpMethod: 'get',
@@ -269,6 +275,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/content/{asset_id}/optimization',
   },
   {
+    clientCallName: 'client.agents.create',
+    fullyQualifiedName: 'agents.create',
+    httpMethod: 'post',
+    httpPath: '/v1/agents',
+  },
+  {
     clientCallName: 'client.agents.retrieve',
     fullyQualifiedName: 'agents.retrieve',
     httpMethod: 'get',
@@ -281,6 +293,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/agents',
   },
   {
+    clientCallName: 'client.agents.publish',
+    fullyQualifiedName: 'agents.publish',
+    httpMethod: 'post',
+    httpPath: '/v1/agents/{agent_id}/publish',
+  },
+  {
     clientCallName: 'client.agents.runs.create',
     fullyQualifiedName: 'agents.runs.create',
     httpMethod: 'post',
@@ -291,6 +309,18 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'agents.runs.retrieve',
     httpMethod: 'get',
     httpPath: '/v1/agents/{agent_id}/runs/{run_id}',
+  },
+  {
+    clientCallName: 'client.agents.nodeTypes.list',
+    fullyQualifiedName: 'agents.nodeTypes.list',
+    httpMethod: 'get',
+    httpPath: '/v1/agents/node-types',
+  },
+  {
+    clientCallName: 'client.agents.nodeTypes.retrieveSchema',
+    fullyQualifiedName: 'agents.nodeTypes.retrieveSchema',
+    httpMethod: 'get',
+    httpPath: '/v1/agents/node-types/{node_type}/schema',
   },
   {
     clientCallName: 'client.knowledgeBases.list',

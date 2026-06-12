@@ -2,6 +2,8 @@
 
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
+import * as NodeTypesAPI from './node-types';
+import { NodeTypeListResponse, NodeTypeRetrieveSchemaResponse, NodeTypes } from './node-types';
 import * as RunsAPI from './runs';
 import { RunCreateParams, RunCreateResponse, RunRetrieveParams, RunRetrieveResponse, Runs } from './runs';
 import { APIPromise } from '../../core/api-promise';
@@ -10,6 +12,18 @@ import { path } from '../../internal/utils/path';
 
 export class Agents extends APIResource {
   runs: RunsAPI.Runs = new RunsAPI.Runs(this._client);
+  nodeTypes: NodeTypesAPI.NodeTypes = new NodeTypesAPI.NodeTypes(this._client);
+
+  /**
+   * Create a new draft agent owned by the given organization.
+   *
+   * `organization_id` is required and you must be a member of it. The agent is
+   * created as a `draft`; publish it with `POST /v1/agents/{agent_id}/publish` once
+   * its graph is ready.
+   */
+  create(body: AgentCreateParams, options?: RequestOptions): APIPromise<AgentCreateResponse> {
+    return this._client.post('/v1/agents', { body, ...options });
+  }
 
   /**
    * Retrieve an agent and its schema details.
@@ -39,6 +53,52 @@ export class Agents extends APIResource {
   ): APIPromise<AgentListResponse> {
     return this._client.get('/v1/agents', { query, ...options });
   }
+
+  /**
+   * Publish an agent's latest draft as its live published version.
+   *
+   * You must be a member of the agent's organization. Publishing promotes the
+   * current draft graph to a new published version. A draft that cannot produce its
+   * declared input/output contract is rejected with `422` and is not published.
+   */
+  publish(agentID: string, options?: RequestOptions): APIPromise<AgentPublishResponse> {
+    return this._client.post(path`/v1/agents/${agentID}/publish`, options);
+  }
+}
+
+/**
+ * Summary information for an agent.
+ */
+export interface AgentCreateResponse {
+  /**
+   * Unique ID for the agent.
+   */
+  id: string;
+
+  /**
+   * When the agent was created.
+   */
+  created_at: string;
+
+  /**
+   * Display name of the agent.
+   */
+  name: string;
+
+  /**
+   * Unique ID of the organization that owns the agent.
+   */
+  organization_id: string;
+
+  /**
+   * Current status of the agent.
+   */
+  status: 'draft' | 'published' | 'unknown';
+
+  /**
+   * Short description of the agent, if provided.
+   */
+  description?: string | null;
 }
 
 /**
@@ -220,6 +280,66 @@ export namespace AgentListResponse {
   }
 }
 
+/**
+ * Summary information for an agent.
+ */
+export interface AgentPublishResponse {
+  /**
+   * Unique ID for the agent.
+   */
+  id: string;
+
+  /**
+   * When the agent was created.
+   */
+  created_at: string;
+
+  /**
+   * Display name of the agent.
+   */
+  name: string;
+
+  /**
+   * Unique ID of the organization that owns the agent.
+   */
+  organization_id: string;
+
+  /**
+   * Current status of the agent.
+   */
+  status: 'draft' | 'published' | 'unknown';
+
+  /**
+   * Short description of the agent, if provided.
+   */
+  description?: string | null;
+}
+
+export interface AgentCreateParams {
+  /**
+   * Display name for the agent. Must be non-empty.
+   */
+  name: string;
+
+  /**
+   * ID of the organization that will own the agent. Required — Profound API keys are
+   * user-scoped, so the owning organization must be chosen explicitly. The caller
+   * must be a member of this organization.
+   */
+  organization_id: string;
+
+  /**
+   * Short description of the agent.
+   */
+  description?: string | null;
+
+  /**
+   * Initial workflow graph for the agent's draft version. Optional — an agent can be
+   * created empty and have its graph filled in later.
+   */
+  graph?: { [key: string]: unknown } | null;
+}
+
 export interface AgentRetrieveParams {
   /**
    * Version of the agent to retrieve. Use `published` for the live version, or
@@ -243,11 +363,15 @@ export interface AgentListParams {
 }
 
 Agents.Runs = Runs;
+Agents.NodeTypes = NodeTypes;
 
 export declare namespace Agents {
   export {
+    type AgentCreateResponse as AgentCreateResponse,
     type AgentRetrieveResponse as AgentRetrieveResponse,
     type AgentListResponse as AgentListResponse,
+    type AgentPublishResponse as AgentPublishResponse,
+    type AgentCreateParams as AgentCreateParams,
     type AgentRetrieveParams as AgentRetrieveParams,
     type AgentListParams as AgentListParams,
   };
@@ -258,5 +382,11 @@ export declare namespace Agents {
     type RunRetrieveResponse as RunRetrieveResponse,
     type RunCreateParams as RunCreateParams,
     type RunRetrieveParams as RunRetrieveParams,
+  };
+
+  export {
+    NodeTypes as NodeTypes,
+    type NodeTypeListResponse as NodeTypeListResponse,
+    type NodeTypeRetrieveSchemaResponse as NodeTypeRetrieveSchemaResponse,
   };
 }

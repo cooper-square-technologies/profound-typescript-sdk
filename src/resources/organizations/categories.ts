@@ -61,6 +61,13 @@ export class Categories extends APIResource {
   }
 
   /**
+   * Get the regions for a specific category.
+   */
+  retrieveRegions(categoryID: string, options?: RequestOptions): APIPromise<CategoryRetrieveRegionsResponse> {
+    return this._client.get(path`/v1/org/categories/${categoryID}/regions`, options);
+  }
+
+  /**
    * Get the tags for a specific category.
    */
   tags(categoryID: string, options?: RequestOptions): APIPromise<CategoryTagsResponse> {
@@ -338,6 +345,8 @@ export namespace CategoryPromptsResponse {
     total_rows: number;
   }
 }
+
+export type CategoryRetrieveRegionsResponse = Array<OrganizationsAPI.NamedResource>;
 
 export type CategoryTagsResponse = Array<OrganizationsAPI.NamedResource>;
 
@@ -699,6 +708,7 @@ export declare namespace Categories {
     type CategoryCreatePromptsResponse as CategoryCreatePromptsResponse,
     type CategoryGetCategoryPersonasResponse as CategoryGetCategoryPersonasResponse,
     type CategoryPromptsResponse as CategoryPromptsResponse,
+    type CategoryRetrieveRegionsResponse as CategoryRetrieveRegionsResponse,
     type CategoryTagsResponse as CategoryTagsResponse,
     type CategoryTopicsResponse as CategoryTopicsResponse,
     type CategoryUpdatePromptStatusResponse as CategoryUpdatePromptStatusResponse,
