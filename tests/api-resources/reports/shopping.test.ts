@@ -439,6 +439,7 @@ describe('resource shopping', () => {
       ],
       include_asset: 'include_asset',
       include_asset_only: true,
+      include_assets_only: ['string'],
       include_count: true,
       include_no_tag: true,
       include_position_frequency: true,

@@ -1074,6 +1074,8 @@ export interface ShoppingVisibilityParams {
 
   include_asset_only?: boolean;
 
+  include_assets_only?: Array<string>;
+
   include_count?: boolean;
 
   include_no_tag?: boolean;
