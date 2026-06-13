@@ -441,12 +441,20 @@ export interface URLFilter {
 }
 
 export interface ReportCitationsResponse {
-  data: Array<ReportResult>;
+  data: Array<ReportCitationsResponse.Data>;
 
   /**
    * Base model for report information.
    */
   info: ReportInfo;
+}
+
+export namespace ReportCitationsResponse {
+  export interface Data {
+    dimensions: Array<string>;
+
+    metrics: Array<number | string | null>;
+  }
 }
 
 /**
@@ -525,7 +533,7 @@ export interface ReportCitationsParams {
    * Metrics to include. `share_of_voice` is deprecated, use `citation_share`
    * instead.
    */
-  metrics: Array<'count' | 'citation_share' | 'share_of_voice'>;
+  metrics: Array<'count' | 'citation_share' | 'share_of_voice' | 'first_cited_at'>;
 
   /**
    * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or
@@ -1236,7 +1244,7 @@ export interface ReportStreamCitationsParams {
    * Metrics to include. `share_of_voice` is deprecated, use `citation_share`
    * instead.
    */
-  metrics: Array<'count' | 'citation_share' | 'share_of_voice'>;
+  metrics: Array<'count' | 'citation_share' | 'share_of_voice' | 'first_cited_at'>;
 
   /**
    * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or

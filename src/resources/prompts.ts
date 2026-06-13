@@ -91,6 +91,8 @@ export namespace PromptAnswersResponse {
 
       citation_category?: string | null;
 
+      first_cited_at?: string | null;
+
       groups?: Array<CitationDetail.Group> | null;
 
       positions?: Array<number>;
