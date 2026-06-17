@@ -161,6 +161,40 @@ Methods:
 - <code title="post /v1/reports/shopping/trigger-rate">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">triggerRate</a>({ ...params }) -> ShoppingTriggerRateResponse</code>
 - <code title="post /v1/reports/shopping/visibility">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">visibility</a>({ ...params }) -> ShoppingVisibilityResponse</code>
 
+## Accuracy
+
+Types:
+
+- <code><a href="./src/resources/reports/accuracy.ts">AccuracyCreateBreakdownResponse</a></code>
+- <code><a href="./src/resources/reports/accuracy.ts">AccuracyCreateCitationAnalysisResponse</a></code>
+- <code><a href="./src/resources/reports/accuracy.ts">AccuracyCreateClaimBreakdownResponse</a></code>
+- <code><a href="./src/resources/reports/accuracy.ts">AccuracyCreateClaimCitationsResponse</a></code>
+- <code><a href="./src/resources/reports/accuracy.ts">AccuracyCreateClusterExampleRunsResponse</a></code>
+- <code><a href="./src/resources/reports/accuracy.ts">AccuracyCreateClusterVerificationPairsResponse</a></code>
+- <code><a href="./src/resources/reports/accuracy.ts">AccuracyCreateFactcheckSetupStatusResponse</a></code>
+- <code><a href="./src/resources/reports/accuracy.ts">AccuracyCreateInaccuracyDriversResponse</a></code>
+- <code><a href="./src/resources/reports/accuracy.ts">AccuracyCreateInaccurateClustersResponse</a></code>
+- <code><a href="./src/resources/reports/accuracy.ts">AccuracyCreateInaccurateThemesResponse</a></code>
+- <code><a href="./src/resources/reports/accuracy.ts">AccuracyCreateOverviewResponse</a></code>
+- <code><a href="./src/resources/reports/accuracy.ts">AccuracyCreateTopInaccurateClaimsResponse</a></code>
+- <code><a href="./src/resources/reports/accuracy.ts">AccuracyCreateTopicIDsResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/reports/accuracy/breakdown">client.reports.accuracy.<a href="./src/resources/reports/accuracy.ts">createBreakdown</a>({ ...params }) -> AccuracyCreateBreakdownResponse</code>
+- <code title="post /v1/reports/accuracy/citation-analysis">client.reports.accuracy.<a href="./src/resources/reports/accuracy.ts">createCitationAnalysis</a>({ ...params }) -> AccuracyCreateCitationAnalysisResponse</code>
+- <code title="post /v1/reports/accuracy/claim-breakdown">client.reports.accuracy.<a href="./src/resources/reports/accuracy.ts">createClaimBreakdown</a>({ ...params }) -> AccuracyCreateClaimBreakdownResponse</code>
+- <code title="post /v1/reports/accuracy/claim-citations">client.reports.accuracy.<a href="./src/resources/reports/accuracy.ts">createClaimCitations</a>({ ...params }) -> AccuracyCreateClaimCitationsResponse</code>
+- <code title="post /v1/reports/accuracy/cluster-example-runs">client.reports.accuracy.<a href="./src/resources/reports/accuracy.ts">createClusterExampleRuns</a>({ ...params }) -> AccuracyCreateClusterExampleRunsResponse</code>
+- <code title="post /v1/reports/accuracy/cluster-verification-pairs">client.reports.accuracy.<a href="./src/resources/reports/accuracy.ts">createClusterVerificationPairs</a>({ ...params }) -> AccuracyCreateClusterVerificationPairsResponse</code>
+- <code title="post /v1/reports/accuracy/factcheck-setup-status">client.reports.accuracy.<a href="./src/resources/reports/accuracy.ts">createFactcheckSetupStatus</a>({ ...params }) -> AccuracyCreateFactcheckSetupStatusResponse</code>
+- <code title="post /v1/reports/accuracy/inaccuracy-drivers">client.reports.accuracy.<a href="./src/resources/reports/accuracy.ts">createInaccuracyDrivers</a>({ ...params }) -> AccuracyCreateInaccuracyDriversResponse</code>
+- <code title="post /v1/reports/accuracy/inaccurate-clusters">client.reports.accuracy.<a href="./src/resources/reports/accuracy.ts">createInaccurateClusters</a>({ ...params }) -> AccuracyCreateInaccurateClustersResponse</code>
+- <code title="post /v1/reports/accuracy/inaccurate-themes">client.reports.accuracy.<a href="./src/resources/reports/accuracy.ts">createInaccurateThemes</a>({ ...params }) -> AccuracyCreateInaccurateThemesResponse</code>
+- <code title="post /v1/reports/accuracy/overview">client.reports.accuracy.<a href="./src/resources/reports/accuracy.ts">createOverview</a>({ ...params }) -> AccuracyCreateOverviewResponse</code>
+- <code title="post /v1/reports/accuracy/top-inaccurate-claims">client.reports.accuracy.<a href="./src/resources/reports/accuracy.ts">createTopInaccurateClaims</a>({ ...params }) -> AccuracyCreateTopInaccurateClaimsResponse</code>
+- <code title="post /v1/reports/accuracy/topic-ids">client.reports.accuracy.<a href="./src/resources/reports/accuracy.ts">createTopicIDs</a>({ ...params }) -> AccuracyCreateTopicIDsResponse</code>
+
 # Logs
 
 ## Raw
@@ -195,6 +229,7 @@ Types:
 
 - <code><a href="./src/resources/agents/agents.ts">AgentCreateResponse</a></code>
 - <code><a href="./src/resources/agents/agents.ts">AgentRetrieveResponse</a></code>
+- <code><a href="./src/resources/agents/agents.ts">AgentUpdateResponse</a></code>
 - <code><a href="./src/resources/agents/agents.ts">AgentListResponse</a></code>
 - <code><a href="./src/resources/agents/agents.ts">AgentPublishResponse</a></code>
 
@@ -202,6 +237,7 @@ Methods:
 
 - <code title="post /v1/agents">client.agents.<a href="./src/resources/agents/agents.ts">create</a>({ ...params }) -> AgentCreateResponse</code>
 - <code title="get /v1/agents/{agent_id}">client.agents.<a href="./src/resources/agents/agents.ts">retrieve</a>(agentID, { ...params }) -> AgentRetrieveResponse</code>
+- <code title="patch /v1/agents/{agent_id}">client.agents.<a href="./src/resources/agents/agents.ts">update</a>(agentID, { ...params }) -> AgentUpdateResponse</code>
 - <code title="get /v1/agents">client.agents.<a href="./src/resources/agents/agents.ts">list</a>({ ...params }) -> AgentListResponse</code>
 - <code title="post /v1/agents/{agent_id}/publish">client.agents.<a href="./src/resources/agents/agents.ts">publish</a>(agentID) -> AgentPublishResponse</code>
 

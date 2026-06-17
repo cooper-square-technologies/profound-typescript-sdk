@@ -4,10 +4,12 @@ export {
   Agents,
   type AgentCreateResponse,
   type AgentRetrieveResponse,
+  type AgentUpdateResponse,
   type AgentListResponse,
   type AgentPublishResponse,
   type AgentCreateParams,
   type AgentRetrieveParams,
+  type AgentUpdateParams,
   type AgentListParams,
 } from './agents';
 export { NodeTypes, type NodeTypeListResponse, type NodeTypeRetrieveSchemaResponse } from './node-types';

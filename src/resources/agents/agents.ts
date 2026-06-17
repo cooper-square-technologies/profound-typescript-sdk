@@ -41,6 +41,23 @@ export class Agents extends APIResource {
   }
 
   /**
+   * Update an agent's draft graph in place.
+   *
+   * You must be a member of the agent's organization. The agent's draft is replaced
+   * with the supplied graph and re-validated, so you can iterate one draft — create,
+   * then update per fix — instead of creating a new agent on every change. The
+   * response carries the updated `validation`; publish with
+   * `POST /v1/agents/{agent_id}/publish` once `validation.valid`.
+   */
+  update(
+    agentID: string,
+    body: AgentUpdateParams,
+    options?: RequestOptions,
+  ): APIPromise<AgentUpdateResponse> {
+    return this._client.patch(path`/v1/agents/${agentID}`, { body, ...options });
+  }
+
+  /**
    * List agents available to your organization.
    *
    * Agent status reflects whether an agent has ever been published. `published`
@@ -150,6 +167,133 @@ export interface AgentRetrieveResponse {
 }
 
 export namespace AgentRetrieveResponse {
+  /**
+   * Schema metadata for an agent.
+   */
+  export interface Schema {
+    /**
+     * JSON Schema for the agent's `inputs` object. Use the top-level property keys as
+     * input field names when starting a run.
+     */
+    input: { [key: string]: unknown };
+
+    /**
+     * JSON Schema for the `outputs` object returned by
+     * `GET /v1/agents/{agent_id}/runs/{run_id}`.
+     */
+    output: { [key: string]: unknown };
+  }
+
+  /**
+   * Result of validating an agent's graph.
+   *
+   * Mirrors the report computed on every read, so callers can confirm a draft is
+   * publishable before calling publish.
+   */
+  export interface Validation {
+    /**
+     * Whether the agent's graph is valid and ready to publish.
+     */
+    valid: boolean;
+
+    /**
+     * Problems found while validating the graph. Empty when `valid` is true.
+     */
+    issues?: Array<Validation.Issue>;
+  }
+
+  export namespace Validation {
+    /**
+     * A single problem found while validating an agent's graph.
+     */
+    export interface Issue {
+      /**
+       * Stable machine-readable identifier for the kind of issue.
+       */
+      code: string;
+
+      /**
+       * Human-readable description of the issue.
+       */
+      message: string;
+
+      /**
+       * Name of the offending field on the node, if field-specific.
+       */
+      field?: string | null;
+
+      /**
+       * Display title of the affected field, if available.
+       */
+      field_title?: string | null;
+
+      /**
+       * ID of the node the issue applies to, if node-specific.
+       */
+      node_id?: string | null;
+
+      /**
+       * Display title of the affected node, if available.
+       */
+      node_title?: string | null;
+
+      /**
+       * The specific constraint that was violated, if available.
+       */
+      violation?: string | null;
+    }
+  }
+}
+
+/**
+ * Detailed information for an agent.
+ */
+export interface AgentUpdateResponse {
+  /**
+   * Unique ID for the agent.
+   */
+  id: string;
+
+  /**
+   * When the agent was created.
+   */
+  created_at: string;
+
+  /**
+   * Display name of the agent.
+   */
+  name: string;
+
+  /**
+   * Unique ID of the organization that owns the agent.
+   */
+  organization_id: string;
+
+  /**
+   * Current status of the agent.
+   */
+  status: 'draft' | 'published' | 'unknown';
+
+  /**
+   * Short description of the agent, if provided.
+   */
+  description?: string | null;
+
+  /**
+   * Schema metadata for an agent.
+   */
+  schema?: AgentUpdateResponse.Schema | null;
+
+  /**
+   * Result of validating an agent's graph.
+   *
+   * Mirrors the report computed on every read, so callers can confirm a draft is
+   * publishable before calling publish.
+   */
+  validation?: AgentUpdateResponse.Validation | null;
+}
+
+export namespace AgentUpdateResponse {
   /**
    * Schema metadata for an agent.
    */
@@ -349,6 +493,16 @@ export interface AgentRetrieveParams {
   version?: 'published' | 'draft';
 }
 
+export interface AgentUpdateParams {
+  /**
+   * New workflow graph for the agent's draft version. Replaces the current draft
+   * graph; the agent is iterated in place rather than re-created, so its ID is
+   * stable. Required — Magi rejects a null graph, so an empty update is a 422 here
+   * rather than a relayed upstream error.
+   */
+  graph: { [key: string]: unknown };
+}
+
 export interface AgentListParams {
   limit?: number;
 
@@ -369,10 +523,12 @@ export declare namespace Agents {
   export {
     type AgentCreateResponse as AgentCreateResponse,
     type AgentRetrieveResponse as AgentRetrieveResponse,
+    type AgentUpdateResponse as AgentUpdateResponse,
     type AgentListResponse as AgentListResponse,
     type AgentPublishResponse as AgentPublishResponse,
     type AgentCreateParams as AgentCreateParams,
     type AgentRetrieveParams as AgentRetrieveParams,
+    type AgentUpdateParams as AgentUpdateParams,
     type AgentListParams as AgentListParams,
   };
 

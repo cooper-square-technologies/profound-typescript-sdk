@@ -38,6 +38,8 @@ import {
   AgentPublishResponse,
   AgentRetrieveParams,
   AgentRetrieveResponse,
+  AgentUpdateParams,
+  AgentUpdateResponse,
   Agents,
 } from './resources/agents/agents';
 import { Content } from './resources/content/content';
@@ -943,10 +945,12 @@ export declare namespace Profound {
     Agents as Agents,
     type AgentCreateResponse as AgentCreateResponse,
     type AgentRetrieveResponse as AgentRetrieveResponse,
+    type AgentUpdateResponse as AgentUpdateResponse,
     type AgentListResponse as AgentListResponse,
     type AgentPublishResponse as AgentPublishResponse,
     type AgentCreateParams as AgentCreateParams,
     type AgentRetrieveParams as AgentRetrieveParams,
+    type AgentUpdateParams as AgentUpdateParams,
     type AgentListParams as AgentListParams,
   };
 

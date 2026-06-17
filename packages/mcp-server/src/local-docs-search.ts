@@ -1577,6 +1577,562 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'create_overview',
+    endpoint: '/v1/reports/accuracy/overview',
+    httpMethod: 'post',
+    summary: 'Accuracy Overview',
+    description: 'Accuracy Overview',
+    stainlessPath: '(resource) reports.accuracy > (method) create_overview',
+    qualified: 'client.reports.accuracy.createOverview',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'citation_categories?: string[];',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'date_bucket?: string;',
+      'exclude_topic_ids?: boolean;',
+      'include_no_persona?: boolean;',
+      'include_no_tag?: boolean;',
+      'persona_ids?: string[];',
+      'platform_ids?: string[];',
+      'prompt_ids?: string[];',
+      'region_ids?: string[];',
+      "tag_filter_type?: 'all' | 'any';",
+      'tag_ids?: string[];',
+      'topic_ids?: string[];',
+    ],
+    response:
+      '{ overallAccuracy: number; scoreBreakdown: { count: number; share: number; status: string; countChange?: number; shareChange?: number; }[]; trendByPeriod: { accurate: number; date: string; ratio: number; total: number; prevPeriodData?: object; }[]; accuracyChange?: number; }',
+    markdown:
+      "## create_overview\n\n`client.reports.accuracy.createOverview(category_id: string, end_date: string, start_date: string, citation_categories?: string[], comparison_end_date?: string, comparison_start_date?: string, date_bucket?: string, exclude_topic_ids?: boolean, include_no_persona?: boolean, include_no_tag?: boolean, persona_ids?: string[], platform_ids?: string[], prompt_ids?: string[], region_ids?: string[], tag_filter_type?: 'all' | 'any', tag_ids?: string[], topic_ids?: string[]): { overallAccuracy: number; scoreBreakdown: object[]; trendByPeriod: object[]; accuracyChange?: number; }`\n\n**post** `/v1/reports/accuracy/overview`\n\nAccuracy Overview\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `citation_categories?: string[]`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `date_bucket?: string`\n\n- `exclude_topic_ids?: boolean`\n\n- `include_no_persona?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `persona_ids?: string[]`\n\n- `platform_ids?: string[]`\n\n- `prompt_ids?: string[]`\n\n- `region_ids?: string[]`\n\n- `tag_filter_type?: 'all' | 'any'`\n\n- `tag_ids?: string[]`\n\n- `topic_ids?: string[]`\n\n### Returns\n\n- `{ overallAccuracy: number; scoreBreakdown: { count: number; share: number; status: string; countChange?: number; shareChange?: number; }[]; trendByPeriod: { accurate: number; date: string; ratio: number; total: number; prevPeriodData?: object; }[]; accuracyChange?: number; }`\n\n  - `overallAccuracy: number`\n  - `scoreBreakdown: { count: number; share: number; status: string; countChange?: number; shareChange?: number; }[]`\n  - `trendByPeriod: { accurate: number; date: string; ratio: number; total: number; prevPeriodData?: object; }[]`\n  - `accuracyChange?: number`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createOverview({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createOverview',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createOverview({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.overallAccuracy);",
+      },
+      python: {
+        method: 'reports.accuracy.create_overview',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_overview(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.overall_accuracy)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/overview \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_breakdown',
+    endpoint: '/v1/reports/accuracy/breakdown',
+    httpMethod: 'post',
+    summary: 'Accuracy Breakdown',
+    description: 'Accuracy Breakdown',
+    stainlessPath: '(resource) reports.accuracy > (method) create_breakdown',
+    qualified: 'client.reports.accuracy.createBreakdown',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      "breakdown_by?: 'citation' | 'platform' | 'topic' | 'prompt' | 'tag' | 'region' | 'persona';",
+      'citation_categories?: string[];',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'exclude_topic_ids?: boolean;',
+      'include_no_persona?: boolean;',
+      'include_no_tag?: boolean;',
+      'limit?: number;',
+      'offset?: number;',
+      'persona_ids?: string[];',
+      'platform_ids?: string[];',
+      'prompt_ids?: string[];',
+      'region_ids?: string[];',
+      'search_query?: string;',
+      "sort_by?: 'citationShare' | 'accuracy';",
+      "sort_order?: 'asc' | 'desc';",
+      "tag_filter_type?: 'all' | 'any';",
+      'tag_ids?: string[];',
+      'topic_ids?: string[];',
+    ],
+    response:
+      '{ data: { id: string; inaccurateCount: number; name: string; responseAccuracy: number; share: number; accuracyChange?: number; citationCategory?: string; inaccurateCountChange?: number; promptCount?: number; shareChange?: number; }[]; totalCount: number; }',
+    markdown:
+      "## create_breakdown\n\n`client.reports.accuracy.createBreakdown(category_id: string, end_date: string, start_date: string, breakdown_by?: 'citation' | 'platform' | 'topic' | 'prompt' | 'tag' | 'region' | 'persona', citation_categories?: string[], comparison_end_date?: string, comparison_start_date?: string, exclude_topic_ids?: boolean, include_no_persona?: boolean, include_no_tag?: boolean, limit?: number, offset?: number, persona_ids?: string[], platform_ids?: string[], prompt_ids?: string[], region_ids?: string[], search_query?: string, sort_by?: 'citationShare' | 'accuracy', sort_order?: 'asc' | 'desc', tag_filter_type?: 'all' | 'any', tag_ids?: string[], topic_ids?: string[]): { data: object[]; totalCount: number; }`\n\n**post** `/v1/reports/accuracy/breakdown`\n\nAccuracy Breakdown\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `breakdown_by?: 'citation' | 'platform' | 'topic' | 'prompt' | 'tag' | 'region' | 'persona'`\n\n- `citation_categories?: string[]`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `exclude_topic_ids?: boolean`\n\n- `include_no_persona?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `limit?: number`\n\n- `offset?: number`\n\n- `persona_ids?: string[]`\n\n- `platform_ids?: string[]`\n\n- `prompt_ids?: string[]`\n\n- `region_ids?: string[]`\n\n- `search_query?: string`\n\n- `sort_by?: 'citationShare' | 'accuracy'`\n\n- `sort_order?: 'asc' | 'desc'`\n\n- `tag_filter_type?: 'all' | 'any'`\n\n- `tag_ids?: string[]`\n\n- `topic_ids?: string[]`\n\n### Returns\n\n- `{ data: { id: string; inaccurateCount: number; name: string; responseAccuracy: number; share: number; accuracyChange?: number; citationCategory?: string; inaccurateCountChange?: number; promptCount?: number; shareChange?: number; }[]; totalCount: number; }`\n\n  - `data: { id: string; inaccurateCount: number; name: string; responseAccuracy: number; share: number; accuracyChange?: number; citationCategory?: string; inaccurateCountChange?: number; promptCount?: number; shareChange?: number; }[]`\n  - `totalCount: number`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createBreakdown({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createBreakdown',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createBreakdown({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.accuracy.create_breakdown',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_breakdown(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/breakdown \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_citation_analysis',
+    endpoint: '/v1/reports/accuracy/citation-analysis',
+    httpMethod: 'post',
+    summary: 'Accuracy Citation Analysis',
+    description: 'Accuracy Citation Analysis',
+    stainlessPath: '(resource) reports.accuracy > (method) create_citation_analysis',
+    qualified: 'client.reports.accuracy.createCitationAnalysis',
+    params: ['category_id: string;', 'clean_href: string;', 'end_date: string;', 'start_date: string;'],
+    response:
+      "{ domain: string; href: string; markdownContent: string; pageTitle: string; claims?: { attribute: string; attributeId: string; claim: string; claimId: string; neutralTheme: string; neutralThemeId: string; snippet: string; polarity?: 'positive' | 'negative'; }[]; }",
+    markdown:
+      "## create_citation_analysis\n\n`client.reports.accuracy.createCitationAnalysis(category_id: string, clean_href: string, end_date: string, start_date: string): { domain: string; href: string; markdownContent: string; pageTitle: string; claims?: object[]; }`\n\n**post** `/v1/reports/accuracy/citation-analysis`\n\nAccuracy Citation Analysis\n\n### Parameters\n\n- `category_id: string`\n\n- `clean_href: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n### Returns\n\n- `{ domain: string; href: string; markdownContent: string; pageTitle: string; claims?: { attribute: string; attributeId: string; claim: string; claimId: string; neutralTheme: string; neutralThemeId: string; snippet: string; polarity?: 'positive' | 'negative'; }[]; }`\n\n  - `domain: string`\n  - `href: string`\n  - `markdownContent: string`\n  - `pageTitle: string`\n  - `claims?: { attribute: string; attributeId: string; claim: string; claimId: string; neutralTheme: string; neutralThemeId: string; snippet: string; polarity?: 'positive' | 'negative'; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createCitationAnalysis({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  clean_href: 'clean_href',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createCitationAnalysis',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createCitationAnalysis({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  clean_href: 'clean_href',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.domain);",
+      },
+      python: {
+        method: 'reports.accuracy.create_citation_analysis',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_citation_analysis(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    clean_href="clean_href",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.domain)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/citation-analysis \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "clean_href": "clean_href",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_topic_ids',
+    endpoint: '/v1/reports/accuracy/topic-ids',
+    httpMethod: 'post',
+    summary: 'Accuracy Topic Ids',
+    description: 'Accuracy Topic Ids',
+    stainlessPath: '(resource) reports.accuracy > (method) create_topic_ids',
+    qualified: 'client.reports.accuracy.createTopicIDs',
+    params: ['category_id: string;', 'end_date: string;', 'start_date: string;'],
+    response: 'string[]',
+    markdown:
+      "## create_topic_ids\n\n`client.reports.accuracy.createTopicIDs(category_id: string, end_date: string, start_date: string): string[]`\n\n**post** `/v1/reports/accuracy/topic-ids`\n\nAccuracy Topic Ids\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n### Returns\n\n- `string[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createTopicIDs({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createTopicIDs',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createTopicIDs({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'reports.accuracy.create_topic_ids',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_topic_ids(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/topic-ids \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_inaccurate_themes',
+    endpoint: '/v1/reports/accuracy/inaccurate-themes',
+    httpMethod: 'post',
+    summary: 'Accuracy Inaccurate Themes',
+    description: 'Accuracy Inaccurate Themes',
+    stainlessPath: '(resource) reports.accuracy > (method) create_inaccurate_themes',
+    qualified: 'client.reports.accuracy.createInaccurateThemes',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'citation_categories?: string[];',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'exclude_topic_ids?: boolean;',
+      'include_no_persona?: boolean;',
+      'include_no_tag?: boolean;',
+      'limit?: number;',
+      'offset?: number;',
+      'persona_ids?: string[];',
+      'platform_ids?: string[];',
+      'prompt_ids?: string[];',
+      'region_ids?: string[];',
+      'search_query?: string;',
+      "sort_by?: 'response_share';",
+      "sort_order?: 'asc' | 'desc';",
+      "tag_filter_type?: 'all' | 'any';",
+      'tag_ids?: string[];',
+      'topic_ids?: string[];',
+    ],
+    response:
+      '{ data: { description: string; inaccurateClaimCount: number; inaccurateClusterCount: number; neutralTheme: string; responseCount: number; responseShare: number; themeId: string; totalClaimCount: number; totalClusterCount: number; totalResponseCount: number; responseShareDelta?: number; }[]; totalCount: number; }',
+    markdown:
+      "## create_inaccurate_themes\n\n`client.reports.accuracy.createInaccurateThemes(category_id: string, end_date: string, start_date: string, citation_categories?: string[], comparison_end_date?: string, comparison_start_date?: string, exclude_topic_ids?: boolean, include_no_persona?: boolean, include_no_tag?: boolean, limit?: number, offset?: number, persona_ids?: string[], platform_ids?: string[], prompt_ids?: string[], region_ids?: string[], search_query?: string, sort_by?: 'response_share', sort_order?: 'asc' | 'desc', tag_filter_type?: 'all' | 'any', tag_ids?: string[], topic_ids?: string[]): { data: object[]; totalCount: number; }`\n\n**post** `/v1/reports/accuracy/inaccurate-themes`\n\nAccuracy Inaccurate Themes\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `citation_categories?: string[]`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `exclude_topic_ids?: boolean`\n\n- `include_no_persona?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `limit?: number`\n\n- `offset?: number`\n\n- `persona_ids?: string[]`\n\n- `platform_ids?: string[]`\n\n- `prompt_ids?: string[]`\n\n- `region_ids?: string[]`\n\n- `search_query?: string`\n\n- `sort_by?: 'response_share'`\n\n- `sort_order?: 'asc' | 'desc'`\n\n- `tag_filter_type?: 'all' | 'any'`\n\n- `tag_ids?: string[]`\n\n- `topic_ids?: string[]`\n\n### Returns\n\n- `{ data: { description: string; inaccurateClaimCount: number; inaccurateClusterCount: number; neutralTheme: string; responseCount: number; responseShare: number; themeId: string; totalClaimCount: number; totalClusterCount: number; totalResponseCount: number; responseShareDelta?: number; }[]; totalCount: number; }`\n\n  - `data: { description: string; inaccurateClaimCount: number; inaccurateClusterCount: number; neutralTheme: string; responseCount: number; responseShare: number; themeId: string; totalClaimCount: number; totalClusterCount: number; totalResponseCount: number; responseShareDelta?: number; }[]`\n  - `totalCount: number`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createInaccurateThemes({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createInaccurateThemes',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createInaccurateThemes({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.accuracy.create_inaccurate_themes',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_inaccurate_themes(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/inaccurate-themes \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_inaccurate_clusters',
+    endpoint: '/v1/reports/accuracy/inaccurate-clusters',
+    httpMethod: 'post',
+    summary: 'Accuracy Inaccurate Clusters',
+    description: 'Accuracy Inaccurate Clusters',
+    stainlessPath: '(resource) reports.accuracy > (method) create_inaccurate_clusters',
+    qualified: 'client.reports.accuracy.createInaccurateClusters',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'theme_id: string;',
+      'citation_categories?: string[];',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'exclude_topic_ids?: boolean;',
+      'include_no_persona?: boolean;',
+      'include_no_tag?: boolean;',
+      'limit?: number;',
+      'offset?: number;',
+      'persona_ids?: string[];',
+      'platform_ids?: string[];',
+      'prompt_ids?: string[];',
+      'region_ids?: string[];',
+      'search_query?: string;',
+      "tag_filter_type?: 'all' | 'any';",
+      'tag_ids?: string[];',
+      'topic_ids?: string[];',
+    ],
+    response:
+      '{ data: { canonicalClaim: string; citationHostnames: string[]; claimCount: number; clusterId: string; description: string; kbPath: string; kbSnippet: string; reasoning: string; responseCount: number; responseShare: number; totalResponseCount: number; responseShareDelta?: number; }[]; totalCount: number; }',
+    markdown:
+      "## create_inaccurate_clusters\n\n`client.reports.accuracy.createInaccurateClusters(category_id: string, end_date: string, start_date: string, theme_id: string, citation_categories?: string[], comparison_end_date?: string, comparison_start_date?: string, exclude_topic_ids?: boolean, include_no_persona?: boolean, include_no_tag?: boolean, limit?: number, offset?: number, persona_ids?: string[], platform_ids?: string[], prompt_ids?: string[], region_ids?: string[], search_query?: string, tag_filter_type?: 'all' | 'any', tag_ids?: string[], topic_ids?: string[]): { data: object[]; totalCount: number; }`\n\n**post** `/v1/reports/accuracy/inaccurate-clusters`\n\nAccuracy Inaccurate Clusters\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `theme_id: string`\n\n- `citation_categories?: string[]`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `exclude_topic_ids?: boolean`\n\n- `include_no_persona?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `limit?: number`\n\n- `offset?: number`\n\n- `persona_ids?: string[]`\n\n- `platform_ids?: string[]`\n\n- `prompt_ids?: string[]`\n\n- `region_ids?: string[]`\n\n- `search_query?: string`\n\n- `tag_filter_type?: 'all' | 'any'`\n\n- `tag_ids?: string[]`\n\n- `topic_ids?: string[]`\n\n### Returns\n\n- `{ data: { canonicalClaim: string; citationHostnames: string[]; claimCount: number; clusterId: string; description: string; kbPath: string; kbSnippet: string; reasoning: string; responseCount: number; responseShare: number; totalResponseCount: number; responseShareDelta?: number; }[]; totalCount: number; }`\n\n  - `data: { canonicalClaim: string; citationHostnames: string[]; claimCount: number; clusterId: string; description: string; kbPath: string; kbSnippet: string; reasoning: string; responseCount: number; responseShare: number; totalResponseCount: number; responseShareDelta?: number; }[]`\n  - `totalCount: number`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createInaccurateClusters({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n  theme_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createInaccurateClusters',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createInaccurateClusters({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n  theme_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.accuracy.create_inaccurate_clusters',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_inaccurate_clusters(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n    theme_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/inaccurate-clusters \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date",\n          "theme_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_inaccuracy_drivers',
+    endpoint: '/v1/reports/accuracy/inaccuracy-drivers',
+    httpMethod: 'post',
+    summary: 'Accuracy Inaccuracy Drivers',
+    description: 'Accuracy Inaccuracy Drivers',
+    stainlessPath: '(resource) reports.accuracy > (method) create_inaccuracy_drivers',
+    qualified: 'client.reports.accuracy.createInaccuracyDrivers',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'citation_categories?: string[];',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'exclude_topic_ids?: boolean;',
+      'include_no_persona?: boolean;',
+      'include_no_tag?: boolean;',
+      'limit?: number;',
+      'persona_ids?: string[];',
+      'platform_ids?: string[];',
+      'prompt_ids?: string[];',
+      'region_ids?: string[];',
+      "tag_filter_type?: 'all' | 'any';",
+      'tag_ids?: string[];',
+      'topic_ids?: string[];',
+    ],
+    response:
+      '{ data: { canonicalClaim: string; citationCategory: string; citationCount: number; claimOccurrence: number; clusterId: string; domainCategory: string; href: string; rowId: string; snippet: string; snippetClaimId: string; claimOccurrenceDelta?: number; }[]; }',
+    markdown:
+      "## create_inaccuracy_drivers\n\n`client.reports.accuracy.createInaccuracyDrivers(category_id: string, end_date: string, start_date: string, citation_categories?: string[], comparison_end_date?: string, comparison_start_date?: string, exclude_topic_ids?: boolean, include_no_persona?: boolean, include_no_tag?: boolean, limit?: number, persona_ids?: string[], platform_ids?: string[], prompt_ids?: string[], region_ids?: string[], tag_filter_type?: 'all' | 'any', tag_ids?: string[], topic_ids?: string[]): { data: object[]; }`\n\n**post** `/v1/reports/accuracy/inaccuracy-drivers`\n\nAccuracy Inaccuracy Drivers\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `citation_categories?: string[]`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `exclude_topic_ids?: boolean`\n\n- `include_no_persona?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `limit?: number`\n\n- `persona_ids?: string[]`\n\n- `platform_ids?: string[]`\n\n- `prompt_ids?: string[]`\n\n- `region_ids?: string[]`\n\n- `tag_filter_type?: 'all' | 'any'`\n\n- `tag_ids?: string[]`\n\n- `topic_ids?: string[]`\n\n### Returns\n\n- `{ data: { canonicalClaim: string; citationCategory: string; citationCount: number; claimOccurrence: number; clusterId: string; domainCategory: string; href: string; rowId: string; snippet: string; snippetClaimId: string; claimOccurrenceDelta?: number; }[]; }`\n\n  - `data: { canonicalClaim: string; citationCategory: string; citationCount: number; claimOccurrence: number; clusterId: string; domainCategory: string; href: string; rowId: string; snippet: string; snippetClaimId: string; claimOccurrenceDelta?: number; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createInaccuracyDrivers({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createInaccuracyDrivers',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createInaccuracyDrivers({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.accuracy.create_inaccuracy_drivers',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_inaccuracy_drivers(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/inaccuracy-drivers \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_top_inaccurate_claims',
+    endpoint: '/v1/reports/accuracy/top-inaccurate-claims',
+    httpMethod: 'post',
+    summary: 'Accuracy Top Inaccurate Claims',
+    description: 'Accuracy Top Inaccurate Claims',
+    stainlessPath: '(resource) reports.accuracy > (method) create_top_inaccurate_claims',
+    qualified: 'client.reports.accuracy.createTopInaccurateClaims',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'citation_categories?: string[];',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'exclude_topic_ids?: boolean;',
+      'include_no_persona?: boolean;',
+      'include_no_tag?: boolean;',
+      'limit?: number;',
+      'persona_ids?: string[];',
+      'platform_ids?: string[];',
+      'prompt_ids?: string[];',
+      'region_ids?: string[];',
+      "tag_filter_type?: 'all' | 'any';",
+      'tag_ids?: string[];',
+      'topic_ids?: string[];',
+    ],
+    response:
+      '{ data: { canonicalClaim: string; claimOccurrence: number; clusterId: string; claimOccurrenceDelta?: number; }[]; }',
+    markdown:
+      "## create_top_inaccurate_claims\n\n`client.reports.accuracy.createTopInaccurateClaims(category_id: string, end_date: string, start_date: string, citation_categories?: string[], comparison_end_date?: string, comparison_start_date?: string, exclude_topic_ids?: boolean, include_no_persona?: boolean, include_no_tag?: boolean, limit?: number, persona_ids?: string[], platform_ids?: string[], prompt_ids?: string[], region_ids?: string[], tag_filter_type?: 'all' | 'any', tag_ids?: string[], topic_ids?: string[]): { data: object[]; }`\n\n**post** `/v1/reports/accuracy/top-inaccurate-claims`\n\nAccuracy Top Inaccurate Claims\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `citation_categories?: string[]`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `exclude_topic_ids?: boolean`\n\n- `include_no_persona?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `limit?: number`\n\n- `persona_ids?: string[]`\n\n- `platform_ids?: string[]`\n\n- `prompt_ids?: string[]`\n\n- `region_ids?: string[]`\n\n- `tag_filter_type?: 'all' | 'any'`\n\n- `tag_ids?: string[]`\n\n- `topic_ids?: string[]`\n\n### Returns\n\n- `{ data: { canonicalClaim: string; claimOccurrence: number; clusterId: string; claimOccurrenceDelta?: number; }[]; }`\n\n  - `data: { canonicalClaim: string; claimOccurrence: number; clusterId: string; claimOccurrenceDelta?: number; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createTopInaccurateClaims({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createTopInaccurateClaims',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createTopInaccurateClaims({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.accuracy.create_top_inaccurate_claims',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_top_inaccurate_claims(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/top-inaccurate-claims \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_claim_breakdown',
+    endpoint: '/v1/reports/accuracy/claim-breakdown',
+    httpMethod: 'post',
+    summary: 'Accuracy Claim Breakdown',
+    description: 'Accuracy Claim Breakdown',
+    stainlessPath: '(resource) reports.accuracy > (method) create_claim_breakdown',
+    qualified: 'client.reports.accuracy.createClaimBreakdown',
+    params: [
+      'category_id: string;',
+      'cluster_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'citation_categories?: string[];',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'exclude_topic_ids?: boolean;',
+      'include_no_persona?: boolean;',
+      'include_no_tag?: boolean;',
+      'persona_ids?: string[];',
+      'platform_ids?: string[];',
+      'prompt_ids?: string[];',
+      'region_ids?: string[];',
+      "tag_filter_type?: 'all' | 'any';",
+      'tag_ids?: string[];',
+      'topic_ids?: string[];',
+    ],
+    response:
+      '{ platform: { id: string; label: string; prevResponseCount: number; prevTotalResponseCount: number; responseCount: number; responseShare: number; totalResponseCount: number; responseShareDelta?: number; }[]; prompt: { id: string; hasCurrent: boolean; label: string; prevResponseCount: number; prevTotalResponseCount: number; promptId: string; promptText: string; responseCount: number; responseShare: number; topicId: string; totalResponseCount: number; responseShareDelta?: number; }[]; }',
+    markdown:
+      "## create_claim_breakdown\n\n`client.reports.accuracy.createClaimBreakdown(category_id: string, cluster_id: string, end_date: string, start_date: string, citation_categories?: string[], comparison_end_date?: string, comparison_start_date?: string, exclude_topic_ids?: boolean, include_no_persona?: boolean, include_no_tag?: boolean, persona_ids?: string[], platform_ids?: string[], prompt_ids?: string[], region_ids?: string[], tag_filter_type?: 'all' | 'any', tag_ids?: string[], topic_ids?: string[]): { platform: object[]; prompt: object[]; }`\n\n**post** `/v1/reports/accuracy/claim-breakdown`\n\nAccuracy Claim Breakdown\n\n### Parameters\n\n- `category_id: string`\n\n- `cluster_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `citation_categories?: string[]`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `exclude_topic_ids?: boolean`\n\n- `include_no_persona?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `persona_ids?: string[]`\n\n- `platform_ids?: string[]`\n\n- `prompt_ids?: string[]`\n\n- `region_ids?: string[]`\n\n- `tag_filter_type?: 'all' | 'any'`\n\n- `tag_ids?: string[]`\n\n- `topic_ids?: string[]`\n\n### Returns\n\n- `{ platform: { id: string; label: string; prevResponseCount: number; prevTotalResponseCount: number; responseCount: number; responseShare: number; totalResponseCount: number; responseShareDelta?: number; }[]; prompt: { id: string; hasCurrent: boolean; label: string; prevResponseCount: number; prevTotalResponseCount: number; promptId: string; promptText: string; responseCount: number; responseShare: number; topicId: string; totalResponseCount: number; responseShareDelta?: number; }[]; }`\n\n  - `platform: { id: string; label: string; prevResponseCount: number; prevTotalResponseCount: number; responseCount: number; responseShare: number; totalResponseCount: number; responseShareDelta?: number; }[]`\n  - `prompt: { id: string; hasCurrent: boolean; label: string; prevResponseCount: number; prevTotalResponseCount: number; promptId: string; promptText: string; responseCount: number; responseShare: number; topicId: string; totalResponseCount: number; responseShareDelta?: number; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createClaimBreakdown({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createClaimBreakdown',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createClaimBreakdown({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.platform);",
+      },
+      python: {
+        method: 'reports.accuracy.create_claim_breakdown',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_claim_breakdown(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    cluster_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.platform)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/claim-breakdown \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "cluster_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_claim_citations',
+    endpoint: '/v1/reports/accuracy/claim-citations',
+    httpMethod: 'post',
+    summary: 'Accuracy Claim Citations',
+    description: 'Accuracy Claim Citations',
+    stainlessPath: '(resource) reports.accuracy > (method) create_claim_citations',
+    qualified: 'client.reports.accuracy.createClaimCitations',
+    params: [
+      'category_id: string;',
+      'cluster_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'citation_categories?: string[];',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'exclude_topic_ids?: boolean;',
+      'include_no_persona?: boolean;',
+      'include_no_tag?: boolean;',
+      'limit?: number;',
+      'offset?: number;',
+      'persona_ids?: string[];',
+      'platform_ids?: string[];',
+      'prompt_ids?: string[];',
+      'region_ids?: string[];',
+      'search_query?: string;',
+      "sort_order?: 'asc' | 'desc';",
+      "tag_filter_type?: 'all' | 'any';",
+      'tag_ids?: string[];',
+      'topic_ids?: string[];',
+    ],
+    response:
+      '{ data: { citationCategory: string; citationCount: number; citationShare: number; hostname: string; href: string; path: string; snippet: string; citationShareDelta?: number; }[]; totalCount: number; }',
+    markdown:
+      "## create_claim_citations\n\n`client.reports.accuracy.createClaimCitations(category_id: string, cluster_id: string, end_date: string, start_date: string, citation_categories?: string[], comparison_end_date?: string, comparison_start_date?: string, exclude_topic_ids?: boolean, include_no_persona?: boolean, include_no_tag?: boolean, limit?: number, offset?: number, persona_ids?: string[], platform_ids?: string[], prompt_ids?: string[], region_ids?: string[], search_query?: string, sort_order?: 'asc' | 'desc', tag_filter_type?: 'all' | 'any', tag_ids?: string[], topic_ids?: string[]): { data: object[]; totalCount: number; }`\n\n**post** `/v1/reports/accuracy/claim-citations`\n\nAccuracy Claim Citations\n\n### Parameters\n\n- `category_id: string`\n\n- `cluster_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `citation_categories?: string[]`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `exclude_topic_ids?: boolean`\n\n- `include_no_persona?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `limit?: number`\n\n- `offset?: number`\n\n- `persona_ids?: string[]`\n\n- `platform_ids?: string[]`\n\n- `prompt_ids?: string[]`\n\n- `region_ids?: string[]`\n\n- `search_query?: string`\n\n- `sort_order?: 'asc' | 'desc'`\n\n- `tag_filter_type?: 'all' | 'any'`\n\n- `tag_ids?: string[]`\n\n- `topic_ids?: string[]`\n\n### Returns\n\n- `{ data: { citationCategory: string; citationCount: number; citationShare: number; hostname: string; href: string; path: string; snippet: string; citationShareDelta?: number; }[]; totalCount: number; }`\n\n  - `data: { citationCategory: string; citationCount: number; citationShare: number; hostname: string; href: string; path: string; snippet: string; citationShareDelta?: number; }[]`\n  - `totalCount: number`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createClaimCitations({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createClaimCitations',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createClaimCitations({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.accuracy.create_claim_citations',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_claim_citations(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    cluster_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/claim-citations \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "cluster_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_cluster_example_runs',
+    endpoint: '/v1/reports/accuracy/cluster-example-runs',
+    httpMethod: 'post',
+    summary: 'Accuracy Cluster Example Runs',
+    description: 'Accuracy Cluster Example Runs',
+    stainlessPath: '(resource) reports.accuracy > (method) create_cluster_example_runs',
+    qualified: 'client.reports.accuracy.createClusterExampleRuns',
+    params: [
+      'category_id: string;',
+      'cluster_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'limit?: number;',
+      'offset?: number;',
+    ],
+    response:
+      '{ data: { claim: string; createdAt: string; modelId: string; regionId: string; responseSnippet: string; runId: string; }[]; totalCount: number; }',
+    markdown:
+      "## create_cluster_example_runs\n\n`client.reports.accuracy.createClusterExampleRuns(category_id: string, cluster_id: string, end_date: string, start_date: string, limit?: number, offset?: number): { data: object[]; totalCount: number; }`\n\n**post** `/v1/reports/accuracy/cluster-example-runs`\n\nAccuracy Cluster Example Runs\n\n### Parameters\n\n- `category_id: string`\n\n- `cluster_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `limit?: number`\n\n- `offset?: number`\n\n### Returns\n\n- `{ data: { claim: string; createdAt: string; modelId: string; regionId: string; responseSnippet: string; runId: string; }[]; totalCount: number; }`\n\n  - `data: { claim: string; createdAt: string; modelId: string; regionId: string; responseSnippet: string; runId: string; }[]`\n  - `totalCount: number`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createClusterExampleRuns({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createClusterExampleRuns',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createClusterExampleRuns({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.accuracy.create_cluster_example_runs',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_cluster_example_runs(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    cluster_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/cluster-example-runs \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "cluster_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_cluster_verification_pairs',
+    endpoint: '/v1/reports/accuracy/cluster-verification-pairs',
+    httpMethod: 'post',
+    summary: 'Accuracy Cluster Verification Pairs',
+    description: 'Accuracy Cluster Verification Pairs',
+    stainlessPath: '(resource) reports.accuracy > (method) create_cluster_verification_pairs',
+    qualified: 'client.reports.accuracy.createClusterVerificationPairs',
+    params: ['category_id: string;', 'cluster_id: string;'],
+    response:
+      '{ data: { kbPath: string; pairId: string; quote: string; reasoning: string; snippetIdx: number; }[]; }',
+    markdown:
+      "## create_cluster_verification_pairs\n\n`client.reports.accuracy.createClusterVerificationPairs(category_id: string, cluster_id: string): { data: object[]; }`\n\n**post** `/v1/reports/accuracy/cluster-verification-pairs`\n\nAccuracy Cluster Verification Pairs\n\n### Parameters\n\n- `category_id: string`\n\n- `cluster_id: string`\n\n### Returns\n\n- `{ data: { kbPath: string; pairId: string; quote: string; reasoning: string; snippetIdx: number; }[]; }`\n\n  - `data: { kbPath: string; pairId: string; quote: string; reasoning: string; snippetIdx: number; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createClusterVerificationPairs({ category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createClusterVerificationPairs',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createClusterVerificationPairs({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.accuracy.create_cluster_verification_pairs',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_cluster_verification_pairs(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    cluster_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/cluster-verification-pairs \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "cluster_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_factcheck_setup_status',
+    endpoint: '/v1/reports/accuracy/factcheck-setup-status',
+    httpMethod: 'post',
+    summary: 'Accuracy Factcheck Setup Status',
+    description: 'Accuracy Factcheck Setup Status',
+    stainlessPath: '(resource) reports.accuracy > (method) create_factcheck_setup_status',
+    qualified: 'client.reports.accuracy.createFactcheckSetupStatus',
+    params: ['category_id: string;'],
+    response:
+      '{ activeAccuracyPromptCount: number; hasVerificationData: boolean; isSetupComplete: boolean; setupCreatedAt?: string; setupKnowledgeBaseId?: string; }',
+    markdown:
+      "## create_factcheck_setup_status\n\n`client.reports.accuracy.createFactcheckSetupStatus(category_id: string): { activeAccuracyPromptCount: number; hasVerificationData: boolean; isSetupComplete: boolean; setupCreatedAt?: string; setupKnowledgeBaseId?: string; }`\n\n**post** `/v1/reports/accuracy/factcheck-setup-status`\n\nAccuracy Factcheck Setup Status\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ activeAccuracyPromptCount: number; hasVerificationData: boolean; isSetupComplete: boolean; setupCreatedAt?: string; setupKnowledgeBaseId?: string; }`\n\n  - `activeAccuracyPromptCount: number`\n  - `hasVerificationData: boolean`\n  - `isSetupComplete: boolean`\n  - `setupCreatedAt?: string`\n  - `setupKnowledgeBaseId?: string`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createFactcheckSetupStatus({ category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createFactcheckSetupStatus',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createFactcheckSetupStatus({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(response.activeAccuracyPromptCount);",
+      },
+      python: {
+        method: 'reports.accuracy.create_factcheck_setup_status',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_factcheck_setup_status(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response.active_accuracy_prompt_count)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/factcheck-setup-status \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n        }\'',
+      },
+    },
+  },
+  {
     name: 'logs',
     endpoint: '/v1/logs/raw',
     httpMethod: 'post',
@@ -1838,6 +2394,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.tryprofound.com/v1/agents/$AGENT_ID/publish \\\n    -X POST \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'update',
+    endpoint: '/v1/agents/{agent_id}',
+    httpMethod: 'patch',
+    summary: 'Update an agent',
+    description:
+      "Update an agent's draft graph in place.\n\nYou must be a member of the agent's organization. The agent's draft is replaced with the\nsupplied graph and re-validated, so you can iterate one draft — create, then update per\nfix — instead of creating a new agent on every change. The response carries the updated\n`validation`; publish with `POST /v1/agents/{agent_id}/publish` once `validation.valid`.",
+    stainlessPath: '(resource) agents > (method) update',
+    qualified: 'client.agents.update',
+    params: ['agent_id: string;', 'graph: object;'],
+    response:
+      "{ id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; schema?: { input: object; output: object; }; validation?: { valid: boolean; issues?: { code: string; message: string; field?: string; field_title?: string; node_id?: string; node_title?: string; violation?: string; }[]; }; }",
+    markdown:
+      "## update\n\n`client.agents.update(agent_id: string, graph: object): { id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; schema?: object; validation?: object; }`\n\n**patch** `/v1/agents/{agent_id}`\n\nUpdate an agent's draft graph in place.\n\nYou must be a member of the agent's organization. The agent's draft is replaced with the\nsupplied graph and re-validated, so you can iterate one draft — create, then update per\nfix — instead of creating a new agent on every change. The response carries the updated\n`validation`; publish with `POST /v1/agents/{agent_id}/publish` once `validation.valid`.\n\n### Parameters\n\n- `agent_id: string`\n  The ID of the agent to update.\n\n- `graph: object`\n  New workflow graph for the agent's draft version. Replaces the current draft graph; the agent is iterated in place rather than re-created, so its ID is stable. Required — Magi rejects a null graph, so an empty update is a 422 here rather than a relayed upstream error.\n\n### Returns\n\n- `{ id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; schema?: { input: object; output: object; }; validation?: { valid: boolean; issues?: { code: string; message: string; field?: string; field_title?: string; node_id?: string; node_title?: string; violation?: string; }[]; }; }`\n  Detailed information for an agent.\n\n  - `id: string`\n  - `created_at: string`\n  - `name: string`\n  - `organization_id: string`\n  - `status: 'draft' | 'published' | 'unknown'`\n  - `description?: string`\n  - `schema?: { input: object; output: object; }`\n  - `validation?: { valid: boolean; issues?: { code: string; message: string; field?: string; field_title?: string; node_id?: string; node_title?: string; violation?: string; }[]; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst agent = await client.agents.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { graph: { foo: 'bar' } });\n\nconsole.log(agent);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.agents.update',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst agent = await client.agents.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  graph: { foo: 'bar' },\n});\n\nconsole.log(agent.id);",
+      },
+      python: {
+        method: 'agents.update',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nagent = client.agents.update(\n    agent_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    graph={\n        "foo": "bar"\n    },\n)\nprint(agent.id)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/agents/$AGENT_ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "graph": {\n            "foo": "bar"\n          }\n        }\'',
       },
     },
   },

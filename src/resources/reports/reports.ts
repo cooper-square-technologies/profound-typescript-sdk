@@ -2,6 +2,36 @@
 
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
+import * as AccuracyAPI from './accuracy';
+import {
+  Accuracy,
+  AccuracyCreateBreakdownParams,
+  AccuracyCreateBreakdownResponse,
+  AccuracyCreateCitationAnalysisParams,
+  AccuracyCreateCitationAnalysisResponse,
+  AccuracyCreateClaimBreakdownParams,
+  AccuracyCreateClaimBreakdownResponse,
+  AccuracyCreateClaimCitationsParams,
+  AccuracyCreateClaimCitationsResponse,
+  AccuracyCreateClusterExampleRunsParams,
+  AccuracyCreateClusterExampleRunsResponse,
+  AccuracyCreateClusterVerificationPairsParams,
+  AccuracyCreateClusterVerificationPairsResponse,
+  AccuracyCreateFactcheckSetupStatusParams,
+  AccuracyCreateFactcheckSetupStatusResponse,
+  AccuracyCreateInaccuracyDriversParams,
+  AccuracyCreateInaccuracyDriversResponse,
+  AccuracyCreateInaccurateClustersParams,
+  AccuracyCreateInaccurateClustersResponse,
+  AccuracyCreateInaccurateThemesParams,
+  AccuracyCreateInaccurateThemesResponse,
+  AccuracyCreateOverviewParams,
+  AccuracyCreateOverviewResponse,
+  AccuracyCreateTopInaccurateClaimsParams,
+  AccuracyCreateTopInaccurateClaimsResponse,
+  AccuracyCreateTopicIDsParams,
+  AccuracyCreateTopicIDsResponse,
+} from './accuracy';
 import * as ShoppingAPI from './shopping';
 import {
   BrandNameFilter,
@@ -47,6 +77,7 @@ export class Reports extends APIResource {
     this._client,
   );
   shopping: ShoppingAPI.Shopping = new ShoppingAPI.Shopping(this._client);
+  accuracy: AccuracyAPI.Accuracy = new AccuracyAPI.Accuracy(this._client);
 
   /**
    * Get citations for a given category.
@@ -1662,6 +1693,7 @@ export namespace ReportVisibilityParams {
 
 Reports.WebSearchResults = WebSearchResults;
 Reports.Shopping = Shopping;
+Reports.Accuracy = Accuracy;
 
 export declare namespace Reports {
   export {
@@ -1724,5 +1756,35 @@ export declare namespace Reports {
     type ShoppingProductMerchantURLsParams as ShoppingProductMerchantURLsParams,
     type ShoppingTriggerRateParams as ShoppingTriggerRateParams,
     type ShoppingVisibilityParams as ShoppingVisibilityParams,
+  };
+
+  export {
+    Accuracy as Accuracy,
+    type AccuracyCreateBreakdownResponse as AccuracyCreateBreakdownResponse,
+    type AccuracyCreateCitationAnalysisResponse as AccuracyCreateCitationAnalysisResponse,
+    type AccuracyCreateClaimBreakdownResponse as AccuracyCreateClaimBreakdownResponse,
+    type AccuracyCreateClaimCitationsResponse as AccuracyCreateClaimCitationsResponse,
+    type AccuracyCreateClusterExampleRunsResponse as AccuracyCreateClusterExampleRunsResponse,
+    type AccuracyCreateClusterVerificationPairsResponse as AccuracyCreateClusterVerificationPairsResponse,
+    type AccuracyCreateFactcheckSetupStatusResponse as AccuracyCreateFactcheckSetupStatusResponse,
+    type AccuracyCreateInaccuracyDriversResponse as AccuracyCreateInaccuracyDriversResponse,
+    type AccuracyCreateInaccurateClustersResponse as AccuracyCreateInaccurateClustersResponse,
+    type AccuracyCreateInaccurateThemesResponse as AccuracyCreateInaccurateThemesResponse,
+    type AccuracyCreateOverviewResponse as AccuracyCreateOverviewResponse,
+    type AccuracyCreateTopInaccurateClaimsResponse as AccuracyCreateTopInaccurateClaimsResponse,
+    type AccuracyCreateTopicIDsResponse as AccuracyCreateTopicIDsResponse,
+    type AccuracyCreateBreakdownParams as AccuracyCreateBreakdownParams,
+    type AccuracyCreateCitationAnalysisParams as AccuracyCreateCitationAnalysisParams,
+    type AccuracyCreateClaimBreakdownParams as AccuracyCreateClaimBreakdownParams,
+    type AccuracyCreateClaimCitationsParams as AccuracyCreateClaimCitationsParams,
+    type AccuracyCreateClusterExampleRunsParams as AccuracyCreateClusterExampleRunsParams,
+    type AccuracyCreateClusterVerificationPairsParams as AccuracyCreateClusterVerificationPairsParams,
+    type AccuracyCreateFactcheckSetupStatusParams as AccuracyCreateFactcheckSetupStatusParams,
+    type AccuracyCreateInaccuracyDriversParams as AccuracyCreateInaccuracyDriversParams,
+    type AccuracyCreateInaccurateClustersParams as AccuracyCreateInaccurateClustersParams,
+    type AccuracyCreateInaccurateThemesParams as AccuracyCreateInaccurateThemesParams,
+    type AccuracyCreateOverviewParams as AccuracyCreateOverviewParams,
+    type AccuracyCreateTopInaccurateClaimsParams as AccuracyCreateTopInaccurateClaimsParams,
+    type AccuracyCreateTopicIDsParams as AccuracyCreateTopicIDsParams,
   };
 }
