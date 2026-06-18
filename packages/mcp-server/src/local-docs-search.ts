@@ -2487,6 +2487,36 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'retrieve_graph',
+    endpoint: '/v1/agents/{agent_id}/graph',
+    httpMethod: 'get',
+    summary: "Get an agent's graph",
+    description:
+      "Retrieve an agent's full workflow graph (`{nodes, edges}`).\n\nThe graph is returned verbatim in the canonical dialect — the same shape `POST /v1/agents`\nand `PATCH /v1/agents/{agent_id}` accept — so a known-good agent can be read back, copied,\nand edited. Tool-backed nodes appear in their lowered `tool` form rather than the friendly\nv1 node types. A `draft` is visible only to its creator; the `published` version is visible\nacross its organization.",
+    stainlessPath: '(resource) agents > (method) retrieve_graph',
+    qualified: 'client.agents.retrieveGraph',
+    params: ['agent_id: string;', "version?: 'published' | 'draft';"],
+    response: "{ agent_id: string; graph: object; version: 'published' | 'draft'; }",
+    markdown:
+      "## retrieve_graph\n\n`client.agents.retrieveGraph(agent_id: string, version?: 'published' | 'draft'): { agent_id: string; graph: object; version: 'published' | 'draft'; }`\n\n**get** `/v1/agents/{agent_id}/graph`\n\nRetrieve an agent's full workflow graph (`{nodes, edges}`).\n\nThe graph is returned verbatim in the canonical dialect — the same shape `POST /v1/agents`\nand `PATCH /v1/agents/{agent_id}` accept — so a known-good agent can be read back, copied,\nand edited. Tool-backed nodes appear in their lowered `tool` form rather than the friendly\nv1 node types. A `draft` is visible only to its creator; the `published` version is visible\nacross its organization.\n\n### Parameters\n\n- `agent_id: string`\n  The ID of the agent whose graph to retrieve.\n\n- `version?: 'published' | 'draft'`\n  Version of the agent whose graph to retrieve. Use `published` for the live version, or `draft` for the latest unpublished changes. Defaults to `published`.\n\n### Returns\n\n- `{ agent_id: string; graph: object; version: 'published' | 'draft'; }`\n  An agent version's workflow graph in the canonical dialect.\n\n  - `agent_id: string`\n  - `graph: object`\n  - `version: 'published' | 'draft'`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.agents.retrieveGraph('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.agents.retrieveGraph',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.agents.retrieveGraph('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response.agent_id);",
+      },
+      python: {
+        method: 'agents.retrieve_graph',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.agents.retrieve_graph(\n    agent_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response.agent_id)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/agents/$AGENT_ID/graph \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
     name: 'create',
     endpoint: '/v1/agents/{agent_id}/runs',
     httpMethod: 'post',

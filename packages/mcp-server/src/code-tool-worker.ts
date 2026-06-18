@@ -170,6 +170,7 @@ const fuse = new Fuse(
     'client.agents.list',
     'client.agents.publish',
     'client.agents.retrieve',
+    'client.agents.retrieveGraph',
     'client.agents.update',
     'client.agents.runs.create',
     'client.agents.runs.retrieve',

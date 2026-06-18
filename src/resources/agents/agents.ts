@@ -81,6 +81,23 @@ export class Agents extends APIResource {
   publish(agentID: string, options?: RequestOptions): APIPromise<AgentPublishResponse> {
     return this._client.post(path`/v1/agents/${agentID}/publish`, options);
   }
+
+  /**
+   * Retrieve an agent's full workflow graph (`{nodes, edges}`).
+   *
+   * The graph is returned verbatim in the canonical dialect — the same shape
+   * `POST /v1/agents` and `PATCH /v1/agents/{agent_id}` accept — so a known-good
+   * agent can be read back, copied, and edited. Tool-backed nodes appear in their
+   * lowered `tool` form rather than the friendly v1 node types. A `draft` is visible
+   * only to its creator; the `published` version is visible across its organization.
+   */
+  retrieveGraph(
+    agentID: string,
+    query: AgentRetrieveGraphParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AgentRetrieveGraphResponse> {
+    return this._client.get(path`/v1/agents/${agentID}/graph`, { query, ...options });
+  }
 }
 
 /**
@@ -459,6 +476,29 @@ export interface AgentPublishResponse {
   description?: string | null;
 }
 
+/**
+ * An agent version's workflow graph in the canonical dialect.
+ */
+export interface AgentRetrieveGraphResponse {
+  /**
+   * Unique ID of the agent the graph belongs to.
+   */
+  agent_id: string;
+
+  /**
+   * Workflow graph (`{nodes, edges}`) in the canonical dialect — the same shape
+   * `create` and `update` accept. Treat it as an opaque object: it is returned
+   * verbatim, so tool-backed nodes appear in their lowered `tool` form rather than
+   * the friendly v1 node types. Read it back to copy and edit a known-good agent.
+   */
+  graph: { [key: string]: unknown };
+
+  /**
+   * Which version of the agent this graph is — `published` or `draft`.
+   */
+  version: 'published' | 'draft';
+}
+
 export interface AgentCreateParams {
   /**
    * Display name for the agent. Must be non-empty.
@@ -516,6 +556,14 @@ export interface AgentListParams {
   statuses?: Array<'published' | 'draft'> | null;
 }
 
+export interface AgentRetrieveGraphParams {
+  /**
+   * Version of the agent whose graph to retrieve. Use `published` for the live
+   * version, or `draft` for the latest unpublished changes. Defaults to `published`.
+   */
+  version?: 'published' | 'draft';
+}
+
 Agents.Runs = Runs;
 Agents.NodeTypes = NodeTypes;
 
@@ -526,10 +574,12 @@ export declare namespace Agents {
     type AgentUpdateResponse as AgentUpdateResponse,
     type AgentListResponse as AgentListResponse,
     type AgentPublishResponse as AgentPublishResponse,
+    type AgentRetrieveGraphResponse as AgentRetrieveGraphResponse,
     type AgentCreateParams as AgentCreateParams,
     type AgentRetrieveParams as AgentRetrieveParams,
     type AgentUpdateParams as AgentUpdateParams,
     type AgentListParams as AgentListParams,
+    type AgentRetrieveGraphParams as AgentRetrieveGraphParams,
   };
 
   export {

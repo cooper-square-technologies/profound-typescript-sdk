@@ -234,6 +234,7 @@ Types:
 - <code><a href="./src/resources/agents/agents.ts">AgentUpdateResponse</a></code>
 - <code><a href="./src/resources/agents/agents.ts">AgentListResponse</a></code>
 - <code><a href="./src/resources/agents/agents.ts">AgentPublishResponse</a></code>
+- <code><a href="./src/resources/agents/agents.ts">AgentRetrieveGraphResponse</a></code>
 
 Methods:
 
@@ -242,6 +243,7 @@ Methods:
 - <code title="patch /v1/agents/{agent_id}">client.agents.<a href="./src/resources/agents/agents.ts">update</a>(agentID, { ...params }) -> AgentUpdateResponse</code>
 - <code title="get /v1/agents">client.agents.<a href="./src/resources/agents/agents.ts">list</a>({ ...params }) -> AgentListResponse</code>
 - <code title="post /v1/agents/{agent_id}/publish">client.agents.<a href="./src/resources/agents/agents.ts">publish</a>(agentID) -> AgentPublishResponse</code>
+- <code title="get /v1/agents/{agent_id}/graph">client.agents.<a href="./src/resources/agents/agents.ts">retrieveGraph</a>(agentID, { ...params }) -> AgentRetrieveGraphResponse</code>
 
 ## Runs
 

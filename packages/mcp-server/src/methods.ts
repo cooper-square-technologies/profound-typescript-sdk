@@ -389,6 +389,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/agents/{agent_id}/publish',
   },
   {
+    clientCallName: 'client.agents.retrieveGraph',
+    fullyQualifiedName: 'agents.retrieveGraph',
+    httpMethod: 'get',
+    httpPath: '/v1/agents/{agent_id}/graph',
+  },
+  {
     clientCallName: 'client.agents.runs.create',
     fullyQualifiedName: 'agents.runs.create',
     httpMethod: 'post',

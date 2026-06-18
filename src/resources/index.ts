@@ -8,10 +8,12 @@ export {
   type AgentUpdateResponse,
   type AgentListResponse,
   type AgentPublishResponse,
+  type AgentRetrieveGraphResponse,
   type AgentCreateParams,
   type AgentRetrieveParams,
   type AgentUpdateParams,
   type AgentListParams,
+  type AgentRetrieveGraphParams,
 } from './agents/agents';
 export { Content } from './content/content';
 export {

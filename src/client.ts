@@ -36,6 +36,8 @@ import {
   AgentListParams,
   AgentListResponse,
   AgentPublishResponse,
+  AgentRetrieveGraphParams,
+  AgentRetrieveGraphResponse,
   AgentRetrieveParams,
   AgentRetrieveResponse,
   AgentUpdateParams,
@@ -952,10 +954,12 @@ export declare namespace Profound {
     type AgentUpdateResponse as AgentUpdateResponse,
     type AgentListResponse as AgentListResponse,
     type AgentPublishResponse as AgentPublishResponse,
+    type AgentRetrieveGraphResponse as AgentRetrieveGraphResponse,
     type AgentCreateParams as AgentCreateParams,
     type AgentRetrieveParams as AgentRetrieveParams,
     type AgentUpdateParams as AgentUpdateParams,
     type AgentListParams as AgentListParams,
+    type AgentRetrieveGraphParams as AgentRetrieveGraphParams,
   };
 
   export {
