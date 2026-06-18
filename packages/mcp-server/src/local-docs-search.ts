@@ -1033,6 +1033,63 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'query_sentiment_v2',
+    endpoint: '/v1/reports/sentiment-v2',
+    httpMethod: 'post',
+    summary: 'Query Sentiment V2',
+    description: 'Query Sentiment V2',
+    stainlessPath: '(resource) reports > (method) query_sentiment_v2',
+    qualified: 'client.reports.querySentimentV2',
+    params: [
+      'asset_name: string;',
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      "claim_filters?: { claim?: string; claim_id?: string; sentiment?: 'positive' | 'negative'; theme_id?: string; };",
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      "date_bucket?: 'daily' | 'weekly' | 'monthly';",
+      'exclude_topic_ids?: boolean;',
+      'group_by?: string[];',
+      'include_no_persona?: boolean;',
+      'include_no_tag?: boolean;',
+      'limit?: number;',
+      "metrics?: 'sentiment' | 'occurrence'[];",
+      'offset?: number;',
+      'owned_asset_names_to_exclude?: string[];',
+      'persona_ids?: string[];',
+      'platform_ids?: string[];',
+      'prompt_ids?: string[];',
+      'region_ids?: string[];',
+      'run_ids?: string[];',
+      "sort_by?: 'occurrence' | 'assessment_count' | 'positive_sentiment' | 'negative_sentiment';",
+      "sort_direction?: 'asc' | 'desc';",
+      "tag_filter_type?: 'all' | 'any';",
+      'tag_ids?: string[];',
+      'topic_ids?: string[];',
+    ],
+    response:
+      "{ info: { query: object; total_rows: number; }; data?: { scores: { current?: object; previous?: object; }; cited_website_hrefs?: string[]; date?: string; group_ids?: object; group_metadata?: { asset_name?: string; claim?: string; claim_id?: string; created_at?: string; model_id?: string; persona_id?: string; prompt_id?: string; prompt_text?: string; region_id?: string; run_id?: string; sentiment?: 'positive' | 'negative'; theme?: string; theme_id?: string; topic_id?: string; }; group_names?: object; prev_date?: string; total_count?: number; }[]; }",
+    markdown:
+      "## query_sentiment_v2\n\n`client.reports.querySentimentV2(asset_name: string, category_id: string, end_date: string, start_date: string, claim_filters?: { claim?: string; claim_id?: string; sentiment?: 'positive' | 'negative'; theme_id?: string; }, comparison_end_date?: string, comparison_start_date?: string, date_bucket?: 'daily' | 'weekly' | 'monthly', exclude_topic_ids?: boolean, group_by?: string[], include_no_persona?: boolean, include_no_tag?: boolean, limit?: number, metrics?: 'sentiment' | 'occurrence'[], offset?: number, owned_asset_names_to_exclude?: string[], persona_ids?: string[], platform_ids?: string[], prompt_ids?: string[], region_ids?: string[], run_ids?: string[], sort_by?: 'occurrence' | 'assessment_count' | 'positive_sentiment' | 'negative_sentiment', sort_direction?: 'asc' | 'desc', tag_filter_type?: 'all' | 'any', tag_ids?: string[], topic_ids?: string[]): { info: object; data?: object[]; }`\n\n**post** `/v1/reports/sentiment-v2`\n\nQuery Sentiment V2\n\n### Parameters\n\n- `asset_name: string`\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `claim_filters?: { claim?: string; claim_id?: string; sentiment?: 'positive' | 'negative'; theme_id?: string; }`\n  - `claim?: string`\n  - `claim_id?: string`\n  - `sentiment?: 'positive' | 'negative'`\n  - `theme_id?: string`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `date_bucket?: 'daily' | 'weekly' | 'monthly'`\n\n- `exclude_topic_ids?: boolean`\n\n- `group_by?: string[]`\n\n- `include_no_persona?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `limit?: number`\n\n- `metrics?: 'sentiment' | 'occurrence'[]`\n\n- `offset?: number`\n\n- `owned_asset_names_to_exclude?: string[]`\n\n- `persona_ids?: string[]`\n\n- `platform_ids?: string[]`\n\n- `prompt_ids?: string[]`\n\n- `region_ids?: string[]`\n\n- `run_ids?: string[]`\n\n- `sort_by?: 'occurrence' | 'assessment_count' | 'positive_sentiment' | 'negative_sentiment'`\n\n- `sort_direction?: 'asc' | 'desc'`\n\n- `tag_filter_type?: 'all' | 'any'`\n\n- `tag_ids?: string[]`\n\n- `topic_ids?: string[]`\n\n### Returns\n\n- `{ info: { query: object; total_rows: number; }; data?: { scores: { current?: object; previous?: object; }; cited_website_hrefs?: string[]; date?: string; group_ids?: object; group_metadata?: { asset_name?: string; claim?: string; claim_id?: string; created_at?: string; model_id?: string; persona_id?: string; prompt_id?: string; prompt_text?: string; region_id?: string; run_id?: string; sentiment?: 'positive' | 'negative'; theme?: string; theme_id?: string; topic_id?: string; }; group_names?: object; prev_date?: string; total_count?: number; }[]; }`\n\n  - `info: { query: object; total_rows: number; }`\n  - `data?: { scores: { current?: { assessment_count: number; negative_sentiment: number; positive_sentiment: number; occurrence?: number; response_count?: number; total_response_count?: number; }; previous?: { assessment_count: number; negative_sentiment: number; positive_sentiment: number; occurrence?: number; response_count?: number; total_response_count?: number; }; }; cited_website_hrefs?: string[]; date?: string; group_ids?: object; group_metadata?: { asset_name?: string; claim?: string; claim_id?: string; created_at?: string; model_id?: string; persona_id?: string; prompt_id?: string; prompt_text?: string; region_id?: string; run_id?: string; sentiment?: 'positive' | 'negative'; theme?: string; theme_id?: string; topic_id?: string; }; group_names?: object; prev_date?: string; total_count?: number; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.querySentimentV2({\n  asset_name: 'asset_name',\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.querySentimentV2',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.querySentimentV2({\n  asset_name: 'asset_name',\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.info);",
+      },
+      python: {
+        method: 'reports.query_sentiment_v2',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.query_sentiment_v2(\n    asset_name="asset_name",\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.info)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/sentiment-v2 \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "asset_name": "asset_name",\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
     name: 'query',
     endpoint: '/v1/reports/web-search-results',
     httpMethod: 'post',

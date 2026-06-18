@@ -149,6 +149,12 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/reports/query-fanouts',
   },
   {
+    clientCallName: 'client.reports.querySentimentV2',
+    fullyQualifiedName: 'reports.querySentimentV2',
+    httpMethod: 'post',
+    httpPath: '/v1/reports/sentiment-v2',
+  },
+  {
     clientCallName: 'client.reports.sentiment',
     fullyQualifiedName: 'reports.sentiment',
     httpMethod: 'post',

@@ -131,6 +131,7 @@ const fuse = new Fuse(
     'client.reports.getReferralsReport',
     'client.reports.getReferralsReportV2',
     'client.reports.queryFanouts',
+    'client.reports.querySentimentV2',
     'client.reports.sentiment',
     'client.reports.streamCitations',
     'client.reports.streamSentiment',

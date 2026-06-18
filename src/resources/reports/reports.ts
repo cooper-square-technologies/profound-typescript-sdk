@@ -221,6 +221,26 @@ export class Reports extends APIResource {
   }
 
   /**
+   * Query Sentiment V2
+   *
+   * @example
+   * ```ts
+   * const response = await client.reports.querySentimentV2({
+   *   asset_name: 'asset_name',
+   *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *   end_date: 'end_date',
+   *   start_date: 'start_date',
+   * });
+   * ```
+   */
+  querySentimentV2(
+    body: ReportQuerySentimentV2Params,
+    options?: RequestOptions,
+  ): APIPromise<ReportQuerySentimentV2Response> {
+    return this._client.post('/v1/reports/sentiment-v2', { body, ...options });
+  }
+
+  /**
    * Get citations for a given category.
    *
    * @example
@@ -485,6 +505,106 @@ export namespace ReportCitationsResponse {
     dimensions: Array<string>;
 
     metrics: Array<number | string | null>;
+  }
+}
+
+export interface ReportQuerySentimentV2Response {
+  info: ReportQuerySentimentV2Response.Info;
+
+  data?: Array<ReportQuerySentimentV2Response.Data>;
+}
+
+export namespace ReportQuerySentimentV2Response {
+  export interface Info {
+    query: { [key: string]: unknown };
+
+    total_rows: number;
+  }
+
+  export interface Data {
+    scores: Data.Scores;
+
+    cited_website_hrefs?: Array<string>;
+
+    date?: string | null;
+
+    group_ids?: { [key: string]: string } | null;
+
+    group_metadata?: Data.GroupMetadata | null;
+
+    group_names?: { [key: string]: string } | null;
+
+    prev_date?: string | null;
+
+    total_count?: number | null;
+  }
+
+  export namespace Data {
+    export interface Scores {
+      current?: Scores.Current | null;
+
+      previous?: Scores.Previous | null;
+    }
+
+    export namespace Scores {
+      export interface Current {
+        assessment_count: number;
+
+        negative_sentiment: number;
+
+        positive_sentiment: number;
+
+        occurrence?: number | null;
+
+        response_count?: number | null;
+
+        total_response_count?: number | null;
+      }
+
+      export interface Previous {
+        assessment_count: number;
+
+        negative_sentiment: number;
+
+        positive_sentiment: number;
+
+        occurrence?: number | null;
+
+        response_count?: number | null;
+
+        total_response_count?: number | null;
+      }
+    }
+
+    export interface GroupMetadata {
+      asset_name?: string | null;
+
+      claim?: string | null;
+
+      claim_id?: string | null;
+
+      created_at?: string | null;
+
+      model_id?: string | null;
+
+      persona_id?: string | null;
+
+      prompt_id?: string | null;
+
+      prompt_text?: string | null;
+
+      region_id?: string | null;
+
+      run_id?: string | null;
+
+      sentiment?: 'positive' | 'negative' | null;
+
+      theme?: string | null;
+
+      theme_id?: string | null;
+
+      topic_id?: string | null;
+    }
   }
 }
 
@@ -1141,6 +1261,74 @@ export interface ReportQueryFanoutsParams {
   pagination?: Shared.Pagination;
 }
 
+export interface ReportQuerySentimentV2Params {
+  asset_name: string;
+
+  category_id: string;
+
+  end_date: string;
+
+  start_date: string;
+
+  claim_filters?: ReportQuerySentimentV2Params.ClaimFilters | null;
+
+  comparison_end_date?: string | null;
+
+  comparison_start_date?: string | null;
+
+  date_bucket?: 'daily' | 'weekly' | 'monthly' | null;
+
+  exclude_topic_ids?: boolean;
+
+  group_by?: Array<
+    'topic' | 'region' | 'platform' | 'prompt' | 'persona' | 'tag' | 'theme' | 'claim' | 'run' | 'competitor'
+  > | null;
+
+  include_no_persona?: boolean;
+
+  include_no_tag?: boolean;
+
+  limit?: number | null;
+
+  metrics?: Array<'sentiment' | 'occurrence'> | null;
+
+  offset?: number;
+
+  owned_asset_names_to_exclude?: Array<string>;
+
+  persona_ids?: Array<string> | null;
+
+  platform_ids?: Array<string> | null;
+
+  prompt_ids?: Array<string> | null;
+
+  region_ids?: Array<string> | null;
+
+  run_ids?: Array<string> | null;
+
+  sort_by?: 'occurrence' | 'assessment_count' | 'positive_sentiment' | 'negative_sentiment' | null;
+
+  sort_direction?: 'asc' | 'desc';
+
+  tag_filter_type?: 'all' | 'any';
+
+  tag_ids?: Array<string> | null;
+
+  topic_ids?: Array<string> | null;
+}
+
+export namespace ReportQuerySentimentV2Params {
+  export interface ClaimFilters {
+    claim?: string | null;
+
+    claim_id?: string | null;
+
+    sentiment?: 'positive' | 'negative' | null;
+
+    theme_id?: string | null;
+  }
+}
+
 export interface ReportSentimentParams {
   category_id: string;
 
@@ -1707,6 +1895,7 @@ export declare namespace Reports {
     type TopicNameFilter as TopicNameFilter,
     type URLFilter as URLFilter,
     type ReportCitationsResponse as ReportCitationsResponse,
+    type ReportQuerySentimentV2Response as ReportQuerySentimentV2Response,
     type ReportStreamCitationsResponse as ReportStreamCitationsResponse,
     type ReportStreamSentimentResponse as ReportStreamSentimentResponse,
     type ReportStreamVisibilityResponse as ReportStreamVisibilityResponse,
@@ -1716,6 +1905,7 @@ export declare namespace Reports {
     type ReportGetReferralsReportParams as ReportGetReferralsReportParams,
     type ReportGetReferralsReportV2Params as ReportGetReferralsReportV2Params,
     type ReportQueryFanoutsParams as ReportQueryFanoutsParams,
+    type ReportQuerySentimentV2Params as ReportQuerySentimentV2Params,
     type ReportSentimentParams as ReportSentimentParams,
     type ReportStreamCitationsParams as ReportStreamCitationsParams,
     type ReportStreamSentimentParams as ReportStreamSentimentParams,
