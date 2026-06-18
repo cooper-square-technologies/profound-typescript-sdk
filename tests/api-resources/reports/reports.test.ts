@@ -269,8 +269,9 @@ describe('resource reports', () => {
     const responsePromise = client.reports.querySentimentV2({
       asset_name: 'asset_name',
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      end_date: 'end_date',
-      start_date: 'start_date',
+      end_date: '2019-12-27T18:11:19.117Z',
+      metrics: ['sentiment'],
+      start_date: '2019-12-27T18:11:19.117Z',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -286,35 +287,22 @@ describe('resource reports', () => {
     const response = await client.reports.querySentimentV2({
       asset_name: 'asset_name',
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      end_date: 'end_date',
-      start_date: 'start_date',
-      claim_filters: {
-        claim: 'claim',
-        claim_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        sentiment: 'positive',
-        theme_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      },
-      comparison_end_date: 'comparison_end_date',
-      comparison_start_date: 'comparison_start_date',
-      date_bucket: 'daily',
-      exclude_topic_ids: true,
-      group_by: ['topic'],
-      include_no_persona: true,
-      include_no_tag: true,
-      limit: 1,
+      end_date: '2019-12-27T18:11:19.117Z',
       metrics: ['sentiment'],
-      offset: 0,
-      owned_asset_names_to_exclude: ['string'],
-      persona_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
-      platform_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
-      prompt_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
-      region_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
-      run_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
-      sort_by: 'occurrence',
-      sort_direction: 'asc',
-      tag_filter_type: 'all',
-      tag_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
-      topic_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+      start_date: '2019-12-27T18:11:19.117Z',
+      comparison_end_date: '2019-12-27T18:11:19.117Z',
+      comparison_start_date: '2019-12-27T18:11:19.117Z',
+      date_interval: 'hour',
+      dimensions: ['date'],
+      filters: [
+        {
+          field: 'model_id',
+          operator: 'is',
+          value: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        },
+      ],
+      order_by: { occurrence: 'desc' },
+      pagination: { limit: 1, offset: 0 },
     });
   });
 

@@ -228,8 +228,9 @@ export class Reports extends APIResource {
    * const response = await client.reports.querySentimentV2({
    *   asset_name: 'asset_name',
    *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *   end_date: 'end_date',
-   *   start_date: 'start_date',
+   *   end_date: '2019-12-27T18:11:19.117Z',
+   *   metrics: ['sentiment'],
+   *   start_date: '2019-12-27T18:11:19.117Z',
    * });
    * ```
    */
@@ -1266,66 +1267,195 @@ export interface ReportQuerySentimentV2Params {
 
   category_id: string;
 
+  /**
+   * End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full
+   * ISO timestamp.
+   */
   end_date: string;
 
+  metrics: Array<'sentiment' | 'occurrence'>;
+
+  /**
+   * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or
+   * full ISO timestamp.
+   */
   start_date: string;
 
-  claim_filters?: ReportQuerySentimentV2Params.ClaimFilters | null;
-
+  /**
+   * End of the previous period for delta computation.
+   */
   comparison_end_date?: string | null;
 
+  /**
+   * Start of the previous period for delta computation.
+   */
   comparison_start_date?: string | null;
 
-  date_bucket?: 'daily' | 'weekly' | 'monthly' | null;
+  /**
+   * Date interval for the report. Only used when dimensions includes date.
+   */
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
 
-  exclude_topic_ids?: boolean;
+  /**
+   * Dimensions to group the report by.
+   */
+  dimensions?: Array<
+    | 'date'
+    | 'topic'
+    | 'region'
+    | 'model'
+    | 'prompt'
+    | 'persona'
+    | 'tag'
+    | 'theme'
+    | 'claim'
+    | 'run'
+    | 'asset_name'
+  >;
 
-  group_by?: Array<
-    'topic' | 'region' | 'platform' | 'prompt' | 'persona' | 'tag' | 'theme' | 'claim' | 'run' | 'competitor'
-  > | null;
+  /**
+   * List of filters to apply to the sentiment-v2 report.
+   */
+  filters?: Array<
+    | ReportQuerySentimentV2Params.SentimentV2ModelIDFilter
+    | ReportQuerySentimentV2Params.SentimentV2RegionIDFilter
+    | ReportQuerySentimentV2Params.SentimentV2TopicIDFilter
+    | ReportQuerySentimentV2Params.SentimentV2PromptIDFilter
+    | ReportQuerySentimentV2Params.SentimentV2PersonaIDFilter
+    | ReportQuerySentimentV2Params.SentimentV2TagIDFilter
+    | ReportQuerySentimentV2Params.SentimentV2RunIDFilter
+    | ReportQuerySentimentV2Params.SentimentV2ThemeIDFilter
+    | ReportQuerySentimentV2Params.SentimentV2ThemeFilter
+    | ReportQuerySentimentV2Params.SentimentV2ClaimIDFilter
+    | ReportQuerySentimentV2Params.SentimentV2ClaimFilter
+    | ReportQuerySentimentV2Params.SentimentV2SentimentFilter
+  >;
 
-  include_no_persona?: boolean;
+  /**
+   * Custom ordering of report results. Dimension keys must also be present in
+   * dimensions. The sentiment metric orders by positive_sentiment.
+   */
+  order_by?: { [key: string]: 'asc' | 'desc' };
 
-  include_no_tag?: boolean;
-
-  limit?: number | null;
-
-  metrics?: Array<'sentiment' | 'occurrence'> | null;
-
-  offset?: number;
-
-  owned_asset_names_to_exclude?: Array<string>;
-
-  persona_ids?: Array<string> | null;
-
-  platform_ids?: Array<string> | null;
-
-  prompt_ids?: Array<string> | null;
-
-  region_ids?: Array<string> | null;
-
-  run_ids?: Array<string> | null;
-
-  sort_by?: 'occurrence' | 'assessment_count' | 'positive_sentiment' | 'negative_sentiment' | null;
-
-  sort_direction?: 'asc' | 'desc';
-
-  tag_filter_type?: 'all' | 'any';
-
-  tag_ids?: Array<string> | null;
-
-  topic_ids?: Array<string> | null;
+  /**
+   * Pagination settings for the report results.
+   */
+  pagination?: Shared.Pagination;
 }
 
 export namespace ReportQuerySentimentV2Params {
-  export interface ClaimFilters {
-    claim?: string | null;
+  export interface SentimentV2ModelIDFilter {
+    field: 'model_id';
 
-    claim_id?: string | null;
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
 
-    sentiment?: 'positive' | 'negative' | null;
+    value: string | Array<string>;
+  }
 
-    theme_id?: string | null;
+  export interface SentimentV2RegionIDFilter {
+    field: 'region_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2TopicIDFilter {
+    field: 'topic_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2PromptIDFilter {
+    field: 'prompt_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2PersonaIDFilter {
+    field: 'persona_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2TagIDFilter {
+    field: 'tag_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2RunIDFilter {
+    field: 'run_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2ThemeIDFilter {
+    field: 'theme_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2ThemeFilter {
+    field: 'theme';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2ClaimIDFilter {
+    field: 'claim_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2ClaimFilter {
+    field: 'claim';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2SentimentFilter {
+    field: 'sentiment';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: 'positive' | 'negative' | Array<'positive' | 'negative'>;
   }
 }
 
