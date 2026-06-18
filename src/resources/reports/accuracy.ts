@@ -453,6 +453,8 @@ export namespace AccuracyCreateClusterVerificationPairsResponse {
     reasoning: string;
 
     snippetIdx: number;
+
+    sourceUpdatedAt?: string | null;
   }
 }
 
@@ -575,6 +577,10 @@ export interface AccuracyCreateOverviewResponse {
   trendByPeriod: Array<AccuracyCreateOverviewResponse.TrendByPeriod>;
 
   accuracyChange?: number | null;
+
+  availableSeries?: Array<AccuracyCreateOverviewResponse.AvailableSeries> | null;
+
+  themeTrend?: Array<AccuracyCreateOverviewResponse.ThemeTrend> | null;
 }
 
 export namespace AccuracyCreateOverviewResponse {
@@ -600,6 +606,34 @@ export namespace AccuracyCreateOverviewResponse {
     total: number;
 
     prevPeriodData?: unknown;
+  }
+
+  export interface AvailableSeries {
+    id: string;
+
+    label: string;
+
+    total: number;
+  }
+
+  export interface ThemeTrend {
+    id: string;
+
+    data: Array<ThemeTrend.Data>;
+
+    label: string;
+  }
+
+  export namespace ThemeTrend {
+    export interface Data {
+      accurate: number;
+
+      date: string;
+
+      ratio: number;
+
+      total: number;
+    }
   }
 }
 
@@ -919,6 +953,8 @@ export interface AccuracyCreateOverviewParams {
   date_bucket?: string | null;
 
   exclude_topic_ids?: boolean;
+
+  group_by?: 'period' | 'theme';
 
   include_no_persona?: boolean;
 

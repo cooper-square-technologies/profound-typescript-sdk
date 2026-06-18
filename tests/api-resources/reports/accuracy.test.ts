@@ -388,6 +388,7 @@ describe('resource accuracy', () => {
       comparison_start_date: 'comparison_start_date',
       date_bucket: 'date_bucket',
       exclude_topic_ids: true,
+      group_by: 'period',
       include_no_persona: true,
       include_no_tag: true,
       persona_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
