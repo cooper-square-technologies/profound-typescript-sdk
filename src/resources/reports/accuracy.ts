@@ -334,6 +334,10 @@ export namespace AccuracyCreateCitationAnalysisResponse {
 
     snippet: string;
 
+    kbPath?: string;
+
+    kbSnippet?: string;
+
     polarity?: 'positive' | 'negative';
   }
 }
@@ -519,8 +523,6 @@ export namespace AccuracyCreateInaccurateClustersResponse {
 
     clusterId: string;
 
-    description: string;
-
     kbPath: string;
 
     kbSnippet: string;
@@ -532,6 +534,8 @@ export namespace AccuracyCreateInaccurateClustersResponse {
     responseShare: number;
 
     totalResponseCount: number;
+
+    description?: string;
 
     responseShareDelta?: number | null;
   }
@@ -545,8 +549,6 @@ export interface AccuracyCreateInaccurateThemesResponse {
 
 export namespace AccuracyCreateInaccurateThemesResponse {
   export interface Data {
-    description: string;
-
     inaccurateClaimCount: number;
 
     inaccurateClusterCount: number;
@@ -564,6 +566,8 @@ export namespace AccuracyCreateInaccurateThemesResponse {
     totalClusterCount: number;
 
     totalResponseCount: number;
+
+    description?: string;
 
     responseShareDelta?: number | null;
   }
