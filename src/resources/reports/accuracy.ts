@@ -446,6 +446,8 @@ export namespace AccuracyCreateClusterExampleRunsResponse {
 
 export interface AccuracyCreateClusterVerificationPairsResponse {
   data: Array<AccuracyCreateClusterVerificationPairsResponse.Data>;
+
+  clusterReasoning?: string | null;
 }
 
 export namespace AccuracyCreateClusterVerificationPairsResponse {
