@@ -408,6 +408,8 @@ export namespace AccuracyCreateClaimCitationsResponse {
 
     citationShare: number;
 
+    domainCategory: string;
+
     hostname: string;
 
     href: string;
