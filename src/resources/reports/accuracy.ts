@@ -318,6 +318,11 @@ export namespace AccuracyCreateCitationAnalysisResponse {
    *
    * `attribute` carries the cluster's canonical claim so the drawer can group claims
    * the same way it groups sentiment attributes.
+   *
+   * `reasoning` and `evidence` mirror the cluster's FactCheck verdict: the "why it's
+   * inaccurate" explanation plus the refuting knowledge-base snippets surfaced in
+   * the Claim Analysis drawer. `kb_path`/`kb_snippet` are retained as the cluster's
+   * single representative snippet for backward compatibility.
    */
   export interface Claim {
     attribute: string;
@@ -334,11 +339,26 @@ export namespace AccuracyCreateCitationAnalysisResponse {
 
     snippet: string;
 
+    evidence?: Array<Claim.Evidence>;
+
     kbPath?: string;
 
     kbSnippet?: string;
 
     polarity?: 'positive' | 'negative';
+
+    reasoning?: string;
+  }
+
+  export namespace Claim {
+    /**
+     * A single knowledge-base ground-truth snippet that refutes a claim's cluster.
+     */
+    export interface Evidence {
+      kbPath?: string;
+
+      kbSnippet?: string;
+    }
   }
 }
 
