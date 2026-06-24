@@ -353,8 +353,14 @@ export namespace AccuracyCreateCitationAnalysisResponse {
   export namespace Claim {
     /**
      * A single knowledge-base ground-truth snippet that refutes a claim's cluster.
+     *
+     * `kb_name` is the official knowledge base name; `kb_path` is the document path
+     * within that knowledge base. `kb_name` is populated by the external API layer
+     * (which can reach the knowledge-base service) and defaults to `""` elsewhere.
      */
     export interface Evidence {
+      kbName?: string;
+
       kbPath?: string;
 
       kbSnippet?: string;
