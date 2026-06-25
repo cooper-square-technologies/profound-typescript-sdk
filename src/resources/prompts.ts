@@ -64,6 +64,9 @@ export namespace PromptAnswersResponse {
 
     search_triggered?: boolean | null;
 
+    /**
+     * Uses legacy sentiment data.
+     */
     sentiment_themes?: Array<Data.SentimentTheme> | null;
 
     tags?: Array<string> | null;
@@ -213,6 +216,9 @@ export namespace PromptAnswersParams {
 
     search_triggered?: boolean;
 
+    /**
+     * Uses legacy sentiment data.
+     */
     sentiment_themes?: boolean;
 
     tags?: boolean;
