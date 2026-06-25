@@ -1226,7 +1226,7 @@ export interface ReportQueryFanoutsParams {
    */
   end_date: string;
 
-  metrics: Array<'fanouts_per_execution' | 'total_fanouts' | 'share'>;
+  metrics: Array<'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'>;
 
   /**
    * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
