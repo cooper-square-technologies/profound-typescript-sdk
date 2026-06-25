@@ -580,6 +580,12 @@ export namespace ReportQuerySentimentV2Response {
     export interface GroupMetadata {
       asset_name?: string | null;
 
+      child_count_matching?: number | null;
+
+      child_count_total?: number | null;
+
+      child_matches_search?: boolean | null;
+
       claim?: string | null;
 
       claim_id?: string | null;
@@ -587,6 +593,8 @@ export namespace ReportQuerySentimentV2Response {
       created_at?: string | null;
 
       model_id?: string | null;
+
+      parent_matches_search?: boolean | null;
 
       persona_id?: string | null;
 
