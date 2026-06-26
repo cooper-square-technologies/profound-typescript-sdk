@@ -584,6 +584,81 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'answers_v2',
+    endpoint: '/v2/prompts/answers',
+    httpMethod: 'post',
+    summary: 'Query Answers V2',
+    description: 'Query Answers V2',
+    stainlessPath: '(resource) prompts > (method) answers_v2',
+    qualified: 'client.prompts.answersV2',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      'include?: string[];',
+      'limit?: number;',
+      'max_results?: number;',
+    ],
+    response: 'object',
+    markdown:
+      "## answers_v2\n\n`client.prompts.answersV2(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, include?: string[], limit?: number, max_results?: number): object`\n\n**post** `/v2/prompts/answers`\n\nQuery Answers V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `include?: string[]`\n  Which row fields to return: `run_id`, `date`, `model`, `topic`, `topic_id`, `region`, `persona`, `tags`, `prompt`, `prompt_id`, `response`, `mentions`, `citations`, `search_queries`, `analysis_types`. Omit for all of them. (Sentiment is not exposed on this endpoint yet.)\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.prompts.answersV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.prompts.answersV2',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.prompts.answersV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'prompts.answers_v2',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.prompts.answers_v2(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/prompts/answers \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'stream_answers_v2',
+    endpoint: '/v2/prompts/answers/stream',
+    httpMethod: 'post',
+    summary: 'Stream Answers V2',
+    description: 'Stream Answers V2',
+    stainlessPath: '(resource) prompts > (method) stream_answers_v2',
+    qualified: 'client.prompts.streamAnswersV2',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      'include?: string[];',
+      'limit?: number;',
+      'max_results?: number;',
+    ],
+    markdown:
+      "## stream_answers_v2\n\n`client.prompts.streamAnswersV2(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, include?: string[], limit?: number, max_results?: number): void`\n\n**post** `/v2/prompts/answers/stream`\n\nStream Answers V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `include?: string[]`\n  Which row fields to return: `run_id`, `date`, `model`, `topic`, `topic_id`, `region`, `persona`, `tags`, `prompt`, `prompt_id`, `response`, `mentions`, `citations`, `search_queries`, `analysis_types`. Omit for all of them. (Sentiment is not exposed on this endpoint yet.)\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nawait client.prompts.streamAnswersV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n})\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.prompts.streamAnswersV2',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.prompts.streamAnswersV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});",
+      },
+      python: {
+        method: 'prompts.stream_answers_v2',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nclient.prompts.stream_answers_v2(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/prompts/answers/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
     name: 'citations',
     endpoint: '/v1/reports/citations',
     httpMethod: 'post',
@@ -1033,6 +1108,173 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'query_fanouts_v2',
+    endpoint: '/v2/reports/query-fanouts',
+    httpMethod: 'post',
+    summary: 'Query Fanouts V2',
+    description: 'Query Fanouts V2',
+    stainlessPath: '(resource) reports > (method) query_fanouts_v2',
+    qualified: 'client.reports.queryFanoutsV2',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      "group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[];",
+      "interval?: 'day' | 'week' | 'month';",
+      'limit?: number;',
+      'max_results?: number;',
+      "metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[];",
+      "sort?: { field: string; dir?: 'asc' | 'desc'; };",
+    ],
+    response: 'object',
+    markdown:
+      "## query_fanouts_v2\n\n`client.reports.queryFanoutsV2(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[], interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[], sort?: { field: string; dir?: 'asc' | 'desc'; }): object`\n\n**post** `/v2/reports/query-fanouts`\n\nQuery Fanouts V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[]`\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[]`\n\n- `sort?: { field: string; dir?: 'asc' | 'desc'; }`\n  - `field: string`\n  - `dir?: 'asc' | 'desc'`\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.queryFanoutsV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.queryFanoutsV2',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.queryFanoutsV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'reports.query_fanouts_v2',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.query_fanouts_v2(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/query-fanouts \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'stream_citations_v2',
+    endpoint: '/v2/reports/citations/stream',
+    httpMethod: 'post',
+    summary: 'Stream Citations V2',
+    description: 'Stream Citations V2',
+    stainlessPath: '(resource) reports > (method) stream_citations_v2',
+    qualified: 'client.reports.streamCitationsV2',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      "group_by?: 'page' | 'date' | 'model' | 'topic' | 'region' | 'persona' | 'prompt'[];",
+      "interval?: 'day' | 'week' | 'month';",
+      'limit?: number;',
+      'max_results?: number;',
+      "metrics?: 'count' | 'citation_share' | 'rank' | 'first_cited_at'[];",
+      "scope?: 'all' | 'owned';",
+    ],
+    markdown:
+      "## stream_citations_v2\n\n`client.reports.streamCitationsV2(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'page' | 'date' | 'model' | 'topic' | 'region' | 'persona' | 'prompt'[], interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'count' | 'citation_share' | 'rank' | 'first_cited_at'[], scope?: 'all' | 'owned'): void`\n\n**post** `/v2/reports/citations/stream`\n\nStream Citations V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'page' | 'date' | 'model' | 'topic' | 'region' | 'persona' | 'prompt'[]`\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'count' | 'citation_share' | 'rank' | 'first_cited_at'[]`\n\n- `scope?: 'all' | 'owned'`\n  `all` (every cited domain) or `owned` (only your owned domains, for easy client-side totals).\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nawait client.reports.streamCitationsV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n})\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.streamCitationsV2',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.reports.streamCitationsV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});",
+      },
+      python: {
+        method: 'reports.stream_citations_v2',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nclient.reports.stream_citations_v2(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/citations/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'stream_visibility_v2',
+    endpoint: '/v2/reports/visibility/stream',
+    httpMethod: 'post',
+    summary: 'Stream Visibility V2',
+    description: 'Stream Visibility V2',
+    stainlessPath: '(resource) reports > (method) stream_visibility_v2',
+    qualified: 'client.reports.streamVisibilityV2',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'assets?: string | string[] | { op: string; value: string | string[]; };',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      "group_by?: 'date' | 'model' | 'topic' | 'region' | 'prompt' | 'persona' | 'tag'[];",
+      "interval?: 'day' | 'week' | 'month';",
+      'limit?: number;',
+      'max_results?: number;',
+      "metrics?: 'visibility_score' | 'share_of_voice' | 'average_position'[];",
+      "scope?: 'owned' | 'all';",
+      "sort?: { field?: 'visibility_score' | 'share_of_voice' | 'average_position'; };",
+    ],
+    markdown:
+      "## stream_visibility_v2\n\n`client.reports.streamVisibilityV2(category_id: string, end_date: string, start_date: string, assets?: string | string[] | { op: string; value: string | string[]; }, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'date' | 'model' | 'topic' | 'region' | 'prompt' | 'persona' | 'tag'[], interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'visibility_score' | 'share_of_voice' | 'average_position'[], scope?: 'owned' | 'all', sort?: { field?: 'visibility_score' | 'share_of_voice' | 'average_position'; }): void`\n\n**post** `/v2/reports/visibility/stream`\n\nStream Visibility V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `assets?: string | string[] | { op: string; value: string | string[]; }`\n  A name (`is`), a list (`in`), or {op,value} with op `is`/`in`/`not_in`.\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'date' | 'model' | 'topic' | 'region' | 'prompt' | 'persona' | 'tag'[]`\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'visibility_score' | 'share_of_voice' | 'average_position'[]`\n\n- `scope?: 'owned' | 'all'`\n\n- `sort?: { field?: 'visibility_score' | 'share_of_voice' | 'average_position'; }`\n  - `field?: 'visibility_score' | 'share_of_voice' | 'average_position'`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nawait client.reports.streamVisibilityV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n})\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.streamVisibilityV2',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.reports.streamVisibilityV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});",
+      },
+      python: {
+        method: 'reports.stream_visibility_v2',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nclient.reports.stream_visibility_v2(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/visibility/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'stream_sentiment_v2',
+    endpoint: '/v2/reports/sentiment/stream',
+    httpMethod: 'post',
+    summary: 'Stream Sentiment V2',
+    description: 'Stream Sentiment V2',
+    stainlessPath: '(resource) reports > (method) stream_sentiment_v2',
+    qualified: 'client.reports.streamSentimentV2',
+    params: [
+      'asset: string;',
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      'group_by?: string[];',
+      'include_cited_websites?: boolean;',
+      "interval?: 'day' | 'week' | 'month';",
+      'limit?: number;',
+      'max_results?: number;',
+      "metrics?: 'positive_sentiment' | 'negative_sentiment' | 'occurrence'[];",
+      "sort?: { dir?: 'asc' | 'desc'; field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment'; };",
+    ],
+    markdown:
+      "## stream_sentiment_v2\n\n`client.reports.streamSentimentV2(asset: string, category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: string[], include_cited_websites?: boolean, interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'positive_sentiment' | 'negative_sentiment' | 'occurrence'[], sort?: { dir?: 'asc' | 'desc'; field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment'; }): void`\n\n**post** `/v2/reports/sentiment/stream`\n\nStream Sentiment V2\n\n### Parameters\n\n- `asset: string`\n  The brand name to analyze (sentiment is extracted on name, not id).\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `comparison_end_date?: string`\n  YYYY-MM-DD, ET, inclusive (with start).\n\n- `comparison_start_date?: string`\n  YYYY-MM-DD, ET, inclusive (with end).\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: string[]`\n\n- `include_cited_websites?: boolean`\n  Return cited websites per row (only when grouping by `theme`/`claim`).\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'positive_sentiment' | 'negative_sentiment' | 'occurrence'[]`\n\n- `sort?: { dir?: 'asc' | 'desc'; field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment'; }`\n  - `dir?: 'asc' | 'desc'`\n  - `field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment'`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nawait client.reports.streamSentimentV2({\n  asset: 'asset',\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n})\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.streamSentimentV2',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.reports.streamSentimentV2({\n  asset: 'asset',\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});",
+      },
+      python: {
+        method: 'reports.stream_sentiment_v2',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nclient.reports.stream_sentiment_v2(\n    asset="asset",\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/sentiment/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "asset": "asset",\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
     name: 'query_sentiment_v2',
     endpoint: '/v1/reports/sentiment-v2',
     httpMethod: 'post',
@@ -1072,6 +1314,175 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.tryprofound.com/v1/reports/sentiment-v2 \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "asset_name": "asset_name",\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "sentiment"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "occurrence": "desc"\n          }\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'query_visibility',
+    endpoint: '/v2/reports/visibility',
+    httpMethod: 'post',
+    summary: 'Query Visibility V2',
+    description: 'Query Visibility V2',
+    stainlessPath: '(resource) reports > (method) query_visibility',
+    qualified: 'client.reports.queryVisibility',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'assets?: string | string[] | { op: string; value: string | string[]; };',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      "group_by?: 'date' | 'model' | 'topic' | 'region' | 'prompt' | 'persona' | 'tag'[];",
+      "interval?: 'day' | 'week' | 'month';",
+      'limit?: number;',
+      'max_results?: number;',
+      "metrics?: 'visibility_score' | 'share_of_voice' | 'average_position'[];",
+      "scope?: 'owned' | 'all';",
+      "sort?: { field?: 'visibility_score' | 'share_of_voice' | 'average_position'; };",
+    ],
+    response: 'object',
+    markdown:
+      "## query_visibility\n\n`client.reports.queryVisibility(category_id: string, end_date: string, start_date: string, assets?: string | string[] | { op: string; value: string | string[]; }, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'date' | 'model' | 'topic' | 'region' | 'prompt' | 'persona' | 'tag'[], interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'visibility_score' | 'share_of_voice' | 'average_position'[], scope?: 'owned' | 'all', sort?: { field?: 'visibility_score' | 'share_of_voice' | 'average_position'; }): object`\n\n**post** `/v2/reports/visibility`\n\nQuery Visibility V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `assets?: string | string[] | { op: string; value: string | string[]; }`\n  A name (`is`), a list (`in`), or {op,value} with op `is`/`in`/`not_in`.\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'date' | 'model' | 'topic' | 'region' | 'prompt' | 'persona' | 'tag'[]`\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'visibility_score' | 'share_of_voice' | 'average_position'[]`\n\n- `scope?: 'owned' | 'all'`\n\n- `sort?: { field?: 'visibility_score' | 'share_of_voice' | 'average_position'; }`\n  - `field?: 'visibility_score' | 'share_of_voice' | 'average_position'`\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.queryVisibility({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.queryVisibility',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.queryVisibility({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'reports.query_visibility',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.query_visibility(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/visibility \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'query_citations',
+    endpoint: '/v2/reports/citations',
+    httpMethod: 'post',
+    summary: 'Query Citations V2',
+    description: 'Query Citations V2',
+    stainlessPath: '(resource) reports > (method) query_citations',
+    qualified: 'client.reports.queryCitations',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      "group_by?: 'page' | 'date' | 'model' | 'topic' | 'region' | 'persona' | 'prompt'[];",
+      "interval?: 'day' | 'week' | 'month';",
+      'limit?: number;',
+      'max_results?: number;',
+      "metrics?: 'count' | 'citation_share' | 'rank' | 'first_cited_at'[];",
+      "scope?: 'all' | 'owned';",
+    ],
+    response: 'object',
+    markdown:
+      "## query_citations\n\n`client.reports.queryCitations(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'page' | 'date' | 'model' | 'topic' | 'region' | 'persona' | 'prompt'[], interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'count' | 'citation_share' | 'rank' | 'first_cited_at'[], scope?: 'all' | 'owned'): object`\n\n**post** `/v2/reports/citations`\n\nQuery Citations V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'page' | 'date' | 'model' | 'topic' | 'region' | 'persona' | 'prompt'[]`\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'count' | 'citation_share' | 'rank' | 'first_cited_at'[]`\n\n- `scope?: 'all' | 'owned'`\n  `all` (every cited domain) or `owned` (only your owned domains, for easy client-side totals).\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.queryCitations({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.queryCitations',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.queryCitations({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'reports.query_citations',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.query_citations(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/citations \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'query_sentiment',
+    endpoint: '/v2/reports/sentiment',
+    httpMethod: 'post',
+    summary: 'Query Sentiment V2',
+    description: 'Query Sentiment V2',
+    stainlessPath: '(resource) reports > (method) query_sentiment',
+    qualified: 'client.reports.querySentiment',
+    params: [
+      'asset: string;',
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      'group_by?: string[];',
+      'include_cited_websites?: boolean;',
+      "interval?: 'day' | 'week' | 'month';",
+      'limit?: number;',
+      'max_results?: number;',
+      "metrics?: 'positive_sentiment' | 'negative_sentiment' | 'occurrence'[];",
+      "sort?: { dir?: 'asc' | 'desc'; field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment'; };",
+    ],
+    response: 'object',
+    markdown:
+      "## query_sentiment\n\n`client.reports.querySentiment(asset: string, category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: string[], include_cited_websites?: boolean, interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'positive_sentiment' | 'negative_sentiment' | 'occurrence'[], sort?: { dir?: 'asc' | 'desc'; field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment'; }): object`\n\n**post** `/v2/reports/sentiment`\n\nQuery Sentiment V2\n\n### Parameters\n\n- `asset: string`\n  The brand name to analyze (sentiment is extracted on name, not id).\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `comparison_end_date?: string`\n  YYYY-MM-DD, ET, inclusive (with start).\n\n- `comparison_start_date?: string`\n  YYYY-MM-DD, ET, inclusive (with end).\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: string[]`\n\n- `include_cited_websites?: boolean`\n  Return cited websites per row (only when grouping by `theme`/`claim`).\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'positive_sentiment' | 'negative_sentiment' | 'occurrence'[]`\n\n- `sort?: { dir?: 'asc' | 'desc'; field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment'; }`\n  - `dir?: 'asc' | 'desc'`\n  - `field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment'`\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.querySentiment({\n  asset: 'asset',\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.querySentiment',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.querySentiment({\n  asset: 'asset',\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'reports.query_sentiment',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.query_sentiment(\n    asset="asset",\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/sentiment \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "asset": "asset",\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'stream_query_fanouts',
+    endpoint: '/v2/reports/query-fanouts/stream',
+    httpMethod: 'post',
+    summary: 'Stream Query Fanouts V2',
+    description: 'Stream Query Fanouts V2',
+    stainlessPath: '(resource) reports > (method) stream_query_fanouts',
+    qualified: 'client.reports.streamQueryFanouts',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      "group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[];",
+      "interval?: 'day' | 'week' | 'month';",
+      'limit?: number;',
+      'max_results?: number;',
+      "metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[];",
+      "sort?: { field: string; dir?: 'asc' | 'desc'; };",
+    ],
+    markdown:
+      "## stream_query_fanouts\n\n`client.reports.streamQueryFanouts(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[], interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[], sort?: { field: string; dir?: 'asc' | 'desc'; }): void`\n\n**post** `/v2/reports/query-fanouts/stream`\n\nStream Query Fanouts V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[]`\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[]`\n\n- `sort?: { field: string; dir?: 'asc' | 'desc'; }`\n  - `field: string`\n  - `dir?: 'asc' | 'desc'`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nawait client.reports.streamQueryFanouts({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n})\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.streamQueryFanouts',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.reports.streamQueryFanouts({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});",
+      },
+      python: {
+        method: 'reports.stream_query_fanouts',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nclient.reports.stream_query_fanouts(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/query-fanouts/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
       },
     },
   },

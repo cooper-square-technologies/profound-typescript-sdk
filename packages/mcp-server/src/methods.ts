@@ -113,6 +113,18 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/prompts/answers',
   },
   {
+    clientCallName: 'client.prompts.answersV2',
+    fullyQualifiedName: 'prompts.answersV2',
+    httpMethod: 'post',
+    httpPath: '/v2/prompts/answers',
+  },
+  {
+    clientCallName: 'client.prompts.streamAnswersV2',
+    fullyQualifiedName: 'prompts.streamAnswersV2',
+    httpMethod: 'post',
+    httpPath: '/v2/prompts/answers/stream',
+  },
+  {
     clientCallName: 'client.reports.citations',
     fullyQualifiedName: 'reports.citations',
     httpMethod: 'post',
@@ -143,16 +155,40 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v2/reports/referrals',
   },
   {
+    clientCallName: 'client.reports.queryCitations',
+    fullyQualifiedName: 'reports.queryCitations',
+    httpMethod: 'post',
+    httpPath: '/v2/reports/citations',
+  },
+  {
     clientCallName: 'client.reports.queryFanouts',
     fullyQualifiedName: 'reports.queryFanouts',
     httpMethod: 'post',
     httpPath: '/v1/reports/query-fanouts',
   },
   {
+    clientCallName: 'client.reports.queryFanoutsV2',
+    fullyQualifiedName: 'reports.queryFanoutsV2',
+    httpMethod: 'post',
+    httpPath: '/v2/reports/query-fanouts',
+  },
+  {
+    clientCallName: 'client.reports.querySentiment',
+    fullyQualifiedName: 'reports.querySentiment',
+    httpMethod: 'post',
+    httpPath: '/v2/reports/sentiment',
+  },
+  {
     clientCallName: 'client.reports.querySentimentV2',
     fullyQualifiedName: 'reports.querySentimentV2',
     httpMethod: 'post',
     httpPath: '/v1/reports/sentiment-v2',
+  },
+  {
+    clientCallName: 'client.reports.queryVisibility',
+    fullyQualifiedName: 'reports.queryVisibility',
+    httpMethod: 'post',
+    httpPath: '/v2/reports/visibility',
   },
   {
     clientCallName: 'client.reports.sentiment',
@@ -167,16 +203,40 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/reports/citations/stream',
   },
   {
+    clientCallName: 'client.reports.streamCitationsV2',
+    fullyQualifiedName: 'reports.streamCitationsV2',
+    httpMethod: 'post',
+    httpPath: '/v2/reports/citations/stream',
+  },
+  {
+    clientCallName: 'client.reports.streamQueryFanouts',
+    fullyQualifiedName: 'reports.streamQueryFanouts',
+    httpMethod: 'post',
+    httpPath: '/v2/reports/query-fanouts/stream',
+  },
+  {
     clientCallName: 'client.reports.streamSentiment',
     fullyQualifiedName: 'reports.streamSentiment',
     httpMethod: 'post',
     httpPath: '/v1/reports/sentiment/stream',
   },
   {
+    clientCallName: 'client.reports.streamSentimentV2',
+    fullyQualifiedName: 'reports.streamSentimentV2',
+    httpMethod: 'post',
+    httpPath: '/v2/reports/sentiment/stream',
+  },
+  {
     clientCallName: 'client.reports.streamVisibility',
     fullyQualifiedName: 'reports.streamVisibility',
     httpMethod: 'post',
     httpPath: '/v1/reports/visibility/stream',
+  },
+  {
+    clientCallName: 'client.reports.streamVisibilityV2',
+    fullyQualifiedName: 'reports.streamVisibilityV2',
+    httpMethod: 'post',
+    httpPath: '/v2/reports/visibility/stream',
   },
   {
     clientCallName: 'client.reports.visibility',

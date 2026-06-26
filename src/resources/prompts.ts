@@ -3,6 +3,7 @@
 import { APIResource } from '../core/resource';
 import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 
 export class Prompts extends APIResource {
@@ -11,6 +12,24 @@ export class Prompts extends APIResource {
    */
   answers(body: PromptAnswersParams, options?: RequestOptions): APIPromise<PromptAnswersResponse> {
     return this._client.post('/v1/prompts/answers', { body, ...options });
+  }
+
+  /**
+   * Query Answers V2
+   */
+  answersV2(body: PromptAnswersV2Params, options?: RequestOptions): APIPromise<PromptAnswersV2Response> {
+    return this._client.post('/v2/prompts/answers', { body, ...options });
+  }
+
+  /**
+   * Stream Answers V2
+   */
+  streamAnswersV2(body: PromptStreamAnswersV2Params, options?: RequestOptions): APIPromise<void> {
+    return this._client.post('/v2/prompts/answers/stream', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 }
 
@@ -122,6 +141,8 @@ export namespace PromptAnswersResponse {
     total_rows: number;
   }
 }
+
+export type PromptAnswersV2Response = { [key: string]: unknown };
 
 export interface PromptAnswersParams {
   category_id: string;
@@ -236,9 +257,160 @@ export namespace PromptAnswersParams {
   }
 }
 
+export interface PromptAnswersV2Params {
+  category_id: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  end_date: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  start_date: string;
+
+  cursor?: string | null;
+
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  filter?: PromptAnswersV2Params.Filter | null;
+
+  /**
+   * Which row fields to return: `run_id`, `date`, `model`, `topic`, `topic_id`,
+   * `region`, `persona`, `tags`, `prompt`, `prompt_id`, `response`, `mentions`,
+   * `citations`, `search_queries`, `analysis_types`. Omit for all of them.
+   * (Sentiment is not exposed on this endpoint yet.)
+   */
+  include?: Array<
+    | 'run_id'
+    | 'date'
+    | 'model'
+    | 'topic'
+    | 'topic_id'
+    | 'persona'
+    | 'region'
+    | 'tags'
+    | 'prompt'
+    | 'prompt_id'
+    | 'response'
+    | 'mentions'
+    | 'citations'
+    | 'search_queries'
+    | 'analysis_types'
+  > | null;
+
+  /**
+   * Page size; default 10, max 50.
+   */
+  limit?: number | null;
+
+  /**
+   * Stream endpoint only: cap the number of streamed rows (default: all).
+   */
+  max_results?: number | null;
+}
+
+export namespace PromptAnswersV2Params {
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  export interface Filter {
+    and?: Array<unknown> | null;
+
+    field?: string | null;
+
+    not?: unknown;
+
+    op?: string | null;
+
+    or?: Array<unknown> | null;
+
+    value?: unknown;
+  }
+}
+
+export interface PromptStreamAnswersV2Params {
+  category_id: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  end_date: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  start_date: string;
+
+  cursor?: string | null;
+
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  filter?: PromptStreamAnswersV2Params.Filter | null;
+
+  /**
+   * Which row fields to return: `run_id`, `date`, `model`, `topic`, `topic_id`,
+   * `region`, `persona`, `tags`, `prompt`, `prompt_id`, `response`, `mentions`,
+   * `citations`, `search_queries`, `analysis_types`. Omit for all of them.
+   * (Sentiment is not exposed on this endpoint yet.)
+   */
+  include?: Array<
+    | 'run_id'
+    | 'date'
+    | 'model'
+    | 'topic'
+    | 'topic_id'
+    | 'persona'
+    | 'region'
+    | 'tags'
+    | 'prompt'
+    | 'prompt_id'
+    | 'response'
+    | 'mentions'
+    | 'citations'
+    | 'search_queries'
+    | 'analysis_types'
+  > | null;
+
+  /**
+   * Page size; default 10, max 50.
+   */
+  limit?: number | null;
+
+  /**
+   * Stream endpoint only: cap the number of streamed rows (default: all).
+   */
+  max_results?: number | null;
+}
+
+export namespace PromptStreamAnswersV2Params {
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  export interface Filter {
+    and?: Array<unknown> | null;
+
+    field?: string | null;
+
+    not?: unknown;
+
+    op?: string | null;
+
+    or?: Array<unknown> | null;
+
+    value?: unknown;
+  }
+}
+
 export declare namespace Prompts {
   export {
     type PromptAnswersResponse as PromptAnswersResponse,
+    type PromptAnswersV2Response as PromptAnswersV2Response,
     type PromptAnswersParams as PromptAnswersParams,
+    type PromptAnswersV2Params as PromptAnswersV2Params,
+    type PromptStreamAnswersV2Params as PromptStreamAnswersV2Params,
   };
 }

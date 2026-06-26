@@ -66,4 +66,76 @@ describe('resource prompts', () => {
       pagination: { limit: 1, offset: 0 },
     });
   });
+
+  // Mock server tests are disabled
+  test.skip('answersV2: only required params', async () => {
+    const responsePromise = client.prompts.answersV2({
+      category_id: 'category_id',
+      end_date: 'end_date',
+      start_date: 'start_date',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
+  test.skip('answersV2: required and optional params', async () => {
+    const response = await client.prompts.answersV2({
+      category_id: 'category_id',
+      end_date: 'end_date',
+      start_date: 'start_date',
+      cursor: 'cursor',
+      filter: {
+        and: [],
+        field: 'field',
+        op: 'op',
+        or: [],
+        value: {},
+      },
+      include: ['run_id'],
+      limit: 1,
+      max_results: 1,
+    });
+  });
+
+  // Mock server tests are disabled
+  test.skip('streamAnswersV2: only required params', async () => {
+    const responsePromise = client.prompts.streamAnswersV2({
+      category_id: 'category_id',
+      end_date: 'end_date',
+      start_date: 'start_date',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
+  test.skip('streamAnswersV2: required and optional params', async () => {
+    const response = await client.prompts.streamAnswersV2({
+      category_id: 'category_id',
+      end_date: 'end_date',
+      start_date: 'start_date',
+      cursor: 'cursor',
+      filter: {
+        and: [],
+        field: 'field',
+        op: 'op',
+        or: [],
+        value: {},
+      },
+      include: ['run_id'],
+      limit: 1,
+      max_results: 1,
+    });
+  });
 });

@@ -44,7 +44,14 @@ export {
   type OrganizationListAssetsParams,
   type OrganizationRegionsParams,
 } from './organizations/organizations';
-export { Prompts, type PromptAnswersResponse, type PromptAnswersParams } from './prompts';
+export {
+  Prompts,
+  type PromptAnswersResponse,
+  type PromptAnswersV2Response,
+  type PromptAnswersParams,
+  type PromptAnswersV2Params,
+  type PromptStreamAnswersV2Params,
+} from './prompts';
 export {
   Reports,
   type HostnameFilter,
@@ -57,7 +64,11 @@ export {
   type TopicNameFilter,
   type URLFilter,
   type ReportCitationsResponse,
+  type ReportQueryCitationsResponse,
+  type ReportQueryFanoutsV2Response,
+  type ReportQuerySentimentResponse,
   type ReportQuerySentimentV2Response,
+  type ReportQueryVisibilityResponse,
   type ReportStreamCitationsResponse,
   type ReportStreamSentimentResponse,
   type ReportStreamVisibilityResponse,
@@ -66,11 +77,19 @@ export {
   type ReportGetBotsReportV2Params,
   type ReportGetReferralsReportParams,
   type ReportGetReferralsReportV2Params,
+  type ReportQueryCitationsParams,
   type ReportQueryFanoutsParams,
+  type ReportQueryFanoutsV2Params,
+  type ReportQuerySentimentParams,
   type ReportQuerySentimentV2Params,
+  type ReportQueryVisibilityParams,
   type ReportSentimentParams,
   type ReportStreamCitationsParams,
+  type ReportStreamCitationsV2Params,
+  type ReportStreamQueryFanoutsParams,
   type ReportStreamSentimentParams,
+  type ReportStreamSentimentV2Params,
   type ReportStreamVisibilityParams,
+  type ReportStreamVisibilityV2Params,
   type ReportVisibilityParams,
 } from './reports/reports';

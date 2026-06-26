@@ -20,7 +20,14 @@ import { APIPromise } from './core/api-promise';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
-import { PromptAnswersParams, PromptAnswersResponse, Prompts } from './resources/prompts';
+import {
+  PromptAnswersParams,
+  PromptAnswersResponse,
+  PromptAnswersV2Params,
+  PromptAnswersV2Response,
+  PromptStreamAnswersV2Params,
+  Prompts,
+} from './resources/prompts';
 import { readEnv } from './internal/utils/env';
 import {
   type LogLevel,
@@ -83,18 +90,30 @@ import {
   ReportGetReferralsReportParams,
   ReportGetReferralsReportV2Params,
   ReportInfo,
+  ReportQueryCitationsParams,
+  ReportQueryCitationsResponse,
   ReportQueryFanoutsParams,
+  ReportQueryFanoutsV2Params,
+  ReportQueryFanoutsV2Response,
+  ReportQuerySentimentParams,
+  ReportQuerySentimentResponse,
   ReportQuerySentimentV2Params,
   ReportQuerySentimentV2Response,
+  ReportQueryVisibilityParams,
+  ReportQueryVisibilityResponse,
   ReportResponse,
   ReportResult,
   ReportSentimentParams,
   ReportStreamCitationsParams,
   ReportStreamCitationsResponse,
+  ReportStreamCitationsV2Params,
+  ReportStreamQueryFanoutsParams,
   ReportStreamSentimentParams,
   ReportStreamSentimentResponse,
+  ReportStreamSentimentV2Params,
   ReportStreamVisibilityParams,
   ReportStreamVisibilityResponse,
+  ReportStreamVisibilityV2Params,
   ReportVisibilityParams,
   Reports,
   RootDomainFilter,
@@ -910,7 +929,10 @@ export declare namespace Profound {
   export {
     Prompts as Prompts,
     type PromptAnswersResponse as PromptAnswersResponse,
+    type PromptAnswersV2Response as PromptAnswersV2Response,
     type PromptAnswersParams as PromptAnswersParams,
+    type PromptAnswersV2Params as PromptAnswersV2Params,
+    type PromptStreamAnswersV2Params as PromptStreamAnswersV2Params,
   };
 
   export {
@@ -925,7 +947,11 @@ export declare namespace Profound {
     type TopicNameFilter as TopicNameFilter,
     type URLFilter as URLFilter,
     type ReportCitationsResponse as ReportCitationsResponse,
+    type ReportQueryCitationsResponse as ReportQueryCitationsResponse,
+    type ReportQueryFanoutsV2Response as ReportQueryFanoutsV2Response,
+    type ReportQuerySentimentResponse as ReportQuerySentimentResponse,
     type ReportQuerySentimentV2Response as ReportQuerySentimentV2Response,
+    type ReportQueryVisibilityResponse as ReportQueryVisibilityResponse,
     type ReportStreamCitationsResponse as ReportStreamCitationsResponse,
     type ReportStreamSentimentResponse as ReportStreamSentimentResponse,
     type ReportStreamVisibilityResponse as ReportStreamVisibilityResponse,
@@ -934,12 +960,20 @@ export declare namespace Profound {
     type ReportGetBotsReportV2Params as ReportGetBotsReportV2Params,
     type ReportGetReferralsReportParams as ReportGetReferralsReportParams,
     type ReportGetReferralsReportV2Params as ReportGetReferralsReportV2Params,
+    type ReportQueryCitationsParams as ReportQueryCitationsParams,
     type ReportQueryFanoutsParams as ReportQueryFanoutsParams,
+    type ReportQueryFanoutsV2Params as ReportQueryFanoutsV2Params,
+    type ReportQuerySentimentParams as ReportQuerySentimentParams,
     type ReportQuerySentimentV2Params as ReportQuerySentimentV2Params,
+    type ReportQueryVisibilityParams as ReportQueryVisibilityParams,
     type ReportSentimentParams as ReportSentimentParams,
     type ReportStreamCitationsParams as ReportStreamCitationsParams,
+    type ReportStreamCitationsV2Params as ReportStreamCitationsV2Params,
+    type ReportStreamQueryFanoutsParams as ReportStreamQueryFanoutsParams,
     type ReportStreamSentimentParams as ReportStreamSentimentParams,
+    type ReportStreamSentimentV2Params as ReportStreamSentimentV2Params,
     type ReportStreamVisibilityParams as ReportStreamVisibilityParams,
+    type ReportStreamVisibilityV2Params as ReportStreamVisibilityV2Params,
     type ReportVisibilityParams as ReportVisibilityParams,
   };
 

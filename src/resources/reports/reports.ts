@@ -204,6 +204,25 @@ export class Reports extends APIResource {
   }
 
   /**
+   * Query Citations V2
+   *
+   * @example
+   * ```ts
+   * const response = await client.reports.queryCitations({
+   *   category_id: 'category_id',
+   *   end_date: 'end_date',
+   *   start_date: 'start_date',
+   * });
+   * ```
+   */
+  queryCitations(
+    body: ReportQueryCitationsParams,
+    options?: RequestOptions,
+  ): APIPromise<ReportQueryCitationsResponse> {
+    return this._client.post('/v2/reports/citations', { body, ...options });
+  }
+
+  /**
    * Query Fanouts
    *
    * @example
@@ -218,6 +237,45 @@ export class Reports extends APIResource {
    */
   queryFanouts(body: ReportQueryFanoutsParams, options?: RequestOptions): APIPromise<ReportResponse> {
     return this._client.post('/v1/reports/query-fanouts', { body, ...options });
+  }
+
+  /**
+   * Query Fanouts V2
+   *
+   * @example
+   * ```ts
+   * const response = await client.reports.queryFanoutsV2({
+   *   category_id: 'category_id',
+   *   end_date: 'end_date',
+   *   start_date: 'start_date',
+   * });
+   * ```
+   */
+  queryFanoutsV2(
+    body: ReportQueryFanoutsV2Params,
+    options?: RequestOptions,
+  ): APIPromise<ReportQueryFanoutsV2Response> {
+    return this._client.post('/v2/reports/query-fanouts', { body, ...options });
+  }
+
+  /**
+   * Query Sentiment V2
+   *
+   * @example
+   * ```ts
+   * const response = await client.reports.querySentiment({
+   *   asset: 'asset',
+   *   category_id: 'category_id',
+   *   end_date: 'end_date',
+   *   start_date: 'start_date',
+   * });
+   * ```
+   */
+  querySentiment(
+    body: ReportQuerySentimentParams,
+    options?: RequestOptions,
+  ): APIPromise<ReportQuerySentimentResponse> {
+    return this._client.post('/v2/reports/sentiment', { body, ...options });
   }
 
   /**
@@ -239,6 +297,25 @@ export class Reports extends APIResource {
     options?: RequestOptions,
   ): APIPromise<ReportQuerySentimentV2Response> {
     return this._client.post('/v1/reports/sentiment-v2', { body, ...options });
+  }
+
+  /**
+   * Query Visibility V2
+   *
+   * @example
+   * ```ts
+   * const response = await client.reports.queryVisibility({
+   *   category_id: 'category_id',
+   *   end_date: 'end_date',
+   *   start_date: 'start_date',
+   * });
+   * ```
+   */
+  queryVisibility(
+    body: ReportQueryVisibilityParams,
+    options?: RequestOptions,
+  ): APIPromise<ReportQueryVisibilityResponse> {
+    return this._client.post('/v2/reports/visibility', { body, ...options });
   }
 
   /**
@@ -284,6 +361,46 @@ export class Reports extends APIResource {
   }
 
   /**
+   * Stream Citations V2
+   *
+   * @example
+   * ```ts
+   * await client.reports.streamCitationsV2({
+   *   category_id: 'category_id',
+   *   end_date: 'end_date',
+   *   start_date: 'start_date',
+   * });
+   * ```
+   */
+  streamCitationsV2(body: ReportStreamCitationsV2Params, options?: RequestOptions): APIPromise<void> {
+    return this._client.post('/v2/reports/citations/stream', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
+  }
+
+  /**
+   * Stream Query Fanouts V2
+   *
+   * @example
+   * ```ts
+   * await client.reports.streamQueryFanouts({
+   *   category_id: 'category_id',
+   *   end_date: 'end_date',
+   *   start_date: 'start_date',
+   * });
+   * ```
+   */
+  streamQueryFanouts(body: ReportStreamQueryFanoutsParams, options?: RequestOptions): APIPromise<void> {
+    return this._client.post('/v2/reports/query-fanouts/stream', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
+  }
+
+  /**
    * Stream Sentiment
    *
    * @example
@@ -309,6 +426,27 @@ export class Reports extends APIResource {
   }
 
   /**
+   * Stream Sentiment V2
+   *
+   * @example
+   * ```ts
+   * await client.reports.streamSentimentV2({
+   *   asset: 'asset',
+   *   category_id: 'category_id',
+   *   end_date: 'end_date',
+   *   start_date: 'start_date',
+   * });
+   * ```
+   */
+  streamSentimentV2(body: ReportStreamSentimentV2Params, options?: RequestOptions): APIPromise<void> {
+    return this._client.post('/v2/reports/sentiment/stream', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
+  }
+
+  /**
    * Stream Visibility
    *
    * @example
@@ -331,6 +469,26 @@ export class Reports extends APIResource {
       headers: buildHeaders([{ Accept: 'text/event-stream' }, options?.headers]),
       stream: true,
     }) as APIPromise<Stream<ReportStreamVisibilityResponse>>;
+  }
+
+  /**
+   * Stream Visibility V2
+   *
+   * @example
+   * ```ts
+   * await client.reports.streamVisibilityV2({
+   *   category_id: 'category_id',
+   *   end_date: 'end_date',
+   *   start_date: 'start_date',
+   * });
+   * ```
+   */
+  streamVisibilityV2(body: ReportStreamVisibilityV2Params, options?: RequestOptions): APIPromise<void> {
+    return this._client.post('/v2/reports/visibility/stream', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
 
   /**
@@ -509,6 +667,12 @@ export namespace ReportCitationsResponse {
   }
 }
 
+export type ReportQueryCitationsResponse = { [key: string]: unknown };
+
+export type ReportQueryFanoutsV2Response = { [key: string]: unknown };
+
+export type ReportQuerySentimentResponse = { [key: string]: unknown };
+
 export interface ReportQuerySentimentV2Response {
   info: ReportQuerySentimentV2Response.Info;
 
@@ -616,6 +780,8 @@ export namespace ReportQuerySentimentV2Response {
     }
   }
 }
+
+export type ReportQueryVisibilityResponse = { [key: string]: unknown };
 
 /**
  * A streamed citations report row payload.
@@ -1218,6 +1384,68 @@ export namespace ReportGetReferralsReportV2Params {
   }
 }
 
+export interface ReportQueryCitationsParams {
+  category_id: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  end_date: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  start_date: string;
+
+  cursor?: string | null;
+
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  filter?: ReportQueryCitationsParams.Filter | null;
+
+  group_by?: Array<'page' | 'date' | 'model' | 'topic' | 'region' | 'persona' | 'prompt'>;
+
+  interval?: 'day' | 'week' | 'month';
+
+  /**
+   * Page size; default 10, max 50.
+   */
+  limit?: number | null;
+
+  /**
+   * Stream endpoint only: cap the number of streamed rows (default: all).
+   */
+  max_results?: number | null;
+
+  metrics?: Array<'count' | 'citation_share' | 'rank' | 'first_cited_at'> | null;
+
+  /**
+   * `all` (every cited domain) or `owned` (only your owned domains, for easy
+   * client-side totals).
+   */
+  scope?: 'all' | 'owned';
+}
+
+export namespace ReportQueryCitationsParams {
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  export interface Filter {
+    and?: Array<unknown> | null;
+
+    field?: string | null;
+
+    not?: unknown;
+
+    op?: string | null;
+
+    or?: Array<unknown> | null;
+
+    value?: unknown;
+  }
+}
+
 export interface ReportQueryFanoutsParams {
   category_id: string;
 
@@ -1268,6 +1496,166 @@ export interface ReportQueryFanoutsParams {
    * Pagination settings for the report results.
    */
   pagination?: Shared.Pagination;
+}
+
+export interface ReportQueryFanoutsV2Params {
+  category_id: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  end_date: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  start_date: string;
+
+  cursor?: string | null;
+
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  filter?: ReportQueryFanoutsV2Params.Filter | null;
+
+  group_by?: Array<'date' | 'model' | 'region' | 'prompt' | 'query'>;
+
+  interval?: 'day' | 'week' | 'month';
+
+  /**
+   * Page size; default 10, max 50.
+   */
+  limit?: number | null;
+
+  /**
+   * Stream endpoint only: cap the number of streamed rows (default: all).
+   */
+  max_results?: number | null;
+
+  metrics?: Array<'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'> | null;
+
+  sort?: ReportQueryFanoutsV2Params.Sort | null;
+}
+
+export namespace ReportQueryFanoutsV2Params {
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  export interface Filter {
+    and?: Array<unknown> | null;
+
+    field?: string | null;
+
+    not?: unknown;
+
+    op?: string | null;
+
+    or?: Array<unknown> | null;
+
+    value?: unknown;
+  }
+
+  export interface Sort {
+    field: string;
+
+    dir?: 'asc' | 'desc';
+  }
+}
+
+export interface ReportQuerySentimentParams {
+  /**
+   * The brand name to analyze (sentiment is extracted on name, not id).
+   */
+  asset: string;
+
+  category_id: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  end_date: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  start_date: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive (with start).
+   */
+  comparison_end_date?: string | null;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive (with end).
+   */
+  comparison_start_date?: string | null;
+
+  cursor?: string | null;
+
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  filter?: ReportQuerySentimentParams.Filter | null;
+
+  group_by?: Array<
+    | 'date'
+    | 'model'
+    | 'topic'
+    | 'region'
+    | 'prompt'
+    | 'persona'
+    | 'tag'
+    | 'theme'
+    | 'claim'
+    | 'run'
+    | 'competitor'
+  >;
+
+  /**
+   * Return cited websites per row (only when grouping by `theme`/`claim`).
+   */
+  include_cited_websites?: boolean;
+
+  interval?: 'day' | 'week' | 'month';
+
+  /**
+   * Page size; default 10, max 50.
+   */
+  limit?: number | null;
+
+  /**
+   * Stream endpoint only: cap the number of streamed rows (default: all).
+   */
+  max_results?: number | null;
+
+  metrics?: Array<'positive_sentiment' | 'negative_sentiment' | 'occurrence'> | null;
+
+  sort?: ReportQuerySentimentParams.Sort;
+}
+
+export namespace ReportQuerySentimentParams {
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  export interface Filter {
+    and?: Array<unknown> | null;
+
+    field?: string | null;
+
+    not?: unknown;
+
+    op?: string | null;
+
+    or?: Array<unknown> | null;
+
+    value?: unknown;
+  }
+
+  export interface Sort {
+    dir?: 'asc' | 'desc';
+
+    field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment';
+  }
 }
 
 export interface ReportQuerySentimentV2Params {
@@ -1464,6 +1852,93 @@ export namespace ReportQuerySentimentV2Params {
     operator: 'is' | 'not_is' | 'in' | 'not_in';
 
     value: 'positive' | 'negative' | Array<'positive' | 'negative'>;
+  }
+}
+
+export interface ReportQueryVisibilityParams {
+  category_id: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  end_date: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  start_date: string;
+
+  /**
+   * A name (`is`), a list (`in`), or {op,value} with op `is`/`in`/`not_in`.
+   */
+  assets?: string | Array<string> | ReportQueryVisibilityParams.EntityFilterClause | null;
+
+  cursor?: string | null;
+
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  filter?: ReportQueryVisibilityParams.Filter | null;
+
+  group_by?: Array<'date' | 'model' | 'topic' | 'region' | 'prompt' | 'persona' | 'tag'>;
+
+  interval?: 'day' | 'week' | 'month';
+
+  /**
+   * Page size; default 10, max 50.
+   */
+  limit?: number | null;
+
+  /**
+   * Stream endpoint only: cap the number of streamed rows (default: all).
+   */
+  max_results?: number | null;
+
+  metrics?: Array<'visibility_score' | 'share_of_voice' | 'average_position'> | null;
+
+  scope?: 'owned' | 'all';
+
+  sort?: ReportQueryVisibilityParams.Sort;
+}
+
+export namespace ReportQueryVisibilityParams {
+  /**
+   * Select/exclude the entity, applied outside the data `filter` tree.
+   */
+  export interface EntityFilterClause {
+    op:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  export interface Filter {
+    and?: Array<unknown> | null;
+
+    field?: string | null;
+
+    not?: unknown;
+
+    op?: string | null;
+
+    or?: Array<unknown> | null;
+
+    value?: unknown;
+  }
+
+  export interface Sort {
+    field?: 'visibility_score' | 'share_of_voice' | 'average_position';
   }
 }
 
@@ -1696,6 +2171,132 @@ export namespace ReportStreamCitationsParams {
   }
 }
 
+export interface ReportStreamCitationsV2Params {
+  category_id: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  end_date: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  start_date: string;
+
+  cursor?: string | null;
+
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  filter?: ReportStreamCitationsV2Params.Filter | null;
+
+  group_by?: Array<'page' | 'date' | 'model' | 'topic' | 'region' | 'persona' | 'prompt'>;
+
+  interval?: 'day' | 'week' | 'month';
+
+  /**
+   * Page size; default 10, max 50.
+   */
+  limit?: number | null;
+
+  /**
+   * Stream endpoint only: cap the number of streamed rows (default: all).
+   */
+  max_results?: number | null;
+
+  metrics?: Array<'count' | 'citation_share' | 'rank' | 'first_cited_at'> | null;
+
+  /**
+   * `all` (every cited domain) or `owned` (only your owned domains, for easy
+   * client-side totals).
+   */
+  scope?: 'all' | 'owned';
+}
+
+export namespace ReportStreamCitationsV2Params {
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  export interface Filter {
+    and?: Array<unknown> | null;
+
+    field?: string | null;
+
+    not?: unknown;
+
+    op?: string | null;
+
+    or?: Array<unknown> | null;
+
+    value?: unknown;
+  }
+}
+
+export interface ReportStreamQueryFanoutsParams {
+  category_id: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  end_date: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  start_date: string;
+
+  cursor?: string | null;
+
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  filter?: ReportStreamQueryFanoutsParams.Filter | null;
+
+  group_by?: Array<'date' | 'model' | 'region' | 'prompt' | 'query'>;
+
+  interval?: 'day' | 'week' | 'month';
+
+  /**
+   * Page size; default 10, max 50.
+   */
+  limit?: number | null;
+
+  /**
+   * Stream endpoint only: cap the number of streamed rows (default: all).
+   */
+  max_results?: number | null;
+
+  metrics?: Array<'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'> | null;
+
+  sort?: ReportStreamQueryFanoutsParams.Sort | null;
+}
+
+export namespace ReportStreamQueryFanoutsParams {
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  export interface Filter {
+    and?: Array<unknown> | null;
+
+    field?: string | null;
+
+    not?: unknown;
+
+    op?: string | null;
+
+    or?: Array<unknown> | null;
+
+    value?: unknown;
+  }
+
+  export interface Sort {
+    field: string;
+
+    dir?: 'asc' | 'desc';
+  }
+}
+
 export interface ReportStreamSentimentParams {
   category_id: string;
 
@@ -1817,6 +2418,102 @@ export namespace ReportStreamSentimentParams {
   }
 }
 
+export interface ReportStreamSentimentV2Params {
+  /**
+   * The brand name to analyze (sentiment is extracted on name, not id).
+   */
+  asset: string;
+
+  category_id: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  end_date: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  start_date: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive (with start).
+   */
+  comparison_end_date?: string | null;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive (with end).
+   */
+  comparison_start_date?: string | null;
+
+  cursor?: string | null;
+
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  filter?: ReportStreamSentimentV2Params.Filter | null;
+
+  group_by?: Array<
+    | 'date'
+    | 'model'
+    | 'topic'
+    | 'region'
+    | 'prompt'
+    | 'persona'
+    | 'tag'
+    | 'theme'
+    | 'claim'
+    | 'run'
+    | 'competitor'
+  >;
+
+  /**
+   * Return cited websites per row (only when grouping by `theme`/`claim`).
+   */
+  include_cited_websites?: boolean;
+
+  interval?: 'day' | 'week' | 'month';
+
+  /**
+   * Page size; default 10, max 50.
+   */
+  limit?: number | null;
+
+  /**
+   * Stream endpoint only: cap the number of streamed rows (default: all).
+   */
+  max_results?: number | null;
+
+  metrics?: Array<'positive_sentiment' | 'negative_sentiment' | 'occurrence'> | null;
+
+  sort?: ReportStreamSentimentV2Params.Sort;
+}
+
+export namespace ReportStreamSentimentV2Params {
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  export interface Filter {
+    and?: Array<unknown> | null;
+
+    field?: string | null;
+
+    not?: unknown;
+
+    op?: string | null;
+
+    or?: Array<unknown> | null;
+
+    value?: unknown;
+  }
+
+  export interface Sort {
+    dir?: 'asc' | 'desc';
+
+    field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment';
+  }
+}
+
 export interface ReportStreamVisibilityParams {
   category_id: string;
 
@@ -1914,6 +2611,93 @@ export namespace ReportStreamVisibilityParams {
       | 'not_contains_case_insensitive';
 
     value: string | Array<string>;
+  }
+}
+
+export interface ReportStreamVisibilityV2Params {
+  category_id: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  end_date: string;
+
+  /**
+   * YYYY-MM-DD, ET, inclusive
+   */
+  start_date: string;
+
+  /**
+   * A name (`is`), a list (`in`), or {op,value} with op `is`/`in`/`not_in`.
+   */
+  assets?: string | Array<string> | ReportStreamVisibilityV2Params.EntityFilterClause | null;
+
+  cursor?: string | null;
+
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  filter?: ReportStreamVisibilityV2Params.Filter | null;
+
+  group_by?: Array<'date' | 'model' | 'topic' | 'region' | 'prompt' | 'persona' | 'tag'>;
+
+  interval?: 'day' | 'week' | 'month';
+
+  /**
+   * Page size; default 10, max 50.
+   */
+  limit?: number | null;
+
+  /**
+   * Stream endpoint only: cap the number of streamed rows (default: all).
+   */
+  max_results?: number | null;
+
+  metrics?: Array<'visibility_score' | 'share_of_voice' | 'average_position'> | null;
+
+  scope?: 'owned' | 'all';
+
+  sort?: ReportStreamVisibilityV2Params.Sort;
+}
+
+export namespace ReportStreamVisibilityV2Params {
+  /**
+   * Select/exclude the entity, applied outside the data `filter` tree.
+   */
+  export interface EntityFilterClause {
+    op:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
+  export interface Filter {
+    and?: Array<unknown> | null;
+
+    field?: string | null;
+
+    not?: unknown;
+
+    op?: string | null;
+
+    or?: Array<unknown> | null;
+
+    value?: unknown;
+  }
+
+  export interface Sort {
+    field?: 'visibility_score' | 'share_of_voice' | 'average_position';
   }
 }
 
@@ -2033,7 +2817,11 @@ export declare namespace Reports {
     type TopicNameFilter as TopicNameFilter,
     type URLFilter as URLFilter,
     type ReportCitationsResponse as ReportCitationsResponse,
+    type ReportQueryCitationsResponse as ReportQueryCitationsResponse,
+    type ReportQueryFanoutsV2Response as ReportQueryFanoutsV2Response,
+    type ReportQuerySentimentResponse as ReportQuerySentimentResponse,
     type ReportQuerySentimentV2Response as ReportQuerySentimentV2Response,
+    type ReportQueryVisibilityResponse as ReportQueryVisibilityResponse,
     type ReportStreamCitationsResponse as ReportStreamCitationsResponse,
     type ReportStreamSentimentResponse as ReportStreamSentimentResponse,
     type ReportStreamVisibilityResponse as ReportStreamVisibilityResponse,
@@ -2042,12 +2830,20 @@ export declare namespace Reports {
     type ReportGetBotsReportV2Params as ReportGetBotsReportV2Params,
     type ReportGetReferralsReportParams as ReportGetReferralsReportParams,
     type ReportGetReferralsReportV2Params as ReportGetReferralsReportV2Params,
+    type ReportQueryCitationsParams as ReportQueryCitationsParams,
     type ReportQueryFanoutsParams as ReportQueryFanoutsParams,
+    type ReportQueryFanoutsV2Params as ReportQueryFanoutsV2Params,
+    type ReportQuerySentimentParams as ReportQuerySentimentParams,
     type ReportQuerySentimentV2Params as ReportQuerySentimentV2Params,
+    type ReportQueryVisibilityParams as ReportQueryVisibilityParams,
     type ReportSentimentParams as ReportSentimentParams,
     type ReportStreamCitationsParams as ReportStreamCitationsParams,
+    type ReportStreamCitationsV2Params as ReportStreamCitationsV2Params,
+    type ReportStreamQueryFanoutsParams as ReportStreamQueryFanoutsParams,
     type ReportStreamSentimentParams as ReportStreamSentimentParams,
+    type ReportStreamSentimentV2Params as ReportStreamSentimentV2Params,
     type ReportStreamVisibilityParams as ReportStreamVisibilityParams,
+    type ReportStreamVisibilityV2Params as ReportStreamVisibilityV2Params,
     type ReportVisibilityParams as ReportVisibilityParams,
   };
 
