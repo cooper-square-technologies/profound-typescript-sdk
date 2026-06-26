@@ -1880,7 +1880,7 @@ export interface ReportQueryVisibilityParams {
    */
   filter?: ReportQueryVisibilityParams.Filter | null;
 
-  group_by?: Array<'date' | 'model' | 'topic' | 'region' | 'prompt' | 'persona' | 'tag'>;
+  group_by?: Array<'date' | 'model' | 'topic' | 'region' | 'prompt' | 'persona'>;
 
   interval?: 'day' | 'week' | 'month';
 
@@ -2639,7 +2639,7 @@ export interface ReportStreamVisibilityV2Params {
    */
   filter?: ReportStreamVisibilityV2Params.Filter | null;
 
-  group_by?: Array<'date' | 'model' | 'topic' | 'region' | 'prompt' | 'persona' | 'tag'>;
+  group_by?: Array<'date' | 'model' | 'topic' | 'region' | 'prompt' | 'persona'>;
 
   interval?: 'day' | 'week' | 'month';
 
