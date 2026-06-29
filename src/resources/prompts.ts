@@ -280,8 +280,8 @@ export interface PromptAnswersV2Params {
   /**
    * Which row fields to return: `run_id`, `date`, `model`, `topic`, `topic_id`,
    * `region`, `persona`, `tags`, `prompt`, `prompt_id`, `response`, `mentions`,
-   * `citations`, `search_queries`, `analysis_types`. Omit for all of them.
-   * (Sentiment is not exposed on this endpoint yet.)
+   * `citations`, `search_queries`, `analysis_types`, `sentiment_claims`. Omit for
+   * all of them.
    */
   include?: Array<
     | 'run_id'
@@ -299,6 +299,7 @@ export interface PromptAnswersV2Params {
     | 'citations'
     | 'search_queries'
     | 'analysis_types'
+    | 'sentiment_claims'
   > | null;
 
   /**
@@ -354,8 +355,8 @@ export interface PromptStreamAnswersV2Params {
   /**
    * Which row fields to return: `run_id`, `date`, `model`, `topic`, `topic_id`,
    * `region`, `persona`, `tags`, `prompt`, `prompt_id`, `response`, `mentions`,
-   * `citations`, `search_queries`, `analysis_types`. Omit for all of them.
-   * (Sentiment is not exposed on this endpoint yet.)
+   * `citations`, `search_queries`, `analysis_types`, `sentiment_claims`. Omit for
+   * all of them.
    */
   include?: Array<
     | 'run_id'
@@ -373,6 +374,7 @@ export interface PromptStreamAnswersV2Params {
     | 'citations'
     | 'search_queries'
     | 'analysis_types'
+    | 'sentiment_claims'
   > | null;
 
   /**
