@@ -167,8 +167,8 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/reports/query-fanouts',
   },
   {
-    clientCallName: 'client.reports.queryFanoutsV2',
-    fullyQualifiedName: 'reports.queryFanoutsV2',
+    clientCallName: 'client.reports.queryQueryFanouts',
+    fullyQualifiedName: 'reports.queryQueryFanouts',
     httpMethod: 'post',
     httpPath: '/v2/reports/query-fanouts',
   },
@@ -177,12 +177,6 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'reports.querySentiment',
     httpMethod: 'post',
     httpPath: '/v2/reports/sentiment',
-  },
-  {
-    clientCallName: 'client.reports.querySentimentV2',
-    fullyQualifiedName: 'reports.querySentimentV2',
-    httpMethod: 'post',
-    httpPath: '/v1/reports/sentiment-v2',
   },
   {
     clientCallName: 'client.reports.queryVisibility',
@@ -195,6 +189,12 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'reports.sentiment',
     httpMethod: 'post',
     httpPath: '/v1/reports/sentiment',
+  },
+  {
+    clientCallName: 'client.reports.sentimentV2',
+    fullyQualifiedName: 'reports.sentimentV2',
+    httpMethod: 'post',
+    httpPath: '/v1/reports/sentiment-v2',
   },
   {
     clientCallName: 'client.reports.streamCitations',

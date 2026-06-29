@@ -304,8 +304,8 @@ describe('resource reports', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('queryFanoutsV2: only required params', async () => {
-    const responsePromise = client.reports.queryFanoutsV2({
+  test.skip('queryQueryFanouts: only required params', async () => {
+    const responsePromise = client.reports.queryQueryFanouts({
       category_id: 'category_id',
       end_date: 'end_date',
       start_date: 'start_date',
@@ -320,8 +320,8 @@ describe('resource reports', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('queryFanoutsV2: required and optional params', async () => {
-    const response = await client.reports.queryFanoutsV2({
+  test.skip('queryQueryFanouts: required and optional params', async () => {
+    const response = await client.reports.queryQueryFanouts({
       category_id: 'category_id',
       end_date: 'end_date',
       start_date: 'start_date',
@@ -383,48 +383,6 @@ describe('resource reports', () => {
       max_results: 1,
       metrics: ['positive_sentiment'],
       sort: { dir: 'asc', field: 'occurrence' },
-    });
-  });
-
-  // Mock server tests are disabled
-  test.skip('querySentimentV2: only required params', async () => {
-    const responsePromise = client.reports.querySentimentV2({
-      asset_name: 'asset_name',
-      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      end_date: '2019-12-27T18:11:19.117Z',
-      metrics: ['sentiment'],
-      start_date: '2019-12-27T18:11:19.117Z',
-    });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // Mock server tests are disabled
-  test.skip('querySentimentV2: required and optional params', async () => {
-    const response = await client.reports.querySentimentV2({
-      asset_name: 'asset_name',
-      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      end_date: '2019-12-27T18:11:19.117Z',
-      metrics: ['sentiment'],
-      start_date: '2019-12-27T18:11:19.117Z',
-      comparison_end_date: '2019-12-27T18:11:19.117Z',
-      comparison_start_date: '2019-12-27T18:11:19.117Z',
-      date_interval: 'hour',
-      dimensions: ['date'],
-      filters: [
-        {
-          field: 'model_id',
-          operator: 'is',
-          value: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        },
-      ],
-      order_by: { occurrence: 'desc' },
-      pagination: { limit: 1, offset: 0 },
     });
   });
 
@@ -503,6 +461,48 @@ describe('resource reports', () => {
         },
       ],
       order_by: { date: 'asc' },
+      pagination: { limit: 1, offset: 0 },
+    });
+  });
+
+  // Mock server tests are disabled
+  test.skip('sentimentV2: only required params', async () => {
+    const responsePromise = client.reports.sentimentV2({
+      asset_name: 'asset_name',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      end_date: '2019-12-27T18:11:19.117Z',
+      metrics: ['sentiment'],
+      start_date: '2019-12-27T18:11:19.117Z',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
+  test.skip('sentimentV2: required and optional params', async () => {
+    const response = await client.reports.sentimentV2({
+      asset_name: 'asset_name',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      end_date: '2019-12-27T18:11:19.117Z',
+      metrics: ['sentiment'],
+      start_date: '2019-12-27T18:11:19.117Z',
+      comparison_end_date: '2019-12-27T18:11:19.117Z',
+      comparison_start_date: '2019-12-27T18:11:19.117Z',
+      date_interval: 'hour',
+      dimensions: ['date'],
+      filters: [
+        {
+          field: 'model_id',
+          operator: 'is',
+          value: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+        },
+      ],
+      order_by: { occurrence: 'desc' },
       pagination: { limit: 1, offset: 0 },
     });
   });

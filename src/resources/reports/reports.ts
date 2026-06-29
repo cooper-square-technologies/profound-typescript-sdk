@@ -244,17 +244,17 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.reports.queryFanoutsV2({
+   * const response = await client.reports.queryQueryFanouts({
    *   category_id: 'category_id',
    *   end_date: 'end_date',
    *   start_date: 'start_date',
    * });
    * ```
    */
-  queryFanoutsV2(
-    body: ReportQueryFanoutsV2Params,
+  queryQueryFanouts(
+    body: ReportQueryQueryFanoutsParams,
     options?: RequestOptions,
-  ): APIPromise<ReportQueryFanoutsV2Response> {
+  ): APIPromise<ReportQueryQueryFanoutsResponse> {
     return this._client.post('/v2/reports/query-fanouts', { body, ...options });
   }
 
@@ -276,27 +276,6 @@ export class Reports extends APIResource {
     options?: RequestOptions,
   ): APIPromise<ReportQuerySentimentResponse> {
     return this._client.post('/v2/reports/sentiment', { body, ...options });
-  }
-
-  /**
-   * Query Sentiment V2
-   *
-   * @example
-   * ```ts
-   * const response = await client.reports.querySentimentV2({
-   *   asset_name: 'asset_name',
-   *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *   end_date: '2019-12-27T18:11:19.117Z',
-   *   metrics: ['sentiment'],
-   *   start_date: '2019-12-27T18:11:19.117Z',
-   * });
-   * ```
-   */
-  querySentimentV2(
-    body: ReportQuerySentimentV2Params,
-    options?: RequestOptions,
-  ): APIPromise<ReportQuerySentimentV2Response> {
-    return this._client.post('/v1/reports/sentiment-v2', { body, ...options });
   }
 
   /**
@@ -333,6 +312,27 @@ export class Reports extends APIResource {
    */
   sentiment(body: ReportSentimentParams, options?: RequestOptions): APIPromise<ReportResponse> {
     return this._client.post('/v1/reports/sentiment', { body, ...options });
+  }
+
+  /**
+   * Query Sentiment V2
+   *
+   * @example
+   * ```ts
+   * const response = await client.reports.sentimentV2({
+   *   asset_name: 'asset_name',
+   *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *   end_date: '2019-12-27T18:11:19.117Z',
+   *   metrics: ['sentiment'],
+   *   start_date: '2019-12-27T18:11:19.117Z',
+   * });
+   * ```
+   */
+  sentimentV2(
+    body: ReportSentimentV2Params,
+    options?: RequestOptions,
+  ): APIPromise<ReportSentimentV2Response> {
+    return this._client.post('/v1/reports/sentiment-v2', { body, ...options });
   }
 
   /**
@@ -669,17 +669,19 @@ export namespace ReportCitationsResponse {
 
 export type ReportQueryCitationsResponse = { [key: string]: unknown };
 
-export type ReportQueryFanoutsV2Response = { [key: string]: unknown };
+export type ReportQueryQueryFanoutsResponse = { [key: string]: unknown };
 
 export type ReportQuerySentimentResponse = { [key: string]: unknown };
 
-export interface ReportQuerySentimentV2Response {
-  info: ReportQuerySentimentV2Response.Info;
+export type ReportQueryVisibilityResponse = { [key: string]: unknown };
 
-  data?: Array<ReportQuerySentimentV2Response.Data>;
+export interface ReportSentimentV2Response {
+  info: ReportSentimentV2Response.Info;
+
+  data?: Array<ReportSentimentV2Response.Data>;
 }
 
-export namespace ReportQuerySentimentV2Response {
+export namespace ReportSentimentV2Response {
   export interface Info {
     query: { [key: string]: unknown };
 
@@ -780,8 +782,6 @@ export namespace ReportQuerySentimentV2Response {
     }
   }
 }
-
-export type ReportQueryVisibilityResponse = { [key: string]: unknown };
 
 /**
  * A streamed citations report row payload.
@@ -1498,7 +1498,7 @@ export interface ReportQueryFanoutsParams {
   pagination?: Shared.Pagination;
 }
 
-export interface ReportQueryFanoutsV2Params {
+export interface ReportQueryQueryFanoutsParams {
   category_id: string;
 
   /**
@@ -1516,7 +1516,7 @@ export interface ReportQueryFanoutsV2Params {
   /**
    * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
    */
-  filter?: ReportQueryFanoutsV2Params.Filter | null;
+  filter?: ReportQueryQueryFanoutsParams.Filter | null;
 
   group_by?: Array<'date' | 'model' | 'region' | 'prompt' | 'query'>;
 
@@ -1534,10 +1534,10 @@ export interface ReportQueryFanoutsV2Params {
 
   metrics?: Array<'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'> | null;
 
-  sort?: ReportQueryFanoutsV2Params.Sort | null;
+  sort?: ReportQueryQueryFanoutsParams.Sort | null;
 }
 
-export namespace ReportQueryFanoutsV2Params {
+export namespace ReportQueryQueryFanoutsParams {
   /**
    * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
    */
@@ -1655,203 +1655,6 @@ export namespace ReportQuerySentimentParams {
     dir?: 'asc' | 'desc';
 
     field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment';
-  }
-}
-
-export interface ReportQuerySentimentV2Params {
-  asset_name: string;
-
-  category_id: string;
-
-  /**
-   * End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full
-   * ISO timestamp.
-   */
-  end_date: string;
-
-  metrics: Array<'sentiment' | 'occurrence'>;
-
-  /**
-   * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or
-   * full ISO timestamp.
-   */
-  start_date: string;
-
-  /**
-   * End of the previous period for delta computation.
-   */
-  comparison_end_date?: string | null;
-
-  /**
-   * Start of the previous period for delta computation.
-   */
-  comparison_start_date?: string | null;
-
-  /**
-   * Date interval for the report. Only used when dimensions includes date.
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-
-  /**
-   * Dimensions to group the report by.
-   */
-  dimensions?: Array<
-    | 'date'
-    | 'topic'
-    | 'region'
-    | 'model'
-    | 'prompt'
-    | 'persona'
-    | 'tag'
-    | 'theme'
-    | 'claim'
-    | 'run'
-    | 'asset_name'
-  >;
-
-  /**
-   * List of filters to apply to the sentiment-v2 report.
-   */
-  filters?: Array<
-    | ReportQuerySentimentV2Params.SentimentV2ModelIDFilter
-    | ReportQuerySentimentV2Params.SentimentV2RegionIDFilter
-    | ReportQuerySentimentV2Params.SentimentV2TopicIDFilter
-    | ReportQuerySentimentV2Params.SentimentV2PromptIDFilter
-    | ReportQuerySentimentV2Params.SentimentV2PersonaIDFilter
-    | ReportQuerySentimentV2Params.SentimentV2TagIDFilter
-    | ReportQuerySentimentV2Params.SentimentV2RunIDFilter
-    | ReportQuerySentimentV2Params.SentimentV2ThemeIDFilter
-    | ReportQuerySentimentV2Params.SentimentV2ThemeFilter
-    | ReportQuerySentimentV2Params.SentimentV2ClaimIDFilter
-    | ReportQuerySentimentV2Params.SentimentV2ClaimFilter
-    | ReportQuerySentimentV2Params.SentimentV2SentimentFilter
-  >;
-
-  /**
-   * Custom ordering of report results. Dimension keys must also be present in
-   * dimensions. The sentiment metric orders by positive_sentiment.
-   */
-  order_by?: { [key: string]: 'asc' | 'desc' };
-
-  /**
-   * Pagination settings for the report results.
-   */
-  pagination?: Shared.Pagination;
-}
-
-export namespace ReportQuerySentimentV2Params {
-  export interface SentimentV2ModelIDFilter {
-    field: 'model_id';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2RegionIDFilter {
-    field: 'region_id';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2TopicIDFilter {
-    field: 'topic_id';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2PromptIDFilter {
-    field: 'prompt_id';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2PersonaIDFilter {
-    field: 'persona_id';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2TagIDFilter {
-    field: 'tag_id';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2RunIDFilter {
-    field: 'run_id';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2ThemeIDFilter {
-    field: 'theme_id';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2ThemeFilter {
-    field: 'theme';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2ClaimIDFilter {
-    field: 'claim_id';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2ClaimFilter {
-    field: 'claim';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2SentimentFilter {
-    field: 'sentiment';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: 'positive' | 'negative' | Array<'positive' | 'negative'>;
   }
 }
 
@@ -2060,6 +1863,203 @@ export namespace ReportSentimentParams {
       | 'not_contains_case_insensitive';
 
     value: string | Array<string>;
+  }
+}
+
+export interface ReportSentimentV2Params {
+  asset_name: string;
+
+  category_id: string;
+
+  /**
+   * End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full
+   * ISO timestamp.
+   */
+  end_date: string;
+
+  metrics: Array<'sentiment' | 'occurrence'>;
+
+  /**
+   * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or
+   * full ISO timestamp.
+   */
+  start_date: string;
+
+  /**
+   * End of the previous period for delta computation.
+   */
+  comparison_end_date?: string | null;
+
+  /**
+   * Start of the previous period for delta computation.
+   */
+  comparison_start_date?: string | null;
+
+  /**
+   * Date interval for the report. Only used when dimensions includes date.
+   */
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
+
+  /**
+   * Dimensions to group the report by.
+   */
+  dimensions?: Array<
+    | 'date'
+    | 'topic'
+    | 'region'
+    | 'model'
+    | 'prompt'
+    | 'persona'
+    | 'tag'
+    | 'theme'
+    | 'claim'
+    | 'run'
+    | 'asset_name'
+  >;
+
+  /**
+   * List of filters to apply to the sentiment-v2 report.
+   */
+  filters?: Array<
+    | ReportSentimentV2Params.SentimentV2ModelIDFilter
+    | ReportSentimentV2Params.SentimentV2RegionIDFilter
+    | ReportSentimentV2Params.SentimentV2TopicIDFilter
+    | ReportSentimentV2Params.SentimentV2PromptIDFilter
+    | ReportSentimentV2Params.SentimentV2PersonaIDFilter
+    | ReportSentimentV2Params.SentimentV2TagIDFilter
+    | ReportSentimentV2Params.SentimentV2RunIDFilter
+    | ReportSentimentV2Params.SentimentV2ThemeIDFilter
+    | ReportSentimentV2Params.SentimentV2ThemeFilter
+    | ReportSentimentV2Params.SentimentV2ClaimIDFilter
+    | ReportSentimentV2Params.SentimentV2ClaimFilter
+    | ReportSentimentV2Params.SentimentV2SentimentFilter
+  >;
+
+  /**
+   * Custom ordering of report results. Dimension keys must also be present in
+   * dimensions. The sentiment metric orders by positive_sentiment.
+   */
+  order_by?: { [key: string]: 'asc' | 'desc' };
+
+  /**
+   * Pagination settings for the report results.
+   */
+  pagination?: Shared.Pagination;
+}
+
+export namespace ReportSentimentV2Params {
+  export interface SentimentV2ModelIDFilter {
+    field: 'model_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2RegionIDFilter {
+    field: 'region_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2TopicIDFilter {
+    field: 'topic_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2PromptIDFilter {
+    field: 'prompt_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2PersonaIDFilter {
+    field: 'persona_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2TagIDFilter {
+    field: 'tag_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2RunIDFilter {
+    field: 'run_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2ThemeIDFilter {
+    field: 'theme_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2ThemeFilter {
+    field: 'theme';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2ClaimIDFilter {
+    field: 'claim_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2ClaimFilter {
+    field: 'claim';
+
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2SentimentFilter {
+    field: 'sentiment';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: 'positive' | 'negative' | Array<'positive' | 'negative'>;
   }
 }
 
@@ -2818,10 +2818,10 @@ export declare namespace Reports {
     type URLFilter as URLFilter,
     type ReportCitationsResponse as ReportCitationsResponse,
     type ReportQueryCitationsResponse as ReportQueryCitationsResponse,
-    type ReportQueryFanoutsV2Response as ReportQueryFanoutsV2Response,
+    type ReportQueryQueryFanoutsResponse as ReportQueryQueryFanoutsResponse,
     type ReportQuerySentimentResponse as ReportQuerySentimentResponse,
-    type ReportQuerySentimentV2Response as ReportQuerySentimentV2Response,
     type ReportQueryVisibilityResponse as ReportQueryVisibilityResponse,
+    type ReportSentimentV2Response as ReportSentimentV2Response,
     type ReportStreamCitationsResponse as ReportStreamCitationsResponse,
     type ReportStreamSentimentResponse as ReportStreamSentimentResponse,
     type ReportStreamVisibilityResponse as ReportStreamVisibilityResponse,
@@ -2832,11 +2832,11 @@ export declare namespace Reports {
     type ReportGetReferralsReportV2Params as ReportGetReferralsReportV2Params,
     type ReportQueryCitationsParams as ReportQueryCitationsParams,
     type ReportQueryFanoutsParams as ReportQueryFanoutsParams,
-    type ReportQueryFanoutsV2Params as ReportQueryFanoutsV2Params,
+    type ReportQueryQueryFanoutsParams as ReportQueryQueryFanoutsParams,
     type ReportQuerySentimentParams as ReportQuerySentimentParams,
-    type ReportQuerySentimentV2Params as ReportQuerySentimentV2Params,
     type ReportQueryVisibilityParams as ReportQueryVisibilityParams,
     type ReportSentimentParams as ReportSentimentParams,
+    type ReportSentimentV2Params as ReportSentimentV2Params,
     type ReportStreamCitationsParams as ReportStreamCitationsParams,
     type ReportStreamCitationsV2Params as ReportStreamCitationsV2Params,
     type ReportStreamQueryFanoutsParams as ReportStreamQueryFanoutsParams,

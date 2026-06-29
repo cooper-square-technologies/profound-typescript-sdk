@@ -104,10 +104,10 @@ Types:
 - <code><a href="./src/resources/reports/reports.ts">URLFilter</a></code>
 - <code><a href="./src/resources/reports/reports.ts">ReportCitationsResponse</a></code>
 - <code><a href="./src/resources/reports/reports.ts">ReportQueryCitationsResponse</a></code>
-- <code><a href="./src/resources/reports/reports.ts">ReportQueryFanoutsV2Response</a></code>
+- <code><a href="./src/resources/reports/reports.ts">ReportQueryQueryFanoutsResponse</a></code>
 - <code><a href="./src/resources/reports/reports.ts">ReportQuerySentimentResponse</a></code>
-- <code><a href="./src/resources/reports/reports.ts">ReportQuerySentimentV2Response</a></code>
 - <code><a href="./src/resources/reports/reports.ts">ReportQueryVisibilityResponse</a></code>
+- <code><a href="./src/resources/reports/reports.ts">ReportSentimentV2Response</a></code>
 - <code><a href="./src/resources/reports/reports.ts">ReportStreamCitationsResponse</a></code>
 - <code><a href="./src/resources/reports/reports.ts">ReportStreamSentimentResponse</a></code>
 - <code><a href="./src/resources/reports/reports.ts">ReportStreamVisibilityResponse</a></code>
@@ -121,11 +121,11 @@ Methods:
 - <code title="post /v2/reports/referrals">client.reports.<a href="./src/resources/reports/reports.ts">getReferralsReportV2</a>({ ...params }) -> ReportResponse</code>
 - <code title="post /v2/reports/citations">client.reports.<a href="./src/resources/reports/reports.ts">queryCitations</a>({ ...params }) -> ReportQueryCitationsResponse</code>
 - <code title="post /v1/reports/query-fanouts">client.reports.<a href="./src/resources/reports/reports.ts">queryFanouts</a>({ ...params }) -> ReportResponse</code>
-- <code title="post /v2/reports/query-fanouts">client.reports.<a href="./src/resources/reports/reports.ts">queryFanoutsV2</a>({ ...params }) -> ReportQueryFanoutsV2Response</code>
+- <code title="post /v2/reports/query-fanouts">client.reports.<a href="./src/resources/reports/reports.ts">queryQueryFanouts</a>({ ...params }) -> ReportQueryQueryFanoutsResponse</code>
 - <code title="post /v2/reports/sentiment">client.reports.<a href="./src/resources/reports/reports.ts">querySentiment</a>({ ...params }) -> ReportQuerySentimentResponse</code>
-- <code title="post /v1/reports/sentiment-v2">client.reports.<a href="./src/resources/reports/reports.ts">querySentimentV2</a>({ ...params }) -> ReportQuerySentimentV2Response</code>
 - <code title="post /v2/reports/visibility">client.reports.<a href="./src/resources/reports/reports.ts">queryVisibility</a>({ ...params }) -> ReportQueryVisibilityResponse</code>
 - <code title="post /v1/reports/sentiment">client.reports.<a href="./src/resources/reports/reports.ts">sentiment</a>({ ...params }) -> ReportResponse</code>
+- <code title="post /v1/reports/sentiment-v2">client.reports.<a href="./src/resources/reports/reports.ts">sentimentV2</a>({ ...params }) -> ReportSentimentV2Response</code>
 - <code title="post /v1/reports/citations/stream">client.reports.<a href="./src/resources/reports/reports.ts">streamCitations</a>({ ...params }) -> ReportStreamCitationsResponse</code>
 - <code title="post /v2/reports/citations/stream">client.reports.<a href="./src/resources/reports/reports.ts">streamCitationsV2</a>({ ...params }) -> void</code>
 - <code title="post /v2/reports/query-fanouts/stream">client.reports.<a href="./src/resources/reports/reports.ts">streamQueryFanouts</a>({ ...params }) -> void</code>

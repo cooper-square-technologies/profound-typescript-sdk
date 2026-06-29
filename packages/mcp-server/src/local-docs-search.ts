@@ -779,6 +779,49 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'sentiment_v2',
+    endpoint: '/v1/reports/sentiment-v2',
+    httpMethod: 'post',
+    summary: 'Query Sentiment V2',
+    description: 'Query Sentiment V2',
+    stainlessPath: '(resource) reports > (method) sentiment_v2',
+    qualified: 'client.reports.sentimentV2',
+    params: [
+      'asset_name: string;',
+      'category_id: string;',
+      'end_date: string;',
+      "metrics: 'sentiment' | 'occurrence'[];",
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      'dimensions?: string[];',
+      "filters?: { field: 'model_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'run_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'theme_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'theme'; operator: string; value: string | string[]; } | { field: 'claim_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'claim'; operator: string; value: string | string[]; } | { field: 'sentiment'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: 'positive' | 'negative' | 'positive' | 'negative'[]; }[];",
+      'order_by?: object;',
+      'pagination?: { limit?: number; offset?: number; };',
+    ],
+    response:
+      "{ info: { query: object; total_rows: number; }; data?: { scores: { current?: object; previous?: object; }; cited_website_hrefs?: string[]; date?: string; group_ids?: object; group_metadata?: { asset_name?: string; child_count_matching?: number; child_count_total?: number; child_matches_search?: boolean; claim?: string; claim_id?: string; created_at?: string; model_id?: string; parent_matches_search?: boolean; persona_id?: string; prompt_id?: string; prompt_text?: string; region_id?: string; run_id?: string; sentiment?: 'positive' | 'negative'; theme?: string; theme_id?: string; topic_id?: string; }; group_names?: object; prev_date?: string; total_count?: number; }[]; }",
+    markdown:
+      "## sentiment_v2\n\n`client.reports.sentimentV2(asset_name: string, category_id: string, end_date: string, metrics: 'sentiment' | 'occurrence'[], start_date: string, comparison_end_date?: string, comparison_start_date?: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], filters?: { field: 'model_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'run_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'theme_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'theme'; operator: string; value: string | string[]; } | { field: 'claim_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'claim'; operator: string; value: string | string[]; } | { field: 'sentiment'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: 'positive' | 'negative' | 'positive' | 'negative'[]; }[], order_by?: object, pagination?: { limit?: number; offset?: number; }): { info: object; data?: object[]; }`\n\n**post** `/v1/reports/sentiment-v2`\n\nQuery Sentiment V2\n\n### Parameters\n\n- `asset_name: string`\n\n- `category_id: string`\n\n- `end_date: string`\n  End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `metrics: 'sentiment' | 'occurrence'[]`\n\n- `start_date: string`\n  Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `comparison_end_date?: string`\n  End of the previous period for delta computation.\n\n- `comparison_start_date?: string`\n  Start of the previous period for delta computation.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. Only used when dimensions includes date.\n\n- `dimensions?: string[]`\n  Dimensions to group the report by.\n\n- `filters?: { field: 'model_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'run_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'theme_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'theme'; operator: string; value: string | string[]; } | { field: 'claim_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'claim'; operator: string; value: string | string[]; } | { field: 'sentiment'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: 'positive' | 'negative' | 'positive' | 'negative'[]; }[]`\n  List of filters to apply to the sentiment-v2 report.\n\n- `order_by?: object`\n  Custom ordering of report results. Dimension keys must also be present in dimensions. The sentiment metric orders by positive_sentiment.\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ info: { query: object; total_rows: number; }; data?: { scores: { current?: object; previous?: object; }; cited_website_hrefs?: string[]; date?: string; group_ids?: object; group_metadata?: { asset_name?: string; child_count_matching?: number; child_count_total?: number; child_matches_search?: boolean; claim?: string; claim_id?: string; created_at?: string; model_id?: string; parent_matches_search?: boolean; persona_id?: string; prompt_id?: string; prompt_text?: string; region_id?: string; run_id?: string; sentiment?: 'positive' | 'negative'; theme?: string; theme_id?: string; topic_id?: string; }; group_names?: object; prev_date?: string; total_count?: number; }[]; }`\n\n  - `info: { query: object; total_rows: number; }`\n  - `data?: { scores: { current?: { assessment_count: number; negative_sentiment: number; positive_sentiment: number; occurrence?: number; response_count?: number; total_response_count?: number; }; previous?: { assessment_count: number; negative_sentiment: number; positive_sentiment: number; occurrence?: number; response_count?: number; total_response_count?: number; }; }; cited_website_hrefs?: string[]; date?: string; group_ids?: object; group_metadata?: { asset_name?: string; child_count_matching?: number; child_count_total?: number; child_matches_search?: boolean; claim?: string; claim_id?: string; created_at?: string; model_id?: string; parent_matches_search?: boolean; persona_id?: string; prompt_id?: string; prompt_text?: string; region_id?: string; run_id?: string; sentiment?: 'positive' | 'negative'; theme?: string; theme_id?: string; topic_id?: string; }; group_names?: object; prev_date?: string; total_count?: number; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.sentimentV2({\n  asset_name: 'asset_name',\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['sentiment'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.sentimentV2',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.sentimentV2({\n  asset_name: 'asset_name',\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['sentiment'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.info);",
+      },
+      python: {
+        method: 'reports.sentiment_v2',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.sentiment_v2(\n    asset_name="asset_name",\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    metrics=["sentiment"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.info)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/sentiment-v2 \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "asset_name": "asset_name",\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "sentiment"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "occurrence": "desc"\n          }\n        }\'',
+      },
+    },
+  },
+  {
     name: 'get_referrals_report',
     endpoint: '/v1/reports/referrals',
     httpMethod: 'post',
@@ -861,92 +904,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.tryprofound.com/v1/reports/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
-      },
-    },
-  },
-  {
-    name: 'get_referrals_report_v2',
-    endpoint: '/v2/reports/referrals',
-    httpMethod: 'post',
-    summary: 'Get Referrals Report V2',
-    description:
-      'Get referral traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval="hour", calendar intervals through "year", "quarter", and "relative_week".',
-    stainlessPath: '(resource) reports > (method) get_referrals_report_v2',
-    qualified: 'client.reports.getReferralsReportV2',
-    params: [
-      'domain: string;',
-      "metrics: 'visits' | 'last_visit'[];",
-      'start_date: string;',
-      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
-      "dimensions?: 'date' | 'hour' | 'path' | 'referral_source' | 'referral_type'[];",
-      'end_date?: string;',
-      "filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; } | { field: 'referral_type'; operator: string; value: 'internal' | 'referer' | 'utm' | 'none' | 'internal' | 'referer' | 'utm' | 'none'[]; }[];",
-      "metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[];",
-      'order_by?: object;',
-      'organization_id?: string;',
-      'pagination?: { limit?: number; offset?: number; };',
-    ],
-    response:
-      '{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }',
-    markdown:
-      "## get_referrals_report_v2\n\n`client.reports.getReferralsReportV2(domain: string, metrics: 'visits' | 'last_visit'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'date' | 'hour' | 'path' | 'referral_source' | 'referral_type'[], end_date?: string, filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; } | { field: 'referral_type'; operator: string; value: 'internal' | 'referer' | 'utm' | 'none' | 'internal' | 'referer' | 'utm' | 'none'[]; }[], metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[], order_by?: object, organization_id?: string, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v2/reports/referrals`\n\nGet referral traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval=\"hour\", calendar intervals through \"year\", \"quarter\", and \"relative_week\".\n\n### Parameters\n\n- `domain: string`\n  Domain to query logs for.\n\n- `metrics: 'visits' | 'last_visit'[]`\n\n- `start_date: string`\n  Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: 'date' | 'hour' | 'path' | 'referral_source' | 'referral_type'[]`\n  Dimensions to group the report by.\n\n- `end_date?: string`\n  End date in UTC. Accepts same formats as start_date. Defaults to now UTC if omitted.\n\n- `filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; } | { field: 'referral_type'; operator: string; value: 'internal' | 'referer' | 'utm' | 'none' | 'internal' | 'referer' | 'utm' | 'none'[]; }[]`\n  Filters for referrals report.\n\n- `metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[]`\n  Numeric filters applied after report metrics are calculated.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `organization_id?: string`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.getReferralsReportV2({\n  domain: 'domain',\n  metrics: ['visits'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
-    perLanguage: {
-      typescript: {
-        method: 'client.reports.getReferralsReportV2',
-        example:
-          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.getReferralsReportV2({\n  domain: 'domain',\n  metrics: ['visits'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
-      },
-      python: {
-        method: 'reports.get_referrals_report_v2',
-        example:
-          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nreport_response = client.reports.get_referrals_report_v2(\n    domain="domain",\n    metrics=["visits"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(report_response.data)',
-      },
-      http: {
-        example:
-          'curl https://api.tryprofound.com/v2/reports/referrals \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "visits"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
-      },
-    },
-  },
-  {
-    name: 'get_bots_report_v2',
-    endpoint: '/v2/reports/bots',
-    httpMethod: 'post',
-    summary: 'Get Bots Report V2',
-    description:
-      'Get bot traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval="hour", calendar intervals through "year", "quarter", and "relative_week".\n\nMetrics:\n- count: unique bot visits\n- citations: unique citation events (ai_assistant bot type)\n- indexing: unique indexing events (index bot type)\n- training: unique training events (ai_training bot type)\n- last_visit: most recent visit timestamp\n\nDimensions:\n- date, path, bot_name, bot_provider, bot_type',
-    stainlessPath: '(resource) reports > (method) get_bots_report_v2',
-    qualified: 'client.reports.getBotsReportV2',
-    params: [
-      'domain: string;',
-      "metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[];",
-      'start_date: string;',
-      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
-      "dimensions?: 'date' | 'hour' | 'path' | 'bot_name' | 'bot_provider' | 'bot_type'[];",
-      'end_date?: string;',
-      "filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; } | { field: 'bot_type'; operator: string; value: string; }[];",
-      "metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[];",
-      'order_by?: object;',
-      'organization_id?: string;',
-      'pagination?: { limit?: number; offset?: number; };',
-    ],
-    response:
-      '{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }',
-    markdown:
-      "## get_bots_report_v2\n\n`client.reports.getBotsReportV2(domain: string, metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'date' | 'hour' | 'path' | 'bot_name' | 'bot_provider' | 'bot_type'[], end_date?: string, filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; } | { field: 'bot_type'; operator: string; value: string; }[], metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[], order_by?: object, organization_id?: string, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v2/reports/bots`\n\nGet bot traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval=\"hour\", calendar intervals through \"year\", \"quarter\", and \"relative_week\".\n\nMetrics:\n- count: unique bot visits\n- citations: unique citation events (ai_assistant bot type)\n- indexing: unique indexing events (index bot type)\n- training: unique training events (ai_training bot type)\n- last_visit: most recent visit timestamp\n\nDimensions:\n- date, path, bot_name, bot_provider, bot_type\n\n### Parameters\n\n- `domain: string`\n  Domain to query logs for.\n\n- `metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[]`\n\n- `start_date: string`\n  Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: 'date' | 'hour' | 'path' | 'bot_name' | 'bot_provider' | 'bot_type'[]`\n  Dimensions to group the report by.\n\n- `end_date?: string`\n  End date in UTC. Accepts same formats as start_date. Defaults to now UTC if omitted.\n\n- `filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; } | { field: 'bot_type'; operator: string; value: string; }[]`\n  Filters for bots report.\n\n- `metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[]`\n  Numeric filters applied after report metrics are calculated.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `organization_id?: string`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.getBotsReportV2({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
-    perLanguage: {
-      typescript: {
-        method: 'client.reports.getBotsReportV2',
-        example:
-          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.getBotsReportV2({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
-      },
-      python: {
-        method: 'reports.get_bots_report_v2',
-        example:
-          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nreport_response = client.reports.get_bots_report_v2(\n    domain="domain",\n    metrics=["count"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(report_response.data)',
-      },
-      http: {
-        example:
-          'curl https://api.tryprofound.com/v2/reports/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -1108,47 +1065,6 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
-    name: 'query_fanouts_v2',
-    endpoint: '/v2/reports/query-fanouts',
-    httpMethod: 'post',
-    summary: 'Query Fanouts V2',
-    description: 'Query Fanouts V2',
-    stainlessPath: '(resource) reports > (method) query_fanouts_v2',
-    qualified: 'client.reports.queryFanoutsV2',
-    params: [
-      'category_id: string;',
-      'end_date: string;',
-      'start_date: string;',
-      'cursor?: string;',
-      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
-      "group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[];",
-      "interval?: 'day' | 'week' | 'month';",
-      'limit?: number;',
-      'max_results?: number;',
-      "metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[];",
-      "sort?: { field: string; dir?: 'asc' | 'desc'; };",
-    ],
-    response: 'object',
-    markdown:
-      "## query_fanouts_v2\n\n`client.reports.queryFanoutsV2(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[], interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[], sort?: { field: string; dir?: 'asc' | 'desc'; }): object`\n\n**post** `/v2/reports/query-fanouts`\n\nQuery Fanouts V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[]`\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[]`\n\n- `sort?: { field: string; dir?: 'asc' | 'desc'; }`\n  - `field: string`\n  - `dir?: 'asc' | 'desc'`\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.queryFanoutsV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
-    perLanguage: {
-      typescript: {
-        method: 'client.reports.queryFanoutsV2',
-        example:
-          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.queryFanoutsV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);",
-      },
-      python: {
-        method: 'reports.query_fanouts_v2',
-        example:
-          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.query_fanouts_v2(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response)',
-      },
-      http: {
-        example:
-          'curl https://api.tryprofound.com/v2/reports/query-fanouts \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
-      },
-    },
-  },
-  {
     name: 'stream_citations_v2',
     endpoint: '/v2/reports/citations/stream',
     httpMethod: 'post',
@@ -1275,45 +1191,128 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
-    name: 'query_sentiment_v2',
-    endpoint: '/v1/reports/sentiment-v2',
+    name: 'stream_query_fanouts',
+    endpoint: '/v2/reports/query-fanouts/stream',
     httpMethod: 'post',
-    summary: 'Query Sentiment V2',
-    description: 'Query Sentiment V2',
-    stainlessPath: '(resource) reports > (method) query_sentiment_v2',
-    qualified: 'client.reports.querySentimentV2',
+    summary: 'Stream Query Fanouts V2',
+    description: 'Stream Query Fanouts V2',
+    stainlessPath: '(resource) reports > (method) stream_query_fanouts',
+    qualified: 'client.reports.streamQueryFanouts',
     params: [
-      'asset_name: string;',
       'category_id: string;',
       'end_date: string;',
-      "metrics: 'sentiment' | 'occurrence'[];",
       'start_date: string;',
-      'comparison_end_date?: string;',
-      'comparison_start_date?: string;',
-      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
-      'dimensions?: string[];',
-      "filters?: { field: 'model_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'run_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'theme_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'theme'; operator: string; value: string | string[]; } | { field: 'claim_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'claim'; operator: string; value: string | string[]; } | { field: 'sentiment'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: 'positive' | 'negative' | 'positive' | 'negative'[]; }[];",
-      'order_by?: object;',
-      'pagination?: { limit?: number; offset?: number; };',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      "group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[];",
+      "interval?: 'day' | 'week' | 'month';",
+      'limit?: number;',
+      'max_results?: number;',
+      "metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[];",
+      "sort?: { field: string; dir?: 'asc' | 'desc'; };",
     ],
-    response:
-      "{ info: { query: object; total_rows: number; }; data?: { scores: { current?: object; previous?: object; }; cited_website_hrefs?: string[]; date?: string; group_ids?: object; group_metadata?: { asset_name?: string; child_count_matching?: number; child_count_total?: number; child_matches_search?: boolean; claim?: string; claim_id?: string; created_at?: string; model_id?: string; parent_matches_search?: boolean; persona_id?: string; prompt_id?: string; prompt_text?: string; region_id?: string; run_id?: string; sentiment?: 'positive' | 'negative'; theme?: string; theme_id?: string; topic_id?: string; }; group_names?: object; prev_date?: string; total_count?: number; }[]; }",
     markdown:
-      "## query_sentiment_v2\n\n`client.reports.querySentimentV2(asset_name: string, category_id: string, end_date: string, metrics: 'sentiment' | 'occurrence'[], start_date: string, comparison_end_date?: string, comparison_start_date?: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], filters?: { field: 'model_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'run_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'theme_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'theme'; operator: string; value: string | string[]; } | { field: 'claim_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'claim'; operator: string; value: string | string[]; } | { field: 'sentiment'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: 'positive' | 'negative' | 'positive' | 'negative'[]; }[], order_by?: object, pagination?: { limit?: number; offset?: number; }): { info: object; data?: object[]; }`\n\n**post** `/v1/reports/sentiment-v2`\n\nQuery Sentiment V2\n\n### Parameters\n\n- `asset_name: string`\n\n- `category_id: string`\n\n- `end_date: string`\n  End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `metrics: 'sentiment' | 'occurrence'[]`\n\n- `start_date: string`\n  Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `comparison_end_date?: string`\n  End of the previous period for delta computation.\n\n- `comparison_start_date?: string`\n  Start of the previous period for delta computation.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. Only used when dimensions includes date.\n\n- `dimensions?: string[]`\n  Dimensions to group the report by.\n\n- `filters?: { field: 'model_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'run_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'theme_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'theme'; operator: string; value: string | string[]; } | { field: 'claim_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'claim'; operator: string; value: string | string[]; } | { field: 'sentiment'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: 'positive' | 'negative' | 'positive' | 'negative'[]; }[]`\n  List of filters to apply to the sentiment-v2 report.\n\n- `order_by?: object`\n  Custom ordering of report results. Dimension keys must also be present in dimensions. The sentiment metric orders by positive_sentiment.\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ info: { query: object; total_rows: number; }; data?: { scores: { current?: object; previous?: object; }; cited_website_hrefs?: string[]; date?: string; group_ids?: object; group_metadata?: { asset_name?: string; child_count_matching?: number; child_count_total?: number; child_matches_search?: boolean; claim?: string; claim_id?: string; created_at?: string; model_id?: string; parent_matches_search?: boolean; persona_id?: string; prompt_id?: string; prompt_text?: string; region_id?: string; run_id?: string; sentiment?: 'positive' | 'negative'; theme?: string; theme_id?: string; topic_id?: string; }; group_names?: object; prev_date?: string; total_count?: number; }[]; }`\n\n  - `info: { query: object; total_rows: number; }`\n  - `data?: { scores: { current?: { assessment_count: number; negative_sentiment: number; positive_sentiment: number; occurrence?: number; response_count?: number; total_response_count?: number; }; previous?: { assessment_count: number; negative_sentiment: number; positive_sentiment: number; occurrence?: number; response_count?: number; total_response_count?: number; }; }; cited_website_hrefs?: string[]; date?: string; group_ids?: object; group_metadata?: { asset_name?: string; child_count_matching?: number; child_count_total?: number; child_matches_search?: boolean; claim?: string; claim_id?: string; created_at?: string; model_id?: string; parent_matches_search?: boolean; persona_id?: string; prompt_id?: string; prompt_text?: string; region_id?: string; run_id?: string; sentiment?: 'positive' | 'negative'; theme?: string; theme_id?: string; topic_id?: string; }; group_names?: object; prev_date?: string; total_count?: number; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.querySentimentV2({\n  asset_name: 'asset_name',\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['sentiment'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+      "## stream_query_fanouts\n\n`client.reports.streamQueryFanouts(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[], interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[], sort?: { field: string; dir?: 'asc' | 'desc'; }): void`\n\n**post** `/v2/reports/query-fanouts/stream`\n\nStream Query Fanouts V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[]`\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[]`\n\n- `sort?: { field: string; dir?: 'asc' | 'desc'; }`\n  - `field: string`\n  - `dir?: 'asc' | 'desc'`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nawait client.reports.streamQueryFanouts({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n})\n```",
     perLanguage: {
       typescript: {
-        method: 'client.reports.querySentimentV2',
+        method: 'client.reports.streamQueryFanouts',
         example:
-          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.querySentimentV2({\n  asset_name: 'asset_name',\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['sentiment'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.info);",
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.reports.streamQueryFanouts({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});",
       },
       python: {
-        method: 'reports.query_sentiment_v2',
+        method: 'reports.stream_query_fanouts',
         example:
-          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.query_sentiment_v2(\n    asset_name="asset_name",\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    metrics=["sentiment"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.info)',
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nclient.reports.stream_query_fanouts(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)',
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/reports/sentiment-v2 \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "asset_name": "asset_name",\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "sentiment"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "occurrence": "desc"\n          }\n        }\'',
+          'curl https://api.tryprofound.com/v2/reports/query-fanouts/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'get_referrals_report_v2',
+    endpoint: '/v2/reports/referrals',
+    httpMethod: 'post',
+    summary: 'Get Referrals Report V2',
+    description:
+      'Get referral traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval="hour", calendar intervals through "year", "quarter", and "relative_week".',
+    stainlessPath: '(resource) reports > (method) get_referrals_report_v2',
+    qualified: 'client.reports.getReferralsReportV2',
+    params: [
+      'domain: string;',
+      "metrics: 'visits' | 'last_visit'[];",
+      'start_date: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      "dimensions?: 'date' | 'hour' | 'path' | 'referral_source' | 'referral_type'[];",
+      'end_date?: string;',
+      "filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; } | { field: 'referral_type'; operator: string; value: 'internal' | 'referer' | 'utm' | 'none' | 'internal' | 'referer' | 'utm' | 'none'[]; }[];",
+      "metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[];",
+      'order_by?: object;',
+      'organization_id?: string;',
+      'pagination?: { limit?: number; offset?: number; };',
+    ],
+    response:
+      '{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## get_referrals_report_v2\n\n`client.reports.getReferralsReportV2(domain: string, metrics: 'visits' | 'last_visit'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'date' | 'hour' | 'path' | 'referral_source' | 'referral_type'[], end_date?: string, filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; } | { field: 'referral_type'; operator: string; value: 'internal' | 'referer' | 'utm' | 'none' | 'internal' | 'referer' | 'utm' | 'none'[]; }[], metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[], order_by?: object, organization_id?: string, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v2/reports/referrals`\n\nGet referral traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval=\"hour\", calendar intervals through \"year\", \"quarter\", and \"relative_week\".\n\n### Parameters\n\n- `domain: string`\n  Domain to query logs for.\n\n- `metrics: 'visits' | 'last_visit'[]`\n\n- `start_date: string`\n  Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: 'date' | 'hour' | 'path' | 'referral_source' | 'referral_type'[]`\n  Dimensions to group the report by.\n\n- `end_date?: string`\n  End date in UTC. Accepts same formats as start_date. Defaults to now UTC if omitted.\n\n- `filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; } | { field: 'referral_type'; operator: string; value: 'internal' | 'referer' | 'utm' | 'none' | 'internal' | 'referer' | 'utm' | 'none'[]; }[]`\n  Filters for referrals report.\n\n- `metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[]`\n  Numeric filters applied after report metrics are calculated.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `organization_id?: string`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.getReferralsReportV2({\n  domain: 'domain',\n  metrics: ['visits'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.getReferralsReportV2',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.getReferralsReportV2({\n  domain: 'domain',\n  metrics: ['visits'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
+      },
+      python: {
+        method: 'reports.get_referrals_report_v2',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nreport_response = client.reports.get_referrals_report_v2(\n    domain="domain",\n    metrics=["visits"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(report_response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/referrals \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "visits"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'get_bots_report_v2',
+    endpoint: '/v2/reports/bots',
+    httpMethod: 'post',
+    summary: 'Get Bots Report V2',
+    description:
+      'Get bot traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval="hour", calendar intervals through "year", "quarter", and "relative_week".\n\nMetrics:\n- count: unique bot visits\n- citations: unique citation events (ai_assistant bot type)\n- indexing: unique indexing events (index bot type)\n- training: unique training events (ai_training bot type)\n- last_visit: most recent visit timestamp\n\nDimensions:\n- date, path, bot_name, bot_provider, bot_type',
+    stainlessPath: '(resource) reports > (method) get_bots_report_v2',
+    qualified: 'client.reports.getBotsReportV2',
+    params: [
+      'domain: string;',
+      "metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[];",
+      'start_date: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      "dimensions?: 'date' | 'hour' | 'path' | 'bot_name' | 'bot_provider' | 'bot_type'[];",
+      'end_date?: string;',
+      "filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; } | { field: 'bot_type'; operator: string; value: string; }[];",
+      "metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[];",
+      'order_by?: object;',
+      'organization_id?: string;',
+      'pagination?: { limit?: number; offset?: number; };',
+    ],
+    response:
+      '{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## get_bots_report_v2\n\n`client.reports.getBotsReportV2(domain: string, metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'date' | 'hour' | 'path' | 'bot_name' | 'bot_provider' | 'bot_type'[], end_date?: string, filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; } | { field: 'bot_type'; operator: string; value: string; }[], metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[], order_by?: object, organization_id?: string, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v2/reports/bots`\n\nGet bot traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval=\"hour\", calendar intervals through \"year\", \"quarter\", and \"relative_week\".\n\nMetrics:\n- count: unique bot visits\n- citations: unique citation events (ai_assistant bot type)\n- indexing: unique indexing events (index bot type)\n- training: unique training events (ai_training bot type)\n- last_visit: most recent visit timestamp\n\nDimensions:\n- date, path, bot_name, bot_provider, bot_type\n\n### Parameters\n\n- `domain: string`\n  Domain to query logs for.\n\n- `metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[]`\n\n- `start_date: string`\n  Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: 'date' | 'hour' | 'path' | 'bot_name' | 'bot_provider' | 'bot_type'[]`\n  Dimensions to group the report by.\n\n- `end_date?: string`\n  End date in UTC. Accepts same formats as start_date. Defaults to now UTC if omitted.\n\n- `filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; } | { field: 'bot_type'; operator: string; value: string; }[]`\n  Filters for bots report.\n\n- `metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[]`\n  Numeric filters applied after report metrics are calculated.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `organization_id?: string`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.getBotsReportV2({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.getBotsReportV2',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.getBotsReportV2({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
+      },
+      python: {
+        method: 'reports.get_bots_report_v2',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nreport_response = client.reports.get_bots_report_v2(\n    domain="domain",\n    metrics=["count"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(report_response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -1447,13 +1446,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
-    name: 'stream_query_fanouts',
-    endpoint: '/v2/reports/query-fanouts/stream',
+    name: 'query_query_fanouts',
+    endpoint: '/v2/reports/query-fanouts',
     httpMethod: 'post',
-    summary: 'Stream Query Fanouts V2',
-    description: 'Stream Query Fanouts V2',
-    stainlessPath: '(resource) reports > (method) stream_query_fanouts',
-    qualified: 'client.reports.streamQueryFanouts',
+    summary: 'Query Fanouts V2',
+    description: 'Query Fanouts V2',
+    stainlessPath: '(resource) reports > (method) query_query_fanouts',
+    qualified: 'client.reports.queryQueryFanouts',
     params: [
       'category_id: string;',
       'end_date: string;',
@@ -1467,22 +1466,23 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       "metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[];",
       "sort?: { field: string; dir?: 'asc' | 'desc'; };",
     ],
+    response: 'object',
     markdown:
-      "## stream_query_fanouts\n\n`client.reports.streamQueryFanouts(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[], interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[], sort?: { field: string; dir?: 'asc' | 'desc'; }): void`\n\n**post** `/v2/reports/query-fanouts/stream`\n\nStream Query Fanouts V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[]`\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[]`\n\n- `sort?: { field: string; dir?: 'asc' | 'desc'; }`\n  - `field: string`\n  - `dir?: 'asc' | 'desc'`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nawait client.reports.streamQueryFanouts({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n})\n```",
+      "## query_query_fanouts\n\n`client.reports.queryQueryFanouts(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[], interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[], sort?: { field: string; dir?: 'asc' | 'desc'; }): object`\n\n**post** `/v2/reports/query-fanouts`\n\nQuery Fanouts V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[]`\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[]`\n\n- `sort?: { field: string; dir?: 'asc' | 'desc'; }`\n  - `field: string`\n  - `dir?: 'asc' | 'desc'`\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.queryQueryFanouts({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
     perLanguage: {
       typescript: {
-        method: 'client.reports.streamQueryFanouts',
+        method: 'client.reports.queryQueryFanouts',
         example:
-          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.reports.streamQueryFanouts({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});",
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.queryQueryFanouts({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);",
       },
       python: {
-        method: 'reports.stream_query_fanouts',
+        method: 'reports.query_query_fanouts',
         example:
-          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nclient.reports.stream_query_fanouts(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)',
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.query_query_fanouts(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response)',
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v2/reports/query-fanouts/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+          'curl https://api.tryprofound.com/v2/reports/query-fanouts \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
       },
     },
   },
