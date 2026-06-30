@@ -71,7 +71,7 @@ const INSTRUCTIONS_FETCH_TIMEOUT_MS = 5000;
 
 function fallbackMcpServer(): McpServer {
   return new McpServer(
-    { name: 'profoundai_client_api', version: '0.46.0' },
+    { name: 'profoundai_client_api', version: '0.47.0' },
     { capabilities: { tools: {}, logging: {} } },
   );
 }
