@@ -25,7 +25,9 @@ describe('resource categories', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.organizations.categories.list(
-        { organization_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'] },
+        {
+          organization_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Profound.NotFoundError);
@@ -140,6 +142,20 @@ describe('resource categories', () => {
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Profound.NotFoundError);
+  });
+
+  // Mock server tests are disabled
+  test.skip('retrieveRegions', async () => {
+    const responsePromise = client.organizations.categories.retrieveRegions(
+      '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    );
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   // Mock server tests are disabled

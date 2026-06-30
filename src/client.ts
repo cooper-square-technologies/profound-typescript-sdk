@@ -20,31 +20,14 @@ import { APIPromise } from './core/api-promise';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
-import { PromptAnswersParams, PromptAnswersResponse, Prompts } from './resources/prompts';
 import {
-  PromptIDFilter,
-  ReportCitationsParams,
-  ReportCitationsResponse,
-  ReportGetBotsReportParams,
-  ReportGetBotsReportV2Params,
-  ReportGetReferralsReportParams,
-  ReportGetReferralsReportV2Params,
-  ReportInfo,
-  ReportQueryFanoutsParams,
-  ReportResponse,
-  ReportResult,
-  ReportSentimentParams,
-  ReportStreamCitationsParams,
-  ReportStreamCitationsResponse,
-  ReportStreamSentimentParams,
-  ReportStreamSentimentResponse,
-  ReportStreamVisibilityParams,
-  ReportStreamVisibilityResponse,
-  ReportVisibilityParams,
-  Reports,
-  TagNameFilter,
-  TopicNameFilter,
-} from './resources/reports';
+  PromptAnswersParams,
+  PromptAnswersResponse,
+  PromptAnswersV2Params,
+  PromptAnswersV2Response,
+  PromptStreamAnswersV2Params,
+  Prompts,
+} from './resources/prompts';
 import { readEnv } from './internal/utils/env';
 import {
   type LogLevel,
@@ -55,10 +38,17 @@ import {
 } from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
 import {
+  AgentCreateParams,
+  AgentCreateResponse,
   AgentListParams,
   AgentListResponse,
+  AgentPublishResponse,
+  AgentRetrieveGraphParams,
+  AgentRetrieveGraphResponse,
   AgentRetrieveParams,
   AgentRetrieveResponse,
+  AgentUpdateParams,
+  AgentUpdateResponse,
   Agents,
 } from './resources/agents/agents';
 import { Content } from './resources/content/content';
@@ -90,6 +80,53 @@ import {
   PersonaProfileDemographics,
   PersonaProfileEmployment,
 } from './resources/organizations/organizations';
+import {
+  HostnameFilter,
+  PromptIDFilter,
+  ReportCitationsParams,
+  ReportCitationsResponse,
+  ReportGetBotsReportParams,
+  ReportGetBotsReportV2Params,
+  ReportGetReferralsReportParams,
+  ReportGetReferralsReportV2Params,
+  ReportInfo,
+  ReportQueryCitationsParams,
+  ReportQueryCitationsResponse,
+  ReportQueryFanoutsParams,
+  ReportQueryQueryFanoutsParams,
+  ReportQueryQueryFanoutsResponse,
+  ReportQuerySentimentParams,
+  ReportQuerySentimentResponse,
+  ReportQueryVisibilityParams,
+  ReportQueryVisibilityResponse,
+  ReportResponse,
+  ReportResult,
+  ReportSentimentParams,
+  ReportSentimentV2Params,
+  ReportSentimentV2Response,
+  ReportStreamCitationsParams,
+  ReportStreamCitationsResponse,
+  ReportStreamCitationsV2Params,
+  ReportStreamQueryFanoutsParams,
+  ReportStreamSentimentParams,
+  ReportStreamSentimentResponse,
+  ReportStreamSentimentV2Params,
+  ReportStreamVisibilityParams,
+  ReportStreamVisibilityResponse,
+  ReportStreamVisibilityV2Params,
+  ReportVisibilityParams,
+  Reports,
+  RootDomainFilter,
+  TagNameFilter,
+  TopicNameFilter,
+  URLFilter,
+} from './resources/reports/reports';
+
+const environments = {
+  production: 'https://api.tryprofound.com',
+  development: 'https://dev.api.tryprofound.com',
+};
+type Environment = keyof typeof environments;
 
 export interface ClientOptions {
   /**
@@ -101,6 +138,15 @@ export interface ClientOptions {
    * API Key
    */
   apiKey?: string | null | undefined;
+
+  /**
+   * Specifies the environment to use for the API.
+   *
+   * Each environment maps to a different base URL:
+   * - `production` corresponds to `https://api.tryprofound.com`
+   * - `development` corresponds to `https://dev.api.tryprofound.com`
+   */
+  environment?: Environment | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -195,6 +241,7 @@ export class Profound {
    *
    * @param {string | null | undefined} [opts.accessToken=process.env['PROFOUND_ACCESS_TOKEN'] ?? null]
    * @param {string | null | undefined} [opts.apiKey=process.env['PROFOUND_API_KEY'] ?? null]
+   * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
    * @param {string} [opts.baseURL=process.env['PROFOUND_BASE_URL'] ?? https://api.tryprofound.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -213,10 +260,17 @@ export class Profound {
       accessToken,
       apiKey,
       ...opts,
-      baseURL: baseURL || `https://api.tryprofound.com`,
+      baseURL,
+      environment: opts.environment ?? 'production',
     };
 
-    this.baseURL = options.baseURL!;
+    if (baseURL && opts.environment) {
+      throw new Errors.ProfoundError(
+        'Ambiguous URL; The `baseURL` option (or PROFOUND_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
+      );
+    }
+
+    this.baseURL = options.baseURL || environments[options.environment || 'production'];
     this.timeout = options.timeout ?? Profound.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
@@ -255,7 +309,8 @@ export class Profound {
   withOptions(options: Partial<ClientOptions>): this {
     const client = new (this.constructor as any as new (props: ClientOptions) => typeof this)({
       ...this._options,
-      baseURL: this.baseURL,
+      environment: options.environment ? options.environment : undefined,
+      baseURL: options.environment ? undefined : this.baseURL,
       maxRetries: this.maxRetries,
       timeout: this.timeout,
       logger: this.logger,
@@ -273,7 +328,7 @@ export class Profound {
    * Check whether the base URL is set to its default.
    */
   #baseURLOverridden(): boolean {
-    return this.baseURL !== 'https://api.tryprofound.com';
+    return this.baseURL !== environments[this._options.environment || 'production'];
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
@@ -758,11 +813,19 @@ export class Profound {
     return () => controller.abort();
   }
 
-  private buildBody({ options: { body, headers: rawHeaders } }: { options: FinalRequestOptions }): {
+  private buildBody({ options }: { options: FinalRequestOptions }): {
     bodyHeaders: HeadersLike;
     body: BodyInit | undefined;
   } {
+    const { body, headers: rawHeaders } = options;
     if (!body) {
+      // A resource method always passes a `body` key when its operation defines a
+      // request body, even if the caller omitted an optional body param. Keep the
+      // content-type for those, and only elide it for operations with no body at
+      // all (e.g. GET/DELETE).
+      if (body == null && 'body' in options) {
+        return this.#encoder({ body, headers: buildHeaders([rawHeaders]) });
+      }
       return { bodyHeaders: undefined, body: undefined };
     }
     const headers = buildHeaders([rawHeaders]);
@@ -866,18 +929,29 @@ export declare namespace Profound {
   export {
     Prompts as Prompts,
     type PromptAnswersResponse as PromptAnswersResponse,
+    type PromptAnswersV2Response as PromptAnswersV2Response,
     type PromptAnswersParams as PromptAnswersParams,
+    type PromptAnswersV2Params as PromptAnswersV2Params,
+    type PromptStreamAnswersV2Params as PromptStreamAnswersV2Params,
   };
 
   export {
     Reports as Reports,
+    type HostnameFilter as HostnameFilter,
     type PromptIDFilter as PromptIDFilter,
     type ReportInfo as ReportInfo,
     type ReportResponse as ReportResponse,
     type ReportResult as ReportResult,
+    type RootDomainFilter as RootDomainFilter,
     type TagNameFilter as TagNameFilter,
     type TopicNameFilter as TopicNameFilter,
+    type URLFilter as URLFilter,
     type ReportCitationsResponse as ReportCitationsResponse,
+    type ReportQueryCitationsResponse as ReportQueryCitationsResponse,
+    type ReportQueryQueryFanoutsResponse as ReportQueryQueryFanoutsResponse,
+    type ReportQuerySentimentResponse as ReportQuerySentimentResponse,
+    type ReportQueryVisibilityResponse as ReportQueryVisibilityResponse,
+    type ReportSentimentV2Response as ReportSentimentV2Response,
     type ReportStreamCitationsResponse as ReportStreamCitationsResponse,
     type ReportStreamSentimentResponse as ReportStreamSentimentResponse,
     type ReportStreamVisibilityResponse as ReportStreamVisibilityResponse,
@@ -886,11 +960,20 @@ export declare namespace Profound {
     type ReportGetBotsReportV2Params as ReportGetBotsReportV2Params,
     type ReportGetReferralsReportParams as ReportGetReferralsReportParams,
     type ReportGetReferralsReportV2Params as ReportGetReferralsReportV2Params,
+    type ReportQueryCitationsParams as ReportQueryCitationsParams,
     type ReportQueryFanoutsParams as ReportQueryFanoutsParams,
+    type ReportQueryQueryFanoutsParams as ReportQueryQueryFanoutsParams,
+    type ReportQuerySentimentParams as ReportQuerySentimentParams,
+    type ReportQueryVisibilityParams as ReportQueryVisibilityParams,
     type ReportSentimentParams as ReportSentimentParams,
+    type ReportSentimentV2Params as ReportSentimentV2Params,
     type ReportStreamCitationsParams as ReportStreamCitationsParams,
+    type ReportStreamCitationsV2Params as ReportStreamCitationsV2Params,
+    type ReportStreamQueryFanoutsParams as ReportStreamQueryFanoutsParams,
     type ReportStreamSentimentParams as ReportStreamSentimentParams,
+    type ReportStreamSentimentV2Params as ReportStreamSentimentV2Params,
     type ReportStreamVisibilityParams as ReportStreamVisibilityParams,
+    type ReportStreamVisibilityV2Params as ReportStreamVisibilityV2Params,
     type ReportVisibilityParams as ReportVisibilityParams,
   };
 
@@ -900,10 +983,17 @@ export declare namespace Profound {
 
   export {
     Agents as Agents,
+    type AgentCreateResponse as AgentCreateResponse,
     type AgentRetrieveResponse as AgentRetrieveResponse,
+    type AgentUpdateResponse as AgentUpdateResponse,
     type AgentListResponse as AgentListResponse,
+    type AgentPublishResponse as AgentPublishResponse,
+    type AgentRetrieveGraphResponse as AgentRetrieveGraphResponse,
+    type AgentCreateParams as AgentCreateParams,
     type AgentRetrieveParams as AgentRetrieveParams,
+    type AgentUpdateParams as AgentUpdateParams,
     type AgentListParams as AgentListParams,
+    type AgentRetrieveGraphParams as AgentRetrieveGraphParams,
   };
 
   export {
@@ -916,7 +1006,6 @@ export declare namespace Profound {
 
   export type AnalysisTypeFilter = API.AnalysisTypeFilter;
   export type AssetIDFilter = API.AssetIDFilter;
-  export type AssetNameFilter = API.AssetNameFilter;
   export type BotNameFilter = API.BotNameFilter;
   export type BotProviderFilter = API.BotProviderFilter;
   export type CursorPagination = API.CursorPagination;

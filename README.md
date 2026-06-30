@@ -33,6 +33,7 @@ import Profound from '@profoundai/client';
 
 const client = new Profound({
   apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted
+  environment: 'development', // defaults to 'production'
 });
 
 const categories = await client.organizations.categories.list();
@@ -48,6 +49,7 @@ import Profound from '@profoundai/client';
 
 const client = new Profound({
   apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted
+  environment: 'development', // defaults to 'production'
 });
 
 const categories: Profound.Organizations.CategoryListResponse =

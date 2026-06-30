@@ -17,33 +17,18 @@ export interface AnalysisTypeFilter {
     | 'contains_case_insensitive'
     | 'not_contains_case_insensitive';
 
-  value: 'visibility' | 'sentiment' | 'accuracy' | Array<'visibility' | 'sentiment' | 'accuracy'>;
+  value:
+    | 'visibility'
+    | 'sentiment'
+    | 'sentiment_v2'
+    | 'accuracy'
+    | Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'>;
 }
 
 export interface AssetIDFilter {
   field: 'asset_id';
 
   operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-  value: string | Array<string>;
-}
-
-/**
- * Filter by asset name
- */
-export interface AssetNameFilter {
-  field: 'asset_name';
-
-  operator:
-    | 'is'
-    | 'not_is'
-    | 'in'
-    | 'not_in'
-    | 'contains'
-    | 'not_contains'
-    | 'matches'
-    | 'contains_case_insensitive'
-    | 'not_contains_case_insensitive';
 
   value: string | Array<string>;
 }
