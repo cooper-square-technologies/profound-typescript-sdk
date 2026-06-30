@@ -1,7 +1,6 @@
 import fs from 'fs';
 import type { ResponseLike } from '@profoundai/client/internal/to-file';
 import { toFile } from '@profoundai/client/core/uploads';
-import { File } from 'node:buffer';
 
 class MyClass {
   name: string = 'foo';

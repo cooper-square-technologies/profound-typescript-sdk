@@ -10,6 +10,7 @@ export {
   type CategoryCreatePromptsResponse,
   type CategoryGetCategoryPersonasResponse,
   type CategoryPromptsResponse,
+  type CategoryRetrieveRegionsResponse,
   type CategoryTagsResponse,
   type CategoryTopicsResponse,
   type CategoryUpdatePromptStatusResponse,

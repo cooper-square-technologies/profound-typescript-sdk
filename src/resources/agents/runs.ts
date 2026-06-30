@@ -8,8 +8,16 @@ import { path } from '../../internal/utils/path';
 export class Runs extends APIResource {
   /**
    * Start a new run for an agent.
+   *
+   * Runs always execute the agent's live published version, so the agent must be
+   * published first with `POST /v1/agents/{agent_id}/publish`. Unpublished drafts
+   * cannot be run.
    */
-  create(agentID: string, body: RunCreateParams, options?: RequestOptions): APIPromise<RunCreateResponse> {
+  create(
+    agentID: string,
+    body: RunCreateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RunCreateResponse> {
     return this._client.post(path`/v1/agents/${agentID}/runs`, { body, ...options });
   }
 
@@ -96,7 +104,7 @@ export interface RunRetrieveResponse {
 export interface RunCreateParams {
   /**
    * Input values for the run. Keys should match the property names defined in
-   * `schema.input`.
+   * `schema.input`. Omit the request body when the agent does not require inputs.
    */
   inputs?: { [key: string]: unknown };
 }

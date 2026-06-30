@@ -1,17 +1,22 @@
 import { makeOAuthConsent } from './app';
+// `agents` and `@modelcontextprotocol/sdk` versions must stay in sync with the
+// pins/overrides in package.json. `agents` declares an exact pin on
+// `@modelcontextprotocol/sdk`; if our resolved version drifts, npm installs a
+// second copy under `agents/node_modules/`, and `initMcpServer`'s runtime
+// `instanceof McpServer` check fails because the two `McpServer` classes are
+// distinct constructors.
 import { McpAgent } from 'agents/mcp';
-import OAuthProvider from '@cloudflare/workers-oauth-provider';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import OAuthProvider from '@cloudflare/workers-oauth-provider';
+import { ClientOptions } from '@profoundai/client';
+import { McpOptions } from '@profoundai/mcp/options';
+import { initMcpServer, newMcpServer } from '@profoundai/mcp/server';
 import { configureLogger } from '@profoundai/mcp/logger';
-import { initMcpServer } from '@profoundai/mcp/server';
-import type { McpOptions } from '@profoundai/mcp/options';
-import type { ClientOptions } from '@profoundai/client';
-import pkg from '../../package.json';
 import type { ExportedHandler } from '@cloudflare/workers-types';
 
 type MCPProps = {
   clientProps: ClientOptions;
-  clientConfig?: McpOptions;
+  clientConfig: McpOptions;
 };
 
 /**
@@ -40,25 +45,90 @@ const serverConfig: ServerConfig = {
       placeholder: 'My API Key',
       type: 'password',
     },
+    {
+      key: 'environment',
+      label: 'Environment',
+      description: 'The environment to use for the client',
+      required: false,
+      default: 'production',
+      placeholder: 'production',
+      type: 'select',
+      options: [
+        { label: 'production', value: 'production' },
+        { label: 'development', value: 'development' },
+      ],
+    },
   ],
 };
 
-export class MyMCP extends McpAgent<Env, unknown, MCPProps> {
-  server = new McpServer(
-    { name: 'profound', version: pkg.version },
+// `newMcpServer` fetches MCP server instructions from the Stainless API. In a
+// Durable Object, that fetch happens inside `blockConcurrencyWhile`; if it
+// hangs the DO is reset, and if it rejects the same thing happens. Race
+// against a short timeout and catch any rejection so any failure mode lands
+// on a fallback server constructed without instructions (the `initialize`
+// response simply omits the `instructions` field, which is spec-allowed).
+const INSTRUCTIONS_FETCH_TIMEOUT_MS = 5000;
+
+function fallbackMcpServer(): McpServer {
+  return new McpServer(
+    { name: 'profoundai_client_api', version: '0.46.0' },
     { capabilities: { tools: {}, logging: {} } },
   );
+}
+
+async function buildMcpServer(stainlessApiKey?: string): Promise<McpServer> {
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
+  try {
+    const fetched = newMcpServer({ stainlessApiKey });
+    const timeout = new Promise<null>((resolve) => {
+      timeoutId = setTimeout(() => resolve(null), INSTRUCTIONS_FETCH_TIMEOUT_MS);
+    });
+
+    const result = await Promise.race([fetched, timeout]);
+
+    if (result != null) {
+      return result;
+    }
+  } catch (error) {
+    console.error('Failed to build MCP server from upstream instructions; using fallback', error);
+  } finally {
+    if (timeoutId != null) {
+      clearTimeout(timeoutId);
+    }
+  }
+
+  return fallbackMcpServer();
+}
+
+export class MyMCP extends McpAgent<Env, unknown, MCPProps> {
+  #resolveServer!: (server: McpServer) => void;
+  #rejectServer!: (error: unknown) => void;
+  server: Promise<McpServer> = new Promise<McpServer>((resolve, reject) => {
+    this.#resolveServer = resolve;
+    this.#rejectServer = reject;
+  });
 
   async init() {
-    configureLogger({
-      level: 'info',
-      pretty: false,
-    });
-    await initMcpServer({
-      server: this.server.server,
-      clientOptions: this.props?.clientProps,
-      mcpOptions: this.props?.clientConfig,
-    });
+    try {
+      if (this.props == null) {
+        throw new Error('MCP props are not initialized');
+      }
+
+      configureLogger({ level: 'info', pretty: false });
+
+      const server = await buildMcpServer(this.props.clientConfig?.stainlessApiKey);
+
+      await initMcpServer({
+        server,
+        clientOptions: this.props.clientProps,
+        mcpOptions: this.props.clientConfig,
+      });
+
+      this.#resolveServer(server);
+    } catch (error) {
+      this.#rejectServer(error);
+      throw error;
+    }
   }
 }
 
@@ -95,7 +165,8 @@ export type ClientProperty = {
   options?: { label: string; value: string }[];
 };
 
-const oauthProvider = new OAuthProvider({
+// Export the OAuth handler as the default
+export default new OAuthProvider({
   apiHandlers: {
     // @ts-expect-error
     '/sse': MyMCP.serveSSE('/sse'), // legacy SSE
@@ -109,28 +180,3 @@ const oauthProvider = new OAuthProvider({
   tokenEndpoint: '/token',
   clientRegistrationEndpoint: '/register',
 });
-
-const apiKeyPath = '/mcp';
-const apiKeyHeader = 'x-api-key';
-
-function isApiKeyRequest(request: Request) {
-  const url = new URL(request.url);
-  const apiKey = request.headers.get(apiKeyHeader);
-  return url.pathname === apiKeyPath && apiKey;
-}
-
-export default {
-  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-    if (isApiKeyRequest(request)) {
-      const key = request.headers.get(apiKeyHeader)!;
-      const prev: Partial<MCPProps> = (ctx as { props?: Partial<MCPProps> }).props ?? {};
-      (ctx as { props?: MCPProps }).props = {
-        ...prev,
-        clientProps: { ...(prev.clientProps ?? {}), apiKey: key },
-      };
-      return MyMCP.serve(apiKeyPath).fetch(request, env, ctx);
-    }
-
-    return oauthProvider.fetch(request, env, ctx);
-  },
-};

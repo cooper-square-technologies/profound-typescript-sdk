@@ -61,6 +61,13 @@ export class Categories extends APIResource {
   }
 
   /**
+   * Get the regions for a specific category.
+   */
+  retrieveRegions(categoryID: string, options?: RequestOptions): APIPromise<CategoryRetrieveRegionsResponse> {
+    return this._client.get(path`/v1/org/categories/${categoryID}/regions`, options);
+  }
+
+  /**
    * Get the tags for a specific category.
    */
   tags(categoryID: string, options?: RequestOptions): APIPromise<CategoryTagsResponse> {
@@ -246,7 +253,7 @@ export namespace CategoryCreatePromptsResponse {
     /**
      * Analysis types assigned to this prompt.
      */
-    analysis_types?: Array<'visibility' | 'sentiment' | 'accuracy'>;
+    analysis_types?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'>;
 
     /**
      * Generic id+name reference used across domain boundaries.
@@ -318,7 +325,7 @@ export namespace CategoryPromptsResponse {
 
     updated_at: string;
 
-    analysis_types?: Array<'visibility' | 'sentiment' | 'accuracy'>;
+    analysis_types?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'>;
 
     personas?: Array<OrganizationsAPI.NamedResource>;
 
@@ -339,7 +346,17 @@ export namespace CategoryPromptsResponse {
   }
 }
 
-export type CategoryTagsResponse = Array<OrganizationsAPI.NamedResource>;
+export type CategoryRetrieveRegionsResponse = Array<OrganizationsAPI.NamedResource>;
+
+export type CategoryTagsResponse = Array<CategoryTagsResponse.CategoryTagsResponseItem>;
+
+export namespace CategoryTagsResponse {
+  export interface CategoryTagsResponseItem {
+    id: string;
+
+    name: string;
+  }
+}
 
 export type CategoryTopicsResponse = Array<CategoryTopicsResponse.CategoryTopicsResponseItem>;
 
@@ -512,7 +529,7 @@ export namespace CategoryCreatePromptsParams {
      * Analysis types: 'visibility', 'sentiment', 'accuracy'. Defaults to
      * ['visibility'].
      */
-    analysis_types?: Array<'visibility' | 'sentiment' | 'accuracy'> | null;
+    analysis_types?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'> | null;
 
     /**
      * Reference by id, name, or both. Plain strings work too: UUIDs become id lookups,
@@ -541,7 +558,7 @@ export interface CategoryPromptsParams {
   /**
    * Filter by analysis type (visibility, sentiment, accuracy).
    */
-  analysis_type?: Array<'visibility' | 'sentiment' | 'accuracy'>;
+  analysis_type?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'>;
 
   /**
    * Pagination cursor from a previous response.
@@ -638,7 +655,7 @@ export namespace CategoryUpdatePromptsParams {
     /**
      * New analysis types. Replaces all existing analysis types on the prompt.
      */
-    analysis_types?: Array<'visibility' | 'sentiment' | 'accuracy'> | null;
+    analysis_types?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'> | null;
 
     /**
      * Reference by id, name, or both. Plain strings work too: UUIDs become id lookups,
@@ -699,6 +716,7 @@ export declare namespace Categories {
     type CategoryCreatePromptsResponse as CategoryCreatePromptsResponse,
     type CategoryGetCategoryPersonasResponse as CategoryGetCategoryPersonasResponse,
     type CategoryPromptsResponse as CategoryPromptsResponse,
+    type CategoryRetrieveRegionsResponse as CategoryRetrieveRegionsResponse,
     type CategoryTagsResponse as CategoryTagsResponse,
     type CategoryTopicsResponse as CategoryTopicsResponse,
     type CategoryUpdatePromptStatusResponse as CategoryUpdatePromptStatusResponse,

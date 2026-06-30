@@ -3,10 +3,17 @@
 export * from './shared';
 export {
   Agents,
+  type AgentCreateResponse,
   type AgentRetrieveResponse,
+  type AgentUpdateResponse,
   type AgentListResponse,
+  type AgentPublishResponse,
+  type AgentRetrieveGraphResponse,
+  type AgentCreateParams,
   type AgentRetrieveParams,
+  type AgentUpdateParams,
   type AgentListParams,
+  type AgentRetrieveGraphParams,
 } from './agents/agents';
 export { Content } from './content/content';
 export {
@@ -37,16 +44,31 @@ export {
   type OrganizationListAssetsParams,
   type OrganizationRegionsParams,
 } from './organizations/organizations';
-export { Prompts, type PromptAnswersResponse, type PromptAnswersParams } from './prompts';
+export {
+  Prompts,
+  type PromptAnswersResponse,
+  type PromptAnswersV2Response,
+  type PromptAnswersParams,
+  type PromptAnswersV2Params,
+  type PromptStreamAnswersV2Params,
+} from './prompts';
 export {
   Reports,
+  type HostnameFilter,
   type PromptIDFilter,
   type ReportInfo,
   type ReportResponse,
   type ReportResult,
+  type RootDomainFilter,
   type TagNameFilter,
   type TopicNameFilter,
+  type URLFilter,
   type ReportCitationsResponse,
+  type ReportQueryCitationsResponse,
+  type ReportQueryQueryFanoutsResponse,
+  type ReportQuerySentimentResponse,
+  type ReportQueryVisibilityResponse,
+  type ReportSentimentV2Response,
   type ReportStreamCitationsResponse,
   type ReportStreamSentimentResponse,
   type ReportStreamVisibilityResponse,
@@ -55,10 +77,19 @@ export {
   type ReportGetBotsReportV2Params,
   type ReportGetReferralsReportParams,
   type ReportGetReferralsReportV2Params,
+  type ReportQueryCitationsParams,
   type ReportQueryFanoutsParams,
+  type ReportQueryQueryFanoutsParams,
+  type ReportQuerySentimentParams,
+  type ReportQueryVisibilityParams,
   type ReportSentimentParams,
+  type ReportSentimentV2Params,
   type ReportStreamCitationsParams,
+  type ReportStreamCitationsV2Params,
+  type ReportStreamQueryFanoutsParams,
   type ReportStreamSentimentParams,
+  type ReportStreamSentimentV2Params,
   type ReportStreamVisibilityParams,
+  type ReportStreamVisibilityV2Params,
   type ReportVisibilityParams,
-} from './reports';
+} from './reports/reports';

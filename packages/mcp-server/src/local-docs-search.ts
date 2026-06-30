@@ -291,17 +291,17 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     params: ['category_id: string;'],
     response: '{ id: string; name: string; }[]',
     markdown:
-      "## tags\n\n`client.organizations.categories.tags(category_id: string): object[]`\n\n**get** `/v1/org/categories/{category_id}/tags`\n\nGet the tags for a specific category.\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ id: string; name: string; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst namedResources = await client.organizations.categories.tags('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(namedResources);\n```",
+      "## tags\n\n`client.organizations.categories.tags(category_id: string): { id: string; name: string; }[]`\n\n**get** `/v1/org/categories/{category_id}/tags`\n\nGet the tags for a specific category.\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ id: string; name: string; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.tags('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
     perLanguage: {
       typescript: {
         method: 'client.organizations.categories.tags',
         example:
-          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst namedResources = await client.organizations.categories.tags(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n);\n\nconsole.log(namedResources);",
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.organizations.categories.tags('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);",
       },
       python: {
         method: 'organizations.categories.tags',
         example:
-          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nnamed_resources = client.organizations.categories.tags(\n    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(named_resources)',
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.organizations.categories.tags(\n    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response)',
       },
       http: {
         example:
@@ -320,7 +320,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     qualified: 'client.organizations.categories.prompts',
     params: [
       'category_id: string;',
-      "analysis_type?: 'visibility' | 'sentiment' | 'accuracy'[];",
+      "analysis_type?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[];",
       'cursor?: string;',
       'limit?: number;',
       "order_dir?: 'asc' | 'desc';",
@@ -333,9 +333,9 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       'topic_id?: string[];',
     ],
     response:
-      "{ data: { id: string; created_at: string; language: string; platforms: object[]; prompt: string; regions: object[]; status: 'active' | 'disabled'; topic: object; updated_at: string; analysis_types?: 'visibility' | 'sentiment' | 'accuracy'[]; personas?: object[]; prompt_type?: string; tags?: object[]; }[]; info: { limit: number; next_cursor: string; total_rows: number; }; }",
+      "{ data: { id: string; created_at: string; language: string; platforms: object[]; prompt: string; regions: object[]; status: 'active' | 'disabled'; topic: object; updated_at: string; analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]; personas?: object[]; prompt_type?: string; tags?: object[]; }[]; info: { limit: number; next_cursor: string; total_rows: number; }; }",
     markdown:
-      "## prompts\n\n`client.organizations.categories.prompts(category_id: string, analysis_type?: 'visibility' | 'sentiment' | 'accuracy'[], cursor?: string, limit?: number, order_dir?: 'asc' | 'desc', persona_id?: string[], platform_id?: string[], prompt_type?: 'visibility' | 'sentiment'[], region_id?: string[], status?: 'active' | 'disabled'[], tag_id?: string[], topic_id?: string[]): { data: object[]; info: object; }`\n\n**get** `/v1/org/categories/{category_id}/prompts`\n\nRetrieve prompts in a category with optional filtering by type, topic, tag, region, platform, or persona. Supports cursor-based pagination.\n\n### Parameters\n\n- `category_id: string`\n\n- `analysis_type?: 'visibility' | 'sentiment' | 'accuracy'[]`\n  Filter by analysis type (visibility, sentiment, accuracy).\n\n- `cursor?: string`\n  Pagination cursor from a previous response.\n\n- `limit?: number`\n  Maximum number of prompts to return.\n\n- `order_dir?: 'asc' | 'desc'`\n  Sort direction by creation date.\n\n- `persona_id?: string[]`\n  Filter by persona IDs.\n\n- `platform_id?: string[]`\n  Filter by platform IDs.\n\n- `prompt_type?: 'visibility' | 'sentiment'[]`\n  Deprecated. Use analysis_type instead.\n\n- `region_id?: string[]`\n  Filter by region IDs.\n\n- `status?: 'active' | 'disabled'[]`\n  Filter by prompt status. Defaults to `active` only.\n\n- `tag_id?: string[]`\n  Filter by tag IDs.\n\n- `topic_id?: string[]`\n  Filter by topic IDs.\n\n### Returns\n\n- `{ data: { id: string; created_at: string; language: string; platforms: object[]; prompt: string; regions: object[]; status: 'active' | 'disabled'; topic: object; updated_at: string; analysis_types?: 'visibility' | 'sentiment' | 'accuracy'[]; personas?: object[]; prompt_type?: string; tags?: object[]; }[]; info: { limit: number; next_cursor: string; total_rows: number; }; }`\n\n  - `data: { id: string; created_at: string; language: string; platforms: { id: string; name: string; }[]; prompt: string; regions: { id: string; name: string; }[]; status: 'active' | 'disabled'; topic: { id: string; name: string; }; updated_at: string; analysis_types?: 'visibility' | 'sentiment' | 'accuracy'[]; personas?: { id: string; name: string; }[]; prompt_type?: string; tags?: { id: string; name: string; }[]; }[]`\n  - `info: { limit: number; next_cursor: string; total_rows: number; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.prompts('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
+      "## prompts\n\n`client.organizations.categories.prompts(category_id: string, analysis_type?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[], cursor?: string, limit?: number, order_dir?: 'asc' | 'desc', persona_id?: string[], platform_id?: string[], prompt_type?: 'visibility' | 'sentiment'[], region_id?: string[], status?: 'active' | 'disabled'[], tag_id?: string[], topic_id?: string[]): { data: object[]; info: object; }`\n\n**get** `/v1/org/categories/{category_id}/prompts`\n\nRetrieve prompts in a category with optional filtering by type, topic, tag, region, platform, or persona. Supports cursor-based pagination.\n\n### Parameters\n\n- `category_id: string`\n\n- `analysis_type?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]`\n  Filter by analysis type (visibility, sentiment, accuracy).\n\n- `cursor?: string`\n  Pagination cursor from a previous response.\n\n- `limit?: number`\n  Maximum number of prompts to return.\n\n- `order_dir?: 'asc' | 'desc'`\n  Sort direction by creation date.\n\n- `persona_id?: string[]`\n  Filter by persona IDs.\n\n- `platform_id?: string[]`\n  Filter by platform IDs.\n\n- `prompt_type?: 'visibility' | 'sentiment'[]`\n  Deprecated. Use analysis_type instead.\n\n- `region_id?: string[]`\n  Filter by region IDs.\n\n- `status?: 'active' | 'disabled'[]`\n  Filter by prompt status. Defaults to `active` only.\n\n- `tag_id?: string[]`\n  Filter by tag IDs.\n\n- `topic_id?: string[]`\n  Filter by topic IDs.\n\n### Returns\n\n- `{ data: { id: string; created_at: string; language: string; platforms: object[]; prompt: string; regions: object[]; status: 'active' | 'disabled'; topic: object; updated_at: string; analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]; personas?: object[]; prompt_type?: string; tags?: object[]; }[]; info: { limit: number; next_cursor: string; total_rows: number; }; }`\n\n  - `data: { id: string; created_at: string; language: string; platforms: { id: string; name: string; }[]; prompt: string; regions: { id: string; name: string; }[]; status: 'active' | 'disabled'; topic: { id: string; name: string; }; updated_at: string; analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]; personas?: { id: string; name: string; }[]; prompt_type?: string; tags?: { id: string; name: string; }[]; }[]`\n  - `info: { limit: number; next_cursor: string; total_rows: number; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.prompts('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
     perLanguage: {
       typescript: {
         method: 'client.organizations.categories.prompts',
@@ -423,13 +423,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     qualified: 'client.organizations.categories.createPrompts',
     params: [
       'category_id: string;',
-      "prompts: { language: string; platforms: { id?: string; name?: string; }[]; prompt: string; regions: { id?: string; name?: string; }[]; topic: { id?: string; name?: string; }; analysis_types?: 'visibility' | 'sentiment' | 'accuracy'[]; asset?: { id?: string; name?: string; }; personas?: { id?: string; name?: string; }[]; prompt_type?: string; tags?: { id?: string; name?: string; }[]; }[];",
+      "prompts: { language: string; platforms: { id?: string; name?: string; }[]; prompt: string; regions: { id?: string; name?: string; }[]; topic: { id?: string; name?: string; }; analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]; asset?: { id?: string; name?: string; }; personas?: { id?: string; name?: string; }[]; prompt_type?: string; tags?: { id?: string; name?: string; }[]; }[];",
       'dry_run?: boolean;',
     ],
     response:
-      "{ dry_run: boolean; created?: number; prompts?: { id: string; language: string; prompt: string; topic: object; analysis_types?: 'visibility' | 'sentiment' | 'accuracy'[]; asset?: object; personas?: object[]; platforms?: object[]; regions?: object[]; tags?: object[]; }[]; tags_created?: number; topics_created?: number; }",
+      "{ dry_run: boolean; created?: number; prompts?: { id: string; language: string; prompt: string; topic: object; analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]; asset?: object; personas?: object[]; platforms?: object[]; regions?: object[]; tags?: object[]; }[]; tags_created?: number; topics_created?: number; }",
     markdown:
-      "## create_prompts\n\n`client.organizations.categories.createPrompts(category_id: string, prompts: { language: string; platforms: object[]; prompt: string; regions: object[]; topic: object; analysis_types?: 'visibility' | 'sentiment' | 'accuracy'[]; asset?: object; personas?: object[]; prompt_type?: string; tags?: object[]; }[], dry_run?: boolean): { dry_run: boolean; created?: number; prompts?: object[]; tags_created?: number; topics_created?: number; }`\n\n**post** `/v1/org/categories/{category_id}/prompts`\n\nCreate one or more prompts in a category. Topics and tags are auto-created if referenced by name and not yet existing. Use dry_run to preview without persisting.\n\n### Parameters\n\n- `category_id: string`\n\n- `prompts: { language: string; platforms: { id?: string; name?: string; }[]; prompt: string; regions: { id?: string; name?: string; }[]; topic: { id?: string; name?: string; }; analysis_types?: 'visibility' | 'sentiment' | 'accuracy'[]; asset?: { id?: string; name?: string; }; personas?: { id?: string; name?: string; }[]; prompt_type?: string; tags?: { id?: string; name?: string; }[]; }[]`\n  List of prompts to create.\n\n- `dry_run?: boolean`\n  When true, validate and preview changes without persisting them.\n\n### Returns\n\n- `{ dry_run: boolean; created?: number; prompts?: { id: string; language: string; prompt: string; topic: object; analysis_types?: 'visibility' | 'sentiment' | 'accuracy'[]; asset?: object; personas?: object[]; platforms?: object[]; regions?: object[]; tags?: object[]; }[]; tags_created?: number; topics_created?: number; }`\n  Response from creating prompts.\n\n  - `dry_run: boolean`\n  - `created?: number`\n  - `prompts?: { id: string; language: string; prompt: string; topic: { id: string; name: string; }; analysis_types?: 'visibility' | 'sentiment' | 'accuracy'[]; asset?: { id: string; name: string; }; personas?: { id: string; name: string; }[]; platforms?: { id: string; name: string; }[]; regions?: { id: string; name: string; }[]; tags?: { id: string; name: string; }[]; }[]`\n  - `tags_created?: number`\n  - `topics_created?: number`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.createPrompts('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { prompts: [{\n  language: 'language',\n  platforms: [{}],\n  prompt: 'x',\n  regions: [{}],\n  topic: {},\n}] });\n\nconsole.log(response);\n```",
+      "## create_prompts\n\n`client.organizations.categories.createPrompts(category_id: string, prompts: { language: string; platforms: object[]; prompt: string; regions: object[]; topic: object; analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]; asset?: object; personas?: object[]; prompt_type?: string; tags?: object[]; }[], dry_run?: boolean): { dry_run: boolean; created?: number; prompts?: object[]; tags_created?: number; topics_created?: number; }`\n\n**post** `/v1/org/categories/{category_id}/prompts`\n\nCreate one or more prompts in a category. Topics and tags are auto-created if referenced by name and not yet existing. Use dry_run to preview without persisting.\n\n### Parameters\n\n- `category_id: string`\n\n- `prompts: { language: string; platforms: { id?: string; name?: string; }[]; prompt: string; regions: { id?: string; name?: string; }[]; topic: { id?: string; name?: string; }; analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]; asset?: { id?: string; name?: string; }; personas?: { id?: string; name?: string; }[]; prompt_type?: string; tags?: { id?: string; name?: string; }[]; }[]`\n  List of prompts to create.\n\n- `dry_run?: boolean`\n  When true, validate and preview changes without persisting them.\n\n### Returns\n\n- `{ dry_run: boolean; created?: number; prompts?: { id: string; language: string; prompt: string; topic: object; analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]; asset?: object; personas?: object[]; platforms?: object[]; regions?: object[]; tags?: object[]; }[]; tags_created?: number; topics_created?: number; }`\n  Response from creating prompts.\n\n  - `dry_run: boolean`\n  - `created?: number`\n  - `prompts?: { id: string; language: string; prompt: string; topic: { id: string; name: string; }; analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]; asset?: { id: string; name: string; }; personas?: { id: string; name: string; }[]; platforms?: { id: string; name: string; }[]; regions?: { id: string; name: string; }[]; tags?: { id: string; name: string; }[]; }[]`\n  - `tags_created?: number`\n  - `topics_created?: number`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.createPrompts('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { prompts: [{\n  language: 'language',\n  platforms: [{}],\n  prompt: 'x',\n  regions: [{}],\n  topic: {},\n}] });\n\nconsole.log(response);\n```",
     perLanguage: {
       typescript: {
         method: 'client.organizations.categories.createPrompts',
@@ -458,13 +458,13 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     qualified: 'client.organizations.categories.updatePrompts',
     params: [
       'category_id: string;',
-      "prompts: { id: string; analysis_types?: 'visibility' | 'sentiment' | 'accuracy'[]; asset?: { id?: string; name?: string; }; language?: string; personas?: { id?: string; name?: string; }[]; platforms?: { id?: string; name?: string; }[]; prompt?: string; prompt_type?: string; regions?: { id?: string; name?: string; }[]; tags?: { id?: string; name?: string; }[]; topic?: { id?: string; name?: string; }; }[];",
+      "prompts: { id: string; analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]; asset?: { id?: string; name?: string; }; language?: string; personas?: { id?: string; name?: string; }[]; platforms?: { id?: string; name?: string; }[]; prompt?: string; prompt_type?: string; regions?: { id?: string; name?: string; }[]; tags?: { id?: string; name?: string; }[]; topic?: { id?: string; name?: string; }; }[];",
       'dry_run?: boolean;',
     ],
     response:
       '{ dry_run: boolean; prompts?: { id: string; analysis_types?: object; asset?: object; language?: object; personas?: object; platforms?: object; prompt?: object; regions?: object; tags?: object; topic?: object; }[]; tags_created?: number; topics_created?: number; updated?: number; }',
     markdown:
-      "## update_prompts\n\n`client.organizations.categories.updatePrompts(category_id: string, prompts: { id: string; analysis_types?: 'visibility' | 'sentiment' | 'accuracy'[]; asset?: object; language?: string; personas?: object[]; platforms?: object[]; prompt?: string; prompt_type?: string; regions?: object[]; tags?: object[]; topic?: object; }[], dry_run?: boolean): { dry_run: boolean; prompts?: object[]; tags_created?: number; topics_created?: number; updated?: number; }`\n\n**patch** `/v1/org/categories/{category_id}/prompts`\n\nUpdate one or more existing prompts. Only provided fields are changed. Dimension fields (regions, platforms, personas, tags) replace the full set when provided. Use dry_run to preview without persisting.\n\n### Parameters\n\n- `category_id: string`\n\n- `prompts: { id: string; analysis_types?: 'visibility' | 'sentiment' | 'accuracy'[]; asset?: { id?: string; name?: string; }; language?: string; personas?: { id?: string; name?: string; }[]; platforms?: { id?: string; name?: string; }[]; prompt?: string; prompt_type?: string; regions?: { id?: string; name?: string; }[]; tags?: { id?: string; name?: string; }[]; topic?: { id?: string; name?: string; }; }[]`\n  List of prompt updates. Each entry must include an `id` and at least one field to change.\n\n- `dry_run?: boolean`\n  When true, validate and preview changes without persisting them.\n\n### Returns\n\n- `{ dry_run: boolean; prompts?: { id: string; analysis_types?: object; asset?: object; language?: object; personas?: object; platforms?: object; prompt?: object; regions?: object; tags?: object; topic?: object; }[]; tags_created?: number; topics_created?: number; updated?: number; }`\n  Response from updating prompts.\n\n  - `dry_run: boolean`\n  - `prompts?: { id: string; analysis_types?: { new?: object; old?: object; }; asset?: { new?: object; old?: object; }; language?: { new?: object; old?: object; }; personas?: { added?: object[]; removed?: object[]; }; platforms?: { added?: object[]; removed?: object[]; }; prompt?: { new?: object; old?: object; }; regions?: { added?: object[]; removed?: object[]; }; tags?: { added?: object[]; removed?: object[]; }; topic?: { new?: object; old?: object; }; }[]`\n  - `tags_created?: number`\n  - `topics_created?: number`\n  - `updated?: number`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.updatePrompts('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { prompts: [{ id: 'id' }] });\n\nconsole.log(response);\n```",
+      "## update_prompts\n\n`client.organizations.categories.updatePrompts(category_id: string, prompts: { id: string; analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]; asset?: object; language?: string; personas?: object[]; platforms?: object[]; prompt?: string; prompt_type?: string; regions?: object[]; tags?: object[]; topic?: object; }[], dry_run?: boolean): { dry_run: boolean; prompts?: object[]; tags_created?: number; topics_created?: number; updated?: number; }`\n\n**patch** `/v1/org/categories/{category_id}/prompts`\n\nUpdate one or more existing prompts. Only provided fields are changed. Dimension fields (regions, platforms, personas, tags) replace the full set when provided. Use dry_run to preview without persisting.\n\n### Parameters\n\n- `category_id: string`\n\n- `prompts: { id: string; analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]; asset?: { id?: string; name?: string; }; language?: string; personas?: { id?: string; name?: string; }[]; platforms?: { id?: string; name?: string; }[]; prompt?: string; prompt_type?: string; regions?: { id?: string; name?: string; }[]; tags?: { id?: string; name?: string; }[]; topic?: { id?: string; name?: string; }; }[]`\n  List of prompt updates. Each entry must include an `id` and at least one field to change.\n\n- `dry_run?: boolean`\n  When true, validate and preview changes without persisting them.\n\n### Returns\n\n- `{ dry_run: boolean; prompts?: { id: string; analysis_types?: object; asset?: object; language?: object; personas?: object; platforms?: object; prompt?: object; regions?: object; tags?: object; topic?: object; }[]; tags_created?: number; topics_created?: number; updated?: number; }`\n  Response from updating prompts.\n\n  - `dry_run: boolean`\n  - `prompts?: { id: string; analysis_types?: { new?: object; old?: object; }; asset?: { new?: object; old?: object; }; language?: { new?: object; old?: object; }; personas?: { added?: object[]; removed?: object[]; }; platforms?: { added?: object[]; removed?: object[]; }; prompt?: { new?: object; old?: object; }; regions?: { added?: object[]; removed?: object[]; }; tags?: { added?: object[]; removed?: object[]; }; topic?: { new?: object; old?: object; }; }[]`\n  - `tags_created?: number`\n  - `topics_created?: number`\n  - `updated?: number`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.updatePrompts('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { prompts: [{ id: 'id' }] });\n\nconsole.log(response);\n```",
     perLanguage: {
       typescript: {
         method: 'client.organizations.categories.updatePrompts',
@@ -518,25 +518,54 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'retrieve_regions',
+    endpoint: '/v1/org/categories/{category_id}/regions',
+    httpMethod: 'get',
+    summary: 'Get Category Regions',
+    description: 'Get the regions for a specific category.',
+    stainlessPath: '(resource) organizations.categories > (method) retrieve_regions',
+    qualified: 'client.organizations.categories.retrieveRegions',
+    params: ['category_id: string;'],
+    response: '{ id: string; name: string; }[]',
+    markdown:
+      "## retrieve_regions\n\n`client.organizations.categories.retrieveRegions(category_id: string): object[]`\n\n**get** `/v1/org/categories/{category_id}/regions`\n\nGet the regions for a specific category.\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ id: string; name: string; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst namedResources = await client.organizations.categories.retrieveRegions('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(namedResources);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.organizations.categories.retrieveRegions',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst namedResources = await client.organizations.categories.retrieveRegions(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n);\n\nconsole.log(namedResources);",
+      },
+      python: {
+        method: 'organizations.categories.retrieve_regions',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nnamed_resources = client.organizations.categories.retrieve_regions(\n    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(named_resources)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/org/categories/$CATEGORY_ID/regions \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
     name: 'answers',
     endpoint: '/v1/prompts/answers',
     httpMethod: 'post',
     summary: 'Get Answers',
-    description: 'Get the answers for the prompts.',
+    description: 'Get Answers',
     stainlessPath: '(resource) prompts > (method) answers',
     qualified: 'client.prompts.answers',
     params: [
       'category_id: string;',
       'end_date: string;',
       'start_date: string;',
-      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: 'visibility' | 'sentiment' | 'accuracy' | 'visibility' | 'sentiment' | 'accuracy'[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
-      'include?: { analysis_types?: boolean; asset?: boolean; asset_id?: boolean; citations?: boolean; created_at?: boolean; mentions?: boolean; model?: boolean; model_id?: boolean; persona?: boolean; prompt?: boolean; prompt_id?: boolean; prompt_type?: boolean; region?: boolean; response?: boolean; run_id?: boolean; search_queries?: boolean; search_triggered?: boolean; sentiment_themes?: boolean; tags?: boolean; themes?: boolean; topic?: boolean; topic_id?: boolean; };',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: string; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
+      'include?: { analysis_types?: boolean; asset?: boolean; asset_id?: boolean; citation_details?: boolean; citations?: boolean; created_at?: boolean; mentions?: boolean; model?: boolean; model_id?: boolean; persona?: boolean; prompt?: boolean; prompt_id?: boolean; prompt_type?: boolean; region?: boolean; response?: boolean; run_id?: boolean; search_queries?: boolean; search_triggered?: boolean; sentiment_themes?: boolean; tags?: boolean; themes?: boolean; topic?: boolean; topic_id?: boolean; web_search_results?: boolean; };',
       'pagination?: { limit?: number; offset?: number; };',
     ],
     response:
-      "{ data: { analysis_types?: string[]; asset?: string; asset_id?: string; citations?: string[]; created_at?: string; mentions?: string[]; model?: string; model_id?: string; persona?: string; prompt?: string; prompt_id?: string; prompt_type?: string; region?: string; response?: string; run_id?: string; search_queries?: string[]; search_triggered?: boolean; sentiment_themes?: { name: string; type: 'positive' | 'negative'; }[]; tags?: string[]; themes?: string[]; topic?: string; topic_id?: string; }[]; info: { total_rows: number; }; }",
+      "{ data: { analysis_types?: string[]; asset?: string; asset_id?: string; citation_details?: { clean_url: string; hostname: string; path: string; title: string; url: string; citation_category?: string; first_cited_at?: string; groups?: object[]; positions?: number[]; text?: string; }[]; citations?: string[]; created_at?: string; mentions?: string[]; model?: string; model_id?: string; persona?: string; prompt?: string; prompt_id?: string; prompt_type?: string; region?: string; response?: string; run_id?: string; search_queries?: string[]; search_triggered?: boolean; sentiment_themes?: { name: string; type: 'positive' | 'negative'; }[]; tags?: string[]; themes?: string[]; topic?: string; topic_id?: string; web_search_results?: string[]; }[]; info: { total_rows: number; }; }",
     markdown:
-      "## answers\n\n`client.prompts.answers(category_id: string, end_date: string, start_date: string, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: 'visibility' | 'sentiment' | 'accuracy' | 'visibility' | 'sentiment' | 'accuracy'[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include?: { analysis_types?: boolean; asset?: boolean; asset_id?: boolean; citations?: boolean; created_at?: boolean; mentions?: boolean; model?: boolean; model_id?: boolean; persona?: boolean; prompt?: boolean; prompt_id?: boolean; prompt_type?: boolean; region?: boolean; response?: boolean; run_id?: boolean; search_queries?: boolean; search_triggered?: boolean; sentiment_themes?: boolean; tags?: boolean; themes?: boolean; topic?: boolean; topic_id?: boolean; }, pagination?: { limit?: number; offset?: number; }): { data: object[]; info: object; }`\n\n**post** `/v1/prompts/answers`\n\nGet the answers for the prompts.\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: 'visibility' | 'sentiment' | 'accuracy' | 'visibility' | 'sentiment' | 'accuracy'[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n  List of filters to apply to the answers report.\n\n- `include?: { analysis_types?: boolean; asset?: boolean; asset_id?: boolean; citations?: boolean; created_at?: boolean; mentions?: boolean; model?: boolean; model_id?: boolean; persona?: boolean; prompt?: boolean; prompt_id?: boolean; prompt_type?: boolean; region?: boolean; response?: boolean; run_id?: boolean; search_queries?: boolean; search_triggered?: boolean; sentiment_themes?: boolean; tags?: boolean; themes?: boolean; topic?: boolean; topic_id?: boolean; }`\n  - `analysis_types?: boolean`\n  - `asset?: boolean`\n  - `asset_id?: boolean`\n  - `citations?: boolean`\n  - `created_at?: boolean`\n  - `mentions?: boolean`\n  - `model?: boolean`\n  - `model_id?: boolean`\n  - `persona?: boolean`\n  - `prompt?: boolean`\n  - `prompt_id?: boolean`\n  - `prompt_type?: boolean`\n  - `region?: boolean`\n  - `response?: boolean`\n  - `run_id?: boolean`\n  - `search_queries?: boolean`\n  - `search_triggered?: boolean`\n  - `sentiment_themes?: boolean`\n  - `tags?: boolean`\n  - `themes?: boolean`\n    Use 'sentiment_themes' instead\n  - `topic?: boolean`\n  - `topic_id?: boolean`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination parameters for the results. Default is 10,000 rows with no offset.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { analysis_types?: string[]; asset?: string; asset_id?: string; citations?: string[]; created_at?: string; mentions?: string[]; model?: string; model_id?: string; persona?: string; prompt?: string; prompt_id?: string; prompt_type?: string; region?: string; response?: string; run_id?: string; search_queries?: string[]; search_triggered?: boolean; sentiment_themes?: { name: string; type: 'positive' | 'negative'; }[]; tags?: string[]; themes?: string[]; topic?: string; topic_id?: string; }[]; info: { total_rows: number; }; }`\n  Response for the answers endpoint.\n\n  - `data: { analysis_types?: string[]; asset?: string; asset_id?: string; citations?: string[]; created_at?: string; mentions?: string[]; model?: string; model_id?: string; persona?: string; prompt?: string; prompt_id?: string; prompt_type?: string; region?: string; response?: string; run_id?: string; search_queries?: string[]; search_triggered?: boolean; sentiment_themes?: { name: string; type: 'positive' | 'negative'; }[]; tags?: string[]; themes?: string[]; topic?: string; topic_id?: string; }[]`\n  - `info: { total_rows: number; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.prompts.answers({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+      "## answers\n\n`client.prompts.answers(category_id: string, end_date: string, start_date: string, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: string; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include?: { analysis_types?: boolean; asset?: boolean; asset_id?: boolean; citation_details?: boolean; citations?: boolean; created_at?: boolean; mentions?: boolean; model?: boolean; model_id?: boolean; persona?: boolean; prompt?: boolean; prompt_id?: boolean; prompt_type?: boolean; region?: boolean; response?: boolean; run_id?: boolean; search_queries?: boolean; search_triggered?: boolean; sentiment_themes?: boolean; tags?: boolean; themes?: boolean; topic?: boolean; topic_id?: boolean; web_search_results?: boolean; }, pagination?: { limit?: number; offset?: number; }): { data: object[]; info: object; }`\n\n**post** `/v1/prompts/answers`\n\nGet Answers\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: string; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n  List of filters to apply to the answers report.\n\n- `include?: { analysis_types?: boolean; asset?: boolean; asset_id?: boolean; citation_details?: boolean; citations?: boolean; created_at?: boolean; mentions?: boolean; model?: boolean; model_id?: boolean; persona?: boolean; prompt?: boolean; prompt_id?: boolean; prompt_type?: boolean; region?: boolean; response?: boolean; run_id?: boolean; search_queries?: boolean; search_triggered?: boolean; sentiment_themes?: boolean; tags?: boolean; themes?: boolean; topic?: boolean; topic_id?: boolean; web_search_results?: boolean; }`\n  - `analysis_types?: boolean`\n  - `asset?: boolean`\n  - `asset_id?: boolean`\n  - `citation_details?: boolean`\n  - `citations?: boolean`\n  - `created_at?: boolean`\n  - `mentions?: boolean`\n  - `model?: boolean`\n  - `model_id?: boolean`\n  - `persona?: boolean`\n  - `prompt?: boolean`\n  - `prompt_id?: boolean`\n  - `prompt_type?: boolean`\n  - `region?: boolean`\n  - `response?: boolean`\n  - `run_id?: boolean`\n  - `search_queries?: boolean`\n  - `search_triggered?: boolean`\n  - `sentiment_themes?: boolean`\n    Uses legacy sentiment data.\n  - `tags?: boolean`\n  - `themes?: boolean`\n    Use 'sentiment_themes' instead\n  - `topic?: boolean`\n  - `topic_id?: boolean`\n  - `web_search_results?: boolean`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination parameters for the results. Default is 10,000 rows with no offset.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { analysis_types?: string[]; asset?: string; asset_id?: string; citation_details?: { clean_url: string; hostname: string; path: string; title: string; url: string; citation_category?: string; first_cited_at?: string; groups?: object[]; positions?: number[]; text?: string; }[]; citations?: string[]; created_at?: string; mentions?: string[]; model?: string; model_id?: string; persona?: string; prompt?: string; prompt_id?: string; prompt_type?: string; region?: string; response?: string; run_id?: string; search_queries?: string[]; search_triggered?: boolean; sentiment_themes?: { name: string; type: 'positive' | 'negative'; }[]; tags?: string[]; themes?: string[]; topic?: string; topic_id?: string; web_search_results?: string[]; }[]; info: { total_rows: number; }; }`\n  Response for the answers endpoint.\n\n  - `data: { analysis_types?: string[]; asset?: string; asset_id?: string; citation_details?: { clean_url: string; hostname: string; path: string; title: string; url: string; citation_category?: string; first_cited_at?: string; groups?: { group_id: number; group_position: number; }[]; positions?: number[]; text?: string; }[]; citations?: string[]; created_at?: string; mentions?: string[]; model?: string; model_id?: string; persona?: string; prompt?: string; prompt_id?: string; prompt_type?: string; region?: string; response?: string; run_id?: string; search_queries?: string[]; search_triggered?: boolean; sentiment_themes?: { name: string; type: 'positive' | 'negative'; }[]; tags?: string[]; themes?: string[]; topic?: string; topic_id?: string; web_search_results?: string[]; }[]`\n  - `info: { total_rows: number; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.prompts.answers({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
     perLanguage: {
       typescript: {
         method: 'client.prompts.answers',
@@ -555,6 +584,81 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'answers_v2',
+    endpoint: '/v2/prompts/answers',
+    httpMethod: 'post',
+    summary: 'Query Answers V2',
+    description: 'Query Answers V2',
+    stainlessPath: '(resource) prompts > (method) answers_v2',
+    qualified: 'client.prompts.answersV2',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      'include?: string[];',
+      'limit?: number;',
+      'max_results?: number;',
+    ],
+    response: 'object',
+    markdown:
+      "## answers_v2\n\n`client.prompts.answersV2(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, include?: string[], limit?: number, max_results?: number): object`\n\n**post** `/v2/prompts/answers`\n\nQuery Answers V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `include?: string[]`\n  Which row fields to return: `run_id`, `date`, `model`, `topic`, `topic_id`, `region`, `persona`, `tags`, `prompt`, `prompt_id`, `response`, `mentions`, `citations`, `search_queries`, `analysis_types`, `sentiment_claims`. Omit for all of them.\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.prompts.answersV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.prompts.answersV2',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.prompts.answersV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'prompts.answers_v2',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.prompts.answers_v2(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/prompts/answers \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'stream_answers_v2',
+    endpoint: '/v2/prompts/answers/stream',
+    httpMethod: 'post',
+    summary: 'Stream Answers V2',
+    description: 'Stream Answers V2',
+    stainlessPath: '(resource) prompts > (method) stream_answers_v2',
+    qualified: 'client.prompts.streamAnswersV2',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      'include?: string[];',
+      'limit?: number;',
+      'max_results?: number;',
+    ],
+    markdown:
+      "## stream_answers_v2\n\n`client.prompts.streamAnswersV2(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, include?: string[], limit?: number, max_results?: number): void`\n\n**post** `/v2/prompts/answers/stream`\n\nStream Answers V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `include?: string[]`\n  Which row fields to return: `run_id`, `date`, `model`, `topic`, `topic_id`, `region`, `persona`, `tags`, `prompt`, `prompt_id`, `response`, `mentions`, `citations`, `search_queries`, `analysis_types`, `sentiment_claims`. Omit for all of them.\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nawait client.prompts.streamAnswersV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n})\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.prompts.streamAnswersV2',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.prompts.streamAnswersV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});",
+      },
+      python: {
+        method: 'prompts.stream_answers_v2',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nclient.prompts.stream_answers_v2(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/prompts/answers/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
     name: 'citations',
     endpoint: '/v1/reports/citations',
     httpMethod: 'post',
@@ -565,18 +669,18 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     params: [
       'category_id: string;',
       'end_date: string;',
-      "metrics: 'count' | 'citation_share' | 'share_of_voice'[];",
+      "metrics: 'count' | 'citation_share' | 'share_of_voice' | 'first_cited_at'[];",
       'start_date: string;',
       "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
       'dimensions?: string[];',
-      "filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: 'visibility' | 'sentiment' | 'accuracy' | 'visibility' | 'sentiment' | 'accuracy'[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'citation_category'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[];",
+      "filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: string; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'citation_category'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[];",
       'order_by?: object;',
       'pagination?: { limit?: number; offset?: number; };',
     ],
     response:
-      '{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }',
+      '{ data: { dimensions: string[]; metrics: number | string[]; }[]; info: { total_rows: number; query?: object; }; }',
     markdown:
-      "## citations\n\n`client.reports.citations(category_id: string, end_date: string, metrics: 'count' | 'citation_share' | 'share_of_voice'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: 'visibility' | 'sentiment' | 'accuracy' | 'visibility' | 'sentiment' | 'accuracy'[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'citation_category'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[], order_by?: object, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v1/reports/citations`\n\nGet citations for a given category.\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `metrics: 'count' | 'citation_share' | 'share_of_voice'[]`\n  Metrics to include. `share_of_voice` is deprecated, use `citation_share` instead.\n\n- `start_date: string`\n  Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: string[]`\n  Dimensions to group the report by.\n\n- `filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: 'visibility' | 'sentiment' | 'accuracy' | 'visibility' | 'sentiment' | 'accuracy'[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'citation_category'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[]`\n  List of filters to apply to the citations report.\n\n- `order_by?: object`\n  \n    Custom ordering of the report results.\n\n    The order is a record of key-value pairs where:\n    - `key` is the field to order by, which can be a metric or dimension\n    - `value` is the direction of the order, either `asc` for ascending or `desc` for descending.\n\n    When not specified, the default order is the first metric in the query descending.\n            \n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.citations({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+      "## citations\n\n`client.reports.citations(category_id: string, end_date: string, metrics: 'count' | 'citation_share' | 'share_of_voice' | 'first_cited_at'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: string; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'citation_category'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[], order_by?: object, pagination?: { limit?: number; offset?: number; }): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/citations`\n\nGet citations for a given category.\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `metrics: 'count' | 'citation_share' | 'share_of_voice' | 'first_cited_at'[]`\n  Metrics to include. `share_of_voice` is deprecated, use `citation_share` instead.\n\n- `start_date: string`\n  Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: string[]`\n  Dimensions to group the report by.\n\n- `filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: string; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'citation_category'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[]`\n  List of filters to apply to the citations report.\n\n- `order_by?: object`\n  \n    Custom ordering of the report results.\n\n    The order is a record of key-value pairs where:\n    - `key` is the field to order by, which can be a metric or dimension\n    - `value` is the direction of the order, either `asc` for ascending or `desc` for descending.\n\n    When not specified, the default order is the first metric in the query descending.\n            \n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number | string[]; }[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: { dimensions: string[]; metrics: number | string[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.citations({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
     perLanguage: {
       typescript: {
         method: 'client.reports.citations',
@@ -590,7 +694,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/reports/citations \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/reports/citations \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -630,7 +734,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/reports/visibility \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "share_of_voice"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/reports/visibility \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "share_of_voice"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -670,7 +774,50 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/reports/sentiment \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "positive"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/reports/sentiment \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "positive"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'sentiment_v2',
+    endpoint: '/v1/reports/sentiment-v2',
+    httpMethod: 'post',
+    summary: 'Query Sentiment V2',
+    description: 'Query Sentiment V2',
+    stainlessPath: '(resource) reports > (method) sentiment_v2',
+    qualified: 'client.reports.sentimentV2',
+    params: [
+      'asset_name: string;',
+      'category_id: string;',
+      'end_date: string;',
+      "metrics: 'sentiment' | 'occurrence'[];",
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      'dimensions?: string[];',
+      "filters?: { field: 'model_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'run_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'theme_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'theme'; operator: string; value: string | string[]; } | { field: 'claim_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'claim'; operator: string; value: string | string[]; } | { field: 'sentiment'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: 'positive' | 'negative' | 'positive' | 'negative'[]; }[];",
+      'order_by?: object;',
+      'pagination?: { limit?: number; offset?: number; };',
+    ],
+    response:
+      "{ info: { query: object; total_rows: number; }; data?: { scores: { current?: object; previous?: object; }; cited_website_hrefs?: string[]; date?: string; group_ids?: object; group_metadata?: { asset_name?: string; child_count_matching?: number; child_count_total?: number; child_matches_search?: boolean; claim?: string; claim_id?: string; created_at?: string; model_id?: string; parent_matches_search?: boolean; persona_id?: string; prompt_id?: string; prompt_text?: string; region_id?: string; run_id?: string; sentiment?: 'positive' | 'negative'; theme?: string; theme_id?: string; topic_id?: string; }; group_names?: object; prev_date?: string; total_count?: number; }[]; }",
+    markdown:
+      "## sentiment_v2\n\n`client.reports.sentimentV2(asset_name: string, category_id: string, end_date: string, metrics: 'sentiment' | 'occurrence'[], start_date: string, comparison_end_date?: string, comparison_start_date?: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], filters?: { field: 'model_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'run_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'theme_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'theme'; operator: string; value: string | string[]; } | { field: 'claim_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'claim'; operator: string; value: string | string[]; } | { field: 'sentiment'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: 'positive' | 'negative' | 'positive' | 'negative'[]; }[], order_by?: object, pagination?: { limit?: number; offset?: number; }): { info: object; data?: object[]; }`\n\n**post** `/v1/reports/sentiment-v2`\n\nQuery Sentiment V2\n\n### Parameters\n\n- `asset_name: string`\n\n- `category_id: string`\n\n- `end_date: string`\n  End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `metrics: 'sentiment' | 'occurrence'[]`\n\n- `start_date: string`\n  Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `comparison_end_date?: string`\n  End of the previous period for delta computation.\n\n- `comparison_start_date?: string`\n  Start of the previous period for delta computation.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. Only used when dimensions includes date.\n\n- `dimensions?: string[]`\n  Dimensions to group the report by.\n\n- `filters?: { field: 'model_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'run_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'theme_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'theme'; operator: string; value: string | string[]; } | { field: 'claim_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'claim'; operator: string; value: string | string[]; } | { field: 'sentiment'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: 'positive' | 'negative' | 'positive' | 'negative'[]; }[]`\n  List of filters to apply to the sentiment-v2 report.\n\n- `order_by?: object`\n  Custom ordering of report results. Dimension keys must also be present in dimensions. The sentiment metric orders by positive_sentiment.\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ info: { query: object; total_rows: number; }; data?: { scores: { current?: object; previous?: object; }; cited_website_hrefs?: string[]; date?: string; group_ids?: object; group_metadata?: { asset_name?: string; child_count_matching?: number; child_count_total?: number; child_matches_search?: boolean; claim?: string; claim_id?: string; created_at?: string; model_id?: string; parent_matches_search?: boolean; persona_id?: string; prompt_id?: string; prompt_text?: string; region_id?: string; run_id?: string; sentiment?: 'positive' | 'negative'; theme?: string; theme_id?: string; topic_id?: string; }; group_names?: object; prev_date?: string; total_count?: number; }[]; }`\n\n  - `info: { query: object; total_rows: number; }`\n  - `data?: { scores: { current?: { assessment_count: number; negative_sentiment: number; positive_sentiment: number; occurrence?: number; response_count?: number; total_response_count?: number; }; previous?: { assessment_count: number; negative_sentiment: number; positive_sentiment: number; occurrence?: number; response_count?: number; total_response_count?: number; }; }; cited_website_hrefs?: string[]; date?: string; group_ids?: object; group_metadata?: { asset_name?: string; child_count_matching?: number; child_count_total?: number; child_matches_search?: boolean; claim?: string; claim_id?: string; created_at?: string; model_id?: string; parent_matches_search?: boolean; persona_id?: string; prompt_id?: string; prompt_text?: string; region_id?: string; run_id?: string; sentiment?: 'positive' | 'negative'; theme?: string; theme_id?: string; topic_id?: string; }; group_names?: object; prev_date?: string; total_count?: number; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.sentimentV2({\n  asset_name: 'asset_name',\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['sentiment'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.sentimentV2',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.sentimentV2({\n  asset_name: 'asset_name',\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['sentiment'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.info);",
+      },
+      python: {
+        method: 'reports.sentiment_v2',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.sentiment_v2(\n    asset_name="asset_name",\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    metrics=["sentiment"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.info)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/sentiment-v2 \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "asset_name": "asset_name",\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "sentiment"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "occurrence": "desc"\n          }\n        }\'',
       },
     },
   },
@@ -691,6 +838,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       "dimensions?: 'date' | 'path' | 'referral_source'[];",
       'end_date?: string;',
       "filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; }[];",
+      "metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[];",
       'order_by?: object;',
       'organization_id?: string;',
       'pagination?: { limit?: number; offset?: number; };',
@@ -698,7 +846,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     response:
       '{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }',
     markdown:
-      "## get_referrals_report\n\n`client.reports.getReferralsReport(domain: string, metrics: 'visits' | 'last_visit'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week', dimensions?: 'date' | 'path' | 'referral_source'[], end_date?: string, filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; }[], order_by?: object, organization_id?: string, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v1/reports/referrals`\n\nGet referral traffic report from the daily aggregated materialized view.\n\nThis endpoint queries pre-aggregated daily referral data, making it efficient\nfor large date ranges and high-traffic sites.\n\n### Parameters\n\n- `domain: string`\n  Domain to query logs for.\n\n- `metrics: 'visits' | 'last_visit'[]`\n\n- `start_date: string`\n  Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: 'date' | 'path' | 'referral_source'[]`\n  Dimensions to group the report by.\n\n- `end_date?: string`\n  End date for logs. Accepts same formats as start_date. Defaults to now if omitted.\n\n- `filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; }[]`\n  Filters for referrals report.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `organization_id?: string`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.getReferralsReport({\n  domain: 'domain',\n  metrics: ['visits'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
+      "## get_referrals_report\n\n`client.reports.getReferralsReport(domain: string, metrics: 'visits' | 'last_visit'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week', dimensions?: 'date' | 'path' | 'referral_source'[], end_date?: string, filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; }[], metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[], order_by?: object, organization_id?: string, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v1/reports/referrals`\n\nGet referral traffic report from the daily aggregated materialized view.\n\nThis endpoint queries pre-aggregated daily referral data, making it efficient\nfor large date ranges and high-traffic sites.\n\n### Parameters\n\n- `domain: string`\n  Domain to query logs for.\n\n- `metrics: 'visits' | 'last_visit'[]`\n\n- `start_date: string`\n  Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: 'date' | 'path' | 'referral_source'[]`\n  Dimensions to group the report by.\n\n- `end_date?: string`\n  End date for logs. Accepts same formats as start_date. Defaults to now if omitted.\n\n- `filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; }[]`\n  Filters for referrals report.\n\n- `metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[]`\n  Numeric filters applied after report metrics are calculated.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `organization_id?: string`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.getReferralsReport({\n  domain: 'domain',\n  metrics: ['visits'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
     perLanguage: {
       typescript: {
         method: 'client.reports.getReferralsReport',
@@ -712,7 +860,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/reports/referrals \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "visits"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/reports/referrals \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "visits"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -733,6 +881,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       "dimensions?: 'date' | 'path' | 'bot_name' | 'bot_provider'[];",
       'end_date?: string;',
       "filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; }[];",
+      "metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[];",
       'order_by?: object;',
       'organization_id?: string;',
       'pagination?: { limit?: number; offset?: number; };',
@@ -740,7 +889,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     response:
       '{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }',
     markdown:
-      "## get_bots_report\n\n`client.reports.getBotsReport(domain: string, metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week', dimensions?: 'date' | 'path' | 'bot_name' | 'bot_provider'[], end_date?: string, filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; }[], order_by?: object, organization_id?: string, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v1/reports/bots`\n\nGet bot traffic report from the daily aggregated materialized view.\n\nThis endpoint queries pre-aggregated daily bot data, making it efficient\nfor large date ranges and high-traffic sites.\n\nMetrics:\n- count: unique bot visits\n- citations: unique citation events\n- indexing: unique indexing events\n- training: unique training events\n- last_visit: most recent visit timestamp\n\n### Parameters\n\n- `domain: string`\n  Domain to query logs for.\n\n- `metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[]`\n\n- `start_date: string`\n  Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: 'date' | 'path' | 'bot_name' | 'bot_provider'[]`\n  Dimensions to group the report by.\n\n- `end_date?: string`\n  End date for logs. Accepts same formats as start_date. Defaults to now if omitted.\n\n- `filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; }[]`\n  Filters for bots report.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `organization_id?: string`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.getBotsReport({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
+      "## get_bots_report\n\n`client.reports.getBotsReport(domain: string, metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week', dimensions?: 'date' | 'path' | 'bot_name' | 'bot_provider'[], end_date?: string, filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; }[], metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[], order_by?: object, organization_id?: string, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v1/reports/bots`\n\nGet bot traffic report from the daily aggregated materialized view.\n\nThis endpoint queries pre-aggregated daily bot data, making it efficient\nfor large date ranges and high-traffic sites.\n\nMetrics:\n- count: unique bot visits\n- citations: unique citation events\n- indexing: unique indexing events\n- training: unique training events\n- last_visit: most recent visit timestamp\n\n### Parameters\n\n- `domain: string`\n  Domain to query logs for.\n\n- `metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[]`\n\n- `start_date: string`\n  Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: 'date' | 'path' | 'bot_name' | 'bot_provider'[]`\n  Dimensions to group the report by.\n\n- `end_date?: string`\n  End date for logs. Accepts same formats as start_date. Defaults to now if omitted.\n\n- `filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; }[]`\n  Filters for bots report.\n\n- `metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[]`\n  Numeric filters applied after report metrics are calculated.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `organization_id?: string`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.getBotsReport({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
     perLanguage: {
       typescript: {
         method: 'client.reports.getBotsReport',
@@ -754,91 +903,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/reports/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
-      },
-    },
-  },
-  {
-    name: 'get_referrals_report_v2',
-    endpoint: '/v2/reports/referrals',
-    httpMethod: 'post',
-    summary: 'Get Referrals Report V2',
-    description:
-      'Get referral traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval="hour", calendar intervals through "year", "quarter", and "relative_week".',
-    stainlessPath: '(resource) reports > (method) get_referrals_report_v2',
-    qualified: 'client.reports.getReferralsReportV2',
-    params: [
-      'domain: string;',
-      "metrics: 'visits' | 'last_visit'[];",
-      'start_date: string;',
-      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
-      "dimensions?: 'date' | 'hour' | 'path' | 'referral_source' | 'referral_type'[];",
-      'end_date?: string;',
-      "filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; } | { field: 'referral_type'; operator: string; value: 'internal' | 'referer' | 'utm' | 'none' | 'internal' | 'referer' | 'utm' | 'none'[]; }[];",
-      'order_by?: object;',
-      'organization_id?: string;',
-      'pagination?: { limit?: number; offset?: number; };',
-    ],
-    response:
-      '{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }',
-    markdown:
-      "## get_referrals_report_v2\n\n`client.reports.getReferralsReportV2(domain: string, metrics: 'visits' | 'last_visit'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'date' | 'hour' | 'path' | 'referral_source' | 'referral_type'[], end_date?: string, filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; } | { field: 'referral_type'; operator: string; value: 'internal' | 'referer' | 'utm' | 'none' | 'internal' | 'referer' | 'utm' | 'none'[]; }[], order_by?: object, organization_id?: string, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v2/reports/referrals`\n\nGet referral traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval=\"hour\", calendar intervals through \"year\", \"quarter\", and \"relative_week\".\n\n### Parameters\n\n- `domain: string`\n  Domain to query logs for.\n\n- `metrics: 'visits' | 'last_visit'[]`\n\n- `start_date: string`\n  Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: 'date' | 'hour' | 'path' | 'referral_source' | 'referral_type'[]`\n  Dimensions to group the report by.\n\n- `end_date?: string`\n  End date in UTC. Accepts same formats as start_date. Defaults to now UTC if omitted.\n\n- `filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; } | { field: 'referral_type'; operator: string; value: 'internal' | 'referer' | 'utm' | 'none' | 'internal' | 'referer' | 'utm' | 'none'[]; }[]`\n  Filters for referrals report.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `organization_id?: string`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.getReferralsReportV2({\n  domain: 'domain',\n  metrics: ['visits'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
-    perLanguage: {
-      typescript: {
-        method: 'client.reports.getReferralsReportV2',
-        example:
-          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.getReferralsReportV2({\n  domain: 'domain',\n  metrics: ['visits'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
-      },
-      python: {
-        method: 'reports.get_referrals_report_v2',
-        example:
-          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nreport_response = client.reports.get_referrals_report_v2(\n    domain="domain",\n    metrics=["visits"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(report_response.data)',
-      },
-      http: {
-        example:
-          'curl https://api.tryprofound.com/v2/reports/referrals \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "visits"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
-      },
-    },
-  },
-  {
-    name: 'get_bots_report_v2',
-    endpoint: '/v2/reports/bots',
-    httpMethod: 'post',
-    summary: 'Get Bots Report V2',
-    description:
-      'Get bot traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval="hour", calendar intervals through "year", "quarter", and "relative_week".\n\nMetrics:\n- count: unique bot visits\n- citations: unique citation events (ai_assistant bot type)\n- indexing: unique indexing events (index bot type)\n- training: unique training events (ai_training bot type)\n- last_visit: most recent visit timestamp\n\nDimensions:\n- date, path, bot_name, bot_provider, bot_type',
-    stainlessPath: '(resource) reports > (method) get_bots_report_v2',
-    qualified: 'client.reports.getBotsReportV2',
-    params: [
-      'domain: string;',
-      "metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[];",
-      'start_date: string;',
-      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
-      "dimensions?: 'date' | 'hour' | 'path' | 'bot_name' | 'bot_provider' | 'bot_type'[];",
-      'end_date?: string;',
-      "filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; } | { field: 'bot_type'; operator: string; value: string; }[];",
-      'order_by?: object;',
-      'organization_id?: string;',
-      'pagination?: { limit?: number; offset?: number; };',
-    ],
-    response:
-      '{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }',
-    markdown:
-      "## get_bots_report_v2\n\n`client.reports.getBotsReportV2(domain: string, metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'date' | 'hour' | 'path' | 'bot_name' | 'bot_provider' | 'bot_type'[], end_date?: string, filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; } | { field: 'bot_type'; operator: string; value: string; }[], order_by?: object, organization_id?: string, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v2/reports/bots`\n\nGet bot traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval=\"hour\", calendar intervals through \"year\", \"quarter\", and \"relative_week\".\n\nMetrics:\n- count: unique bot visits\n- citations: unique citation events (ai_assistant bot type)\n- indexing: unique indexing events (index bot type)\n- training: unique training events (ai_training bot type)\n- last_visit: most recent visit timestamp\n\nDimensions:\n- date, path, bot_name, bot_provider, bot_type\n\n### Parameters\n\n- `domain: string`\n  Domain to query logs for.\n\n- `metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[]`\n\n- `start_date: string`\n  Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: 'date' | 'hour' | 'path' | 'bot_name' | 'bot_provider' | 'bot_type'[]`\n  Dimensions to group the report by.\n\n- `end_date?: string`\n  End date in UTC. Accepts same formats as start_date. Defaults to now UTC if omitted.\n\n- `filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; } | { field: 'bot_type'; operator: string; value: string; }[]`\n  Filters for bots report.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `organization_id?: string`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.getBotsReportV2({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
-    perLanguage: {
-      typescript: {
-        method: 'client.reports.getBotsReportV2',
-        example:
-          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.getBotsReportV2({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
-      },
-      python: {
-        method: 'reports.get_bots_report_v2',
-        example:
-          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nreport_response = client.reports.get_bots_report_v2(\n    domain="domain",\n    metrics=["count"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(report_response.data)',
-      },
-      http: {
-        example:
-          'curl https://api.tryprofound.com/v2/reports/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/reports/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -853,18 +918,18 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     params: [
       'category_id: string;',
       'end_date: string;',
-      "metrics: 'fanouts_per_execution' | 'total_fanouts' | 'share'[];",
+      "metrics: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[];",
       'start_date: string;',
       "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
       "dimensions?: 'prompt' | 'query' | 'model' | 'region' | 'date'[];",
-      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: 'visibility' | 'sentiment' | 'accuracy' | 'visibility' | 'sentiment' | 'accuracy'[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; }[];",
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: string; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; }[];",
       'order_by?: object;',
       'pagination?: { limit?: number; offset?: number; };',
     ],
     response:
       '{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }',
     markdown:
-      "## query_fanouts\n\n`client.reports.queryFanouts(category_id: string, end_date: string, metrics: 'fanouts_per_execution' | 'total_fanouts' | 'share'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'prompt' | 'query' | 'model' | 'region' | 'date'[], filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: 'visibility' | 'sentiment' | 'accuracy' | 'visibility' | 'sentiment' | 'accuracy'[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; }[], order_by?: object, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v1/reports/query-fanouts`\n\nQuery Fanouts\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `metrics: 'fanouts_per_execution' | 'total_fanouts' | 'share'[]`\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: 'prompt' | 'query' | 'model' | 'region' | 'date'[]`\n  Dimensions to group the report by.\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: 'visibility' | 'sentiment' | 'accuracy' | 'visibility' | 'sentiment' | 'accuracy'[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; }[]`\n  Filters to apply to the query fanout report.\n\n- `order_by?: object`\n  Custom ordering. Keys must be a requested metric or the ``date`` dimension. Values are ``asc`` or ``desc``. Defaults to first metric descending.\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.queryFanouts({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['fanouts_per_execution'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
+      "## query_fanouts\n\n`client.reports.queryFanouts(category_id: string, end_date: string, metrics: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'prompt' | 'query' | 'model' | 'region' | 'date'[], filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: string; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; }[], order_by?: object, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v1/reports/query-fanouts`\n\nQuery Fanouts\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `metrics: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[]`\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: 'prompt' | 'query' | 'model' | 'region' | 'date'[]`\n  Dimensions to group the report by.\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: string; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; }[]`\n  Filters to apply to the query fanout report.\n\n- `order_by?: object`\n  Custom ordering. Keys must be a requested metric or the ``date`` dimension. Values are ``asc`` or ``desc``. Defaults to first metric descending.\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.queryFanouts({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['fanouts_per_execution'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
     perLanguage: {
       typescript: {
         method: 'client.reports.queryFanouts',
@@ -878,7 +943,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/reports/query-fanouts \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "fanouts_per_execution"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/reports/query-fanouts \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "fanouts_per_execution"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "fanouts_per_execution": "desc"\n          }\n        }\'',
       },
     },
   },
@@ -893,17 +958,17 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     params: [
       'category_id: string;',
       'end_date: string;',
-      "metrics: 'count' | 'citation_share' | 'share_of_voice'[];",
+      "metrics: 'count' | 'citation_share' | 'share_of_voice' | 'first_cited_at'[];",
       'start_date: string;',
       "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
       'dimensions?: string[];',
-      "filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: 'visibility' | 'sentiment' | 'accuracy' | 'visibility' | 'sentiment' | 'accuracy'[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'citation_category'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[];",
+      "filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: string; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'citation_category'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[];",
       'order_by?: object;',
       'pagination?: { limit?: number; offset?: number; };',
     ],
     response: '{ query: object; total_rows: number; } | object',
     markdown:
-      "## stream_citations\n\n`client.reports.streamCitations(category_id: string, end_date: string, metrics: 'count' | 'citation_share' | 'share_of_voice'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: 'visibility' | 'sentiment' | 'accuracy' | 'visibility' | 'sentiment' | 'accuracy'[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'citation_category'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[], order_by?: object, pagination?: { limit?: number; offset?: number; }): { query: object; total_rows: number; } | object`\n\n**post** `/v1/reports/citations/stream`\n\nStream Citations\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `metrics: 'count' | 'citation_share' | 'share_of_voice'[]`\n  Metrics to include. `share_of_voice` is deprecated, use `citation_share` instead.\n\n- `start_date: string`\n  Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: string[]`\n  Dimensions to group the report by.\n\n- `filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: 'visibility' | 'sentiment' | 'accuracy' | 'visibility' | 'sentiment' | 'accuracy'[]; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'citation_category'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[]`\n  List of filters to apply to the citations report.\n\n- `order_by?: object`\n  \n    Custom ordering of the report results.\n\n    The order is a record of key-value pairs where:\n    - `key` is the field to order by, which can be a metric or dimension\n    - `value` is the direction of the order, either `asc` for ascending or `desc` for descending.\n\n    When not specified, the default order is the first metric in the query descending.\n            \n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ query: object; total_rows: number; } | object`\n  A streamed citations report row payload.\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst stream = await client.reports.streamCitations({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\nfor await (const reportStreamCitationsResponse of stream) {\n  console.log(reportStreamCitationsResponse);\n}\n```",
+      "## stream_citations\n\n`client.reports.streamCitations(category_id: string, end_date: string, metrics: 'count' | 'citation_share' | 'share_of_voice' | 'first_cited_at'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: string; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'citation_category'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[], order_by?: object, pagination?: { limit?: number; offset?: number; }): { query: object; total_rows: number; } | object`\n\n**post** `/v1/reports/citations/stream`\n\nStream Citations\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `metrics: 'count' | 'citation_share' | 'share_of_voice' | 'first_cited_at'[]`\n  Metrics to include. `share_of_voice` is deprecated, use `citation_share` instead.\n\n- `start_date: string`\n  Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: string[]`\n  Dimensions to group the report by.\n\n- `filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'region_name'; operator: string; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_name'; operator: string; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_name'; operator: string; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'analysis_type'; operator: string; value: string; } | { field: 'prompt_type'; operator: string; value: 'visibility' | 'sentiment' | 'visibility' | 'sentiment'[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'citation_category'; operator: string; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; }[]`\n  List of filters to apply to the citations report.\n\n- `order_by?: object`\n  \n    Custom ordering of the report results.\n\n    The order is a record of key-value pairs where:\n    - `key` is the field to order by, which can be a metric or dimension\n    - `value` is the direction of the order, either `asc` for ascending or `desc` for descending.\n\n    When not specified, the default order is the first metric in the query descending.\n            \n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ query: object; total_rows: number; } | object`\n  A streamed citations report row payload.\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst stream = await client.reports.streamCitations({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\nfor await (const reportStreamCitationsResponse of stream) {\n  console.log(reportStreamCitationsResponse);\n}\n```",
     perLanguage: {
       typescript: {
         method: 'client.reports.streamCitations',
@@ -917,7 +982,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/reports/citations/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/reports/citations/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -956,7 +1021,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/reports/visibility/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "share_of_voice"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/reports/visibility/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "share_of_voice"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -995,7 +1060,1530 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/reports/sentiment/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "positive"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/reports/sentiment/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "positive"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'stream_citations_v2',
+    endpoint: '/v2/reports/citations/stream',
+    httpMethod: 'post',
+    summary: 'Stream Citations V2',
+    description: 'Stream Citations V2',
+    stainlessPath: '(resource) reports > (method) stream_citations_v2',
+    qualified: 'client.reports.streamCitationsV2',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      "group_by?: 'page' | 'date' | 'model' | 'topic' | 'region' | 'persona' | 'prompt'[];",
+      "interval?: 'day' | 'week' | 'month';",
+      'limit?: number;',
+      'max_results?: number;',
+      "metrics?: 'count' | 'citation_share' | 'rank' | 'first_cited_at'[];",
+      "scope?: 'all' | 'owned';",
+    ],
+    markdown:
+      "## stream_citations_v2\n\n`client.reports.streamCitationsV2(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'page' | 'date' | 'model' | 'topic' | 'region' | 'persona' | 'prompt'[], interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'count' | 'citation_share' | 'rank' | 'first_cited_at'[], scope?: 'all' | 'owned'): void`\n\n**post** `/v2/reports/citations/stream`\n\nStream Citations V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'page' | 'date' | 'model' | 'topic' | 'region' | 'persona' | 'prompt'[]`\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'count' | 'citation_share' | 'rank' | 'first_cited_at'[]`\n\n- `scope?: 'all' | 'owned'`\n  `all` (every cited domain) or `owned` (only your owned domains, for easy client-side totals).\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nawait client.reports.streamCitationsV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n})\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.streamCitationsV2',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.reports.streamCitationsV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});",
+      },
+      python: {
+        method: 'reports.stream_citations_v2',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nclient.reports.stream_citations_v2(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/citations/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'stream_visibility_v2',
+    endpoint: '/v2/reports/visibility/stream',
+    httpMethod: 'post',
+    summary: 'Stream Visibility V2',
+    description: 'Stream Visibility V2',
+    stainlessPath: '(resource) reports > (method) stream_visibility_v2',
+    qualified: 'client.reports.streamVisibilityV2',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'assets?: string | string[] | { op: string; value: string | string[]; };',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      "group_by?: 'date' | 'model' | 'topic' | 'region' | 'prompt' | 'persona'[];",
+      "interval?: 'day' | 'week' | 'month';",
+      'limit?: number;',
+      'max_results?: number;',
+      "metrics?: 'visibility_score' | 'share_of_voice' | 'average_position'[];",
+      "scope?: 'owned' | 'all';",
+      "sort?: { field?: 'visibility_score' | 'share_of_voice' | 'average_position'; };",
+    ],
+    markdown:
+      "## stream_visibility_v2\n\n`client.reports.streamVisibilityV2(category_id: string, end_date: string, start_date: string, assets?: string | string[] | { op: string; value: string | string[]; }, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'date' | 'model' | 'topic' | 'region' | 'prompt' | 'persona'[], interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'visibility_score' | 'share_of_voice' | 'average_position'[], scope?: 'owned' | 'all', sort?: { field?: 'visibility_score' | 'share_of_voice' | 'average_position'; }): void`\n\n**post** `/v2/reports/visibility/stream`\n\nStream Visibility V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `assets?: string | string[] | { op: string; value: string | string[]; }`\n  A name (`is`), a list (`in`), or {op,value} with op `is`/`in`/`not_in`.\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'date' | 'model' | 'topic' | 'region' | 'prompt' | 'persona'[]`\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'visibility_score' | 'share_of_voice' | 'average_position'[]`\n\n- `scope?: 'owned' | 'all'`\n\n- `sort?: { field?: 'visibility_score' | 'share_of_voice' | 'average_position'; }`\n  - `field?: 'visibility_score' | 'share_of_voice' | 'average_position'`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nawait client.reports.streamVisibilityV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n})\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.streamVisibilityV2',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.reports.streamVisibilityV2({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});",
+      },
+      python: {
+        method: 'reports.stream_visibility_v2',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nclient.reports.stream_visibility_v2(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/visibility/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'stream_sentiment_v2',
+    endpoint: '/v2/reports/sentiment/stream',
+    httpMethod: 'post',
+    summary: 'Stream Sentiment V2',
+    description: 'Stream Sentiment V2',
+    stainlessPath: '(resource) reports > (method) stream_sentiment_v2',
+    qualified: 'client.reports.streamSentimentV2',
+    params: [
+      'asset: string;',
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      'group_by?: string[];',
+      'include_cited_websites?: boolean;',
+      "interval?: 'day' | 'week' | 'month';",
+      'limit?: number;',
+      'max_results?: number;',
+      "metrics?: 'positive_sentiment' | 'negative_sentiment' | 'occurrence'[];",
+      "sort?: { dir?: 'asc' | 'desc'; field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment'; };",
+    ],
+    markdown:
+      "## stream_sentiment_v2\n\n`client.reports.streamSentimentV2(asset: string, category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: string[], include_cited_websites?: boolean, interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'positive_sentiment' | 'negative_sentiment' | 'occurrence'[], sort?: { dir?: 'asc' | 'desc'; field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment'; }): void`\n\n**post** `/v2/reports/sentiment/stream`\n\nStream Sentiment V2\n\n### Parameters\n\n- `asset: string`\n  The brand name to analyze (sentiment is extracted on name, not id).\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `comparison_end_date?: string`\n  YYYY-MM-DD, ET, inclusive (with start).\n\n- `comparison_start_date?: string`\n  YYYY-MM-DD, ET, inclusive (with end).\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: string[]`\n\n- `include_cited_websites?: boolean`\n  Return cited websites per row (only when grouping by `theme`/`claim`).\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'positive_sentiment' | 'negative_sentiment' | 'occurrence'[]`\n\n- `sort?: { dir?: 'asc' | 'desc'; field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment'; }`\n  - `dir?: 'asc' | 'desc'`\n  - `field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment'`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nawait client.reports.streamSentimentV2({\n  asset: 'asset',\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n})\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.streamSentimentV2',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.reports.streamSentimentV2({\n  asset: 'asset',\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});",
+      },
+      python: {
+        method: 'reports.stream_sentiment_v2',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nclient.reports.stream_sentiment_v2(\n    asset="asset",\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/sentiment/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "asset": "asset",\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'stream_query_fanouts',
+    endpoint: '/v2/reports/query-fanouts/stream',
+    httpMethod: 'post',
+    summary: 'Stream Query Fanouts V2',
+    description: 'Stream Query Fanouts V2',
+    stainlessPath: '(resource) reports > (method) stream_query_fanouts',
+    qualified: 'client.reports.streamQueryFanouts',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      "group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[];",
+      "interval?: 'day' | 'week' | 'month';",
+      'limit?: number;',
+      'max_results?: number;',
+      "metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[];",
+      "sort?: { field: string; dir?: 'asc' | 'desc'; };",
+    ],
+    markdown:
+      "## stream_query_fanouts\n\n`client.reports.streamQueryFanouts(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[], interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[], sort?: { field: string; dir?: 'asc' | 'desc'; }): void`\n\n**post** `/v2/reports/query-fanouts/stream`\n\nStream Query Fanouts V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[]`\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[]`\n\n- `sort?: { field: string; dir?: 'asc' | 'desc'; }`\n  - `field: string`\n  - `dir?: 'asc' | 'desc'`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nawait client.reports.streamQueryFanouts({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n})\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.streamQueryFanouts',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.reports.streamQueryFanouts({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});",
+      },
+      python: {
+        method: 'reports.stream_query_fanouts',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nclient.reports.stream_query_fanouts(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/query-fanouts/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'get_referrals_report_v2',
+    endpoint: '/v2/reports/referrals',
+    httpMethod: 'post',
+    summary: 'Get Referrals Report V2',
+    description:
+      'Get referral traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval="hour", calendar intervals through "year", "quarter", and "relative_week".',
+    stainlessPath: '(resource) reports > (method) get_referrals_report_v2',
+    qualified: 'client.reports.getReferralsReportV2',
+    params: [
+      'domain: string;',
+      "metrics: 'visits' | 'last_visit'[];",
+      'start_date: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      "dimensions?: 'date' | 'hour' | 'path' | 'referral_source' | 'referral_type'[];",
+      'end_date?: string;',
+      "filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; } | { field: 'referral_type'; operator: string; value: 'internal' | 'referer' | 'utm' | 'none' | 'internal' | 'referer' | 'utm' | 'none'[]; }[];",
+      "metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[];",
+      'order_by?: object;',
+      'organization_id?: string;',
+      'pagination?: { limit?: number; offset?: number; };',
+    ],
+    response:
+      '{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## get_referrals_report_v2\n\n`client.reports.getReferralsReportV2(domain: string, metrics: 'visits' | 'last_visit'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'date' | 'hour' | 'path' | 'referral_source' | 'referral_type'[], end_date?: string, filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; } | { field: 'referral_type'; operator: string; value: 'internal' | 'referer' | 'utm' | 'none' | 'internal' | 'referer' | 'utm' | 'none'[]; }[], metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[], order_by?: object, organization_id?: string, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v2/reports/referrals`\n\nGet referral traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval=\"hour\", calendar intervals through \"year\", \"quarter\", and \"relative_week\".\n\n### Parameters\n\n- `domain: string`\n  Domain to query logs for.\n\n- `metrics: 'visits' | 'last_visit'[]`\n\n- `start_date: string`\n  Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: 'date' | 'hour' | 'path' | 'referral_source' | 'referral_type'[]`\n  Dimensions to group the report by.\n\n- `end_date?: string`\n  End date in UTC. Accepts same formats as start_date. Defaults to now UTC if omitted.\n\n- `filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'referral_source'; operator: string; value: string | string[]; } | { field: 'referral_type'; operator: string; value: 'internal' | 'referer' | 'utm' | 'none' | 'internal' | 'referer' | 'utm' | 'none'[]; }[]`\n  Filters for referrals report.\n\n- `metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[]`\n  Numeric filters applied after report metrics are calculated.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `organization_id?: string`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.getReferralsReportV2({\n  domain: 'domain',\n  metrics: ['visits'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.getReferralsReportV2',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.getReferralsReportV2({\n  domain: 'domain',\n  metrics: ['visits'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
+      },
+      python: {
+        method: 'reports.get_referrals_report_v2',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nreport_response = client.reports.get_referrals_report_v2(\n    domain="domain",\n    metrics=["visits"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(report_response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/referrals \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "visits"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'get_bots_report_v2',
+    endpoint: '/v2/reports/bots',
+    httpMethod: 'post',
+    summary: 'Get Bots Report V2',
+    description:
+      'Get bot traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval="hour", calendar intervals through "year", "quarter", and "relative_week".\n\nMetrics:\n- count: unique bot visits\n- citations: unique citation events (ai_assistant bot type)\n- indexing: unique indexing events (index bot type)\n- training: unique training events (ai_training bot type)\n- last_visit: most recent visit timestamp\n\nDimensions:\n- date, path, bot_name, bot_provider, bot_type',
+    stainlessPath: '(resource) reports > (method) get_bots_report_v2',
+    qualified: 'client.reports.getBotsReportV2',
+    params: [
+      'domain: string;',
+      "metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[];",
+      'start_date: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      "dimensions?: 'date' | 'hour' | 'path' | 'bot_name' | 'bot_provider' | 'bot_type'[];",
+      'end_date?: string;',
+      "filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; } | { field: 'bot_type'; operator: string; value: string; }[];",
+      "metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[];",
+      'order_by?: object;',
+      'organization_id?: string;',
+      'pagination?: { limit?: number; offset?: number; };',
+    ],
+    response:
+      '{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## get_bots_report_v2\n\n`client.reports.getBotsReportV2(domain: string, metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'date' | 'hour' | 'path' | 'bot_name' | 'bot_provider' | 'bot_type'[], end_date?: string, filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; } | { field: 'bot_type'; operator: string; value: string; }[], metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[], order_by?: object, organization_id?: string, pagination?: { limit?: number; offset?: number; }): { data: report_result[]; info: report_info; }`\n\n**post** `/v2/reports/bots`\n\nGet bot traffic report from the hourly aggregated materialized view (UTC-based).\n\nSupports date_interval=\"hour\", calendar intervals through \"year\", \"quarter\", and \"relative_week\".\n\nMetrics:\n- count: unique bot visits\n- citations: unique citation events (ai_assistant bot type)\n- indexing: unique indexing events (index bot type)\n- training: unique training events (ai_training bot type)\n- last_visit: most recent visit timestamp\n\nDimensions:\n- date, path, bot_name, bot_provider, bot_type\n\n### Parameters\n\n- `domain: string`\n  Domain to query logs for.\n\n- `metrics: 'count' | 'citations' | 'indexing' | 'training' | 'last_visit'[]`\n\n- `start_date: string`\n  Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: 'date' | 'hour' | 'path' | 'bot_name' | 'bot_provider' | 'bot_type'[]`\n  Dimensions to group the report by.\n\n- `end_date?: string`\n  End date in UTC. Accepts same formats as start_date. Defaults to now UTC if omitted.\n\n- `filters?: { field: 'path'; operator: string; value: string | string[]; } | { field: 'bot_name'; operator: string; value: string | string[]; } | { field: 'bot_provider'; operator: string; value: string | string[]; } | { field: 'bot_type'; operator: string; value: string; }[]`\n  Filters for bots report.\n\n- `metric_filters?: { field: string; operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!='; value: number; }[]`\n  Numeric filters applied after report metrics are calculated.\n\n- `order_by?: object`\n  \nCustom ordering of the report results.\n\nThe order is a record of key-value pairs where:\n- key is the field to order by, which can be a metric or dimension\n- value is the direction of the order, either 'asc' for ascending or 'desc' for descending.\n\nWhen not specified, the default order is the first metric in the query descending.\n        \n\n- `organization_id?: string`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n  Base response model for reports.\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst reportResponse = await client.reports.getBotsReportV2({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.getBotsReportV2',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst reportResponse = await client.reports.getBotsReportV2({\n  domain: 'domain',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(reportResponse.data);",
+      },
+      python: {
+        method: 'reports.get_bots_report_v2',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nreport_response = client.reports.get_bots_report_v2(\n    domain="domain",\n    metrics=["count"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(report_response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'query_visibility',
+    endpoint: '/v2/reports/visibility',
+    httpMethod: 'post',
+    summary: 'Query Visibility V2',
+    description: 'Query Visibility V2',
+    stainlessPath: '(resource) reports > (method) query_visibility',
+    qualified: 'client.reports.queryVisibility',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'assets?: string | string[] | { op: string; value: string | string[]; };',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      "group_by?: 'date' | 'model' | 'topic' | 'region' | 'prompt' | 'persona'[];",
+      "interval?: 'day' | 'week' | 'month';",
+      'limit?: number;',
+      'max_results?: number;',
+      "metrics?: 'visibility_score' | 'share_of_voice' | 'average_position'[];",
+      "scope?: 'owned' | 'all';",
+      "sort?: { field?: 'visibility_score' | 'share_of_voice' | 'average_position'; };",
+    ],
+    response: 'object',
+    markdown:
+      "## query_visibility\n\n`client.reports.queryVisibility(category_id: string, end_date: string, start_date: string, assets?: string | string[] | { op: string; value: string | string[]; }, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'date' | 'model' | 'topic' | 'region' | 'prompt' | 'persona'[], interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'visibility_score' | 'share_of_voice' | 'average_position'[], scope?: 'owned' | 'all', sort?: { field?: 'visibility_score' | 'share_of_voice' | 'average_position'; }): object`\n\n**post** `/v2/reports/visibility`\n\nQuery Visibility V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `assets?: string | string[] | { op: string; value: string | string[]; }`\n  A name (`is`), a list (`in`), or {op,value} with op `is`/`in`/`not_in`.\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'date' | 'model' | 'topic' | 'region' | 'prompt' | 'persona'[]`\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'visibility_score' | 'share_of_voice' | 'average_position'[]`\n\n- `scope?: 'owned' | 'all'`\n\n- `sort?: { field?: 'visibility_score' | 'share_of_voice' | 'average_position'; }`\n  - `field?: 'visibility_score' | 'share_of_voice' | 'average_position'`\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.queryVisibility({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.queryVisibility',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.queryVisibility({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'reports.query_visibility',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.query_visibility(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/visibility \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'query_citations',
+    endpoint: '/v2/reports/citations',
+    httpMethod: 'post',
+    summary: 'Query Citations V2',
+    description: 'Query Citations V2',
+    stainlessPath: '(resource) reports > (method) query_citations',
+    qualified: 'client.reports.queryCitations',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      "group_by?: 'page' | 'date' | 'model' | 'topic' | 'region' | 'persona' | 'prompt'[];",
+      "interval?: 'day' | 'week' | 'month';",
+      'limit?: number;',
+      'max_results?: number;',
+      "metrics?: 'count' | 'citation_share' | 'rank' | 'first_cited_at'[];",
+      "scope?: 'all' | 'owned';",
+    ],
+    response: 'object',
+    markdown:
+      "## query_citations\n\n`client.reports.queryCitations(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'page' | 'date' | 'model' | 'topic' | 'region' | 'persona' | 'prompt'[], interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'count' | 'citation_share' | 'rank' | 'first_cited_at'[], scope?: 'all' | 'owned'): object`\n\n**post** `/v2/reports/citations`\n\nQuery Citations V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'page' | 'date' | 'model' | 'topic' | 'region' | 'persona' | 'prompt'[]`\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'count' | 'citation_share' | 'rank' | 'first_cited_at'[]`\n\n- `scope?: 'all' | 'owned'`\n  `all` (every cited domain) or `owned` (only your owned domains, for easy client-side totals).\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.queryCitations({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.queryCitations',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.queryCitations({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'reports.query_citations',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.query_citations(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/citations \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'query_sentiment',
+    endpoint: '/v2/reports/sentiment',
+    httpMethod: 'post',
+    summary: 'Query Sentiment V2',
+    description: 'Query Sentiment V2',
+    stainlessPath: '(resource) reports > (method) query_sentiment',
+    qualified: 'client.reports.querySentiment',
+    params: [
+      'asset: string;',
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      'group_by?: string[];',
+      'include_cited_websites?: boolean;',
+      "interval?: 'day' | 'week' | 'month';",
+      'limit?: number;',
+      'max_results?: number;',
+      "metrics?: 'positive_sentiment' | 'negative_sentiment' | 'occurrence'[];",
+      "sort?: { dir?: 'asc' | 'desc'; field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment'; };",
+    ],
+    response: 'object',
+    markdown:
+      "## query_sentiment\n\n`client.reports.querySentiment(asset: string, category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: string[], include_cited_websites?: boolean, interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'positive_sentiment' | 'negative_sentiment' | 'occurrence'[], sort?: { dir?: 'asc' | 'desc'; field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment'; }): object`\n\n**post** `/v2/reports/sentiment`\n\nQuery Sentiment V2\n\n### Parameters\n\n- `asset: string`\n  The brand name to analyze (sentiment is extracted on name, not id).\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `comparison_end_date?: string`\n  YYYY-MM-DD, ET, inclusive (with start).\n\n- `comparison_start_date?: string`\n  YYYY-MM-DD, ET, inclusive (with end).\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: string[]`\n\n- `include_cited_websites?: boolean`\n  Return cited websites per row (only when grouping by `theme`/`claim`).\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'positive_sentiment' | 'negative_sentiment' | 'occurrence'[]`\n\n- `sort?: { dir?: 'asc' | 'desc'; field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment'; }`\n  - `dir?: 'asc' | 'desc'`\n  - `field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment'`\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.querySentiment({\n  asset: 'asset',\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.querySentiment',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.querySentiment({\n  asset: 'asset',\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'reports.query_sentiment',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.query_sentiment(\n    asset="asset",\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/sentiment \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "asset": "asset",\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'query_query_fanouts',
+    endpoint: '/v2/reports/query-fanouts',
+    httpMethod: 'post',
+    summary: 'Query Fanouts V2',
+    description: 'Query Fanouts V2',
+    stainlessPath: '(resource) reports > (method) query_query_fanouts',
+    qualified: 'client.reports.queryQueryFanouts',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      "group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[];",
+      "interval?: 'day' | 'week' | 'month';",
+      'limit?: number;',
+      'max_results?: number;',
+      "metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[];",
+      "sort?: { field: string; dir?: 'asc' | 'desc'; };",
+    ],
+    response: 'object',
+    markdown:
+      "## query_query_fanouts\n\n`client.reports.queryQueryFanouts(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[], interval?: 'day' | 'week' | 'month', limit?: number, max_results?: number, metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[], sort?: { field: string; dir?: 'asc' | 'desc'; }): object`\n\n**post** `/v2/reports/query-fanouts`\n\nQuery Fanouts V2\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'date' | 'model' | 'region' | 'prompt' | 'query'[]`\n\n- `interval?: 'day' | 'week' | 'month'`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `max_results?: number`\n  Stream endpoint only: cap the number of streamed rows (default: all).\n\n- `metrics?: 'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'[]`\n\n- `sort?: { field: string; dir?: 'asc' | 'desc'; }`\n  - `field: string`\n  - `dir?: 'asc' | 'desc'`\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.queryQueryFanouts({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.queryQueryFanouts',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.queryQueryFanouts({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'reports.query_query_fanouts',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.query_query_fanouts(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/query-fanouts \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'query',
+    endpoint: '/v1/reports/web-search-results',
+    httpMethod: 'post',
+    summary: 'Query Web Search Results',
+    description: 'Get web search results for a given category.',
+    stainlessPath: '(resource) reports.web_search_results > (method) query',
+    qualified: 'client.reports.webSearchResults.query',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      "metrics: 'count' | 'search_share'[];",
+      'start_date: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      'dimensions?: string[];',
+      "filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'search_query'; operator: string; value: string | string[]; }[];",
+      'order_by?: object;',
+      'pagination?: { limit?: number; offset?: number; };',
+    ],
+    response:
+      '{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## query\n\n`client.reports.webSearchResults.query(category_id: string, end_date: string, metrics: 'count' | 'search_share'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'search_query'; operator: string; value: string | string[]; }[], order_by?: object, pagination?: { limit?: number; offset?: number; }): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/web-search-results`\n\nGet web search results for a given category.\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `metrics: 'count' | 'search_share'[]`\n  Metrics to include. `search_share` is the per-prompt occurrence rate.\n\n- `start_date: string`\n  Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: string[]`\n  Dimensions to group the report by.\n\n- `filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'search_query'; operator: string; value: string | string[]; }[]`\n  List of filters to apply to the web search results report.\n\n- `order_by?: object`\n  \n    Custom ordering of the report results.\n\n    The order is a record of key-value pairs where:\n    - `key` is the field to order by, which can be a metric or dimension\n    - `value` is the direction of the order, either `asc` for ascending or `desc` for descending.\n\n    When not specified, the default order is the first metric in the query descending.\n            \n\n- `pagination?: { limit?: number; offset?: number; }`\n  Pagination settings for the report results.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ data: { dimensions: string[]; metrics: number[]; }[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: { dimensions: string[]; metrics: number[]; }[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.webSearchResults.query({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.webSearchResults.query',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.webSearchResults.query({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.web_search_results.query',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.web_search_results.query(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    metrics=["count"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/web-search-results \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'stream',
+    endpoint: '/v1/reports/web-search-results/stream',
+    httpMethod: 'post',
+    summary: 'Stream Web Search Results',
+    description: 'Stream Web Search Results',
+    stainlessPath: '(resource) reports.web_search_results > (method) stream',
+    qualified: 'client.reports.webSearchResults.stream',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      "metrics: 'count' | 'search_share'[];",
+      'start_date: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      'dimensions?: string[];',
+      "filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'search_query'; operator: string; value: string | string[]; }[];",
+      'order_by?: object;',
+      'pagination?: { limit?: number; offset?: number; };',
+    ],
+    response: '{ query: object; total_rows: number; } | object',
+    markdown:
+      "## stream\n\n`client.reports.webSearchResults.stream(category_id: string, end_date: string, metrics: 'count' | 'search_share'[], start_date: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'search_query'; operator: string; value: string | string[]; }[], order_by?: object, pagination?: { limit?: number; offset?: number; }): { query: object; total_rows: number; } | object`\n\n**post** `/v1/reports/web-search-results/stream`\n\nStream Web Search Results\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `metrics: 'count' | 'search_share'[]`\n  Metrics to include. `search_share` is the per-prompt occurrence rate.\n\n- `start_date: string`\n  Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n  Date interval for the report. (only used with date dimension)\n\n- `dimensions?: string[]`\n  Dimensions to group the report by.\n\n- `filters?: { field: 'hostname'; operator: string; value: string | string[]; } | { field: 'path'; operator: string; value: string | string[]; } | { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'url'; operator: string; value: string | string[]; } | { field: 'root_domain'; operator: string; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt'; operator: string; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'search_query'; operator: string; value: string | string[]; }[]`\n  List of filters to apply to the web search results report.\n\n- `order_by?: object`\n  \n    Custom ordering of the report results.\n\n    The order is a record of key-value pairs where:\n    - `key` is the field to order by, which can be a metric or dimension\n    - `value` is the direction of the order, either `asc` for ascending or `desc` for descending.\n\n    When not specified, the default order is the first metric in the query descending.\n            \n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n### Returns\n\n- `{ query: object; total_rows: number; } | object`\n  A streamed web-search-results report row payload.\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst stream = await client.reports.webSearchResults.stream({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\nfor await (const webSearchResultStreamResponse of stream) {\n  console.log(webSearchResultStreamResponse);\n}\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.webSearchResults.stream',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.webSearchResults.stream({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  metrics: ['count'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'reports.web_search_results.stream',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nfor web_search_result in client.reports.web_search_results.stream(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    metrics=["count"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n):\n  print(web_search_result)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/web-search-results/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'visibility',
+    endpoint: '/v1/reports/shopping/visibility',
+    httpMethod: 'post',
+    summary: 'Shopping Visibility',
+    description: 'Shopping Visibility',
+    stainlessPath: '(resource) reports.shopping > (method) visibility',
+    qualified: 'client.reports.shopping.visibility',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      "dimensions?: 'period' | 'asset_name' | 'date' | 'model_id' | 'topic_id' | 'region_id' | 'prompt_id' | 'prompt'[];",
+      'exclude_topic_ids?: boolean;',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
+      'include_asset?: string;',
+      'include_asset_only?: boolean;',
+      'include_assets_only?: string[];',
+      'include_count?: boolean;',
+      'include_no_tag?: boolean;',
+      'include_position_frequency?: boolean;',
+      'metrics?: string[];',
+      'order_by?: object;',
+      'owned_asset_names?: string[];',
+      'pagination?: { limit?: number; offset?: number; };',
+      "rank_by?: 'visibility_score' | 'average_position';",
+      'search_asset?: string;',
+      "tag_filter_type?: 'any' | 'all';",
+    ],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## visibility\n\n`client.reports.shopping.visibility(category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'period' | 'asset_name' | 'date' | 'model_id' | 'topic_id' | 'region_id' | 'prompt_id' | 'prompt'[], exclude_topic_ids?: boolean, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include_asset?: string, include_asset_only?: boolean, include_assets_only?: string[], include_count?: boolean, include_no_tag?: boolean, include_position_frequency?: boolean, metrics?: string[], order_by?: object, owned_asset_names?: string[], pagination?: { limit?: number; offset?: number; }, rank_by?: 'visibility_score' | 'average_position', search_asset?: string, tag_filter_type?: 'any' | 'all'): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/visibility`\n\nShopping Visibility\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n\n- `dimensions?: 'period' | 'asset_name' | 'date' | 'model_id' | 'topic_id' | 'region_id' | 'prompt_id' | 'prompt'[]`\n\n- `exclude_topic_ids?: boolean`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n\n- `include_asset?: string`\n\n- `include_asset_only?: boolean`\n\n- `include_assets_only?: string[]`\n\n- `include_count?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `include_position_frequency?: boolean`\n\n- `metrics?: string[]`\n\n- `order_by?: object`\n\n- `owned_asset_names?: string[]`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n- `rank_by?: 'visibility_score' | 'average_position'`\n\n- `search_asset?: string`\n\n- `tag_filter_type?: 'any' | 'all'`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.visibility({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.visibility',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.visibility({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.visibility',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.visibility(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/visibility \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'item_visibility',
+    endpoint: '/v1/reports/shopping/item-visibility',
+    httpMethod: 'post',
+    summary: 'Shopping Item Visibility',
+    description: 'Shopping Item Visibility',
+    stainlessPath: '(resource) reports.shopping > (method) item_visibility',
+    qualified: 'client.reports.shopping.itemVisibility',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'competitor_limit?: number;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      'dimensions?: string[];',
+      'exclude_topic_ids?: boolean;',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
+      'include_competitors?: boolean;',
+      'include_count?: boolean;',
+      'include_items?: string[];',
+      'include_no_tag?: boolean;',
+      'include_position_frequency?: boolean;',
+      "merchant_filter_type?: 'any' | 'all';",
+      'metrics?: string[];',
+      'order_by?: object;',
+      'owned_asset_names?: string[];',
+      'pagination?: { limit?: number; offset?: number; };',
+      'search_item?: string;',
+      "tag_filter_type?: 'any' | 'all';",
+      'target_product?: string;',
+    ],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## item_visibility\n\n`client.reports.shopping.itemVisibility(category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, competitor_limit?: number, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], exclude_topic_ids?: boolean, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include_competitors?: boolean, include_count?: boolean, include_items?: string[], include_no_tag?: boolean, include_position_frequency?: boolean, merchant_filter_type?: 'any' | 'all', metrics?: string[], order_by?: object, owned_asset_names?: string[], pagination?: { limit?: number; offset?: number; }, search_item?: string, tag_filter_type?: 'any' | 'all', target_product?: string): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/item-visibility`\n\nShopping Item Visibility\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `competitor_limit?: number`\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n\n- `dimensions?: string[]`\n\n- `exclude_topic_ids?: boolean`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n\n- `include_competitors?: boolean`\n\n- `include_count?: boolean`\n\n- `include_items?: string[]`\n\n- `include_no_tag?: boolean`\n\n- `include_position_frequency?: boolean`\n\n- `merchant_filter_type?: 'any' | 'all'`\n\n- `metrics?: string[]`\n\n- `order_by?: object`\n\n- `owned_asset_names?: string[]`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n- `search_item?: string`\n\n- `tag_filter_type?: 'any' | 'all'`\n\n- `target_product?: string`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.itemVisibility({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.itemVisibility',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.itemVisibility({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.item_visibility',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.item_visibility(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/item-visibility \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'merchant_distribution',
+    endpoint: '/v1/reports/shopping/merchant-distribution',
+    httpMethod: 'post',
+    summary: 'Shopping Merchant Distribution',
+    description: 'Shopping Merchant Distribution',
+    stainlessPath: '(resource) reports.shopping > (method) merchant_distribution',
+    qualified: 'client.reports.shopping.merchantDistribution',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      "dimensions?: 'period' | 'merchant_name' | 'date' | 'owned_asset_name'[];",
+      'exclude_topic_ids?: boolean;',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
+      'include_count?: boolean;',
+      'include_no_tag?: boolean;',
+      'metrics?: string[];',
+      'order_by?: object;',
+      'owned_asset_names?: string[];',
+      'pagination?: { limit?: number; offset?: number; };',
+      'search_merchant?: string;',
+      "tag_filter_type?: 'any' | 'all';",
+    ],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## merchant_distribution\n\n`client.reports.shopping.merchantDistribution(category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'period' | 'merchant_name' | 'date' | 'owned_asset_name'[], exclude_topic_ids?: boolean, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include_count?: boolean, include_no_tag?: boolean, metrics?: string[], order_by?: object, owned_asset_names?: string[], pagination?: { limit?: number; offset?: number; }, search_merchant?: string, tag_filter_type?: 'any' | 'all'): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/merchant-distribution`\n\nShopping Merchant Distribution\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n\n- `dimensions?: 'period' | 'merchant_name' | 'date' | 'owned_asset_name'[]`\n\n- `exclude_topic_ids?: boolean`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n\n- `include_count?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `metrics?: string[]`\n\n- `order_by?: object`\n\n- `owned_asset_names?: string[]`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n- `search_merchant?: string`\n\n- `tag_filter_type?: 'any' | 'all'`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.merchantDistribution({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.merchantDistribution',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.merchantDistribution({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.merchant_distribution',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.merchant_distribution(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/merchant-distribution \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'merchant_visibility_by_brand',
+    endpoint: '/v1/reports/shopping/merchant-visibility-by-brand',
+    httpMethod: 'post',
+    summary: 'Shopping Merchant Visibility By Brand',
+    description: 'Shopping Merchant Visibility By Brand',
+    stainlessPath: '(resource) reports.shopping > (method) merchant_visibility_by_brand',
+    qualified: 'client.reports.shopping.merchantVisibilityByBrand',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      "dimensions?: 'period' | 'merchant_name' | 'brand_name'[];",
+      'exclude_topic_ids?: boolean;',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
+      'include_brand?: string;',
+      'include_brand_only?: boolean;',
+      'include_count?: boolean;',
+      'include_no_tag?: boolean;',
+      "metrics?: 'visibility_score' | 'share_of_voice' | 'average_position' | 'visibility_rank' | 'total_count'[];",
+      'order_by?: object;',
+      'owned_asset_names?: string[];',
+      'pagination?: { limit?: number; offset?: number; };',
+      'search_brand?: string;',
+      "tag_filter_type?: 'any' | 'all';",
+    ],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## merchant_visibility_by_brand\n\n`client.reports.shopping.merchantVisibilityByBrand(category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'period' | 'merchant_name' | 'brand_name'[], exclude_topic_ids?: boolean, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include_brand?: string, include_brand_only?: boolean, include_count?: boolean, include_no_tag?: boolean, metrics?: 'visibility_score' | 'share_of_voice' | 'average_position' | 'visibility_rank' | 'total_count'[], order_by?: object, owned_asset_names?: string[], pagination?: { limit?: number; offset?: number; }, search_brand?: string, tag_filter_type?: 'any' | 'all'): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/merchant-visibility-by-brand`\n\nShopping Merchant Visibility By Brand\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n\n- `dimensions?: 'period' | 'merchant_name' | 'brand_name'[]`\n\n- `exclude_topic_ids?: boolean`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n\n- `include_brand?: string`\n\n- `include_brand_only?: boolean`\n\n- `include_count?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `metrics?: 'visibility_score' | 'share_of_voice' | 'average_position' | 'visibility_rank' | 'total_count'[]`\n\n- `order_by?: object`\n\n- `owned_asset_names?: string[]`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n- `search_brand?: string`\n\n- `tag_filter_type?: 'any' | 'all'`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.merchantVisibilityByBrand({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.merchantVisibilityByBrand',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.merchantVisibilityByBrand({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.merchant_visibility_by_brand',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.merchant_visibility_by_brand(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/merchant-visibility-by-brand \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'merchant_by_items',
+    endpoint: '/v1/reports/shopping/merchant-by-items',
+    httpMethod: 'post',
+    summary: 'Shopping Merchant By Items',
+    description: 'Shopping Merchant By Items',
+    stainlessPath: '(resource) reports.shopping > (method) merchant_by_items',
+    qualified: 'client.reports.shopping.merchantByItems',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      'dimensions?: string[];',
+      'exclude_topic_ids?: boolean;',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
+      'include_count?: boolean;',
+      'include_no_tag?: boolean;',
+      "metrics?: 'merchant_visibility' | 'product_visibility' | 'product_rank' | 'avg_position' | 'total_count'[];",
+      'order_by?: object;',
+      'pagination?: { limit?: number; offset?: number; };',
+      'product_name?: string;',
+      "tag_filter_type?: 'any' | 'all';",
+    ],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## merchant_by_items\n\n`client.reports.shopping.merchantByItems(category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], exclude_topic_ids?: boolean, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include_count?: boolean, include_no_tag?: boolean, metrics?: 'merchant_visibility' | 'product_visibility' | 'product_rank' | 'avg_position' | 'total_count'[], order_by?: object, pagination?: { limit?: number; offset?: number; }, product_name?: string, tag_filter_type?: 'any' | 'all'): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/merchant-by-items`\n\nShopping Merchant By Items\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n\n- `dimensions?: string[]`\n\n- `exclude_topic_ids?: boolean`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n\n- `include_count?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `metrics?: 'merchant_visibility' | 'product_visibility' | 'product_rank' | 'avg_position' | 'total_count'[]`\n\n- `order_by?: object`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n- `product_name?: string`\n\n- `tag_filter_type?: 'any' | 'all'`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.merchantByItems({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.merchantByItems',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.merchantByItems({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.merchant_by_items',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.merchant_by_items(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/merchant-by-items \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'all_items_with_merchants',
+    endpoint: '/v1/reports/shopping/all-items-with-merchants',
+    httpMethod: 'post',
+    summary: 'Shopping All Items With Merchants',
+    description: 'Shopping All Items With Merchants',
+    stainlessPath: '(resource) reports.shopping > (method) all_items_with_merchants',
+    qualified: 'client.reports.shopping.allItemsWithMerchants',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      'dimensions?: string[];',
+      'exclude_topic_ids?: boolean;',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
+      'include_count?: boolean;',
+      'include_items?: string[];',
+      'include_no_tag?: boolean;',
+      "merchant_filter_type?: 'any' | 'all';",
+      'metrics?: string[];',
+      'order_by?: object;',
+      'owned_asset_names?: string[];',
+      'pagination?: { limit?: number; offset?: number; };',
+      "rank_by?: 'visibility' | 'average_position' | 'name';",
+      'search_item?: string;',
+      "sort_order?: 'asc' | 'desc';",
+      "tag_filter_type?: 'any' | 'all';",
+    ],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## all_items_with_merchants\n\n`client.reports.shopping.allItemsWithMerchants(category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: string[], exclude_topic_ids?: boolean, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include_count?: boolean, include_items?: string[], include_no_tag?: boolean, merchant_filter_type?: 'any' | 'all', metrics?: string[], order_by?: object, owned_asset_names?: string[], pagination?: { limit?: number; offset?: number; }, rank_by?: 'visibility' | 'average_position' | 'name', search_item?: string, sort_order?: 'asc' | 'desc', tag_filter_type?: 'any' | 'all'): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/all-items-with-merchants`\n\nShopping All Items With Merchants\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n\n- `dimensions?: string[]`\n\n- `exclude_topic_ids?: boolean`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n\n- `include_count?: boolean`\n\n- `include_items?: string[]`\n\n- `include_no_tag?: boolean`\n\n- `merchant_filter_type?: 'any' | 'all'`\n\n- `metrics?: string[]`\n\n- `order_by?: object`\n\n- `owned_asset_names?: string[]`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n- `rank_by?: 'visibility' | 'average_position' | 'name'`\n\n- `search_item?: string`\n\n- `sort_order?: 'asc' | 'desc'`\n\n- `tag_filter_type?: 'any' | 'all'`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.allItemsWithMerchants({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.allItemsWithMerchants',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.allItemsWithMerchants({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.all_items_with_merchants',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.all_items_with_merchants(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/all-items-with-merchants \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'trigger_rate',
+    endpoint: '/v1/reports/shopping/trigger-rate',
+    httpMethod: 'post',
+    summary: 'Shopping Trigger Rate',
+    description: 'Shopping Trigger Rate',
+    stainlessPath: '(resource) reports.shopping > (method) trigger_rate',
+    qualified: 'client.reports.shopping.triggerRate',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      "dimensions?: 'period' | 'date' | 'model_id' | 'topic_id' | 'region_id' | 'persona_id' | 'prompt_id' | 'prompt'[];",
+      'exclude_topic_ids?: boolean;',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
+      'include_count?: boolean;',
+      'include_no_tag?: boolean;',
+      "metrics?: 'total_runs' | 'shopping_triggered_runs' | 'trigger_rate_percentage'[];",
+      'order_by?: object;',
+      'pagination?: { limit?: number; offset?: number; };',
+      "tag_filter_type?: 'any' | 'all';",
+    ],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## trigger_rate\n\n`client.reports.shopping.triggerRate(category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'period' | 'date' | 'model_id' | 'topic_id' | 'region_id' | 'persona_id' | 'prompt_id' | 'prompt'[], exclude_topic_ids?: boolean, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include_count?: boolean, include_no_tag?: boolean, metrics?: 'total_runs' | 'shopping_triggered_runs' | 'trigger_rate_percentage'[], order_by?: object, pagination?: { limit?: number; offset?: number; }, tag_filter_type?: 'any' | 'all'): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/trigger-rate`\n\nShopping Trigger Rate\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n\n- `dimensions?: 'period' | 'date' | 'model_id' | 'topic_id' | 'region_id' | 'persona_id' | 'prompt_id' | 'prompt'[]`\n\n- `exclude_topic_ids?: boolean`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n\n- `include_count?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `metrics?: 'total_runs' | 'shopping_triggered_runs' | 'trigger_rate_percentage'[]`\n\n- `order_by?: object`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n- `tag_filter_type?: 'any' | 'all'`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.triggerRate({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.triggerRate',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.triggerRate({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.trigger_rate',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.trigger_rate(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/trigger-rate \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'merchant_share',
+    endpoint: '/v1/reports/shopping/merchant-share',
+    httpMethod: 'post',
+    summary: 'Shopping Merchant Share',
+    description: 'Shopping Merchant Share',
+    stainlessPath: '(resource) reports.shopping > (method) merchant_share',
+    qualified: 'client.reports.shopping.merchantShare',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      "dimensions?: 'period' | 'topic_id' | 'prompt_id'[];",
+      'exclude_topic_ids?: boolean;',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
+      'include_count?: boolean;',
+      'include_no_tag?: boolean;',
+      "metrics?: 'merchant_share'[];",
+      'order_by?: object;',
+      'owned_asset_names?: string[];',
+      'pagination?: { limit?: number; offset?: number; };',
+      "tag_filter_type?: 'any' | 'all';",
+      'target_asset_names?: string[];',
+    ],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## merchant_share\n\n`client.reports.shopping.merchantShare(category_id: string, end_date: string, start_date: string, comparison_end_date?: string, comparison_start_date?: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', dimensions?: 'period' | 'topic_id' | 'prompt_id'[], exclude_topic_ids?: boolean, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include_count?: boolean, include_no_tag?: boolean, metrics?: 'merchant_share'[], order_by?: object, owned_asset_names?: string[], pagination?: { limit?: number; offset?: number; }, tag_filter_type?: 'any' | 'all', target_asset_names?: string[]): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/merchant-share`\n\nShopping Merchant Share\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n\n- `dimensions?: 'period' | 'topic_id' | 'prompt_id'[]`\n\n- `exclude_topic_ids?: boolean`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n\n- `include_count?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `metrics?: 'merchant_share'[]`\n\n- `order_by?: object`\n\n- `owned_asset_names?: string[]`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n- `tag_filter_type?: 'any' | 'all'`\n\n- `target_asset_names?: string[]`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.merchantShare({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.merchantShare',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.merchantShare({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.merchant_share',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.merchant_share(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/merchant-share \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'product_merchant_urls',
+    endpoint: '/v1/reports/shopping/product-merchant-urls',
+    httpMethod: 'post',
+    summary: 'Shopping Product Merchant Urls',
+    description: 'Shopping Product Merchant Urls',
+    stainlessPath: '(resource) reports.shopping > (method) product_merchant_urls',
+    qualified: 'client.reports.shopping.productMerchantURLs',
+    params: ['category_id: string;', 'end_date: string;', 'product_names: string[];', 'start_date: string;'],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## product_merchant_urls\n\n`client.reports.shopping.productMerchantURLs(category_id: string, end_date: string, product_names: string[], start_date: string): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/product-merchant-urls`\n\nShopping Product Merchant Urls\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `product_names: string[]`\n\n- `start_date: string`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.productMerchantURLs({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  product_names: ['string'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.productMerchantURLs',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.productMerchantURLs({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  product_names: ['string'],\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.product_merchant_urls',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.product_merchant_urls(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    product_names=["string"],\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/product-merchant-urls \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "product_names": [\n            "string"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'executions',
+    endpoint: '/v1/reports/shopping/executions',
+    httpMethod: 'post',
+    summary: 'Shopping Executions',
+    description: 'Shopping Executions',
+    stainlessPath: '(resource) reports.shopping > (method) executions',
+    qualified: 'client.reports.shopping.executions',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      "analysis_filter_type?: 'any' | 'all';",
+      "analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[];",
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      "date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';",
+      'exclude_topic_ids?: boolean;',
+      "filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[];",
+      'include_count?: boolean;',
+      'include_no_tag?: boolean;',
+      'order_by?: object;',
+      'owned_asset_names?: string[];',
+      'pagination?: { limit?: number; offset?: number; };',
+      "tag_filter_type?: 'any' | 'all';",
+    ],
+    response: '{ data: object[]; info: { total_rows: number; query?: object; }; }',
+    markdown:
+      "## executions\n\n`client.reports.shopping.executions(category_id: string, end_date: string, start_date: string, analysis_filter_type?: 'any' | 'all', analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[], comparison_end_date?: string, comparison_start_date?: string, date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week', exclude_topic_ids?: boolean, filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[], include_count?: boolean, include_no_tag?: boolean, order_by?: object, owned_asset_names?: string[], pagination?: { limit?: number; offset?: number; }, tag_filter_type?: 'any' | 'all'): { data: object[]; info: report_info; }`\n\n**post** `/v1/reports/shopping/executions`\n\nShopping Executions\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `start_date: string`\n  Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.\n\n- `analysis_filter_type?: 'any' | 'all'`\n\n- `analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week'`\n\n- `exclude_topic_ids?: boolean`\n\n- `filters?: { field: 'region_id' | 'region'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'model_id' | 'model'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'topic_id' | 'topic'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'tag_id' | 'tag'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'prompt_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'persona_id'; operator: 'is' | 'not_is' | 'in' | 'not_in'; value: string | string[]; } | { field: 'brand_name'; operator: string; value: string | string[]; } | { field: 'merchant_name'; operator: string; value: string | string[]; } | { field: 'product_name'; operator: string; value: string | string[]; } | { field: 'asset_name'; operator: string; value: string | string[]; }[]`\n\n- `include_count?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `order_by?: object`\n\n- `owned_asset_names?: string[]`\n\n- `pagination?: { limit?: number; offset?: number; }`\n  Offset-based pagination parameters.\n  - `limit?: number`\n    Maximum number of results to return. Default is 10,000, maximum is 50,000.\n  - `offset?: number`\n    Offset for the results. Used for pagination.\n\n- `tag_filter_type?: 'any' | 'all'`\n\n### Returns\n\n- `{ data: object[]; info: { total_rows: number; query?: object; }; }`\n\n  - `data: object[]`\n  - `info: { total_rows: number; query?: object; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.shopping.executions({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.shopping.executions',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.shopping.executions({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: '2019-12-27T18:11:19.117Z',\n  start_date: '2019-12-27T18:11:19.117Z',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.shopping.executions',
+        example:
+          'import os\nfrom datetime import datetime\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.shopping.executions(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/shopping/executions \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "2019-12-27T18:11:19.117Z",\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_overview',
+    endpoint: '/v1/reports/accuracy/overview',
+    httpMethod: 'post',
+    summary: 'Accuracy Overview',
+    description: 'Accuracy Overview',
+    stainlessPath: '(resource) reports.accuracy > (method) create_overview',
+    qualified: 'client.reports.accuracy.createOverview',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'citation_categories?: string[];',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'date_bucket?: string;',
+      'exclude_topic_ids?: boolean;',
+      "group_by?: 'period' | 'theme';",
+      'include_no_persona?: boolean;',
+      'include_no_tag?: boolean;',
+      'persona_ids?: string[];',
+      'platform_ids?: string[];',
+      'prompt_ids?: string[];',
+      'region_ids?: string[];',
+      "tag_filter_type?: 'all' | 'any';",
+      'tag_ids?: string[];',
+      'topic_ids?: string[];',
+    ],
+    response:
+      '{ overallAccuracy: number; scoreBreakdown: { count: number; share: number; status: string; countChange?: number; shareChange?: number; }[]; trendByPeriod: { accurate: number; date: string; ratio: number; total: number; prevPeriodData?: object; }[]; accuracyChange?: number; availableSeries?: { id: string; label: string; total: number; }[]; themeTrend?: { id: string; data: { accurate: number; date: string; ratio: number; total: number; }[]; label: string; }[]; }',
+    markdown:
+      "## create_overview\n\n`client.reports.accuracy.createOverview(category_id: string, end_date: string, start_date: string, citation_categories?: string[], comparison_end_date?: string, comparison_start_date?: string, date_bucket?: string, exclude_topic_ids?: boolean, group_by?: 'period' | 'theme', include_no_persona?: boolean, include_no_tag?: boolean, persona_ids?: string[], platform_ids?: string[], prompt_ids?: string[], region_ids?: string[], tag_filter_type?: 'all' | 'any', tag_ids?: string[], topic_ids?: string[]): { overallAccuracy: number; scoreBreakdown: object[]; trendByPeriod: object[]; accuracyChange?: number; availableSeries?: object[]; themeTrend?: object[]; }`\n\n**post** `/v1/reports/accuracy/overview`\n\nAccuracy Overview\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `citation_categories?: string[]`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `date_bucket?: string`\n\n- `exclude_topic_ids?: boolean`\n\n- `group_by?: 'period' | 'theme'`\n\n- `include_no_persona?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `persona_ids?: string[]`\n\n- `platform_ids?: string[]`\n\n- `prompt_ids?: string[]`\n\n- `region_ids?: string[]`\n\n- `tag_filter_type?: 'all' | 'any'`\n\n- `tag_ids?: string[]`\n\n- `topic_ids?: string[]`\n\n### Returns\n\n- `{ overallAccuracy: number; scoreBreakdown: { count: number; share: number; status: string; countChange?: number; shareChange?: number; }[]; trendByPeriod: { accurate: number; date: string; ratio: number; total: number; prevPeriodData?: object; }[]; accuracyChange?: number; availableSeries?: { id: string; label: string; total: number; }[]; themeTrend?: { id: string; data: { accurate: number; date: string; ratio: number; total: number; }[]; label: string; }[]; }`\n\n  - `overallAccuracy: number`\n  - `scoreBreakdown: { count: number; share: number; status: string; countChange?: number; shareChange?: number; }[]`\n  - `trendByPeriod: { accurate: number; date: string; ratio: number; total: number; prevPeriodData?: object; }[]`\n  - `accuracyChange?: number`\n  - `availableSeries?: { id: string; label: string; total: number; }[]`\n  - `themeTrend?: { id: string; data: { accurate: number; date: string; ratio: number; total: number; }[]; label: string; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createOverview({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createOverview',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createOverview({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.overallAccuracy);",
+      },
+      python: {
+        method: 'reports.accuracy.create_overview',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_overview(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.overall_accuracy)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/overview \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_breakdown',
+    endpoint: '/v1/reports/accuracy/breakdown',
+    httpMethod: 'post',
+    summary: 'Accuracy Breakdown',
+    description: 'Accuracy Breakdown',
+    stainlessPath: '(resource) reports.accuracy > (method) create_breakdown',
+    qualified: 'client.reports.accuracy.createBreakdown',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      "breakdown_by?: 'citation' | 'platform' | 'topic' | 'prompt' | 'tag' | 'region' | 'persona';",
+      'citation_categories?: string[];',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'exclude_topic_ids?: boolean;',
+      'include_no_persona?: boolean;',
+      'include_no_tag?: boolean;',
+      'limit?: number;',
+      'offset?: number;',
+      'persona_ids?: string[];',
+      'platform_ids?: string[];',
+      'prompt_ids?: string[];',
+      'region_ids?: string[];',
+      'search_query?: string;',
+      "sort_by?: 'citationShare' | 'accuracy';",
+      "sort_order?: 'asc' | 'desc';",
+      "tag_filter_type?: 'all' | 'any';",
+      'tag_ids?: string[];',
+      'topic_ids?: string[];',
+    ],
+    response:
+      '{ data: { id: string; inaccurateCount: number; name: string; responseAccuracy: number; share: number; accuracyChange?: number; citationCategory?: string; inaccurateCountChange?: number; promptCount?: number; shareChange?: number; }[]; totalCount: number; }',
+    markdown:
+      "## create_breakdown\n\n`client.reports.accuracy.createBreakdown(category_id: string, end_date: string, start_date: string, breakdown_by?: 'citation' | 'platform' | 'topic' | 'prompt' | 'tag' | 'region' | 'persona', citation_categories?: string[], comparison_end_date?: string, comparison_start_date?: string, exclude_topic_ids?: boolean, include_no_persona?: boolean, include_no_tag?: boolean, limit?: number, offset?: number, persona_ids?: string[], platform_ids?: string[], prompt_ids?: string[], region_ids?: string[], search_query?: string, sort_by?: 'citationShare' | 'accuracy', sort_order?: 'asc' | 'desc', tag_filter_type?: 'all' | 'any', tag_ids?: string[], topic_ids?: string[]): { data: object[]; totalCount: number; }`\n\n**post** `/v1/reports/accuracy/breakdown`\n\nAccuracy Breakdown\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `breakdown_by?: 'citation' | 'platform' | 'topic' | 'prompt' | 'tag' | 'region' | 'persona'`\n\n- `citation_categories?: string[]`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `exclude_topic_ids?: boolean`\n\n- `include_no_persona?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `limit?: number`\n\n- `offset?: number`\n\n- `persona_ids?: string[]`\n\n- `platform_ids?: string[]`\n\n- `prompt_ids?: string[]`\n\n- `region_ids?: string[]`\n\n- `search_query?: string`\n\n- `sort_by?: 'citationShare' | 'accuracy'`\n\n- `sort_order?: 'asc' | 'desc'`\n\n- `tag_filter_type?: 'all' | 'any'`\n\n- `tag_ids?: string[]`\n\n- `topic_ids?: string[]`\n\n### Returns\n\n- `{ data: { id: string; inaccurateCount: number; name: string; responseAccuracy: number; share: number; accuracyChange?: number; citationCategory?: string; inaccurateCountChange?: number; promptCount?: number; shareChange?: number; }[]; totalCount: number; }`\n\n  - `data: { id: string; inaccurateCount: number; name: string; responseAccuracy: number; share: number; accuracyChange?: number; citationCategory?: string; inaccurateCountChange?: number; promptCount?: number; shareChange?: number; }[]`\n  - `totalCount: number`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createBreakdown({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createBreakdown',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createBreakdown({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.accuracy.create_breakdown',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_breakdown(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/breakdown \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_citation_analysis',
+    endpoint: '/v1/reports/accuracy/citation-analysis',
+    httpMethod: 'post',
+    summary: 'Accuracy Citation Analysis',
+    description: 'Accuracy Citation Analysis',
+    stainlessPath: '(resource) reports.accuracy > (method) create_citation_analysis',
+    qualified: 'client.reports.accuracy.createCitationAnalysis',
+    params: ['category_id: string;', 'clean_href: string;', 'end_date: string;', 'start_date: string;'],
+    response:
+      "{ domain: string; href: string; markdownContent: string; pageTitle: string; claims?: { attribute: string; attributeId: string; claim: string; claimId: string; neutralTheme: string; neutralThemeId: string; snippet: string; evidence?: { kbName?: string; kbPath?: string; kbSnippet?: string; }[]; kbPath?: string; kbSnippet?: string; polarity?: 'positive' | 'negative'; reasoning?: string; }[]; }",
+    markdown:
+      "## create_citation_analysis\n\n`client.reports.accuracy.createCitationAnalysis(category_id: string, clean_href: string, end_date: string, start_date: string): { domain: string; href: string; markdownContent: string; pageTitle: string; claims?: object[]; }`\n\n**post** `/v1/reports/accuracy/citation-analysis`\n\nAccuracy Citation Analysis\n\n### Parameters\n\n- `category_id: string`\n\n- `clean_href: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n### Returns\n\n- `{ domain: string; href: string; markdownContent: string; pageTitle: string; claims?: { attribute: string; attributeId: string; claim: string; claimId: string; neutralTheme: string; neutralThemeId: string; snippet: string; evidence?: { kbName?: string; kbPath?: string; kbSnippet?: string; }[]; kbPath?: string; kbSnippet?: string; polarity?: 'positive' | 'negative'; reasoning?: string; }[]; }`\n\n  - `domain: string`\n  - `href: string`\n  - `markdownContent: string`\n  - `pageTitle: string`\n  - `claims?: { attribute: string; attributeId: string; claim: string; claimId: string; neutralTheme: string; neutralThemeId: string; snippet: string; evidence?: { kbName?: string; kbPath?: string; kbSnippet?: string; }[]; kbPath?: string; kbSnippet?: string; polarity?: 'positive' | 'negative'; reasoning?: string; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createCitationAnalysis({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  clean_href: 'clean_href',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createCitationAnalysis',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createCitationAnalysis({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  clean_href: 'clean_href',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.domain);",
+      },
+      python: {
+        method: 'reports.accuracy.create_citation_analysis',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_citation_analysis(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    clean_href="clean_href",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.domain)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/citation-analysis \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "clean_href": "clean_href",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_topic_ids',
+    endpoint: '/v1/reports/accuracy/topic-ids',
+    httpMethod: 'post',
+    summary: 'Accuracy Topic Ids',
+    description: 'Accuracy Topic Ids',
+    stainlessPath: '(resource) reports.accuracy > (method) create_topic_ids',
+    qualified: 'client.reports.accuracy.createTopicIDs',
+    params: ['category_id: string;', 'end_date: string;', 'start_date: string;'],
+    response: 'string[]',
+    markdown:
+      "## create_topic_ids\n\n`client.reports.accuracy.createTopicIDs(category_id: string, end_date: string, start_date: string): string[]`\n\n**post** `/v1/reports/accuracy/topic-ids`\n\nAccuracy Topic Ids\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n### Returns\n\n- `string[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createTopicIDs({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createTopicIDs',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createTopicIDs({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'reports.accuracy.create_topic_ids',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_topic_ids(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/topic-ids \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_inaccurate_themes',
+    endpoint: '/v1/reports/accuracy/inaccurate-themes',
+    httpMethod: 'post',
+    summary: 'Accuracy Inaccurate Themes',
+    description: 'Accuracy Inaccurate Themes',
+    stainlessPath: '(resource) reports.accuracy > (method) create_inaccurate_themes',
+    qualified: 'client.reports.accuracy.createInaccurateThemes',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'citation_categories?: string[];',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'exclude_topic_ids?: boolean;',
+      'include_no_persona?: boolean;',
+      'include_no_tag?: boolean;',
+      'limit?: number;',
+      'offset?: number;',
+      'persona_ids?: string[];',
+      'platform_ids?: string[];',
+      'prompt_ids?: string[];',
+      'region_ids?: string[];',
+      'search_query?: string;',
+      "sort_by?: 'response_share';",
+      "sort_order?: 'asc' | 'desc';",
+      "tag_filter_type?: 'all' | 'any';",
+      'tag_ids?: string[];',
+      'topic_ids?: string[];',
+    ],
+    response:
+      '{ data: { inaccurateClaimCount: number; inaccurateClusterCount: number; neutralTheme: string; responseCount: number; responseShare: number; themeId: string; totalClaimCount: number; totalClusterCount: number; totalResponseCount: number; description?: string; responseShareDelta?: number; }[]; totalCount: number; }',
+    markdown:
+      "## create_inaccurate_themes\n\n`client.reports.accuracy.createInaccurateThemes(category_id: string, end_date: string, start_date: string, citation_categories?: string[], comparison_end_date?: string, comparison_start_date?: string, exclude_topic_ids?: boolean, include_no_persona?: boolean, include_no_tag?: boolean, limit?: number, offset?: number, persona_ids?: string[], platform_ids?: string[], prompt_ids?: string[], region_ids?: string[], search_query?: string, sort_by?: 'response_share', sort_order?: 'asc' | 'desc', tag_filter_type?: 'all' | 'any', tag_ids?: string[], topic_ids?: string[]): { data: object[]; totalCount: number; }`\n\n**post** `/v1/reports/accuracy/inaccurate-themes`\n\nAccuracy Inaccurate Themes\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `citation_categories?: string[]`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `exclude_topic_ids?: boolean`\n\n- `include_no_persona?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `limit?: number`\n\n- `offset?: number`\n\n- `persona_ids?: string[]`\n\n- `platform_ids?: string[]`\n\n- `prompt_ids?: string[]`\n\n- `region_ids?: string[]`\n\n- `search_query?: string`\n\n- `sort_by?: 'response_share'`\n\n- `sort_order?: 'asc' | 'desc'`\n\n- `tag_filter_type?: 'all' | 'any'`\n\n- `tag_ids?: string[]`\n\n- `topic_ids?: string[]`\n\n### Returns\n\n- `{ data: { inaccurateClaimCount: number; inaccurateClusterCount: number; neutralTheme: string; responseCount: number; responseShare: number; themeId: string; totalClaimCount: number; totalClusterCount: number; totalResponseCount: number; description?: string; responseShareDelta?: number; }[]; totalCount: number; }`\n\n  - `data: { inaccurateClaimCount: number; inaccurateClusterCount: number; neutralTheme: string; responseCount: number; responseShare: number; themeId: string; totalClaimCount: number; totalClusterCount: number; totalResponseCount: number; description?: string; responseShareDelta?: number; }[]`\n  - `totalCount: number`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createInaccurateThemes({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createInaccurateThemes',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createInaccurateThemes({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.accuracy.create_inaccurate_themes',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_inaccurate_themes(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/inaccurate-themes \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_inaccurate_clusters',
+    endpoint: '/v1/reports/accuracy/inaccurate-clusters',
+    httpMethod: 'post',
+    summary: 'Accuracy Inaccurate Clusters',
+    description: 'Accuracy Inaccurate Clusters',
+    stainlessPath: '(resource) reports.accuracy > (method) create_inaccurate_clusters',
+    qualified: 'client.reports.accuracy.createInaccurateClusters',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'theme_id: string;',
+      'citation_categories?: string[];',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'exclude_topic_ids?: boolean;',
+      'include_no_persona?: boolean;',
+      'include_no_tag?: boolean;',
+      'limit?: number;',
+      'offset?: number;',
+      'persona_ids?: string[];',
+      'platform_ids?: string[];',
+      'prompt_ids?: string[];',
+      'region_ids?: string[];',
+      'search_query?: string;',
+      "tag_filter_type?: 'all' | 'any';",
+      'tag_ids?: string[];',
+      'topic_ids?: string[];',
+    ],
+    response:
+      '{ data: { canonicalClaim: string; citationHostnames: string[]; claimCount: number; clusterId: string; kbPath: string; kbSnippet: string; reasoning: string; responseCount: number; responseShare: number; totalResponseCount: number; description?: string; responseShareDelta?: number; }[]; totalCount: number; }',
+    markdown:
+      "## create_inaccurate_clusters\n\n`client.reports.accuracy.createInaccurateClusters(category_id: string, end_date: string, start_date: string, theme_id: string, citation_categories?: string[], comparison_end_date?: string, comparison_start_date?: string, exclude_topic_ids?: boolean, include_no_persona?: boolean, include_no_tag?: boolean, limit?: number, offset?: number, persona_ids?: string[], platform_ids?: string[], prompt_ids?: string[], region_ids?: string[], search_query?: string, tag_filter_type?: 'all' | 'any', tag_ids?: string[], topic_ids?: string[]): { data: object[]; totalCount: number; }`\n\n**post** `/v1/reports/accuracy/inaccurate-clusters`\n\nAccuracy Inaccurate Clusters\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `theme_id: string`\n\n- `citation_categories?: string[]`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `exclude_topic_ids?: boolean`\n\n- `include_no_persona?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `limit?: number`\n\n- `offset?: number`\n\n- `persona_ids?: string[]`\n\n- `platform_ids?: string[]`\n\n- `prompt_ids?: string[]`\n\n- `region_ids?: string[]`\n\n- `search_query?: string`\n\n- `tag_filter_type?: 'all' | 'any'`\n\n- `tag_ids?: string[]`\n\n- `topic_ids?: string[]`\n\n### Returns\n\n- `{ data: { canonicalClaim: string; citationHostnames: string[]; claimCount: number; clusterId: string; kbPath: string; kbSnippet: string; reasoning: string; responseCount: number; responseShare: number; totalResponseCount: number; description?: string; responseShareDelta?: number; }[]; totalCount: number; }`\n\n  - `data: { canonicalClaim: string; citationHostnames: string[]; claimCount: number; clusterId: string; kbPath: string; kbSnippet: string; reasoning: string; responseCount: number; responseShare: number; totalResponseCount: number; description?: string; responseShareDelta?: number; }[]`\n  - `totalCount: number`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createInaccurateClusters({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n  theme_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createInaccurateClusters',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createInaccurateClusters({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n  theme_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.accuracy.create_inaccurate_clusters',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_inaccurate_clusters(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n    theme_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/inaccurate-clusters \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date",\n          "theme_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_inaccuracy_drivers',
+    endpoint: '/v1/reports/accuracy/inaccuracy-drivers',
+    httpMethod: 'post',
+    summary: 'Accuracy Inaccuracy Drivers',
+    description: 'Accuracy Inaccuracy Drivers',
+    stainlessPath: '(resource) reports.accuracy > (method) create_inaccuracy_drivers',
+    qualified: 'client.reports.accuracy.createInaccuracyDrivers',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'citation_categories?: string[];',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'exclude_topic_ids?: boolean;',
+      'include_no_persona?: boolean;',
+      'include_no_tag?: boolean;',
+      'limit?: number;',
+      'persona_ids?: string[];',
+      'platform_ids?: string[];',
+      'prompt_ids?: string[];',
+      'region_ids?: string[];',
+      "tag_filter_type?: 'all' | 'any';",
+      'tag_ids?: string[];',
+      'topic_ids?: string[];',
+    ],
+    response:
+      '{ data: { canonicalClaim: string; citationCategory: string; citationCount: number; claimOccurrence: number; clusterId: string; domainCategory: string; href: string; rowId: string; snippet: string; snippetClaimId: string; claimOccurrenceDelta?: number; }[]; }',
+    markdown:
+      "## create_inaccuracy_drivers\n\n`client.reports.accuracy.createInaccuracyDrivers(category_id: string, end_date: string, start_date: string, citation_categories?: string[], comparison_end_date?: string, comparison_start_date?: string, exclude_topic_ids?: boolean, include_no_persona?: boolean, include_no_tag?: boolean, limit?: number, persona_ids?: string[], platform_ids?: string[], prompt_ids?: string[], region_ids?: string[], tag_filter_type?: 'all' | 'any', tag_ids?: string[], topic_ids?: string[]): { data: object[]; }`\n\n**post** `/v1/reports/accuracy/inaccuracy-drivers`\n\nAccuracy Inaccuracy Drivers\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `citation_categories?: string[]`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `exclude_topic_ids?: boolean`\n\n- `include_no_persona?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `limit?: number`\n\n- `persona_ids?: string[]`\n\n- `platform_ids?: string[]`\n\n- `prompt_ids?: string[]`\n\n- `region_ids?: string[]`\n\n- `tag_filter_type?: 'all' | 'any'`\n\n- `tag_ids?: string[]`\n\n- `topic_ids?: string[]`\n\n### Returns\n\n- `{ data: { canonicalClaim: string; citationCategory: string; citationCount: number; claimOccurrence: number; clusterId: string; domainCategory: string; href: string; rowId: string; snippet: string; snippetClaimId: string; claimOccurrenceDelta?: number; }[]; }`\n\n  - `data: { canonicalClaim: string; citationCategory: string; citationCount: number; claimOccurrence: number; clusterId: string; domainCategory: string; href: string; rowId: string; snippet: string; snippetClaimId: string; claimOccurrenceDelta?: number; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createInaccuracyDrivers({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createInaccuracyDrivers',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createInaccuracyDrivers({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.accuracy.create_inaccuracy_drivers',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_inaccuracy_drivers(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/inaccuracy-drivers \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_top_inaccurate_claims',
+    endpoint: '/v1/reports/accuracy/top-inaccurate-claims',
+    httpMethod: 'post',
+    summary: 'Accuracy Top Inaccurate Claims',
+    description: 'Accuracy Top Inaccurate Claims',
+    stainlessPath: '(resource) reports.accuracy > (method) create_top_inaccurate_claims',
+    qualified: 'client.reports.accuracy.createTopInaccurateClaims',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'citation_categories?: string[];',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'exclude_topic_ids?: boolean;',
+      'include_no_persona?: boolean;',
+      'include_no_tag?: boolean;',
+      'limit?: number;',
+      'persona_ids?: string[];',
+      'platform_ids?: string[];',
+      'prompt_ids?: string[];',
+      'region_ids?: string[];',
+      "tag_filter_type?: 'all' | 'any';",
+      'tag_ids?: string[];',
+      'topic_ids?: string[];',
+    ],
+    response:
+      '{ data: { canonicalClaim: string; claimOccurrence: number; clusterId: string; claimOccurrenceDelta?: number; }[]; }',
+    markdown:
+      "## create_top_inaccurate_claims\n\n`client.reports.accuracy.createTopInaccurateClaims(category_id: string, end_date: string, start_date: string, citation_categories?: string[], comparison_end_date?: string, comparison_start_date?: string, exclude_topic_ids?: boolean, include_no_persona?: boolean, include_no_tag?: boolean, limit?: number, persona_ids?: string[], platform_ids?: string[], prompt_ids?: string[], region_ids?: string[], tag_filter_type?: 'all' | 'any', tag_ids?: string[], topic_ids?: string[]): { data: object[]; }`\n\n**post** `/v1/reports/accuracy/top-inaccurate-claims`\n\nAccuracy Top Inaccurate Claims\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `citation_categories?: string[]`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `exclude_topic_ids?: boolean`\n\n- `include_no_persona?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `limit?: number`\n\n- `persona_ids?: string[]`\n\n- `platform_ids?: string[]`\n\n- `prompt_ids?: string[]`\n\n- `region_ids?: string[]`\n\n- `tag_filter_type?: 'all' | 'any'`\n\n- `tag_ids?: string[]`\n\n- `topic_ids?: string[]`\n\n### Returns\n\n- `{ data: { canonicalClaim: string; claimOccurrence: number; clusterId: string; claimOccurrenceDelta?: number; }[]; }`\n\n  - `data: { canonicalClaim: string; claimOccurrence: number; clusterId: string; claimOccurrenceDelta?: number; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createTopInaccurateClaims({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createTopInaccurateClaims',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createTopInaccurateClaims({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.accuracy.create_top_inaccurate_claims',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_top_inaccurate_claims(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/top-inaccurate-claims \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_claim_breakdown',
+    endpoint: '/v1/reports/accuracy/claim-breakdown',
+    httpMethod: 'post',
+    summary: 'Accuracy Claim Breakdown',
+    description: 'Accuracy Claim Breakdown',
+    stainlessPath: '(resource) reports.accuracy > (method) create_claim_breakdown',
+    qualified: 'client.reports.accuracy.createClaimBreakdown',
+    params: [
+      'category_id: string;',
+      'cluster_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'citation_categories?: string[];',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'exclude_topic_ids?: boolean;',
+      'include_no_persona?: boolean;',
+      'include_no_tag?: boolean;',
+      'persona_ids?: string[];',
+      'platform_ids?: string[];',
+      'prompt_ids?: string[];',
+      'region_ids?: string[];',
+      "tag_filter_type?: 'all' | 'any';",
+      'tag_ids?: string[];',
+      'topic_ids?: string[];',
+    ],
+    response:
+      '{ platform: { id: string; label: string; prevResponseCount: number; prevTotalResponseCount: number; responseCount: number; responseShare: number; totalResponseCount: number; responseShareDelta?: number; }[]; prompt: { id: string; hasCurrent: boolean; label: string; prevResponseCount: number; prevTotalResponseCount: number; promptId: string; promptText: string; responseCount: number; responseShare: number; topicId: string; totalResponseCount: number; responseShareDelta?: number; }[]; }',
+    markdown:
+      "## create_claim_breakdown\n\n`client.reports.accuracy.createClaimBreakdown(category_id: string, cluster_id: string, end_date: string, start_date: string, citation_categories?: string[], comparison_end_date?: string, comparison_start_date?: string, exclude_topic_ids?: boolean, include_no_persona?: boolean, include_no_tag?: boolean, persona_ids?: string[], platform_ids?: string[], prompt_ids?: string[], region_ids?: string[], tag_filter_type?: 'all' | 'any', tag_ids?: string[], topic_ids?: string[]): { platform: object[]; prompt: object[]; }`\n\n**post** `/v1/reports/accuracy/claim-breakdown`\n\nAccuracy Claim Breakdown\n\n### Parameters\n\n- `category_id: string`\n\n- `cluster_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `citation_categories?: string[]`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `exclude_topic_ids?: boolean`\n\n- `include_no_persona?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `persona_ids?: string[]`\n\n- `platform_ids?: string[]`\n\n- `prompt_ids?: string[]`\n\n- `region_ids?: string[]`\n\n- `tag_filter_type?: 'all' | 'any'`\n\n- `tag_ids?: string[]`\n\n- `topic_ids?: string[]`\n\n### Returns\n\n- `{ platform: { id: string; label: string; prevResponseCount: number; prevTotalResponseCount: number; responseCount: number; responseShare: number; totalResponseCount: number; responseShareDelta?: number; }[]; prompt: { id: string; hasCurrent: boolean; label: string; prevResponseCount: number; prevTotalResponseCount: number; promptId: string; promptText: string; responseCount: number; responseShare: number; topicId: string; totalResponseCount: number; responseShareDelta?: number; }[]; }`\n\n  - `platform: { id: string; label: string; prevResponseCount: number; prevTotalResponseCount: number; responseCount: number; responseShare: number; totalResponseCount: number; responseShareDelta?: number; }[]`\n  - `prompt: { id: string; hasCurrent: boolean; label: string; prevResponseCount: number; prevTotalResponseCount: number; promptId: string; promptText: string; responseCount: number; responseShare: number; topicId: string; totalResponseCount: number; responseShareDelta?: number; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createClaimBreakdown({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createClaimBreakdown',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createClaimBreakdown({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.platform);",
+      },
+      python: {
+        method: 'reports.accuracy.create_claim_breakdown',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_claim_breakdown(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    cluster_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.platform)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/claim-breakdown \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "cluster_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_claim_citations',
+    endpoint: '/v1/reports/accuracy/claim-citations',
+    httpMethod: 'post',
+    summary: 'Accuracy Claim Citations',
+    description: 'Accuracy Claim Citations',
+    stainlessPath: '(resource) reports.accuracy > (method) create_claim_citations',
+    qualified: 'client.reports.accuracy.createClaimCitations',
+    params: [
+      'category_id: string;',
+      'cluster_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'citation_categories?: string[];',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'exclude_topic_ids?: boolean;',
+      'include_no_persona?: boolean;',
+      'include_no_tag?: boolean;',
+      'limit?: number;',
+      'offset?: number;',
+      'persona_ids?: string[];',
+      'platform_ids?: string[];',
+      'prompt_ids?: string[];',
+      'region_ids?: string[];',
+      'search_query?: string;',
+      "sort_order?: 'asc' | 'desc';",
+      "tag_filter_type?: 'all' | 'any';",
+      'tag_ids?: string[];',
+      'topic_ids?: string[];',
+    ],
+    response:
+      '{ data: { citationCategory: string; citationCount: number; citationShare: number; domainCategory: string; hostname: string; href: string; path: string; snippet: string; citationShareDelta?: number; }[]; totalCount: number; }',
+    markdown:
+      "## create_claim_citations\n\n`client.reports.accuracy.createClaimCitations(category_id: string, cluster_id: string, end_date: string, start_date: string, citation_categories?: string[], comparison_end_date?: string, comparison_start_date?: string, exclude_topic_ids?: boolean, include_no_persona?: boolean, include_no_tag?: boolean, limit?: number, offset?: number, persona_ids?: string[], platform_ids?: string[], prompt_ids?: string[], region_ids?: string[], search_query?: string, sort_order?: 'asc' | 'desc', tag_filter_type?: 'all' | 'any', tag_ids?: string[], topic_ids?: string[]): { data: object[]; totalCount: number; }`\n\n**post** `/v1/reports/accuracy/claim-citations`\n\nAccuracy Claim Citations\n\n### Parameters\n\n- `category_id: string`\n\n- `cluster_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `citation_categories?: string[]`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `exclude_topic_ids?: boolean`\n\n- `include_no_persona?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `limit?: number`\n\n- `offset?: number`\n\n- `persona_ids?: string[]`\n\n- `platform_ids?: string[]`\n\n- `prompt_ids?: string[]`\n\n- `region_ids?: string[]`\n\n- `search_query?: string`\n\n- `sort_order?: 'asc' | 'desc'`\n\n- `tag_filter_type?: 'all' | 'any'`\n\n- `tag_ids?: string[]`\n\n- `topic_ids?: string[]`\n\n### Returns\n\n- `{ data: { citationCategory: string; citationCount: number; citationShare: number; domainCategory: string; hostname: string; href: string; path: string; snippet: string; citationShareDelta?: number; }[]; totalCount: number; }`\n\n  - `data: { citationCategory: string; citationCount: number; citationShare: number; domainCategory: string; hostname: string; href: string; path: string; snippet: string; citationShareDelta?: number; }[]`\n  - `totalCount: number`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createClaimCitations({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createClaimCitations',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createClaimCitations({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.accuracy.create_claim_citations',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_claim_citations(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    cluster_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/claim-citations \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "cluster_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_cluster_example_runs',
+    endpoint: '/v1/reports/accuracy/cluster-example-runs',
+    httpMethod: 'post',
+    summary: 'Accuracy Cluster Example Runs',
+    description: 'Accuracy Cluster Example Runs',
+    stainlessPath: '(resource) reports.accuracy > (method) create_cluster_example_runs',
+    qualified: 'client.reports.accuracy.createClusterExampleRuns',
+    params: [
+      'category_id: string;',
+      'cluster_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'limit?: number;',
+      'offset?: number;',
+    ],
+    response:
+      '{ data: { claim: string; createdAt: string; modelId: string; regionId: string; responseSnippet: string; runId: string; }[]; totalCount: number; }',
+    markdown:
+      "## create_cluster_example_runs\n\n`client.reports.accuracy.createClusterExampleRuns(category_id: string, cluster_id: string, end_date: string, start_date: string, limit?: number, offset?: number): { data: object[]; totalCount: number; }`\n\n**post** `/v1/reports/accuracy/cluster-example-runs`\n\nAccuracy Cluster Example Runs\n\n### Parameters\n\n- `category_id: string`\n\n- `cluster_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `limit?: number`\n\n- `offset?: number`\n\n### Returns\n\n- `{ data: { claim: string; createdAt: string; modelId: string; regionId: string; responseSnippet: string; runId: string; }[]; totalCount: number; }`\n\n  - `data: { claim: string; createdAt: string; modelId: string; regionId: string; responseSnippet: string; runId: string; }[]`\n  - `totalCount: number`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createClusterExampleRuns({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createClusterExampleRuns',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createClusterExampleRuns({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.accuracy.create_cluster_example_runs',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_cluster_example_runs(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    cluster_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/cluster-example-runs \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "cluster_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_cluster_verification_pairs',
+    endpoint: '/v1/reports/accuracy/cluster-verification-pairs',
+    httpMethod: 'post',
+    summary: 'Accuracy Cluster Verification Pairs',
+    description: 'Accuracy Cluster Verification Pairs',
+    stainlessPath: '(resource) reports.accuracy > (method) create_cluster_verification_pairs',
+    qualified: 'client.reports.accuracy.createClusterVerificationPairs',
+    params: ['category_id: string;', 'cluster_id: string;'],
+    response:
+      '{ data: { kbPath: string; pairId: string; quote: string; reasoning: string; snippetIdx: number; sourceUpdatedAt?: string; }[]; clusterReasoning?: string; }',
+    markdown:
+      "## create_cluster_verification_pairs\n\n`client.reports.accuracy.createClusterVerificationPairs(category_id: string, cluster_id: string): { data: object[]; clusterReasoning?: string; }`\n\n**post** `/v1/reports/accuracy/cluster-verification-pairs`\n\nAccuracy Cluster Verification Pairs\n\n### Parameters\n\n- `category_id: string`\n\n- `cluster_id: string`\n\n### Returns\n\n- `{ data: { kbPath: string; pairId: string; quote: string; reasoning: string; snippetIdx: number; sourceUpdatedAt?: string; }[]; clusterReasoning?: string; }`\n\n  - `data: { kbPath: string; pairId: string; quote: string; reasoning: string; snippetIdx: number; sourceUpdatedAt?: string; }[]`\n  - `clusterReasoning?: string`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createClusterVerificationPairs({ category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createClusterVerificationPairs',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createClusterVerificationPairs({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.accuracy.create_cluster_verification_pairs',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_cluster_verification_pairs(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    cluster_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/cluster-verification-pairs \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "cluster_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'create_factcheck_setup_status',
+    endpoint: '/v1/reports/accuracy/factcheck-setup-status',
+    httpMethod: 'post',
+    summary: 'Accuracy Factcheck Setup Status',
+    description: 'Accuracy Factcheck Setup Status',
+    stainlessPath: '(resource) reports.accuracy > (method) create_factcheck_setup_status',
+    qualified: 'client.reports.accuracy.createFactcheckSetupStatus',
+    params: ['category_id: string;'],
+    response:
+      '{ activeAccuracyPromptCount: number; hasVerificationData: boolean; isSetupComplete: boolean; setupCreatedAt?: string; setupKnowledgeBaseId?: string; }',
+    markdown:
+      "## create_factcheck_setup_status\n\n`client.reports.accuracy.createFactcheckSetupStatus(category_id: string): { activeAccuracyPromptCount: number; hasVerificationData: boolean; isSetupComplete: boolean; setupCreatedAt?: string; setupKnowledgeBaseId?: string; }`\n\n**post** `/v1/reports/accuracy/factcheck-setup-status`\n\nAccuracy Factcheck Setup Status\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ activeAccuracyPromptCount: number; hasVerificationData: boolean; isSetupComplete: boolean; setupCreatedAt?: string; setupKnowledgeBaseId?: string; }`\n\n  - `activeAccuracyPromptCount: number`\n  - `hasVerificationData: boolean`\n  - `isSetupComplete: boolean`\n  - `setupCreatedAt?: string`\n  - `setupKnowledgeBaseId?: string`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createFactcheckSetupStatus({ category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.accuracy.createFactcheckSetupStatus',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.accuracy.createFactcheckSetupStatus({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(response.activeAccuracyPromptCount);",
+      },
+      python: {
+        method: 'reports.accuracy.create_factcheck_setup_status',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.accuracy.create_factcheck_setup_status(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response.active_accuracy_prompt_count)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/reports/accuracy/factcheck-setup-status \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n        }\'',
       },
     },
   },
@@ -1036,7 +2624,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/logs/raw \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/logs/raw \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -1077,7 +2665,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.tryprofound.com/v1/logs/raw/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z"\n        }\'',
+          'curl https://api.tryprofound.com/v1/logs/raw/bots \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "domain": "domain",\n          "metrics": [\n            "count"\n          ],\n          "start_date": "2019-12-27T18:11:19.117Z",\n          "order_by": {\n            "date": "asc"\n          }\n        }\'',
       },
     },
   },
@@ -1182,9 +2770,9 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     qualified: 'client.agents.retrieve',
     params: ['agent_id: string;', "version?: 'published' | 'draft';"],
     response:
-      "{ id: string; created_at: string; name: string; organization_id: string; schema: { input: object; output: object; }; status: 'draft' | 'published' | 'unknown'; description?: string; }",
+      "{ id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; schema?: { input: object; output: object; }; validation?: { valid: boolean; issues?: { code: string; message: string; field?: string; field_title?: string; node_id?: string; node_title?: string; violation?: string; }[]; }; }",
     markdown:
-      "## retrieve\n\n`client.agents.retrieve(agent_id: string, version?: 'published' | 'draft'): { id: string; created_at: string; name: string; organization_id: string; schema: object; status: 'draft' | 'published' | 'unknown'; description?: string; }`\n\n**get** `/v1/agents/{agent_id}`\n\nRetrieve an agent and its schema details.\n\nAgents can have both a live published version and a draft version with newer\nunpublished changes. Use the `version` parameter to choose which state to return.\n\n### Parameters\n\n- `agent_id: string`\n  The ID of the agent to retrieve.\n\n- `version?: 'published' | 'draft'`\n  Version of the agent to retrieve. Use `published` for the live version, or `draft` for the latest unpublished changes for the same agent. Defaults to `published`.\n\n### Returns\n\n- `{ id: string; created_at: string; name: string; organization_id: string; schema: { input: object; output: object; }; status: 'draft' | 'published' | 'unknown'; description?: string; }`\n  Detailed information for an agent.\n\n  - `id: string`\n  - `created_at: string`\n  - `name: string`\n  - `organization_id: string`\n  - `schema: { input: object; output: object; }`\n  - `status: 'draft' | 'published' | 'unknown'`\n  - `description?: string`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst agent = await client.agents.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(agent);\n```",
+      "## retrieve\n\n`client.agents.retrieve(agent_id: string, version?: 'published' | 'draft'): { id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; schema?: object; validation?: object; }`\n\n**get** `/v1/agents/{agent_id}`\n\nRetrieve an agent and its schema details.\n\nAgents can have both a live published version and a draft version with newer\nunpublished changes. Use the `version` parameter to choose which state to return.\n\n### Parameters\n\n- `agent_id: string`\n  The ID of the agent to retrieve.\n\n- `version?: 'published' | 'draft'`\n  Version of the agent to retrieve. Use `published` for the live version, or `draft` for the latest unpublished changes for the same agent. Defaults to `published`.\n\n### Returns\n\n- `{ id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; schema?: { input: object; output: object; }; validation?: { valid: boolean; issues?: { code: string; message: string; field?: string; field_title?: string; node_id?: string; node_title?: string; violation?: string; }[]; }; }`\n  Detailed information for an agent.\n\n  - `id: string`\n  - `created_at: string`\n  - `name: string`\n  - `organization_id: string`\n  - `status: 'draft' | 'published' | 'unknown'`\n  - `description?: string`\n  - `schema?: { input: object; output: object; }`\n  - `validation?: { valid: boolean; issues?: { code: string; message: string; field?: string; field_title?: string; node_id?: string; node_title?: string; violation?: string; }[]; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst agent = await client.agents.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(agent);\n```",
     perLanguage: {
       typescript: {
         method: 'client.agents.retrieve',
@@ -1204,17 +2792,141 @@ const EMBEDDED_METHODS: MethodEntry[] = [
   },
   {
     name: 'create',
+    endpoint: '/v1/agents',
+    httpMethod: 'post',
+    summary: 'Create an agent',
+    description:
+      'Create a new draft agent owned by the given organization.\n\n`organization_id` is required and you must be a member of it. The agent is created\nas a `draft`; publish it with `POST /v1/agents/{agent_id}/publish` once its graph\nis ready.',
+    stainlessPath: '(resource) agents > (method) create',
+    qualified: 'client.agents.create',
+    params: ['name: string;', 'organization_id: string;', 'description?: string;', 'graph?: object;'],
+    response:
+      "{ id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }",
+    markdown:
+      "## create\n\n`client.agents.create(name: string, organization_id: string, description?: string, graph?: object): { id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }`\n\n**post** `/v1/agents`\n\nCreate a new draft agent owned by the given organization.\n\n`organization_id` is required and you must be a member of it. The agent is created\nas a `draft`; publish it with `POST /v1/agents/{agent_id}/publish` once its graph\nis ready.\n\n### Parameters\n\n- `name: string`\n  Display name for the agent. Must be non-empty.\n\n- `organization_id: string`\n  ID of the organization that will own the agent. Required — Profound API keys are user-scoped, so the owning organization must be chosen explicitly. The caller must be a member of this organization.\n\n- `description?: string`\n  Short description of the agent.\n\n- `graph?: object`\n  Initial workflow graph for the agent's draft version. Optional — an agent can be created empty and have its graph filled in later.\n\n### Returns\n\n- `{ id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }`\n  Summary information for an agent.\n\n  - `id: string`\n  - `created_at: string`\n  - `name: string`\n  - `organization_id: string`\n  - `status: 'draft' | 'published' | 'unknown'`\n  - `description?: string`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst agent = await client.agents.create({ name: 'x', organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(agent);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.agents.create',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst agent = await client.agents.create({\n  name: 'x',\n  organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(agent.id);",
+      },
+      python: {
+        method: 'agents.create',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nagent = client.agents.create(\n    name="x",\n    organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(agent.id)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/agents \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "name": "x",\n          "organization_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'publish',
+    endpoint: '/v1/agents/{agent_id}/publish',
+    httpMethod: 'post',
+    summary: 'Publish an agent',
+    description:
+      "Publish an agent's latest draft as its live published version.\n\nYou must be a member of the agent's organization. Publishing promotes the current\ndraft graph to a new published version. A draft that cannot produce its declared\ninput/output contract is rejected with `422` and is not published.",
+    stainlessPath: '(resource) agents > (method) publish',
+    qualified: 'client.agents.publish',
+    params: ['agent_id: string;'],
+    response:
+      "{ id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }",
+    markdown:
+      "## publish\n\n`client.agents.publish(agent_id: string): { id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }`\n\n**post** `/v1/agents/{agent_id}/publish`\n\nPublish an agent's latest draft as its live published version.\n\nYou must be a member of the agent's organization. Publishing promotes the current\ndraft graph to a new published version. A draft that cannot produce its declared\ninput/output contract is rejected with `422` and is not published.\n\n### Parameters\n\n- `agent_id: string`\n  The ID of the agent to publish.\n\n### Returns\n\n- `{ id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; }`\n  Summary information for an agent.\n\n  - `id: string`\n  - `created_at: string`\n  - `name: string`\n  - `organization_id: string`\n  - `status: 'draft' | 'published' | 'unknown'`\n  - `description?: string`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.agents.publish('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.agents.publish',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.agents.publish('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response.id);",
+      },
+      python: {
+        method: 'agents.publish',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.agents.publish(\n    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response.id)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/agents/$AGENT_ID/publish \\\n    -X POST \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'update',
+    endpoint: '/v1/agents/{agent_id}',
+    httpMethod: 'patch',
+    summary: 'Update an agent',
+    description:
+      "Update an agent's draft graph in place.\n\nYou must be a member of the agent's organization. The agent's draft is replaced with the\nsupplied graph and re-validated, so you can iterate one draft — create, then update per\nfix — instead of creating a new agent on every change. The response carries the updated\n`validation`; publish with `POST /v1/agents/{agent_id}/publish` once `validation.valid`.",
+    stainlessPath: '(resource) agents > (method) update',
+    qualified: 'client.agents.update',
+    params: ['agent_id: string;', 'graph: object;'],
+    response:
+      "{ id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; schema?: { input: object; output: object; }; validation?: { valid: boolean; issues?: { code: string; message: string; field?: string; field_title?: string; node_id?: string; node_title?: string; violation?: string; }[]; }; }",
+    markdown:
+      "## update\n\n`client.agents.update(agent_id: string, graph: object): { id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; schema?: object; validation?: object; }`\n\n**patch** `/v1/agents/{agent_id}`\n\nUpdate an agent's draft graph in place.\n\nYou must be a member of the agent's organization. The agent's draft is replaced with the\nsupplied graph and re-validated, so you can iterate one draft — create, then update per\nfix — instead of creating a new agent on every change. The response carries the updated\n`validation`; publish with `POST /v1/agents/{agent_id}/publish` once `validation.valid`.\n\n### Parameters\n\n- `agent_id: string`\n  The ID of the agent to update.\n\n- `graph: object`\n  New workflow graph for the agent's draft version. Replaces the current draft graph; the agent is iterated in place rather than re-created, so its ID is stable. Required — a null graph is rejected as a 422 here rather than as a relayed upstream error.\n\n### Returns\n\n- `{ id: string; created_at: string; name: string; organization_id: string; status: 'draft' | 'published' | 'unknown'; description?: string; schema?: { input: object; output: object; }; validation?: { valid: boolean; issues?: { code: string; message: string; field?: string; field_title?: string; node_id?: string; node_title?: string; violation?: string; }[]; }; }`\n  Detailed information for an agent.\n\n  - `id: string`\n  - `created_at: string`\n  - `name: string`\n  - `organization_id: string`\n  - `status: 'draft' | 'published' | 'unknown'`\n  - `description?: string`\n  - `schema?: { input: object; output: object; }`\n  - `validation?: { valid: boolean; issues?: { code: string; message: string; field?: string; field_title?: string; node_id?: string; node_title?: string; violation?: string; }[]; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst agent = await client.agents.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { graph: { foo: 'bar' } });\n\nconsole.log(agent);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.agents.update',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst agent = await client.agents.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  graph: { foo: 'bar' },\n});\n\nconsole.log(agent.id);",
+      },
+      python: {
+        method: 'agents.update',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nagent = client.agents.update(\n    agent_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    graph={\n        "foo": "bar"\n    },\n)\nprint(agent.id)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/agents/$AGENT_ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "graph": {\n            "foo": "bar"\n          }\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'retrieve_graph',
+    endpoint: '/v1/agents/{agent_id}/graph',
+    httpMethod: 'get',
+    summary: "Get an agent's graph",
+    description:
+      "Retrieve an agent's full workflow graph (`{nodes, edges}`).\n\nThe graph is returned verbatim in the canonical dialect — the same shape `POST /v1/agents`\nand `PATCH /v1/agents/{agent_id}` accept — so a known-good agent can be read back, copied,\nand edited. Tool-backed nodes appear in their lowered `tool` form rather than the friendly\nv1 node types. A `draft` is visible only to its creator; the `published` version is visible\nacross its organization.",
+    stainlessPath: '(resource) agents > (method) retrieve_graph',
+    qualified: 'client.agents.retrieveGraph',
+    params: ['agent_id: string;', "version?: 'published' | 'draft';"],
+    response: "{ agent_id: string; graph: object; version: 'published' | 'draft'; }",
+    markdown:
+      "## retrieve_graph\n\n`client.agents.retrieveGraph(agent_id: string, version?: 'published' | 'draft'): { agent_id: string; graph: object; version: 'published' | 'draft'; }`\n\n**get** `/v1/agents/{agent_id}/graph`\n\nRetrieve an agent's full workflow graph (`{nodes, edges}`).\n\nThe graph is returned verbatim in the canonical dialect — the same shape `POST /v1/agents`\nand `PATCH /v1/agents/{agent_id}` accept — so a known-good agent can be read back, copied,\nand edited. Tool-backed nodes appear in their lowered `tool` form rather than the friendly\nv1 node types. A `draft` is visible only to its creator; the `published` version is visible\nacross its organization.\n\n### Parameters\n\n- `agent_id: string`\n  The ID of the agent whose graph to retrieve.\n\n- `version?: 'published' | 'draft'`\n  Version of the agent whose graph to retrieve. Use `published` for the live version, or `draft` for the latest unpublished changes. Defaults to `published`.\n\n### Returns\n\n- `{ agent_id: string; graph: object; version: 'published' | 'draft'; }`\n  An agent version's workflow graph in the canonical dialect.\n\n  - `agent_id: string`\n  - `graph: object`\n  - `version: 'published' | 'draft'`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.agents.retrieveGraph('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.agents.retrieveGraph',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.agents.retrieveGraph('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response.agent_id);",
+      },
+      python: {
+        method: 'agents.retrieve_graph',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.agents.retrieve_graph(\n    agent_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response.agent_id)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/agents/$AGENT_ID/graph \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'create',
     endpoint: '/v1/agents/{agent_id}/runs',
     httpMethod: 'post',
     summary: 'Run an agent',
-    description: 'Start a new run for an agent.',
+    description:
+      "Start a new run for an agent.\n\nRuns always execute the agent's live published version, so the agent must be\npublished first with `POST /v1/agents/{agent_id}/publish`. Unpublished drafts\ncannot be run.",
     stainlessPath: '(resource) agents.runs > (method) create',
     qualified: 'client.agents.runs.create',
     params: ['agent_id: string;', 'inputs?: object;'],
     response:
       "{ id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; started_at?: string; }",
     markdown:
-      "## create\n\n`client.agents.runs.create(agent_id: string, inputs?: object): { id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; started_at?: string; }`\n\n**post** `/v1/agents/{agent_id}/runs`\n\nStart a new run for an agent.\n\n### Parameters\n\n- `agent_id: string`\n  The ID of the agent to run.\n\n- `inputs?: object`\n  Input values for the run. Keys should match the property names defined in `schema.input`.\n\n### Returns\n\n- `{ id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; started_at?: string; }`\n  Run details returned after a run request is accepted.\n\n  - `id: string`\n  - `agent_id: string`\n  - `status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'`\n  - `started_at?: string`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst run = await client.agents.runs.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(run);\n```",
+      "## create\n\n`client.agents.runs.create(agent_id: string, inputs?: object): { id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; started_at?: string; }`\n\n**post** `/v1/agents/{agent_id}/runs`\n\nStart a new run for an agent.\n\nRuns always execute the agent's live published version, so the agent must be\npublished first with `POST /v1/agents/{agent_id}/publish`. Unpublished drafts\ncannot be run.\n\n### Parameters\n\n- `agent_id: string`\n  The ID of the agent to run.\n\n- `inputs?: object`\n  Input values for the run. Keys should match the property names defined in `schema.input`. Omit the request body when the agent does not require inputs.\n\n### Returns\n\n- `{ id: string; agent_id: string; status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'; started_at?: string; }`\n  Run details returned after a run request is accepted.\n\n  - `id: string`\n  - `agent_id: string`\n  - `status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'skipped' | 'unknown'`\n  - `started_at?: string`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst run = await client.agents.runs.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(run);\n```",
     perLanguage: {
       typescript: {
         method: 'client.agents.runs.create',
@@ -1228,7 +2940,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.tryprofound.com/v1/agents/$AGENT_ID/runs \\\n    -H 'Content-Type: application/json' \\\n    -H \"X-API-Key: $PROFOUND_API_KEY\" \\\n    -d '{}'",
+          'curl https://api.tryprofound.com/v1/agents/$AGENT_ID/runs \\\n    -X POST \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },
@@ -1259,6 +2971,66 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.tryprofound.com/v1/agents/$AGENT_ID/runs/$RUN_ID \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'list',
+    endpoint: '/v1/agents/node-types',
+    httpMethod: 'get',
+    summary: 'List node types',
+    description:
+      'List the node types available for building agents.\n\nThe set is deterministic and does not depend on the caller, so the response\nis safe to cache across sessions. Integration-dependent and dynamic-schema\nnode types are intentionally excluded in v1.',
+    stainlessPath: '(resource) agents.node_types > (method) list',
+    qualified: 'client.agents.nodeTypes.list',
+    response: '{ data: { display_name: string; node_type: string; description?: string; }[]; }',
+    markdown:
+      "## list\n\n`client.agents.nodeTypes.list(): { data: object[]; }`\n\n**get** `/v1/agents/node-types`\n\nList the node types available for building agents.\n\nThe set is deterministic and does not depend on the caller, so the response\nis safe to cache across sessions. Integration-dependent and dynamic-schema\nnode types are intentionally excluded in v1.\n\n### Returns\n\n- `{ data: { display_name: string; node_type: string; description?: string; }[]; }`\n  List of node types available to v1 agent authors.\n\n  - `data: { display_name: string; node_type: string; description?: string; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst nodeTypes = await client.agents.nodeTypes.list();\n\nconsole.log(nodeTypes);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.agents.nodeTypes.list',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst nodeTypes = await client.agents.nodeTypes.list();\n\nconsole.log(nodeTypes.data);",
+      },
+      python: {
+        method: 'agents.node_types.list',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nnode_types = client.agents.node_types.list()\nprint(node_types.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/agents/node-types \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'retrieve_schema',
+    endpoint: '/v1/agents/node-types/{node_type}/schema',
+    httpMethod: 'get',
+    summary: 'Get a node type schema',
+    description:
+      "Retrieve the JSON schema and worked examples for a single node type.\n\nThe `schema` field is an opaque JSON Schema for the node's configuration.\nUse `schema_version` as a cache key — it bumps whenever the schema changes.",
+    stainlessPath: '(resource) agents.node_types > (method) retrieve_schema',
+    qualified: 'client.agents.nodeTypes.retrieveSchema',
+    params: ['node_type: string;'],
+    response:
+      '{ node_type: string; schema: object; schema_version: string; description?: string; docs_version?: string; documentation?: object; examples?: object[]; }',
+    markdown:
+      "## retrieve_schema\n\n`client.agents.nodeTypes.retrieveSchema(node_type: string): { node_type: string; schema: object; schema_version: string; description?: string; docs_version?: string; documentation?: object; examples?: object[]; }`\n\n**get** `/v1/agents/node-types/{node_type}/schema`\n\nRetrieve the JSON schema and worked examples for a single node type.\n\nThe `schema` field is an opaque JSON Schema for the node's configuration.\nUse `schema_version` as a cache key — it bumps whenever the schema changes.\n\n### Parameters\n\n- `node_type: string`\n  The node type to fetch the schema for, e.g. `llm`.\n\n### Returns\n\n- `{ node_type: string; schema: object; schema_version: string; description?: string; docs_version?: string; documentation?: object; examples?: object[]; }`\n  JSON schema and worked examples for a single node type.\n\n  - `node_type: string`\n  - `schema: object`\n  - `schema_version: string`\n  - `description?: string`\n  - `docs_version?: string`\n  - `documentation?: object`\n  - `examples?: object[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.agents.nodeTypes.retrieveSchema('node_type');\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.agents.nodeTypes.retrieveSchema',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.agents.nodeTypes.retrieveSchema('node_type');\n\nconsole.log(response.node_type);",
+      },
+      python: {
+        method: 'agents.node_types.retrieve_schema',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.agents.node_types.retrieve_schema(\n    "node_type",\n)\nprint(response.node_type)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/agents/node-types/$NODE_TYPE/schema \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
       },
     },
   },
@@ -1498,12 +3270,12 @@ const EMBEDDED_READMES: { language: string; content: string }[] = [
   {
     language: 'python',
     content:
-      '# Profound Python API library\n\n<!-- prettier-ignore -->\n[![PyPI version](https://img.shields.io/pypi/v/profound.svg?label=pypi%20(stable))](https://pypi.org/project/profound/)\n\nThe Profound Python library provides convenient access to the Profound REST API from any Python 3.9+\napplication. The library includes type definitions for all request params and response fields,\nand offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).\n\n\n\nIt is generated with [Stainless](https://www.stainless.com/).\n\n## MCP Server\n\nUse the Profound MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40profoundai%2Fmcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBwcm9mb3VuZGFpL21jcCJdLCJlbnYiOnsiUFJPRk9VTkRfQUNDRVNTX1RPS0VOIjoiTXkgQWNjZXNzIFRva2VuIiwiUFJPRk9VTkRfQVBJX0tFWSI6Ik15IEFQSSBLZXkifX0)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40profoundai%2Fmcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40profoundai%2Fmcp%22%5D%2C%22env%22%3A%7B%22PROFOUND_ACCESS_TOKEN%22%3A%22My%20Access%20Token%22%2C%22PROFOUND_API_KEY%22%3A%22My%20API%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Documentation\n\nThe REST API documentation can be found on [docs.tryprofound.com](https://docs.tryprofound.com). The full API of this library can be found in [api.md](api.md).\n\n## Installation\n\n```sh\n# install from PyPI\npip install profound\n```\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n```python\nimport os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\n\ncategories = client.organizations.categories.list()\n```\n\nWhile you can provide a `access_token` keyword argument,\nwe recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)\nto add `PROFOUND_ACCESS_TOKEN="My Access Token"` to your `.env` file\nso that your Access Token is not stored in source control.\n\n## Async usage\n\nSimply import `AsyncProfound` instead of `Profound` and use `await` with each API call:\n\n```python\nimport os\nimport asyncio\nfrom profound import AsyncProfound\n\nclient = AsyncProfound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\n\nasync def main() -> None:\n  categories = await client.organizations.categories.list()\n\nasyncio.run(main())\n```\n\nFunctionality between the synchronous and asynchronous clients is otherwise identical.\n\n### With aiohttp\n\nBy default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.\n\nYou can enable this by installing `aiohttp`:\n\n```sh\n# install from PyPI\npip install profound[aiohttp]\n```\n\nThen you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:\n\n```python\nimport os\nimport asyncio\nfrom profound import DefaultAioHttpClient\nfrom profound import AsyncProfound\n\nasync def main() -> None:\n  async with AsyncProfound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n    http_client=DefaultAioHttpClient(),\n) as client:\n    categories = await client.organizations.categories.list()\n\nasyncio.run(main())\n```\n\n\n\n## Using types\n\nNested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:\n\n- Serializing back into JSON, `model.to_json()`\n- Converting to a dictionary, `model.to_dict()`\n\nTyped requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.\n\n\n\nfrom datetime import datetime\n\n## Nested params\n\nNested parameters are dictionaries, typed using `TypedDict`, for example:\n\n```python\nfrom profound import Profound\n\nclient = Profound()\n\nresponse = client.prompts.answers(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    include={},\n)\nprint(response.include)\n```\n\n\n\n## Handling errors\n\nWhen the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `profound.APIConnectionError` is raised.\n\nWhen the API returns a non-success status code (that is, 4xx or 5xx\nresponse), a subclass of `profound.APIStatusError` is raised, containing `status_code` and `response` properties.\n\nAll errors inherit from `profound.APIError`.\n\n```python\nimport profound\nfrom profound import Profound\n\nclient = Profound()\n\ntry:\n    client.organizations.categories.list()\nexcept profound.APIConnectionError as e:\n    print("The server could not be reached")\n    print(e.__cause__) # an underlying Exception, likely raised within httpx.\nexcept profound.RateLimitError as e:\n    print("A 429 status code was received; we should back off a bit.")\nexcept profound.APIStatusError as e:\n    print("Another non-200-range status code was received")\n    print(e.status_code)\n    print(e.response)\n```\n\nError codes are as follows:\n\n| Status Code | Error Type                 |\n| ----------- | -------------------------- |\n| 400         | `BadRequestError`          |\n| 401         | `AuthenticationError`      |\n| 403         | `PermissionDeniedError`    |\n| 404         | `NotFoundError`            |\n| 422         | `UnprocessableEntityError` |\n| 429         | `RateLimitError`           |\n| >=500       | `InternalServerError`      |\n| N/A         | `APIConnectionError`       |\n\n### Retries\n\nCertain errors are automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors are all retried by default.\n\nYou can use the `max_retries` option to configure or disable retry settings:\n\n```python\nfrom profound import Profound\n\n# Configure the default for all requests:\nclient = Profound(\n    # default is 2\n    max_retries=0,\n)\n\n# Or, configure per-request:\nclient.with_options(max_retries = 5).organizations.categories.list()\n```\n\n### Timeouts\n\nBy default requests time out after 1 minute. You can configure this with a `timeout` option,\nwhich accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:\n\n```python\nfrom profound import Profound\n\n# Configure the default for all requests:\nclient = Profound(\n    # 20 seconds (default is 1 minute)\n    timeout=20.0,\n)\n\n# More granular control:\nclient = Profound(\n    timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),\n)\n\n# Override per-request:\nclient.with_options(timeout = 5.0).organizations.categories.list()\n```\n\nOn timeout, an `APITimeoutError` is thrown.\n\nNote that requests that time out are [retried twice by default](#retries).\n\n\n\n## Advanced\n\n### Logging\n\nWe use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.\n\nYou can enable logging by setting the environment variable `PROFOUND_LOG` to `info`.\n\n```shell\n$ export PROFOUND_LOG=info\n```\n\nOr to `debug` for more verbose logging.\n\n### How to tell whether `None` means `null` or missing\n\nIn an API response, a field may be explicitly `null`, or missing entirely; in either case, its value is `None` in this library. You can differentiate the two cases with `.model_fields_set`:\n\n```py\nif response.my_field is None:\n  if \'my_field\' not in response.model_fields_set:\n    print(\'Got json like {}, without a "my_field" key present at all.\')\n  else:\n    print(\'Got json like {"my_field": null}.\')\n```\n\n### Accessing raw response data (e.g. headers)\n\nThe "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,\n\n```py\nfrom profound import Profound\n\nclient = Profound()\nresponse = client.organizations.categories.with_raw_response.list()\nprint(response.headers.get(\'X-My-Header\'))\n\ncategory = response.parse()  # get the object that `organizations.categories.list()` would have returned\nprint(category)\n```\n\nThese methods return an [`APIResponse`](https://github.com/cooper-square-technologies/profound-python-sdk/tree/main/src/profound/_response.py) object.\n\nThe async client returns an [`AsyncAPIResponse`](https://github.com/cooper-square-technologies/profound-python-sdk/tree/main/src/profound/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.\n\n#### `.with_streaming_response`\n\nThe above interface eagerly reads the full response body when you make the request, which may not always be what you want.\n\nTo stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.\n\n```python\nwith client.organizations.categories.with_streaming_response.list() as response :\n    print(response.headers.get(\'X-My-Header\'))\n\n    for line in response.iter_lines():\n      print(line)\n```\n\nThe context manager is required so that the response will reliably be closed.\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API.\n\nIf you need to access undocumented endpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can make requests using `client.get`, `client.post`, and other\nhttp verbs. Options on the client will be respected (such as retries) when making this request.\n\n```py\nimport httpx\n\nresponse = client.post(\n    "/foo",\n    cast_to=httpx.Response,\n    body={"my_param": True},\n)\n\nprint(response.headers.get("x-foo"))\n```\n\n#### Undocumented request params\n\nIf you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` request\noptions.\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you can access the extra fields like `response.unknown_prop`. You\ncan also get all the extra fields on the Pydantic model as a dict with\n[`response.model_extra`](https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel.model_extra).\n\n### Configuring the HTTP client\n\nYou can directly override the [httpx client](https://www.python-httpx.org/api/#client) to customize it for your use case, including:\n\n- Support for [proxies](https://www.python-httpx.org/advanced/proxies/)\n- Custom [transports](https://www.python-httpx.org/advanced/transports/)\n- Additional [advanced](https://www.python-httpx.org/advanced/clients/) functionality\n\n```python\nimport httpx\nfrom profound import Profound, DefaultHttpxClient\n\nclient = Profound(\n    # Or use the `PROFOUND_BASE_URL` env var\n    base_url="http://my.test.server.example.com:8083",\n    http_client=DefaultHttpxClient(proxy="http://my.test.proxy.example.com", transport=httpx.HTTPTransport(local_address="0.0.0.0")),\n)\n```\n\nYou can also customize the client on a per-request basis by using `with_options()`:\n\n```python\nclient.with_options(http_client=DefaultHttpxClient(...))\n```\n\n### Managing HTTP resources\n\nBy default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.\n\n```py\nfrom profound import Profound\n\nwith Profound() as client:\n  # make requests here\n  ...\n\n# HTTP client is now closed\n```\n\n## Versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes that only affect static types, without breaking runtime behavior.\n2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n3. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/cooper-square-technologies/profound-python-sdk/issues) with questions, bugs, or suggestions.\n\n### Determining the installed version\n\nIf you\'ve upgraded to the latest version but aren\'t seeing any new features you were expecting then your python environment is likely still using an older version.\n\nYou can determine the version that is being used at runtime with:\n\n```py\nimport profound\nprint(profound.__version__)\n```\n\n## Requirements\n\nPython 3.9 or higher.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n',
+      '# Profound Python API library\n\n<!-- prettier-ignore -->\n[![PyPI version](https://img.shields.io/pypi/v/profound.svg?label=pypi%20(stable))](https://pypi.org/project/profound/)\n\nThe Profound Python library provides convenient access to the Profound REST API from any Python 3.9+\napplication. The library includes type definitions for all request params and response fields,\nand offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).\n\n\n\nIt is generated with [Stainless](https://www.stainless.com/).\n\n## MCP Server\n\nUse the Profound MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40profoundai%2Fmcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBwcm9mb3VuZGFpL21jcCJdLCJlbnYiOnsiUFJPRk9VTkRfQUNDRVNTX1RPS0VOIjoiTXkgQWNjZXNzIFRva2VuIiwiUFJPRk9VTkRfQVBJX0tFWSI6Ik15IEFQSSBLZXkifX0)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40profoundai%2Fmcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40profoundai%2Fmcp%22%5D%2C%22env%22%3A%7B%22PROFOUND_ACCESS_TOKEN%22%3A%22My%20Access%20Token%22%2C%22PROFOUND_API_KEY%22%3A%22My%20API%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Documentation\n\nThe REST API documentation can be found on [docs.tryprofound.com](https://docs.tryprofound.com). The full API of this library can be found in [api.md](api.md).\n\n## Installation\n\n```sh\n# install from PyPI\npip install profound\n```\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n```python\nimport os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n    # defaults to "production".\n    environment="development",\n)\n\ncategories = client.organizations.categories.list()\n```\n\nWhile you can provide a `access_token` keyword argument,\nwe recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)\nto add `PROFOUND_ACCESS_TOKEN="My Access Token"` to your `.env` file\nso that your Access Token is not stored in source control.\n\n## Async usage\n\nSimply import `AsyncProfound` instead of `Profound` and use `await` with each API call:\n\n```python\nimport os\nimport asyncio\nfrom profound import AsyncProfound\n\nclient = AsyncProfound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n    # defaults to "production".\n    environment="development",\n)\n\nasync def main() -> None:\n  categories = await client.organizations.categories.list()\n\nasyncio.run(main())\n```\n\nFunctionality between the synchronous and asynchronous clients is otherwise identical.\n\n### With aiohttp\n\nBy default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.\n\nYou can enable this by installing `aiohttp`:\n\n```sh\n# install from PyPI\npip install profound[aiohttp]\n```\n\nThen you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:\n\n```python\nimport os\nimport asyncio\nfrom profound import DefaultAioHttpClient\nfrom profound import AsyncProfound\n\nasync def main() -> None:\n  async with AsyncProfound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n    http_client=DefaultAioHttpClient(),\n) as client:\n    categories = await client.organizations.categories.list()\n\nasyncio.run(main())\n```\n\n\n\n## Using types\n\nNested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:\n\n- Serializing back into JSON, `model.to_json()`\n- Converting to a dictionary, `model.to_dict()`\n\nTyped requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.\n\n\n\nfrom datetime import datetime\n\n## Nested params\n\nNested parameters are dictionaries, typed using `TypedDict`, for example:\n\n```python\nfrom profound import Profound\n\nclient = Profound()\n\nresponse = client.prompts.answers(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    start_date=datetime.fromisoformat("2019-12-27T18:11:19.117"),\n    include={},\n)\nprint(response.include)\n```\n\n\n\n## Handling errors\n\nWhen the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `profound.APIConnectionError` is raised.\n\nWhen the API returns a non-success status code (that is, 4xx or 5xx\nresponse), a subclass of `profound.APIStatusError` is raised, containing `status_code` and `response` properties.\n\nAll errors inherit from `profound.APIError`.\n\n```python\nimport profound\nfrom profound import Profound\n\nclient = Profound()\n\ntry:\n    client.organizations.categories.list()\nexcept profound.APIConnectionError as e:\n    print("The server could not be reached")\n    print(e.__cause__) # an underlying Exception, likely raised within httpx.\nexcept profound.RateLimitError as e:\n    print("A 429 status code was received; we should back off a bit.")\nexcept profound.APIStatusError as e:\n    print("Another non-200-range status code was received")\n    print(e.status_code)\n    print(e.response)\n```\n\nError codes are as follows:\n\n| Status Code | Error Type                 |\n| ----------- | -------------------------- |\n| 400         | `BadRequestError`          |\n| 401         | `AuthenticationError`      |\n| 403         | `PermissionDeniedError`    |\n| 404         | `NotFoundError`            |\n| 422         | `UnprocessableEntityError` |\n| 429         | `RateLimitError`           |\n| >=500       | `InternalServerError`      |\n| N/A         | `APIConnectionError`       |\n\n### Retries\n\nCertain errors are automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors are all retried by default.\n\nYou can use the `max_retries` option to configure or disable retry settings:\n\n```python\nfrom profound import Profound\n\n# Configure the default for all requests:\nclient = Profound(\n    # default is 2\n    max_retries=0,\n)\n\n# Or, configure per-request:\nclient.with_options(max_retries = 5).organizations.categories.list()\n```\n\n### Timeouts\n\nBy default requests time out after 1 minute. You can configure this with a `timeout` option,\nwhich accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:\n\n```python\nfrom profound import Profound\n\n# Configure the default for all requests:\nclient = Profound(\n    # 20 seconds (default is 1 minute)\n    timeout=20.0,\n)\n\n# More granular control:\nclient = Profound(\n    timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),\n)\n\n# Override per-request:\nclient.with_options(timeout = 5.0).organizations.categories.list()\n```\n\nOn timeout, an `APITimeoutError` is thrown.\n\nNote that requests that time out are [retried twice by default](#retries).\n\n\n\n## Advanced\n\n### Logging\n\nWe use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.\n\nYou can enable logging by setting the environment variable `PROFOUND_LOG` to `info`.\n\n```shell\n$ export PROFOUND_LOG=info\n```\n\nOr to `debug` for more verbose logging.\n\n### How to tell whether `None` means `null` or missing\n\nIn an API response, a field may be explicitly `null`, or missing entirely; in either case, its value is `None` in this library. You can differentiate the two cases with `.model_fields_set`:\n\n```py\nif response.my_field is None:\n  if \'my_field\' not in response.model_fields_set:\n    print(\'Got json like {}, without a "my_field" key present at all.\')\n  else:\n    print(\'Got json like {"my_field": null}.\')\n```\n\n### Accessing raw response data (e.g. headers)\n\nThe "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,\n\n```py\nfrom profound import Profound\n\nclient = Profound()\nresponse = client.organizations.categories.with_raw_response.list()\nprint(response.headers.get(\'X-My-Header\'))\n\ncategory = response.parse()  # get the object that `organizations.categories.list()` would have returned\nprint(category)\n```\n\nThese methods return an [`APIResponse`](https://github.com/cooper-square-technologies/profound-python-sdk/tree/main/src/profound/_response.py) object.\n\nThe async client returns an [`AsyncAPIResponse`](https://github.com/cooper-square-technologies/profound-python-sdk/tree/main/src/profound/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.\n\n#### `.with_streaming_response`\n\nThe above interface eagerly reads the full response body when you make the request, which may not always be what you want.\n\nTo stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.\n\n```python\nwith client.organizations.categories.with_streaming_response.list() as response :\n    print(response.headers.get(\'X-My-Header\'))\n\n    for line in response.iter_lines():\n      print(line)\n```\n\nThe context manager is required so that the response will reliably be closed.\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API.\n\nIf you need to access undocumented endpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can make requests using `client.get`, `client.post`, and other\nhttp verbs. Options on the client will be respected (such as retries) when making this request.\n\n```py\nimport httpx\n\nresponse = client.post(\n    "/foo",\n    cast_to=httpx.Response,\n    body={"my_param": True},\n)\n\nprint(response.headers.get("x-foo"))\n```\n\n#### Undocumented request params\n\nIf you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` request\noptions.\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you can access the extra fields like `response.unknown_prop`. You\ncan also get all the extra fields on the Pydantic model as a dict with\n[`response.model_extra`](https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel.model_extra).\n\n### Configuring the HTTP client\n\nYou can directly override the [httpx client](https://www.python-httpx.org/api/#client) to customize it for your use case, including:\n\n- Support for [proxies](https://www.python-httpx.org/advanced/proxies/)\n- Custom [transports](https://www.python-httpx.org/advanced/transports/)\n- Additional [advanced](https://www.python-httpx.org/advanced/clients/) functionality\n\n```python\nimport httpx\nfrom profound import Profound, DefaultHttpxClient\n\nclient = Profound(\n    # Or use the `PROFOUND_BASE_URL` env var\n    base_url="http://my.test.server.example.com:8083",\n    http_client=DefaultHttpxClient(proxy="http://my.test.proxy.example.com", transport=httpx.HTTPTransport(local_address="0.0.0.0")),\n)\n```\n\nYou can also customize the client on a per-request basis by using `with_options()`:\n\n```python\nclient.with_options(http_client=DefaultHttpxClient(...))\n```\n\n### Managing HTTP resources\n\nBy default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.\n\n```py\nfrom profound import Profound\n\nwith Profound() as client:\n  # make requests here\n  ...\n\n# HTTP client is now closed\n```\n\n## Versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes that only affect static types, without breaking runtime behavior.\n2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n3. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/cooper-square-technologies/profound-python-sdk/issues) with questions, bugs, or suggestions.\n\n### Determining the installed version\n\nIf you\'ve upgraded to the latest version but aren\'t seeing any new features you were expecting then your python environment is likely still using an older version.\n\nYou can determine the version that is being used at runtime with:\n\n```py\nimport profound\nprint(profound.__version__)\n```\n\n## Requirements\n\nPython 3.9 or higher.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n',
   },
   {
     language: 'typescript',
     content:
-      "# Profound TypeScript API Library\n\n[![NPM version](https://img.shields.io/npm/v/@profoundai/client.svg?label=npm%20(stable))](https://npmjs.org/package/@profoundai/client) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@profoundai/client)\n\nThis library provides convenient access to the Profound REST API from server-side TypeScript or JavaScript.\n\n\n\nThe REST API documentation can be found on [docs.tryprofound.com](https://docs.tryprofound.com). The full API of this library can be found in [api.md](api.md).\n\nIt is generated with [Stainless](https://www.stainless.com/).\n\n## MCP Server\n\nUse the Profound MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40profoundai%2Fmcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBwcm9mb3VuZGFpL21jcCJdLCJlbnYiOnsiUFJPRk9VTkRfQUNDRVNTX1RPS0VOIjoiTXkgQWNjZXNzIFRva2VuIiwiUFJPRk9VTkRfQVBJX0tFWSI6Ik15IEFQSSBLZXkifX0)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40profoundai%2Fmcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40profoundai%2Fmcp%22%5D%2C%22env%22%3A%7B%22PROFOUND_ACCESS_TOKEN%22%3A%22My%20Access%20Token%22%2C%22PROFOUND_API_KEY%22%3A%22My%20API%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Installation\n\n```sh\nnpm install @profoundai/client\n```\n\n\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n<!-- prettier-ignore -->\n```js\nimport Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst categories = await client.organizations.categories.list();\n```\n\n\n\n### Request & Response types\n\nThis library includes TypeScript definitions for all request params and response fields. You may import and use them like so:\n\n<!-- prettier-ignore -->\n```ts\nimport Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst categories: Profound.Organizations.CategoryListResponse =\n  await client.organizations.categories.list();\n```\n\nDocumentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.\n\n\n\n\n\n## Handling errors\n\nWhen the library is unable to connect to the API,\nor if the API returns a non-success status code (i.e., 4xx or 5xx response),\na subclass of `APIError` will be thrown:\n\n<!-- prettier-ignore -->\n```ts\nconst categories = await client.organizations.categories.list().catch(async (err) => {\n  if (err instanceof Profound.APIError) {\n    console.log(err.status); // 400\n    console.log(err.name); // BadRequestError\n    console.log(err.headers); // {server: 'nginx', ...}\n  } else {\n    throw err;\n  }\n});\n```\n\nError codes are as follows:\n\n| Status Code | Error Type                 |\n| ----------- | -------------------------- |\n| 400         | `BadRequestError`          |\n| 401         | `AuthenticationError`      |\n| 403         | `PermissionDeniedError`    |\n| 404         | `NotFoundError`            |\n| 422         | `UnprocessableEntityError` |\n| 429         | `RateLimitError`           |\n| >=500       | `InternalServerError`      |\n| N/A         | `APIConnectionError`       |\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors will all be retried by default.\n\nYou can use the `maxRetries` option to configure or disable this:\n\n<!-- prettier-ignore -->\n```js\n// Configure the default for all requests:\nconst client = new Profound({\n  maxRetries: 0, // default is 2\n});\n\n// Or, configure per-request:\nawait client.organizations.categories.list({\n  maxRetries: 5,\n});\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default. You can configure this with a `timeout` option:\n\n<!-- prettier-ignore -->\n```ts\n// Configure the default for all requests:\nconst client = new Profound({\n  timeout: 20 * 1000, // 20 seconds (default is 1 minute)\n});\n\n// Override per-request:\nawait client.organizations.categories.list({\n  timeout: 5 * 1000,\n});\n```\n\nOn timeout, an `APIConnectionTimeoutError` is thrown.\n\nNote that requests which time out will be [retried twice by default](#retries).\n\n\n\n\n\n## Advanced Usage\n\n### Accessing raw Response data (e.g., headers)\n\nThe \"raw\" `Response` returned by `fetch()` can be accessed through the `.asResponse()` method on the `APIPromise` type that all methods return.\nThis method returns as soon as the headers for a successful response are received and does not consume the response body, so you are free to write custom parsing or streaming logic.\n\nYou can also use the `.withResponse()` method to get the raw `Response` along with the parsed data.\nUnlike `.asResponse()` this method consumes the body, returning once it is parsed.\n\n<!-- prettier-ignore -->\n```ts\nconst client = new Profound();\n\nconst response = await client.organizations.categories.list().asResponse();\nconsole.log(response.headers.get('X-My-Header'));\nconsole.log(response.statusText); // access the underlying Response object\n\nconst { data: categories, response: raw } = await client.organizations.categories\n  .list()\n  .withResponse();\nconsole.log(raw.headers.get('X-My-Header'));\nconsole.log(categories);\n```\n\n### Logging\n\n> [!IMPORTANT]\n> All log messages are intended for debugging only. The format and content of log messages\n> may change between releases.\n\n#### Log levels\n\nThe log level can be configured in two ways:\n\n1. Via the `PROFOUND_LOG` environment variable\n2. Using the `logLevel` client option (overrides the environment variable if set)\n\n```ts\nimport Profound from '@profoundai/client';\n\nconst client = new Profound({\n  logLevel: 'debug', // Show all log messages\n});\n```\n\nAvailable log levels, from most to least verbose:\n\n- `'debug'` - Show debug messages, info, warnings, and errors\n- `'info'` - Show info messages, warnings, and errors\n- `'warn'` - Show warnings and errors (default)\n- `'error'` - Show only errors\n- `'off'` - Disable all logging\n\nAt the `'debug'` level, all HTTP requests and responses are logged, including headers and bodies.\nSome authentication-related headers are redacted, but sensitive data in request and response bodies\nmay still be visible.\n\n#### Custom logger\n\nBy default, this library logs to `globalThis.console`. You can also provide a custom logger.\nMost logging libraries are supported, including [pino](https://www.npmjs.com/package/pino), [winston](https://www.npmjs.com/package/winston), [bunyan](https://www.npmjs.com/package/bunyan), [consola](https://www.npmjs.com/package/consola), [signale](https://www.npmjs.com/package/signale), and [@std/log](https://jsr.io/@std/log). If your logger doesn't work, please open an issue.\n\nWhen providing a custom logger, the `logLevel` option still controls which messages are emitted, messages\nbelow the configured level will not be sent to your logger.\n\n```ts\nimport Profound from '@profoundai/client';\nimport pino from 'pino';\n\nconst logger = pino();\n\nconst client = new Profound({\n  logger: logger.child({ name: 'Profound' }),\n  logLevel: 'debug', // Send all messages to pino, allowing it to filter\n});\n```\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API. If you need to access undocumented\nendpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can use `client.get`, `client.post`, and other HTTP verbs.\nOptions on the client, such as retries, will be respected when making these requests.\n\n```ts\nawait client.post('/some/path', {\n  body: { some_prop: 'foo' },\n  query: { some_query_arg: 'bar' },\n});\n```\n\n#### Undocumented request params\n\nTo make requests using undocumented parameters, you may use `// @ts-expect-error` on the undocumented\nparameter. This library doesn't validate at runtime that the request matches the type, so any extra values you\nsend will be sent as-is.\n\n```ts\nclient.organizations.categories.list({\n  // ...\n  // @ts-expect-error baz is not yet public\n  baz: 'undocumented option',\n});\n```\n\nFor requests with the `GET` verb, any extra params will be in the query, all other requests will send the\nextra param in the body.\n\nIf you want to explicitly send an extra argument, you can do so with the `query`, `body`, and `headers` request\noptions.\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you may access the response object with `// @ts-expect-error` on\nthe response object, or cast the response object to the requisite type. Like the request params, we do not\nvalidate or strip extra properties from the response from the API.\n\n### Customizing the fetch client\n\nBy default, this library expects a global `fetch` function is defined.\n\nIf you want to use a different `fetch` function, you can either polyfill the global:\n\n```ts\nimport fetch from 'my-fetch';\n\nglobalThis.fetch = fetch;\n```\n\nOr pass it to the client:\n\n```ts\nimport Profound from '@profoundai/client';\nimport fetch from 'my-fetch';\n\nconst client = new Profound({ fetch });\n```\n\n### Fetch options\n\nIf you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)\n\n```ts\nimport Profound from '@profoundai/client';\n\nconst client = new Profound({\n  fetchOptions: {\n    // `RequestInit` options\n  },\n});\n```\n\n#### Configuring proxies\n\nTo modify proxy behavior, you can provide custom `fetchOptions` that add runtime-specific proxy\noptions to requests:\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg\" align=\"top\" width=\"18\" height=\"21\"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>\n\n```ts\nimport Profound from '@profoundai/client';\nimport * as undici from 'undici';\n\nconst proxyAgent = new undici.ProxyAgent('http://localhost:8888');\nconst client = new Profound({\n  fetchOptions: {\n    dispatcher: proxyAgent,\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg\" align=\"top\" width=\"18\" height=\"21\"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>\n\n```ts\nimport Profound from '@profoundai/client';\n\nconst client = new Profound({\n  fetchOptions: {\n    proxy: 'http://localhost:8888',\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg\" align=\"top\" width=\"18\" height=\"21\"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>\n\n```ts\nimport Profound from 'npm:@profoundai/client';\n\nconst httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });\nconst client = new Profound({\n  fetchOptions: {\n    client: httpClient,\n  },\n});\n```\n\n## Frequently Asked Questions\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes that only affect static types, without breaking runtime behavior.\n2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n3. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/cooper-square-technologies/profound-typescript-sdk/issues) with questions, bugs, or suggestions.\n\n## Requirements\n\nTypeScript >= 4.9 is supported.\n\nThe following runtimes are supported:\n\n- Web browsers (Up-to-date Chrome, Firefox, Safari, Edge, and more)\n- Node.js 20 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.\n- Deno v1.28.0 or higher.\n- Bun 1.0 or later.\n- Cloudflare Workers.\n- Vercel Edge Runtime.\n- Jest 28 or greater with the `\"node\"` environment (`\"jsdom\"` is not supported at this time).\n- Nitro v2.6 or greater.\n\nNote that React Native is not supported at this time.\n\nIf you are interested in other runtime environments, please open or upvote an issue on GitHub.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n",
+      "# Profound TypeScript API Library\n\n[![NPM version](https://img.shields.io/npm/v/@profoundai/client.svg?label=npm%20(stable))](https://npmjs.org/package/@profoundai/client) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@profoundai/client)\n\nThis library provides convenient access to the Profound REST API from server-side TypeScript or JavaScript.\n\n\n\nThe REST API documentation can be found on [docs.tryprofound.com](https://docs.tryprofound.com). The full API of this library can be found in [api.md](api.md).\n\nIt is generated with [Stainless](https://www.stainless.com/).\n\n## MCP Server\n\nUse the Profound MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40profoundai%2Fmcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBwcm9mb3VuZGFpL21jcCJdLCJlbnYiOnsiUFJPRk9VTkRfQUNDRVNTX1RPS0VOIjoiTXkgQWNjZXNzIFRva2VuIiwiUFJPRk9VTkRfQVBJX0tFWSI6Ik15IEFQSSBLZXkifX0)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40profoundai%2Fmcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40profoundai%2Fmcp%22%5D%2C%22env%22%3A%7B%22PROFOUND_ACCESS_TOKEN%22%3A%22My%20Access%20Token%22%2C%22PROFOUND_API_KEY%22%3A%22My%20API%20Key%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Installation\n\n```sh\nnpm install @profoundai/client\n```\n\n\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n<!-- prettier-ignore -->\n```js\nimport Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n  environment: 'development', // defaults to 'production'\n});\n\nconst categories = await client.organizations.categories.list();\n```\n\n\n\n### Request & Response types\n\nThis library includes TypeScript definitions for all request params and response fields. You may import and use them like so:\n\n<!-- prettier-ignore -->\n```ts\nimport Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n  environment: 'development', // defaults to 'production'\n});\n\nconst categories: Profound.Organizations.CategoryListResponse =\n  await client.organizations.categories.list();\n```\n\nDocumentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.\n\n\n\n\n\n## Handling errors\n\nWhen the library is unable to connect to the API,\nor if the API returns a non-success status code (i.e., 4xx or 5xx response),\na subclass of `APIError` will be thrown:\n\n<!-- prettier-ignore -->\n```ts\nconst categories = await client.organizations.categories.list().catch(async (err) => {\n  if (err instanceof Profound.APIError) {\n    console.log(err.status); // 400\n    console.log(err.name); // BadRequestError\n    console.log(err.headers); // {server: 'nginx', ...}\n  } else {\n    throw err;\n  }\n});\n```\n\nError codes are as follows:\n\n| Status Code | Error Type                 |\n| ----------- | -------------------------- |\n| 400         | `BadRequestError`          |\n| 401         | `AuthenticationError`      |\n| 403         | `PermissionDeniedError`    |\n| 404         | `NotFoundError`            |\n| 422         | `UnprocessableEntityError` |\n| 429         | `RateLimitError`           |\n| >=500       | `InternalServerError`      |\n| N/A         | `APIConnectionError`       |\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors will all be retried by default.\n\nYou can use the `maxRetries` option to configure or disable this:\n\n<!-- prettier-ignore -->\n```js\n// Configure the default for all requests:\nconst client = new Profound({\n  maxRetries: 0, // default is 2\n});\n\n// Or, configure per-request:\nawait client.organizations.categories.list({\n  maxRetries: 5,\n});\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default. You can configure this with a `timeout` option:\n\n<!-- prettier-ignore -->\n```ts\n// Configure the default for all requests:\nconst client = new Profound({\n  timeout: 20 * 1000, // 20 seconds (default is 1 minute)\n});\n\n// Override per-request:\nawait client.organizations.categories.list({\n  timeout: 5 * 1000,\n});\n```\n\nOn timeout, an `APIConnectionTimeoutError` is thrown.\n\nNote that requests which time out will be [retried twice by default](#retries).\n\n\n\n\n\n## Advanced Usage\n\n### Accessing raw Response data (e.g., headers)\n\nThe \"raw\" `Response` returned by `fetch()` can be accessed through the `.asResponse()` method on the `APIPromise` type that all methods return.\nThis method returns as soon as the headers for a successful response are received and does not consume the response body, so you are free to write custom parsing or streaming logic.\n\nYou can also use the `.withResponse()` method to get the raw `Response` along with the parsed data.\nUnlike `.asResponse()` this method consumes the body, returning once it is parsed.\n\n<!-- prettier-ignore -->\n```ts\nconst client = new Profound();\n\nconst response = await client.organizations.categories.list().asResponse();\nconsole.log(response.headers.get('X-My-Header'));\nconsole.log(response.statusText); // access the underlying Response object\n\nconst { data: categories, response: raw } = await client.organizations.categories\n  .list()\n  .withResponse();\nconsole.log(raw.headers.get('X-My-Header'));\nconsole.log(categories);\n```\n\n### Logging\n\n> [!IMPORTANT]\n> All log messages are intended for debugging only. The format and content of log messages\n> may change between releases.\n\n#### Log levels\n\nThe log level can be configured in two ways:\n\n1. Via the `PROFOUND_LOG` environment variable\n2. Using the `logLevel` client option (overrides the environment variable if set)\n\n```ts\nimport Profound from '@profoundai/client';\n\nconst client = new Profound({\n  logLevel: 'debug', // Show all log messages\n});\n```\n\nAvailable log levels, from most to least verbose:\n\n- `'debug'` - Show debug messages, info, warnings, and errors\n- `'info'` - Show info messages, warnings, and errors\n- `'warn'` - Show warnings and errors (default)\n- `'error'` - Show only errors\n- `'off'` - Disable all logging\n\nAt the `'debug'` level, all HTTP requests and responses are logged, including headers and bodies.\nSome authentication-related headers are redacted, but sensitive data in request and response bodies\nmay still be visible.\n\n#### Custom logger\n\nBy default, this library logs to `globalThis.console`. You can also provide a custom logger.\nMost logging libraries are supported, including [pino](https://www.npmjs.com/package/pino), [winston](https://www.npmjs.com/package/winston), [bunyan](https://www.npmjs.com/package/bunyan), [consola](https://www.npmjs.com/package/consola), [signale](https://www.npmjs.com/package/signale), and [@std/log](https://jsr.io/@std/log). If your logger doesn't work, please open an issue.\n\nWhen providing a custom logger, the `logLevel` option still controls which messages are emitted, messages\nbelow the configured level will not be sent to your logger.\n\n```ts\nimport Profound from '@profoundai/client';\nimport pino from 'pino';\n\nconst logger = pino();\n\nconst client = new Profound({\n  logger: logger.child({ name: 'Profound' }),\n  logLevel: 'debug', // Send all messages to pino, allowing it to filter\n});\n```\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API. If you need to access undocumented\nendpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can use `client.get`, `client.post`, and other HTTP verbs.\nOptions on the client, such as retries, will be respected when making these requests.\n\n```ts\nawait client.post('/some/path', {\n  body: { some_prop: 'foo' },\n  query: { some_query_arg: 'bar' },\n});\n```\n\n#### Undocumented request params\n\nTo make requests using undocumented parameters, you may use `// @ts-expect-error` on the undocumented\nparameter. This library doesn't validate at runtime that the request matches the type, so any extra values you\nsend will be sent as-is.\n\n```ts\nclient.organizations.categories.list({\n  // ...\n  // @ts-expect-error baz is not yet public\n  baz: 'undocumented option',\n});\n```\n\nFor requests with the `GET` verb, any extra params will be in the query, all other requests will send the\nextra param in the body.\n\nIf you want to explicitly send an extra argument, you can do so with the `query`, `body`, and `headers` request\noptions.\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you may access the response object with `// @ts-expect-error` on\nthe response object, or cast the response object to the requisite type. Like the request params, we do not\nvalidate or strip extra properties from the response from the API.\n\n### Customizing the fetch client\n\nBy default, this library expects a global `fetch` function is defined.\n\nIf you want to use a different `fetch` function, you can either polyfill the global:\n\n```ts\nimport fetch from 'my-fetch';\n\nglobalThis.fetch = fetch;\n```\n\nOr pass it to the client:\n\n```ts\nimport Profound from '@profoundai/client';\nimport fetch from 'my-fetch';\n\nconst client = new Profound({ fetch });\n```\n\n### Fetch options\n\nIf you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)\n\n```ts\nimport Profound from '@profoundai/client';\n\nconst client = new Profound({\n  fetchOptions: {\n    // `RequestInit` options\n  },\n});\n```\n\n#### Configuring proxies\n\nTo modify proxy behavior, you can provide custom `fetchOptions` that add runtime-specific proxy\noptions to requests:\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg\" align=\"top\" width=\"18\" height=\"21\"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>\n\n```ts\nimport Profound from '@profoundai/client';\nimport * as undici from 'undici';\n\nconst proxyAgent = new undici.ProxyAgent('http://localhost:8888');\nconst client = new Profound({\n  fetchOptions: {\n    dispatcher: proxyAgent,\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg\" align=\"top\" width=\"18\" height=\"21\"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>\n\n```ts\nimport Profound from '@profoundai/client';\n\nconst client = new Profound({\n  fetchOptions: {\n    proxy: 'http://localhost:8888',\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg\" align=\"top\" width=\"18\" height=\"21\"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>\n\n```ts\nimport Profound from 'npm:@profoundai/client';\n\nconst httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });\nconst client = new Profound({\n  fetchOptions: {\n    client: httpClient,\n  },\n});\n```\n\n## Frequently Asked Questions\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes that only affect static types, without breaking runtime behavior.\n2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n3. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/cooper-square-technologies/profound-typescript-sdk/issues) with questions, bugs, or suggestions.\n\n## Requirements\n\nTypeScript >= 4.9 is supported.\n\nThe following runtimes are supported:\n\n- Web browsers (Up-to-date Chrome, Firefox, Safari, Edge, and more)\n- Node.js 20 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.\n- Deno v1.28.0 or higher.\n- Bun 1.0 or later.\n- Cloudflare Workers.\n- Vercel Edge Runtime.\n- Jest 28 or greater with the `\"node\"` environment (`\"jsdom\"` is not supported at this time).\n- Nitro v2.6 or greater.\n\nNote that React Native is not supported at this time.\n\nIf you are interested in other runtime environments, please open or upvote an issue on GitHub.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n",
   },
 ];
 
