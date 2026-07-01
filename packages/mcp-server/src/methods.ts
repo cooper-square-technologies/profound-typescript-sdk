@@ -395,18 +395,6 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/reports/accuracy/topic-ids',
   },
   {
-    clientCallName: 'client.logs.raw.bots',
-    fullyQualifiedName: 'logs.raw.bots',
-    httpMethod: 'post',
-    httpPath: '/v1/logs/raw/bots',
-  },
-  {
-    clientCallName: 'client.logs.raw.logs',
-    fullyQualifiedName: 'logs.raw.logs',
-    httpMethod: 'post',
-    httpPath: '/v1/logs/raw',
-  },
-  {
     clientCallName: 'client.content.optimization.retrieve',
     fullyQualifiedName: 'content.optimization.retrieve',
     httpMethod: 'get',

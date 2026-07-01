@@ -2,7 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import * as RawAPI from './raw';
-import { Raw, RawBotsParams, RawBotsResponse, RawLogsParams, RawLogsResponse } from './raw';
+import { Raw } from './raw';
 
 export class Logs extends APIResource {
   raw: RawAPI.Raw = new RawAPI.Raw(this._client);
@@ -11,11 +11,5 @@ export class Logs extends APIResource {
 Logs.Raw = Raw;
 
 export declare namespace Logs {
-  export {
-    Raw as Raw,
-    type RawBotsResponse as RawBotsResponse,
-    type RawLogsResponse as RawLogsResponse,
-    type RawBotsParams as RawBotsParams,
-    type RawLogsParams as RawLogsParams,
-  };
+  export { Raw as Raw };
 }

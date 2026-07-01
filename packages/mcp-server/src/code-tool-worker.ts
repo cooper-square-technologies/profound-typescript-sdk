@@ -172,8 +172,6 @@ const fuse = new Fuse(
     'client.reports.accuracy.createOverview',
     'client.reports.accuracy.createTopInaccurateClaims',
     'client.reports.accuracy.createTopicIDs',
-    'client.logs.raw.bots',
-    'client.logs.raw.logs',
     'client.content.optimization.list',
     'client.content.optimization.retrieve',
     'client.agents.create',

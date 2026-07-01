@@ -216,16 +216,6 @@ Methods:
 
 ## Raw
 
-Types:
-
-- <code><a href="./src/resources/logs/raw.ts">RawBotsResponse</a></code>
-- <code><a href="./src/resources/logs/raw.ts">RawLogsResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/logs/raw/bots">client.logs.raw.<a href="./src/resources/logs/raw.ts">bots</a>({ ...params }) -> RawBotsResponse</code>
-- <code title="post /v1/logs/raw">client.logs.raw.<a href="./src/resources/logs/raw.ts">logs</a>({ ...params }) -> RawLogsResponse</code>
-
 # Content
 
 ## Optimization
