@@ -34,7 +34,9 @@ describe('resource accuracy', () => {
       citation_categories: ['string'],
       comparison_end_date: 'comparison_end_date',
       comparison_start_date: 'comparison_start_date',
+      date_bucket: 'date_bucket',
       exclude_topic_ids: true,
+      group_by: ['platform'],
       include_no_persona: true,
       include_no_tag: true,
       limit: 1,
@@ -281,7 +283,6 @@ describe('resource accuracy', () => {
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
-      theme_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -298,11 +299,11 @@ describe('resource accuracy', () => {
       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
-      theme_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       citation_categories: ['string'],
       comparison_end_date: 'comparison_end_date',
       comparison_start_date: 'comparison_start_date',
       exclude_topic_ids: true,
+      include_models: true,
       include_no_persona: true,
       include_no_tag: true,
       limit: 1,
@@ -314,6 +315,7 @@ describe('resource accuracy', () => {
       search_query: 'search_query',
       tag_filter_type: 'all',
       tag_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+      theme_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       topic_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
     });
   });

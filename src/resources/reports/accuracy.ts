@@ -178,7 +178,6 @@ export class Accuracy extends APIResource {
    *     category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
    *     end_date: 'end_date',
    *     start_date: 'start_date',
-   *     theme_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
    *   });
    * ```
    */
@@ -290,7 +289,13 @@ export namespace AccuracyCreateBreakdownResponse {
 
     accuracyChange?: number | null;
 
+    accurateCount?: number;
+
     citationCategory?: string | null;
+
+    groupIds?: { [key: string]: string } | null;
+
+    groupNames?: { [key: string]: string } | null;
 
     inaccurateCountChange?: number | null;
 
@@ -567,7 +572,19 @@ export namespace AccuracyCreateInaccurateClustersResponse {
 
     description?: string;
 
+    models?: Array<Data.Model> | null;
+
+    neutralTheme?: string;
+
     responseShareDelta?: number | null;
+  }
+
+  export namespace Data {
+    export interface Model {
+      modelId: string;
+
+      occurrence: number;
+    }
   }
 }
 
@@ -640,6 +657,8 @@ export namespace AccuracyCreateOverviewResponse {
     total: number;
 
     prevPeriodData?: unknown;
+
+    verified?: number;
   }
 
   export interface AvailableSeries {
@@ -696,7 +715,7 @@ export interface AccuracyCreateBreakdownParams {
 
   start_date: string;
 
-  breakdown_by?: 'citation' | 'platform' | 'topic' | 'prompt' | 'tag' | 'region' | 'persona';
+  breakdown_by?: 'citation' | 'platform' | 'topic' | 'prompt' | 'tag' | 'region' | 'persona' | 'theme';
 
   citation_categories?: Array<string> | null;
 
@@ -704,7 +723,11 @@ export interface AccuracyCreateBreakdownParams {
 
   comparison_start_date?: string | null;
 
+  date_bucket?: string | null;
+
   exclude_topic_ids?: boolean;
+
+  group_by?: Array<'platform' | 'topic' | 'prompt' | 'tag' | 'region' | 'persona' | 'theme' | 'date'> | null;
 
   include_no_persona?: boolean;
 
@@ -892,8 +915,6 @@ export interface AccuracyCreateInaccurateClustersParams {
 
   start_date: string;
 
-  theme_id: string;
-
   citation_categories?: Array<string> | null;
 
   comparison_end_date?: string | null;
@@ -901,6 +922,8 @@ export interface AccuracyCreateInaccurateClustersParams {
   comparison_start_date?: string | null;
 
   exclude_topic_ids?: boolean;
+
+  include_models?: boolean;
 
   include_no_persona?: boolean;
 
@@ -923,6 +946,8 @@ export interface AccuracyCreateInaccurateClustersParams {
   tag_filter_type?: 'all' | 'any';
 
   tag_ids?: Array<string> | null;
+
+  theme_id?: string | null;
 
   topic_ids?: Array<string> | null;
 }
