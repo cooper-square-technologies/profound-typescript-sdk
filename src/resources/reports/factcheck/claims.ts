@@ -73,7 +73,7 @@ export interface ClaimQueryClaimsParams {
   group_by?: Array<'model' | 'region' | 'persona' | 'prompt' | 'topic' | 'tag' | 'theme'>;
 
   /**
-   * Claim detail: theme, reasoning, models, evidence, citation_sources.
+   * Optional per-claim detail fields to add to each claim (see options).
    */
   include?: Array<'theme' | 'reasoning' | 'models' | 'evidence' | 'citation_sources'> | null;
 
@@ -134,7 +134,7 @@ export interface ClaimStreamClaimsParams {
   group_by?: Array<'model' | 'region' | 'persona' | 'prompt' | 'topic' | 'tag' | 'theme'>;
 
   /**
-   * Claim detail: theme, reasoning, models, evidence, citation_sources.
+   * Optional per-claim detail fields to add to each claim (see options).
    */
   include?: Array<'theme' | 'reasoning' | 'models' | 'evidence' | 'citation_sources'> | null;
 

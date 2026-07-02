@@ -75,8 +75,8 @@ export interface FactcheckQueryScoresParams {
   filter?: FactcheckQueryScoresParams.Filter | null;
 
   /**
-   * 1-2 of date/model/region/persona/prompt/topic/tag/theme (or one `citation`).
-   * Empty → headline.
+   * Up to two dimensions to slice by; empty returns the headline score. `citation`
+   * must be alone.
    */
   group_by?: Array<
     'date' | 'model' | 'region' | 'persona' | 'prompt' | 'topic' | 'tag' | 'citation' | 'theme'
@@ -133,8 +133,8 @@ export interface FactcheckStreamScoresParams {
   filter?: FactcheckStreamScoresParams.Filter | null;
 
   /**
-   * 1-2 of date/model/region/persona/prompt/topic/tag/theme (or one `citation`).
-   * Empty → headline.
+   * Up to two dimensions to slice by; empty returns the headline score. `citation`
+   * must be alone.
    */
   group_by?: Array<
     'date' | 'model' | 'region' | 'persona' | 'prompt' | 'topic' | 'tag' | 'citation' | 'theme'

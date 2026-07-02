@@ -273,7 +273,7 @@ export class Reports extends APIResource {
    * ```ts
    * const response = await client.reports.querySentiment({
    *   asset: 'asset',
-   *   category_id: 'category_id',
+   *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
    *   end_date: 'end_date',
    *   start_date: 'start_date',
    * });
@@ -440,7 +440,7 @@ export class Reports extends APIResource {
    * ```ts
    * await client.reports.streamSentimentV2({
    *   asset: 'asset',
-   *   category_id: 'category_id',
+   *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
    *   end_date: 'end_date',
    *   start_date: 'start_date',
    * });
@@ -762,8 +762,6 @@ export namespace ReportSentimentV2Response {
 
       claim?: string | null;
 
-      claim_id?: string | null;
-
       created_at?: string | null;
 
       model_id?: string | null;
@@ -783,8 +781,6 @@ export namespace ReportSentimentV2Response {
       sentiment?: 'positive' | 'negative' | null;
 
       theme?: string | null;
-
-      theme_id?: string | null;
 
       topic_id?: string | null;
     }
@@ -1904,9 +1900,9 @@ export interface ReportSentimentV2Params {
   comparison_start_date?: string | null;
 
   /**
-   * Date interval for the report. Only used when dimensions includes date.
+   * Date bucket for the report. Only used when dimensions includes date.
    */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
+  date_bucket?: 'day' | 'week' | 'month';
 
   /**
    * Dimensions to group the report by.
@@ -1936,10 +1932,10 @@ export interface ReportSentimentV2Params {
     | ReportSentimentV2Params.SentimentV2PersonaIDFilter
     | ReportSentimentV2Params.SentimentV2TagIDFilter
     | ReportSentimentV2Params.SentimentV2RunIDFilter
-    | ReportSentimentV2Params.SentimentV2ThemeIDFilter
     | ReportSentimentV2Params.SentimentV2ThemeFilter
-    | ReportSentimentV2Params.SentimentV2ClaimIDFilter
     | ReportSentimentV2Params.SentimentV2ClaimFilter
+    | ReportSentimentV2Params.SentimentV2ThemeIDFilter
+    | ReportSentimentV2Params.SentimentV2ClaimIDFilter
     | ReportSentimentV2Params.SentimentV2SentimentFilter
   >;
 
@@ -2012,14 +2008,6 @@ export namespace ReportSentimentV2Params {
     value: string | Array<string>;
   }
 
-  export interface SentimentV2ThemeIDFilter {
-    field: 'theme_id';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
   export interface SentimentV2ThemeFilter {
     field: 'theme';
 
@@ -2037,14 +2025,6 @@ export namespace ReportSentimentV2Params {
     value: string | Array<string>;
   }
 
-  export interface SentimentV2ClaimIDFilter {
-    field: 'claim_id';
-
-    operator: 'is' | 'not_is' | 'in' | 'not_in';
-
-    value: string | Array<string>;
-  }
-
   export interface SentimentV2ClaimFilter {
     field: 'claim';
 
@@ -2058,6 +2038,22 @@ export namespace ReportSentimentV2Params {
       | 'matches'
       | 'contains_case_insensitive'
       | 'not_contains_case_insensitive';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2ThemeIDFilter {
+    field: 'theme_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
+
+    value: string | Array<string>;
+  }
+
+  export interface SentimentV2ClaimIDFilter {
+    field: 'claim_id';
+
+    operator: 'is' | 'not_is' | 'in' | 'not_in';
 
     value: string | Array<string>;
   }

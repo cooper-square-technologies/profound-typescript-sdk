@@ -346,7 +346,7 @@ describe('resource reports', () => {
   test.skip('querySentiment: only required params', async () => {
     const responsePromise = client.reports.querySentiment({
       asset: 'asset',
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
     });
@@ -363,7 +363,7 @@ describe('resource reports', () => {
   test.skip('querySentiment: required and optional params', async () => {
     const response = await client.reports.querySentiment({
       asset: 'asset',
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
       comparison_end_date: 'comparison_end_date',
@@ -493,7 +493,7 @@ describe('resource reports', () => {
       start_date: '2019-12-27T18:11:19.117Z',
       comparison_end_date: '2019-12-27T18:11:19.117Z',
       comparison_start_date: '2019-12-27T18:11:19.117Z',
-      date_interval: 'hour',
+      date_bucket: 'day',
       dimensions: ['date'],
       filters: [
         {
@@ -665,7 +665,7 @@ describe('resource reports', () => {
   test.skip('streamSentimentV2: only required params', async () => {
     const responsePromise = client.reports.streamSentimentV2({
       asset: 'asset',
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
     });
@@ -682,7 +682,7 @@ describe('resource reports', () => {
   test.skip('streamSentimentV2: required and optional params', async () => {
     const response = await client.reports.streamSentimentV2({
       asset: 'asset',
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
       comparison_end_date: 'comparison_end_date',
