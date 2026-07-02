@@ -212,6 +212,28 @@ Methods:
 - <code title="post /v1/reports/accuracy/top-inaccurate-claims">client.reports.accuracy.<a href="./src/resources/reports/accuracy.ts">createTopInaccurateClaims</a>({ ...params }) -> AccuracyCreateTopInaccurateClaimsResponse</code>
 - <code title="post /v1/reports/accuracy/topic-ids">client.reports.accuracy.<a href="./src/resources/reports/accuracy.ts">createTopicIDs</a>({ ...params }) -> AccuracyCreateTopicIDsResponse</code>
 
+## Factcheck
+
+Types:
+
+- <code><a href="./src/resources/reports/factcheck/factcheck.ts">FactcheckQueryScoresResponse</a></code>
+
+Methods:
+
+- <code title="post /v2/reports/factcheck">client.reports.factcheck.<a href="./src/resources/reports/factcheck/factcheck.ts">queryScores</a>({ ...params }) -> FactcheckQueryScoresResponse</code>
+- <code title="post /v2/reports/factcheck/stream">client.reports.factcheck.<a href="./src/resources/reports/factcheck/factcheck.ts">streamScores</a>({ ...params }) -> void</code>
+
+### Claims
+
+Types:
+
+- <code><a href="./src/resources/reports/factcheck/claims.ts">ClaimQueryClaimsResponse</a></code>
+
+Methods:
+
+- <code title="post /v2/reports/factcheck/claims">client.reports.factcheck.claims.<a href="./src/resources/reports/factcheck/claims.ts">queryClaims</a>({ ...params }) -> ClaimQueryClaimsResponse</code>
+- <code title="post /v2/reports/factcheck/claims/stream">client.reports.factcheck.claims.<a href="./src/resources/reports/factcheck/claims.ts">streamClaims</a>({ ...params }) -> void</code>
+
 # Logs
 
 ## Raw

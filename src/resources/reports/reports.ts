@@ -67,6 +67,13 @@ import {
   WebSearchResultStreamResponse,
   WebSearchResults,
 } from './web-search-results';
+import * as FactcheckAPI from './factcheck/factcheck';
+import {
+  Factcheck,
+  FactcheckQueryScoresParams,
+  FactcheckQueryScoresResponse,
+  FactcheckStreamScoresParams,
+} from './factcheck/factcheck';
 import { APIPromise } from '../../core/api-promise';
 import { Stream } from '../../core/streaming';
 import { buildHeaders } from '../../internal/headers';
@@ -78,6 +85,7 @@ export class Reports extends APIResource {
   );
   shopping: ShoppingAPI.Shopping = new ShoppingAPI.Shopping(this._client);
   accuracy: AccuracyAPI.Accuracy = new AccuracyAPI.Accuracy(this._client);
+  factcheck: FactcheckAPI.Factcheck = new FactcheckAPI.Factcheck(this._client);
 
   /**
    * Get citations for a given category.
@@ -2804,6 +2812,7 @@ export namespace ReportVisibilityParams {
 Reports.WebSearchResults = WebSearchResults;
 Reports.Shopping = Shopping;
 Reports.Accuracy = Accuracy;
+Reports.Factcheck = Factcheck;
 
 export declare namespace Reports {
   export {
@@ -2910,5 +2919,12 @@ export declare namespace Reports {
     type AccuracyCreateOverviewParams as AccuracyCreateOverviewParams,
     type AccuracyCreateTopInaccurateClaimsParams as AccuracyCreateTopInaccurateClaimsParams,
     type AccuracyCreateTopicIDsParams as AccuracyCreateTopicIDsParams,
+  };
+
+  export {
+    Factcheck as Factcheck,
+    type FactcheckQueryScoresResponse as FactcheckQueryScoresResponse,
+    type FactcheckQueryScoresParams as FactcheckQueryScoresParams,
+    type FactcheckStreamScoresParams as FactcheckStreamScoresParams,
   };
 }

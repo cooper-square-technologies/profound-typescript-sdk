@@ -2591,6 +2591,158 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'query_scores',
+    endpoint: '/v2/reports/factcheck',
+    httpMethod: 'post',
+    summary: 'Query Scores',
+    description: 'Query Scores',
+    stainlessPath: '(resource) reports.factcheck > (method) query_scores',
+    qualified: 'client.reports.factcheck.queryScores',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      "group_by?: 'date' | 'model' | 'region' | 'persona' | 'prompt' | 'topic' | 'tag' | 'citation' | 'theme'[];",
+      'limit?: number;',
+      'max_results?: number;',
+    ],
+    response: 'object',
+    markdown:
+      "## query_scores\n\n`client.reports.factcheck.queryScores(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'date' | 'model' | 'region' | 'persona' | 'prompt' | 'topic' | 'tag' | 'citation' | 'theme'[], limit?: number, max_results?: number): object`\n\n**post** `/v2/reports/factcheck`\n\nQuery Scores\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'date' | 'model' | 'region' | 'persona' | 'prompt' | 'topic' | 'tag' | 'citation' | 'theme'[]`\n  1-2 of date/model/region/persona/prompt/topic/tag/theme (or one `citation`). Empty → headline.\n\n- `limit?: number`\n  Rows per page; default 100.\n\n- `max_results?: number`\n  Stream only: cap rows returned.\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.factcheck.queryScores({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.factcheck.queryScores',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.factcheck.queryScores({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'reports.factcheck.query_scores',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.factcheck.query_scores(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/factcheck \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'stream_scores',
+    endpoint: '/v2/reports/factcheck/stream',
+    httpMethod: 'post',
+    summary: 'Stream Scores',
+    description: 'Stream Scores',
+    stainlessPath: '(resource) reports.factcheck > (method) stream_scores',
+    qualified: 'client.reports.factcheck.streamScores',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      "group_by?: 'date' | 'model' | 'region' | 'persona' | 'prompt' | 'topic' | 'tag' | 'citation' | 'theme'[];",
+      'limit?: number;',
+      'max_results?: number;',
+    ],
+    markdown:
+      "## stream_scores\n\n`client.reports.factcheck.streamScores(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'date' | 'model' | 'region' | 'persona' | 'prompt' | 'topic' | 'tag' | 'citation' | 'theme'[], limit?: number, max_results?: number): void`\n\n**post** `/v2/reports/factcheck/stream`\n\nStream Scores\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'date' | 'model' | 'region' | 'persona' | 'prompt' | 'topic' | 'tag' | 'citation' | 'theme'[]`\n  1-2 of date/model/region/persona/prompt/topic/tag/theme (or one `citation`). Empty → headline.\n\n- `limit?: number`\n  Rows per page; default 100.\n\n- `max_results?: number`\n  Stream only: cap rows returned.\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nawait client.reports.factcheck.streamScores({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n})\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.factcheck.streamScores',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.reports.factcheck.streamScores({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});",
+      },
+      python: {
+        method: 'reports.factcheck.stream_scores',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nclient.reports.factcheck.stream_scores(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/factcheck/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'query_claims',
+    endpoint: '/v2/reports/factcheck/claims',
+    httpMethod: 'post',
+    summary: 'Query Claims',
+    description: 'Query Claims',
+    stainlessPath: '(resource) reports.factcheck.claims > (method) query_claims',
+    qualified: 'client.reports.factcheck.claims.queryClaims',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      "group_by?: 'model' | 'region' | 'persona' | 'prompt' | 'topic' | 'tag' | 'theme'[];",
+      "include?: 'theme' | 'reasoning' | 'models' | 'evidence' | 'citation_sources'[];",
+      'limit?: number;',
+      'max_results?: number;',
+    ],
+    response: 'object',
+    markdown:
+      "## query_claims\n\n`client.reports.factcheck.claims.queryClaims(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'model' | 'region' | 'persona' | 'prompt' | 'topic' | 'tag' | 'theme'[], include?: 'theme' | 'reasoning' | 'models' | 'evidence' | 'citation_sources'[], limit?: number, max_results?: number): object`\n\n**post** `/v2/reports/factcheck/claims`\n\nQuery Claims\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'model' | 'region' | 'persona' | 'prompt' | 'topic' | 'tag' | 'theme'[]`\n  Optional single dim to section the claims (e.g. per model). Empty → one flat claim list.\n\n- `include?: 'theme' | 'reasoning' | 'models' | 'evidence' | 'citation_sources'[]`\n  Claim detail: theme, reasoning, models, evidence, citation_sources.\n\n- `limit?: number`\n  Claims (or sections) per page; default 25.\n\n- `max_results?: number`\n  Stream only: cap entries returned.\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.factcheck.claims.queryClaims({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.factcheck.claims.queryClaims',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.factcheck.claims.queryClaims({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'reports.factcheck.claims.query_claims',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.factcheck.claims.query_claims(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/factcheck/claims \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'stream_claims',
+    endpoint: '/v2/reports/factcheck/claims/stream',
+    httpMethod: 'post',
+    summary: 'Stream Claims',
+    description: 'Stream Claims',
+    stainlessPath: '(resource) reports.factcheck.claims > (method) stream_claims',
+    qualified: 'client.reports.factcheck.claims.streamClaims',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      "group_by?: 'model' | 'region' | 'persona' | 'prompt' | 'topic' | 'tag' | 'theme'[];",
+      "include?: 'theme' | 'reasoning' | 'models' | 'evidence' | 'citation_sources'[];",
+      'limit?: number;',
+      'max_results?: number;',
+    ],
+    markdown:
+      "## stream_claims\n\n`client.reports.factcheck.claims.streamClaims(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'model' | 'region' | 'persona' | 'prompt' | 'topic' | 'tag' | 'theme'[], include?: 'theme' | 'reasoning' | 'models' | 'evidence' | 'citation_sources'[], limit?: number, max_results?: number): void`\n\n**post** `/v2/reports/factcheck/claims/stream`\n\nStream Claims\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'model' | 'region' | 'persona' | 'prompt' | 'topic' | 'tag' | 'theme'[]`\n  Optional single dim to section the claims (e.g. per model). Empty → one flat claim list.\n\n- `include?: 'theme' | 'reasoning' | 'models' | 'evidence' | 'citation_sources'[]`\n  Claim detail: theme, reasoning, models, evidence, citation_sources.\n\n- `limit?: number`\n  Claims (or sections) per page; default 25.\n\n- `max_results?: number`\n  Stream only: cap entries returned.\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nawait client.reports.factcheck.claims.streamClaims({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n})\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.factcheck.claims.streamClaims',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.reports.factcheck.claims.streamClaims({\n  category_id: 'category_id',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});",
+      },
+      python: {
+        method: 'reports.factcheck.claims.stream_claims',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nclient.reports.factcheck.claims.stream_claims(\n    category_id="category_id",\n    end_date="end_date",\n    start_date="start_date",\n)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/factcheck/claims/stream \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "category_id",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
     name: 'list',
     endpoint: '/v1/content/{asset_id}/optimization',
     httpMethod: 'get',

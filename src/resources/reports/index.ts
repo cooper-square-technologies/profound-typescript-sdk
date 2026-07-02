@@ -30,6 +30,12 @@ export {
   type AccuracyCreateTopicIDsParams,
 } from './accuracy';
 export {
+  Factcheck,
+  type FactcheckQueryScoresResponse,
+  type FactcheckQueryScoresParams,
+  type FactcheckStreamScoresParams,
+} from './factcheck/index';
+export {
   Reports,
   type HostnameFilter,
   type PromptIDFilter,

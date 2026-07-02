@@ -395,6 +395,30 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v1/reports/accuracy/topic-ids',
   },
   {
+    clientCallName: 'client.reports.factcheck.queryScores',
+    fullyQualifiedName: 'reports.factcheck.queryScores',
+    httpMethod: 'post',
+    httpPath: '/v2/reports/factcheck',
+  },
+  {
+    clientCallName: 'client.reports.factcheck.streamScores',
+    fullyQualifiedName: 'reports.factcheck.streamScores',
+    httpMethod: 'post',
+    httpPath: '/v2/reports/factcheck/stream',
+  },
+  {
+    clientCallName: 'client.reports.factcheck.claims.queryClaims',
+    fullyQualifiedName: 'reports.factcheck.claims.queryClaims',
+    httpMethod: 'post',
+    httpPath: '/v2/reports/factcheck/claims',
+  },
+  {
+    clientCallName: 'client.reports.factcheck.claims.streamClaims',
+    fullyQualifiedName: 'reports.factcheck.claims.streamClaims',
+    httpMethod: 'post',
+    httpPath: '/v2/reports/factcheck/claims/stream',
+  },
+  {
     clientCallName: 'client.content.optimization.retrieve',
     fullyQualifiedName: 'content.optimization.retrieve',
     httpMethod: 'get',
