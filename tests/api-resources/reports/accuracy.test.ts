@@ -189,8 +189,21 @@ describe('resource accuracy', () => {
       cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
+      citation_categories: ['string'],
+      comparison_end_date: 'comparison_end_date',
+      comparison_start_date: 'comparison_start_date',
+      exclude_topic_ids: true,
+      include_no_persona: true,
+      include_no_tag: true,
       limit: 1,
       offset: 0,
+      persona_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+      platform_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+      prompt_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+      region_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+      tag_filter_type: 'all',
+      tag_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+      topic_ids: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
     });
   });
 

@@ -2506,13 +2506,26 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       'cluster_id: string;',
       'end_date: string;',
       'start_date: string;',
+      'citation_categories?: string[];',
+      'comparison_end_date?: string;',
+      'comparison_start_date?: string;',
+      'exclude_topic_ids?: boolean;',
+      'include_no_persona?: boolean;',
+      'include_no_tag?: boolean;',
       'limit?: number;',
       'offset?: number;',
+      'persona_ids?: string[];',
+      'platform_ids?: string[];',
+      'prompt_ids?: string[];',
+      'region_ids?: string[];',
+      "tag_filter_type?: 'all' | 'any';",
+      'tag_ids?: string[];',
+      'topic_ids?: string[];',
     ],
     response:
       '{ data: { claim: string; createdAt: string; modelId: string; regionId: string; responseSnippet: string; runId: string; }[]; totalCount: number; }',
     markdown:
-      "## create_cluster_example_runs\n\n`client.reports.accuracy.createClusterExampleRuns(category_id: string, cluster_id: string, end_date: string, start_date: string, limit?: number, offset?: number): { data: object[]; totalCount: number; }`\n\n**post** `/v1/reports/accuracy/cluster-example-runs`\n\nAccuracy Cluster Example Runs\n\n### Parameters\n\n- `category_id: string`\n\n- `cluster_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `limit?: number`\n\n- `offset?: number`\n\n### Returns\n\n- `{ data: { claim: string; createdAt: string; modelId: string; regionId: string; responseSnippet: string; runId: string; }[]; totalCount: number; }`\n\n  - `data: { claim: string; createdAt: string; modelId: string; regionId: string; responseSnippet: string; runId: string; }[]`\n  - `totalCount: number`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createClusterExampleRuns({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+      "## create_cluster_example_runs\n\n`client.reports.accuracy.createClusterExampleRuns(category_id: string, cluster_id: string, end_date: string, start_date: string, citation_categories?: string[], comparison_end_date?: string, comparison_start_date?: string, exclude_topic_ids?: boolean, include_no_persona?: boolean, include_no_tag?: boolean, limit?: number, offset?: number, persona_ids?: string[], platform_ids?: string[], prompt_ids?: string[], region_ids?: string[], tag_filter_type?: 'all' | 'any', tag_ids?: string[], topic_ids?: string[]): { data: object[]; totalCount: number; }`\n\n**post** `/v1/reports/accuracy/cluster-example-runs`\n\nAccuracy Cluster Example Runs\n\n### Parameters\n\n- `category_id: string`\n\n- `cluster_id: string`\n\n- `end_date: string`\n\n- `start_date: string`\n\n- `citation_categories?: string[]`\n\n- `comparison_end_date?: string`\n\n- `comparison_start_date?: string`\n\n- `exclude_topic_ids?: boolean`\n\n- `include_no_persona?: boolean`\n\n- `include_no_tag?: boolean`\n\n- `limit?: number`\n\n- `offset?: number`\n\n- `persona_ids?: string[]`\n\n- `platform_ids?: string[]`\n\n- `prompt_ids?: string[]`\n\n- `region_ids?: string[]`\n\n- `tag_filter_type?: 'all' | 'any'`\n\n- `tag_ids?: string[]`\n\n- `topic_ids?: string[]`\n\n### Returns\n\n- `{ data: { claim: string; createdAt: string; modelId: string; regionId: string; responseSnippet: string; runId: string; }[]; totalCount: number; }`\n\n  - `data: { claim: string; createdAt: string; modelId: string; regionId: string; responseSnippet: string; runId: string; }[]`\n  - `totalCount: number`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.accuracy.createClusterExampleRuns({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
     perLanguage: {
       typescript: {
         method: 'client.reports.accuracy.createClusterExampleRuns',

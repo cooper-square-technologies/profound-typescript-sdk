@@ -857,9 +857,35 @@ export interface AccuracyCreateClusterExampleRunsParams {
 
   start_date: string;
 
+  citation_categories?: Array<string> | null;
+
+  comparison_end_date?: string | null;
+
+  comparison_start_date?: string | null;
+
+  exclude_topic_ids?: boolean;
+
+  include_no_persona?: boolean;
+
+  include_no_tag?: boolean;
+
   limit?: number;
 
   offset?: number;
+
+  persona_ids?: Array<string> | null;
+
+  platform_ids?: Array<string> | null;
+
+  prompt_ids?: Array<string> | null;
+
+  region_ids?: Array<string> | null;
+
+  tag_filter_type?: 'all' | 'any';
+
+  tag_ids?: Array<string> | null;
+
+  topic_ids?: Array<string> | null;
 }
 
 export interface AccuracyCreateClusterVerificationPairsParams {
