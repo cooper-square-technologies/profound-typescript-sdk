@@ -81,6 +81,22 @@ import {
   PersonaProfileEmployment,
 } from './resources/organizations/organizations';
 import {
+  ProjectArchiveParams,
+  ProjectArchiveResponse,
+  ProjectCreateParams,
+  ProjectCreateResponse,
+  ProjectDeleteParams,
+  ProjectGetStatusParams,
+  ProjectGetStatusResponse,
+  ProjectListParams,
+  ProjectListResponse,
+  ProjectRetrieveParams,
+  ProjectRetrieveResponse,
+  ProjectUnarchiveParams,
+  ProjectUnarchiveResponse,
+  Projects,
+} from './resources/projects/projects';
+import {
   HostnameFilter,
   PromptIDFilter,
   ReportCitationsParams,
@@ -892,6 +908,7 @@ export class Profound {
   content: API.Content = new API.Content(this);
   agents: API.Agents = new API.Agents(this);
   knowledgeBases: API.KnowledgeBases = new API.KnowledgeBases(this);
+  projects: API.Projects = new API.Projects(this);
 }
 
 Profound.Organizations = Organizations;
@@ -901,6 +918,7 @@ Profound.Logs = Logs;
 Profound.Content = Content;
 Profound.Agents = Agents;
 Profound.KnowledgeBases = KnowledgeBases;
+Profound.Projects = Projects;
 
 export declare namespace Profound {
   export type RequestOptions = Opts.RequestOptions;
@@ -1002,6 +1020,23 @@ export declare namespace Profound {
     type KnowledgeBaseSearchResponse as KnowledgeBaseSearchResponse,
     type KnowledgeBaseListParams as KnowledgeBaseListParams,
     type KnowledgeBaseSearchParams as KnowledgeBaseSearchParams,
+  };
+
+  export {
+    Projects as Projects,
+    type ProjectCreateResponse as ProjectCreateResponse,
+    type ProjectRetrieveResponse as ProjectRetrieveResponse,
+    type ProjectListResponse as ProjectListResponse,
+    type ProjectArchiveResponse as ProjectArchiveResponse,
+    type ProjectGetStatusResponse as ProjectGetStatusResponse,
+    type ProjectUnarchiveResponse as ProjectUnarchiveResponse,
+    type ProjectCreateParams as ProjectCreateParams,
+    type ProjectRetrieveParams as ProjectRetrieveParams,
+    type ProjectListParams as ProjectListParams,
+    type ProjectDeleteParams as ProjectDeleteParams,
+    type ProjectArchiveParams as ProjectArchiveParams,
+    type ProjectGetStatusParams as ProjectGetStatusParams,
+    type ProjectUnarchiveParams as ProjectUnarchiveParams,
   };
 
   export type AnalysisTypeFilter = API.AnalysisTypeFilter;

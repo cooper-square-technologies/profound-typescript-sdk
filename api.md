@@ -333,3 +333,55 @@ Methods:
 
 - <code title="post /v1/knowledge-bases/{knowledge_base_id}/folders">client.knowledgeBases.folders.<a href="./src/resources/knowledge-bases/folders.ts">create</a>(knowledgeBaseID, { ...params }) -> FolderCreateResponse</code>
 - <code title="delete /v1/knowledge-bases/{knowledge_base_id}/folders">client.knowledgeBases.folders.<a href="./src/resources/knowledge-bases/folders.ts">delete</a>(knowledgeBaseID, { ...params }) -> FolderDeleteResponse</code>
+
+# Projects
+
+Types:
+
+- <code><a href="./src/resources/projects/projects.ts">ProjectCreateResponse</a></code>
+- <code><a href="./src/resources/projects/projects.ts">ProjectRetrieveResponse</a></code>
+- <code><a href="./src/resources/projects/projects.ts">ProjectListResponse</a></code>
+- <code><a href="./src/resources/projects/projects.ts">ProjectArchiveResponse</a></code>
+- <code><a href="./src/resources/projects/projects.ts">ProjectGetStatusResponse</a></code>
+- <code><a href="./src/resources/projects/projects.ts">ProjectUnarchiveResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/projects">client.projects.<a href="./src/resources/projects/projects.ts">create</a>({ ...params }) -> ProjectCreateResponse</code>
+- <code title="get /v1/projects/{project_id}">client.projects.<a href="./src/resources/projects/projects.ts">retrieve</a>(projectID, { ...params }) -> ProjectRetrieveResponse</code>
+- <code title="get /v1/projects">client.projects.<a href="./src/resources/projects/projects.ts">list</a>({ ...params }) -> ProjectListResponse</code>
+- <code title="delete /v1/projects/{project_id}">client.projects.<a href="./src/resources/projects/projects.ts">delete</a>(projectID, { ...params }) -> void</code>
+- <code title="post /v1/projects/{project_id}/archive">client.projects.<a href="./src/resources/projects/projects.ts">archive</a>(projectID, { ...params }) -> ProjectArchiveResponse</code>
+- <code title="get /v1/projects/{project_id}/status">client.projects.<a href="./src/resources/projects/projects.ts">getStatus</a>(projectID, { ...params }) -> ProjectGetStatusResponse</code>
+- <code title="post /v1/projects/{project_id}/unarchive">client.projects.<a href="./src/resources/projects/projects.ts">unarchive</a>(projectID, { ...params }) -> ProjectUnarchiveResponse</code>
+
+## Generations
+
+Types:
+
+- <code><a href="./src/resources/projects/generations.ts">GenerationRetrieveResponse</a></code>
+- <code><a href="./src/resources/projects/generations.ts">GenerationListResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/projects/generations/{run_id}">client.projects.generations.<a href="./src/resources/projects/generations.ts">retrieve</a>(runID, { ...params }) -> GenerationRetrieveResponse</code>
+- <code title="get /v1/projects/generations">client.projects.generations.<a href="./src/resources/projects/generations.ts">list</a>({ ...params }) -> GenerationListResponse</code>
+
+## Tasks
+
+Types:
+
+- <code><a href="./src/resources/projects/tasks.ts">TaskCreateResponse</a></code>
+- <code><a href="./src/resources/projects/tasks.ts">TaskRetrieveResponse</a></code>
+- <code><a href="./src/resources/projects/tasks.ts">TaskUpdateResponse</a></code>
+- <code><a href="./src/resources/projects/tasks.ts">TaskListResponse</a></code>
+- <code><a href="./src/resources/projects/tasks.ts">TaskUpdateStatusResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/projects/{project_id}/tasks">client.projects.tasks.<a href="./src/resources/projects/tasks.ts">create</a>(projectID, { ...params }) -> TaskCreateResponse</code>
+- <code title="get /v1/projects/{project_id}/tasks/{task_id}">client.projects.tasks.<a href="./src/resources/projects/tasks.ts">retrieve</a>(taskID, { ...params }) -> TaskRetrieveResponse</code>
+- <code title="patch /v1/projects/{project_id}/tasks/{task_id}">client.projects.tasks.<a href="./src/resources/projects/tasks.ts">update</a>(taskID, { ...params }) -> TaskUpdateResponse</code>
+- <code title="get /v1/projects/{project_id}/tasks">client.projects.tasks.<a href="./src/resources/projects/tasks.ts">list</a>(projectID, { ...params }) -> TaskListResponse</code>
+- <code title="delete /v1/projects/{project_id}/tasks/{task_id}">client.projects.tasks.<a href="./src/resources/projects/tasks.ts">delete</a>(taskID, { ...params }) -> void</code>
+- <code title="post /v1/projects/{project_id}/tasks/{task_id}/status">client.projects.tasks.<a href="./src/resources/projects/tasks.ts">updateStatus</a>(taskID, { ...params }) -> TaskUpdateStatusResponse</code>

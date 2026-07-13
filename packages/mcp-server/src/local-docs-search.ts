@@ -3350,6 +3350,488 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
     },
   },
+  {
+    name: 'list',
+    endpoint: '/v1/projects',
+    httpMethod: 'get',
+    summary: 'List Projects',
+    description: 'List Projects',
+    stainlessPath: '(resource) projects > (method) list',
+    qualified: 'client.projects.list',
+    params: ['category_id: string;', 'limit?: number;', 'offset?: number;', 'status?: string;'],
+    response:
+      "{ data: { category_id: string; project_id: string; title: string; initiated_by_user_id?: string; live_generation?: { run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; started_at?: string; }; new_task_count?: number; retired_at?: string; retired_reason?: string; status?: 'suggested' | 'tracked' | 'retired'; summary?: string; task_count?: number; task_types?: string[]; topics?: string[]; updated_at?: string; }[]; pagination?: { limit?: number; offset?: number; }; }",
+    markdown:
+      "## list\n\n`client.projects.list(category_id: string, limit?: number, offset?: number, status?: string): { data: object[]; pagination?: pagination; }`\n\n**get** `/v1/projects`\n\nList Projects\n\n### Parameters\n\n- `category_id: string`\n  Category that owns the project.\n\n- `limit?: number`\n\n- `offset?: number`\n\n- `status?: string`\n  Comma-separated project statuses: suggested, tracked, retired.\n\n### Returns\n\n- `{ data: { category_id: string; project_id: string; title: string; initiated_by_user_id?: string; live_generation?: { run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; started_at?: string; }; new_task_count?: number; retired_at?: string; retired_reason?: string; status?: 'suggested' | 'tracked' | 'retired'; summary?: string; task_count?: number; task_types?: string[]; topics?: string[]; updated_at?: string; }[]; pagination?: { limit?: number; offset?: number; }; }`\n\n  - `data: { category_id: string; project_id: string; title: string; initiated_by_user_id?: string; live_generation?: { run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; started_at?: string; }; new_task_count?: number; retired_at?: string; retired_reason?: string; status?: 'suggested' | 'tracked' | 'retired'; summary?: string; task_count?: number; task_types?: string[]; topics?: string[]; updated_at?: string; }[]`\n  - `pagination?: { limit?: number; offset?: number; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst projects = await client.projects.list({ category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(projects);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.projects.list',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst projects = await client.projects.list({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(projects.data);",
+      },
+      python: {
+        method: 'projects.list',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nprojects = client.projects.list(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(projects.data)',
+      },
+      http: {
+        example: 'curl https://api.tryprofound.com/v1/projects \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'create',
+    endpoint: '/v1/projects',
+    httpMethod: 'post',
+    summary: 'Create Project',
+    description: 'Create Project',
+    stainlessPath: '(resource) projects > (method) create',
+    qualified: 'client.projects.create',
+    params: [
+      'category_id: string;',
+      'attachments?: { id: string; data_base64: string; mime_type: string; name: string; size_bytes: number; }[];',
+      'focus?: string;',
+      "generation_context?: { dateRange?: { label: string; preset: string; endDate?: string; mode?: 'custom' | 'relative'; startDate?: string; }; platforms?: { id: string; name: string; slug?: string; }[]; projectCategories?: 'creative' | 'earned' | 'publish' | 'refresh' | 'social'[]; regions?: { id: string; name: string; slug?: string; }[]; tags?: { id: string; name: string; slug?: string; }[]; };",
+      'project_name?: string;',
+      'title?: string;',
+      'topics?: string[];',
+    ],
+    response: "{ data: { project_id: string; run_id: string; status?: 'queued' | 'running'; }; }",
+    markdown:
+      "## create\n\n`client.projects.create(category_id: string, attachments?: { id: string; data_base64: string; mime_type: string; name: string; size_bytes: number; }[], focus?: string, generation_context?: { dateRange?: { label: string; preset: string; endDate?: string; mode?: 'custom' | 'relative'; startDate?: string; }; platforms?: { id: string; name: string; slug?: string; }[]; projectCategories?: 'creative' | 'earned' | 'publish' | 'refresh' | 'social'[]; regions?: { id: string; name: string; slug?: string; }[]; tags?: { id: string; name: string; slug?: string; }[]; }, project_name?: string, title?: string, topics?: string[]): { data: object; }`\n\n**post** `/v1/projects`\n\nCreate Project\n\n### Parameters\n\n- `category_id: string`\n\n- `attachments?: { id: string; data_base64: string; mime_type: string; name: string; size_bytes: number; }[]`\n\n- `focus?: string`\n\n- `generation_context?: { dateRange?: { label: string; preset: string; endDate?: string; mode?: 'custom' | 'relative'; startDate?: string; }; platforms?: { id: string; name: string; slug?: string; }[]; projectCategories?: 'creative' | 'earned' | 'publish' | 'refresh' | 'social'[]; regions?: { id: string; name: string; slug?: string; }[]; tags?: { id: string; name: string; slug?: string; }[]; }`\n  - `dateRange?: { label: string; preset: string; endDate?: string; mode?: 'custom' | 'relative'; startDate?: string; }`\n  - `platforms?: { id: string; name: string; slug?: string; }[]`\n  - `projectCategories?: 'creative' | 'earned' | 'publish' | 'refresh' | 'social'[]`\n  - `regions?: { id: string; name: string; slug?: string; }[]`\n  - `tags?: { id: string; name: string; slug?: string; }[]`\n\n- `project_name?: string`\n\n- `title?: string`\n\n- `topics?: string[]`\n\n### Returns\n\n- `{ data: { project_id: string; run_id: string; status?: 'queued' | 'running'; }; }`\n\n  - `data: { project_id: string; run_id: string; status?: 'queued' | 'running'; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst project = await client.projects.create({ category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(project);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.projects.create',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst project = await client.projects.create({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(project.data);",
+      },
+      python: {
+        method: 'projects.create',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nproject = client.projects.create(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(project.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/projects \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'retrieve',
+    endpoint: '/v1/projects/{project_id}',
+    httpMethod: 'get',
+    summary: 'Get Project',
+    description: 'Get Project',
+    stainlessPath: '(resource) projects > (method) retrieve',
+    qualified: 'client.projects.retrieve',
+    params: ['project_id: string;', 'category_id: string;'],
+    response:
+      "{ data: { category_id: string; project_id: string; title: string; created_at?: string; initiated_by_user_id?: string; latest_version_id?: string; live_generation?: { run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; started_at?: string; }; measurement?: object; new_task_count?: number; origin_run_id?: string; prompts?: string[]; retired_at?: string; retired_reason?: string; source_kind?: 'generate' | 'adhoc'; source_prompt?: string; status?: 'suggested' | 'tracked' | 'retired'; summary?: string; task_count?: number; tasks?: { category_id: string; project_id: string; task_id: string; title: string; brief?: string; created_at?: string; impact?: number; is_new?: boolean; reference_label?: string; reference_url?: string; status?: 'not_started' | 'in_progress' | 'done' | 'abandoned'; status_changed_at?: string; summary?: string; topic?: string; type?: string; }[]; topics?: string[]; updated_at?: string; version_count?: number; why?: string; }; }",
+    markdown:
+      "## retrieve\n\n`client.projects.retrieve(project_id: string, category_id: string): { data: object; }`\n\n**get** `/v1/projects/{project_id}`\n\nGet Project\n\n### Parameters\n\n- `project_id: string`\n  Unique project ID.\n\n- `category_id: string`\n  Category that owns the project.\n\n### Returns\n\n- `{ data: { category_id: string; project_id: string; title: string; created_at?: string; initiated_by_user_id?: string; latest_version_id?: string; live_generation?: { run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; started_at?: string; }; measurement?: object; new_task_count?: number; origin_run_id?: string; prompts?: string[]; retired_at?: string; retired_reason?: string; source_kind?: 'generate' | 'adhoc'; source_prompt?: string; status?: 'suggested' | 'tracked' | 'retired'; summary?: string; task_count?: number; tasks?: { category_id: string; project_id: string; task_id: string; title: string; brief?: string; created_at?: string; impact?: number; is_new?: boolean; reference_label?: string; reference_url?: string; status?: 'not_started' | 'in_progress' | 'done' | 'abandoned'; status_changed_at?: string; summary?: string; topic?: string; type?: string; }[]; topics?: string[]; updated_at?: string; version_count?: number; why?: string; }; }`\n\n  - `data: { category_id: string; project_id: string; title: string; created_at?: string; initiated_by_user_id?: string; latest_version_id?: string; live_generation?: { run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; started_at?: string; }; measurement?: object; new_task_count?: number; origin_run_id?: string; prompts?: string[]; retired_at?: string; retired_reason?: string; source_kind?: 'generate' | 'adhoc'; source_prompt?: string; status?: 'suggested' | 'tracked' | 'retired'; summary?: string; task_count?: number; tasks?: { category_id: string; project_id: string; task_id: string; title: string; brief?: string; created_at?: string; impact?: number; is_new?: boolean; reference_label?: string; reference_url?: string; status?: 'not_started' | 'in_progress' | 'done' | 'abandoned'; status_changed_at?: string; summary?: string; topic?: string; type?: string; }[]; topics?: string[]; updated_at?: string; version_count?: number; why?: string; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst project = await client.projects.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(project);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.projects.retrieve',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst project = await client.projects.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(project.data);",
+      },
+      python: {
+        method: 'projects.retrieve',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nproject = client.projects.retrieve(\n    project_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(project.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/projects/$PROJECT_ID \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'delete',
+    endpoint: '/v1/projects/{project_id}',
+    httpMethod: 'delete',
+    summary: 'Delete Project',
+    description: 'Delete Project',
+    stainlessPath: '(resource) projects > (method) delete',
+    qualified: 'client.projects.delete',
+    params: ['project_id: string;', 'category_id: string;'],
+    markdown:
+      "## delete\n\n`client.projects.delete(project_id: string, category_id: string): void`\n\n**delete** `/v1/projects/{project_id}`\n\nDelete Project\n\n### Parameters\n\n- `project_id: string`\n  Unique project ID.\n\n- `category_id: string`\n  Category that owns the project.\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nawait client.projects.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' })\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.projects.delete',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.projects.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});",
+      },
+      python: {
+        method: 'projects.delete',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nclient.projects.delete(\n    project_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/projects/$PROJECT_ID \\\n    -X DELETE \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'get_status',
+    endpoint: '/v1/projects/{project_id}/status',
+    httpMethod: 'get',
+    summary: 'Get Project Status',
+    description: 'Get Project Status',
+    stainlessPath: '(resource) projects > (method) get_status',
+    qualified: 'client.projects.getStatus',
+    params: ['project_id: string;', 'category_id: string;'],
+    response:
+      "{ data: { category_id: string; project_id: string; status: 'suggested' | 'tracked' | 'retired'; live_generation?: { run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; started_at?: string; }; updated_at?: string; }; }",
+    markdown:
+      "## get_status\n\n`client.projects.getStatus(project_id: string, category_id: string): { data: object; }`\n\n**get** `/v1/projects/{project_id}/status`\n\nGet Project Status\n\n### Parameters\n\n- `project_id: string`\n  Unique project ID.\n\n- `category_id: string`\n  Category that owns the project.\n\n### Returns\n\n- `{ data: { category_id: string; project_id: string; status: 'suggested' | 'tracked' | 'retired'; live_generation?: { run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; started_at?: string; }; updated_at?: string; }; }`\n\n  - `data: { category_id: string; project_id: string; status: 'suggested' | 'tracked' | 'retired'; live_generation?: { run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; started_at?: string; }; updated_at?: string; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.projects.getStatus('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.projects.getStatus',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.projects.getStatus('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'projects.get_status',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.projects.get_status(\n    project_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/projects/$PROJECT_ID/status \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'archive',
+    endpoint: '/v1/projects/{project_id}/archive',
+    httpMethod: 'post',
+    summary: 'Archive Project',
+    description: 'Archive Project',
+    stainlessPath: '(resource) projects > (method) archive',
+    qualified: 'client.projects.archive',
+    params: ['project_id: string;', 'category_id: string;', 'reason?: string;'],
+    response:
+      "{ data: { category_id: string; project_id: string; title: string; created_at?: string; initiated_by_user_id?: string; latest_version_id?: string; live_generation?: { run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; started_at?: string; }; measurement?: object; new_task_count?: number; origin_run_id?: string; prompts?: string[]; retired_at?: string; retired_reason?: string; source_kind?: 'generate' | 'adhoc'; source_prompt?: string; status?: 'suggested' | 'tracked' | 'retired'; summary?: string; task_count?: number; topics?: string[]; updated_at?: string; version_count?: number; why?: string; }; }",
+    markdown:
+      "## archive\n\n`client.projects.archive(project_id: string, category_id: string, reason?: string): { data: object; }`\n\n**post** `/v1/projects/{project_id}/archive`\n\nArchive Project\n\n### Parameters\n\n- `project_id: string`\n  Unique project ID.\n\n- `category_id: string`\n  Category that owns the project.\n\n- `reason?: string`\n\n### Returns\n\n- `{ data: { category_id: string; project_id: string; title: string; created_at?: string; initiated_by_user_id?: string; latest_version_id?: string; live_generation?: { run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; started_at?: string; }; measurement?: object; new_task_count?: number; origin_run_id?: string; prompts?: string[]; retired_at?: string; retired_reason?: string; source_kind?: 'generate' | 'adhoc'; source_prompt?: string; status?: 'suggested' | 'tracked' | 'retired'; summary?: string; task_count?: number; topics?: string[]; updated_at?: string; version_count?: number; why?: string; }; }`\n\n  - `data: { category_id: string; project_id: string; title: string; created_at?: string; initiated_by_user_id?: string; latest_version_id?: string; live_generation?: { run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; started_at?: string; }; measurement?: object; new_task_count?: number; origin_run_id?: string; prompts?: string[]; retired_at?: string; retired_reason?: string; source_kind?: 'generate' | 'adhoc'; source_prompt?: string; status?: 'suggested' | 'tracked' | 'retired'; summary?: string; task_count?: number; topics?: string[]; updated_at?: string; version_count?: number; why?: string; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.projects.archive('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.projects.archive',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.projects.archive('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'projects.archive',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.projects.archive(\n    project_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          "curl https://api.tryprofound.com/v1/projects/$PROJECT_ID/archive \\\n    -H 'Content-Type: application/json' \\\n    -H \"X-API-Key: $PROFOUND_API_KEY\" \\\n    -d '{}'",
+      },
+    },
+  },
+  {
+    name: 'unarchive',
+    endpoint: '/v1/projects/{project_id}/unarchive',
+    httpMethod: 'post',
+    summary: 'Unarchive Project',
+    description: 'Unarchive Project',
+    stainlessPath: '(resource) projects > (method) unarchive',
+    qualified: 'client.projects.unarchive',
+    params: ['project_id: string;', 'category_id: string;'],
+    response:
+      "{ data: { category_id: string; project_id: string; title: string; created_at?: string; initiated_by_user_id?: string; latest_version_id?: string; live_generation?: { run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; started_at?: string; }; measurement?: object; new_task_count?: number; origin_run_id?: string; prompts?: string[]; retired_at?: string; retired_reason?: string; source_kind?: 'generate' | 'adhoc'; source_prompt?: string; status?: 'suggested' | 'tracked' | 'retired'; summary?: string; task_count?: number; topics?: string[]; updated_at?: string; version_count?: number; why?: string; }; }",
+    markdown:
+      "## unarchive\n\n`client.projects.unarchive(project_id: string, category_id: string): { data: object; }`\n\n**post** `/v1/projects/{project_id}/unarchive`\n\nUnarchive Project\n\n### Parameters\n\n- `project_id: string`\n  Unique project ID.\n\n- `category_id: string`\n  Category that owns the project.\n\n### Returns\n\n- `{ data: { category_id: string; project_id: string; title: string; created_at?: string; initiated_by_user_id?: string; latest_version_id?: string; live_generation?: { run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; started_at?: string; }; measurement?: object; new_task_count?: number; origin_run_id?: string; prompts?: string[]; retired_at?: string; retired_reason?: string; source_kind?: 'generate' | 'adhoc'; source_prompt?: string; status?: 'suggested' | 'tracked' | 'retired'; summary?: string; task_count?: number; topics?: string[]; updated_at?: string; version_count?: number; why?: string; }; }`\n\n  - `data: { category_id: string; project_id: string; title: string; created_at?: string; initiated_by_user_id?: string; latest_version_id?: string; live_generation?: { run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; started_at?: string; }; measurement?: object; new_task_count?: number; origin_run_id?: string; prompts?: string[]; retired_at?: string; retired_reason?: string; source_kind?: 'generate' | 'adhoc'; source_prompt?: string; status?: 'suggested' | 'tracked' | 'retired'; summary?: string; task_count?: number; topics?: string[]; updated_at?: string; version_count?: number; why?: string; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.projects.unarchive('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.projects.unarchive',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.projects.unarchive('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'projects.unarchive',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.projects.unarchive(\n    project_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/projects/$PROJECT_ID/unarchive \\\n    -X POST \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'list',
+    endpoint: '/v1/projects/generations',
+    httpMethod: 'get',
+    summary: 'List Project Generations',
+    description: 'List Project Generations',
+    stainlessPath: '(resource) projects.generations > (method) list',
+    qualified: 'client.projects.generations.list',
+    params: ['category_id: string;', 'limit?: number;', 'offset?: number;', 'status?: string;'],
+    response:
+      "{ data: { category_id: string; mode: 'generate' | 'adhoc'; run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; focus_prompt?: string; started_at?: string; }[]; pagination?: { limit?: number; offset?: number; }; }",
+    markdown:
+      "## list\n\n`client.projects.generations.list(category_id: string, limit?: number, offset?: number, status?: string): { data: object[]; pagination?: pagination; }`\n\n**get** `/v1/projects/generations`\n\nList Project Generations\n\n### Parameters\n\n- `category_id: string`\n  Category that owns the project.\n\n- `limit?: number`\n\n- `offset?: number`\n\n- `status?: string`\n  Comma-separated generation statuses: queued, running, completed, failed.\n\n### Returns\n\n- `{ data: { category_id: string; mode: 'generate' | 'adhoc'; run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; focus_prompt?: string; started_at?: string; }[]; pagination?: { limit?: number; offset?: number; }; }`\n\n  - `data: { category_id: string; mode: 'generate' | 'adhoc'; run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; focus_prompt?: string; started_at?: string; }[]`\n  - `pagination?: { limit?: number; offset?: number; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst generations = await client.projects.generations.list({ category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(generations);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.projects.generations.list',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst generations = await client.projects.generations.list({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(generations.data);",
+      },
+      python: {
+        method: 'projects.generations.list',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\ngenerations = client.projects.generations.list(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(generations.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/projects/generations \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'retrieve',
+    endpoint: '/v1/projects/generations/{run_id}',
+    httpMethod: 'get',
+    summary: 'Get Project Generation Status',
+    description: 'Get Project Generation Status',
+    stainlessPath: '(resource) projects.generations > (method) retrieve',
+    qualified: 'client.projects.generations.retrieve',
+    params: ['run_id: string;', 'category_id: string;'],
+    response:
+      "{ data: { category_id: string; mode: 'generate' | 'adhoc'; run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; focus_prompt?: string; started_at?: string; }; }",
+    markdown:
+      "## retrieve\n\n`client.projects.generations.retrieve(run_id: string, category_id: string): { data: object; }`\n\n**get** `/v1/projects/generations/{run_id}`\n\nGet Project Generation Status\n\n### Parameters\n\n- `run_id: string`\n  Unique project generation run ID.\n\n- `category_id: string`\n  Category that owns the project.\n\n### Returns\n\n- `{ data: { category_id: string; mode: 'generate' | 'adhoc'; run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; focus_prompt?: string; started_at?: string; }; }`\n\n  - `data: { category_id: string; mode: 'generate' | 'adhoc'; run_id: string; status: 'queued' | 'running' | 'completed' | 'failed'; error?: string; finished_at?: string; focus_prompt?: string; started_at?: string; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst generation = await client.projects.generations.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(generation);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.projects.generations.retrieve',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst generation = await client.projects.generations.retrieve(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  { category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' },\n);\n\nconsole.log(generation.data);",
+      },
+      python: {
+        method: 'projects.generations.retrieve',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\ngeneration = client.projects.generations.retrieve(\n    run_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(generation.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/projects/generations/$RUN_ID \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'list',
+    endpoint: '/v1/projects/{project_id}/tasks',
+    httpMethod: 'get',
+    summary: 'List Project Tasks',
+    description: 'List Project Tasks',
+    stainlessPath: '(resource) projects.tasks > (method) list',
+    qualified: 'client.projects.tasks.list',
+    params: ['project_id: string;', 'category_id: string;'],
+    response:
+      "{ data: { category_id: string; project_id: string; task_id: string; title: string; brief?: string; created_at?: string; impact?: number; is_new?: boolean; reference_label?: string; reference_url?: string; status?: 'not_started' | 'in_progress' | 'done' | 'abandoned'; status_changed_at?: string; summary?: string; topic?: string; type?: string; }[]; pagination?: { limit?: number; offset?: number; }; }",
+    markdown:
+      "## list\n\n`client.projects.tasks.list(project_id: string, category_id: string): { data: object[]; pagination?: pagination; }`\n\n**get** `/v1/projects/{project_id}/tasks`\n\nList Project Tasks\n\n### Parameters\n\n- `project_id: string`\n  Unique project ID.\n\n- `category_id: string`\n  Category that owns the project.\n\n### Returns\n\n- `{ data: { category_id: string; project_id: string; task_id: string; title: string; brief?: string; created_at?: string; impact?: number; is_new?: boolean; reference_label?: string; reference_url?: string; status?: 'not_started' | 'in_progress' | 'done' | 'abandoned'; status_changed_at?: string; summary?: string; topic?: string; type?: string; }[]; pagination?: { limit?: number; offset?: number; }; }`\n\n  - `data: { category_id: string; project_id: string; task_id: string; title: string; brief?: string; created_at?: string; impact?: number; is_new?: boolean; reference_label?: string; reference_url?: string; status?: 'not_started' | 'in_progress' | 'done' | 'abandoned'; status_changed_at?: string; summary?: string; topic?: string; type?: string; }[]`\n  - `pagination?: { limit?: number; offset?: number; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst tasks = await client.projects.tasks.list('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(tasks);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.projects.tasks.list',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst tasks = await client.projects.tasks.list('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(tasks.data);",
+      },
+      python: {
+        method: 'projects.tasks.list',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\ntasks = client.projects.tasks.list(\n    project_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(tasks.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/projects/$PROJECT_ID/tasks \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'create',
+    endpoint: '/v1/projects/{project_id}/tasks',
+    httpMethod: 'post',
+    summary: 'Create Project Task',
+    description: 'Create Project Task',
+    stainlessPath: '(resource) projects.tasks > (method) create',
+    qualified: 'client.projects.tasks.create',
+    params: [
+      'project_id: string;',
+      'category_id: string;',
+      'title: string;',
+      'brief?: string;',
+      'impact?: number;',
+      'position?: number;',
+      'reference_label?: string;',
+      'reference_url?: string;',
+      'summary?: string;',
+      'topic?: string;',
+      'type?: string;',
+    ],
+    response:
+      "{ data: { category_id: string; project_id: string; task_id: string; title: string; brief?: string; created_at?: string; impact?: number; is_new?: boolean; reference_label?: string; reference_url?: string; status?: 'not_started' | 'in_progress' | 'done' | 'abandoned'; status_changed_at?: string; summary?: string; topic?: string; type?: string; }; }",
+    markdown:
+      "## create\n\n`client.projects.tasks.create(project_id: string, category_id: string, title: string, brief?: string, impact?: number, position?: number, reference_label?: string, reference_url?: string, summary?: string, topic?: string, type?: string): { data: object; }`\n\n**post** `/v1/projects/{project_id}/tasks`\n\nCreate Project Task\n\n### Parameters\n\n- `project_id: string`\n  Unique project ID.\n\n- `category_id: string`\n  Category that owns the project.\n\n- `title: string`\n\n- `brief?: string`\n\n- `impact?: number`\n\n- `position?: number`\n\n- `reference_label?: string`\n\n- `reference_url?: string`\n\n- `summary?: string`\n\n- `topic?: string`\n\n- `type?: string`\n\n### Returns\n\n- `{ data: { category_id: string; project_id: string; task_id: string; title: string; brief?: string; created_at?: string; impact?: number; is_new?: boolean; reference_label?: string; reference_url?: string; status?: 'not_started' | 'in_progress' | 'done' | 'abandoned'; status_changed_at?: string; summary?: string; topic?: string; type?: string; }; }`\n\n  - `data: { category_id: string; project_id: string; task_id: string; title: string; brief?: string; created_at?: string; impact?: number; is_new?: boolean; reference_label?: string; reference_url?: string; status?: 'not_started' | 'in_progress' | 'done' | 'abandoned'; status_changed_at?: string; summary?: string; topic?: string; type?: string; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst task = await client.projects.tasks.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', title: 'x' });\n\nconsole.log(task);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.projects.tasks.create',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst task = await client.projects.tasks.create('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  title: 'x',\n});\n\nconsole.log(task.data);",
+      },
+      python: {
+        method: 'projects.tasks.create',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\ntask = client.projects.tasks.create(\n    project_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    title="x",\n)\nprint(task.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/projects/$PROJECT_ID/tasks \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "title": "x"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'retrieve',
+    endpoint: '/v1/projects/{project_id}/tasks/{task_id}',
+    httpMethod: 'get',
+    summary: 'Get Project Task',
+    description: 'Get Project Task',
+    stainlessPath: '(resource) projects.tasks > (method) retrieve',
+    qualified: 'client.projects.tasks.retrieve',
+    params: ['project_id: string;', 'task_id: string;', 'category_id: string;'],
+    response:
+      "{ data: { category_id: string; project_id: string; task_id: string; title: string; brief?: string; created_at?: string; impact?: number; is_new?: boolean; project_title?: string; reference_label?: string; reference_url?: string; status?: 'not_started' | 'in_progress' | 'done' | 'abandoned'; status_changed_at?: string; summary?: string; topic?: string; type?: string; }; }",
+    markdown:
+      "## retrieve\n\n`client.projects.tasks.retrieve(project_id: string, task_id: string, category_id: string): { data: object; }`\n\n**get** `/v1/projects/{project_id}/tasks/{task_id}`\n\nGet Project Task\n\n### Parameters\n\n- `project_id: string`\n  Unique project ID.\n\n- `task_id: string`\n  Unique project task ID.\n\n- `category_id: string`\n  Category that owns the project.\n\n### Returns\n\n- `{ data: { category_id: string; project_id: string; task_id: string; title: string; brief?: string; created_at?: string; impact?: number; is_new?: boolean; project_title?: string; reference_label?: string; reference_url?: string; status?: 'not_started' | 'in_progress' | 'done' | 'abandoned'; status_changed_at?: string; summary?: string; topic?: string; type?: string; }; }`\n\n  - `data: { category_id: string; project_id: string; task_id: string; title: string; brief?: string; created_at?: string; impact?: number; is_new?: boolean; project_title?: string; reference_label?: string; reference_url?: string; status?: 'not_started' | 'in_progress' | 'done' | 'abandoned'; status_changed_at?: string; summary?: string; topic?: string; type?: string; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst task = await client.projects.tasks.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(task);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.projects.tasks.retrieve',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst task = await client.projects.tasks.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(task.data);",
+      },
+      python: {
+        method: 'projects.tasks.retrieve',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\ntask = client.projects.tasks.retrieve(\n    task_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    project_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(task.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/projects/$PROJECT_ID/tasks/$TASK_ID \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'update',
+    endpoint: '/v1/projects/{project_id}/tasks/{task_id}',
+    httpMethod: 'patch',
+    summary: 'Update Project Task',
+    description: 'Update Project Task',
+    stainlessPath: '(resource) projects.tasks > (method) update',
+    qualified: 'client.projects.tasks.update',
+    params: [
+      'project_id: string;',
+      'task_id: string;',
+      'category_id: string;',
+      'brief?: string;',
+      'impact?: number;',
+      'reference_label?: string;',
+      'reference_url?: string;',
+      'summary?: string;',
+      'title?: string;',
+      'topic?: string;',
+      'type?: string;',
+    ],
+    response:
+      "{ data: { category_id: string; project_id: string; task_id: string; title: string; brief?: string; created_at?: string; impact?: number; is_new?: boolean; reference_label?: string; reference_url?: string; status?: 'not_started' | 'in_progress' | 'done' | 'abandoned'; status_changed_at?: string; summary?: string; topic?: string; type?: string; }; }",
+    markdown:
+      "## update\n\n`client.projects.tasks.update(project_id: string, task_id: string, category_id: string, brief?: string, impact?: number, reference_label?: string, reference_url?: string, summary?: string, title?: string, topic?: string, type?: string): { data: object; }`\n\n**patch** `/v1/projects/{project_id}/tasks/{task_id}`\n\nUpdate Project Task\n\n### Parameters\n\n- `project_id: string`\n  Unique project ID.\n\n- `task_id: string`\n  Unique project task ID.\n\n- `category_id: string`\n  Category that owns the project.\n\n- `brief?: string`\n\n- `impact?: number`\n\n- `reference_label?: string`\n\n- `reference_url?: string`\n\n- `summary?: string`\n\n- `title?: string`\n\n- `topic?: string`\n\n- `type?: string`\n\n### Returns\n\n- `{ data: { category_id: string; project_id: string; task_id: string; title: string; brief?: string; created_at?: string; impact?: number; is_new?: boolean; reference_label?: string; reference_url?: string; status?: 'not_started' | 'in_progress' | 'done' | 'abandoned'; status_changed_at?: string; summary?: string; topic?: string; type?: string; }; }`\n\n  - `data: { category_id: string; project_id: string; task_id: string; title: string; brief?: string; created_at?: string; impact?: number; is_new?: boolean; reference_label?: string; reference_url?: string; status?: 'not_started' | 'in_progress' | 'done' | 'abandoned'; status_changed_at?: string; summary?: string; topic?: string; type?: string; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst task = await client.projects.tasks.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(task);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.projects.tasks.update',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst task = await client.projects.tasks.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(task.data);",
+      },
+      python: {
+        method: 'projects.tasks.update',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\ntask = client.projects.tasks.update(\n    task_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    project_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(task.data)',
+      },
+      http: {
+        example:
+          "curl https://api.tryprofound.com/v1/projects/$PROJECT_ID/tasks/$TASK_ID \\\n    -X PATCH \\\n    -H 'Content-Type: application/json' \\\n    -H \"X-API-Key: $PROFOUND_API_KEY\" \\\n    -d '{}'",
+      },
+    },
+  },
+  {
+    name: 'delete',
+    endpoint: '/v1/projects/{project_id}/tasks/{task_id}',
+    httpMethod: 'delete',
+    summary: 'Delete Project Task',
+    description: 'Delete Project Task',
+    stainlessPath: '(resource) projects.tasks > (method) delete',
+    qualified: 'client.projects.tasks.delete',
+    params: ['project_id: string;', 'task_id: string;', 'category_id: string;'],
+    markdown:
+      "## delete\n\n`client.projects.tasks.delete(project_id: string, task_id: string, category_id: string): void`\n\n**delete** `/v1/projects/{project_id}/tasks/{task_id}`\n\nDelete Project Task\n\n### Parameters\n\n- `project_id: string`\n  Unique project ID.\n\n- `task_id: string`\n  Unique project task ID.\n\n- `category_id: string`\n  Category that owns the project.\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nawait client.projects.tasks.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' })\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.projects.tasks.delete',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.projects.tasks.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});",
+      },
+      python: {
+        method: 'projects.tasks.delete',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nclient.projects.tasks.delete(\n    task_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    project_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/projects/$PROJECT_ID/tasks/$TASK_ID \\\n    -X DELETE \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'update_status',
+    endpoint: '/v1/projects/{project_id}/tasks/{task_id}/status',
+    httpMethod: 'post',
+    summary: 'Update Project Task Status',
+    description: 'Update Project Task Status',
+    stainlessPath: '(resource) projects.tasks > (method) update_status',
+    qualified: 'client.projects.tasks.updateStatus',
+    params: [
+      'project_id: string;',
+      'task_id: string;',
+      'category_id: string;',
+      "status: 'not_started' | 'in_progress' | 'done' | 'abandoned';",
+      'note?: string;',
+    ],
+    response:
+      "{ data: { changed_at: string; project_id: string; status: 'not_started' | 'in_progress' | 'done' | 'abandoned'; task_id: string; changed_by?: string; note?: string; }; }",
+    markdown:
+      "## update_status\n\n`client.projects.tasks.updateStatus(project_id: string, task_id: string, category_id: string, status: 'not_started' | 'in_progress' | 'done' | 'abandoned', note?: string): { data: object; }`\n\n**post** `/v1/projects/{project_id}/tasks/{task_id}/status`\n\nUpdate Project Task Status\n\n### Parameters\n\n- `project_id: string`\n  Unique project ID.\n\n- `task_id: string`\n  Unique project task ID.\n\n- `category_id: string`\n  Category that owns the project.\n\n- `status: 'not_started' | 'in_progress' | 'done' | 'abandoned'`\n\n- `note?: string`\n\n### Returns\n\n- `{ data: { changed_at: string; project_id: string; status: 'not_started' | 'in_progress' | 'done' | 'abandoned'; task_id: string; changed_by?: string; note?: string; }; }`\n\n  - `data: { changed_at: string; project_id: string; status: 'not_started' | 'in_progress' | 'done' | 'abandoned'; task_id: string; changed_by?: string; note?: string; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.projects.tasks.updateStatus('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  status: 'not_started',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.projects.tasks.updateStatus',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.projects.tasks.updateStatus('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  project_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  status: 'not_started',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'projects.tasks.update_status',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.projects.tasks.update_status(\n    task_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    project_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    status="not_started",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/projects/$PROJECT_ID/tasks/$TASK_ID/status \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "status": "not_started"\n        }\'',
+      },
+    },
+  },
 ];
 
 const EMBEDDED_READMES: { language: string; content: string }[] = [

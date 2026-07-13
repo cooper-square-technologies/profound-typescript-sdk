@@ -45,6 +45,22 @@ export {
   type OrganizationRegionsParams,
 } from './organizations/organizations';
 export {
+  Projects,
+  type ProjectCreateResponse,
+  type ProjectRetrieveResponse,
+  type ProjectListResponse,
+  type ProjectArchiveResponse,
+  type ProjectGetStatusResponse,
+  type ProjectUnarchiveResponse,
+  type ProjectCreateParams,
+  type ProjectRetrieveParams,
+  type ProjectListParams,
+  type ProjectDeleteParams,
+  type ProjectArchiveParams,
+  type ProjectGetStatusParams,
+  type ProjectUnarchiveParams,
+} from './projects/projects';
+export {
   Prompts,
   type PromptAnswersResponse,
   type PromptAnswersV2Response,

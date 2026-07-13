@@ -532,6 +532,96 @@ export const sdkMethods: SdkMethod[] = [
     httpMethod: 'delete',
     httpPath: '/v1/knowledge-bases/{knowledge_base_id}/folders',
   },
+  {
+    clientCallName: 'client.projects.create',
+    fullyQualifiedName: 'projects.create',
+    httpMethod: 'post',
+    httpPath: '/v1/projects',
+  },
+  {
+    clientCallName: 'client.projects.retrieve',
+    fullyQualifiedName: 'projects.retrieve',
+    httpMethod: 'get',
+    httpPath: '/v1/projects/{project_id}',
+  },
+  {
+    clientCallName: 'client.projects.list',
+    fullyQualifiedName: 'projects.list',
+    httpMethod: 'get',
+    httpPath: '/v1/projects',
+  },
+  {
+    clientCallName: 'client.projects.delete',
+    fullyQualifiedName: 'projects.delete',
+    httpMethod: 'delete',
+    httpPath: '/v1/projects/{project_id}',
+  },
+  {
+    clientCallName: 'client.projects.archive',
+    fullyQualifiedName: 'projects.archive',
+    httpMethod: 'post',
+    httpPath: '/v1/projects/{project_id}/archive',
+  },
+  {
+    clientCallName: 'client.projects.getStatus',
+    fullyQualifiedName: 'projects.getStatus',
+    httpMethod: 'get',
+    httpPath: '/v1/projects/{project_id}/status',
+  },
+  {
+    clientCallName: 'client.projects.unarchive',
+    fullyQualifiedName: 'projects.unarchive',
+    httpMethod: 'post',
+    httpPath: '/v1/projects/{project_id}/unarchive',
+  },
+  {
+    clientCallName: 'client.projects.generations.retrieve',
+    fullyQualifiedName: 'projects.generations.retrieve',
+    httpMethod: 'get',
+    httpPath: '/v1/projects/generations/{run_id}',
+  },
+  {
+    clientCallName: 'client.projects.generations.list',
+    fullyQualifiedName: 'projects.generations.list',
+    httpMethod: 'get',
+    httpPath: '/v1/projects/generations',
+  },
+  {
+    clientCallName: 'client.projects.tasks.create',
+    fullyQualifiedName: 'projects.tasks.create',
+    httpMethod: 'post',
+    httpPath: '/v1/projects/{project_id}/tasks',
+  },
+  {
+    clientCallName: 'client.projects.tasks.retrieve',
+    fullyQualifiedName: 'projects.tasks.retrieve',
+    httpMethod: 'get',
+    httpPath: '/v1/projects/{project_id}/tasks/{task_id}',
+  },
+  {
+    clientCallName: 'client.projects.tasks.update',
+    fullyQualifiedName: 'projects.tasks.update',
+    httpMethod: 'patch',
+    httpPath: '/v1/projects/{project_id}/tasks/{task_id}',
+  },
+  {
+    clientCallName: 'client.projects.tasks.list',
+    fullyQualifiedName: 'projects.tasks.list',
+    httpMethod: 'get',
+    httpPath: '/v1/projects/{project_id}/tasks',
+  },
+  {
+    clientCallName: 'client.projects.tasks.delete',
+    fullyQualifiedName: 'projects.tasks.delete',
+    httpMethod: 'delete',
+    httpPath: '/v1/projects/{project_id}/tasks/{task_id}',
+  },
+  {
+    clientCallName: 'client.projects.tasks.updateStatus',
+    fullyQualifiedName: 'projects.tasks.updateStatus',
+    httpMethod: 'post',
+    httpPath: '/v1/projects/{project_id}/tasks/{task_id}/status',
+  },
 ];
 
 function allowedMethodsForCodeTool(options: McpOptions | undefined): SdkMethod[] | undefined {
