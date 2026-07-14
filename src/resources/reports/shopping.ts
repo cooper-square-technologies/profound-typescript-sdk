@@ -543,6 +543,7 @@ export interface ShoppingItemVisibilityParams {
 
   dimensions?: Array<
     | 'period'
+    | 'product_key'
     | 'product_name'
     | 'brand_name'
     | 'date'
