@@ -172,6 +172,8 @@ export namespace CategoryListResponse {
     name: string;
 
     organization: OrganizationsAPI.Organization;
+
+    internal_name?: string | null;
   }
 }
 

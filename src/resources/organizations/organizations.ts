@@ -98,6 +98,8 @@ export interface Category {
   id: string;
 
   name: string;
+
+  internal_name?: string | null;
 }
 
 /**
