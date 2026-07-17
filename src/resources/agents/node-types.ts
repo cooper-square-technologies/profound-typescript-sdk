@@ -18,7 +18,7 @@ export class NodeTypes extends APIResource {
   }
 
   /**
-   * Retrieve the JSON schema and worked examples for a single node type.
+   * Retrieve the JSON schema for a single node type.
    *
    * The `schema` field is an opaque JSON Schema for the node's configuration. Use
    * `schema_version` as a cache key — it bumps whenever the schema changes.
@@ -61,7 +61,7 @@ export namespace NodeTypeListResponse {
 }
 
 /**
- * JSON schema and worked examples for a single node type.
+ * JSON schema for a single node type.
  */
 export interface NodeTypeRetrieveSchemaResponse {
   /**
@@ -106,12 +106,11 @@ export interface NodeTypeRetrieveSchemaResponse {
 
   /**
    * Worked example configurations for the node type, in the canonical graph dialect.
-   * These are curated guidance maintained by external-api, versioned by
-   * `docs_version` (NOT `schema_version`): they illustrate a valid shape at curation
-   * time but are a starting point, not the contract — they may lag the validator.
-   * The authoritative contract is `schema`, and the only authoritative check that a
-   * graph is valid is publishing it (or the agent-validation endpoint). Do not parse
-   * `examples` as the schema.
+   * Curated authoring guidance, versioned by `docs_version` (NOT `schema_version`):
+   * they illustrate a valid shape at curation time but are a starting point, not the
+   * contract — they may lag the validator. The authoritative contract is `schema`,
+   * and the only authoritative check that a graph is valid is publishing it (or the
+   * agent-validation endpoint). Do not parse `examples` as the schema.
    */
   examples?: Array<{ [key: string]: unknown }> | null;
 }

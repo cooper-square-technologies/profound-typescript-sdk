@@ -303,7 +303,7 @@ export interface PromptAnswersV2Params {
   > | null;
 
   /**
-   * Page size; default 10, max 50.
+   * Page size; default 10, max 200.
    */
   limit?: number | null;
 
@@ -378,7 +378,7 @@ export interface PromptStreamAnswersV2Params {
   > | null;
 
   /**
-   * Page size; default 10, max 50.
+   * Page size; default 10, max 200.
    */
   limit?: number | null;
 
