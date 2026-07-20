@@ -292,7 +292,7 @@ export class Reports extends APIResource {
    * @example
    * ```ts
    * const response = await client.reports.queryVisibility({
-   *   category_id: 'category_id',
+   *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
    *   end_date: 'end_date',
    *   start_date: 'start_date',
    * });
@@ -485,7 +485,7 @@ export class Reports extends APIResource {
    * @example
    * ```ts
    * await client.reports.streamVisibilityV2({
-   *   category_id: 'category_id',
+   *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
    *   end_date: 'end_date',
    *   start_date: 'start_date',
    * });

@@ -389,7 +389,7 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('queryVisibility: only required params', async () => {
     const responsePromise = client.reports.queryVisibility({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
     });
@@ -405,7 +405,7 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('queryVisibility: required and optional params', async () => {
     const response = await client.reports.queryVisibility({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
       assets: 'string',
@@ -746,7 +746,7 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('streamVisibilityV2: only required params', async () => {
     const responsePromise = client.reports.streamVisibilityV2({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
     });
@@ -762,7 +762,7 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('streamVisibilityV2: required and optional params', async () => {
     const response = await client.reports.streamVisibilityV2({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
       assets: 'string',
