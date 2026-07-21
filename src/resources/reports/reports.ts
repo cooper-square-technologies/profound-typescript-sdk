@@ -1036,7 +1036,7 @@ export interface ReportGetBotsReportV2Params {
    */
   domain: string;
 
-  metrics: Array<'count' | 'citations' | 'indexing' | 'training' | 'last_visit'>;
+  metrics: Array<'count' | 'citations' | 'indexing' | 'training' | 'last_visit' | 'agents'>;
 
   /**
    * Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS,
@@ -1053,6 +1053,11 @@ export interface ReportGetBotsReportV2Params {
    * Dimensions to group the report by.
    */
   dimensions?: Array<'date' | 'hour' | 'path' | 'bot_name' | 'bot_provider' | 'bot_type'>;
+
+  /**
+   * Domain UUID used for tag lookups.
+   */
+  domain_id?: string | null;
 
   /**
    * End date in UTC. Accepts same formats as start_date. Defaults to now UTC if
@@ -1095,6 +1100,8 @@ export interface ReportGetBotsReportV2Params {
    * Pagination settings for the report results.
    */
   pagination?: Shared.Pagination;
+
+  tags?: Array<string>;
 }
 
 export namespace ReportGetBotsReportV2Params {
