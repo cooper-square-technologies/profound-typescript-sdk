@@ -19,7 +19,7 @@ export class Categories extends APIResource {
   }
 
   /**
-   * Assets
+   * Get Assets
    */
   assets(categoryID: string, options?: RequestOptions): APIPromise<CategoryAssetsResponse> {
     return this._client.get(path`/v1/org/categories/${categoryID}/assets`, options);
@@ -39,7 +39,7 @@ export class Categories extends APIResource {
   }
 
   /**
-   * Personas
+   * Get Personas
    */
   getCategoryPersonas(
     categoryID: string,
@@ -573,7 +573,12 @@ export interface CategoryPromptsParams {
   limit?: number;
 
   /**
-   * Sort direction by creation date.
+   * Field used to order prompts.
+   */
+  order_by?: 'created_at' | 'prompt';
+
+  /**
+   * Sort direction for the selected order field.
    */
   order_dir?: 'asc' | 'desc';
 

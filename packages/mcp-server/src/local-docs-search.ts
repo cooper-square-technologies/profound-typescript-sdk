@@ -226,7 +226,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     name: 'list',
     endpoint: '/v1/org/categories',
     httpMethod: 'get',
-    summary: 'Categories',
+    summary: 'Get Categories',
     description: 'Get the organization categories, one row per (category, organization) pair.',
     stainlessPath: '(resource) organizations.categories > (method) list',
     qualified: 'client.organizations.categories.list',
@@ -256,7 +256,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     name: 'topics',
     endpoint: '/v1/org/categories/{category_id}/topics',
     httpMethod: 'get',
-    summary: 'Topics',
+    summary: 'Get Topics',
     description: 'Get the topics for a specific category.',
     stainlessPath: '(resource) organizations.categories > (method) topics',
     qualified: 'client.organizations.categories.topics',
@@ -285,7 +285,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     name: 'tags',
     endpoint: '/v1/org/categories/{category_id}/tags',
     httpMethod: 'get',
-    summary: 'Tags',
+    summary: 'Get Tags',
     description: 'Get the tags for a specific category.',
     stainlessPath: '(resource) organizations.categories > (method) tags',
     qualified: 'client.organizations.categories.tags',
@@ -324,6 +324,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       "analysis_type?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[];",
       'cursor?: string;',
       'limit?: number;',
+      "order_by?: 'created_at' | 'prompt';",
       "order_dir?: 'asc' | 'desc';",
       'persona_id?: string[];',
       'platform_id?: string[];',
@@ -336,7 +337,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     response:
       "{ data: { id: string; created_at: string; language: string; platforms: object[]; prompt: string; regions: object[]; status: 'active' | 'disabled'; topic: object; updated_at: string; analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]; personas?: object[]; prompt_type?: string; tags?: object[]; }[]; info: { limit: number; next_cursor: string; total_rows: number; }; }",
     markdown:
-      "## prompts\n\n`client.organizations.categories.prompts(category_id: string, analysis_type?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[], cursor?: string, limit?: number, order_dir?: 'asc' | 'desc', persona_id?: string[], platform_id?: string[], prompt_type?: 'visibility' | 'sentiment'[], region_id?: string[], status?: 'active' | 'disabled'[], tag_id?: string[], topic_id?: string[]): { data: object[]; info: object; }`\n\n**get** `/v1/org/categories/{category_id}/prompts`\n\nRetrieve prompts in a category with optional filtering by type, topic, tag, region, platform, or persona. Supports cursor-based pagination.\n\n### Parameters\n\n- `category_id: string`\n\n- `analysis_type?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]`\n  Filter by analysis type (visibility, sentiment, accuracy).\n\n- `cursor?: string`\n  Pagination cursor from a previous response.\n\n- `limit?: number`\n  Maximum number of prompts to return.\n\n- `order_dir?: 'asc' | 'desc'`\n  Sort direction by creation date.\n\n- `persona_id?: string[]`\n  Filter by persona IDs.\n\n- `platform_id?: string[]`\n  Filter by platform IDs.\n\n- `prompt_type?: 'visibility' | 'sentiment'[]`\n  Deprecated. Use analysis_type instead.\n\n- `region_id?: string[]`\n  Filter by region IDs.\n\n- `status?: 'active' | 'disabled'[]`\n  Filter by prompt status. Defaults to `active` only.\n\n- `tag_id?: string[]`\n  Filter by tag IDs.\n\n- `topic_id?: string[]`\n  Filter by topic IDs.\n\n### Returns\n\n- `{ data: { id: string; created_at: string; language: string; platforms: object[]; prompt: string; regions: object[]; status: 'active' | 'disabled'; topic: object; updated_at: string; analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]; personas?: object[]; prompt_type?: string; tags?: object[]; }[]; info: { limit: number; next_cursor: string; total_rows: number; }; }`\n\n  - `data: { id: string; created_at: string; language: string; platforms: { id: string; name: string; }[]; prompt: string; regions: { id: string; name: string; }[]; status: 'active' | 'disabled'; topic: { id: string; name: string; }; updated_at: string; analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]; personas?: { id: string; name: string; }[]; prompt_type?: string; tags?: { id: string; name: string; }[]; }[]`\n  - `info: { limit: number; next_cursor: string; total_rows: number; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.prompts('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
+      "## prompts\n\n`client.organizations.categories.prompts(category_id: string, analysis_type?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[], cursor?: string, limit?: number, order_by?: 'created_at' | 'prompt', order_dir?: 'asc' | 'desc', persona_id?: string[], platform_id?: string[], prompt_type?: 'visibility' | 'sentiment'[], region_id?: string[], status?: 'active' | 'disabled'[], tag_id?: string[], topic_id?: string[]): { data: object[]; info: object; }`\n\n**get** `/v1/org/categories/{category_id}/prompts`\n\nRetrieve prompts in a category with optional filtering by type, topic, tag, region, platform, or persona. Supports cursor-based pagination.\n\n### Parameters\n\n- `category_id: string`\n\n- `analysis_type?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]`\n  Filter by analysis type (visibility, sentiment, accuracy).\n\n- `cursor?: string`\n  Pagination cursor from a previous response.\n\n- `limit?: number`\n  Maximum number of prompts to return.\n\n- `order_by?: 'created_at' | 'prompt'`\n  Field used to order prompts.\n\n- `order_dir?: 'asc' | 'desc'`\n  Sort direction for the selected order field.\n\n- `persona_id?: string[]`\n  Filter by persona IDs.\n\n- `platform_id?: string[]`\n  Filter by platform IDs.\n\n- `prompt_type?: 'visibility' | 'sentiment'[]`\n  Deprecated. Use analysis_type instead.\n\n- `region_id?: string[]`\n  Filter by region IDs.\n\n- `status?: 'active' | 'disabled'[]`\n  Filter by prompt status. Defaults to `active` only.\n\n- `tag_id?: string[]`\n  Filter by tag IDs.\n\n- `topic_id?: string[]`\n  Filter by topic IDs.\n\n### Returns\n\n- `{ data: { id: string; created_at: string; language: string; platforms: object[]; prompt: string; regions: object[]; status: 'active' | 'disabled'; topic: object; updated_at: string; analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]; personas?: object[]; prompt_type?: string; tags?: object[]; }[]; info: { limit: number; next_cursor: string; total_rows: number; }; }`\n\n  - `data: { id: string; created_at: string; language: string; platforms: { id: string; name: string; }[]; prompt: string; regions: { id: string; name: string; }[]; status: 'active' | 'disabled'; topic: { id: string; name: string; }; updated_at: string; analysis_types?: 'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'[]; personas?: { id: string; name: string; }[]; prompt_type?: string; tags?: { id: string; name: string; }[]; }[]`\n  - `info: { limit: number; next_cursor: string; total_rows: number; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.prompts('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
     perLanguage: {
       typescript: {
         method: 'client.organizations.categories.prompts',
@@ -358,15 +359,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     name: 'assets',
     endpoint: '/v1/org/categories/{category_id}/assets',
     httpMethod: 'get',
-    summary: 'Assets',
-    description: 'Assets',
+    summary: 'Get Assets',
+    description: 'Get Assets',
     stainlessPath: '(resource) organizations.categories > (method) assets',
     qualified: 'client.organizations.categories.assets',
     params: ['category_id: string;'],
     response:
       '{ id: string; created_at: string; is_owned: boolean; logo_url: string; name: string; website: string; alternate_domains?: string[]; }[]',
     markdown:
-      "## assets\n\n`client.organizations.categories.assets(category_id: string): { id: string; created_at: string; is_owned: boolean; logo_url: string; name: string; website: string; alternate_domains?: string[]; }[]`\n\n**get** `/v1/org/categories/{category_id}/assets`\n\nAssets\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ id: string; created_at: string; is_owned: boolean; logo_url: string; name: string; website: string; alternate_domains?: string[]; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.assets('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
+      "## assets\n\n`client.organizations.categories.assets(category_id: string): { id: string; created_at: string; is_owned: boolean; logo_url: string; name: string; website: string; alternate_domains?: string[]; }[]`\n\n**get** `/v1/org/categories/{category_id}/assets`\n\nGet Assets\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ id: string; created_at: string; is_owned: boolean; logo_url: string; name: string; website: string; alternate_domains?: string[]; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.assets('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
     perLanguage: {
       typescript: {
         method: 'client.organizations.categories.assets',
@@ -388,14 +389,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     name: 'get_category_personas',
     endpoint: '/v1/org/categories/{category_id}/personas',
     httpMethod: 'get',
-    summary: 'Personas',
-    description: 'Personas',
+    summary: 'Get Personas',
+    description: 'Get Personas',
     stainlessPath: '(resource) organizations.categories > (method) get_category_personas',
     qualified: 'client.organizations.categories.getCategoryPersonas',
     params: ['category_id: string;'],
     response: '{ data: { id: string; name: string; persona: object; }[]; }',
     markdown:
-      "## get_category_personas\n\n`client.organizations.categories.getCategoryPersonas(category_id: string): { data: object[]; }`\n\n**get** `/v1/org/categories/{category_id}/personas`\n\nPersonas\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ data: { id: string; name: string; persona: object; }[]; }`\n\n  - `data: { id: string; name: string; persona: { behavior: object; demographics: object; employment: object; }; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.getCategoryPersonas('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
+      "## get_category_personas\n\n`client.organizations.categories.getCategoryPersonas(category_id: string): { data: object[]; }`\n\n**get** `/v1/org/categories/{category_id}/personas`\n\nGet Personas\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ data: { id: string; name: string; persona: object; }[]; }`\n\n  - `data: { id: string; name: string; persona: { behavior: object; demographics: object; employment: object; }; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.getCategoryPersonas('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
     perLanguage: {
       typescript: {
         method: 'client.organizations.categories.getCategoryPersonas',
@@ -522,7 +523,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     name: 'retrieve_regions',
     endpoint: '/v1/org/categories/{category_id}/regions',
     httpMethod: 'get',
-    summary: 'Regions',
+    summary: 'Get Regions',
     description: 'Get the regions for a specific category.',
     stainlessPath: '(resource) organizations.categories > (method) retrieve_regions',
     qualified: 'client.organizations.categories.retrieveRegions',

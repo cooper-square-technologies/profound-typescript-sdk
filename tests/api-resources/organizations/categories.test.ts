@@ -130,6 +130,7 @@ describe('resource categories', () => {
           analysis_type: ['visibility'],
           cursor: 'cursor',
           limit: 1,
+          order_by: 'created_at',
           order_dir: 'asc',
           persona_id: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
           platform_id: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
