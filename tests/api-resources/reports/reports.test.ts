@@ -231,7 +231,7 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('queryCitations: only required params', async () => {
     const responsePromise = client.reports.queryCitations({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
     });
@@ -247,7 +247,7 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('queryCitations: required and optional params', async () => {
     const response = await client.reports.queryCitations({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
       cursor: 'cursor',
@@ -309,7 +309,7 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('queryQueryFanouts: only required params', async () => {
     const responsePromise = client.reports.queryQueryFanouts({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
     });
@@ -325,7 +325,7 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('queryQueryFanouts: required and optional params', async () => {
     const response = await client.reports.queryQueryFanouts({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
       cursor: 'cursor',
@@ -551,7 +551,7 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('streamCitationsV2: only required params', async () => {
     const responsePromise = client.reports.streamCitationsV2({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
     });
@@ -567,7 +567,7 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('streamCitationsV2: required and optional params', async () => {
     const response = await client.reports.streamCitationsV2({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
       cursor: 'cursor',
@@ -591,7 +591,7 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('streamQueryFanouts: only required params', async () => {
     const responsePromise = client.reports.streamQueryFanouts({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
     });
@@ -607,7 +607,7 @@ describe('resource reports', () => {
   // Mock server tests are disabled
   test.skip('streamQueryFanouts: required and optional params', async () => {
     const response = await client.reports.streamQueryFanouts({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
       cursor: 'cursor',

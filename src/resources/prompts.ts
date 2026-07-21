@@ -3,6 +3,7 @@
 import { APIResource } from '../core/resource';
 import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
+import { Stream } from '../core/streaming';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 
@@ -24,12 +25,16 @@ export class Prompts extends APIResource {
   /**
    * Stream Answers V2
    */
-  streamAnswersV2(body: PromptStreamAnswersV2Params, options?: RequestOptions): APIPromise<void> {
+  streamAnswersV2(
+    body: PromptStreamAnswersV2Params,
+    options?: RequestOptions,
+  ): APIPromise<Stream<PromptStreamAnswersV2Response>> {
     return this._client.post('/v2/prompts/answers/stream', {
       body,
       ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+      headers: buildHeaders([{ Accept: 'text/event-stream' }, options?.headers]),
+      stream: true,
+    }) as APIPromise<Stream<PromptStreamAnswersV2Response>>;
   }
 }
 
@@ -142,7 +147,224 @@ export namespace PromptAnswersResponse {
   }
 }
 
-export type PromptAnswersV2Response = { [key: string]: unknown };
+export interface PromptAnswersV2Response {
+  data: Array<PromptAnswersV2Response.Data>;
+
+  info: PromptAnswersV2Response.Info;
+}
+
+export namespace PromptAnswersV2Response {
+  /**
+   * One answer row. Present fields depend on `include`; `model` is an `{id, name}`
+   * reference.
+   */
+  export interface Data {
+    analysis_types?: Array<string> | null;
+
+    citations?: Array<string> | null;
+
+    date?: string | null;
+
+    mentions?: Array<string> | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    model?: Data.Model | null;
+
+    persona?: string | null;
+
+    prompt?: string | null;
+
+    prompt_id?: string | null;
+
+    region?: string | null;
+
+    response?: string | null;
+
+    run_id?: string | null;
+
+    search_queries?: Array<string> | null;
+
+    sentiment_claims?: Array<{ [key: string]: unknown }> | null;
+
+    tags?: Array<string> | null;
+
+    topic?: string | null;
+
+    topic_id?: string | null;
+
+    [k: string]: unknown;
+  }
+
+  export namespace Data {
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Model {
+      id?: string | null;
+
+      name?: string | null;
+    }
+  }
+
+  export interface Info {
+    /**
+     * Number of rows returned in `data` for this page.
+     */
+    count: number;
+
+    /**
+     * Echoed request end date (YYYY-MM-DD, ET).
+     */
+    end_date: string;
+
+    /**
+     * Row fields returned (echoes `include`, or all fields when omitted).
+     */
+    include: Array<string>;
+
+    /**
+     * Display names of the models the report covers.
+     */
+    models: Array<string>;
+
+    /**
+     * Echoed request start date (YYYY-MM-DD, ET).
+     */
+    start_date: string;
+
+    /**
+     * Echoed normalized filter tree, or null when no filter was sent.
+     */
+    filter?: { [key: string]: unknown } | null;
+
+    /**
+     * Opaque cursor for the next page; null on the last page.
+     */
+    next_cursor?: string | null;
+
+    /**
+     * Total rows matching the query before pagination (null when not computed).
+     */
+    total_results?: number | null;
+
+    [k: string]: unknown;
+  }
+}
+
+/**
+ * `summary` event payload (the report `info` block).
+ */
+export type PromptStreamAnswersV2Response =
+  | PromptStreamAnswersV2Response.AnswersV2Info
+  | PromptStreamAnswersV2Response.AnswerRow;
+
+export namespace PromptStreamAnswersV2Response {
+  /**
+   * `summary` event payload (the report `info` block).
+   */
+  export interface AnswersV2Info {
+    /**
+     * Number of rows returned in `data` for this page.
+     */
+    count: number;
+
+    /**
+     * Echoed request end date (YYYY-MM-DD, ET).
+     */
+    end_date: string;
+
+    /**
+     * Row fields returned (echoes `include`, or all fields when omitted).
+     */
+    include: Array<string>;
+
+    /**
+     * Display names of the models the report covers.
+     */
+    models: Array<string>;
+
+    /**
+     * Echoed request start date (YYYY-MM-DD, ET).
+     */
+    start_date: string;
+
+    /**
+     * Echoed normalized filter tree, or null when no filter was sent.
+     */
+    filter?: { [key: string]: unknown } | null;
+
+    /**
+     * Opaque cursor for the next page; null on the last page.
+     */
+    next_cursor?: string | null;
+
+    /**
+     * Total rows matching the query before pagination (null when not computed).
+     */
+    total_results?: number | null;
+
+    [k: string]: unknown;
+  }
+
+  /**
+   * `result` event payload — one answer row.
+   */
+  export interface AnswerRow {
+    analysis_types?: Array<string> | null;
+
+    citations?: Array<string> | null;
+
+    date?: string | null;
+
+    mentions?: Array<string> | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    model?: AnswerRow.Model | null;
+
+    persona?: string | null;
+
+    prompt?: string | null;
+
+    prompt_id?: string | null;
+
+    region?: string | null;
+
+    response?: string | null;
+
+    run_id?: string | null;
+
+    search_queries?: Array<string> | null;
+
+    sentiment_claims?: Array<{ [key: string]: unknown }> | null;
+
+    tags?: Array<string> | null;
+
+    topic?: string | null;
+
+    topic_id?: string | null;
+
+    [k: string]: unknown;
+  }
+
+  export namespace AnswerRow {
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Model {
+      id?: string | null;
+
+      name?: string | null;
+    }
+  }
+}
 
 export interface PromptAnswersParams {
   category_id: string;
@@ -411,6 +633,7 @@ export declare namespace Prompts {
   export {
     type PromptAnswersResponse as PromptAnswersResponse,
     type PromptAnswersV2Response as PromptAnswersV2Response,
+    type PromptStreamAnswersV2Response as PromptStreamAnswersV2Response,
     type PromptAnswersParams as PromptAnswersParams,
     type PromptAnswersV2Params as PromptAnswersV2Params,
     type PromptStreamAnswersV2Params as PromptStreamAnswersV2Params,

@@ -19,7 +19,7 @@ export class Categories extends APIResource {
   }
 
   /**
-   * Get Category Assets
+   * Assets
    */
   assets(categoryID: string, options?: RequestOptions): APIPromise<CategoryAssetsResponse> {
     return this._client.get(path`/v1/org/categories/${categoryID}/assets`, options);
@@ -39,7 +39,7 @@ export class Categories extends APIResource {
   }
 
   /**
-   * Get Category Personas
+   * Personas
    */
   getCategoryPersonas(
     categoryID: string,

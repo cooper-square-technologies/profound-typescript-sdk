@@ -11,7 +11,7 @@ describe('resource factcheck', () => {
   // Mock server tests are disabled
   test.skip('queryScores: only required params', async () => {
     const responsePromise = client.reports.factcheck.queryScores({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
     });
@@ -27,7 +27,7 @@ describe('resource factcheck', () => {
   // Mock server tests are disabled
   test.skip('queryScores: required and optional params', async () => {
     const response = await client.reports.factcheck.queryScores({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
       cursor: 'cursor',
@@ -47,7 +47,7 @@ describe('resource factcheck', () => {
   // Mock server tests are disabled
   test.skip('streamScores: only required params', async () => {
     const responsePromise = client.reports.factcheck.streamScores({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
     });
@@ -63,7 +63,7 @@ describe('resource factcheck', () => {
   // Mock server tests are disabled
   test.skip('streamScores: required and optional params', async () => {
     const response = await client.reports.factcheck.streamScores({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
       cursor: 'cursor',

@@ -32,6 +32,7 @@ export {
 export {
   Factcheck,
   type FactcheckQueryScoresResponse,
+  type FactcheckStreamScoresResponse,
   type FactcheckQueryScoresParams,
   type FactcheckStreamScoresParams,
 } from './factcheck/index';
@@ -53,8 +54,12 @@ export {
   type ReportQueryVisibilityResponse,
   type ReportSentimentV2Response,
   type ReportStreamCitationsResponse,
+  type ReportStreamCitationsV2Response,
+  type ReportStreamQueryFanoutsResponse,
   type ReportStreamSentimentResponse,
+  type ReportStreamSentimentV2Response,
   type ReportStreamVisibilityResponse,
+  type ReportStreamVisibilityV2Response,
   type ReportCitationsParams,
   type ReportGetBotsReportParams,
   type ReportGetBotsReportV2Params,

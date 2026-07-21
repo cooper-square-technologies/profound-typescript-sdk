@@ -73,6 +73,7 @@ import {
   FactcheckQueryScoresParams,
   FactcheckQueryScoresResponse,
   FactcheckStreamScoresParams,
+  FactcheckStreamScoresResponse,
 } from './factcheck/factcheck';
 import { APIPromise } from '../../core/api-promise';
 import { Stream } from '../../core/streaming';
@@ -217,7 +218,7 @@ export class Reports extends APIResource {
    * @example
    * ```ts
    * const response = await client.reports.queryCitations({
-   *   category_id: 'category_id',
+   *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
    *   end_date: 'end_date',
    *   start_date: 'start_date',
    * });
@@ -253,7 +254,7 @@ export class Reports extends APIResource {
    * @example
    * ```ts
    * const response = await client.reports.queryQueryFanouts({
-   *   category_id: 'category_id',
+   *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
    *   end_date: 'end_date',
    *   start_date: 'start_date',
    * });
@@ -373,19 +374,23 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * await client.reports.streamCitationsV2({
-   *   category_id: 'category_id',
+   * const response = await client.reports.streamCitationsV2({
+   *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
    *   end_date: 'end_date',
    *   start_date: 'start_date',
    * });
    * ```
    */
-  streamCitationsV2(body: ReportStreamCitationsV2Params, options?: RequestOptions): APIPromise<void> {
+  streamCitationsV2(
+    body: ReportStreamCitationsV2Params,
+    options?: RequestOptions,
+  ): APIPromise<Stream<ReportStreamCitationsV2Response>> {
     return this._client.post('/v2/reports/citations/stream', {
       body,
       ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+      headers: buildHeaders([{ Accept: 'text/event-stream' }, options?.headers]),
+      stream: true,
+    }) as APIPromise<Stream<ReportStreamCitationsV2Response>>;
   }
 
   /**
@@ -393,19 +398,23 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * await client.reports.streamQueryFanouts({
-   *   category_id: 'category_id',
+   * const response = await client.reports.streamQueryFanouts({
+   *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
    *   end_date: 'end_date',
    *   start_date: 'start_date',
    * });
    * ```
    */
-  streamQueryFanouts(body: ReportStreamQueryFanoutsParams, options?: RequestOptions): APIPromise<void> {
+  streamQueryFanouts(
+    body: ReportStreamQueryFanoutsParams,
+    options?: RequestOptions,
+  ): APIPromise<Stream<ReportStreamQueryFanoutsResponse>> {
     return this._client.post('/v2/reports/query-fanouts/stream', {
       body,
       ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+      headers: buildHeaders([{ Accept: 'text/event-stream' }, options?.headers]),
+      stream: true,
+    }) as APIPromise<Stream<ReportStreamQueryFanoutsResponse>>;
   }
 
   /**
@@ -438,7 +447,7 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * await client.reports.streamSentimentV2({
+   * const response = await client.reports.streamSentimentV2({
    *   asset: 'asset',
    *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
    *   end_date: 'end_date',
@@ -446,12 +455,16 @@ export class Reports extends APIResource {
    * });
    * ```
    */
-  streamSentimentV2(body: ReportStreamSentimentV2Params, options?: RequestOptions): APIPromise<void> {
+  streamSentimentV2(
+    body: ReportStreamSentimentV2Params,
+    options?: RequestOptions,
+  ): APIPromise<Stream<ReportStreamSentimentV2Response>> {
     return this._client.post('/v2/reports/sentiment/stream', {
       body,
       ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+      headers: buildHeaders([{ Accept: 'text/event-stream' }, options?.headers]),
+      stream: true,
+    }) as APIPromise<Stream<ReportStreamSentimentV2Response>>;
   }
 
   /**
@@ -484,19 +497,23 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * await client.reports.streamVisibilityV2({
+   * const response = await client.reports.streamVisibilityV2({
    *   category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
    *   end_date: 'end_date',
    *   start_date: 'start_date',
    * });
    * ```
    */
-  streamVisibilityV2(body: ReportStreamVisibilityV2Params, options?: RequestOptions): APIPromise<void> {
+  streamVisibilityV2(
+    body: ReportStreamVisibilityV2Params,
+    options?: RequestOptions,
+  ): APIPromise<Stream<ReportStreamVisibilityV2Response>> {
     return this._client.post('/v2/reports/visibility/stream', {
       body,
       ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+      headers: buildHeaders([{ Accept: 'text/event-stream' }, options?.headers]),
+      stream: true,
+    }) as APIPromise<Stream<ReportStreamVisibilityV2Response>>;
   }
 
   /**
@@ -675,13 +692,699 @@ export namespace ReportCitationsResponse {
   }
 }
 
-export type ReportQueryCitationsResponse = { [key: string]: unknown };
+export interface ReportQueryCitationsResponse {
+  data: Array<ReportQueryCitationsResponse.Data>;
 
-export type ReportQueryQueryFanoutsResponse = { [key: string]: unknown };
+  info: ReportQueryCitationsResponse.Info;
+}
 
-export type ReportQuerySentimentResponse = { [key: string]: unknown };
+export namespace ReportQueryCitationsResponse {
+  /**
+   * One (source x group) row. Each row carries `domain` or `page`; group
+   * dims/metrics vary.
+   */
+  export interface Data {
+    citation_share?: number | null;
 
-export type ReportQueryVisibilityResponse = { [key: string]: unknown };
+    count?: number | null;
+
+    date?: string | null;
+
+    domain?: string | null;
+
+    /**
+     * Pages only.
+     */
+    first_cited_at?: string | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    model?: Data.Model | null;
+
+    page?: string | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    persona?: Data.Persona | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    prompt?: Data.Prompt | null;
+
+    rank?: number | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    region?: Data.Region | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    topic?: Data.Topic | null;
+
+    [k: string]: unknown;
+  }
+
+  export namespace Data {
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Model {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Persona {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Prompt {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Region {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Topic {
+      id?: string | null;
+
+      name?: string | null;
+    }
+  }
+
+  export interface Info {
+    /**
+     * Analysis types the citations were drawn from.
+     */
+    analysis_types: Array<string>;
+
+    /**
+     * Number of rows returned in `data` for this page.
+     */
+    count: number;
+
+    /**
+     * Echoed request end date (YYYY-MM-DD, ET).
+     */
+    end_date: string;
+
+    /**
+     * Metrics returned per row.
+     */
+    metrics: Array<string>;
+
+    /**
+     * Display names of the models the report covers.
+     */
+    models: Array<string>;
+
+    /**
+     * Citation scope: `all` or `owned`.
+     */
+    scope: string;
+
+    /**
+     * Echoed request start date (YYYY-MM-DD, ET).
+     */
+    start_date: string;
+
+    /**
+     * Echoed normalized filter tree, or null when no filter was sent.
+     */
+    filter?: { [key: string]: unknown } | null;
+
+    /**
+     * Opaque cursor for the next page; null on the last page.
+     */
+    next_cursor?: string | null;
+
+    /**
+     * Total rows matching the query before pagination (null when not computed).
+     */
+    total_results?: number | null;
+
+    [k: string]: unknown;
+  }
+}
+
+export interface ReportQueryQueryFanoutsResponse {
+  data: Array<ReportQueryQueryFanoutsResponse.Data>;
+
+  info: ReportQueryQueryFanoutsResponse.Info;
+}
+
+export namespace ReportQueryQueryFanoutsResponse {
+  /**
+   * One row. Group dimensions are plain values (not `{id, name}`); metrics present
+   * depend on `metrics`.
+   */
+  export interface Data {
+    date?: string | null;
+
+    fanouts_per_execution?: number | null;
+
+    model?: string | null;
+
+    prompt?: string | null;
+
+    query?: string | null;
+
+    query_variations?: number | null;
+
+    rank?: number | null;
+
+    region?: string | null;
+
+    share?: number | null;
+
+    total_fanouts?: number | null;
+
+    [k: string]: unknown;
+  }
+
+  export interface Info {
+    /**
+     * Number of rows returned in `data` for this page.
+     */
+    count: number;
+
+    /**
+     * Caveat about which runs the fanout metrics cover.
+     */
+    coverage_note: string;
+
+    /**
+     * Echoed request end date (YYYY-MM-DD, ET).
+     */
+    end_date: string;
+
+    /**
+     * Fanout metrics returned per row.
+     */
+    metrics: Array<string>;
+
+    /**
+     * Display names of the models the report covers.
+     */
+    models: Array<string>;
+
+    /**
+     * Echoed request start date (YYYY-MM-DD, ET).
+     */
+    start_date: string;
+
+    /**
+     * Echoed normalized filter tree, or null when no filter was sent.
+     */
+    filter?: { [key: string]: unknown } | null;
+
+    /**
+     * Opaque cursor for the next page; null on the last page.
+     */
+    next_cursor?: string | null;
+
+    /**
+     * Total rows matching the query before pagination (null when not computed).
+     */
+    total_results?: number | null;
+
+    [k: string]: unknown;
+  }
+}
+
+export interface ReportQuerySentimentResponse {
+  data: Array<ReportQuerySentimentResponse.Data>;
+
+  info: ReportQuerySentimentResponse.Info;
+}
+
+export namespace ReportQuerySentimentResponse {
+  /**
+   * One group-combination row. Group dims and metrics present depend on
+   * `group_by`/`metrics`.
+   */
+  export interface Data {
+    cited_websites?: Array<string> | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    claim?: Data.Claim | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    competitor?: Data.Competitor | null;
+
+    date?: string | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    model?: Data.Model | null;
+
+    negative_sentiment?: number | null;
+
+    occurrence?: number | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    persona?: Data.Persona | null;
+
+    positive_sentiment?: number | null;
+
+    prev_date?: string | null;
+
+    /**
+     * Comparison-window metrics (when requested).
+     */
+    previous?: Data.Previous | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    prompt?: Data.Prompt | null;
+
+    rank?: number | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    region?: Data.Region | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    run?: Data.Run | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    tag?: Data.Tag | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    theme?: Data.Theme | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    topic?: Data.Topic | null;
+
+    [k: string]: unknown;
+  }
+
+  export namespace Data {
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Claim {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Competitor {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Model {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Persona {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * Comparison-window metrics (when requested).
+     */
+    export interface Previous {
+      negative_sentiment?: number | null;
+
+      occurrence?: number | null;
+
+      positive_sentiment?: number | null;
+
+      [k: string]: unknown;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Prompt {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Region {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Run {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Tag {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Theme {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Topic {
+      id?: string | null;
+
+      name?: string | null;
+    }
+  }
+
+  export interface Info {
+    /**
+     * The analyzed brand name.
+     */
+    asset: string;
+
+    /**
+     * Number of rows returned in `data` for this page.
+     */
+    count: number;
+
+    /**
+     * Echoed request end date (YYYY-MM-DD, ET).
+     */
+    end_date: string;
+
+    /**
+     * Sentiment metrics returned per row.
+     */
+    metrics: Array<string>;
+
+    /**
+     * Display names of the models the report covers.
+     */
+    models: Array<string>;
+
+    /**
+     * Echoed request start date (YYYY-MM-DD, ET).
+     */
+    start_date: string;
+
+    /**
+     * Comparison-window end (when requested).
+     */
+    comparison_end_date?: string | null;
+
+    /**
+     * Comparison-window start (when requested).
+     */
+    comparison_start_date?: string | null;
+
+    /**
+     * Echoed normalized filter tree, or null when no filter was sent.
+     */
+    filter?: { [key: string]: unknown } | null;
+
+    /**
+     * Opaque cursor for the next page; null on the last page.
+     */
+    next_cursor?: string | null;
+
+    /**
+     * Total rows matching the query before pagination (null when not computed).
+     */
+    total_results?: number | null;
+
+    [k: string]: unknown;
+  }
+}
+
+export interface ReportQueryVisibilityResponse {
+  data: Array<ReportQueryVisibilityResponse.Data>;
+
+  info: ReportQueryVisibilityResponse.Info;
+}
+
+export namespace ReportQueryVisibilityResponse {
+  /**
+   * One (asset x group) row. Group dimensions and metrics present depend on
+   * `group_by`/`metrics`.
+   */
+  export interface Data {
+    asset?: Data.Asset | null;
+
+    average_position?: number | null;
+
+    date?: string | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    model?: Data.Model | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    persona?: Data.Persona | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    prompt?: Data.Prompt | null;
+
+    /**
+     * Asset rank (only when not grouped).
+     */
+    rank?: number | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    region?: Data.Region | null;
+
+    share_of_voice?: number | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    topic?: Data.Topic | null;
+
+    visibility_score?: number | null;
+
+    [k: string]: unknown;
+  }
+
+  export namespace Data {
+    export interface Asset {
+      name?: string | null;
+
+      /**
+       * Whether the asset is owned by the category.
+       */
+      owned?: boolean | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Model {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Persona {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Prompt {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Region {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Topic {
+      id?: string | null;
+
+      name?: string | null;
+    }
+  }
+
+  export interface Info {
+    /**
+     * Number of rows returned in `data` for this page.
+     */
+    count: number;
+
+    /**
+     * Echoed request end date (YYYY-MM-DD, ET).
+     */
+    end_date: string;
+
+    /**
+     * Display names of the models the report covers.
+     */
+    models: Array<string>;
+
+    /**
+     * Asset scope: `all` or `owned`.
+     */
+    scope: string;
+
+    /**
+     * Echoed request start date (YYYY-MM-DD, ET).
+     */
+    start_date: string;
+
+    /**
+     * Echoed `assets` selection (filter clause, name, or list), or null.
+     */
+    asset_filter?: { [key: string]: unknown } | Array<string> | string | null;
+
+    /**
+     * Echoed normalized filter tree, or null when no filter was sent.
+     */
+    filter?: { [key: string]: unknown } | null;
+
+    /**
+     * Opaque cursor for the next page; null on the last page.
+     */
+    next_cursor?: string | null;
+
+    /**
+     * Total rows matching the query before pagination (null when not computed).
+     */
+    total_results?: number | null;
+
+    [k: string]: unknown;
+  }
+}
 
 export interface ReportSentimentV2Response {
   info: ReportSentimentV2Response.Info;
@@ -809,6 +1512,266 @@ export namespace ReportStreamCitationsResponse {
 }
 
 /**
+ * `summary` event payload (the report `info` block).
+ */
+export type ReportStreamCitationsV2Response =
+  | ReportStreamCitationsV2Response.CitationsV2Info
+  | ReportStreamCitationsV2Response.CitationRow;
+
+export namespace ReportStreamCitationsV2Response {
+  /**
+   * `summary` event payload (the report `info` block).
+   */
+  export interface CitationsV2Info {
+    /**
+     * Analysis types the citations were drawn from.
+     */
+    analysis_types: Array<string>;
+
+    /**
+     * Number of rows returned in `data` for this page.
+     */
+    count: number;
+
+    /**
+     * Echoed request end date (YYYY-MM-DD, ET).
+     */
+    end_date: string;
+
+    /**
+     * Metrics returned per row.
+     */
+    metrics: Array<string>;
+
+    /**
+     * Display names of the models the report covers.
+     */
+    models: Array<string>;
+
+    /**
+     * Citation scope: `all` or `owned`.
+     */
+    scope: string;
+
+    /**
+     * Echoed request start date (YYYY-MM-DD, ET).
+     */
+    start_date: string;
+
+    /**
+     * Echoed normalized filter tree, or null when no filter was sent.
+     */
+    filter?: { [key: string]: unknown } | null;
+
+    /**
+     * Opaque cursor for the next page; null on the last page.
+     */
+    next_cursor?: string | null;
+
+    /**
+     * Total rows matching the query before pagination (null when not computed).
+     */
+    total_results?: number | null;
+
+    [k: string]: unknown;
+  }
+
+  /**
+   * `result` event payload — one citation row.
+   */
+  export interface CitationRow {
+    citation_share?: number | null;
+
+    count?: number | null;
+
+    date?: string | null;
+
+    domain?: string | null;
+
+    /**
+     * Pages only.
+     */
+    first_cited_at?: string | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    model?: CitationRow.Model | null;
+
+    page?: string | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    persona?: CitationRow.Persona | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    prompt?: CitationRow.Prompt | null;
+
+    rank?: number | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    region?: CitationRow.Region | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    topic?: CitationRow.Topic | null;
+
+    [k: string]: unknown;
+  }
+
+  export namespace CitationRow {
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Model {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Persona {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Prompt {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Region {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Topic {
+      id?: string | null;
+
+      name?: string | null;
+    }
+  }
+}
+
+/**
+ * `summary` event payload (the report `info` block).
+ */
+export type ReportStreamQueryFanoutsResponse =
+  | ReportStreamQueryFanoutsResponse.QueryFanoutsV2Info
+  | ReportStreamQueryFanoutsResponse.QueryFanoutRow;
+
+export namespace ReportStreamQueryFanoutsResponse {
+  /**
+   * `summary` event payload (the report `info` block).
+   */
+  export interface QueryFanoutsV2Info {
+    /**
+     * Number of rows returned in `data` for this page.
+     */
+    count: number;
+
+    /**
+     * Caveat about which runs the fanout metrics cover.
+     */
+    coverage_note: string;
+
+    /**
+     * Echoed request end date (YYYY-MM-DD, ET).
+     */
+    end_date: string;
+
+    /**
+     * Fanout metrics returned per row.
+     */
+    metrics: Array<string>;
+
+    /**
+     * Display names of the models the report covers.
+     */
+    models: Array<string>;
+
+    /**
+     * Echoed request start date (YYYY-MM-DD, ET).
+     */
+    start_date: string;
+
+    /**
+     * Echoed normalized filter tree, or null when no filter was sent.
+     */
+    filter?: { [key: string]: unknown } | null;
+
+    /**
+     * Opaque cursor for the next page; null on the last page.
+     */
+    next_cursor?: string | null;
+
+    /**
+     * Total rows matching the query before pagination (null when not computed).
+     */
+    total_results?: number | null;
+
+    [k: string]: unknown;
+  }
+
+  /**
+   * `result` event payload — one query-fanout row.
+   */
+  export interface QueryFanoutRow {
+    date?: string | null;
+
+    fanouts_per_execution?: number | null;
+
+    model?: string | null;
+
+    prompt?: string | null;
+
+    query?: string | null;
+
+    query_variations?: number | null;
+
+    rank?: number | null;
+
+    region?: string | null;
+
+    share?: number | null;
+
+    total_fanouts?: number | null;
+
+    [k: string]: unknown;
+  }
+}
+
+/**
  * A streamed sentiment report row payload.
  */
 export type ReportStreamSentimentResponse =
@@ -830,6 +1793,278 @@ export namespace ReportStreamSentimentResponse {
 }
 
 /**
+ * `summary` event payload (the report `info` block).
+ */
+export type ReportStreamSentimentV2Response =
+  | ReportStreamSentimentV2Response.SentimentV2Info
+  | ReportStreamSentimentV2Response.SentimentRow;
+
+export namespace ReportStreamSentimentV2Response {
+  /**
+   * `summary` event payload (the report `info` block).
+   */
+  export interface SentimentV2Info {
+    /**
+     * The analyzed brand name.
+     */
+    asset: string;
+
+    /**
+     * Number of rows returned in `data` for this page.
+     */
+    count: number;
+
+    /**
+     * Echoed request end date (YYYY-MM-DD, ET).
+     */
+    end_date: string;
+
+    /**
+     * Sentiment metrics returned per row.
+     */
+    metrics: Array<string>;
+
+    /**
+     * Display names of the models the report covers.
+     */
+    models: Array<string>;
+
+    /**
+     * Echoed request start date (YYYY-MM-DD, ET).
+     */
+    start_date: string;
+
+    /**
+     * Comparison-window end (when requested).
+     */
+    comparison_end_date?: string | null;
+
+    /**
+     * Comparison-window start (when requested).
+     */
+    comparison_start_date?: string | null;
+
+    /**
+     * Echoed normalized filter tree, or null when no filter was sent.
+     */
+    filter?: { [key: string]: unknown } | null;
+
+    /**
+     * Opaque cursor for the next page; null on the last page.
+     */
+    next_cursor?: string | null;
+
+    /**
+     * Total rows matching the query before pagination (null when not computed).
+     */
+    total_results?: number | null;
+
+    [k: string]: unknown;
+  }
+
+  /**
+   * `result` event payload — one sentiment row.
+   */
+  export interface SentimentRow {
+    cited_websites?: Array<string> | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    claim?: SentimentRow.Claim | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    competitor?: SentimentRow.Competitor | null;
+
+    date?: string | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    model?: SentimentRow.Model | null;
+
+    negative_sentiment?: number | null;
+
+    occurrence?: number | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    persona?: SentimentRow.Persona | null;
+
+    positive_sentiment?: number | null;
+
+    prev_date?: string | null;
+
+    /**
+     * Comparison-window metrics (when requested).
+     */
+    previous?: SentimentRow.Previous | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    prompt?: SentimentRow.Prompt | null;
+
+    rank?: number | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    region?: SentimentRow.Region | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    run?: SentimentRow.Run | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    tag?: SentimentRow.Tag | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    theme?: SentimentRow.Theme | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    topic?: SentimentRow.Topic | null;
+
+    [k: string]: unknown;
+  }
+
+  export namespace SentimentRow {
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Claim {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Competitor {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Model {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Persona {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * Comparison-window metrics (when requested).
+     */
+    export interface Previous {
+      negative_sentiment?: number | null;
+
+      occurrence?: number | null;
+
+      positive_sentiment?: number | null;
+
+      [k: string]: unknown;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Prompt {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Region {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Run {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Tag {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Theme {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Topic {
+      id?: string | null;
+
+      name?: string | null;
+    }
+  }
+}
+
+/**
  * A streamed visibility report row payload.
  */
 export type ReportStreamVisibilityResponse =
@@ -847,6 +2082,180 @@ export namespace ReportStreamVisibilityResponse {
      * Total number of rows available before pagination is applied.
      */
     total_rows: number;
+  }
+}
+
+/**
+ * `summary` event payload (the report `info` block).
+ */
+export type ReportStreamVisibilityV2Response =
+  | ReportStreamVisibilityV2Response.VisibilityV2Info
+  | ReportStreamVisibilityV2Response.VisibilityRow;
+
+export namespace ReportStreamVisibilityV2Response {
+  /**
+   * `summary` event payload (the report `info` block).
+   */
+  export interface VisibilityV2Info {
+    /**
+     * Number of rows returned in `data` for this page.
+     */
+    count: number;
+
+    /**
+     * Echoed request end date (YYYY-MM-DD, ET).
+     */
+    end_date: string;
+
+    /**
+     * Display names of the models the report covers.
+     */
+    models: Array<string>;
+
+    /**
+     * Asset scope: `all` or `owned`.
+     */
+    scope: string;
+
+    /**
+     * Echoed request start date (YYYY-MM-DD, ET).
+     */
+    start_date: string;
+
+    /**
+     * Echoed `assets` selection (filter clause, name, or list), or null.
+     */
+    asset_filter?: { [key: string]: unknown } | Array<string> | string | null;
+
+    /**
+     * Echoed normalized filter tree, or null when no filter was sent.
+     */
+    filter?: { [key: string]: unknown } | null;
+
+    /**
+     * Opaque cursor for the next page; null on the last page.
+     */
+    next_cursor?: string | null;
+
+    /**
+     * Total rows matching the query before pagination (null when not computed).
+     */
+    total_results?: number | null;
+
+    [k: string]: unknown;
+  }
+
+  /**
+   * `result` event payload — one visibility row.
+   */
+  export interface VisibilityRow {
+    asset?: VisibilityRow.Asset | null;
+
+    average_position?: number | null;
+
+    date?: string | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    model?: VisibilityRow.Model | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    persona?: VisibilityRow.Persona | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    prompt?: VisibilityRow.Prompt | null;
+
+    /**
+     * Asset rank (only when not grouped).
+     */
+    rank?: number | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    region?: VisibilityRow.Region | null;
+
+    share_of_voice?: number | null;
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    topic?: VisibilityRow.Topic | null;
+
+    visibility_score?: number | null;
+
+    [k: string]: unknown;
+  }
+
+  export namespace VisibilityRow {
+    export interface Asset {
+      name?: string | null;
+
+      /**
+       * Whether the asset is owned by the category.
+       */
+      owned?: boolean | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Model {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Persona {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Prompt {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Region {
+      id?: string | null;
+
+      name?: string | null;
+    }
+
+    /**
+     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
+     * …).
+     */
+    export interface Topic {
+      id?: string | null;
+
+      name?: string | null;
+    }
   }
 }
 
@@ -2853,8 +4262,12 @@ export declare namespace Reports {
     type ReportQueryVisibilityResponse as ReportQueryVisibilityResponse,
     type ReportSentimentV2Response as ReportSentimentV2Response,
     type ReportStreamCitationsResponse as ReportStreamCitationsResponse,
+    type ReportStreamCitationsV2Response as ReportStreamCitationsV2Response,
+    type ReportStreamQueryFanoutsResponse as ReportStreamQueryFanoutsResponse,
     type ReportStreamSentimentResponse as ReportStreamSentimentResponse,
+    type ReportStreamSentimentV2Response as ReportStreamSentimentV2Response,
     type ReportStreamVisibilityResponse as ReportStreamVisibilityResponse,
+    type ReportStreamVisibilityV2Response as ReportStreamVisibilityV2Response,
     type ReportCitationsParams as ReportCitationsParams,
     type ReportGetBotsReportParams as ReportGetBotsReportParams,
     type ReportGetBotsReportV2Params as ReportGetBotsReportV2Params,
@@ -2945,6 +4358,7 @@ export declare namespace Reports {
   export {
     Factcheck as Factcheck,
     type FactcheckQueryScoresResponse as FactcheckQueryScoresResponse,
+    type FactcheckStreamScoresResponse as FactcheckStreamScoresResponse,
     type FactcheckQueryScoresParams as FactcheckQueryScoresParams,
     type FactcheckStreamScoresParams as FactcheckStreamScoresParams,
   };

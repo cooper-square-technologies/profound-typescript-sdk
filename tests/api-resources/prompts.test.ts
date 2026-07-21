@@ -70,7 +70,7 @@ describe('resource prompts', () => {
   // Mock server tests are disabled
   test.skip('answersV2: only required params', async () => {
     const responsePromise = client.prompts.answersV2({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
     });
@@ -86,7 +86,7 @@ describe('resource prompts', () => {
   // Mock server tests are disabled
   test.skip('answersV2: required and optional params', async () => {
     const response = await client.prompts.answersV2({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
       cursor: 'cursor',
@@ -106,7 +106,7 @@ describe('resource prompts', () => {
   // Mock server tests are disabled
   test.skip('streamAnswersV2: only required params', async () => {
     const responsePromise = client.prompts.streamAnswersV2({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
     });
@@ -122,7 +122,7 @@ describe('resource prompts', () => {
   // Mock server tests are disabled
   test.skip('streamAnswersV2: required and optional params', async () => {
     const response = await client.prompts.streamAnswersV2({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
       cursor: 'cursor',

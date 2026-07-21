@@ -3,12 +3,14 @@
 export {
   Claims,
   type ClaimQueryClaimsResponse,
+  type ClaimStreamClaimsResponse,
   type ClaimQueryClaimsParams,
   type ClaimStreamClaimsParams,
 } from './claims';
 export {
   Factcheck,
   type FactcheckQueryScoresResponse,
+  type FactcheckStreamScoresResponse,
   type FactcheckQueryScoresParams,
   type FactcheckStreamScoresParams,
 } from './factcheck';

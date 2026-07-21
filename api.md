@@ -82,12 +82,13 @@ Types:
 
 - <code><a href="./src/resources/prompts.ts">PromptAnswersResponse</a></code>
 - <code><a href="./src/resources/prompts.ts">PromptAnswersV2Response</a></code>
+- <code><a href="./src/resources/prompts.ts">PromptStreamAnswersV2Response</a></code>
 
 Methods:
 
 - <code title="post /v1/prompts/answers">client.prompts.<a href="./src/resources/prompts.ts">answers</a>({ ...params }) -> PromptAnswersResponse</code>
 - <code title="post /v2/prompts/answers">client.prompts.<a href="./src/resources/prompts.ts">answersV2</a>({ ...params }) -> PromptAnswersV2Response</code>
-- <code title="post /v2/prompts/answers/stream">client.prompts.<a href="./src/resources/prompts.ts">streamAnswersV2</a>({ ...params }) -> void</code>
+- <code title="post /v2/prompts/answers/stream">client.prompts.<a href="./src/resources/prompts.ts">streamAnswersV2</a>({ ...params }) -> PromptStreamAnswersV2Response</code>
 
 # Reports
 
@@ -109,8 +110,12 @@ Types:
 - <code><a href="./src/resources/reports/reports.ts">ReportQueryVisibilityResponse</a></code>
 - <code><a href="./src/resources/reports/reports.ts">ReportSentimentV2Response</a></code>
 - <code><a href="./src/resources/reports/reports.ts">ReportStreamCitationsResponse</a></code>
+- <code><a href="./src/resources/reports/reports.ts">ReportStreamCitationsV2Response</a></code>
+- <code><a href="./src/resources/reports/reports.ts">ReportStreamQueryFanoutsResponse</a></code>
 - <code><a href="./src/resources/reports/reports.ts">ReportStreamSentimentResponse</a></code>
+- <code><a href="./src/resources/reports/reports.ts">ReportStreamSentimentV2Response</a></code>
 - <code><a href="./src/resources/reports/reports.ts">ReportStreamVisibilityResponse</a></code>
+- <code><a href="./src/resources/reports/reports.ts">ReportStreamVisibilityV2Response</a></code>
 
 Methods:
 
@@ -127,12 +132,12 @@ Methods:
 - <code title="post /v1/reports/sentiment">client.reports.<a href="./src/resources/reports/reports.ts">sentiment</a>({ ...params }) -> ReportResponse</code>
 - <code title="post /v1/reports/sentiment-v2">client.reports.<a href="./src/resources/reports/reports.ts">sentimentV2</a>({ ...params }) -> ReportSentimentV2Response</code>
 - <code title="post /v1/reports/citations/stream">client.reports.<a href="./src/resources/reports/reports.ts">streamCitations</a>({ ...params }) -> ReportStreamCitationsResponse</code>
-- <code title="post /v2/reports/citations/stream">client.reports.<a href="./src/resources/reports/reports.ts">streamCitationsV2</a>({ ...params }) -> void</code>
-- <code title="post /v2/reports/query-fanouts/stream">client.reports.<a href="./src/resources/reports/reports.ts">streamQueryFanouts</a>({ ...params }) -> void</code>
+- <code title="post /v2/reports/citations/stream">client.reports.<a href="./src/resources/reports/reports.ts">streamCitationsV2</a>({ ...params }) -> ReportStreamCitationsV2Response</code>
+- <code title="post /v2/reports/query-fanouts/stream">client.reports.<a href="./src/resources/reports/reports.ts">streamQueryFanouts</a>({ ...params }) -> ReportStreamQueryFanoutsResponse</code>
 - <code title="post /v1/reports/sentiment/stream">client.reports.<a href="./src/resources/reports/reports.ts">streamSentiment</a>({ ...params }) -> ReportStreamSentimentResponse</code>
-- <code title="post /v2/reports/sentiment/stream">client.reports.<a href="./src/resources/reports/reports.ts">streamSentimentV2</a>({ ...params }) -> void</code>
+- <code title="post /v2/reports/sentiment/stream">client.reports.<a href="./src/resources/reports/reports.ts">streamSentimentV2</a>({ ...params }) -> ReportStreamSentimentV2Response</code>
 - <code title="post /v1/reports/visibility/stream">client.reports.<a href="./src/resources/reports/reports.ts">streamVisibility</a>({ ...params }) -> ReportStreamVisibilityResponse</code>
-- <code title="post /v2/reports/visibility/stream">client.reports.<a href="./src/resources/reports/reports.ts">streamVisibilityV2</a>({ ...params }) -> void</code>
+- <code title="post /v2/reports/visibility/stream">client.reports.<a href="./src/resources/reports/reports.ts">streamVisibilityV2</a>({ ...params }) -> ReportStreamVisibilityV2Response</code>
 - <code title="post /v1/reports/visibility">client.reports.<a href="./src/resources/reports/reports.ts">visibility</a>({ ...params }) -> ReportResponse</code>
 
 ## WebSearchResults
@@ -217,22 +222,24 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/reports/factcheck/factcheck.ts">FactcheckQueryScoresResponse</a></code>
+- <code><a href="./src/resources/reports/factcheck/factcheck.ts">FactcheckStreamScoresResponse</a></code>
 
 Methods:
 
 - <code title="post /v2/reports/factcheck">client.reports.factcheck.<a href="./src/resources/reports/factcheck/factcheck.ts">queryScores</a>({ ...params }) -> FactcheckQueryScoresResponse</code>
-- <code title="post /v2/reports/factcheck/stream">client.reports.factcheck.<a href="./src/resources/reports/factcheck/factcheck.ts">streamScores</a>({ ...params }) -> void</code>
+- <code title="post /v2/reports/factcheck/stream">client.reports.factcheck.<a href="./src/resources/reports/factcheck/factcheck.ts">streamScores</a>({ ...params }) -> FactcheckStreamScoresResponse</code>
 
 ### Claims
 
 Types:
 
 - <code><a href="./src/resources/reports/factcheck/claims.ts">ClaimQueryClaimsResponse</a></code>
+- <code><a href="./src/resources/reports/factcheck/claims.ts">ClaimStreamClaimsResponse</a></code>
 
 Methods:
 
 - <code title="post /v2/reports/factcheck/claims">client.reports.factcheck.claims.<a href="./src/resources/reports/factcheck/claims.ts">queryClaims</a>({ ...params }) -> ClaimQueryClaimsResponse</code>
-- <code title="post /v2/reports/factcheck/claims/stream">client.reports.factcheck.claims.<a href="./src/resources/reports/factcheck/claims.ts">streamClaims</a>({ ...params }) -> void</code>
+- <code title="post /v2/reports/factcheck/claims/stream">client.reports.factcheck.claims.<a href="./src/resources/reports/factcheck/claims.ts">streamClaims</a>({ ...params }) -> ClaimStreamClaimsResponse</code>
 
 # Logs
 

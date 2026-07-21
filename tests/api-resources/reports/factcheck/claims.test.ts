@@ -11,7 +11,7 @@ describe('resource claims', () => {
   // Mock server tests are disabled
   test.skip('queryClaims: only required params', async () => {
     const responsePromise = client.reports.factcheck.claims.queryClaims({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
     });
@@ -27,7 +27,7 @@ describe('resource claims', () => {
   // Mock server tests are disabled
   test.skip('queryClaims: required and optional params', async () => {
     const response = await client.reports.factcheck.claims.queryClaims({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
       cursor: 'cursor',
@@ -48,7 +48,7 @@ describe('resource claims', () => {
   // Mock server tests are disabled
   test.skip('streamClaims: only required params', async () => {
     const responsePromise = client.reports.factcheck.claims.streamClaims({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
     });
@@ -64,7 +64,7 @@ describe('resource claims', () => {
   // Mock server tests are disabled
   test.skip('streamClaims: required and optional params', async () => {
     const response = await client.reports.factcheck.claims.streamClaims({
-      category_id: 'category_id',
+      category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       end_date: 'end_date',
       start_date: 'start_date',
       cursor: 'cursor',
