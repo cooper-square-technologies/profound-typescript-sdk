@@ -1411,6 +1411,15 @@ export interface ReportQueryCitationsParams {
   cursor?: string | null;
 
   /**
+   * What each row represents: `domain` (default), `page`, or `citation_category`.
+   * Legacy: `group_by: ["page"]` (with `entity` omitted) is still accepted and is
+   * equivalent to `entity: "page"`. `citation_category` uses the dashboard split
+   * view: a citation counts under both its page-level and domain-level category, so
+   * category shares can sum to more than 100%.
+   */
+  entity?: 'domain' | 'page' | 'citation_category';
+
+  /**
    * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
    */
   filter?: ReportQueryCitationsParams.Filter | null;
@@ -1432,8 +1441,8 @@ export interface ReportQueryCitationsParams {
   metrics?: Array<'count' | 'citation_share' | 'rank' | 'first_cited_at'> | null;
 
   /**
-   * `all` (every cited domain) or `owned` (only your owned domains, for easy
-   * client-side totals).
+   * `all` (every cited domain) or `owned` (only your owned domains). Applies to
+   * `entity=domain`.
    */
   scope?: 'all' | 'owned';
 }
@@ -2198,6 +2207,15 @@ export interface ReportStreamCitationsV2Params {
   cursor?: string | null;
 
   /**
+   * What each row represents: `domain` (default), `page`, or `citation_category`.
+   * Legacy: `group_by: ["page"]` (with `entity` omitted) is still accepted and is
+   * equivalent to `entity: "page"`. `citation_category` uses the dashboard split
+   * view: a citation counts under both its page-level and domain-level category, so
+   * category shares can sum to more than 100%.
+   */
+  entity?: 'domain' | 'page' | 'citation_category';
+
+  /**
    * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
    */
   filter?: ReportStreamCitationsV2Params.Filter | null;
@@ -2219,8 +2237,8 @@ export interface ReportStreamCitationsV2Params {
   metrics?: Array<'count' | 'citation_share' | 'rank' | 'first_cited_at'> | null;
 
   /**
-   * `all` (every cited domain) or `owned` (only your owned domains, for easy
-   * client-side totals).
+   * `all` (every cited domain) or `owned` (only your owned domains). Applies to
+   * `entity=domain`.
    */
   scope?: 'all' | 'owned';
 }

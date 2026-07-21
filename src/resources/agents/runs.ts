@@ -29,8 +29,8 @@ export class Runs extends APIResource {
     params: RunRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<RunRetrieveResponse> {
-    const { agent_id } = params;
-    return this._client.get(path`/v1/agents/${agent_id}/runs/${runID}`, options);
+    const { agent_id, ...query } = params;
+    return this._client.get(path`/v1/agents/${agent_id}/runs/${runID}`, { query, ...options });
   }
 }
 
@@ -99,6 +99,64 @@ export interface RunRetrieveResponse {
    * When the run started, if it has started.
    */
   started_at?: string | null;
+
+  /**
+   * Ordered step-by-step execution trace — one entry per node that ran, in execution
+   * order. Always present once the run has executed a node; per-node `outputs`
+   * inside each step are included only when the request asks for `verbose`.
+   */
+  steps?: Array<RunRetrieveResponse.Step> | null;
+}
+
+export namespace RunRetrieveResponse {
+  /**
+   * One executed node in a run's step trace, in execution order.
+   *
+   * The lightweight fields always ship; `outputs` is populated only when the
+   * run-retrieve request asks for `verbose`.
+   */
+  export interface Step {
+    /**
+     * ID of the node that ran, within its agent graph.
+     */
+    node_id: string;
+
+    /**
+     * Kind of node, e.g. "profound_visibility", "llm", "conditional".
+     */
+    node_type: string;
+
+    /**
+     * Terminal status of this node execution.
+     */
+    status: string;
+
+    /**
+     * Human-readable title of the node.
+     */
+    title: string;
+
+    /**
+     * Wall-clock seconds the node took, if recorded.
+     */
+    elapsed_time?: number | null;
+
+    /**
+     * Failure detail for this node, when it failed.
+     */
+    error_message?: string | null;
+
+    /**
+     * When the node finished, if it has.
+     */
+    finished_at?: string | null;
+
+    /**
+     * Raw output payload this node produced. Included only when the request asks for
+     * `verbose`.
+     */
+    outputs?: { [key: string]: unknown } | null;
+  }
 }
 
 export interface RunCreateParams {
@@ -111,9 +169,14 @@ export interface RunCreateParams {
 
 export interface RunRetrieveParams {
   /**
-   * The ID of the agent that owns the run.
+   * Path param: The ID of the agent that owns the run.
    */
   agent_id: string;
+
+  /**
+   * Query param: Include each step's raw `outputs` payload in the execution trace.
+   */
+  verbose?: boolean;
 }
 
 export declare namespace Runs {

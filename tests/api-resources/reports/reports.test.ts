@@ -251,6 +251,7 @@ describe('resource reports', () => {
       end_date: 'end_date',
       start_date: 'start_date',
       cursor: 'cursor',
+      entity: 'domain',
       filter: {
         and: [],
         field: 'field',
@@ -570,6 +571,7 @@ describe('resource reports', () => {
       end_date: 'end_date',
       start_date: 'start_date',
       cursor: 'cursor',
+      entity: 'domain',
       filter: {
         and: [],
         field: 'field',

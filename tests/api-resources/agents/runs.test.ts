@@ -50,6 +50,7 @@ describe('resource runs', () => {
   test.skip('retrieve: required and optional params', async () => {
     const response = await client.agents.runs.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
       agent_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      verbose: true,
     });
   });
 });
