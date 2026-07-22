@@ -297,6 +297,8 @@ export namespace AccuracyCreateBreakdownResponse {
 
     groupNames?: { [key: string]: string } | null;
 
+    hasScore?: boolean;
+
     inaccurateCountChange?: number | null;
 
     promptCount?: number | null;
@@ -729,6 +731,8 @@ export interface AccuracyCreateBreakdownParams {
 
   group_by?: Array<'platform' | 'topic' | 'prompt' | 'tag' | 'region' | 'persona' | 'theme' | 'date'> | null;
 
+  include_groups_without_scores?: boolean;
+
   include_no_persona?: boolean;
 
   include_no_tag?: boolean;
@@ -736,6 +740,11 @@ export interface AccuracyCreateBreakdownParams {
   limit?: number;
 
   offset?: number;
+
+  /**
+   * Canonical grouped pagination plan for Accuracy Breakdown rows.
+   */
+  pagination?: AccuracyCreateBreakdownParams.Pagination | null;
 
   persona_ids?: Array<string> | null;
 
@@ -756,6 +765,21 @@ export interface AccuracyCreateBreakdownParams {
   tag_ids?: Array<string> | null;
 
   topic_ids?: Array<string> | null;
+}
+
+export namespace AccuracyCreateBreakdownParams {
+  /**
+   * Canonical grouped pagination plan for Accuracy Breakdown rows.
+   */
+  export interface Pagination {
+    dimension?: 'group';
+
+    direction?: 'asc' | 'desc' | null;
+
+    metric?: 'accuracy' | 'inaccurate_claims';
+
+    mode?: 'current' | 'delta';
+  }
 }
 
 export interface AccuracyCreateCitationAnalysisParams {
