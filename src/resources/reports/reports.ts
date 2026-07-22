@@ -592,7 +592,7 @@ export interface ReportResponse {
 export interface ReportResult {
   dimensions: Array<string>;
 
-  metrics: Array<number>;
+  metrics: Array<number | string>;
 }
 
 /**
@@ -2511,6 +2511,11 @@ export interface ReportGetBotsReportV2Params {
   pagination?: Shared.Pagination;
 
   tags?: Array<string>;
+
+  /**
+   * IANA timezone name for date bucketing and filter boundaries.
+   */
+  timezone?: string;
 }
 
 export namespace ReportGetBotsReportV2Params {
@@ -2728,6 +2733,11 @@ export interface ReportGetReferralsReportV2Params {
    * Pagination settings for the report results.
    */
   pagination?: Shared.Pagination;
+
+  /**
+   * IANA timezone name for date bucketing and filter boundaries.
+   */
+  timezone?: string;
 }
 
 export namespace ReportGetReferralsReportV2Params {

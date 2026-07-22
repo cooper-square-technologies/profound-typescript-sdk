@@ -135,6 +135,7 @@ describe('resource reports', () => {
       organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       pagination: { limit: 1, offset: 0 },
       tags: ['string'],
+      timezone: 'timezone',
     });
   });
 
@@ -225,6 +226,7 @@ describe('resource reports', () => {
       order_by: { date: 'asc' },
       organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       pagination: { limit: 1, offset: 0 },
+      timezone: 'timezone',
     });
   });
 

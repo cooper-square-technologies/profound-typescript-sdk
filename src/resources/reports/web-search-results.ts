@@ -70,7 +70,7 @@ export namespace WebSearchResultQueryResponse {
   export interface Data {
     dimensions: Array<string | null>;
 
-    metrics: Array<number>;
+    metrics: Array<number | string>;
   }
 }
 
