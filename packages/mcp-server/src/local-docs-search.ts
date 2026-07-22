@@ -256,7 +256,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     name: 'topics',
     endpoint: '/v1/org/categories/{category_id}/topics',
     httpMethod: 'get',
-    summary: 'Get Topics',
+    summary: 'Get Category Topics',
     description: 'Get the topics for a specific category.',
     stainlessPath: '(resource) organizations.categories > (method) topics',
     qualified: 'client.organizations.categories.topics',
@@ -285,7 +285,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     name: 'tags',
     endpoint: '/v1/org/categories/{category_id}/tags',
     httpMethod: 'get',
-    summary: 'Get Tags',
+    summary: 'Get Category Tags',
     description: 'Get the tags for a specific category.',
     stainlessPath: '(resource) organizations.categories > (method) tags',
     qualified: 'client.organizations.categories.tags',
@@ -359,15 +359,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     name: 'assets',
     endpoint: '/v1/org/categories/{category_id}/assets',
     httpMethod: 'get',
-    summary: 'Get Assets',
-    description: 'Get Assets',
+    summary: 'Get Category Assets',
+    description: 'Get Category Assets',
     stainlessPath: '(resource) organizations.categories > (method) assets',
     qualified: 'client.organizations.categories.assets',
     params: ['category_id: string;'],
     response:
       '{ id: string; created_at: string; is_owned: boolean; logo_url: string; name: string; website: string; alternate_domains?: string[]; }[]',
     markdown:
-      "## assets\n\n`client.organizations.categories.assets(category_id: string): { id: string; created_at: string; is_owned: boolean; logo_url: string; name: string; website: string; alternate_domains?: string[]; }[]`\n\n**get** `/v1/org/categories/{category_id}/assets`\n\nGet Assets\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ id: string; created_at: string; is_owned: boolean; logo_url: string; name: string; website: string; alternate_domains?: string[]; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.assets('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
+      "## assets\n\n`client.organizations.categories.assets(category_id: string): { id: string; created_at: string; is_owned: boolean; logo_url: string; name: string; website: string; alternate_domains?: string[]; }[]`\n\n**get** `/v1/org/categories/{category_id}/assets`\n\nGet Category Assets\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ id: string; created_at: string; is_owned: boolean; logo_url: string; name: string; website: string; alternate_domains?: string[]; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.assets('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
     perLanguage: {
       typescript: {
         method: 'client.organizations.categories.assets',
@@ -389,14 +389,14 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     name: 'get_category_personas',
     endpoint: '/v1/org/categories/{category_id}/personas',
     httpMethod: 'get',
-    summary: 'Get Personas',
-    description: 'Get Personas',
+    summary: 'Get Category Personas',
+    description: 'Get Category Personas',
     stainlessPath: '(resource) organizations.categories > (method) get_category_personas',
     qualified: 'client.organizations.categories.getCategoryPersonas',
     params: ['category_id: string;'],
     response: '{ data: { id: string; name: string; persona: object; }[]; }',
     markdown:
-      "## get_category_personas\n\n`client.organizations.categories.getCategoryPersonas(category_id: string): { data: object[]; }`\n\n**get** `/v1/org/categories/{category_id}/personas`\n\nGet Personas\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ data: { id: string; name: string; persona: object; }[]; }`\n\n  - `data: { id: string; name: string; persona: { behavior: object; demographics: object; employment: object; }; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.getCategoryPersonas('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
+      "## get_category_personas\n\n`client.organizations.categories.getCategoryPersonas(category_id: string): { data: object[]; }`\n\n**get** `/v1/org/categories/{category_id}/personas`\n\nGet Category Personas\n\n### Parameters\n\n- `category_id: string`\n\n### Returns\n\n- `{ data: { id: string; name: string; persona: object; }[]; }`\n\n  - `data: { id: string; name: string; persona: { behavior: object; demographics: object; employment: object; }; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.organizations.categories.getCategoryPersonas('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(response);\n```",
     perLanguage: {
       typescript: {
         method: 'client.organizations.categories.getCategoryPersonas',
@@ -523,7 +523,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     name: 'retrieve_regions',
     endpoint: '/v1/org/categories/{category_id}/regions',
     httpMethod: 'get',
-    summary: 'Get Regions',
+    summary: 'Get Category Regions',
     description: 'Get the regions for a specific category.',
     stainlessPath: '(resource) organizations.categories > (method) retrieve_regions',
     qualified: 'client.organizations.categories.retrieveRegions',
