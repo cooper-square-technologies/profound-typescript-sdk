@@ -91,6 +91,11 @@ export class Reports extends APIResource {
   /**
    * Get citations for a given category.
    *
+   * The `mentioned` filter supports `is true` and `is false`. It uses the latest
+   * page analysis available at or before `end_date`; pages without an analysis by
+   * then are excluded from both values. `citation_share` keeps all otherwise
+   * eligible citations in its denominator when this filter is used.
+   *
    * @example
    * ```ts
    * const response = await client.reports.citations({
@@ -345,7 +350,7 @@ export class Reports extends APIResource {
   }
 
   /**
-   * Stream Citations
+   * Stream citations with the same filter semantics as the non-streaming route.
    *
    * @example
    * ```ts
@@ -2326,6 +2331,7 @@ export interface ReportCitationsParams {
     | ReportCitationsParams.CitationCategoryFilter
     | Shared.PromptFilter
     | PromptIDFilter
+    | ReportCitationsParams.MentionedFilter
   >;
 
   /**
@@ -2364,6 +2370,17 @@ export namespace ReportCitationsParams {
       | 'not_contains_case_insensitive';
 
     value: string | Array<string>;
+  }
+
+  /**
+   * Filter citation pages by whether they mention an owned category asset.
+   */
+  export interface MentionedFilter {
+    field: 'mentioned';
+
+    operator: 'is';
+
+    value: boolean | Array<boolean>;
   }
 }
 
@@ -3569,6 +3586,7 @@ export interface ReportStreamCitationsParams {
     | ReportStreamCitationsParams.CitationCategoryFilter
     | Shared.PromptFilter
     | PromptIDFilter
+    | ReportStreamCitationsParams.MentionedFilter
   >;
 
   /**
@@ -3607,6 +3625,17 @@ export namespace ReportStreamCitationsParams {
       | 'not_contains_case_insensitive';
 
     value: string | Array<string>;
+  }
+
+  /**
+   * Filter citation pages by whether they mention an owned category asset.
+   */
+  export interface MentionedFilter {
+    field: 'mentioned';
+
+    operator: 'is';
+
+    value: boolean | Array<boolean>;
   }
 }
 
