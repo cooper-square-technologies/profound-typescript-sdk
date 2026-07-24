@@ -210,6 +210,7 @@ const fuse = new Fuse(
     'client.projects.tasks.retrieve',
     'client.projects.tasks.update',
     'client.projects.tasks.updateStatus',
+    'client.integrations.list',
   ],
   { threshold: 1, shouldSort: true },
 );

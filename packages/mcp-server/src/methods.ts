@@ -622,6 +622,12 @@ export const sdkMethods: SdkMethod[] = [
     httpMethod: 'post',
     httpPath: '/v1/projects/{project_id}/tasks/{task_id}/status',
   },
+  {
+    clientCallName: 'client.integrations.list',
+    fullyQualifiedName: 'integrations.list',
+    httpMethod: 'get',
+    httpPath: '/v1/integrations',
+  },
 ];
 
 function allowedMethodsForCodeTool(options: McpOptions | undefined): SdkMethod[] | undefined {

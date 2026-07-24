@@ -3864,6 +3864,40 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
     },
   },
+  {
+    name: 'list',
+    endpoint: '/v1/integrations',
+    httpMethod: 'get',
+    summary: 'List Integrations',
+    description:
+      "List the organization's connected integrations.\n\nReturns every connected integration by default, each with its lifecycle\n`status`; pass `status_filter` to narrow to one status (e.g. `needs_reauth`).\nEach row's `integration_id` is the value a hub-backed node needs bound to it.",
+    stainlessPath: '(resource) integrations > (method) list',
+    qualified: 'client.integrations.list',
+    params: [
+      'organization_id?: string;',
+      'provider?: string;',
+      "status_filter?: 'active' | 'pending' | 'needs_reauth' | 'revoking' | 'revoked';",
+    ],
+    response:
+      "{ data: { id: string; label: string; level: 'org' | 'user'; provider: string; status: string; }[]; }",
+    markdown:
+      "## list\n\n`client.integrations.list(organization_id?: string, provider?: string, status_filter?: 'active' | 'pending' | 'needs_reauth' | 'revoking' | 'revoked'): { data: object[]; }`\n\n**get** `/v1/integrations`\n\nList the organization's connected integrations.\n\nReturns every connected integration by default, each with its lifecycle\n`status`; pass `status_filter` to narrow to one status (e.g. `needs_reauth`).\nEach row's `integration_id` is the value a hub-backed node needs bound to it.\n\n### Parameters\n\n- `organization_id?: string`\n  Organization scope for API keys that can access multiple organizations.\n\n- `provider?: string`\n  Filter to a single connector/provider id, e.g. `google_drive`.\n\n- `status_filter?: 'active' | 'pending' | 'needs_reauth' | 'revoking' | 'revoked'`\n  Filter to one lifecycle status. Omitted returns all statuses.\n\n### Returns\n\n- `{ data: { id: string; label: string; level: 'org' | 'user'; provider: string; status: string; }[]; }`\n  Connected integrations visible to the caller's org/user context.\n\n  - `data: { id: string; label: string; level: 'org' | 'user'; provider: string; status: string; }[]`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst integrations = await client.integrations.list();\n\nconsole.log(integrations);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.integrations.list',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst integrations = await client.integrations.list();\n\nconsole.log(integrations.data);",
+      },
+      python: {
+        method: 'integrations.list',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nintegrations = client.integrations.list()\nprint(integrations.data)',
+      },
+      http: {
+        example: 'curl https://api.tryprofound.com/v1/integrations \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
 ];
 
 const EMBEDDED_READMES: { language: string; content: string }[] = [

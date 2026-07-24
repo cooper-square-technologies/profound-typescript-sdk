@@ -16,6 +16,7 @@ export {
   type AgentRetrieveGraphParams,
 } from './agents/agents';
 export { Content } from './content/content';
+export { Integrations, type IntegrationListResponse, type IntegrationListParams } from './integrations';
 export {
   KnowledgeBases,
   type KnowledgeBaseListResponse,

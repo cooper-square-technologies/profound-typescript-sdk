@@ -20,6 +20,7 @@ import { APIPromise } from './core/api-promise';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
+import { IntegrationListParams, IntegrationListResponse, Integrations } from './resources/integrations';
 import {
   PromptAnswersParams,
   PromptAnswersResponse,
@@ -914,6 +915,7 @@ export class Profound {
   agents: API.Agents = new API.Agents(this);
   knowledgeBases: API.KnowledgeBases = new API.KnowledgeBases(this);
   projects: API.Projects = new API.Projects(this);
+  integrations: API.Integrations = new API.Integrations(this);
 }
 
 Profound.Organizations = Organizations;
@@ -924,6 +926,7 @@ Profound.Content = Content;
 Profound.Agents = Agents;
 Profound.KnowledgeBases = KnowledgeBases;
 Profound.Projects = Projects;
+Profound.Integrations = Integrations;
 
 export declare namespace Profound {
   export type RequestOptions = Opts.RequestOptions;
@@ -1047,6 +1050,12 @@ export declare namespace Profound {
     type ProjectArchiveParams as ProjectArchiveParams,
     type ProjectGetStatusParams as ProjectGetStatusParams,
     type ProjectUnarchiveParams as ProjectUnarchiveParams,
+  };
+
+  export {
+    Integrations as Integrations,
+    type IntegrationListResponse as IntegrationListResponse,
+    type IntegrationListParams as IntegrationListParams,
   };
 
   export type AnalysisTypeFilter = API.AnalysisTypeFilter;

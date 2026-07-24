@@ -392,3 +392,13 @@ Methods:
 - <code title="get /v1/projects/{project_id}/tasks">client.projects.tasks.<a href="./src/resources/projects/tasks.ts">list</a>(projectID, { ...params }) -> TaskListResponse</code>
 - <code title="delete /v1/projects/{project_id}/tasks/{task_id}">client.projects.tasks.<a href="./src/resources/projects/tasks.ts">delete</a>(taskID, { ...params }) -> void</code>
 - <code title="post /v1/projects/{project_id}/tasks/{task_id}/status">client.projects.tasks.<a href="./src/resources/projects/tasks.ts">updateStatus</a>(taskID, { ...params }) -> TaskUpdateStatusResponse</code>
+
+# Integrations
+
+Types:
+
+- <code><a href="./src/resources/integrations.ts">IntegrationListResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/integrations">client.integrations.<a href="./src/resources/integrations.ts">list</a>({ ...params }) -> IntegrationListResponse</code>
