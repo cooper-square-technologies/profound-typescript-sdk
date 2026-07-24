@@ -2634,7 +2634,9 @@ export interface ReportGetReferralsReportParams {
 
 export namespace ReportGetReferralsReportParams {
   /**
-   * Filter by referral source
+   * Filter by referral source. Values are not enum-constrained so the platform's
+   * shared provider filter can pass through IDs that have bot data but no referral
+   * data.
    */
   export interface ReferralSourceFilter {
     field: 'referral_source';
@@ -2650,31 +2652,7 @@ export namespace ReportGetReferralsReportParams {
       | 'contains_case_insensitive'
       | 'not_contains_case_insensitive';
 
-    value:
-      | 'openai'
-      | 'none'
-      | 'anthropic'
-      | 'deepseek'
-      | 'perplexity'
-      | 'you'
-      | 'grok'
-      | 'microsoft'
-      | 'gemini'
-      | 'internal'
-      | 'other'
-      | Array<
-          | 'openai'
-          | 'none'
-          | 'anthropic'
-          | 'deepseek'
-          | 'perplexity'
-          | 'you'
-          | 'grok'
-          | 'microsoft'
-          | 'gemini'
-          | 'internal'
-          | 'other'
-        >;
+    value: string | Array<string>;
   }
 
   export interface MetricFilter {
@@ -2759,7 +2737,9 @@ export interface ReportGetReferralsReportV2Params {
 
 export namespace ReportGetReferralsReportV2Params {
   /**
-   * Filter by referral source
+   * Filter by referral source. Values are not enum-constrained so the platform's
+   * shared provider filter can pass through IDs that have bot data but no referral
+   * data.
    */
   export interface ReferralSourceFilter {
     field: 'referral_source';
@@ -2775,31 +2755,7 @@ export namespace ReportGetReferralsReportV2Params {
       | 'contains_case_insensitive'
       | 'not_contains_case_insensitive';
 
-    value:
-      | 'openai'
-      | 'none'
-      | 'anthropic'
-      | 'deepseek'
-      | 'perplexity'
-      | 'you'
-      | 'grok'
-      | 'microsoft'
-      | 'gemini'
-      | 'internal'
-      | 'other'
-      | Array<
-          | 'openai'
-          | 'none'
-          | 'anthropic'
-          | 'deepseek'
-          | 'perplexity'
-          | 'you'
-          | 'grok'
-          | 'microsoft'
-          | 'gemini'
-          | 'internal'
-          | 'other'
-        >;
+    value: string | Array<string>;
   }
 
   /**
