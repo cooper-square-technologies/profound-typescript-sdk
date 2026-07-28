@@ -161,6 +161,8 @@ export namespace PromptAnswersV2Response {
   export interface Data {
     analysis_types?: Array<string> | null;
 
+    citation_details?: Array<Data.CitationDetail> | null;
+
     citations?: Array<string> | null;
 
     date?: string | null;
@@ -199,6 +201,24 @@ export namespace PromptAnswersV2Response {
   }
 
   export namespace Data {
+    export interface CitationDetail {
+      clean_url: string;
+
+      hostname: string;
+
+      path: string;
+
+      title: string;
+
+      url: string;
+
+      citation_category?: string | null;
+
+      first_cited_at?: string | null;
+
+      text?: string | null;
+    }
+
     /**
      * An `{id, name}` reference for a grouped dimension value (model, topic, region,
      * …).
@@ -316,6 +336,8 @@ export namespace PromptStreamAnswersV2Response {
   export interface AnswerRow {
     analysis_types?: Array<string> | null;
 
+    citation_details?: Array<AnswerRow.CitationDetail> | null;
+
     citations?: Array<string> | null;
 
     date?: string | null;
@@ -354,6 +376,24 @@ export namespace PromptStreamAnswersV2Response {
   }
 
   export namespace AnswerRow {
+    export interface CitationDetail {
+      clean_url: string;
+
+      hostname: string;
+
+      path: string;
+
+      title: string;
+
+      url: string;
+
+      citation_category?: string | null;
+
+      first_cited_at?: string | null;
+
+      text?: string | null;
+    }
+
     /**
      * An `{id, name}` reference for a grouped dimension value (model, topic, region,
      * …).
@@ -502,8 +542,9 @@ export interface PromptAnswersV2Params {
   /**
    * Which row fields to return: `run_id`, `date`, `model`, `topic`, `topic_id`,
    * `region`, `persona`, `tags`, `prompt`, `prompt_id`, `response`, `mentions`,
-   * `citations`, `search_queries`, `analysis_types`, `sentiment_claims`. Omit for
-   * all of them.
+   * `citations`, `citation_details`, `search_queries`, `analysis_types`,
+   * `sentiment_claims`. Omit for all fields except `citation_details`, which must be
+   * requested explicitly because it is expensive.
    */
   include?: Array<
     | 'run_id'
@@ -519,6 +560,7 @@ export interface PromptAnswersV2Params {
     | 'response'
     | 'mentions'
     | 'citations'
+    | 'citation_details'
     | 'search_queries'
     | 'analysis_types'
     | 'sentiment_claims'
@@ -577,8 +619,9 @@ export interface PromptStreamAnswersV2Params {
   /**
    * Which row fields to return: `run_id`, `date`, `model`, `topic`, `topic_id`,
    * `region`, `persona`, `tags`, `prompt`, `prompt_id`, `response`, `mentions`,
-   * `citations`, `search_queries`, `analysis_types`, `sentiment_claims`. Omit for
-   * all of them.
+   * `citations`, `citation_details`, `search_queries`, `analysis_types`,
+   * `sentiment_claims`. Omit for all fields except `citation_details`, which must be
+   * requested explicitly because it is expensive.
    */
   include?: Array<
     | 'run_id'
@@ -594,6 +637,7 @@ export interface PromptStreamAnswersV2Params {
     | 'response'
     | 'mentions'
     | 'citations'
+    | 'citation_details'
     | 'search_queries'
     | 'analysis_types'
     | 'sentiment_claims'
