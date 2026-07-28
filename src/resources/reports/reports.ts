@@ -2866,6 +2866,9 @@ export interface ReportQueryFanoutsParams {
    */
   end_date: string;
 
+  /**
+   * Metrics to return for each row.
+   */
   metrics: Array<'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'>;
 
   /**

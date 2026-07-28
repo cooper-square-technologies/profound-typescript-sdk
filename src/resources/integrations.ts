@@ -41,6 +41,14 @@ export namespace IntegrationListResponse {
     id: string;
 
     /**
+     * Connected account identity as the provider reports it, e.g. the Google account
+     * email or the WordPress site URL. This is what tells two connections of the same
+     * provider apart; `label` often repeats across them. Null when the provider
+     * reports no identity.
+     */
+    account: string | null;
+
+    /**
      * Human-readable account label for the connection.
      */
     label: string;
