@@ -723,36 +723,31 @@ export namespace ReportQueryCitationsResponse {
     first_cited_at?: string | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     model?: Data.Model | null;
 
     page?: string | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     persona?: Data.Persona | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     prompt?: Data.Prompt | null;
 
     rank?: number | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     region?: Data.Region | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     topic?: Data.Topic | null;
 
@@ -761,8 +756,7 @@ export namespace ReportQueryCitationsResponse {
 
   export namespace Data {
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Model {
       id?: string | null;
@@ -771,8 +765,7 @@ export namespace ReportQueryCitationsResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Persona {
       id?: string | null;
@@ -781,8 +774,7 @@ export namespace ReportQueryCitationsResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Prompt {
       id?: string | null;
@@ -791,8 +783,7 @@ export namespace ReportQueryCitationsResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Region {
       id?: string | null;
@@ -801,8 +792,7 @@ export namespace ReportQueryCitationsResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Topic {
       id?: string | null;
@@ -966,22 +956,19 @@ export namespace ReportQuerySentimentResponse {
     cited_websites?: Array<string> | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     claim?: Data.Claim | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     competitor?: Data.Competitor | null;
 
     date?: string | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     model?: Data.Model | null;
 
@@ -990,8 +977,7 @@ export namespace ReportQuerySentimentResponse {
     occurrence?: number | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     persona?: Data.Persona | null;
 
@@ -1005,40 +991,34 @@ export namespace ReportQuerySentimentResponse {
     previous?: Data.Previous | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     prompt?: Data.Prompt | null;
 
     rank?: number | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     region?: Data.Region | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     run?: Data.Run | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     tag?: Data.Tag | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     theme?: Data.Theme | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     topic?: Data.Topic | null;
 
@@ -1047,8 +1027,7 @@ export namespace ReportQuerySentimentResponse {
 
   export namespace Data {
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Claim {
       id?: string | null;
@@ -1057,8 +1036,7 @@ export namespace ReportQuerySentimentResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Competitor {
       id?: string | null;
@@ -1067,8 +1045,7 @@ export namespace ReportQuerySentimentResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Model {
       id?: string | null;
@@ -1077,8 +1054,7 @@ export namespace ReportQuerySentimentResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Persona {
       id?: string | null;
@@ -1100,8 +1076,7 @@ export namespace ReportQuerySentimentResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Prompt {
       id?: string | null;
@@ -1110,8 +1085,7 @@ export namespace ReportQuerySentimentResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Region {
       id?: string | null;
@@ -1120,8 +1094,7 @@ export namespace ReportQuerySentimentResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Run {
       id?: string | null;
@@ -1130,8 +1103,7 @@ export namespace ReportQuerySentimentResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Tag {
       id?: string | null;
@@ -1140,8 +1112,7 @@ export namespace ReportQuerySentimentResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Theme {
       id?: string | null;
@@ -1150,8 +1121,7 @@ export namespace ReportQuerySentimentResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Topic {
       id?: string | null;
@@ -1239,20 +1209,17 @@ export namespace ReportQueryVisibilityResponse {
     date?: string | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     model?: Data.Model | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     persona?: Data.Persona | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     prompt?: Data.Prompt | null;
 
@@ -1262,16 +1229,14 @@ export namespace ReportQueryVisibilityResponse {
     rank?: number | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     region?: Data.Region | null;
 
     share_of_voice?: number | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     topic?: Data.Topic | null;
 
@@ -1291,8 +1256,7 @@ export namespace ReportQueryVisibilityResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Model {
       id?: string | null;
@@ -1301,8 +1265,7 @@ export namespace ReportQueryVisibilityResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Persona {
       id?: string | null;
@@ -1311,8 +1274,7 @@ export namespace ReportQueryVisibilityResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Prompt {
       id?: string | null;
@@ -1321,8 +1283,7 @@ export namespace ReportQueryVisibilityResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Region {
       id?: string | null;
@@ -1331,8 +1292,7 @@ export namespace ReportQueryVisibilityResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Topic {
       id?: string | null;
@@ -1599,36 +1559,31 @@ export namespace ReportStreamCitationsV2Response {
     first_cited_at?: string | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     model?: CitationRow.Model | null;
 
     page?: string | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     persona?: CitationRow.Persona | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     prompt?: CitationRow.Prompt | null;
 
     rank?: number | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     region?: CitationRow.Region | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     topic?: CitationRow.Topic | null;
 
@@ -1637,8 +1592,7 @@ export namespace ReportStreamCitationsV2Response {
 
   export namespace CitationRow {
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Model {
       id?: string | null;
@@ -1647,8 +1601,7 @@ export namespace ReportStreamCitationsV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Persona {
       id?: string | null;
@@ -1657,8 +1610,7 @@ export namespace ReportStreamCitationsV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Prompt {
       id?: string | null;
@@ -1667,8 +1619,7 @@ export namespace ReportStreamCitationsV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Region {
       id?: string | null;
@@ -1677,8 +1628,7 @@ export namespace ReportStreamCitationsV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Topic {
       id?: string | null;
@@ -1874,22 +1824,19 @@ export namespace ReportStreamSentimentV2Response {
     cited_websites?: Array<string> | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     claim?: SentimentRow.Claim | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     competitor?: SentimentRow.Competitor | null;
 
     date?: string | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     model?: SentimentRow.Model | null;
 
@@ -1898,8 +1845,7 @@ export namespace ReportStreamSentimentV2Response {
     occurrence?: number | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     persona?: SentimentRow.Persona | null;
 
@@ -1913,40 +1859,34 @@ export namespace ReportStreamSentimentV2Response {
     previous?: SentimentRow.Previous | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     prompt?: SentimentRow.Prompt | null;
 
     rank?: number | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     region?: SentimentRow.Region | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     run?: SentimentRow.Run | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     tag?: SentimentRow.Tag | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     theme?: SentimentRow.Theme | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     topic?: SentimentRow.Topic | null;
 
@@ -1955,8 +1895,7 @@ export namespace ReportStreamSentimentV2Response {
 
   export namespace SentimentRow {
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Claim {
       id?: string | null;
@@ -1965,8 +1904,7 @@ export namespace ReportStreamSentimentV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Competitor {
       id?: string | null;
@@ -1975,8 +1913,7 @@ export namespace ReportStreamSentimentV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Model {
       id?: string | null;
@@ -1985,8 +1922,7 @@ export namespace ReportStreamSentimentV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Persona {
       id?: string | null;
@@ -2008,8 +1944,7 @@ export namespace ReportStreamSentimentV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Prompt {
       id?: string | null;
@@ -2018,8 +1953,7 @@ export namespace ReportStreamSentimentV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Region {
       id?: string | null;
@@ -2028,8 +1962,7 @@ export namespace ReportStreamSentimentV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Run {
       id?: string | null;
@@ -2038,8 +1971,7 @@ export namespace ReportStreamSentimentV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Tag {
       id?: string | null;
@@ -2048,8 +1980,7 @@ export namespace ReportStreamSentimentV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Theme {
       id?: string | null;
@@ -2058,8 +1989,7 @@ export namespace ReportStreamSentimentV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Topic {
       id?: string | null;
@@ -2161,20 +2091,17 @@ export namespace ReportStreamVisibilityV2Response {
     date?: string | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     model?: VisibilityRow.Model | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     persona?: VisibilityRow.Persona | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     prompt?: VisibilityRow.Prompt | null;
 
@@ -2184,16 +2111,14 @@ export namespace ReportStreamVisibilityV2Response {
     rank?: number | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     region?: VisibilityRow.Region | null;
 
     share_of_voice?: number | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     topic?: VisibilityRow.Topic | null;
 
@@ -2213,8 +2138,7 @@ export namespace ReportStreamVisibilityV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Model {
       id?: string | null;
@@ -2223,8 +2147,7 @@ export namespace ReportStreamVisibilityV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Persona {
       id?: string | null;
@@ -2233,8 +2156,7 @@ export namespace ReportStreamVisibilityV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Prompt {
       id?: string | null;
@@ -2243,8 +2165,7 @@ export namespace ReportStreamVisibilityV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Region {
       id?: string | null;
@@ -2253,8 +2174,7 @@ export namespace ReportStreamVisibilityV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Topic {
       id?: string | null;

@@ -81,8 +81,7 @@ export namespace ClaimQueryClaimsResponse {
     inaccurate?: number | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     model?: Data.Model | null;
 
@@ -91,28 +90,24 @@ export namespace ClaimQueryClaimsResponse {
     occurrence?: number | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     persona?: Data.Persona | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     prompt?: Data.Prompt | null;
 
     reasoning?: string | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     region?: Data.Region | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     tag?: Data.Tag | null;
 
@@ -122,8 +117,7 @@ export namespace ClaimQueryClaimsResponse {
     theme?: string | Data.DimensionRef | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     topic?: Data.Topic | null;
 
@@ -216,8 +210,7 @@ export namespace ClaimQueryClaimsResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Model {
       id?: string | null;
@@ -234,8 +227,7 @@ export namespace ClaimQueryClaimsResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Persona {
       id?: string | null;
@@ -244,8 +236,7 @@ export namespace ClaimQueryClaimsResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Prompt {
       id?: string | null;
@@ -254,8 +245,7 @@ export namespace ClaimQueryClaimsResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Region {
       id?: string | null;
@@ -264,8 +254,7 @@ export namespace ClaimQueryClaimsResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Tag {
       id?: string | null;
@@ -274,8 +263,7 @@ export namespace ClaimQueryClaimsResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface DimensionRef {
       id?: string | null;
@@ -284,8 +272,7 @@ export namespace ClaimQueryClaimsResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Topic {
       id?: string | null;
@@ -425,8 +412,7 @@ export namespace ClaimStreamClaimsResponse {
     inaccurate?: number | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     model?: FactcheckClaimsRow.Model | null;
 
@@ -435,28 +421,24 @@ export namespace ClaimStreamClaimsResponse {
     occurrence?: number | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     persona?: FactcheckClaimsRow.Persona | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     prompt?: FactcheckClaimsRow.Prompt | null;
 
     reasoning?: string | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     region?: FactcheckClaimsRow.Region | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     tag?: FactcheckClaimsRow.Tag | null;
 
@@ -466,8 +448,7 @@ export namespace ClaimStreamClaimsResponse {
     theme?: string | FactcheckClaimsRow.DimensionRef | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     topic?: FactcheckClaimsRow.Topic | null;
 
@@ -560,8 +541,7 @@ export namespace ClaimStreamClaimsResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Model {
       id?: string | null;
@@ -578,8 +558,7 @@ export namespace ClaimStreamClaimsResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Persona {
       id?: string | null;
@@ -588,8 +567,7 @@ export namespace ClaimStreamClaimsResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Prompt {
       id?: string | null;
@@ -598,8 +576,7 @@ export namespace ClaimStreamClaimsResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Region {
       id?: string | null;
@@ -608,8 +585,7 @@ export namespace ClaimStreamClaimsResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Tag {
       id?: string | null;
@@ -618,8 +594,7 @@ export namespace ClaimStreamClaimsResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface DimensionRef {
       id?: string | null;
@@ -628,8 +603,7 @@ export namespace ClaimStreamClaimsResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Topic {
       id?: string | null;

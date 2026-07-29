@@ -87,44 +87,37 @@ export namespace FactcheckQueryScoresResponse {
     inaccurate?: number | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     model?: Data.Model | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     persona?: Data.Persona | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     prompt?: Data.Prompt | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     region?: Data.Region | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     tag?: Data.Tag | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     theme?: Data.Theme | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     topic?: Data.Topic | null;
 
@@ -139,8 +132,7 @@ export namespace FactcheckQueryScoresResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Model {
       id?: string | null;
@@ -149,8 +141,7 @@ export namespace FactcheckQueryScoresResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Persona {
       id?: string | null;
@@ -159,8 +150,7 @@ export namespace FactcheckQueryScoresResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Prompt {
       id?: string | null;
@@ -169,8 +159,7 @@ export namespace FactcheckQueryScoresResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Region {
       id?: string | null;
@@ -179,8 +168,7 @@ export namespace FactcheckQueryScoresResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Tag {
       id?: string | null;
@@ -189,8 +177,7 @@ export namespace FactcheckQueryScoresResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Theme {
       id?: string | null;
@@ -199,8 +186,7 @@ export namespace FactcheckQueryScoresResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Topic {
       id?: string | null;
@@ -324,44 +310,37 @@ export namespace FactcheckStreamScoresResponse {
     inaccurate?: number | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     model?: FactcheckScoreRow.Model | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     persona?: FactcheckScoreRow.Persona | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     prompt?: FactcheckScoreRow.Prompt | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     region?: FactcheckScoreRow.Region | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     tag?: FactcheckScoreRow.Tag | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     theme?: FactcheckScoreRow.Theme | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     topic?: FactcheckScoreRow.Topic | null;
 
@@ -376,8 +355,7 @@ export namespace FactcheckStreamScoresResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Model {
       id?: string | null;
@@ -386,8 +364,7 @@ export namespace FactcheckStreamScoresResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Persona {
       id?: string | null;
@@ -396,8 +373,7 @@ export namespace FactcheckStreamScoresResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Prompt {
       id?: string | null;
@@ -406,8 +382,7 @@ export namespace FactcheckStreamScoresResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Region {
       id?: string | null;
@@ -416,8 +391,7 @@ export namespace FactcheckStreamScoresResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Tag {
       id?: string | null;
@@ -426,8 +400,7 @@ export namespace FactcheckStreamScoresResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Theme {
       id?: string | null;
@@ -436,8 +409,7 @@ export namespace FactcheckStreamScoresResponse {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Topic {
       id?: string | null;

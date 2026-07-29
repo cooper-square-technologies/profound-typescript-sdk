@@ -170,8 +170,7 @@ export namespace PromptAnswersV2Response {
     mentions?: Array<string> | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     model?: Data.Model | null;
 
@@ -220,8 +219,7 @@ export namespace PromptAnswersV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Model {
       id?: string | null;
@@ -345,8 +343,7 @@ export namespace PromptStreamAnswersV2Response {
     mentions?: Array<string> | null;
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     model?: AnswerRow.Model | null;
 
@@ -395,8 +392,7 @@ export namespace PromptStreamAnswersV2Response {
     }
 
     /**
-     * An `{id, name}` reference for a grouped dimension value (model, topic, region,
-     * …).
+     * An `{id, name}` reference for a grouped dimension value.
      */
     export interface Model {
       id?: string | null;
