@@ -528,6 +528,13 @@ export namespace CategoryCreatePromptsParams {
     topic: CategoriesAPI.IDOrName;
 
     /**
+     * Optional client-generated UUID for the prompt. When provided, creation is
+     * idempotent: retrying a request with the same id will not create a duplicate
+     * prompt. Omit to have the server generate one (non-idempotent).
+     */
+    id?: string | null;
+
+    /**
      * Analysis types: 'visibility', 'sentiment', 'accuracy'. Defaults to
      * ['visibility'].
      */

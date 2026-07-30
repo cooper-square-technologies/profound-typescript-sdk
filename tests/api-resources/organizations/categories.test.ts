@@ -82,6 +82,7 @@ describe('resource categories', () => {
             prompt: 'x',
             regions: [{ id: 'id', name: 'name' }],
             topic: { id: 'id', name: 'name' },
+            id: 'id',
             analysis_types: ['visibility'],
             asset: { id: 'id', name: 'name' },
             personas: [{ id: 'id', name: 'name' }],
