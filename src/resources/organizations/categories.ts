@@ -49,6 +49,17 @@ export class Categories extends APIResource {
   }
 
   /**
+   * Get the citation categories for a category: the built-in buckets plus any custom
+   * categories.
+   */
+  getCitationCategories(
+    categoryID: string,
+    options?: RequestOptions,
+  ): APIPromise<CategoryGetCitationCategoriesResponse> {
+    return this._client.get(path`/v1/org/categories/${categoryID}/citation-categories`, options);
+  }
+
+  /**
    * Retrieve prompts in a category with optional filtering by type, topic, tag,
    * region, platform, or persona. Supports cursor-based pagination.
    */
@@ -295,6 +306,24 @@ export namespace CategoryGetCategoryPersonasResponse {
     name: string;
 
     persona: OrganizationsAPI.PersonaProfile;
+  }
+}
+
+export interface CategoryGetCitationCategoriesResponse {
+  data: Array<CategoryGetCitationCategoriesResponse.Data>;
+}
+
+export namespace CategoryGetCitationCategoriesResponse {
+  export interface Data {
+    /**
+     * Display name.
+     */
+    name: string;
+
+    /**
+     * Value to pass to the v2 citations `citation_category` filter.
+     */
+    value: string;
   }
 }
 
@@ -729,6 +758,7 @@ export declare namespace Categories {
     type CategoryAssetsResponse as CategoryAssetsResponse,
     type CategoryCreatePromptsResponse as CategoryCreatePromptsResponse,
     type CategoryGetCategoryPersonasResponse as CategoryGetCategoryPersonasResponse,
+    type CategoryGetCitationCategoriesResponse as CategoryGetCitationCategoriesResponse,
     type CategoryPromptsResponse as CategoryPromptsResponse,
     type CategoryRetrieveRegionsResponse as CategoryRetrieveRegionsResponse,
     type CategoryTagsResponse as CategoryTagsResponse,

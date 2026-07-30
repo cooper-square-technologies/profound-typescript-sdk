@@ -56,6 +56,7 @@ Types:
 - <code><a href="./src/resources/organizations/categories.ts">CategoryAssetsResponse</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryCreatePromptsResponse</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryGetCategoryPersonasResponse</a></code>
+- <code><a href="./src/resources/organizations/categories.ts">CategoryGetCitationCategoriesResponse</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryPromptsResponse</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryRetrieveRegionsResponse</a></code>
 - <code><a href="./src/resources/organizations/categories.ts">CategoryTagsResponse</a></code>
@@ -69,6 +70,7 @@ Methods:
 - <code title="get /v1/org/categories/{category_id}/assets">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">assets</a>(categoryID) -> CategoryAssetsResponse</code>
 - <code title="post /v1/org/categories/{category_id}/prompts">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">createPrompts</a>(categoryID, { ...params }) -> CategoryCreatePromptsResponse</code>
 - <code title="get /v1/org/categories/{category_id}/personas">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">getCategoryPersonas</a>(categoryID) -> CategoryGetCategoryPersonasResponse</code>
+- <code title="get /v1/org/categories/{category_id}/citation-categories">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">getCitationCategories</a>(categoryID) -> CategoryGetCitationCategoriesResponse</code>
 - <code title="get /v1/org/categories/{category_id}/prompts">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">prompts</a>(categoryID, { ...params }) -> CategoryPromptsResponse</code>
 - <code title="get /v1/org/categories/{category_id}/regions">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">retrieveRegions</a>(categoryID) -> CategoryRetrieveRegionsResponse</code>
 - <code title="get /v1/org/categories/{category_id}/tags">client.organizations.categories.<a href="./src/resources/organizations/categories.ts">tags</a>(categoryID) -> CategoryTagsResponse</code>
@@ -159,29 +161,25 @@ Types:
 - <code><a href="./src/resources/reports/shopping.ts">BrandNameFilter</a></code>
 - <code><a href="./src/resources/reports/shopping.ts">MerchantNameFilter</a></code>
 - <code><a href="./src/resources/reports/shopping.ts">ProductNameFilter</a></code>
-- <code><a href="./src/resources/reports/shopping.ts">ShoppingAllItemsWithMerchantsResponse</a></code>
-- <code><a href="./src/resources/reports/shopping.ts">ShoppingExecutionsResponse</a></code>
-- <code><a href="./src/resources/reports/shopping.ts">ShoppingItemVisibilityResponse</a></code>
-- <code><a href="./src/resources/reports/shopping.ts">ShoppingMerchantByItemsResponse</a></code>
-- <code><a href="./src/resources/reports/shopping.ts">ShoppingMerchantDistributionResponse</a></code>
-- <code><a href="./src/resources/reports/shopping.ts">ShoppingMerchantShareResponse</a></code>
-- <code><a href="./src/resources/reports/shopping.ts">ShoppingMerchantVisibilityByBrandResponse</a></code>
-- <code><a href="./src/resources/reports/shopping.ts">ShoppingProductMerchantURLsResponse</a></code>
+- <code><a href="./src/resources/reports/shopping.ts">ShoppingBrandsResponse</a></code>
+- <code><a href="./src/resources/reports/shopping.ts">ShoppingMerchantsResponse</a></code>
+- <code><a href="./src/resources/reports/shopping.ts">ShoppingProductsResponse</a></code>
+- <code><a href="./src/resources/reports/shopping.ts">ShoppingStreamBrandsResponse</a></code>
+- <code><a href="./src/resources/reports/shopping.ts">ShoppingStreamMerchantsResponse</a></code>
+- <code><a href="./src/resources/reports/shopping.ts">ShoppingStreamProductsResponse</a></code>
+- <code><a href="./src/resources/reports/shopping.ts">ShoppingStreamTriggerRateResponse</a></code>
 - <code><a href="./src/resources/reports/shopping.ts">ShoppingTriggerRateResponse</a></code>
-- <code><a href="./src/resources/reports/shopping.ts">ShoppingVisibilityResponse</a></code>
 
 Methods:
 
-- <code title="post /v1/reports/shopping/all-items-with-merchants">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">allItemsWithMerchants</a>({ ...params }) -> ShoppingAllItemsWithMerchantsResponse</code>
-- <code title="post /v1/reports/shopping/executions">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">executions</a>({ ...params }) -> ShoppingExecutionsResponse</code>
-- <code title="post /v1/reports/shopping/item-visibility">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">itemVisibility</a>({ ...params }) -> ShoppingItemVisibilityResponse</code>
-- <code title="post /v1/reports/shopping/merchant-by-items">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">merchantByItems</a>({ ...params }) -> ShoppingMerchantByItemsResponse</code>
-- <code title="post /v1/reports/shopping/merchant-distribution">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">merchantDistribution</a>({ ...params }) -> ShoppingMerchantDistributionResponse</code>
-- <code title="post /v1/reports/shopping/merchant-share">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">merchantShare</a>({ ...params }) -> ShoppingMerchantShareResponse</code>
-- <code title="post /v1/reports/shopping/merchant-visibility-by-brand">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">merchantVisibilityByBrand</a>({ ...params }) -> ShoppingMerchantVisibilityByBrandResponse</code>
-- <code title="post /v1/reports/shopping/product-merchant-urls">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">productMerchantURLs</a>({ ...params }) -> ShoppingProductMerchantURLsResponse</code>
-- <code title="post /v1/reports/shopping/trigger-rate">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">triggerRate</a>({ ...params }) -> ShoppingTriggerRateResponse</code>
-- <code title="post /v1/reports/shopping/visibility">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">visibility</a>({ ...params }) -> ShoppingVisibilityResponse</code>
+- <code title="post /v2/reports/shopping/brands">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">brands</a>({ ...params }) -> ShoppingBrandsResponse</code>
+- <code title="post /v2/reports/shopping/merchants">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">merchants</a>({ ...params }) -> ShoppingMerchantsResponse</code>
+- <code title="post /v2/reports/shopping/products">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">products</a>({ ...params }) -> ShoppingProductsResponse</code>
+- <code title="post /v2/reports/shopping/brands/stream">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">streamBrands</a>({ ...params }) -> ShoppingStreamBrandsResponse</code>
+- <code title="post /v2/reports/shopping/merchants/stream">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">streamMerchants</a>({ ...params }) -> ShoppingStreamMerchantsResponse</code>
+- <code title="post /v2/reports/shopping/products/stream">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">streamProducts</a>({ ...params }) -> ShoppingStreamProductsResponse</code>
+- <code title="post /v2/reports/shopping/trigger-rate/stream">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">streamTriggerRate</a>({ ...params }) -> ShoppingStreamTriggerRateResponse</code>
+- <code title="post /v2/reports/shopping/trigger-rate">client.reports.shopping.<a href="./src/resources/reports/shopping.ts">triggerRate</a>({ ...params }) -> ShoppingTriggerRateResponse</code>
 
 ## Accuracy
 

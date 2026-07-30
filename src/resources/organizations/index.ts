@@ -9,6 +9,7 @@ export {
   type CategoryAssetsResponse,
   type CategoryCreatePromptsResponse,
   type CategoryGetCategoryPersonasResponse,
+  type CategoryGetCitationCategoriesResponse,
   type CategoryPromptsResponse,
   type CategoryRetrieveRegionsResponse,
   type CategoryTagsResponse,
