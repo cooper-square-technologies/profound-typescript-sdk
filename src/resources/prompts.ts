@@ -161,6 +161,11 @@ export namespace PromptAnswersV2Response {
   export interface Data {
     analysis_types?: Array<string> | null;
 
+    /**
+     * Citation metadata. `positions` identify citation locations in the answer text.
+     * Each `groups` entry represents a rendered citation pill; `group_position` is the
+     * source's position within that pill.
+     */
     citation_details?: Array<Data.CitationDetail> | null;
 
     citations?: Array<string> | null;
@@ -215,7 +220,19 @@ export namespace PromptAnswersV2Response {
 
       first_cited_at?: string | null;
 
+      groups?: Array<CitationDetail.Group> | null;
+
+      positions?: Array<number>;
+
       text?: string | null;
+    }
+
+    export namespace CitationDetail {
+      export interface Group {
+        group_id: number;
+
+        group_position: number;
+      }
     }
 
     /**
@@ -334,6 +351,11 @@ export namespace PromptStreamAnswersV2Response {
   export interface AnswerRow {
     analysis_types?: Array<string> | null;
 
+    /**
+     * Citation metadata. `positions` identify citation locations in the answer text.
+     * Each `groups` entry represents a rendered citation pill; `group_position` is the
+     * source's position within that pill.
+     */
     citation_details?: Array<AnswerRow.CitationDetail> | null;
 
     citations?: Array<string> | null;
@@ -388,7 +410,19 @@ export namespace PromptStreamAnswersV2Response {
 
       first_cited_at?: string | null;
 
+      groups?: Array<CitationDetail.Group> | null;
+
+      positions?: Array<number>;
+
       text?: string | null;
+    }
+
+    export namespace CitationDetail {
+      export interface Group {
+        group_id: number;
+
+        group_position: number;
+      }
     }
 
     /**
