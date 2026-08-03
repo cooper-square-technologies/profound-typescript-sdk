@@ -400,3 +400,27 @@ Types:
 Methods:
 
 - <code title="get /v1/integrations">client.integrations.<a href="./src/resources/integrations.ts">list</a>({ ...params }) -> IntegrationListResponse</code>
+
+# Documents
+
+Types:
+
+- <code><a href="./src/resources/documents.ts">DocumentCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /v1/documents">client.documents.<a href="./src/resources/documents.ts">create</a>({ ...params }) -> DocumentCreateResponse</code>
+
+# Ads
+
+## OpenAIAds
+
+### AdAccount
+
+Types:
+
+- <code><a href="./src/resources/ads/openai-ads/ad-account.ts">AdAccountRetrieveInsightsResponse</a></code>
+
+Methods:
+
+- <code title="get /v1/ads/openai-ads/ad-account/insights">client.ads.openaiAds.adAccount.<a href="./src/resources/ads/openai-ads/ad-account.ts">retrieveInsights</a>({ ...params }) -> AdAccountRetrieveInsightsResponse</code>

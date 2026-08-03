@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export * from './shared';
+export { Ads } from './ads/ads';
 export {
   Agents,
   type AgentCreateResponse,
@@ -16,6 +17,7 @@ export {
   type AgentRetrieveGraphParams,
 } from './agents/agents';
 export { Content } from './content/content';
+export { Documents, type DocumentCreateResponse, type DocumentCreateParams } from './documents';
 export { Integrations, type IntegrationListResponse, type IntegrationListParams } from './integrations';
 export {
   KnowledgeBases,

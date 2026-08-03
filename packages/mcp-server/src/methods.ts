@@ -622,6 +622,18 @@ export const sdkMethods: SdkMethod[] = [
     httpMethod: 'get',
     httpPath: '/v1/integrations',
   },
+  {
+    clientCallName: 'client.documents.create',
+    fullyQualifiedName: 'documents.create',
+    httpMethod: 'post',
+    httpPath: '/v1/documents',
+  },
+  {
+    clientCallName: 'client.ads.openaiAds.adAccount.retrieveInsights',
+    fullyQualifiedName: 'ads.openaiAds.adAccount.retrieveInsights',
+    httpMethod: 'get',
+    httpPath: '/v1/ads/openai-ads/ad-account/insights',
+  },
 ];
 
 function allowedMethodsForCodeTool(options: McpOptions | undefined): SdkMethod[] | undefined {

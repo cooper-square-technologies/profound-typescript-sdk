@@ -3801,6 +3801,76 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
     },
   },
+  {
+    name: 'create',
+    endpoint: '/v1/documents',
+    httpMethod: 'post',
+    summary: 'Create a document',
+    description:
+      "Create a Profound document with markdown content.\n\n`organization_id` is required and you must be a member of it. You choose the\ndocument's `id`, and creation is idempotent on it: repeating the request returns\nthe existing document rather than creating a second one.\n\nNew documents are visible only to their creator; share them from the Profound app,\nor open one with the `url` in the response.",
+    stainlessPath: '(resource) documents > (method) create',
+    qualified: 'client.documents.create',
+    params: ['id: string;', 'content_markdown: string;', 'name: string;', 'organization_id: string;'],
+    response:
+      "{ id: string; created_at: string; name: string; updated_at: string; url: string; visibility: 'invited_only' | 'organization'; }",
+    markdown:
+      "## create\n\n`client.documents.create(id: string, content_markdown: string, name: string, organization_id: string): { id: string; created_at: string; name: string; updated_at: string; url: string; visibility: 'invited_only' | 'organization'; }`\n\n**post** `/v1/documents`\n\nCreate a Profound document with markdown content.\n\n`organization_id` is required and you must be a member of it. You choose the\ndocument's `id`, and creation is idempotent on it: repeating the request returns\nthe existing document rather than creating a second one.\n\nNew documents are visible only to their creator; share them from the Profound app,\nor open one with the `url` in the response.\n\n### Parameters\n\n- `id: string`\n  ID for the new document, chosen by you. Creation is idempotent on this ID: repeating a request with the same ID returns the existing document instead of creating a second one, so a retry after a network error is safe.\n\n- `content_markdown: string`\n  Initial document body as markdown. Must be non-empty. Rendered into the collaborative editor, so the result is real editable content, not a stored blob.\n\n- `name: string`\n  Title for the document. Must be non-empty.\n\n- `organization_id: string`\n  ID of the organization that will own the document. Required — Profound API keys are user-scoped, so the owning organization must be chosen explicitly. The caller must be a member of this organization.\n\n### Returns\n\n- `{ id: string; created_at: string; name: string; updated_at: string; url: string; visibility: 'invited_only' | 'organization'; }`\n  A Profound document.\n\n  - `id: string`\n  - `created_at: string`\n  - `name: string`\n  - `updated_at: string`\n  - `url: string`\n  - `visibility: 'invited_only' | 'organization'`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst document = await client.documents.create({\n  id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  content_markdown: 'x',\n  name: 'x',\n  organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(document);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.documents.create',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst document = await client.documents.create({\n  id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  content_markdown: 'x',\n  name: 'x',\n  organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(document.id);",
+      },
+      python: {
+        method: 'documents.create',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\ndocument = client.documents.create(\n    id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    content_markdown="x",\n    name="x",\n    organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(document.id)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/documents \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "content_markdown": "x",\n          "name": "x",\n          "organization_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'retrieve_insights',
+    endpoint: '/v1/ads/openai-ads/ad-account/insights',
+    httpMethod: 'get',
+    summary: 'Get Account Insights',
+    description:
+      "Get ad account insights for the organization's OpenAI Ads partner brand.\n\n`aggregation_level=campaign` returns one row per campaign (with `campaign_id`\n/ `campaign_name` and all metrics), so every campaign's insights come back in\na single call; `time_granularity=daily` gives per-day rows (e.g. daily spend).",
+    stainlessPath: '(resource) ads.openai_ads.ad_account > (method) retrieve_insights',
+    qualified: 'client.ads.openaiAds.adAccount.retrieveInsights',
+    params: [
+      'after?: string;',
+      "aggregation_level?: 'ad_account' | 'campaign' | 'ad_group' | 'ad';",
+      'before?: string;',
+      'limit?: number;',
+      'organization_id?: string;',
+      "time_granularity?: 'hourly' | 'daily' | 'monthly' | 'none';",
+      'time_ranges?: string[];',
+    ],
+    response:
+      '{ data: { id: string; ad_group_id?: string; ad_group_name?: string; ad_id?: string; ad_name?: string; campaign_id?: string; campaign_name?: string; clicks?: number; cpc?: number; cpm?: number; ctr?: number; end_time?: number; impressions?: number; readable_time?: string; spend?: number; start_time?: number; timezone?: string; }[]; count?: number; first_id?: string; has_more?: boolean; last_id?: string; }',
+    markdown:
+      "## retrieve_insights\n\n`client.ads.openaiAds.adAccount.retrieveInsights(after?: string, aggregation_level?: 'ad_account' | 'campaign' | 'ad_group' | 'ad', before?: string, limit?: number, organization_id?: string, time_granularity?: 'hourly' | 'daily' | 'monthly' | 'none', time_ranges?: string[]): { data: object[]; count?: number; first_id?: string; has_more?: boolean; last_id?: string; }`\n\n**get** `/v1/ads/openai-ads/ad-account/insights`\n\nGet ad account insights for the organization's OpenAI Ads partner brand.\n\n`aggregation_level=campaign` returns one row per campaign (with `campaign_id`\n/ `campaign_name` and all metrics), so every campaign's insights come back in\na single call; `time_granularity=daily` gives per-day rows (e.g. daily spend).\n\n### Parameters\n\n- `after?: string`\n  Return items after this ID (forward pagination).\n\n- `aggregation_level?: 'ad_account' | 'campaign' | 'ad_group' | 'ad'`\n  Row entity for the insights breakdown. `campaign` returns one row per campaign.\n\n- `before?: string`\n  Return items before this ID (backward pagination).\n\n- `limit?: number`\n  Maximum rows to return.\n\n- `organization_id?: string`\n  Organization scope for API keys that can access multiple organizations.\n\n- `time_granularity?: 'hourly' | 'daily' | 'monthly' | 'none'`\n  Time bucket for the rows; `none` or omitted returns totals over the whole range.\n\n- `time_ranges?: string[]`\n  Time ranges as JSON objects, e.g. `{\"type\": \"date_range\", \"since\": \"2026-07-01\", \"until\": \"2026-07-18\"}`.\n\n### Returns\n\n- `{ data: { id: string; ad_group_id?: string; ad_group_name?: string; ad_id?: string; ad_name?: string; campaign_id?: string; campaign_name?: string; clicks?: number; cpc?: number; cpm?: number; ctr?: number; end_time?: number; impressions?: number; readable_time?: string; spend?: number; start_time?: number; timezone?: string; }[]; count?: number; first_id?: string; has_more?: boolean; last_id?: string; }`\n  Cursor-paginated insights, mirroring the OpenAI Ads insights envelope.\n\n  - `data: { id: string; ad_group_id?: string; ad_group_name?: string; ad_id?: string; ad_name?: string; campaign_id?: string; campaign_name?: string; clicks?: number; cpc?: number; cpm?: number; ctr?: number; end_time?: number; impressions?: number; readable_time?: string; spend?: number; start_time?: number; timezone?: string; }[]`\n  - `count?: number`\n  - `first_id?: string`\n  - `has_more?: boolean`\n  - `last_id?: string`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.ads.openaiAds.adAccount.retrieveInsights();\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.ads.openaiAds.adAccount.retrieveInsights',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.ads.openaiAds.adAccount.retrieveInsights();\n\nconsole.log(response.first_id);",
+      },
+      python: {
+        method: 'ads.openai_ads.ad_account.retrieve_insights',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.ads.openai_ads.ad_account.retrieve_insights()\nprint(response.first_id)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/ads/openai-ads/ad-account/insights \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
 ];
 
 const EMBEDDED_READMES: { language: string; content: string }[] = [

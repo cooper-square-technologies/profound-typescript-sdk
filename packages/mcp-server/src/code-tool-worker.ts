@@ -210,6 +210,8 @@ const fuse = new Fuse(
     'client.projects.tasks.update',
     'client.projects.tasks.updateStatus',
     'client.integrations.list',
+    'client.documents.create',
+    'client.ads.openaiAds.adAccount.retrieveInsights',
   ],
   { threshold: 1, shouldSort: true },
 );

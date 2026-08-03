@@ -20,6 +20,7 @@ import { APIPromise } from './core/api-promise';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
+import { DocumentCreateParams, DocumentCreateResponse, Documents } from './resources/documents';
 import { IntegrationListParams, IntegrationListResponse, Integrations } from './resources/integrations';
 import {
   PromptAnswersParams,
@@ -39,6 +40,7 @@ import {
   parseLogLevel,
 } from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
+import { Ads } from './resources/ads/ads';
 import {
   AgentCreateParams,
   AgentCreateResponse,
@@ -916,6 +918,8 @@ export class Profound {
   knowledgeBases: API.KnowledgeBases = new API.KnowledgeBases(this);
   projects: API.Projects = new API.Projects(this);
   integrations: API.Integrations = new API.Integrations(this);
+  documents: API.Documents = new API.Documents(this);
+  ads: API.Ads = new API.Ads(this);
 }
 
 Profound.Organizations = Organizations;
@@ -927,6 +931,8 @@ Profound.Agents = Agents;
 Profound.KnowledgeBases = KnowledgeBases;
 Profound.Projects = Projects;
 Profound.Integrations = Integrations;
+Profound.Documents = Documents;
+Profound.Ads = Ads;
 
 export declare namespace Profound {
   export type RequestOptions = Opts.RequestOptions;
@@ -1057,6 +1063,14 @@ export declare namespace Profound {
     type IntegrationListResponse as IntegrationListResponse,
     type IntegrationListParams as IntegrationListParams,
   };
+
+  export {
+    Documents as Documents,
+    type DocumentCreateResponse as DocumentCreateResponse,
+    type DocumentCreateParams as DocumentCreateParams,
+  };
+
+  export { Ads as Ads };
 
   export type AnalysisTypeFilter = API.AnalysisTypeFilter;
   export type AssetIDFilter = API.AssetIDFilter;
