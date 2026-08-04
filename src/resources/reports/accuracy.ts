@@ -731,8 +731,6 @@ export interface AccuracyCreateBreakdownParams {
 
   group_by?: Array<'platform' | 'topic' | 'prompt' | 'tag' | 'region' | 'persona' | 'theme' | 'date'> | null;
 
-  include_groups_without_scores?: boolean;
-
   include_no_persona?: boolean;
 
   include_no_tag?: boolean;

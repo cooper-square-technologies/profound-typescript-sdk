@@ -37,7 +37,6 @@ describe('resource accuracy', () => {
       date_bucket: 'date_bucket',
       exclude_topic_ids: true,
       group_by: ['platform'],
-      include_groups_without_scores: true,
       include_no_persona: true,
       include_no_tag: true,
       limit: 1,
