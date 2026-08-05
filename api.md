@@ -239,6 +239,22 @@ Methods:
 - <code title="post /v2/reports/factcheck/claims">client.reports.factcheck.claims.<a href="./src/resources/reports/factcheck/claims.ts">queryClaims</a>({ ...params }) -> ClaimQueryClaimsResponse</code>
 - <code title="post /v2/reports/factcheck/claims/stream">client.reports.factcheck.claims.<a href="./src/resources/reports/factcheck/claims.ts">streamClaims</a>({ ...params }) -> ClaimStreamClaimsResponse</code>
 
+## Social
+
+### Youtube
+
+Types:
+
+- <code><a href="./src/resources/reports/social/youtube.ts">YoutubeGetChannelsResponse</a></code>
+- <code><a href="./src/resources/reports/social/youtube.ts">YoutubeGetSummaryResponse</a></code>
+- <code><a href="./src/resources/reports/social/youtube.ts">YoutubeGetVideosResponse</a></code>
+
+Methods:
+
+- <code title="post /v2/reports/social/youtube/channels">client.reports.social.youtube.<a href="./src/resources/reports/social/youtube.ts">getChannels</a>({ ...params }) -> YoutubeGetChannelsResponse</code>
+- <code title="post /v2/reports/social/youtube/summary">client.reports.social.youtube.<a href="./src/resources/reports/social/youtube.ts">getSummary</a>({ ...params }) -> YoutubeGetSummaryResponse</code>
+- <code title="post /v2/reports/social/youtube/videos">client.reports.social.youtube.<a href="./src/resources/reports/social/youtube.ts">getVideos</a>({ ...params }) -> YoutubeGetVideosResponse</code>
+
 # Logs
 
 ## Raw
@@ -406,10 +422,19 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/documents.ts">DocumentCreateResponse</a></code>
+- <code><a href="./src/resources/documents.ts">DocumentRetrieveResponse</a></code>
+- <code><a href="./src/resources/documents.ts">DocumentUpdateResponse</a></code>
+- <code><a href="./src/resources/documents.ts">DocumentListResponse</a></code>
+- <code><a href="./src/resources/documents.ts">DocumentReplaceContentResponse</a></code>
 
 Methods:
 
 - <code title="post /v1/documents">client.documents.<a href="./src/resources/documents.ts">create</a>({ ...params }) -> DocumentCreateResponse</code>
+- <code title="get /v1/documents/{document_id}">client.documents.<a href="./src/resources/documents.ts">retrieve</a>(documentID, { ...params }) -> DocumentRetrieveResponse</code>
+- <code title="patch /v1/documents/{document_id}">client.documents.<a href="./src/resources/documents.ts">update</a>(documentID, { ...params }) -> DocumentUpdateResponse</code>
+- <code title="get /v1/documents">client.documents.<a href="./src/resources/documents.ts">list</a>({ ...params }) -> DocumentListResponse</code>
+- <code title="delete /v1/documents/{document_id}">client.documents.<a href="./src/resources/documents.ts">delete</a>(documentID, { ...params }) -> void</code>
+- <code title="post /v1/documents/{document_id}/content">client.documents.<a href="./src/resources/documents.ts">replaceContent</a>(documentID, { ...params }) -> DocumentReplaceContentResponse</code>
 
 # Ads
 

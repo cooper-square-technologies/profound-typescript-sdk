@@ -17,7 +17,20 @@ export {
   type AgentRetrieveGraphParams,
 } from './agents/agents';
 export { Content } from './content/content';
-export { Documents, type DocumentCreateResponse, type DocumentCreateParams } from './documents';
+export {
+  Documents,
+  type DocumentCreateResponse,
+  type DocumentRetrieveResponse,
+  type DocumentUpdateResponse,
+  type DocumentListResponse,
+  type DocumentReplaceContentResponse,
+  type DocumentCreateParams,
+  type DocumentRetrieveParams,
+  type DocumentUpdateParams,
+  type DocumentListParams,
+  type DocumentDeleteParams,
+  type DocumentReplaceContentParams,
+} from './documents';
 export { Integrations, type IntegrationListResponse, type IntegrationListParams } from './integrations';
 export {
   KnowledgeBases,

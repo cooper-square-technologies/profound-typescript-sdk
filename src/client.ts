@@ -20,7 +20,20 @@ import { APIPromise } from './core/api-promise';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
-import { DocumentCreateParams, DocumentCreateResponse, Documents } from './resources/documents';
+import {
+  DocumentCreateParams,
+  DocumentCreateResponse,
+  DocumentDeleteParams,
+  DocumentListParams,
+  DocumentListResponse,
+  DocumentReplaceContentParams,
+  DocumentReplaceContentResponse,
+  DocumentRetrieveParams,
+  DocumentRetrieveResponse,
+  DocumentUpdateParams,
+  DocumentUpdateResponse,
+  Documents,
+} from './resources/documents';
 import { IntegrationListParams, IntegrationListResponse, Integrations } from './resources/integrations';
 import {
   PromptAnswersParams,
@@ -1067,7 +1080,16 @@ export declare namespace Profound {
   export {
     Documents as Documents,
     type DocumentCreateResponse as DocumentCreateResponse,
+    type DocumentRetrieveResponse as DocumentRetrieveResponse,
+    type DocumentUpdateResponse as DocumentUpdateResponse,
+    type DocumentListResponse as DocumentListResponse,
+    type DocumentReplaceContentResponse as DocumentReplaceContentResponse,
     type DocumentCreateParams as DocumentCreateParams,
+    type DocumentRetrieveParams as DocumentRetrieveParams,
+    type DocumentUpdateParams as DocumentUpdateParams,
+    type DocumentListParams as DocumentListParams,
+    type DocumentDeleteParams as DocumentDeleteParams,
+    type DocumentReplaceContentParams as DocumentReplaceContentParams,
   };
 
   export { Ads as Ads };

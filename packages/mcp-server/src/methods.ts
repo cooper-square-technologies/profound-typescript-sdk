@@ -413,6 +413,24 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/v2/reports/factcheck/claims/stream',
   },
   {
+    clientCallName: 'client.reports.social.youtube.getChannels',
+    fullyQualifiedName: 'reports.social.youtube.getChannels',
+    httpMethod: 'post',
+    httpPath: '/v2/reports/social/youtube/channels',
+  },
+  {
+    clientCallName: 'client.reports.social.youtube.getSummary',
+    fullyQualifiedName: 'reports.social.youtube.getSummary',
+    httpMethod: 'post',
+    httpPath: '/v2/reports/social/youtube/summary',
+  },
+  {
+    clientCallName: 'client.reports.social.youtube.getVideos',
+    fullyQualifiedName: 'reports.social.youtube.getVideos',
+    httpMethod: 'post',
+    httpPath: '/v2/reports/social/youtube/videos',
+  },
+  {
     clientCallName: 'client.content.optimization.retrieve',
     fullyQualifiedName: 'content.optimization.retrieve',
     httpMethod: 'get',
@@ -627,6 +645,36 @@ export const sdkMethods: SdkMethod[] = [
     fullyQualifiedName: 'documents.create',
     httpMethod: 'post',
     httpPath: '/v1/documents',
+  },
+  {
+    clientCallName: 'client.documents.retrieve',
+    fullyQualifiedName: 'documents.retrieve',
+    httpMethod: 'get',
+    httpPath: '/v1/documents/{document_id}',
+  },
+  {
+    clientCallName: 'client.documents.update',
+    fullyQualifiedName: 'documents.update',
+    httpMethod: 'patch',
+    httpPath: '/v1/documents/{document_id}',
+  },
+  {
+    clientCallName: 'client.documents.list',
+    fullyQualifiedName: 'documents.list',
+    httpMethod: 'get',
+    httpPath: '/v1/documents',
+  },
+  {
+    clientCallName: 'client.documents.delete',
+    fullyQualifiedName: 'documents.delete',
+    httpMethod: 'delete',
+    httpPath: '/v1/documents/{document_id}',
+  },
+  {
+    clientCallName: 'client.documents.replaceContent',
+    fullyQualifiedName: 'documents.replaceContent',
+    httpMethod: 'post',
+    httpPath: '/v1/documents/{document_id}/content',
   },
   {
     clientCallName: 'client.ads.openaiAds.adAccount.retrieveInsights',

@@ -2690,6 +2690,119 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'get_channels',
+    endpoint: '/v2/reports/social/youtube/channels',
+    httpMethod: 'post',
+    summary: 'Query Youtube Channels',
+    description: 'Rank the YouTube channels cited in a category, or the video categories they publish in.',
+    stainlessPath: '(resource) reports.social.youtube > (method) get_channels',
+    qualified: 'client.reports.social.youtube.getChannels',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      "group_by?: 'channel' | 'video_category' | 'model' | 'source_type'[];",
+      "interval?: 'day' | 'week' | 'month';",
+      'limit?: number;',
+      "source_types?: 'video' | 'short' | 'channel' | 'playlist' | 'other'[];",
+    ],
+    response: '{ data: object[]; info: object; }',
+    markdown:
+      "## get_channels\n\n`client.reports.social.youtube.getChannels(category_id: string, end_date: string, start_date: string, cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, group_by?: 'channel' | 'video_category' | 'model' | 'source_type'[], interval?: 'day' | 'week' | 'month', limit?: number, source_types?: 'video' | 'short' | 'channel' | 'playlist' | 'other'[]): { data: object[]; info: object; }`\n\n**post** `/v2/reports/social/youtube/channels`\n\nRank the YouTube channels cited in a category, or the video categories they publish in.\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `group_by?: 'channel' | 'video_category' | 'model' | 'source_type'[]`\n  What each row represents. Empty or `[\"channel\"]` ranks channels; `[\"video_category\"]` ranks content categories; `[\"source_type\"]` ranks source types; `[\"channel\", \"video_category\"]`, `[\"channel\", \"source_type\"]` and `[\"channel\", \"model\"]` return cross-tabs — a row per channel per category, or per answer engine. `limit` counts channels in every case, so ten channels across nine engines is ten channels and ninety rows.\n\n- `interval?: 'day' | 'week' | 'month'`\n  Return a time series instead of window totals: one row per entity per period, each carrying `date`. `citation_share` is then relative to that period, so the series is comparable across periods. Omit for window totals.\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `source_types?: 'video' | 'short' | 'channel' | 'playlist' | 'other'[]`\n  Limit results to YouTube source types: `video`, `short`, `channel`, `playlist`, or `other`. Omit to include every source type.\n\n### Returns\n\n- `{ data: object[]; info: object; }`\n\n  - `data: object[]`\n  - `info: object`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.social.youtube.getChannels({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.social.youtube.getChannels',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.social.youtube.getChannels({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.social.youtube.get_channels',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.social.youtube.get_channels(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/social/youtube/channels \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'get_videos',
+    endpoint: '/v2/reports/social/youtube/videos',
+    httpMethod: 'post',
+    summary: 'Query Youtube Videos',
+    description: 'Rank cited YouTube videos, for one channel or across all of them.',
+    stainlessPath: '(resource) reports.social.youtube > (method) get_videos',
+    qualified: 'client.reports.social.youtube.getVideos',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      "attribution?: 'attributed' | 'unattributed' | 'all';",
+      'cursor?: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+      'limit?: number;',
+      "source_types?: 'video' | 'short' | 'channel' | 'playlist' | 'other'[];",
+    ],
+    response:
+      "{ data: { citation_share: number; count: number; rank: number; source_type: 'video' | 'short' | 'channel' | 'playlist' | 'other'; video_id: string; channel_handle?: string; channel_title?: string; channel_url?: string; duration_seconds?: number; published_at?: string; title?: string; url?: string; video_category?: string; }[]; info: object; }",
+    markdown:
+      "## get_videos\n\n`client.reports.social.youtube.getVideos(category_id: string, end_date: string, start_date: string, attribution?: 'attributed' | 'unattributed' | 'all', cursor?: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }, limit?: number, source_types?: 'video' | 'short' | 'channel' | 'playlist' | 'other'[]): { data: object[]; info: object; }`\n\n**post** `/v2/reports/social/youtube/videos`\n\nRank cited YouTube videos, for one channel or across all of them.\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `attribution?: 'attributed' | 'unattributed' | 'all'`\n  Choose attributed citations, unattributed citations, or all citations. An unattributed row has no channel: `source_type` is `other` for a search or feed URL that names no source, and any other type is a source we have no channel for.\n\n- `cursor?: string`\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n- `limit?: number`\n  Page size; default 10, max 50.\n\n- `source_types?: 'video' | 'short' | 'channel' | 'playlist' | 'other'[]`\n  Limit results to YouTube source types: `video`, `short`, `channel`, `playlist`, or `other`. Omit to include every source type.\n\n### Returns\n\n- `{ data: { citation_share: number; count: number; rank: number; source_type: 'video' | 'short' | 'channel' | 'playlist' | 'other'; video_id: string; channel_handle?: string; channel_title?: string; channel_url?: string; duration_seconds?: number; published_at?: string; title?: string; url?: string; video_category?: string; }[]; info: object; }`\n\n  - `data: { citation_share: number; count: number; rank: number; source_type: 'video' | 'short' | 'channel' | 'playlist' | 'other'; video_id: string; channel_handle?: string; channel_title?: string; channel_url?: string; duration_seconds?: number; published_at?: string; title?: string; url?: string; video_category?: string; }[]`\n  - `info: object`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.social.youtube.getVideos({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.social.youtube.getVideos',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.social.youtube.getVideos({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.social.youtube.get_videos',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.social.youtube.get_videos(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/social/youtube/videos \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'get_summary',
+    endpoint: '/v2/reports/social/youtube/summary',
+    httpMethod: 'post',
+    summary: 'Query Youtube Summary',
+    description: 'Report how much of youtube.com the channel and video rankings account for.',
+    stainlessPath: '(resource) reports.social.youtube > (method) get_summary',
+    qualified: 'client.reports.social.youtube.getSummary',
+    params: [
+      'category_id: string;',
+      'end_date: string;',
+      'start_date: string;',
+      'filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; };',
+    ],
+    response:
+      '{ data: { attributed_citations?: number; citations_channel?: number; citations_other?: number; citations_playlist?: number; citations_short?: number; citations_video?: number; distinct_channels?: number; distinct_shorts?: number; distinct_videos?: number; total_youtube_citations?: number; unattributed_citations?: number; }; info: object; }',
+    markdown:
+      "## get_summary\n\n`client.reports.social.youtube.getSummary(category_id: string, end_date: string, start_date: string, filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }): { data: object; info: object; }`\n\n**post** `/v2/reports/social/youtube/summary`\n\nReport how much of youtube.com the channel and video rankings account for.\n\n### Parameters\n\n- `category_id: string`\n\n- `end_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `start_date: string`\n  YYYY-MM-DD, ET, inclusive\n\n- `filter?: { and?: object[]; field?: string; not?: object; op?: string; or?: object[]; value?: object; }`\n  A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.\n  - `and?: object[]`\n  - `field?: string`\n  - `not?: object`\n  - `op?: string`\n  - `or?: object[]`\n  - `value?: object`\n\n### Returns\n\n- `{ data: { attributed_citations?: number; citations_channel?: number; citations_other?: number; citations_playlist?: number; citations_short?: number; citations_video?: number; distinct_channels?: number; distinct_shorts?: number; distinct_videos?: number; total_youtube_citations?: number; unattributed_citations?: number; }; info: object; }`\n\n  - `data: { attributed_citations?: number; citations_channel?: number; citations_other?: number; citations_playlist?: number; citations_short?: number; citations_video?: number; distinct_channels?: number; distinct_shorts?: number; distinct_videos?: number; total_youtube_citations?: number; unattributed_citations?: number; }`\n  - `info: object`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.reports.social.youtube.getSummary({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.reports.social.youtube.getSummary',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.reports.social.youtube.getSummary({\n  category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  end_date: 'end_date',\n  start_date: 'start_date',\n});\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'reports.social.youtube.get_summary',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.reports.social.youtube.get_summary(\n    category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    end_date="end_date",\n    start_date="start_date",\n)\nprint(response.data)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v2/reports/social/youtube/summary \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "category_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "end_date": "end_date",\n          "start_date": "start_date"\n        }\'',
+      },
+    },
+  },
+  {
     name: 'list',
     endpoint: '/v1/content/{asset_id}/optimization',
     httpMethod: 'get',
@@ -3828,6 +3941,180 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.tryprofound.com/v1/documents \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n          "content_markdown": "x",\n          "name": "x",\n          "organization_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'list',
+    endpoint: '/v1/documents',
+    httpMethod: 'get',
+    summary: 'List documents',
+    description:
+      "List documents visible to your organization, newest-modified-first.\n\nDocuments are ordered by last-modified time, most recent first, with no other\nsort option. This is a walk over a live, mutable collection: a document created\nor modified while you are paging can shift which page it lands on, so a single\nwalk may show it to you twice or, rarely, skip it.\n\nThis response never includes a total count. Upstream counts totals before\napplying your organization's access filter, so a total, or treating a short\npage as the last one, would misreport what you can actually see. Keep\nfollowing `pagination.next_cursor` until it comes back null — that, and not\na short or even an empty page, is the end of the walk. A page whose rows the\naccess filter removed entirely is empty while later pages still hold\ndocuments, so the last page of a walk may legitimately be an empty one.",
+    stainlessPath: '(resource) documents > (method) list',
+    qualified: 'client.documents.list',
+    params: [
+      'organization_id: string;',
+      'limit?: number;',
+      'next_cursor?: string;',
+      'q?: string;',
+      'sort?: string;',
+    ],
+    response:
+      "{ data: { id: string; app_delegate: string; author_type: 'user' | 'agent'; category_name: string; company_name: string; created_at: string; name: string; owner_email: string; owner_user_id: string; updated_at: string; url: string; visibility: 'invited_only' | 'organization'; }[]; pagination: { limit?: number; next_cursor?: string; }; }",
+    markdown:
+      "## list\n\n`client.documents.list(organization_id: string, limit?: number, next_cursor?: string, q?: string, sort?: string): { data: object[]; pagination: cursor_pagination; }`\n\n**get** `/v1/documents`\n\nList documents visible to your organization, newest-modified-first.\n\nDocuments are ordered by last-modified time, most recent first, with no other\nsort option. This is a walk over a live, mutable collection: a document created\nor modified while you are paging can shift which page it lands on, so a single\nwalk may show it to you twice or, rarely, skip it.\n\nThis response never includes a total count. Upstream counts totals before\napplying your organization's access filter, so a total, or treating a short\npage as the last one, would misreport what you can actually see. Keep\nfollowing `pagination.next_cursor` until it comes back null — that, and not\na short or even an empty page, is the end of the walk. A page whose rows the\naccess filter removed entirely is empty while later pages still hold\ndocuments, so the last page of a walk may legitimately be an empty one.\n\n### Parameters\n\n- `organization_id: string`\n  ID of the organization whose documents to list. Required. The caller must be a member of this organization.\n\n- `limit?: number`\n\n- `next_cursor?: string`\n\n- `q?: string`\n  Filter to documents whose name contains this text, case-insensitively. Matches only the document's name, never its content — a query that finds nothing does not mean the topic is unwritten, only that no title mentions it. Blank or omitted returns every document. Ignored when sent alongside `next_cursor`, which carries the filter the walk started with. Matching is name-only as of this release; broader matching may follow if upstream changes how it indexes the name column.\n\n- `sort?: string`\n  Documents are always ordered newest-modified-first (`updated_at DESC`, then `created_at DESC`, then `id DESC`); there is no parameter that changes this. `recency` is the only accepted value, and passing it is a no-op that names the guarantee rather than altering it — any other value is rejected outright rather than silently ignored. Ordering is never re-applied to a returned page either: that would only be consistent within the page, not across a paginated walk.\n\n### Returns\n\n- `{ data: { id: string; app_delegate: string; author_type: 'user' | 'agent'; category_name: string; company_name: string; created_at: string; name: string; owner_email: string; owner_user_id: string; updated_at: string; url: string; visibility: 'invited_only' | 'organization'; }[]; pagination: { limit?: number; next_cursor?: string; }; }`\n  A page of documents.\n\n  - `data: { id: string; app_delegate: string; author_type: 'user' | 'agent'; category_name: string; company_name: string; created_at: string; name: string; owner_email: string; owner_user_id: string; updated_at: string; url: string; visibility: 'invited_only' | 'organization'; }[]`\n  - `pagination: { limit?: number; next_cursor?: string; }`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst documents = await client.documents.list({ organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(documents);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.documents.list',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst documents = await client.documents.list({\n  organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(documents.data);",
+      },
+      python: {
+        method: 'documents.list',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\ndocuments = client.documents.list(\n    organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(documents.data)',
+      },
+      http: {
+        example: 'curl https://api.tryprofound.com/v1/documents \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'retrieve',
+    endpoint: '/v1/documents/{document_id}',
+    httpMethod: 'get',
+    summary: 'Read a document',
+    description:
+      "Read a document: its metadata, its default tab's body, its other tabs, its comments, and its version hash.\n\nYou can read any document you have access to in the Profound app, including ones\ncreated there rather than through this API.\n\nBy default this is a preview: the body is truncated to save your context, and the\nversion hash is withheld so a preview alone can never be used to replace a document\nblindly. Pass `preview=false` when you intend to write.",
+    stainlessPath: '(resource) documents > (method) retrieve',
+    qualified: 'client.documents.retrieve',
+    params: [
+      'document_id: string;',
+      'organization_id: string;',
+      'include_comments?: boolean;',
+      'include_tabs?: boolean;',
+      'preview?: boolean;',
+    ],
+    response:
+      "{ id: string; app_delegate: string; author_type: 'user' | 'agent'; category_name: string; company_name: string; content_markdown: string; created_at: string; name: string; owner_email: string; owner_user_id: string; updated_at: string; url: string; visibility: 'invited_only' | 'organization'; additional_tabs?: { content_markdown: string; title: string; }[]; comments?: { content: string; context?: string; }[]; content_truncated?: boolean; version_hash?: string; }",
+    markdown:
+      "## retrieve\n\n`client.documents.retrieve(document_id: string, organization_id: string, include_comments?: boolean, include_tabs?: boolean, preview?: boolean): { id: string; app_delegate: string; author_type: 'user' | 'agent'; category_name: string; company_name: string; content_markdown: string; created_at: string; name: string; owner_email: string; owner_user_id: string; updated_at: string; url: string; visibility: 'invited_only' | 'organization'; additional_tabs?: object[]; comments?: object[]; content_truncated?: boolean; version_hash?: string; }`\n\n**get** `/v1/documents/{document_id}`\n\nRead a document: its metadata, its default tab's body, its other tabs, its comments, and its version hash.\n\nYou can read any document you have access to in the Profound app, including ones\ncreated there rather than through this API.\n\nBy default this is a preview: the body is truncated to save your context, and the\nversion hash is withheld so a preview alone can never be used to replace a document\nblindly. Pass `preview=false` when you intend to write.\n\n### Parameters\n\n- `document_id: string`\n  ID of the document.\n\n- `organization_id: string`\n  ID of the organization that owns the document. Required — Profound API keys are user-scoped, so the owning organization must be named explicitly. The caller must be a member of this organization.\n\n- `include_comments?: boolean`\n  Include the document's review comments, each mapped to `{content, context}`. On by default — a comment is part of the document's review state, not an aside. Turn it off to skip the comment-thread walk upstream; off, `comments` is omitted from the response rather than returned as an empty list.\n\n- `include_tabs?: boolean`\n  Include the document's other tabs. On by default — a tab body is part of the document, not an aside. Off, `additional_tabs` is omitted from the response rather than returned as an empty list.\n\n- `preview?: boolean`\n  Bound every body in the response — `content_markdown` and each tab's — and set `content_truncated` if any was cut. On by default. Upstream has no partial-read of its own — every read is a full round trip through the collaborative editor — so this saves your context, not upstream cost. A preview read also omits `version_hash`, on purpose: a hash returned next to a body you have not fully seen invites replacing content you never read. Pass `preview=false` before you intend to write, to get the whole body, `content_truncated: false`, and the hash.\n\n### Returns\n\n- `{ id: string; app_delegate: string; author_type: 'user' | 'agent'; category_name: string; company_name: string; content_markdown: string; created_at: string; name: string; owner_email: string; owner_user_id: string; updated_at: string; url: string; visibility: 'invited_only' | 'organization'; additional_tabs?: { content_markdown: string; title: string; }[]; comments?: { content: string; context?: string; }[]; content_truncated?: boolean; version_hash?: string; }`\n  A document's metadata, its default tab's body, its other tabs, its comments, and the\nchange-detection token for it.\n\n  - `id: string`\n  - `app_delegate: string`\n  - `author_type: 'user' | 'agent'`\n  - `category_name: string`\n  - `company_name: string`\n  - `content_markdown: string`\n  - `created_at: string`\n  - `name: string`\n  - `owner_email: string`\n  - `owner_user_id: string`\n  - `updated_at: string`\n  - `url: string`\n  - `visibility: 'invited_only' | 'organization'`\n  - `additional_tabs?: { content_markdown: string; title: string; }[]`\n  - `comments?: { content: string; context?: string; }[]`\n  - `content_truncated?: boolean`\n  - `version_hash?: string`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst document = await client.documents.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(document);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.documents.retrieve',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst document = await client.documents.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(document.id);",
+      },
+      python: {
+        method: 'documents.retrieve',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\ndocument = client.documents.retrieve(\n    document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(document.id)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/documents/$DOCUMENT_ID \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'update',
+    endpoint: '/v1/documents/{document_id}',
+    httpMethod: 'patch',
+    summary: 'Rename or reshare a document',
+    description:
+      'Rename a document, change who can see it, or both in one call.\n\nRenaming sets a permanent lock on the title, and changing visibility can silently\nchange who has access — see the `name` and `visibility` field descriptions for what\neach one does before you use it.\n\nRenaming needs edit access; changing visibility is creator-only, and upstream\nenforces it. You can act on a document this API created, or one you created\nyourself in the Profound app — not one merely shared with you.',
+    stainlessPath: '(resource) documents > (method) update',
+    qualified: 'client.documents.update',
+    params: [
+      'document_id: string;',
+      'organization_id: string;',
+      'name?: string;',
+      "visibility?: 'invited_only' | 'organization';",
+    ],
+    response:
+      "{ id: string; app_delegate: string; author_type: 'user' | 'agent'; category_name: string; company_name: string; created_at: string; name: string; owner_email: string; owner_user_id: string; updated_at: string; url: string; visibility: 'invited_only' | 'organization'; }",
+    markdown:
+      "## update\n\n`client.documents.update(document_id: string, organization_id: string, name?: string, visibility?: 'invited_only' | 'organization'): { id: string; app_delegate: string; author_type: 'user' | 'agent'; category_name: string; company_name: string; created_at: string; name: string; owner_email: string; owner_user_id: string; updated_at: string; url: string; visibility: 'invited_only' | 'organization'; }`\n\n**patch** `/v1/documents/{document_id}`\n\nRename a document, change who can see it, or both in one call.\n\nRenaming sets a permanent lock on the title, and changing visibility can silently\nchange who has access — see the `name` and `visibility` field descriptions for what\neach one does before you use it.\n\nRenaming needs edit access; changing visibility is creator-only, and upstream\nenforces it. You can act on a document this API created, or one you created\nyourself in the Profound app — not one merely shared with you.\n\n### Parameters\n\n- `document_id: string`\n  ID of the document.\n\n- `organization_id: string`\n  ID of the organization that owns the document. Required — Profound API keys are user-scoped, so the owning organization must be named explicitly. The caller must be a member of this organization.\n\n- `name?: string`\n  New title for the document. Renaming sets a permanent lock: once a document is renamed through this route, its title stops following the first heading of its content, for the rest of the document's life, and no route can undo the lock. Omit to leave the title as it is.\n\n- `visibility?: 'invited_only' | 'organization'`\n  New sharing scope: `invited_only` for only the people invited to the document, or `organization` for everyone in the owning organization. Only the document's creator can change this; omit to leave sharing as it is. Three things worth knowing before you set it: `organization` visibility grants view only — there is no value here that grants the organization edit access. Setting `invited_only` removes the organization's access entirely. And re-asserting `organization` on a document whose organization grant is already `edit` silently downgrades the whole organization to view — upstream replays the access sync whenever this field is sent, and that sync always upserts view, even when the value you sent matches the one already stored.\n\n### Returns\n\n- `{ id: string; app_delegate: string; author_type: 'user' | 'agent'; category_name: string; company_name: string; created_at: string; name: string; owner_email: string; owner_user_id: string; updated_at: string; url: string; visibility: 'invited_only' | 'organization'; }`\n  A Profound document.\n\n  - `id: string`\n  - `app_delegate: string`\n  - `author_type: 'user' | 'agent'`\n  - `category_name: string`\n  - `company_name: string`\n  - `created_at: string`\n  - `name: string`\n  - `owner_email: string`\n  - `owner_user_id: string`\n  - `updated_at: string`\n  - `url: string`\n  - `visibility: 'invited_only' | 'organization'`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst document = await client.documents.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(document);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.documents.update',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst document = await client.documents.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(document.id);",
+      },
+      python: {
+        method: 'documents.update',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\ndocument = client.documents.update(\n    document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(document.id)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/documents/$DOCUMENT_ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "organization_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n        }\'',
+      },
+    },
+  },
+  {
+    name: 'delete',
+    endpoint: '/v1/documents/{document_id}',
+    httpMethod: 'delete',
+    summary: 'Delete a document',
+    description:
+      'Delete a document created through this integration.\n\nOnly documents created through this integration can be deleted here. A document\ncreated in the Profound app can never be deleted through this route, even by the\nperson who owns it — creation provenance is stamped once, at creation, and is never\nbackfilled onto documents made another way.\n\nThe delete is soft: the row is marked deleted at the storage layer rather than\ndestroyed. There is no restore through this API, or any other — treat a delete as\nfinal even though the data itself is not gone.\n\nA 404 means the document is not visible to you at all. It covers three cases the\nresponse does not distinguish, on purpose: the document never existed, it was\nalready deleted by an earlier call to this same route, or it exists but your\ncredential resolves no role on it. Deleting the same document twice returns 404 on\nthe second call, not a second 204.\n\nA 403 means the opposite: the document is visible to you but not deletable here,\nand the message says which rule refused — it was not created through this\nintegration, or you are not its creator. Deleting is creator-only, so edit access\nis not enough to remove a document out from under its owner.',
+    stainlessPath: '(resource) documents > (method) delete',
+    qualified: 'client.documents.delete',
+    params: ['document_id: string;', 'organization_id: string;'],
+    markdown:
+      "## delete\n\n`client.documents.delete(document_id: string, organization_id: string): void`\n\n**delete** `/v1/documents/{document_id}`\n\nDelete a document created through this integration.\n\nOnly documents created through this integration can be deleted here. A document\ncreated in the Profound app can never be deleted through this route, even by the\nperson who owns it — creation provenance is stamped once, at creation, and is never\nbackfilled onto documents made another way.\n\nThe delete is soft: the row is marked deleted at the storage layer rather than\ndestroyed. There is no restore through this API, or any other — treat a delete as\nfinal even though the data itself is not gone.\n\nA 404 means the document is not visible to you at all. It covers three cases the\nresponse does not distinguish, on purpose: the document never existed, it was\nalready deleted by an earlier call to this same route, or it exists but your\ncredential resolves no role on it. Deleting the same document twice returns 404 on\nthe second call, not a second 204.\n\nA 403 means the opposite: the document is visible to you but not deletable here,\nand the message says which rule refused — it was not created through this\nintegration, or you are not its creator. Deleting is creator-only, so edit access\nis not enough to remove a document out from under its owner.\n\n### Parameters\n\n- `document_id: string`\n  ID of the document.\n\n- `organization_id: string`\n  ID of the organization that owns the document. You must be a member of it.\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nawait client.documents.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' })\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.documents.delete',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nawait client.documents.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});",
+      },
+      python: {
+        method: 'documents.delete',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nclient.documents.delete(\n    document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/documents/$DOCUMENT_ID \\\n    -X DELETE \\\n    -H "X-API-Key: $PROFOUND_API_KEY"',
+      },
+    },
+  },
+  {
+    name: 'replace_content',
+    endpoint: '/v1/documents/{document_id}/content',
+    httpMethod: 'post',
+    summary: "Replace a document's content",
+    description:
+      "Overwrite a document's entire body with new markdown, replacing what it held before.\n\nThis is a whole-body replace, not a patch: send the complete new text every time. An\nempty `content_markdown` is valid and clears the document.\n\nTwo destructive side effects apply on every call, regardless of what you send:\n\n- The document collapses to its default tab. Every non-default tab is deleted, and\n  the comments map is cleared for **all** tabs, including the default one — a\n  document with a live comment thread on any tab loses it.\n- `skip_title_sync` defaults to `false`, matching the Profound app: the title follows\n  the new content's first heading, so a replace silently renames the document unless\n  the heading matches the current title or `skip_title_sync` is set.\n\nThere is no compare-and-swap: this call does not accept a precondition, and nothing\nstops two concurrent replaces from silently overwriting each other last-writer-wins.\nUpstream's own `version_hash` documentation says as much — the token is \"still a\nchange detector rather than a precondition: a caller must not treat a matching token\nas licence to overwrite blindly, because it names the room at a moment cortex\nobserved and not the moment its own write lands.\" Sending a `working_version_hash`\n(or any spelling of it) is rejected with a `400` naming this rather than accepted\nand silently discarded, which is what happens on the upstream route this wraps.\n\nYou can replace a document this API created, or one you created yourself directly —\nnot merely one shared with you.",
+    stainlessPath: '(resource) documents > (method) replace_content',
+    qualified: 'client.documents.replaceContent',
+    params: [
+      'document_id: string;',
+      'content_markdown: string;',
+      'organization_id: string;',
+      'skip_title_sync?: boolean;',
+    ],
+    response:
+      "{ id: string; app_delegate: string; author_type: 'user' | 'agent'; category_name: string; company_name: string; content_chars: number; created_at: string; name: string; owner_email: string; owner_user_id: string; updated_at: string; url: string; version_hash: string; visibility: 'invited_only' | 'organization'; }",
+    markdown:
+      "## replace_content\n\n`client.documents.replaceContent(document_id: string, content_markdown: string, organization_id: string, skip_title_sync?: boolean): { id: string; app_delegate: string; author_type: 'user' | 'agent'; category_name: string; company_name: string; content_chars: number; created_at: string; name: string; owner_email: string; owner_user_id: string; updated_at: string; url: string; version_hash: string; visibility: 'invited_only' | 'organization'; }`\n\n**post** `/v1/documents/{document_id}/content`\n\nOverwrite a document's entire body with new markdown, replacing what it held before.\n\nThis is a whole-body replace, not a patch: send the complete new text every time. An\nempty `content_markdown` is valid and clears the document.\n\nTwo destructive side effects apply on every call, regardless of what you send:\n\n- The document collapses to its default tab. Every non-default tab is deleted, and\n  the comments map is cleared for **all** tabs, including the default one — a\n  document with a live comment thread on any tab loses it.\n- `skip_title_sync` defaults to `false`, matching the Profound app: the title follows\n  the new content's first heading, so a replace silently renames the document unless\n  the heading matches the current title or `skip_title_sync` is set.\n\nThere is no compare-and-swap: this call does not accept a precondition, and nothing\nstops two concurrent replaces from silently overwriting each other last-writer-wins.\nUpstream's own `version_hash` documentation says as much — the token is \"still a\nchange detector rather than a precondition: a caller must not treat a matching token\nas licence to overwrite blindly, because it names the room at a moment cortex\nobserved and not the moment its own write lands.\" Sending a `working_version_hash`\n(or any spelling of it) is rejected with a `400` naming this rather than accepted\nand silently discarded, which is what happens on the upstream route this wraps.\n\nYou can replace a document this API created, or one you created yourself directly —\nnot merely one shared with you.\n\n### Parameters\n\n- `document_id: string`\n  ID of the document.\n\n- `content_markdown: string`\n  New markdown body for the document, replacing everything it held before. An empty string is valid and clears the document — nothing else warns you before that happens, so treat sending one as deliberate. Whole-body replace only: send the complete new text, not just the part that changed. Capped at 1,000,000 bytes; the upstream router separately caps the entire request at 2 MiB, so a body near this cap can still be refused in transit rather than by this field.\n\n- `organization_id: string`\n  ID of the organization that owns the document. Required — Profound API keys are user-scoped, so the owning organization must be chosen explicitly. The caller must be a member of this organization.\n\n- `skip_title_sync?: boolean`\n  Off by default, matching the Profound app: the document's title follows the new content's first heading, so a replace silently renames the document whenever that heading differs from the current title. Set true to keep the current title regardless of what the new content's first heading says.\n\n### Returns\n\n- `{ id: string; app_delegate: string; author_type: 'user' | 'agent'; category_name: string; company_name: string; content_chars: number; created_at: string; name: string; owner_email: string; owner_user_id: string; updated_at: string; url: string; version_hash: string; visibility: 'invited_only' | 'organization'; }`\n  The document after its content was replaced, plus the change-detection token and how much landed.\n\n  - `id: string`\n  - `app_delegate: string`\n  - `author_type: 'user' | 'agent'`\n  - `category_name: string`\n  - `company_name: string`\n  - `content_chars: number`\n  - `created_at: string`\n  - `name: string`\n  - `owner_email: string`\n  - `owner_user_id: string`\n  - `updated_at: string`\n  - `url: string`\n  - `version_hash: string`\n  - `visibility: 'invited_only' | 'organization'`\n\n### Example\n\n```typescript\nimport Profound from '@profoundai/client';\n\nconst client = new Profound();\n\nconst response = await client.documents.replaceContent('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { content_markdown: 'content_markdown', organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' });\n\nconsole.log(response);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.documents.replaceContent',
+        example:
+          "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // This is the default and can be omitted\n});\n\nconst response = await client.documents.replaceContent('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  content_markdown: 'content_markdown',\n  organization_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n});\n\nconsole.log(response.id);",
+      },
+      python: {
+        method: 'documents.replace_content',
+        example:
+          'import os\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get("PROFOUND_API_KEY"),  # This is the default and can be omitted\n)\nresponse = client.documents.replace_content(\n    document_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    content_markdown="content_markdown",\n    organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(response.id)',
+      },
+      http: {
+        example:
+          'curl https://api.tryprofound.com/v1/documents/$DOCUMENT_ID/content \\\n    -H \'Content-Type: application/json\' \\\n    -H "X-API-Key: $PROFOUND_API_KEY" \\\n    -d \'{\n          "content_markdown": "content_markdown",\n          "organization_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n        }\'',
       },
     },
   },

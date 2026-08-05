@@ -71,6 +71,8 @@ import {
   FactcheckStreamScoresParams,
   FactcheckStreamScoresResponse,
 } from './factcheck/factcheck';
+import * as SocialAPI from './social/social';
+import { Social } from './social/social';
 import { APIPromise } from '../../core/api-promise';
 import { Stream } from '../../core/streaming';
 import { buildHeaders } from '../../internal/headers';
@@ -83,6 +85,7 @@ export class Reports extends APIResource {
   shopping: ShoppingAPI.Shopping = new ShoppingAPI.Shopping(this._client);
   accuracy: AccuracyAPI.Accuracy = new AccuracyAPI.Accuracy(this._client);
   factcheck: FactcheckAPI.Factcheck = new FactcheckAPI.Factcheck(this._client);
+  social: SocialAPI.Social = new SocialAPI.Social(this._client);
 
   /**
    * Get citations for a given category.
@@ -4157,6 +4160,7 @@ Reports.WebSearchResults = WebSearchResults;
 Reports.Shopping = Shopping;
 Reports.Accuracy = Accuracy;
 Reports.Factcheck = Factcheck;
+Reports.Social = Social;
 
 export declare namespace Reports {
   export {
@@ -4272,4 +4276,6 @@ export declare namespace Reports {
     type FactcheckQueryScoresParams as FactcheckQueryScoresParams,
     type FactcheckStreamScoresParams as FactcheckStreamScoresParams,
   };
+
+  export { Social as Social };
 }

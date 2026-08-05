@@ -103,6 +103,7 @@ export {
   type ShoppingStreamTriggerRateParams,
   type ShoppingTriggerRateParams,
 } from './shopping';
+export { Social } from './social/index';
 export {
   WebSearchResults,
   type WebSearchResultQueryResponse,
