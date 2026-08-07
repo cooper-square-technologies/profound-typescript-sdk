@@ -65,7 +65,7 @@ export interface YoutubeGetChannelsResponse {
   data: Array<YoutubeGetChannelsResponse.Data>;
 
   /**
-   * YouTube report metadata, including the effective request settings.
+   * Channel report metadata, including effective paging and grouping settings.
    */
   info: YoutubeGetChannelsResponse.Info;
 }
@@ -97,7 +97,8 @@ export namespace YoutubeGetChannelsResponse {
     name: string;
 
     /**
-     * 1-based position in the full ranked set, continuing across pages.
+     * Leading channel's 1-based position in the full ranked set, continuing across
+     * pages; repeated across that channel's cross-tab rows rather than numbering rows.
      */
     rank: number;
 
@@ -135,8 +136,9 @@ export namespace YoutubeGetChannelsResponse {
     url?: string | null;
 
     /**
-     * Present when grouped by video category, including as the second dimension of a
-     * cross-tab.
+     * Populated for a secondary video-category slice; with group_by
+     * `["video_category"]`, the category is returned in `name` instead. An unresolved
+     * category is returned as an empty string.
      */
     video_category?: string | null;
 
@@ -155,7 +157,7 @@ export namespace YoutubeGetChannelsResponse {
   }
 
   /**
-   * YouTube report metadata, including the effective request settings.
+   * Channel report metadata, including effective paging and grouping settings.
    */
   export interface Info {
     /**
@@ -174,9 +176,26 @@ export namespace YoutubeGetChannelsResponse {
     end_date: string;
 
     /**
+     * Echoed dimensions that define a row. Channel reports echo `["channel"]` when
+     * group_by is omitted.
+     */
+    group_by: Array<string>;
+
+    /**
+     * Effective page size in leading channels, not returned rows.
+     */
+    limit: number;
+
+    /**
      * Display names of the models the report covers.
      */
     models: Array<string>;
+
+    /**
+     * Source types this report covers. Derived from the request, not returned rows, so
+     * a listed type may have no rows.
+     */
+    source_types: Array<'video' | 'short' | 'channel' | 'playlist' | 'other'>;
 
     /**
      * Echoed request start date (YYYY-MM-DD, ET).
@@ -184,12 +203,13 @@ export namespace YoutubeGetChannelsResponse {
     start_date: string;
 
     /**
-     * Effective video attribution mode; absent on channels and the summary report.
+     * Distinct leading channels matching the window; this can differ from the number
+     * of rows returned.
      */
-    attribution?: 'attributed' | 'unattributed' | 'all' | null;
+    total_results: number;
 
     /**
-     * Echoed request cursor; omitted on the first page and on the summary report.
+     * Echoed request cursor; omitted on the first page.
      */
     cursor?: string | null;
 
@@ -199,39 +219,15 @@ export namespace YoutubeGetChannelsResponse {
     filter?: { [key: string]: unknown } | null;
 
     /**
-     * Echoed dimensions that define a row. Channel reports echo `["channel"]` when
-     * group_by is omitted; absent on reports that do not group.
-     */
-    group_by?: Array<string> | null;
-
-    /**
      * Effective channel time-series interval, or null when the channel report covers
-     * the full window; absent on other reports.
+     * the full window.
      */
     interval?: 'day' | 'week' | 'month' | null;
-
-    /**
-     * Effective page size applied to a paged report; omitted on the summary report.
-     */
-    limit?: number | null;
 
     /**
      * Opaque cursor for the next page; null on the last page.
      */
     next_cursor?: string | null;
-
-    /**
-     * Source types this report covers: the requested set, or the report default when
-     * omitted (`video` and `short` for attributed `/videos`; all types except `other`
-     * for `/channels`). Derived from the request, not returned rows, so a listed type
-     * may have no rows.
-     */
-    source_types?: Array<'video' | 'short' | 'channel' | 'playlist' | 'other'> | null;
-
-    /**
-     * Total rows matching the query before pagination (null when not computed).
-     */
-    total_results?: number | null;
 
     [k: string]: unknown;
   }
@@ -244,7 +240,7 @@ export interface YoutubeGetSummaryResponse {
   data: YoutubeGetSummaryResponse.Data;
 
   /**
-   * YouTube report metadata, including the effective request settings.
+   * Summary report metadata.
    */
   info: YoutubeGetSummaryResponse.Info;
 }
@@ -314,7 +310,7 @@ export namespace YoutubeGetSummaryResponse {
   }
 
   /**
-   * YouTube report metadata, including the effective request settings.
+   * Summary report metadata.
    */
   export interface Info {
     /**
@@ -338,19 +334,15 @@ export namespace YoutubeGetSummaryResponse {
     models: Array<string>;
 
     /**
+     * All five YouTube source types; this endpoint has no source_types request field
+     * and cannot be narrowed.
+     */
+    source_types: Array<'video' | 'short' | 'channel' | 'playlist' | 'other'>;
+
+    /**
      * Echoed request start date (YYYY-MM-DD, ET).
      */
     start_date: string;
-
-    /**
-     * Effective video attribution mode; absent on channels and the summary report.
-     */
-    attribution?: 'attributed' | 'unattributed' | 'all' | null;
-
-    /**
-     * Echoed request cursor; omitted on the first page and on the summary report.
-     */
-    cursor?: string | null;
 
     /**
      * Echoed normalized filter tree, or null when no filter was sent.
@@ -358,34 +350,9 @@ export namespace YoutubeGetSummaryResponse {
     filter?: { [key: string]: unknown } | null;
 
     /**
-     * Echoed dimensions that define a row. Channel reports echo `["channel"]` when
-     * group_by is omitted; absent on reports that do not group.
-     */
-    group_by?: Array<string> | null;
-
-    /**
-     * Effective channel time-series interval, or null when the channel report covers
-     * the full window; absent on other reports.
-     */
-    interval?: 'day' | 'week' | 'month' | null;
-
-    /**
-     * Effective page size applied to a paged report; omitted on the summary report.
-     */
-    limit?: number | null;
-
-    /**
      * Opaque cursor for the next page; null on the last page.
      */
     next_cursor?: string | null;
-
-    /**
-     * Source types this report covers: the requested set, or the report default when
-     * omitted (`video` and `short` for attributed `/videos`; all types except `other`
-     * for `/channels`). Derived from the request, not returned rows, so a listed type
-     * may have no rows.
-     */
-    source_types?: Array<'video' | 'short' | 'channel' | 'playlist' | 'other'> | null;
 
     /**
      * Total rows matching the query before pagination (null when not computed).
@@ -400,7 +367,7 @@ export interface YoutubeGetVideosResponse {
   data: Array<YoutubeGetVideosResponse.Data>;
 
   /**
-   * YouTube report metadata, including the effective request settings.
+   * Video report metadata, including effective paging and attribution settings.
    */
   info: YoutubeGetVideosResponse.Info;
 }
@@ -480,9 +447,14 @@ export namespace YoutubeGetVideosResponse {
   }
 
   /**
-   * YouTube report metadata, including the effective request settings.
+   * Video report metadata, including effective paging and attribution settings.
    */
   export interface Info {
+    /**
+     * Effective video attribution mode.
+     */
+    attribution: 'attributed' | 'unattributed' | 'all';
+
     /**
      * Echoed category id this report covers.
      */
@@ -499,9 +471,20 @@ export namespace YoutubeGetVideosResponse {
     end_date: string;
 
     /**
+     * Effective page size applied to this paged report.
+     */
+    limit: number;
+
+    /**
      * Display names of the models the report covers.
      */
     models: Array<string>;
+
+    /**
+     * Source types this report covers. Derived from the request, not returned rows, so
+     * a listed type may have no rows.
+     */
+    source_types: Array<'video' | 'short' | 'channel' | 'playlist' | 'other'>;
 
     /**
      * Echoed request start date (YYYY-MM-DD, ET).
@@ -509,12 +492,7 @@ export namespace YoutubeGetVideosResponse {
     start_date: string;
 
     /**
-     * Effective video attribution mode; absent on channels and the summary report.
-     */
-    attribution?: 'attributed' | 'unattributed' | 'all' | null;
-
-    /**
-     * Echoed request cursor; omitted on the first page and on the summary report.
+     * Echoed request cursor; omitted on the first page.
      */
     cursor?: string | null;
 
@@ -524,34 +502,9 @@ export namespace YoutubeGetVideosResponse {
     filter?: { [key: string]: unknown } | null;
 
     /**
-     * Echoed dimensions that define a row. Channel reports echo `["channel"]` when
-     * group_by is omitted; absent on reports that do not group.
-     */
-    group_by?: Array<string> | null;
-
-    /**
-     * Effective channel time-series interval, or null when the channel report covers
-     * the full window; absent on other reports.
-     */
-    interval?: 'day' | 'week' | 'month' | null;
-
-    /**
-     * Effective page size applied to a paged report; omitted on the summary report.
-     */
-    limit?: number | null;
-
-    /**
      * Opaque cursor for the next page; null on the last page.
      */
     next_cursor?: string | null;
-
-    /**
-     * Source types this report covers: the requested set, or the report default when
-     * omitted (`video` and `short` for attributed `/videos`; all types except `other`
-     * for `/channels`). Derived from the request, not returned rows, so a listed type
-     * may have no rows.
-     */
-    source_types?: Array<'video' | 'short' | 'channel' | 'playlist' | 'other'> | null;
 
     /**
      * Total rows matching the query before pagination (null when not computed).
@@ -587,8 +540,8 @@ export interface YoutubeGetChannelsParams {
    * `["video_category"]` ranks content categories; `["source_type"]` ranks source
    * types; `["channel", "video_category"]`, `["channel", "source_type"]` and
    * `["channel", "model"]` return cross-tabs — a row per channel per category, or
-   * per answer engine. `limit` counts channels in every case, so ten channels across
-   * nine engines is ten channels and ninety rows.
+   * per answer engine. `limit` counts leading channels in every case, so ten
+   * channels across nine engines is ten channels and ninety rows.
    */
   group_by?: Array<'channel' | 'video_category' | 'model' | 'source_type'>;
 
@@ -606,7 +559,9 @@ export interface YoutubeGetChannelsParams {
 
   /**
    * Limit results to YouTube source types: `video`, `short`, `channel`, `playlist`,
-   * or `other`. Omit to include every source type.
+   * or `other`. Omit to include `video`, `short`, `channel`, and `playlist`; `other`
+   * is excluded because those citations have no channel. Requests containing `other`
+   * are rejected.
    */
   source_types?: Array<'video' | 'short' | 'channel' | 'playlist' | 'other'> | null;
 }
@@ -702,7 +657,10 @@ export interface YoutubeGetVideosParams {
 
   /**
    * Limit results to YouTube source types: `video`, `short`, `channel`, `playlist`,
-   * or `other`. Omit to include every source type.
+   * or `other`. Omit to include `video` and `short` with the default
+   * `attribution='attributed'`; `unattributed` and `all` widen the default to all
+   * five source types. Requests containing `other` with `attribution='attributed'`
+   * are rejected.
    */
   source_types?: Array<'video' | 'short' | 'channel' | 'playlist' | 'other'> | null;
 }
