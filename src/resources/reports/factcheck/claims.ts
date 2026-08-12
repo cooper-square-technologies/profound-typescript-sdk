@@ -80,9 +80,6 @@ export namespace ClaimQueryClaimsResponse {
 
     inaccurate?: number | null;
 
-    /**
-     * An `{id, name}` reference for a grouped dimension value.
-     */
     model?: Data.Model | null;
 
     models?: Array<Data.Model> | null;
@@ -195,6 +192,9 @@ export namespace ClaimQueryClaimsResponse {
 
         name?: string | null;
 
+        /**
+         * Only populated for entries in `models`; omitted from grouped-section `model`.
+         */
         occurrence?: number | null;
       }
     }
@@ -209,13 +209,15 @@ export namespace ClaimQueryClaimsResponse {
       source_updated_at?: string | null;
     }
 
-    /**
-     * An `{id, name}` reference for a grouped dimension value.
-     */
     export interface Model {
       id?: string | null;
 
       name?: string | null;
+
+      /**
+       * Only populated for entries in `models`; omitted from grouped-section `model`.
+       */
+      occurrence?: number | null;
     }
 
     export interface Model {
@@ -223,6 +225,9 @@ export namespace ClaimQueryClaimsResponse {
 
       name?: string | null;
 
+      /**
+       * Only populated for entries in `models`; omitted from grouped-section `model`.
+       */
       occurrence?: number | null;
     }
 
@@ -411,9 +416,6 @@ export namespace ClaimStreamClaimsResponse {
 
     inaccurate?: number | null;
 
-    /**
-     * An `{id, name}` reference for a grouped dimension value.
-     */
     model?: FactcheckClaimsRow.Model | null;
 
     models?: Array<FactcheckClaimsRow.Model> | null;
@@ -526,6 +528,9 @@ export namespace ClaimStreamClaimsResponse {
 
         name?: string | null;
 
+        /**
+         * Only populated for entries in `models`; omitted from grouped-section `model`.
+         */
         occurrence?: number | null;
       }
     }
@@ -540,13 +545,15 @@ export namespace ClaimStreamClaimsResponse {
       source_updated_at?: string | null;
     }
 
-    /**
-     * An `{id, name}` reference for a grouped dimension value.
-     */
     export interface Model {
       id?: string | null;
 
       name?: string | null;
+
+      /**
+       * Only populated for entries in `models`; omitted from grouped-section `model`.
+       */
+      occurrence?: number | null;
     }
 
     export interface Model {
@@ -554,6 +561,9 @@ export namespace ClaimStreamClaimsResponse {
 
       name?: string | null;
 
+      /**
+       * Only populated for entries in `models`; omitted from grouped-section `model`.
+       */
       occurrence?: number | null;
     }
 

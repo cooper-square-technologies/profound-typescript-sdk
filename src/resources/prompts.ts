@@ -2,6 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import * as Shared from './shared';
+import * as ReportsAPI from './reports/reports';
 import { APIPromise } from '../core/api-promise';
 import { Stream } from '../core/streaming';
 import { buildHeaders } from '../internal/headers';
@@ -454,6 +455,7 @@ export interface PromptAnswersParams {
     | Shared.AnalysisTypeFilter
     | Shared.PromptTypeFilter
     | Shared.PromptFilter
+    | ReportsAPI.PromptIDFilter
     | Shared.PersonaIDFilter
     | Shared.TopicIDFilter
     | Shared.AssetIDFilter
