@@ -2325,7 +2325,7 @@ export interface ReportGetBotsReportParams {
   /**
    * Dimensions to group the report by.
    */
-  dimensions?: Array<'date' | 'path' | 'bot_name' | 'bot_provider'>;
+  dimensions?: Array<'date' | 'host' | 'path' | 'bot_name' | 'bot_provider'>;
 
   /**
    * End date for logs. Accepts same formats as start_date. Defaults to now if
@@ -2397,7 +2397,7 @@ export interface ReportGetBotsReportV2Params {
   /**
    * Dimensions to group the report by.
    */
-  dimensions?: Array<'date' | 'hour' | 'path' | 'bot_name' | 'bot_provider' | 'bot_type'>;
+  dimensions?: Array<'date' | 'hour' | 'host' | 'path' | 'bot_name' | 'bot_provider' | 'bot_type'>;
 
   /**
    * Domain UUID used for tag lookups.
@@ -2511,7 +2511,7 @@ export interface ReportGetReferralsReportParams {
   /**
    * Dimensions to group the report by.
    */
-  dimensions?: Array<'date' | 'path' | 'referral_source'>;
+  dimensions?: Array<'date' | 'host' | 'path' | 'referral_source'>;
 
   /**
    * End date for logs. Accepts same formats as start_date. Defaults to now if
@@ -2605,7 +2605,7 @@ export interface ReportGetReferralsReportV2Params {
   /**
    * Dimensions to group the report by.
    */
-  dimensions?: Array<'date' | 'hour' | 'path' | 'referral_source' | 'referral_type'>;
+  dimensions?: Array<'date' | 'hour' | 'host' | 'path' | 'referral_source' | 'referral_type'>;
 
   /**
    * End date in UTC. Accepts same formats as start_date. Defaults to now UTC if
