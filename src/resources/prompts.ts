@@ -164,8 +164,8 @@ export namespace PromptAnswersV2Response {
 
     /**
      * Citation metadata. `positions` identify citation locations in the answer text.
-     * Each `groups` entry represents a rendered citation pill; `group_position` is the
-     * source's position within that pill.
+     * Each `groups` entry represents a rendered citation pill, including single-source
+     * pills; `group_position` is the source's position within that pill.
      */
     citation_details?: Array<Data.CitationDetail> | null;
 
@@ -354,8 +354,8 @@ export namespace PromptStreamAnswersV2Response {
 
     /**
      * Citation metadata. `positions` identify citation locations in the answer text.
-     * Each `groups` entry represents a rendered citation pill; `group_position` is the
-     * source's position within that pill.
+     * Each `groups` entry represents a rendered citation pill, including single-source
+     * pills; `group_position` is the source's position within that pill.
      */
     citation_details?: Array<AnswerRow.CitationDetail> | null;
 
