@@ -1,6 +1,8 @@
 # profound
 
-Generated TypeScript SDK for profound API.
+This library provides convenient access to the profound REST API from TypeScript or JavaScript.
+
+The full API of this library can be found in [api.md](./api.md).
 
 <br />
 
@@ -32,15 +34,15 @@ npm install @profoundai/client
 ## Usage
 
 ```ts
-import Profound from "@profoundai/client";
+import Profound from '@profoundai/client';
 
 const client = new Profound({
-  apiKeyHeader: process.env["API_KEY_HEADER"], // defaults to the API_KEY_HEADER env var
-  environment: "production",
+  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var
 });
 
-const listCategoryRegionsV1OrgCategoriesCategoryRegionsGet = await client.organization.listCategoryRegionsV1OrgCategoriesCategoryRegionsGet("categoryId");
-console.log(listCategoryRegionsV1OrgCategoriesCategoryRegionsGet);
+const regions = await client.organizations.regions();
+
+console.log(regions);
 ```
 
 The examples in the following sections assume a `client` configured as shown above.
@@ -54,11 +56,16 @@ See the [API reference](./api.md) for every available operation.
 Streaming endpoints return an async iterator that yields results as the server emits them.
 
 ```ts
-const stream = await client.prompts.answers.streamV2V2PromptsStreamPost({
-  category_id: "",
-  start_date: "",
-  end_date: "",
+const stream = await client.reports.streamCitations({
+  date_interval: 'day',
+  dimensions: [],
+  metrics: [],
+  order_by: {},
+  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+  start_date: '2024-01-01T00:00:00.000Z',
+  end_date: '2024-01-01T00:00:00.000Z',
 });
+
 for await (const event of stream) {
   console.log(event);
 }
@@ -72,8 +79,8 @@ Pass credentials to the generated client constructor. Environment variables are 
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `apiKeyHeader` | `string \| provider` | - | Credential for the APIKeyHeader scheme. Defaults to API_KEY_HEADER. |
-| `bearerAuth` | `string \| provider` | - | Credential for the BearerAuth scheme. Defaults to BEARER_AUTH. |
+| `accessToken` | `string \| provider` | - | Credential for the BearerAuth scheme. Defaults to PROFOUND_ACCESS_TOKEN. |
+| `apiKey` | `string \| provider` | - | Credential for the APIKeyHeader scheme. Defaults to PROFOUND_API_KEY. |
 
 Declared schemes:
 
@@ -87,10 +94,10 @@ Declared schemes:
 Non-success responses throw generated API errors. Error objects expose status, headers, response body, and request metadata where the target runtime supports it.
 
 ```ts
-import { APIError } from "@profoundai/client";
+import { APIError } from '@profoundai/client';
 
 try {
-  const listCategoryRegionsV1OrgCategoriesCategoryRegionsGet = await client.organization.listCategoryRegionsV1OrgCategoriesCategoryRegionsGet("categoryId");
+  const regions = await client.organizations.regions();
 } catch (err) {
   if (err instanceof APIError) {
     console.log(err.status, err.name, err.headers);
@@ -108,20 +115,19 @@ Documented error statuses: `422`.
 Configure the generated client by setting any of these options when you create it.
 
 ```ts
-import Profound from "@profoundai/client";
+import Profound from '@profoundai/client';
 
 const client = new Profound({
   timeout: 60000,
   maxRetries: 2,
-  logLevel: "debug",
+  logLevel: 'debug',
 });
 ```
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `apiKeyHeader` | `string \| AuthTokenProvider` | `process.env["API_KEY_HEADER"]` | Credential for the APIKeyHeader scheme. |
-| `bearerAuth` | `string \| AuthTokenProvider` | `process.env["BEARER_AUTH"]` | Credential for the BearerAuth scheme. |
-| `environment` | `Environment` | - | Select one of the configured API environments. |
+| `accessToken` | `string \| AuthTokenProvider` | `process.env["PROFOUND_ACCESS_TOKEN"]` | Credential for the BearerAuth scheme. |
+| `apiKey` | `string \| AuthTokenProvider` | `process.env["PROFOUND_API_KEY"]` | Credential for the APIKeyHeader scheme. |
 | `baseURL` | `string \| null` | `process.env["PROFOUND_BASE_URL"]` | Override the default API base URL. Pass `null` when selecting a configured environment. |
 | `timeout` | `number` | `60000` | Maximum time in milliseconds to wait for a response before aborting a request. |
 | `maxRetries` | `number` | `2` | Number of retries for temporary failures. |
@@ -145,7 +151,7 @@ const client = new Profound({
 | `maxRetries` | `number` | - | Per-request retry count. |
 | `signal` | `AbortSignal` | - | Abort an in-flight request. |
 | `fetchOptions` | `RequestInit` | - | Per-request fetch options. |
-| `idempotencyKey` | `string` | - | Idempotency key for retry-safe operations. |
+| `idempotencyKey` | `string` | - | Idempotency key for retry-safe operations. Applies to this request and its retries. |
 
 <br />
 
@@ -175,11 +181,3 @@ Generated clients support request timeouts and retry temporary failures such as 
 - Node.js 20+, a modern browser, or any runtime with `fetch` support
 
 Powered by Scalar.
-
-
-## Contributions
-
-This SDK is generated programmatically. Manual edits to generated files will be
-overwritten on the next build.
-
-### SDK created by [Scalar](https://www.scalar.com/?utm_source=external-api-2-typescript&utm_campaign=sdk)

@@ -1,101 +1,388 @@
 // File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-import { APIResource } from "../../resource";
-import { APIPromise } from "../../api-promise";
-import type { RequestOptions } from "../../internal/request-options";
-import { Citations, type CitationsQuery, type StreamCitationsQuery, type CitationsV2Query, type CitationQueryV1ReportsPostResponse, type CitationStreamV1ReportsStreamPostResponse, type CitationQueryV2V2ReportsPostResponse, type CitationQueryV1ReportsPostParams, type CitationStreamV1ReportsStreamPostParams, type CitationQueryV2V2ReportsPostParams, type CitationStreamV2V2ReportsStreamPostParams } from "./citations";
-import { Visibility, type VisibilityQuery, type StreamVisibilityQuery, type VisibilityV2Query, type VisibilityStreamV1ReportsStreamPostResponse, type VisibilityQueryV2V2ReportsPostResponse, type VisibilityQueryV1ReportsPostParams, type VisibilityStreamV1ReportsStreamPostParams, type VisibilityQueryV2V2ReportsPostParams, type VisibilityStreamV2V2ReportsStreamPostParams } from "./visibility";
-import { Sentiment, type SentimentQuery, type StreamSentimentQuery, type SentimentV2Query, type SentimentStreamV1ReportsStreamPostResponse, type SentimentQueryV2V2ReportsPostResponse, type SentimentQueryV1ReportsPostParams, type SentimentStreamV1ReportsStreamPostParams, type SentimentQueryV2V2ReportsPostParams, type SentimentStreamV2V2ReportsStreamPostParams } from "./sentiment";
-import { WebSearchResults, type WebSearchResultsQuery, type StreamWebSearchResultsQuery, type WebSearchResultQueryResponse, type WebSearchResultStreamResponse, type WebSearchResultQueryParams, type WebSearchResultStreamParams } from "./web-search-results";
-import { Referrals, type ReferralsQuery, type ReferralsQueryV2, type ReferralCreateReportV1V1ReportsPostParams, type ReferralCreateReportV2V2ReportsPostParams } from "./referrals";
-import { Bots, type BotsReportQuery, type BotsReportQueryV2, type BotCreateReportV1V1ReportsPostParams, type BotCreateReportV2V2ReportsPostParams } from "./bots";
-import { QueryFanouts, type QueryFanoutsQuery, type QueryFanoutsV2Query, type QueryFanoutV2V2ReportsPostResponse, type QueryFanoutV1ReportsPostParams, type QueryFanoutV2V2ReportsPostParams, type QueryFanoutStreamV2V2ReportsStreamPostParams } from "./query-fanouts";
-import { Shopping, type ShoppingVisibilityQuery, type ShoppingItemVisibilityQuery, type ShoppingMerchantDistributionQuery, type ShoppingMerchantVisibilityByBrandQuery, type ShoppingMerchantByItemsQuery, type ShoppingAllItemsWithMerchantsQuery, type ShoppingTriggerRateQuery, type ShoppingMerchantShareQuery, type ShoppingProductMerchantURLsQuery, type ShoppingExecutionsQuery, type BrandNameFilter, type MerchantNameFilter, type ProductNameFilter, type ShoppingVisibilityResponse, type ShoppingItemVisibilityResponse, type ShoppingMerchantDistributionResponse, type ShoppingMerchantVisibilityByBrandResponse, type ShoppingMerchantByItemsResponse, type ShoppingAllItemsWithMerchantsResponse, type ShoppingTriggerRateResponse, type ShoppingMerchantShareResponse, type ShoppingProductMerchantURLsResponse, type ShoppingExecutionsResponse, type ShoppingVisibilityParams, type ShoppingItemVisibilityParams, type ShoppingMerchantDistributionParams, type ShoppingMerchantVisibilityByBrandParams, type ShoppingMerchantByItemsParams, type ShoppingAllItemsWithMerchantsParams, type ShoppingTriggerRateParams, type ShoppingMerchantShareParams, type ShoppingProductMerchantURLsParams, type ShoppingExecutionsParams } from "./shopping";
-import { Accuracy, type AccuracyOverviewQuery, type AccuracyBreakdownQuery, type AccuracyCitationAnalysisQuery, type AccuracyTopicIDsQuery, type InaccurateThemesQuery, type InaccurateClustersQuery, type InaccuracyDriversQuery, type TopInaccurateClaimsQuery, type ClaimBreakdownQuery, type ClaimCitationsQuery, type ClusterExampleRunsQuery, type ClusterVerificationPairsQuery, type FactCheckSetupStatusQuery, type AccuracyOverviewV1ReportsOverviewPostResponse, type AccuracyBreakdownV1ReportsBreakdownPostResponse, type AccuracyCitationAnalysisV1ReportsCitationAnalysisPostResponse, type AccuracyTopicIDsV1ReportsTopicIDsPostResponse, type AccuracyInaccurateThemesV1ReportsInaccurateThemesPostResponse, type AccuracyInaccurateClustersV1ReportsInaccurateClustersPostResponse, type AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostResponse, type AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostResponse, type AccuracyClaimBreakdownV1ReportsClaimBreakdownPostResponse, type AccuracyClaimCitationsV1ReportsClaimCitationsPostResponse, type AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostResponse, type AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostResponse, type AccuracyFactcheckSetupStatusV1ReportsFactcheckSetupStatusPostResponse, type AccuracyOverviewV1ReportsOverviewPostParams, type AccuracyBreakdownV1ReportsBreakdownPostParams, type AccuracyCitationAnalysisV1ReportsCitationAnalysisPostParams, type AccuracyTopicIDsV1ReportsTopicIDsPostParams, type AccuracyInaccurateThemesV1ReportsInaccurateThemesPostParams, type AccuracyInaccurateClustersV1ReportsInaccurateClustersPostParams, type AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostParams, type AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostParams, type AccuracyClaimBreakdownV1ReportsClaimBreakdownPostParams, type AccuracyClaimCitationsV1ReportsClaimCitationsPostParams, type AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostParams, type AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostParams, type AccuracyFactcheckSetupStatusV1ReportsFactcheckSetupStatusPostParams } from "./accuracy";
+import { APIResource } from '../../resource';
+import { APIPromise } from '../../api-promise';
+import { Stream } from '../../core/streaming';
+import type { RequestOptions } from '../../internal/request-options';
+import { buildHeaders } from '../../internal/headers';
+import type * as Shared from '../shared';
+import * as WebSearchResultsAPI from './web-search-results';
+import {
+  WebSearchResults,
+  type WebSearchResultQueryResponse,
+  type WebSearchResultStreamResponse,
+  type WebSearchResultQueryParams,
+  type WebSearchResultStreamParams,
+} from './web-search-results';
+import * as ShoppingAPI from './shopping';
+import {
+  Shopping,
+  type BrandNameFilter,
+  type MerchantNameFilter,
+  type ProductNameFilter,
+  type ShoppingVisibilityResponse,
+  type ShoppingItemVisibilityResponse,
+  type ShoppingMerchantDistributionResponse,
+  type ShoppingMerchantVisibilityByBrandResponse,
+  type ShoppingMerchantByItemsResponse,
+  type ShoppingAllItemsWithMerchantsResponse,
+  type ShoppingTriggerRateResponse,
+  type ShoppingMerchantShareResponse,
+  type ShoppingProductMerchantURLsResponse,
+  type ShoppingExecutionsResponse,
+  type ShoppingVisibilityParams,
+  type ShoppingItemVisibilityParams,
+  type ShoppingMerchantDistributionParams,
+  type ShoppingMerchantVisibilityByBrandParams,
+  type ShoppingMerchantByItemsParams,
+  type ShoppingAllItemsWithMerchantsParams,
+  type ShoppingTriggerRateParams,
+  type ShoppingMerchantShareParams,
+  type ShoppingProductMerchantURLsParams,
+  type ShoppingExecutionsParams,
+} from './shopping';
 
 export class Reports extends APIResource {
-  citations: Citations = new Citations(this._client);
-  visibility: Visibility = new Visibility(this._client);
-  sentiment: Sentiment = new Sentiment(this._client);
-  webSearchResults: WebSearchResults = new WebSearchResults(this._client);
-  referrals: Referrals = new Referrals(this._client);
-  bots: Bots = new Bots(this._client);
-  queryFanouts: QueryFanouts = new QueryFanouts(this._client);
-  shopping: Shopping = new Shopping(this._client);
-  accuracy: Accuracy = new Accuracy(this._client);
+  webSearchResults: WebSearchResultsAPI.WebSearchResults = new WebSearchResultsAPI.WebSearchResults(
+    this._client,
+  );
+  shopping: ShoppingAPI.Shopping = new ShoppingAPI.Shopping(this._client);
 
   /**
-   * Query Sentiment V2
+   * Get citations for a given category.
    *
-   * @param {ReportQuerySentimentV2V1SentimentV2PostParams} body - The request body to send.
+   * The ``mentioned`` filter supports ``is true`` and ``is false``. It uses the
+   * latest page analysis available at or before ``end_date``; pages without an
+   * analysis by then are excluded from both values. ``citation_share`` keeps all
+   * otherwise eligible citations in its denominator when this filter is used.
+   *
+   * @param {ReportCitationsParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<ReportQuerySentimentV2V1SentimentV2PostResponse>} Successful Response
+   * @returns {APIPromise<ReportCitationsResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const querySentimentV2V1SentimentV2Post = await client.reports.querySentimentV2V1SentimentV2Post({
-   *   category_id: "",
-   *   asset_name: "",
-   *   start_date: "",
-   *   end_date: "",
-   *   date_interval: "day",
+   * const citations = await client.reports.citations({
+   *   date_interval: 'day',
+   *   dimensions: [],
    *   metrics: [],
+   *   order_by: {},
+   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   start_date: '2024-01-01T00:00:00.000Z',
+   *   end_date: '2024-01-01T00:00:00.000Z',
    * });
    * ```
    */
-  querySentimentV2V1SentimentV2Post(body: ReportQuerySentimentV2V1SentimentV2PostParams, options?: RequestOptions): APIPromise<ReportQuerySentimentV2V1SentimentV2PostResponse> {
-    return this._client.post("/v1/reports/sentiment-v2", { body: body, ...options });
+  citations(body: ReportCitationsParams, options?: RequestOptions): APIPromise<ReportCitationsResponse> {
+    return this._client.post('/v1/reports/citations', { body, ...options });
   }
-}
 
-export interface SentimentV2ReportQuery {
   /**
-   * @format uuid
+   * Query visibility report.
+   *
+   * @param {ReportVisibilityParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<ReportResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const report = await client.reports.visibility({
+   *   date_interval: 'day',
+   *   dimensions: [],
+   *   metrics: [],
+   *   order_by: {},
+   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   start_date: '2024-01-01T00:00:00.000Z',
+   *   end_date: '2024-01-01T00:00:00.000Z',
+   * });
+   * ```
    */
-  category_id: string;
-  asset_name: string;
+  visibility(body: ReportVisibilityParams, options?: RequestOptions): APIPromise<ReportResponse> {
+    return this._client.post('/v1/reports/visibility', { body, ...options });
+  }
+
   /**
-   * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
-   * @format date-time
+   * Get citations for a given category.
+   *
+   * @param {ReportSentimentParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<ReportResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const report = await client.reports.sentiment({
+   *   date_interval: 'day',
+   *   dimensions: [],
+   *   metrics: [],
+   *   order_by: {},
+   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   start_date: '2024-01-01T00:00:00.000Z',
+   *   end_date: '2024-01-01T00:00:00.000Z',
+   * });
+   * ```
    */
-  start_date: string;
+  sentiment(body: ReportSentimentParams, options?: RequestOptions): APIPromise<ReportResponse> {
+    return this._client.post('/v1/reports/sentiment', { body, ...options });
+  }
+
   /**
-   * End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
-   * @format date-time
+   * Get referral traffic report from the daily aggregated materialized view.
+   *
+   * This endpoint queries pre-aggregated daily referral data, making it efficient
+   * for large date ranges and high-traffic sites.
+   *
+   * @param {ReportGetReferralsReportParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<ReportResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const report = await client.reports.getReferralsReport({
+   *   date_interval: 'day',
+   *   dimensions: [],
+   *   metrics: [],
+   *   order_by: {},
+   *   domain: '',
+   *   start_date: '2024-01-01T00:00:00.000Z',
+   * });
+   * ```
    */
-  end_date: string;
-  metrics: Array<"sentiment" | "occurrence">;
+  getReferralsReport(
+    body: ReportGetReferralsReportParams,
+    options?: RequestOptions,
+  ): APIPromise<ReportResponse> {
+    return this._client.post('/v1/reports/referrals', { body, ...options });
+  }
+
   /**
-   * Start of the previous period for delta computation.
-   * @format date-time
+   * Get bot traffic report from the daily aggregated materialized view.
+   *
+   * This endpoint queries pre-aggregated daily bot data, making it efficient
+   * for large date ranges and high-traffic sites.
+   *
+   * Metrics:
+   * - count: unique bot visits
+   * - citations: unique citation events
+   * - indexing: unique indexing events
+   * - training: unique training events
+   * - last_visit: most recent visit timestamp
+   *
+   * @param {ReportGetBotsReportParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<ReportResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const report = await client.reports.getBotsReport({
+   *   date_interval: 'day',
+   *   dimensions: [],
+   *   metrics: [],
+   *   order_by: {},
+   *   domain: '',
+   *   start_date: '2024-01-01T00:00:00.000Z',
+   * });
+   * ```
    */
-  comparison_start_date?: string | null;
+  getBotsReport(body: ReportGetBotsReportParams, options?: RequestOptions): APIPromise<ReportResponse> {
+    return this._client.post('/v1/reports/bots', { body, ...options });
+  }
+
   /**
-   * End of the previous period for delta computation.
-   * @format date-time
+   * Get referral traffic report from the hourly aggregated materialized view (UTC-based).
+   *
+   * Supports date_interval="hour", calendar intervals through "year", "quarter", and "relative_week".
+   *
+   * @param {ReportGetReferralsReportV2Params} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<ReportResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const report = await client.reports.getReferralsReportV2({
+   *   date_interval: 'day',
+   *   dimensions: [],
+   *   metrics: [],
+   *   order_by: {},
+   *   domain: '',
+   *   start_date: '2024-01-01T00:00:00.000Z',
+   *   timezone: 'UTC',
+   * });
+   * ```
    */
-  comparison_end_date?: string | null;
+  getReferralsReportV2(
+    body: ReportGetReferralsReportV2Params,
+    options?: RequestOptions,
+  ): APIPromise<ReportResponse> {
+    return this._client.post('/v2/reports/referrals', { body, ...options });
+  }
+
   /**
-   * Date interval for the report. Only used when dimensions includes date.
-   * @default day
+   * Get bot traffic report from the hourly aggregated materialized view (UTC-based).
+   *
+   * Supports date_interval="hour", calendar intervals through "year", "quarter", and "relative_week".
+   *
+   * Metrics:
+   * - count: unique bot visits
+   * - citations: unique citation events (ai_assistant bot type)
+   * - indexing: unique indexing events (index bot type)
+   * - training: unique training events (ai_training bot type)
+   * - last_visit: most recent visit timestamp
+   *
+   * Dimensions:
+   * - date, path, bot_name, bot_provider, bot_type
+   *
+   * @param {ReportGetBotsReportV2Params} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<ReportResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const report = await client.reports.getBotsReportV2({
+   *   date_interval: 'day',
+   *   dimensions: [],
+   *   metrics: [],
+   *   order_by: {},
+   *   domain: '',
+   *   start_date: '2024-01-01T00:00:00.000Z',
+   *   timezone: 'UTC',
+   * });
+   * ```
    */
-  date_interval?: "hour" | "day" | "week" | "month" | "quarter" | "year" | "relative_week";
+  getBotsReportV2(body: ReportGetBotsReportV2Params, options?: RequestOptions): APIPromise<ReportResponse> {
+    return this._client.post('/v2/reports/bots', { body, ...options });
+  }
+
   /**
-   * Dimensions to group the report by.
+   * Query Fanouts
+   *
+   * @param {ReportQueryFanoutsParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<ReportResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const report = await client.reports.queryFanouts({
+   *   date_interval: 'day',
+   *   dimensions: [],
+   *   metrics: [],
+   *   order_by: {},
+   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   start_date: '2024-01-01T00:00:00.000Z',
+   *   end_date: '2024-01-01T00:00:00.000Z',
+   * });
+   * ```
    */
-  dimensions?: Array<"date" | "topic" | "region" | "model" | "prompt" | "persona" | "tag" | "theme" | "claim" | "run" | "asset_name">;
+  queryFanouts(body: ReportQueryFanoutsParams, options?: RequestOptions): APIPromise<ReportResponse> {
+    return this._client.post('/v1/reports/query-fanouts', { body, ...options });
+  }
+
   /**
-   * List of filters to apply to the sentiment-v2 report.
+   * Stream citations with the same filter semantics as the non-streaming route.
+   *
+   * @param {ReportStreamCitationsParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<Stream<ReportStreamCitationsResponse>>} Server-sent events stream. Emits a `summary` event first, then one `row` event per streamed row.
+   *
+   * @example
+   * ```ts
+   * const stream = await client.reports.streamCitations({
+   *   date_interval: 'day',
+   *   dimensions: [],
+   *   metrics: [],
+   *   order_by: {},
+   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   start_date: '2024-01-01T00:00:00.000Z',
+   *   end_date: '2024-01-01T00:00:00.000Z',
+   * });
+   *
+   * for await (const event of stream) {
+   *   console.log(event);
+   * }
+   * ```
    */
-  filters?: Array<{ field: "model_id"; operator: "is" | "not_is" | "in" | "not_in"; value: string | Array<string> } | { field: "region_id"; operator: "is" | "not_is" | "in" | "not_in"; value: string | Array<string> } | { field: "topic_id"; operator: "is" | "not_is" | "in" | "not_in"; value: string | Array<string> } | { field: "prompt_id"; operator: "is" | "not_is" | "in" | "not_in"; value: string | Array<string> } | { field: "persona_id"; operator: "is" | "not_is" | "in" | "not_in"; value: string | Array<string> } | { field: "tag_id"; operator: "is" | "not_is" | "in" | "not_in"; value: string | Array<string> } | { field: "run_id"; operator: "is" | "not_is" | "in" | "not_in"; value: string | Array<string> } | { field: "theme_id"; operator: "is" | "not_is" | "in" | "not_in"; value: string | Array<string> } | { field: "theme"; operator: "is" | "not_is" | "in" | "not_in" | "contains" | "not_contains" | "matches" | "contains_case_insensitive" | "not_contains_case_insensitive"; value: string | Array<string> } | { field: "claim_id"; operator: "is" | "not_is" | "in" | "not_in"; value: string | Array<string> } | { field: "claim"; operator: "is" | "not_is" | "in" | "not_in" | "contains" | "not_contains" | "matches" | "contains_case_insensitive" | "not_contains_case_insensitive"; value: string | Array<string> } | { field: "sentiment"; operator: "is" | "not_is" | "in" | "not_in"; value: "positive" | "negative" | Array<"positive" | "negative"> }>;
+  streamCitations(
+    body: ReportStreamCitationsParams,
+    options?: RequestOptions,
+  ): APIPromise<Stream<ReportStreamCitationsResponse>> {
+    return this._client.post('/v1/reports/citations/stream', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/event-stream' }, options?.headers]),
+      stream: true,
+    });
+  }
+
   /**
-   * Custom ordering of report results. Dimension keys must also be present in dimensions. The sentiment metric orders by positive_sentiment.
+   * Stream Visibility
+   *
+   * @param {ReportStreamVisibilityParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<Stream<ReportStreamVisibilityResponse>>} Server-sent events stream. Emits a `summary` event first, then one `row` event per streamed row.
+   *
+   * @example
+   * ```ts
+   * const stream = await client.reports.streamVisibility({
+   *   date_interval: 'day',
+   *   dimensions: [],
+   *   metrics: [],
+   *   order_by: {},
+   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   start_date: '2024-01-01T00:00:00.000Z',
+   *   end_date: '2024-01-01T00:00:00.000Z',
+   * });
+   *
+   * for await (const event of stream) {
+   *   console.log(event);
+   * }
+   * ```
    */
-  order_by?: Record<string, "asc" | "desc">;
+  streamVisibility(
+    body: ReportStreamVisibilityParams,
+    options?: RequestOptions,
+  ): APIPromise<Stream<ReportStreamVisibilityResponse>> {
+    return this._client.post('/v1/reports/visibility/stream', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/event-stream' }, options?.headers]),
+      stream: true,
+    });
+  }
+
   /**
-   * Pagination settings for the report results.
+   * Stream Sentiment
+   *
+   * @param {ReportStreamSentimentParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<Stream<ReportStreamSentimentResponse>>} Server-sent events stream. Emits a `summary` event first, then one `row` event per streamed row.
+   *
+   * @example
+   * ```ts
+   * const stream = await client.reports.streamSentiment({
+   *   date_interval: 'day',
+   *   dimensions: [],
+   *   metrics: [],
+   *   order_by: {},
+   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   start_date: '2024-01-01T00:00:00.000Z',
+   *   end_date: '2024-01-01T00:00:00.000Z',
+   * });
+   *
+   * for await (const event of stream) {
+   *   console.log(event);
+   * }
+   * ```
    */
-  pagination?: Pagination;
+  streamSentiment(
+    body: ReportStreamSentimentParams,
+    options?: RequestOptions,
+  ): APIPromise<Stream<ReportStreamSentimentResponse>> {
+    return this._client.post('/v1/reports/sentiment/stream', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: 'text/event-stream' }, options?.headers]),
+      stream: true,
+    });
+  }
 }
 
 /**
@@ -121,7 +408,7 @@ export interface ReportResponse {
  * Base model for report results.
  */
 export interface ReportResult {
-  metrics: Array<number>;
+  metrics: Array<number | string>;
   dimensions: Array<string>;
 }
 
@@ -129,8 +416,17 @@ export interface ReportResult {
  * Filter by topic name
  */
 export interface TopicNameFilter {
-  field: "topic_name";
-  operator: "is" | "not_is" | "in" | "not_in" | "contains" | "not_contains" | "matches" | "contains_case_insensitive" | "not_contains_case_insensitive";
+  field: 'topic_name';
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
   value: string | Array<string>;
 }
 
@@ -138,8 +434,8 @@ export interface TopicNameFilter {
  * Filter by prompt UUID.
  */
 export interface PromptIDFilter {
-  field: "prompt_id";
-  operator: "is" | "not_is" | "in" | "not_in";
+  field: 'prompt_id';
+  operator: 'is' | 'not_is' | 'in' | 'not_in';
   value: string | Array<string>;
 }
 
@@ -147,8 +443,17 @@ export interface PromptIDFilter {
  * Filter by tag name.
  */
 export interface TagNameFilter {
-  field: "tag_name";
-  operator: "is" | "not_is" | "in" | "not_in" | "contains" | "not_contains" | "matches" | "contains_case_insensitive" | "not_contains_case_insensitive";
+  field: 'tag_name';
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
   value: string | Array<string>;
 }
 
@@ -156,8 +461,17 @@ export interface TagNameFilter {
  * Filter by root domain
  */
 export interface RootDomainFilter {
-  field: "root_domain";
-  operator: "is" | "not_is" | "in" | "not_in" | "contains" | "not_contains" | "matches" | "contains_case_insensitive" | "not_contains_case_insensitive";
+  field: 'root_domain';
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
   value: string | Array<string>;
 }
 
@@ -165,8 +479,17 @@ export interface RootDomainFilter {
  * Filter by hostname
  */
 export interface HostnameFilter {
-  field: "hostname";
-  operator: "is" | "not_is" | "in" | "not_in" | "contains" | "not_contains" | "matches" | "contains_case_insensitive" | "not_contains_case_insensitive";
+  field: 'hostname';
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
   value: string | Array<string>;
 }
 
@@ -174,35 +497,29 @@ export interface HostnameFilter {
  * Filter by URL
  */
 export interface URLFilter {
-  field: "url";
-  operator: "is" | "not_is" | "in" | "not_in" | "contains" | "not_contains" | "matches" | "contains_case_insensitive" | "not_contains_case_insensitive";
+  field: 'url';
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
   value: string | Array<string>;
 }
 
-/**
- * Offset-based pagination parameters.
- */
-export interface Pagination {
+export interface ReportCitationsParams {
   /**
-   * Maximum number of results to return. Default is 10,000, maximum is 50,000.
-   * @default 10000
-   * @maximum 50000
+   * Metrics to include. `share_of_voice` is deprecated, use `citation_share` instead.
    */
-  limit?: number;
-  /**
-   * Offset for the results. Used for pagination.
-   * @default 0
-   * @minimum 0
-   */
-  offset?: number;
-}
-
-export interface ReportQuerySentimentV2V1SentimentV2PostParams {
+  metrics: Array<'count' | 'citation_share' | 'share_of_voice' | 'first_cited_at'>;
   /**
    * @format uuid
    */
   category_id: string;
-  asset_name: string;
   /**
    * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
    * @format date-time
@@ -213,202 +530,1071 @@ export interface ReportQuerySentimentV2V1SentimentV2PostParams {
    * @format date-time
    */
   end_date: string;
-  metrics: Array<"sentiment" | "occurrence">;
   /**
-   * Start of the previous period for delta computation.
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * End of the previous period for delta computation.
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * Date interval for the report. Only used when dimensions includes date.
+   * Date interval for the report. (only used with date dimension)
    * @default day
    */
-  date_interval?: "hour" | "day" | "week" | "month" | "quarter" | "year" | "relative_week";
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
   /**
    * Dimensions to group the report by.
+   * @default []
    */
-  dimensions?: Array<"date" | "topic" | "region" | "model" | "prompt" | "persona" | "tag" | "theme" | "claim" | "run" | "asset_name">;
+  dimensions?: Array<
+    | 'hostname'
+    | 'path'
+    | 'date'
+    | 'region'
+    | 'topic'
+    | 'topic_id'
+    | 'model'
+    | 'tag'
+    | 'prompt'
+    | 'prompt_id'
+    | 'url'
+    | 'root_domain'
+    | 'persona'
+    | 'citation_category'
+  >;
   /**
-   * List of filters to apply to the sentiment-v2 report.
+   *
+   *     Custom ordering of the report results.
+   *
+   *     The order is a record of key-value pairs where:
+   *     - `key` is the field to order by, which can be a metric or dimension
+   *     - `value` is the direction of the order, either `asc` for ascending or `desc` for descending.
+   *
+   *     When not specified, the default order is the first metric in the query descending.
+   *
+   * @default {}
    */
-  filters?: Array<ReportQuerySentimentV2V1SentimentV2PostParams.SentimentV2ModelIDFilter | ReportQuerySentimentV2V1SentimentV2PostParams.SentimentV2RegionIDFilter | ReportQuerySentimentV2V1SentimentV2PostParams.SentimentV2TopicIDFilter | ReportQuerySentimentV2V1SentimentV2PostParams.SentimentV2PromptIDFilter | ReportQuerySentimentV2V1SentimentV2PostParams.SentimentV2PersonaIDFilter | ReportQuerySentimentV2V1SentimentV2PostParams.SentimentV2TagIDFilter | ReportQuerySentimentV2V1SentimentV2PostParams.SentimentV2RunIDFilter | ReportQuerySentimentV2V1SentimentV2PostParams.SentimentV2ThemeIDFilter | ReportQuerySentimentV2V1SentimentV2PostParams.SentimentV2ThemeFilter | ReportQuerySentimentV2V1SentimentV2PostParams.SentimentV2ClaimIDFilter | ReportQuerySentimentV2V1SentimentV2PostParams.SentimentV2ClaimFilter | ReportQuerySentimentV2V1SentimentV2PostParams.SentimentV2SentimentFilter>;
-  /**
-   * Custom ordering of report results. Dimension keys must also be present in dimensions. The sentiment metric orders by positive_sentiment.
-   */
-  order_by?: Record<string, "asc" | "desc">;
+  order_by?: Record<string, 'asc' | 'desc'>;
   /**
    * Pagination settings for the report results.
    */
-  pagination?: Pagination;
+  pagination?: Shared.Pagination;
+  /**
+   * List of filters to apply to the citations report.
+   */
+  filters?: Array<
+    | HostnameFilter
+    | Shared.PathFilter
+    | Shared.RegionIDFilter
+    | Shared.RegionNameFilter
+    | Shared.TopicIDFilter
+    | TopicNameFilter
+    | Shared.ModelIDFilter
+    | Shared.TagIDFilter
+    | TagNameFilter
+    | URLFilter
+    | RootDomainFilter
+    | Shared.AnalysisTypeFilter
+    | Shared.PromptTypeFilter
+    | Shared.PersonaIDFilter
+    | ReportCitationsParams.CitationCategoryFilter
+    | Shared.PromptFilter
+    | PromptIDFilter
+    | ReportCitationsParams.MentionedFilter
+  >;
 }
 
-export namespace ReportQuerySentimentV2V1SentimentV2PostParams {
-  export interface SentimentV2ModelIDFilter {
-    field: "model_id";
-    operator: "is" | "not_is" | "in" | "not_in";
+export namespace ReportCitationsParams {
+  export interface CitationCategoryFilter {
+    field: 'citation_category';
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
     value: string | Array<string>;
   }
 
-  export interface SentimentV2RegionIDFilter {
-    field: "region_id";
-    operator: "is" | "not_is" | "in" | "not_in";
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2TopicIDFilter {
-    field: "topic_id";
-    operator: "is" | "not_is" | "in" | "not_in";
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2PromptIDFilter {
-    field: "prompt_id";
-    operator: "is" | "not_is" | "in" | "not_in";
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2PersonaIDFilter {
-    field: "persona_id";
-    operator: "is" | "not_is" | "in" | "not_in";
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2TagIDFilter {
-    field: "tag_id";
-    operator: "is" | "not_is" | "in" | "not_in";
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2RunIDFilter {
-    field: "run_id";
-    operator: "is" | "not_is" | "in" | "not_in";
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2ThemeIDFilter {
-    field: "theme_id";
-    operator: "is" | "not_is" | "in" | "not_in";
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2ThemeFilter {
-    field: "theme";
-    operator: "is" | "not_is" | "in" | "not_in" | "contains" | "not_contains" | "matches" | "contains_case_insensitive" | "not_contains_case_insensitive";
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2ClaimIDFilter {
-    field: "claim_id";
-    operator: "is" | "not_is" | "in" | "not_in";
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2ClaimFilter {
-    field: "claim";
-    operator: "is" | "not_is" | "in" | "not_in" | "contains" | "not_contains" | "matches" | "contains_case_insensitive" | "not_contains_case_insensitive";
-    value: string | Array<string>;
-  }
-
-  export interface SentimentV2SentimentFilter {
-    field: "sentiment";
-    operator: "is" | "not_is" | "in" | "not_in";
-    value: "positive" | "negative" | Array<"positive" | "negative">;
+  export interface MentionedFilter {
+    field: 'mentioned';
+    operator: 'is';
+    value: boolean | Array<boolean>;
   }
 }
 
-export interface ReportQuerySentimentV2V1SentimentV2PostResponse {
-  info: ReportQuerySentimentV2V1SentimentV2PostResponse.Info;
-  data?: Array<ReportQuerySentimentV2V1SentimentV2PostResponse.Data>;
+export interface ReportCitationsResponse {
+  /**
+   * Base model for report information.
+   */
+  info: ReportInfo;
+  data: Array<ReportCitationsResponse.Data>;
 }
 
-export namespace ReportQuerySentimentV2V1SentimentV2PostResponse {
-  export interface Info {
-    query: Info.Query;
+export namespace ReportCitationsResponse {
+  export interface Data {
+    metrics: Array<number | string | null>;
+    dimensions: Array<string>;
+  }
+}
+
+export interface ReportVisibilityParams {
+  metrics: Array<
+    'share_of_voice' | 'mentions_count' | 'visibility_score' | 'executions' | 'average_position'
+  >;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  /**
+   * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
+   * @format date-time
+   */
+  start_date: string;
+  /**
+   * End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
+   * @format date-time
+   */
+  end_date: string;
+  /**
+   * Date interval for the report. (only used with date dimension)
+   * @default day
+   */
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
+  /**
+   * Dimensions to group the report by.
+   * @default []
+   */
+  dimensions?: Array<
+    | 'date'
+    | 'region'
+    | 'topic'
+    | 'topic_id'
+    | 'model'
+    | 'asset_id'
+    | 'asset_name'
+    | 'prompt'
+    | 'prompt_id'
+    | 'tag'
+    | 'persona'
+  >;
+  /**
+   *
+   * Custom ordering of the report results.
+   *
+   * The order is a record of key-value pairs where:
+   * - key is the field to order by, which can be a metric or dimension
+   * - value is the direction of the order, either 'asc' for ascending or 'desc' for descending.
+   *
+   * When not specified, the default order is the first metric in the query descending.
+   *
+   * @default {}
+   */
+  order_by?: Record<string, 'asc' | 'desc'>;
+  /**
+   * Pagination settings for the report results.
+   */
+  pagination?: Shared.Pagination;
+  /**
+   * List of filters to apply to the visibility report.
+   */
+  filters?: Array<
+    | Shared.RegionIDFilter
+    | Shared.RegionNameFilter
+    | Shared.ModelIDFilter
+    | Shared.TopicIDFilter
+    | TopicNameFilter
+    | ReportVisibilityParams.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
+    | Shared.TagIDFilter
+    | TagNameFilter
+    | PromptIDFilter
+    | Shared.PromptFilter
+    | Shared.PersonaIDFilter
+  >;
+}
+
+export namespace ReportVisibilityParams {
+  export interface ProfoundAnswerEngineInsightsFiltersAssetNameFilter {
+    field: 'asset_name';
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+    value: string | Array<string>;
+  }
+}
+
+export interface ReportSentimentParams {
+  metrics: Array<'positive' | 'negative' | 'occurrences'>;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  /**
+   * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
+   * @format date-time
+   */
+  start_date: string;
+  /**
+   * End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
+   * @format date-time
+   */
+  end_date: string;
+  /**
+   * Date interval for the report. (only used with date dimension)
+   * @default day
+   */
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
+  /**
+   * Dimensions to group the report by.
+   * @default []
+   */
+  dimensions?: Array<
+    | 'theme'
+    | 'date'
+    | 'region'
+    | 'topic'
+    | 'topic_id'
+    | 'model'
+    | 'asset_id'
+    | 'asset_name'
+    | 'tag'
+    | 'prompt'
+    | 'prompt_id'
+    | 'sentiment_type'
+    | 'persona'
+  >;
+  /**
+   *
+   * Custom ordering of the report results.
+   *
+   * The order is a record of key-value pairs where:
+   * - key is the field to order by, which can be a metric or dimension
+   * - value is the direction of the order, either 'asc' for ascending or 'desc' for descending.
+   *
+   * When not specified, the default order is the first metric in the query descending.
+   *
+   * @default {}
+   */
+  order_by?: Record<string, 'asc' | 'desc'>;
+  /**
+   * Pagination settings for the report results.
+   */
+  pagination?: Shared.Pagination;
+  /**
+   * List of filters to apply to the sentiment report.
+   */
+  filters?: Array<
+    | Shared.AssetIDFilter
+    | ReportSentimentParams.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
+    | ReportSentimentParams.ThemeFilter
+    | Shared.RegionIDFilter
+    | Shared.RegionNameFilter
+    | Shared.TopicIDFilter
+    | TopicNameFilter
+    | Shared.ModelIDFilter
+    | Shared.TagIDFilter
+    | TagNameFilter
+    | Shared.PromptFilter
+    | Shared.PersonaIDFilter
+  >;
+}
+
+export namespace ReportSentimentParams {
+  export interface ProfoundAnswerEngineInsightsFiltersAssetNameFilter {
+    field: 'asset_name';
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+    value: string | Array<string>;
+  }
+
+  export interface ThemeFilter {
+    field: 'theme';
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+    value: string | Array<string>;
+  }
+}
+
+export interface ReportGetReferralsReportParams {
+  metrics: Array<'visits' | 'last_visit'>;
+  /**
+   * Domain to query logs for.
+   */
+  domain: string;
+  /**
+   * Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.
+   * @format date-time
+   */
+  start_date: string;
+  /**
+   * Date interval for the report. (only used with date dimension)
+   * @default day
+   */
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
+  /**
+   * Dimensions to group the report by.
+   * @default []
+   */
+  dimensions?: Array<'date' | 'host' | 'path' | 'referral_source'>;
+  /**
+   *
+   * Custom ordering of the report results.
+   *
+   * The order is a record of key-value pairs where:
+   * - key is the field to order by, which can be a metric or dimension
+   * - value is the direction of the order, either 'asc' for ascending or 'desc' for descending.
+   *
+   * When not specified, the default order is the first metric in the query descending.
+   *
+   * @default {}
+   */
+  order_by?: Record<string, 'asc' | 'desc'>;
+  /**
+   * Pagination settings for the report results.
+   */
+  pagination?: Shared.Pagination;
+  /**
+   * End date for logs. Accepts same formats as start_date. Defaults to now if omitted.
+   * @format date-time
+   */
+  end_date?: string;
+  /**
+   * @format uuid
+   */
+  organization_id?: string | null;
+  /**
+   * Numeric filters applied after report metrics are calculated.
+   */
+  metric_filters?: Array<ReportGetReferralsReportParams.MetricFilter>;
+  /**
+   * Filters for referrals report.
+   */
+  filters?: Array<Shared.PathFilter | ReportGetReferralsReportParams.ReferralSourceFilter>;
+}
+
+export namespace ReportGetReferralsReportParams {
+  export interface MetricFilter {
+    field: string;
+    operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!=';
+    value: number;
+  }
+
+  export interface ReferralSourceFilter {
+    field: 'referral_source';
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+    value: string | Array<string>;
+  }
+}
+
+export interface ReportGetBotsReportParams {
+  metrics: Array<'count' | 'citations' | 'indexing' | 'training' | 'last_visit'>;
+  /**
+   * Domain to query logs for.
+   */
+  domain: string;
+  /**
+   * Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.
+   * @format date-time
+   */
+  start_date: string;
+  /**
+   * Date interval for the report. (only used with date dimension)
+   * @default day
+   */
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'relative_week';
+  /**
+   * Dimensions to group the report by.
+   * @default []
+   */
+  dimensions?: Array<'date' | 'host' | 'path' | 'bot_name' | 'bot_provider'>;
+  /**
+   *
+   * Custom ordering of the report results.
+   *
+   * The order is a record of key-value pairs where:
+   * - key is the field to order by, which can be a metric or dimension
+   * - value is the direction of the order, either 'asc' for ascending or 'desc' for descending.
+   *
+   * When not specified, the default order is the first metric in the query descending.
+   *
+   * @default {}
+   */
+  order_by?: Record<string, 'asc' | 'desc'>;
+  /**
+   * Pagination settings for the report results.
+   */
+  pagination?: Shared.Pagination;
+  /**
+   * End date for logs. Accepts same formats as start_date. Defaults to now if omitted.
+   * @format date-time
+   */
+  end_date?: string;
+  /**
+   * @format uuid
+   */
+  organization_id?: string | null;
+  /**
+   * Numeric filters applied after report metrics are calculated.
+   */
+  metric_filters?: Array<ReportGetBotsReportParams.MetricFilter>;
+  /**
+   * Filters for bots report.
+   */
+  filters?: Array<Shared.PathFilter | Shared.BotNameFilter | Shared.BotProviderFilter>;
+}
+
+export namespace ReportGetBotsReportParams {
+  export interface MetricFilter {
+    field: string;
+    operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!=';
+    value: number;
+  }
+}
+
+export interface ReportGetReferralsReportV2Params {
+  metrics: Array<'visits' | 'last_visit'>;
+  /**
+   * Domain to query logs for.
+   */
+  domain: string;
+  /**
+   * Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.
+   * @format date-time
+   */
+  start_date: string;
+  /**
+   * Date interval for the report. (only used with date dimension)
+   * @default day
+   */
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
+  /**
+   * Dimensions to group the report by.
+   * @default []
+   */
+  dimensions?: Array<'date' | 'hour' | 'host' | 'path' | 'referral_source' | 'referral_type'>;
+  /**
+   *
+   * Custom ordering of the report results.
+   *
+   * The order is a record of key-value pairs where:
+   * - key is the field to order by, which can be a metric or dimension
+   * - value is the direction of the order, either 'asc' for ascending or 'desc' for descending.
+   *
+   * When not specified, the default order is the first metric in the query descending.
+   *
+   * @default {}
+   */
+  order_by?: Record<string, 'asc' | 'desc'>;
+  /**
+   * Pagination settings for the report results.
+   */
+  pagination?: Shared.Pagination;
+  /**
+   * End date in UTC. Accepts same formats as start_date. Defaults to now UTC if omitted.
+   * @format date-time
+   */
+  end_date?: string;
+  /**
+   * @format uuid
+   */
+  organization_id?: string | null;
+  /**
+   * IANA timezone name for date bucketing and filter boundaries.
+   * @default UTC
+   */
+  timezone?: string;
+  /**
+   * Numeric filters applied after report metrics are calculated.
+   */
+  metric_filters?: Array<ReportGetReferralsReportV2Params.MetricFilter>;
+  /**
+   * Filters for referrals report.
+   */
+  filters?: Array<
+    | Shared.PathFilter
+    | ReportGetReferralsReportV2Params.ReferralSourceFilter
+    | ReportGetReferralsReportV2Params.ReferralTypeFilter
+  >;
+}
+
+export namespace ReportGetReferralsReportV2Params {
+  export interface MetricFilter {
+    field: string;
+    operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!=';
+    value: number;
+  }
+
+  export interface ReferralSourceFilter {
+    field: 'referral_source';
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+    value: string | Array<string>;
+  }
+
+  export interface ReferralTypeFilter {
+    field: 'referral_type';
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+    value: 'internal' | 'referer' | 'utm' | 'none' | Array<'internal' | 'referer' | 'utm' | 'none'>;
+  }
+}
+
+export interface ReportGetBotsReportV2Params {
+  metrics: Array<'count' | 'citations' | 'indexing' | 'training' | 'last_visit' | 'agents'>;
+  /**
+   * Domain to query logs for.
+   */
+  domain: string;
+  /**
+   * Start date for logs. Accepts: YYYY-MM-DD, YYYY-MM-DD HH:MM, YYYY-MM-DD HH:MM:SS, or full ISO timestamp.
+   * @format date-time
+   */
+  start_date: string;
+  /**
+   * Date interval for the report. (only used with date dimension)
+   * @default day
+   */
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
+  /**
+   * Dimensions to group the report by.
+   * @default []
+   */
+  dimensions?: Array<'date' | 'hour' | 'host' | 'path' | 'bot_name' | 'bot_provider' | 'bot_type'>;
+  /**
+   *
+   * Custom ordering of the report results.
+   *
+   * The order is a record of key-value pairs where:
+   * - key is the field to order by, which can be a metric or dimension
+   * - value is the direction of the order, either 'asc' for ascending or 'desc' for descending.
+   *
+   * When not specified, the default order is the first metric in the query descending.
+   *
+   * @default {}
+   */
+  order_by?: Record<string, 'asc' | 'desc'>;
+  /**
+   * Pagination settings for the report results.
+   */
+  pagination?: Shared.Pagination;
+  /**
+   * End date in UTC. Accepts same formats as start_date. Defaults to now UTC if omitted.
+   * @format date-time
+   */
+  end_date?: string;
+  /**
+   * @format uuid
+   */
+  organization_id?: string | null;
+  /**
+   * IANA timezone name for date bucketing and filter boundaries.
+   * @default UTC
+   */
+  timezone?: string;
+  /**
+   * Numeric filters applied after report metrics are calculated.
+   */
+  metric_filters?: Array<ReportGetBotsReportV2Params.MetricFilter>;
+  /**
+   * Filters for bots report.
+   */
+  filters?: Array<
+    | Shared.PathFilter
+    | Shared.BotNameFilter
+    | Shared.BotProviderFilter
+    | ReportGetBotsReportV2Params.BotTypeFilter
+  >;
+  /**
+   * Domain UUID used for tag lookups.
+   * @format uuid
+   */
+  domain_id?: string | null;
+  tags?: Array<string>;
+}
+
+export namespace ReportGetBotsReportV2Params {
+  export interface MetricFilter {
+    field: string;
+    operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!=';
+    value: number;
+  }
+
+  export interface BotTypeFilter {
+    field: 'bot_type';
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+    value:
+      | 'ai_assistant'
+      | 'ai_training'
+      | 'index'
+      | 'ai_agent'
+      | Array<'ai_assistant' | 'ai_training' | 'index' | 'ai_agent'>;
+  }
+}
+
+export interface ReportQueryFanoutsParams {
+  /**
+   * Metrics to return for each row.
+   * @minItems 1
+   */
+  metrics: Array<'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'>;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  /**
+   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
+   * @format date-time
+   */
+  start_date: string;
+  /**
+   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
+   * @format date-time
+   */
+  end_date: string;
+  /**
+   * Date interval for the report. (only used with date dimension)
+   * @default day
+   */
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
+  /**
+   * Dimensions to group the report by.
+   * @default []
+   */
+  dimensions?: Array<'prompt' | 'query' | 'model' | 'region' | 'date'>;
+  /**
+   * Custom ordering. Keys must be a requested metric or the ``date`` dimension. Values are ``asc`` or ``desc``. Defaults to first metric descending.
+   * @default {}
+   */
+  order_by?: Record<string, 'asc' | 'desc'>;
+  /**
+   * Pagination settings for the report results.
+   */
+  pagination?: Shared.Pagination;
+  /**
+   * Filters to apply to the query fanout report.
+   */
+  filters?: Array<
+    | Shared.RegionIDFilter
+    | Shared.RegionNameFilter
+    | Shared.ModelIDFilter
+    | Shared.TopicIDFilter
+    | Shared.TagIDFilter
+    | PromptIDFilter
+    | Shared.PersonaIDFilter
+    | Shared.AnalysisTypeFilter
+    | Shared.PromptTypeFilter
+  >;
+}
+
+export interface ReportStreamCitationsParams {
+  /**
+   * Metrics to include. `share_of_voice` is deprecated, use `citation_share` instead.
+   */
+  metrics: Array<'count' | 'citation_share' | 'share_of_voice' | 'first_cited_at'>;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  /**
+   * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
+   * @format date-time
+   */
+  start_date: string;
+  /**
+   * End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
+   * @format date-time
+   */
+  end_date: string;
+  /**
+   * Date interval for the report. (only used with date dimension)
+   * @default day
+   */
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
+  /**
+   * Dimensions to group the report by.
+   * @default []
+   */
+  dimensions?: Array<
+    | 'hostname'
+    | 'path'
+    | 'date'
+    | 'region'
+    | 'topic'
+    | 'topic_id'
+    | 'model'
+    | 'tag'
+    | 'prompt'
+    | 'prompt_id'
+    | 'url'
+    | 'root_domain'
+    | 'persona'
+    | 'citation_category'
+  >;
+  /**
+   *
+   *     Custom ordering of the report results.
+   *
+   *     The order is a record of key-value pairs where:
+   *     - `key` is the field to order by, which can be a metric or dimension
+   *     - `value` is the direction of the order, either `asc` for ascending or `desc` for descending.
+   *
+   *     When not specified, the default order is the first metric in the query descending.
+   *
+   * @default {}
+   */
+  order_by?: Record<string, 'asc' | 'desc'>;
+  pagination?: Shared.Pagination | null;
+  /**
+   * List of filters to apply to the citations report.
+   */
+  filters?: Array<
+    | HostnameFilter
+    | Shared.PathFilter
+    | Shared.RegionIDFilter
+    | Shared.RegionNameFilter
+    | Shared.TopicIDFilter
+    | TopicNameFilter
+    | Shared.ModelIDFilter
+    | Shared.TagIDFilter
+    | TagNameFilter
+    | URLFilter
+    | RootDomainFilter
+    | Shared.AnalysisTypeFilter
+    | Shared.PromptTypeFilter
+    | Shared.PersonaIDFilter
+    | ReportStreamCitationsParams.CitationCategoryFilter
+    | Shared.PromptFilter
+    | PromptIDFilter
+    | ReportStreamCitationsParams.MentionedFilter
+  >;
+}
+
+export namespace ReportStreamCitationsParams {
+  export interface CitationCategoryFilter {
+    field: 'citation_category';
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+    value: string | Array<string>;
+  }
+
+  export interface MentionedFilter {
+    field: 'mentioned';
+    operator: 'is';
+    value: boolean | Array<boolean>;
+  }
+}
+
+export type ReportStreamCitationsResponse =
+  | ReportStreamCitationsResponse.SseSummaryEventData
+  | Record<string, unknown>;
+
+export namespace ReportStreamCitationsResponse {
+  export interface SseSummaryEventData {
+    /**
+     * The normalized query used to build the stream.
+     */
+    query: Record<string, unknown>;
+    /**
+     * Total number of rows available before pagination is applied.
+     */
     total_rows: number;
   }
+}
 
-  export namespace Info {
-    export interface Query {
-    }
-  }
+export interface ReportStreamVisibilityParams {
+  metrics: Array<
+    'share_of_voice' | 'mentions_count' | 'visibility_score' | 'executions' | 'average_position'
+  >;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  /**
+   * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
+   * @format date-time
+   */
+  start_date: string;
+  /**
+   * End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
+   * @format date-time
+   */
+  end_date: string;
+  /**
+   * Date interval for the report. (only used with date dimension)
+   * @default day
+   */
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
+  /**
+   * Dimensions to group the report by.
+   * @default []
+   */
+  dimensions?: Array<
+    | 'date'
+    | 'region'
+    | 'topic'
+    | 'topic_id'
+    | 'model'
+    | 'asset_id'
+    | 'asset_name'
+    | 'prompt'
+    | 'prompt_id'
+    | 'tag'
+    | 'persona'
+  >;
+  /**
+   *
+   * Custom ordering of the report results.
+   *
+   * The order is a record of key-value pairs where:
+   * - key is the field to order by, which can be a metric or dimension
+   * - value is the direction of the order, either 'asc' for ascending or 'desc' for descending.
+   *
+   * When not specified, the default order is the first metric in the query descending.
+   *
+   * @default {}
+   */
+  order_by?: Record<string, 'asc' | 'desc'>;
+  pagination?: Shared.Pagination | null;
+  /**
+   * List of filters to apply to the visibility report.
+   */
+  filters?: Array<
+    | Shared.RegionIDFilter
+    | Shared.RegionNameFilter
+    | Shared.ModelIDFilter
+    | Shared.TopicIDFilter
+    | TopicNameFilter
+    | ReportStreamVisibilityParams.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
+    | Shared.TagIDFilter
+    | TagNameFilter
+    | PromptIDFilter
+    | Shared.PromptFilter
+    | Shared.PersonaIDFilter
+  >;
+}
 
-  export interface Data {
-    scores: Data.Scores;
-    date?: string | null;
-    prev_date?: string | null;
-    group_ids?: Record<string, string> | null;
-    group_names?: Record<string, string> | null;
-    group_metadata?: Data.GroupMetadata | null;
-    cited_website_hrefs?: Array<string>;
-    total_count?: number | null;
-  }
-
-  export namespace Data {
-    export interface Scores {
-      current?: Scores.Current | null;
-      previous?: Scores.Previous | null;
-    }
-
-    export namespace Scores {
-      export interface Current {
-        positive_sentiment: number;
-        negative_sentiment: number;
-        assessment_count: number;
-        occurrence?: number | null;
-        response_count?: number | null;
-        total_response_count?: number | null;
-      }
-
-      export interface Previous {
-        positive_sentiment: number;
-        negative_sentiment: number;
-        assessment_count: number;
-        occurrence?: number | null;
-        response_count?: number | null;
-        total_response_count?: number | null;
-      }
-    }
-
-    export interface GroupMetadata {
-      theme_id?: string | null;
-      theme?: string | null;
-      claim_id?: string | null;
-      claim?: string | null;
-      sentiment?: "positive" | "negative" | null;
-      prompt_id?: string | null;
-      prompt_text?: string | null;
-      topic_id?: string | null;
-      run_id?: string | null;
-      created_at?: string | null;
-      model_id?: string | null;
-      region_id?: string | null;
-      persona_id?: string | null;
-      asset_name?: string | null;
-      child_count_total?: number | null;
-      child_count_matching?: number | null;
-      parent_matches_search?: boolean | null;
-      child_matches_search?: boolean | null;
-    }
+export namespace ReportStreamVisibilityParams {
+  export interface ProfoundAnswerEngineInsightsFiltersAssetNameFilter {
+    field: 'asset_name';
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+    value: string | Array<string>;
   }
 }
-Reports.Citations = Citations;
-Reports.Visibility = Visibility;
-Reports.Sentiment = Sentiment;
+
+export type ReportStreamVisibilityResponse =
+  | ReportStreamVisibilityResponse.SseSummaryEventData
+  | Record<string, unknown>;
+
+export namespace ReportStreamVisibilityResponse {
+  export interface SseSummaryEventData {
+    /**
+     * The normalized query used to build the stream.
+     */
+    query: Record<string, unknown>;
+    /**
+     * Total number of rows available before pagination is applied.
+     */
+    total_rows: number;
+  }
+}
+
+export interface ReportStreamSentimentParams {
+  metrics: Array<'positive' | 'negative' | 'occurrences'>;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  /**
+   * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
+   * @format date-time
+   */
+  start_date: string;
+  /**
+   * End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
+   * @format date-time
+   */
+  end_date: string;
+  /**
+   * Date interval for the report. (only used with date dimension)
+   * @default day
+   */
+  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
+  /**
+   * Dimensions to group the report by.
+   * @default []
+   */
+  dimensions?: Array<
+    | 'theme'
+    | 'date'
+    | 'region'
+    | 'topic'
+    | 'topic_id'
+    | 'model'
+    | 'asset_id'
+    | 'asset_name'
+    | 'tag'
+    | 'prompt'
+    | 'prompt_id'
+    | 'sentiment_type'
+    | 'persona'
+  >;
+  /**
+   *
+   * Custom ordering of the report results.
+   *
+   * The order is a record of key-value pairs where:
+   * - key is the field to order by, which can be a metric or dimension
+   * - value is the direction of the order, either 'asc' for ascending or 'desc' for descending.
+   *
+   * When not specified, the default order is the first metric in the query descending.
+   *
+   * @default {}
+   */
+  order_by?: Record<string, 'asc' | 'desc'>;
+  pagination?: Shared.Pagination | null;
+  /**
+   * List of filters to apply to the sentiment report.
+   */
+  filters?: Array<
+    | Shared.AssetIDFilter
+    | ReportStreamSentimentParams.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
+    | ReportStreamSentimentParams.ThemeFilter
+    | Shared.RegionIDFilter
+    | Shared.RegionNameFilter
+    | Shared.TopicIDFilter
+    | TopicNameFilter
+    | Shared.ModelIDFilter
+    | Shared.TagIDFilter
+    | TagNameFilter
+    | Shared.PromptFilter
+    | Shared.PersonaIDFilter
+  >;
+}
+
+export namespace ReportStreamSentimentParams {
+  export interface ProfoundAnswerEngineInsightsFiltersAssetNameFilter {
+    field: 'asset_name';
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+    value: string | Array<string>;
+  }
+
+  export interface ThemeFilter {
+    field: 'theme';
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+    value: string | Array<string>;
+  }
+}
+
+export type ReportStreamSentimentResponse =
+  | ReportStreamSentimentResponse.SseSummaryEventData
+  | Record<string, unknown>;
+
+export namespace ReportStreamSentimentResponse {
+  export interface SseSummaryEventData {
+    /**
+     * The normalized query used to build the stream.
+     */
+    query: Record<string, unknown>;
+    /**
+     * Total number of rows available before pagination is applied.
+     */
+    total_rows: number;
+  }
+}
 Reports.WebSearchResults = WebSearchResults;
-Reports.Referrals = Referrals;
-Reports.Bots = Bots;
-Reports.QueryFanouts = QueryFanouts;
 Reports.Shopping = Shopping;
-Reports.Accuracy = Accuracy;
 
 export declare namespace Reports {
   export {
-    type SentimentV2ReportQuery as SentimentV2ReportQuery,
     type ReportInfo as ReportInfo,
     type ReportResponse as ReportResponse,
     type ReportResult as ReportResult,
@@ -418,54 +1604,25 @@ export declare namespace Reports {
     type RootDomainFilter as RootDomainFilter,
     type HostnameFilter as HostnameFilter,
     type URLFilter as URLFilter,
-    type ReportQuerySentimentV2V1SentimentV2PostResponse as ReportQuerySentimentV2V1SentimentV2PostResponse,
-    type ReportQuerySentimentV2V1SentimentV2PostParams as ReportQuerySentimentV2V1SentimentV2PostParams,
-  };
-
-  export {
-    Citations as Citations,
-    type CitationsQuery as CitationsQuery,
-    type StreamCitationsQuery as StreamCitationsQuery,
-    type CitationsV2Query as CitationsV2Query,
-    type CitationQueryV1ReportsPostResponse as CitationQueryV1ReportsPostResponse,
-    type CitationStreamV1ReportsStreamPostResponse as CitationStreamV1ReportsStreamPostResponse,
-    type CitationQueryV2V2ReportsPostResponse as CitationQueryV2V2ReportsPostResponse,
-    type CitationQueryV1ReportsPostParams as CitationQueryV1ReportsPostParams,
-    type CitationStreamV1ReportsStreamPostParams as CitationStreamV1ReportsStreamPostParams,
-    type CitationQueryV2V2ReportsPostParams as CitationQueryV2V2ReportsPostParams,
-    type CitationStreamV2V2ReportsStreamPostParams as CitationStreamV2V2ReportsStreamPostParams,
-  };
-
-  export {
-    Visibility as Visibility,
-    type VisibilityQuery as VisibilityQuery,
-    type StreamVisibilityQuery as StreamVisibilityQuery,
-    type VisibilityV2Query as VisibilityV2Query,
-    type VisibilityStreamV1ReportsStreamPostResponse as VisibilityStreamV1ReportsStreamPostResponse,
-    type VisibilityQueryV2V2ReportsPostResponse as VisibilityQueryV2V2ReportsPostResponse,
-    type VisibilityQueryV1ReportsPostParams as VisibilityQueryV1ReportsPostParams,
-    type VisibilityStreamV1ReportsStreamPostParams as VisibilityStreamV1ReportsStreamPostParams,
-    type VisibilityQueryV2V2ReportsPostParams as VisibilityQueryV2V2ReportsPostParams,
-    type VisibilityStreamV2V2ReportsStreamPostParams as VisibilityStreamV2V2ReportsStreamPostParams,
-  };
-
-  export {
-    Sentiment as Sentiment,
-    type SentimentQuery as SentimentQuery,
-    type StreamSentimentQuery as StreamSentimentQuery,
-    type SentimentV2Query as SentimentV2Query,
-    type SentimentStreamV1ReportsStreamPostResponse as SentimentStreamV1ReportsStreamPostResponse,
-    type SentimentQueryV2V2ReportsPostResponse as SentimentQueryV2V2ReportsPostResponse,
-    type SentimentQueryV1ReportsPostParams as SentimentQueryV1ReportsPostParams,
-    type SentimentStreamV1ReportsStreamPostParams as SentimentStreamV1ReportsStreamPostParams,
-    type SentimentQueryV2V2ReportsPostParams as SentimentQueryV2V2ReportsPostParams,
-    type SentimentStreamV2V2ReportsStreamPostParams as SentimentStreamV2V2ReportsStreamPostParams,
+    type ReportCitationsResponse as ReportCitationsResponse,
+    type ReportStreamCitationsResponse as ReportStreamCitationsResponse,
+    type ReportStreamVisibilityResponse as ReportStreamVisibilityResponse,
+    type ReportStreamSentimentResponse as ReportStreamSentimentResponse,
+    type ReportCitationsParams as ReportCitationsParams,
+    type ReportVisibilityParams as ReportVisibilityParams,
+    type ReportSentimentParams as ReportSentimentParams,
+    type ReportGetReferralsReportParams as ReportGetReferralsReportParams,
+    type ReportGetBotsReportParams as ReportGetBotsReportParams,
+    type ReportGetReferralsReportV2Params as ReportGetReferralsReportV2Params,
+    type ReportGetBotsReportV2Params as ReportGetBotsReportV2Params,
+    type ReportQueryFanoutsParams as ReportQueryFanoutsParams,
+    type ReportStreamCitationsParams as ReportStreamCitationsParams,
+    type ReportStreamVisibilityParams as ReportStreamVisibilityParams,
+    type ReportStreamSentimentParams as ReportStreamSentimentParams,
   };
 
   export {
     WebSearchResults as WebSearchResults,
-    type WebSearchResultsQuery as WebSearchResultsQuery,
-    type StreamWebSearchResultsQuery as StreamWebSearchResultsQuery,
     type WebSearchResultQueryResponse as WebSearchResultQueryResponse,
     type WebSearchResultStreamResponse as WebSearchResultStreamResponse,
     type WebSearchResultQueryParams as WebSearchResultQueryParams,
@@ -473,43 +1630,7 @@ export declare namespace Reports {
   };
 
   export {
-    Referrals as Referrals,
-    type ReferralsQuery as ReferralsQuery,
-    type ReferralsQueryV2 as ReferralsQueryV2,
-    type ReferralCreateReportV1V1ReportsPostParams as ReferralCreateReportV1V1ReportsPostParams,
-    type ReferralCreateReportV2V2ReportsPostParams as ReferralCreateReportV2V2ReportsPostParams,
-  };
-
-  export {
-    Bots as Bots,
-    type BotsReportQuery as BotsReportQuery,
-    type BotsReportQueryV2 as BotsReportQueryV2,
-    type BotCreateReportV1V1ReportsPostParams as BotCreateReportV1V1ReportsPostParams,
-    type BotCreateReportV2V2ReportsPostParams as BotCreateReportV2V2ReportsPostParams,
-  };
-
-  export {
-    QueryFanouts as QueryFanouts,
-    type QueryFanoutsQuery as QueryFanoutsQuery,
-    type QueryFanoutsV2Query as QueryFanoutsV2Query,
-    type QueryFanoutV2V2ReportsPostResponse as QueryFanoutV2V2ReportsPostResponse,
-    type QueryFanoutV1ReportsPostParams as QueryFanoutV1ReportsPostParams,
-    type QueryFanoutV2V2ReportsPostParams as QueryFanoutV2V2ReportsPostParams,
-    type QueryFanoutStreamV2V2ReportsStreamPostParams as QueryFanoutStreamV2V2ReportsStreamPostParams,
-  };
-
-  export {
     Shopping as Shopping,
-    type ShoppingVisibilityQuery as ShoppingVisibilityQuery,
-    type ShoppingItemVisibilityQuery as ShoppingItemVisibilityQuery,
-    type ShoppingMerchantDistributionQuery as ShoppingMerchantDistributionQuery,
-    type ShoppingMerchantVisibilityByBrandQuery as ShoppingMerchantVisibilityByBrandQuery,
-    type ShoppingMerchantByItemsQuery as ShoppingMerchantByItemsQuery,
-    type ShoppingAllItemsWithMerchantsQuery as ShoppingAllItemsWithMerchantsQuery,
-    type ShoppingTriggerRateQuery as ShoppingTriggerRateQuery,
-    type ShoppingMerchantShareQuery as ShoppingMerchantShareQuery,
-    type ShoppingProductMerchantURLsQuery as ShoppingProductMerchantURLsQuery,
-    type ShoppingExecutionsQuery as ShoppingExecutionsQuery,
     type BrandNameFilter as BrandNameFilter,
     type MerchantNameFilter as MerchantNameFilter,
     type ProductNameFilter as ProductNameFilter,
@@ -534,48 +1655,4 @@ export declare namespace Reports {
     type ShoppingProductMerchantURLsParams as ShoppingProductMerchantURLsParams,
     type ShoppingExecutionsParams as ShoppingExecutionsParams,
   };
-
-  export {
-    Accuracy as Accuracy,
-    type AccuracyOverviewQuery as AccuracyOverviewQuery,
-    type AccuracyBreakdownQuery as AccuracyBreakdownQuery,
-    type AccuracyCitationAnalysisQuery as AccuracyCitationAnalysisQuery,
-    type AccuracyTopicIDsQuery as AccuracyTopicIDsQuery,
-    type InaccurateThemesQuery as InaccurateThemesQuery,
-    type InaccurateClustersQuery as InaccurateClustersQuery,
-    type InaccuracyDriversQuery as InaccuracyDriversQuery,
-    type TopInaccurateClaimsQuery as TopInaccurateClaimsQuery,
-    type ClaimBreakdownQuery as ClaimBreakdownQuery,
-    type ClaimCitationsQuery as ClaimCitationsQuery,
-    type ClusterExampleRunsQuery as ClusterExampleRunsQuery,
-    type ClusterVerificationPairsQuery as ClusterVerificationPairsQuery,
-    type FactCheckSetupStatusQuery as FactCheckSetupStatusQuery,
-    type AccuracyOverviewV1ReportsOverviewPostResponse as AccuracyOverviewV1ReportsOverviewPostResponse,
-    type AccuracyBreakdownV1ReportsBreakdownPostResponse as AccuracyBreakdownV1ReportsBreakdownPostResponse,
-    type AccuracyCitationAnalysisV1ReportsCitationAnalysisPostResponse as AccuracyCitationAnalysisV1ReportsCitationAnalysisPostResponse,
-    type AccuracyTopicIDsV1ReportsTopicIDsPostResponse as AccuracyTopicIDsV1ReportsTopicIDsPostResponse,
-    type AccuracyInaccurateThemesV1ReportsInaccurateThemesPostResponse as AccuracyInaccurateThemesV1ReportsInaccurateThemesPostResponse,
-    type AccuracyInaccurateClustersV1ReportsInaccurateClustersPostResponse as AccuracyInaccurateClustersV1ReportsInaccurateClustersPostResponse,
-    type AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostResponse as AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostResponse,
-    type AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostResponse as AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostResponse,
-    type AccuracyClaimBreakdownV1ReportsClaimBreakdownPostResponse as AccuracyClaimBreakdownV1ReportsClaimBreakdownPostResponse,
-    type AccuracyClaimCitationsV1ReportsClaimCitationsPostResponse as AccuracyClaimCitationsV1ReportsClaimCitationsPostResponse,
-    type AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostResponse as AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostResponse,
-    type AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostResponse as AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostResponse,
-    type AccuracyFactcheckSetupStatusV1ReportsFactcheckSetupStatusPostResponse as AccuracyFactcheckSetupStatusV1ReportsFactcheckSetupStatusPostResponse,
-    type AccuracyOverviewV1ReportsOverviewPostParams as AccuracyOverviewV1ReportsOverviewPostParams,
-    type AccuracyBreakdownV1ReportsBreakdownPostParams as AccuracyBreakdownV1ReportsBreakdownPostParams,
-    type AccuracyCitationAnalysisV1ReportsCitationAnalysisPostParams as AccuracyCitationAnalysisV1ReportsCitationAnalysisPostParams,
-    type AccuracyTopicIDsV1ReportsTopicIDsPostParams as AccuracyTopicIDsV1ReportsTopicIDsPostParams,
-    type AccuracyInaccurateThemesV1ReportsInaccurateThemesPostParams as AccuracyInaccurateThemesV1ReportsInaccurateThemesPostParams,
-    type AccuracyInaccurateClustersV1ReportsInaccurateClustersPostParams as AccuracyInaccurateClustersV1ReportsInaccurateClustersPostParams,
-    type AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostParams as AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostParams,
-    type AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostParams as AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostParams,
-    type AccuracyClaimBreakdownV1ReportsClaimBreakdownPostParams as AccuracyClaimBreakdownV1ReportsClaimBreakdownPostParams,
-    type AccuracyClaimCitationsV1ReportsClaimCitationsPostParams as AccuracyClaimCitationsV1ReportsClaimCitationsPostParams,
-    type AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostParams as AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostParams,
-    type AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostParams as AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostParams,
-    type AccuracyFactcheckSetupStatusV1ReportsFactcheckSetupStatusPostParams as AccuracyFactcheckSetupStatusV1ReportsFactcheckSetupStatusPostParams,
-  };
 }
-export { Reports as ReportResource };

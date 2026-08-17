@@ -1,15 +1,16 @@
 // File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-import { APIResource } from "../../resource";
-import { APIPromise } from "../../api-promise";
-import type { RequestOptions } from "../../internal/request-options";
-import { path as __scalarPath } from "../../internal/utils/path";
+import { APIResource } from '../../resource';
+import { APIPromise } from '../../api-promise';
+import type { RequestOptions } from '../../internal/request-options';
+import { path as __scalarPath } from '../../internal/utils/path';
+import type * as OrganizationsAPI from './organizations';
 
 export class Categories extends APIResource {
   /**
    * Get the organization categories, one row per (category, organization) pair.
    *
-   * @param {CategoryListParams} [params] - The parameters to send with the request.
+   * @param {CategoryListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<CategoryListResponse>} Successful Response
    *
@@ -18,102 +19,158 @@ export class Categories extends APIResource {
    * const list = await client.organizations.categories.list();
    * ```
    */
-  list(params: CategoryListParams | null | undefined = {}, options?: RequestOptions): APIPromise<CategoryListResponse> {
-    const { organization_ids } = params ?? {};
-    return this._client.get("/v1/org/categories", { query: { organization_ids: organization_ids }, ...options });
+  list(
+    query: CategoryListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CategoryListResponse> {
+    return this._client.get('/v1/org/categories', { query, ...options });
   }
 
   /**
    * Get the topics for a specific category.
    *
-   * @param {string} category_id
+   * @param {string} categoryID
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<CategoryTopicsResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const topics = await client.organizations.categories.topics("categoryId");
+   * const topics = await client.organizations.categories.topics('7c9e6679-7425-40de-944b-e07fc1f90ae7');
    * ```
    */
-  topics(category_id: string, options?: RequestOptions): APIPromise<CategoryTopicsResponse> {
-    return this._client.get(__scalarPath`/v1/org/categories/${category_id}/topics`, options);
+  topics(categoryID: string, options?: RequestOptions): APIPromise<CategoryTopicsResponse> {
+    return this._client.get(__scalarPath`/v1/org/categories/${categoryID}/topics`, options);
   }
 
   /**
    * Get the tags for a specific category.
    *
-   * @param {string} category_id
+   * @param {string} categoryID
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<CategoryTagsResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const tags = await client.organizations.categories.tags("categoryId");
+   * const tags = await client.organizations.categories.tags('7c9e6679-7425-40de-944b-e07fc1f90ae7');
    * ```
    */
-  tags(category_id: string, options?: RequestOptions): APIPromise<CategoryTagsResponse> {
-    return this._client.get(__scalarPath`/v1/org/categories/${category_id}/tags`, options);
+  tags(categoryID: string, options?: RequestOptions): APIPromise<CategoryTagsResponse> {
+    return this._client.get(__scalarPath`/v1/org/categories/${categoryID}/tags`, options);
   }
 
   /**
    * Retrieve prompts in a category with optional filtering by type, topic, tag, region, platform, or persona. Supports cursor-based pagination.
    *
-   * @param {string} category_id
-   * @param {CategoryPromptsParams} [params] - The parameters to send with the request.
+   * @param {string} categoryID
+   * @param {CategoryPromptsParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<CategoryPromptsResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const prompts = await client.organizations.categories.prompts("categoryId", {
+   * const prompts = await client.organizations.categories.prompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   limit: 10000,
-   *   status: ["active"],
+   *   status: ['active'],
    * });
    * ```
    */
-  prompts(category_id: string, params: CategoryPromptsParams | null | undefined = {}, options?: RequestOptions): APIPromise<CategoryPromptsResponse> {
-    const { limit, cursor, order_dir, analysis_type, prompt_type, status, topic_id, tag_id, region_id, platform_id, persona_id } = params ?? {};
-    return this._client.get(__scalarPath`/v1/org/categories/${category_id}/prompts`, { query: { limit: limit, cursor: cursor, order_dir: order_dir, analysis_type: analysis_type, prompt_type: prompt_type, status: status, topic_id: topic_id, tag_id: tag_id, region_id: region_id, platform_id: platform_id, persona_id: persona_id }, ...options });
+  prompts(
+    categoryID: string,
+    query: CategoryPromptsParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CategoryPromptsResponse> {
+    return this._client.get(__scalarPath`/v1/org/categories/${categoryID}/prompts`, { query, ...options });
+  }
+
+  /**
+   * Get Category Assets
+   *
+   * @param {string} categoryID
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<CategoryAssetsResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const assets = await client.organizations.categories.assets('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+   * ```
+   */
+  assets(categoryID: string, options?: RequestOptions): APIPromise<CategoryAssetsResponse> {
+    return this._client.get(__scalarPath`/v1/org/categories/${categoryID}/assets`, options);
+  }
+
+  /**
+   * Get Category Personas
+   *
+   * @param {string} categoryID
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<CategoryGetCategoryPersonasResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const getCategoryPersonas = await client.organizations.categories.getCategoryPersonas(
+   *   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   * );
+   * ```
+   */
+  getCategoryPersonas(
+    categoryID: string,
+    options?: RequestOptions,
+  ): APIPromise<CategoryGetCategoryPersonasResponse> {
+    return this._client.get(__scalarPath`/v1/org/categories/${categoryID}/personas`, options);
   }
 
   /**
    * Create one or more prompts in a category. Topics and tags are auto-created if referenced by name and not yet existing. Use dry_run to preview without persisting.
    *
-   * @param {string} category_id
+   * @param {string} categoryID
    * @param {CategoryCreatePromptsParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<CategoryCreatePromptsResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const createPrompts = await client.organizations.categories.createPrompts("categoryId", {
-   *   prompts: [],
-   *   dry_run: false,
-   * });
+   * const createPrompts = await client.organizations.categories.createPrompts(
+   *   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   {
+   *     prompts: [],
+   *     dry_run: false,
+   *   },
+   * );
    * ```
    */
-  createPrompts(category_id: string, body: CategoryCreatePromptsParams, options?: RequestOptions): APIPromise<CategoryCreatePromptsResponse> {
-    return this._client.post(__scalarPath`/v1/org/categories/${category_id}/prompts`, { body: body, ...options });
+  createPrompts(
+    categoryID: string,
+    body: CategoryCreatePromptsParams,
+    options?: RequestOptions,
+  ): APIPromise<CategoryCreatePromptsResponse> {
+    return this._client.post(__scalarPath`/v1/org/categories/${categoryID}/prompts`, { body, ...options });
   }
 
   /**
    * Update one or more existing prompts. Only provided fields are changed. Dimension fields (regions, platforms, personas, tags) replace the full set when provided. Use dry_run to preview without persisting.
    *
-   * @param {string} category_id
+   * @param {string} categoryID
    * @param {CategoryUpdatePromptsParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<CategoryUpdatePromptsResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const updatePrompts = await client.organizations.categories.updatePrompts("categoryId", {
-   *   prompts: [],
-   *   dry_run: false,
-   * });
+   * const updatePrompts = await client.organizations.categories.updatePrompts(
+   *   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   {
+   *     prompts: [],
+   *     dry_run: false,
+   *   },
+   * );
    * ```
    */
-  updatePrompts(category_id: string, body: CategoryUpdatePromptsParams, options?: RequestOptions): APIPromise<CategoryUpdatePromptsResponse> {
-    return this._client.patch(__scalarPath`/v1/org/categories/${category_id}/prompts`, { body: body, ...options });
+  updatePrompts(
+    categoryID: string,
+    body: CategoryUpdatePromptsParams,
+    options?: RequestOptions,
+  ): APIPromise<CategoryUpdatePromptsResponse> {
+    return this._client.patch(__scalarPath`/v1/org/categories/${categoryID}/prompts`, { body, ...options });
   }
 
   /**
@@ -124,54 +181,32 @@ export class Categories extends APIResource {
    * - 'disabled': Prompts will not run moving forward, but historical data is preserved.
    * - 'deleted': Prompts are deleted along with historical data
    *
-   * @param {string} category_id
+   * @param {string} categoryID
    * @param {CategoryUpdatePromptStatusParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<CategoryUpdatePromptStatusResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const updatePromptStatus = await client.organizations.categories.updatePromptStatus("categoryId", {
-   *   prompt_ids: [],
-   *   status: "active",
-   *   dry_run: false,
-   * });
+   * const updatePromptStatus = await client.organizations.categories.updatePromptStatus(
+   *   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   {
+   *     prompt_ids: [],
+   *     status: 'active',
+   *     dry_run: false,
+   *   },
+   * );
    * ```
    */
-  updatePromptStatus(category_id: string, body: CategoryUpdatePromptStatusParams, options?: RequestOptions): APIPromise<CategoryUpdatePromptStatusResponse> {
-    return this._client.patch(__scalarPath`/v1/org/categories/${category_id}/prompts/status`, { body: body, ...options });
-  }
-
-  /**
-   * Get Category Assets
-   *
-   * @param {string} category_id
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<CategoryAssetsResponse>} Successful Response
-   *
-   * @example
-   * ```ts
-   * const assets = await client.organizations.categories.assets("categoryId");
-   * ```
-   */
-  assets(category_id: string, options?: RequestOptions): APIPromise<CategoryAssetsResponse> {
-    return this._client.get(__scalarPath`/v1/org/categories/${category_id}/assets`, options);
-  }
-
-  /**
-   * Get Category Personas
-   *
-   * @param {string} category_id
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<CategoryGetCategoryPersonasResponse>} Successful Response
-   *
-   * @example
-   * ```ts
-   * const getCategoryPersonas = await client.organizations.categories.getCategoryPersonas("categoryId");
-   * ```
-   */
-  getCategoryPersonas(category_id: string, options?: RequestOptions): APIPromise<CategoryGetCategoryPersonasResponse> {
-    return this._client.get(__scalarPath`/v1/org/categories/${category_id}/personas`, options);
+  updatePromptStatus(
+    categoryID: string,
+    body: CategoryUpdatePromptStatusParams,
+    options?: RequestOptions,
+  ): APIPromise<CategoryUpdatePromptStatusResponse> {
+    return this._client.patch(__scalarPath`/v1/org/categories/${categoryID}/prompts/status`, {
+      body,
+      ...options,
+    });
   }
 }
 
@@ -198,12 +233,12 @@ export interface NamedResourceDiffList {
    * Resources that were added.
    * @default []
    */
-  added?: Array<NamedResource>;
+  added?: Array<OrganizationsAPI.NamedResource>;
   /**
    * Resources that were removed.
    * @default []
    */
-  removed?: Array<NamedResource>;
+  removed?: Array<OrganizationsAPI.NamedResource>;
 }
 
 /**
@@ -213,89 +248,11 @@ export interface FieldDiff {
   /**
    * Previous value.
    */
-  old?: string;
+  old?: unknown;
   /**
    * New value.
    */
-  new?: string;
-}
-
-export interface Organization {
-  /**
-   * @format uuid
-   */
-  id: string;
-  name: string | null;
-}
-
-/**
- * Generic id+name reference used across domain boundaries.
- */
-export interface NamedResource {
-  id: string;
-  name: string;
-}
-
-export interface CreatePromptsBody {
-  /**
-   * List of prompts to create.
-   */
-  prompts: Array<{ prompt: string; topic: IDOrName; language: string; regions: Array<IDOrName>; platforms: Array<IDOrName>; tags?: Array<IDOrName>; personas?: Array<IDOrName>; analysis_types?: Array<"visibility" | "sentiment" | "sentiment_v2" | "accuracy"> | null; prompt_type?: string | null; asset?: IDOrName | null }>;
-  /**
-   * When true, validate and preview changes without persisting them.
-   * @default false
-   */
-  dry_run?: boolean;
-}
-
-export interface UpdatePromptsBody {
-  /**
-   * List of prompt updates. Each entry must include an `id` and at least one field to change.
-   */
-  prompts: Array<{ id: string; prompt?: string | null; topic?: IDOrName | null; language?: string | null; tags?: Array<IDOrName> | null; regions?: Array<IDOrName> | null; platforms?: Array<IDOrName> | null; personas?: Array<IDOrName> | null; analysis_types?: Array<"visibility" | "sentiment" | "sentiment_v2" | "accuracy"> | null; prompt_type?: string | null; asset?: IDOrName | null }>;
-  /**
-   * When true, validate and preview changes without persisting them.
-   * @default false
-   */
-  dry_run?: boolean;
-}
-
-export interface UpdatePromptStatusBody {
-  /**
-   * IDs of the prompts to update.
-   */
-  prompt_ids: Array<string>;
-  /**
-   * Target status: 'active', 'disabled', or 'deleted'.
-   */
-  status: "active" | "disabled" | "deleted";
-  /**
-   * When true, validate and preview changes without persisting them.
-   * @default false
-   */
-  dry_run?: boolean;
-}
-
-export interface PersonaProfile {
-  behavior: PersonaProfileBehavior;
-  employment: PersonaProfileEmployment;
-  demographics: PersonaProfileDemographics;
-}
-
-export interface PersonaProfileBehavior {
-  painPoints?: string | null;
-  motivations?: string | null;
-}
-
-export interface PersonaProfileEmployment {
-  industry?: Array<string>;
-  jobTitle?: Array<string>;
-  companySize?: Array<string>;
-  roleSeniority?: Array<string>;
-}
-
-export interface PersonaProfileDemographics {
-  ageRange?: Array<string>;
+  new?: unknown;
 }
 
 export interface CategoryListParams {
@@ -314,7 +271,8 @@ export namespace CategoryListResponse {
      */
     id: string;
     name: string;
-    organization: Organization;
+    organization: OrganizationsAPI.Organization;
+    internal_name?: string | null;
   }
 }
 
@@ -324,7 +282,7 @@ export namespace CategoryTopicsResponse {
   export interface CategoryTopicsResponseItem {
     id: string;
     name: string;
-    status: "active" | "disabled";
+    status: 'active' | 'disabled';
   }
 }
 
@@ -349,22 +307,26 @@ export interface CategoryPromptsParams {
    */
   cursor?: string | null;
   /**
-   * Sort direction by creation date.
+   * Field used to order prompts.
    */
-  order_dir?: "asc" | "desc";
+  order_by?: 'created_at' | 'prompt';
+  /**
+   * Sort direction for the selected order field.
+   */
+  order_dir?: 'asc' | 'desc';
   /**
    * Filter by analysis type (visibility, sentiment, accuracy).
    */
-  analysis_type?: Array<"visibility" | "sentiment" | "sentiment_v2" | "accuracy">;
+  analysis_type?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'>;
   /**
    * Deprecated. Use analysis_type instead.
    */
-  prompt_type?: Array<"visibility" | "sentiment">;
+  prompt_type?: Array<'visibility' | 'sentiment'>;
   /**
    * Filter by prompt status. Defaults to `active` only.
    * @default ["active"]
    */
-  status?: Array<"active" | "disabled">;
+  status?: Array<'active' | 'disabled'>;
   /**
    * Filter by topic IDs.
    */
@@ -403,13 +365,13 @@ export namespace CategoryPromptsResponse {
     id: string;
     prompt: string;
     language: string;
-    status: "active" | "disabled";
+    status: 'active' | 'disabled';
     /**
      * Generic id+name reference used across domain boundaries.
      */
-    topic: NamedResource;
-    regions: Array<NamedResource>;
-    platforms: Array<NamedResource>;
+    topic: OrganizationsAPI.NamedResource;
+    regions: Array<OrganizationsAPI.NamedResource>;
+    platforms: Array<OrganizationsAPI.NamedResource>;
     /**
      * @format date-time
      */
@@ -421,7 +383,7 @@ export namespace CategoryPromptsResponse {
     /**
      * @default []
      */
-    analysis_types?: Array<"visibility" | "sentiment" | "sentiment_v2" | "accuracy">;
+    analysis_types?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'>;
     /**
      * @default ""
      * @deprecated
@@ -430,11 +392,43 @@ export namespace CategoryPromptsResponse {
     /**
      * @default []
      */
-    tags?: Array<NamedResource>;
+    tags?: Array<OrganizationsAPI.NamedResource>;
     /**
      * @default []
      */
-    personas?: Array<NamedResource>;
+    personas?: Array<OrganizationsAPI.NamedResource>;
+  }
+}
+
+export type CategoryAssetsResponse = Array<CategoryAssetsResponse.CategoryAssetsResponseItem>;
+
+export namespace CategoryAssetsResponse {
+  export interface CategoryAssetsResponseItem {
+    /**
+     * @format uuid
+     */
+    id: string;
+    name: string;
+    website: string;
+    is_owned: boolean;
+    /**
+     * @format date-time
+     */
+    created_at: string;
+    logo_url: string;
+    alternate_domains?: Array<string> | null;
+  }
+}
+
+export interface CategoryGetCategoryPersonasResponse {
+  data: Array<CategoryGetCategoryPersonasResponse.Data>;
+}
+
+export namespace CategoryGetCategoryPersonasResponse {
+  export interface Data {
+    id: string;
+    name: string;
+    persona: OrganizationsAPI.PersonaProfile;
   }
 }
 
@@ -476,6 +470,10 @@ export namespace CategoryCreatePromptsParams {
      */
     platforms: Array<IDOrName>;
     /**
+     * Optional client-generated UUID for the prompt. When provided, creation is idempotent: retrying a request with the same id will not create a duplicate prompt. Omit to have the server generate one (non-idempotent).
+     */
+    id?: string | null;
+    /**
      * Tags to assign. New tags are created if names don't exist.
      * @default []
      */
@@ -488,7 +486,7 @@ export namespace CategoryCreatePromptsParams {
     /**
      * Analysis types: 'visibility', 'sentiment', 'accuracy'. Defaults to ['visibility'].
      */
-    analysis_types?: Array<"visibility" | "sentiment" | "sentiment_v2" | "accuracy"> | null;
+    analysis_types?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'> | null;
     /**
      * Deprecated. Use analysis_types instead. 'Visibility' or 'Sentiment'.
      * @deprecated
@@ -541,7 +539,7 @@ export namespace CategoryCreatePromptsResponse {
     /**
      * Resolved topic.
      */
-    topic: NamedResource;
+    topic: OrganizationsAPI.NamedResource;
     /**
      * Language code.
      */
@@ -550,31 +548,31 @@ export namespace CategoryCreatePromptsResponse {
      * Resolved tags.
      * @default []
      */
-    tags?: Array<NamedResource>;
+    tags?: Array<OrganizationsAPI.NamedResource>;
     /**
      * Resolved regions.
      * @default []
      */
-    regions?: Array<NamedResource>;
+    regions?: Array<OrganizationsAPI.NamedResource>;
     /**
      * Resolved platforms.
      * @default []
      */
-    platforms?: Array<NamedResource>;
+    platforms?: Array<OrganizationsAPI.NamedResource>;
     /**
      * Resolved personas.
      * @default []
      */
-    personas?: Array<NamedResource>;
+    personas?: Array<OrganizationsAPI.NamedResource>;
     /**
      * Analysis types assigned to this prompt.
      * @default []
      */
-    analysis_types?: Array<"visibility" | "sentiment" | "sentiment_v2" | "accuracy">;
+    analysis_types?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'>;
     /**
      * Resolved asset, if applicable.
      */
-    asset?: NamedResource | null;
+    asset?: OrganizationsAPI.NamedResource | null;
   }
 }
 
@@ -627,7 +625,7 @@ export namespace CategoryUpdatePromptsParams {
     /**
      * New analysis types. Replaces all existing analysis types on the prompt.
      */
-    analysis_types?: Array<"visibility" | "sentiment" | "sentiment_v2" | "accuracy"> | null;
+    analysis_types?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'> | null;
     /**
      * Deprecated. Use analysis_types instead.
      * @deprecated
@@ -720,7 +718,7 @@ export interface CategoryUpdatePromptStatusParams {
   /**
    * Target status: 'active', 'disabled', or 'deleted'.
    */
-  status: "active" | "disabled" | "deleted";
+  status: 'active' | 'disabled' | 'deleted';
   /**
    * When true, validate and preview changes without persisting them.
    * @default false
@@ -739,38 +737,6 @@ export interface CategoryUpdatePromptStatusResponse {
    */
   updated_prompts?: number;
 }
-
-export type CategoryAssetsResponse = Array<CategoryAssetsResponse.CategoryAssetsResponseItem>;
-
-export namespace CategoryAssetsResponse {
-  export interface CategoryAssetsResponseItem {
-    /**
-     * @format uuid
-     */
-    id: string;
-    name: string;
-    website: string;
-    is_owned: boolean;
-    /**
-     * @format date-time
-     */
-    created_at: string;
-    logo_url: string;
-    alternate_domains?: Array<string> | null;
-  }
-}
-
-export interface CategoryGetCategoryPersonasResponse {
-  data: Array<CategoryGetCategoryPersonasResponse.Data>;
-}
-
-export namespace CategoryGetCategoryPersonasResponse {
-  export interface Data {
-    id: string;
-    name: string;
-    persona: PersonaProfile;
-  }
-}
 export declare namespace Categories {
   export {
     type IDOrName as IDOrName,
@@ -780,11 +746,11 @@ export declare namespace Categories {
     type CategoryTopicsResponse as CategoryTopicsResponse,
     type CategoryTagsResponse as CategoryTagsResponse,
     type CategoryPromptsResponse as CategoryPromptsResponse,
+    type CategoryAssetsResponse as CategoryAssetsResponse,
+    type CategoryGetCategoryPersonasResponse as CategoryGetCategoryPersonasResponse,
     type CategoryCreatePromptsResponse as CategoryCreatePromptsResponse,
     type CategoryUpdatePromptsResponse as CategoryUpdatePromptsResponse,
     type CategoryUpdatePromptStatusResponse as CategoryUpdatePromptStatusResponse,
-    type CategoryAssetsResponse as CategoryAssetsResponse,
-    type CategoryGetCategoryPersonasResponse as CategoryGetCategoryPersonasResponse,
     type CategoryListParams as CategoryListParams,
     type CategoryPromptsParams as CategoryPromptsParams,
     type CategoryCreatePromptsParams as CategoryCreatePromptsParams,
@@ -792,4 +758,3 @@ export declare namespace Categories {
     type CategoryUpdatePromptStatusParams as CategoryUpdatePromptStatusParams,
   };
 }
-export { Categories as CategoryResource };

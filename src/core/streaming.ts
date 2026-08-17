@@ -25,7 +25,7 @@ export type ServerSentEvent = {
   raw: string[];
 };
 export type StreamingEventHandler = {
-  kind: "event" | "fallthrough" | "data";
+  kind: 'event' | 'fallthrough' | 'data';
   handle: string;
   eventType?: string | readonly string[] | null;
   errorProperty?: string;
@@ -63,14 +63,14 @@ export class Stream<Item> implements AsyncIterable<Item> {
       try {
         for await (const sse of _iterSSEMessages(response, controller)) {
           const handler = streamHandlerForSSE(sse, handlers);
-          if (handler?.handle === "continue" || handler?.handle === "ignore") continue;
-          if (handler?.handle === "error") throw streamError(sse, handler, response.headers);
-          if (handlers?.length && handler?.handle !== "yield") continue;
+          if (handler?.handle === 'continue' || handler?.handle === 'ignore') continue;
+          if (handler?.handle === 'error') throw streamError(sse, handler, response.headers);
+          if (handlers?.length && handler?.handle !== 'yield') continue;
           try {
             yield JSON.parse(sse.data) as Item;
           } catch (error) {
-            client?.logger?.error("Could not parse message into JSON:", sse.data);
-            client?.logger?.error("From chunk:", sse.raw);
+            client?.logger?.error('Could not parse message into JSON:', sse.data);
+            client?.logger?.error('From chunk:', sse.raw);
             throw error;
           }
         }
@@ -125,11 +125,11 @@ export class Stream<Item> implements AsyncIterable<Item> {
         // this buffer stays empty across iterations. Some servers (and mock servers) pretty-print a
         // single value across several lines; accumulate until the buffer forms a complete JSON value,
         // then yield it and reset. This never changes valid one-value-per-line behavior.
-        let buffer = "";
+        let buffer = '';
         for await (const line of iterLines()) {
           if (done) continue;
           if (!line) continue;
-          buffer = buffer ? buffer + "\n" + line : line;
+          buffer = buffer ? buffer + '\n' + line : line;
           let value: Item;
           try {
             value = JSON.parse(buffer) as Item;
@@ -140,7 +140,7 @@ export class Stream<Item> implements AsyncIterable<Item> {
             if (buffer.length > MAX_JSONL_BUFFER_BYTES) throw error;
             continue;
           }
-          buffer = "";
+          buffer = '';
           yield value;
         }
         // A non-whitespace remainder never parsed: surface that error rather than dropping data.
@@ -270,9 +270,11 @@ async function* iterSSEChunks(iterator: AsyncIterableIterator<Bytes>): AsyncGene
     }
 
     const binaryChunk =
-      chunk instanceof ArrayBuffer ? new Uint8Array(chunk)
-      : typeof chunk === 'string' ? encodeUTF8(chunk)
-      : chunk;
+      chunk instanceof ArrayBuffer
+        ? new Uint8Array(chunk)
+        : typeof chunk === 'string'
+          ? encodeUTF8(chunk)
+          : chunk;
 
     let newData = new Uint8Array(data.length + binaryChunk.length);
     newData.set(data);
@@ -359,18 +361,23 @@ const streamHandlerForSSE = (
   handlers: readonly StreamingEventHandler[] | undefined,
 ): StreamingEventHandler | undefined => {
   if (!handlers?.length) return undefined;
-  const dataHandler = handlers.find((handler) => handler.kind === "data" && handler.dataStartsWith !== undefined && sse.data.startsWith(handler.dataStartsWith));
+  const dataHandler = handlers.find(
+    (handler) =>
+      handler.kind === 'data' &&
+      handler.dataStartsWith !== undefined &&
+      sse.data.startsWith(handler.dataStartsWith),
+  );
   if (dataHandler) return dataHandler;
   for (const handler of handlers) {
-    if (handler.kind === "event" && eventTypeMatches(sse.event, handler.eventType)) return handler;
-    if (handler.kind === "fallthrough") return handler;
+    if (handler.kind === 'event' && eventTypeMatches(sse.event, handler.eventType)) return handler;
+    if (handler.kind === 'fallthrough') return handler;
   }
   return undefined;
 };
 
-const eventTypeMatches = (event: string | null, expected: StreamingEventHandler["eventType"]): boolean => {
+const eventTypeMatches = (event: string | null, expected: StreamingEventHandler['eventType']): boolean => {
   if (expected === null) return event === null;
-  if (Array.isArray(expected)) return expected.includes(event ?? "");
+  if (Array.isArray(expected)) return expected.includes(event ?? '');
   return expected !== undefined && event === expected;
 };
 
@@ -380,4 +387,5 @@ const streamError = (sse: ServerSentEvent, handler: StreamingEventHandler, heade
   return new APIError(undefined, error ?? parsed ?? sse.data, undefined, headers);
 };
 
-const isObject = (value: unknown): value is Record<string, unknown> => typeof value === "object" && value !== null && !Array.isArray(value);
+const isObject = (value: unknown): value is Record<string, unknown> =>
+  typeof value === 'object' && value !== null && !Array.isArray(value);

@@ -4,7 +4,7 @@ export { Profound as default } from './client.js';
 
 export { type Uploadable, toFile } from './core/uploads';
 export { APIPromise } from './api-promise';
-export { Profound, type ClientOptions, type ProfoundOptions, type Logger, type LogLevel } from './client.js';
+export { Profound, type ClientOptions, type AuthTokenProvider } from './client.js';
 export {
   ProfoundError,
   APIError,

@@ -1,20 +1,37 @@
 // File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-import { APIResource } from "../../resource";
-import { APIPromise } from "../../api-promise";
-import type { RequestOptions } from "../../internal/request-options";
-import { path as __scalarPath } from "../../internal/utils/path";
-import { Documents, type DeleteDocumentRequest, type DocumentCreateResponse, type DocumentUpdateResponse, type DocumentDeleteResponse, type DocumentCreateParams, type DocumentUpdateParams, type DocumentDeleteParams } from "./documents";
-import { Folders, type AddFolderRequest, type DeleteFolderRequest, type FolderCreateResponse, type FolderDeleteResponse, type FolderCreateParams, type FolderDeleteParams } from "./folders";
+import { APIResource } from '../../resource';
+import { APIPromise } from '../../api-promise';
+import type { RequestOptions } from '../../internal/request-options';
+import { path as __scalarPath } from '../../internal/utils/path';
+import type * as Shared from '../shared';
+import * as DocumentsAPI from './documents';
+import {
+  Documents,
+  type DocumentCreateResponse,
+  type DocumentUpdateResponse,
+  type DocumentDeleteResponse,
+  type DocumentCreateParams,
+  type DocumentUpdateParams,
+  type DocumentDeleteParams,
+} from './documents';
+import * as FoldersAPI from './folders';
+import {
+  Folders,
+  type FolderCreateResponse,
+  type FolderDeleteResponse,
+  type FolderCreateParams,
+  type FolderDeleteParams,
+} from './folders';
 
 export class KnowledgeBases extends APIResource {
-  documents: Documents = new Documents(this._client);
-  folders: Folders = new Folders(this._client);
+  documents: DocumentsAPI.Documents = new DocumentsAPI.Documents(this._client);
+  folders: FoldersAPI.Folders = new FoldersAPI.Folders(this._client);
 
   /**
    * List knowledge bases accessible to the API key.
    *
-   * @param {KnowledgeBaseListParams} [params] - The parameters to send with the request.
+   * @param {KnowledgeBaseListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<KnowledgeBaseListResponse>} Successful Response
    *
@@ -23,71 +40,42 @@ export class KnowledgeBases extends APIResource {
    * const list = await client.knowledgeBases.list();
    * ```
    */
-  list(params: KnowledgeBaseListParams | null | undefined = {}, options?: RequestOptions): APIPromise<KnowledgeBaseListResponse> {
-    const { organization_id } = params ?? {};
-    return this._client.get("/v1/knowledge-bases", { query: { organization_id: organization_id }, ...options });
+  list(
+    query: KnowledgeBaseListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<KnowledgeBaseListResponse> {
+    return this._client.get('/v1/knowledge-bases', { query, ...options });
   }
 
   /**
    * Search a knowledge base and return matching snippets or pages.
    *
-   * @param {string} knowledge_base_id - Unique knowledge base ID.
+   * @param {string} knowledgeBaseID - Unique knowledge base ID.
    * @param {KnowledgeBaseSearchParams} params - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<KnowledgeBaseSearchResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const search = await client.knowledgeBases.search("knowledgeBaseId", {
-   *   query: "",
+   * const search = await client.knowledgeBases.search('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   *   query: 'x',
    *   top_k: 0,
    *   return_full_page: false,
    * });
    * ```
    */
-  search(knowledge_base_id: string, params: KnowledgeBaseSearchParams, options?: RequestOptions): APIPromise<KnowledgeBaseSearchResponse> {
-    const { organization_id, ...body } = params ?? {};
-    return this._client.post(__scalarPath`/v1/knowledge-bases/${knowledge_base_id}/search`, { body: body, query: { organization_id: organization_id }, ...options });
+  search(
+    knowledgeBaseID: string,
+    params: KnowledgeBaseSearchParams,
+    options?: RequestOptions,
+  ): APIPromise<KnowledgeBaseSearchResponse> {
+    const { organization_id, ...body } = params;
+    return this._client.post(__scalarPath`/v1/knowledge-bases/${knowledgeBaseID}/search`, {
+      body,
+      query: { organization_id },
+      ...options,
+    });
   }
-}
-
-export interface SearchKnowledgeBaseRequest {
-  /**
-   * Search query.
-   * @minLength 1
-   */
-  query: string;
-  /**
-   * Maximum number of results to return.
-   * @minimum 1
-   * @maximum 100
-   */
-  top_k: number;
-  /**
-   * Return full page content instead of snippets.
-   * @default false
-   */
-  return_full_page?: boolean;
-  /**
-   * Optional search filters.
-   */
-  filters?: { tags?: Array<string> | null; folders?: Array<string> | null };
-}
-
-/**
- * Cursor-based pagination metadata.
- */
-export interface CursorPagination {
-  /**
-   * Maximum number of results to return. Default is 10,000, maximum is 50,000.
-   * @default 10000
-   * @maximum 50000
-   */
-  limit?: number;
-  /**
-   * Token for the next page, if more results are available.
-   */
-  next_cursor?: string | null;
 }
 
 export interface KnowledgeBaseListParams {
@@ -106,7 +94,7 @@ export interface KnowledgeBaseListResponse {
   /**
    * Pagination metadata.
    */
-  pagination?: CursorPagination;
+  pagination?: Shared.CursorPagination;
 }
 
 export namespace KnowledgeBaseListResponse {
@@ -188,7 +176,7 @@ export interface KnowledgeBaseSearchResponse {
   /**
    * Pagination metadata.
    */
-  pagination?: CursorPagination;
+  pagination?: Shared.CursorPagination;
 }
 
 export namespace KnowledgeBaseSearchResponse {
@@ -204,16 +192,11 @@ export namespace KnowledgeBaseSearchResponse {
     /**
      * Result metadata, including folder path.
      */
-    metadata: Data.Metadata;
+    metadata: Record<string, unknown>;
     /**
      * Matched content.
      */
     content: string;
-  }
-
-  export namespace Data {
-    export interface Metadata {
-    }
   }
 }
 KnowledgeBases.Documents = Documents;
@@ -221,7 +204,6 @@ KnowledgeBases.Folders = Folders;
 
 export declare namespace KnowledgeBases {
   export {
-    type SearchKnowledgeBaseRequest as SearchKnowledgeBaseRequest,
     type KnowledgeBaseListResponse as KnowledgeBaseListResponse,
     type KnowledgeBaseSearchResponse as KnowledgeBaseSearchResponse,
     type KnowledgeBaseListParams as KnowledgeBaseListParams,
@@ -230,7 +212,6 @@ export declare namespace KnowledgeBases {
 
   export {
     Documents as Documents,
-    type DeleteDocumentRequest as DeleteDocumentRequest,
     type DocumentCreateResponse as DocumentCreateResponse,
     type DocumentUpdateResponse as DocumentUpdateResponse,
     type DocumentDeleteResponse as DocumentDeleteResponse,
@@ -241,12 +222,9 @@ export declare namespace KnowledgeBases {
 
   export {
     Folders as Folders,
-    type AddFolderRequest as AddFolderRequest,
-    type DeleteFolderRequest as DeleteFolderRequest,
     type FolderCreateResponse as FolderCreateResponse,
     type FolderDeleteResponse as FolderDeleteResponse,
     type FolderCreateParams as FolderCreateParams,
     type FolderDeleteParams as FolderDeleteParams,
   };
 }
-export { KnowledgeBases as KnowledgeBaseResource };

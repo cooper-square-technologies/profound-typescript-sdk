@@ -1,32 +1,37 @@
 // File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-import { APIResource } from "../../resource";
-import { APIPromise } from "../../api-promise";
-import type { RequestOptions } from "../../internal/request-options";
-import { Categories, type IDOrName, type NamedResourceDiffList, type FieldDiff, type CategoryListResponse, type CategoryTopicsResponse, type CategoryTagsResponse, type CategoryPromptsResponse, type CategoryCreatePromptsResponse, type CategoryUpdatePromptsResponse, type CategoryUpdatePromptStatusResponse, type CategoryAssetsResponse, type CategoryGetCategoryPersonasResponse, type CategoryListParams, type CategoryPromptsParams, type CategoryCreatePromptsParams, type CategoryUpdatePromptsParams, type CategoryUpdatePromptStatusParams } from "./categories";
+import { APIResource } from '../../resource';
+import { APIPromise } from '../../api-promise';
+import type { RequestOptions } from '../../internal/request-options';
+import * as CategoriesAPI from './categories';
+import {
+  Categories,
+  type IDOrName,
+  type NamedResourceDiffList,
+  type FieldDiff,
+  type CategoryListResponse,
+  type CategoryTopicsResponse,
+  type CategoryTagsResponse,
+  type CategoryPromptsResponse,
+  type CategoryAssetsResponse,
+  type CategoryGetCategoryPersonasResponse,
+  type CategoryCreatePromptsResponse,
+  type CategoryUpdatePromptsResponse,
+  type CategoryUpdatePromptStatusResponse,
+  type CategoryListParams,
+  type CategoryPromptsParams,
+  type CategoryCreatePromptsParams,
+  type CategoryUpdatePromptsParams,
+  type CategoryUpdatePromptStatusParams,
+} from './categories';
 
 export class Organizations extends APIResource {
-  categories: Categories = new Categories(this._client);
-
-  /**
-   * Return every organization the caller's API key grants access to. Use this to discover organization IDs before calling endpoints that accept an `organization_id` filter.
-   *
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<OrganizationListResponse>} Successful Response
-   *
-   * @example
-   * ```ts
-   * const list = await client.organizations.list();
-   * ```
-   */
-  list(options?: RequestOptions): APIPromise<OrganizationListResponse> {
-    return this._client.get("/v1/org", options);
-  }
+  categories: CategoriesAPI.Categories = new CategoriesAPI.Categories(this._client);
 
   /**
    * Get the organization regions.
    *
-   * @param {OrganizationRegionsParams} [params] - The parameters to send with the request.
+   * @param {OrganizationRegionsParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<OrganizationRegionsResponse>} Successful Response
    *
@@ -35,9 +40,11 @@ export class Organizations extends APIResource {
    * const regions = await client.organizations.regions();
    * ```
    */
-  regions(params: OrganizationRegionsParams | null | undefined = {}, options?: RequestOptions): APIPromise<OrganizationRegionsResponse> {
-    const { organization_ids } = params ?? {};
-    return this._client.get("/v1/org/regions", { query: { organization_ids: organization_ids }, ...options });
+  regions(
+    query: OrganizationRegionsParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OrganizationRegionsResponse> {
+    return this._client.get('/v1/org/regions', { query, ...options });
   }
 
   /**
@@ -52,13 +59,13 @@ export class Organizations extends APIResource {
    * ```
    */
   models(options?: RequestOptions): APIPromise<OrganizationModelsResponse> {
-    return this._client.get("/v1/org/models", options);
+    return this._client.get('/v1/org/models', options);
   }
 
   /**
    * Get the organization domains.
    *
-   * @param {OrganizationDomainsParams} [params] - The parameters to send with the request.
+   * @param {OrganizationDomainsParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<OrganizationDomainsResponse>} Successful Response
    *
@@ -67,9 +74,11 @@ export class Organizations extends APIResource {
    * const domains = await client.organizations.domains();
    * ```
    */
-  domains(params: OrganizationDomainsParams | null | undefined = {}, options?: RequestOptions): APIPromise<OrganizationDomainsResponse> {
-    const { organization_ids } = params ?? {};
-    return this._client.get("/v1/org/domains", { query: { organization_ids: organization_ids }, ...options });
+  domains(
+    query: OrganizationDomainsParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OrganizationDomainsResponse> {
+    return this._client.get('/v1/org/domains', { query, ...options });
   }
 
   /**
@@ -78,7 +87,7 @@ export class Organizations extends APIResource {
    * An asset's category can belong to multiple organizations; one asset row is
    * emitted per owning org so no association is silently dropped.
    *
-   * @param {OrganizationListAssetsParams} [params] - The parameters to send with the request.
+   * @param {OrganizationListAssetsParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<OrganizationListAssetsResponse>} Successful Response
    *
@@ -87,9 +96,11 @@ export class Organizations extends APIResource {
    * const listAssets = await client.organizations.listAssets();
    * ```
    */
-  listAssets(params: OrganizationListAssetsParams | null | undefined = {}, options?: RequestOptions): APIPromise<OrganizationListAssetsResponse> {
-    const { organization_ids } = params ?? {};
-    return this._client.get("/v1/org/assets", { query: { organization_ids: organization_ids }, ...options });
+  listAssets(
+    query: OrganizationListAssetsParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OrganizationListAssetsResponse> {
+    return this._client.get('/v1/org/assets', { query, ...options });
   }
 
   /**
@@ -99,7 +110,7 @@ export class Organizations extends APIResource {
    * owned by multiple orgs, and each owning org gets its own row so no
    * association is silently dropped.
    *
-   * @param {OrganizationGetPersonasParams} [params] - The parameters to send with the request.
+   * @param {OrganizationGetPersonasParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<OrganizationGetPersonasResponse>} Successful Response
    *
@@ -108,9 +119,26 @@ export class Organizations extends APIResource {
    * const getPersonas = await client.organizations.getPersonas();
    * ```
    */
-  getPersonas(params: OrganizationGetPersonasParams | null | undefined = {}, options?: RequestOptions): APIPromise<OrganizationGetPersonasResponse> {
-    const { organization_ids } = params ?? {};
-    return this._client.get("/v1/org/personas", { query: { organization_ids: organization_ids }, ...options });
+  getPersonas(
+    query: OrganizationGetPersonasParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OrganizationGetPersonasResponse> {
+    return this._client.get('/v1/org/personas', { query, ...options });
+  }
+
+  /**
+   * Return every organization the caller's API key grants access to. Use this to discover organization IDs before calling endpoints that accept an `organization_id` filter.
+   *
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<OrganizationListResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const list = await client.organizations.list();
+   * ```
+   */
+  list(options?: RequestOptions): APIPromise<OrganizationListResponse> {
+    return this._client.get('/v1/org', options);
   }
 }
 
@@ -158,9 +186,8 @@ export interface Category {
    */
   id: string;
   name: string;
+  internal_name?: string | null;
 }
-
-export type OrganizationListResponse = Array<Organization>;
 
 export interface OrganizationRegionsParams {
   /**
@@ -248,6 +275,8 @@ export namespace OrganizationGetPersonasResponse {
     organization: Organization;
   }
 }
+
+export type OrganizationListResponse = Array<Organization>;
 Organizations.Categories = Categories;
 
 export declare namespace Organizations {
@@ -259,12 +288,12 @@ export declare namespace Organizations {
     type PersonaProfileEmployment as PersonaProfileEmployment,
     type Organization as Organization,
     type Category as Category,
-    type OrganizationListResponse as OrganizationListResponse,
     type OrganizationRegionsResponse as OrganizationRegionsResponse,
     type OrganizationModelsResponse as OrganizationModelsResponse,
     type OrganizationDomainsResponse as OrganizationDomainsResponse,
     type OrganizationListAssetsResponse as OrganizationListAssetsResponse,
     type OrganizationGetPersonasResponse as OrganizationGetPersonasResponse,
+    type OrganizationListResponse as OrganizationListResponse,
     type OrganizationRegionsParams as OrganizationRegionsParams,
     type OrganizationDomainsParams as OrganizationDomainsParams,
     type OrganizationListAssetsParams as OrganizationListAssetsParams,
@@ -280,11 +309,11 @@ export declare namespace Organizations {
     type CategoryTopicsResponse as CategoryTopicsResponse,
     type CategoryTagsResponse as CategoryTagsResponse,
     type CategoryPromptsResponse as CategoryPromptsResponse,
+    type CategoryAssetsResponse as CategoryAssetsResponse,
+    type CategoryGetCategoryPersonasResponse as CategoryGetCategoryPersonasResponse,
     type CategoryCreatePromptsResponse as CategoryCreatePromptsResponse,
     type CategoryUpdatePromptsResponse as CategoryUpdatePromptsResponse,
     type CategoryUpdatePromptStatusResponse as CategoryUpdatePromptStatusResponse,
-    type CategoryAssetsResponse as CategoryAssetsResponse,
-    type CategoryGetCategoryPersonasResponse as CategoryGetCategoryPersonasResponse,
     type CategoryListParams as CategoryListParams,
     type CategoryPromptsParams as CategoryPromptsParams,
     type CategoryCreatePromptsParams as CategoryCreatePromptsParams,
@@ -292,4 +321,3 @@ export declare namespace Organizations {
     type CategoryUpdatePromptStatusParams as CategoryUpdatePromptStatusParams,
   };
 }
-export { Organizations as OrganizationResource };

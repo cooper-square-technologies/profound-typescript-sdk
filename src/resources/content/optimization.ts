@@ -1,69 +1,59 @@
 // File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-import { APIResource } from "../../resource";
-import { APIPromise } from "../../api-promise";
-import type { RequestOptions } from "../../internal/request-options";
-import { path as __scalarPath } from "../../internal/utils/path";
+import { APIResource } from '../../resource';
+import { APIPromise } from '../../api-promise';
+import type { RequestOptions } from '../../internal/request-options';
+import { path as __scalarPath } from '../../internal/utils/path';
+import type * as Shared from '../shared';
 
 export class Optimization extends APIResource {
   /**
    * Optimization List
    *
-   * @param {string} asset_id
-   * @param {OptimizationListParams} [params] - The parameters to send with the request.
+   * @param {string} assetID
+   * @param {OptimizationListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<OptimizationListResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const list = await client.content.optimization.list("assetId", {
+   * const list = await client.content.optimization.list('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   limit: 10000,
    *   offset: 0,
    * });
    * ```
    */
-  list(asset_id: string, params: OptimizationListParams | null | undefined = {}, options?: RequestOptions): APIPromise<OptimizationListResponse> {
-    const { limit, offset } = params ?? {};
-    return this._client.get(__scalarPath`/v1/content/${asset_id}/optimization`, { query: { limit: limit, offset: offset }, ...options });
+  list(
+    assetID: string,
+    query: OptimizationListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OptimizationListResponse> {
+    return this._client.get(__scalarPath`/v1/content/${assetID}/optimization`, { query, ...options });
   }
 
   /**
    * Optimization Analysis
    *
-   * @param {string} content_id
+   * @param {string} contentID
    * @param {OptimizationRetrieveParams} params - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<OptimizationRetrieveResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const retrieve = await client.content.optimization.retrieve("contentId", {
-   *   asset_id: "assetId",
+   * const retrieve = await client.content.optimization.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   *   asset_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * });
    * ```
    */
-  retrieve(content_id: string, params: OptimizationRetrieveParams, options?: RequestOptions): APIPromise<OptimizationRetrieveResponse> {
-    const { asset_id } = params ?? {};
-    return this._client.get(__scalarPath`/v1/content/${asset_id}/optimization/${content_id}`, options);
+  retrieve(
+    contentID: string,
+    params: OptimizationRetrieveParams,
+    options?: RequestOptions,
+  ): APIPromise<OptimizationRetrieveResponse> {
+    const { asset_id } = params;
+    return this._client.get(__scalarPath`/v1/content/${asset_id}/optimization/${contentID}`, options);
   }
-}
-
-/**
- * Offset-based pagination parameters.
- */
-export interface Pagination {
-  /**
-   * Maximum number of results to return. Default is 10,000, maximum is 50,000.
-   * @default 10000
-   * @maximum 50000
-   */
-  limit?: number;
-  /**
-   * Offset for the results. Used for pagination.
-   * @default 0
-   * @minimum 0
-   */
-  offset?: number;
 }
 
 export interface OptimizationListParams {
@@ -101,7 +91,7 @@ export namespace OptimizationListResponse {
       /**
        * Pagination parameters for the results. Default is 10,000 rows with no offset.
        */
-      pagination?: Pagination;
+      pagination?: Shared.Pagination;
     }
   }
 
@@ -116,7 +106,7 @@ export namespace OptimizationListResponse {
      */
     created_at: string;
     extracted_input: string | null;
-    type: "file" | "text" | "url";
+    type: 'file' | 'text' | 'url';
     status: string;
   }
 }
@@ -143,7 +133,7 @@ export namespace OptimizationRetrieveResponse {
 
   export namespace Data {
     export interface Content {
-      format: "markdown" | "html";
+      format: 'markdown' | 'html';
       value: string;
     }
 
@@ -173,7 +163,7 @@ export namespace OptimizationRetrieveResponse {
 
     export interface Recommendation {
       title: string;
-      status: "done" | "pending";
+      status: 'done' | 'pending';
       impact: Recommendation.Impact | null;
       suggestion: Recommendation.Suggestion;
     }
@@ -215,7 +205,7 @@ export namespace OptimizationRetrieveResponse {
       }
 
       export interface User {
-        type: "file" | "text" | "url";
+        type: 'file' | 'text' | 'url';
         value: string;
         metadata: Record<string, number | string>;
       }
@@ -230,4 +220,3 @@ export declare namespace Optimization {
     type OptimizationRetrieveParams as OptimizationRetrieveParams,
   };
 }
-export { Optimization as OptimizationResource };

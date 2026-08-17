@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-export * from './shared';
-export { Organizations } from './organizations/organizations';
+export * from './resources/shared';
+export { Organizations, Prompts, Reports, Content, Agents, KnowledgeBases } from './resources/index';
 export type {
   NamedResource,
   PersonaProfile,
@@ -20,11 +20,8 @@ export type {
   OrganizationGetPersonasParams,
   OrganizationGetPersonasResponse,
   OrganizationListResponse,
-} from './organizations/organizations';
-export { Prompts } from './prompts';
-export type { PromptAnswersParams, PromptAnswersResponse } from './prompts';
-export { Reports } from './reports/reports';
-export type {
+  PromptAnswersParams,
+  PromptAnswersResponse,
   ReportInfo,
   ReportResponse,
   ReportResult,
@@ -49,19 +46,12 @@ export type {
   ReportStreamVisibilityResponse,
   ReportStreamSentimentParams,
   ReportStreamSentimentResponse,
-} from './reports/reports';
-export { Content } from './content/content';
-export { Agents } from './agents/agents';
-export type {
   AgentListParams,
   AgentListResponse,
   AgentRetrieveParams,
   AgentRetrieveResponse,
-} from './agents/agents';
-export { KnowledgeBases } from './knowledge-bases/knowledge-bases';
-export type {
   KnowledgeBaseListParams,
   KnowledgeBaseListResponse,
   KnowledgeBaseSearchParams,
   KnowledgeBaseSearchResponse,
-} from './knowledge-bases/knowledge-bases';
+} from './resources/index';

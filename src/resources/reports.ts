@@ -1,3 +1,3 @@
 // File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-export * from "./reports/index";
+export * from './reports/index';

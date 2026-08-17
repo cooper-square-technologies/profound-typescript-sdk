@@ -1,6 +1,42 @@
 // File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-export { Organizations } from "./organizations";
-export type { NamedResource, PersonaProfile, PersonaProfileBehavior, PersonaProfileDemographics, PersonaProfileEmployment, Organization, Category, OrganizationListResponse, OrganizationRegionsParams, OrganizationRegionsResponse, OrganizationModelsResponse, OrganizationDomainsParams, OrganizationDomainsResponse, OrganizationListAssetsParams, OrganizationListAssetsResponse, OrganizationGetPersonasParams, OrganizationGetPersonasResponse } from "./organizations";
-export { Categories } from "./categories";
-export type { IDOrName, NamedResourceDiffList, FieldDiff, CreatePromptsBody, UpdatePromptsBody, UpdatePromptStatusBody, CategoryListParams, CategoryListResponse, CategoryTopicsResponse, CategoryTagsResponse, CategoryPromptsParams, CategoryPromptsResponse, CategoryCreatePromptsParams, CategoryCreatePromptsResponse, CategoryUpdatePromptsParams, CategoryUpdatePromptsResponse, CategoryUpdatePromptStatusParams, CategoryUpdatePromptStatusResponse, CategoryAssetsResponse, CategoryGetCategoryPersonasResponse } from "./categories";
+export { Organizations } from './organizations';
+export type {
+  NamedResource,
+  PersonaProfile,
+  PersonaProfileBehavior,
+  PersonaProfileDemographics,
+  PersonaProfileEmployment,
+  Organization,
+  Category,
+  OrganizationRegionsParams,
+  OrganizationRegionsResponse,
+  OrganizationModelsResponse,
+  OrganizationDomainsParams,
+  OrganizationDomainsResponse,
+  OrganizationListAssetsParams,
+  OrganizationListAssetsResponse,
+  OrganizationGetPersonasParams,
+  OrganizationGetPersonasResponse,
+  OrganizationListResponse,
+} from './organizations';
+export { Categories } from './categories';
+export type {
+  IDOrName,
+  NamedResourceDiffList,
+  FieldDiff,
+  CategoryListParams,
+  CategoryListResponse,
+  CategoryTopicsResponse,
+  CategoryTagsResponse,
+  CategoryPromptsParams,
+  CategoryPromptsResponse,
+  CategoryAssetsResponse,
+  CategoryGetCategoryPersonasResponse,
+  CategoryCreatePromptsParams,
+  CategoryCreatePromptsResponse,
+  CategoryUpdatePromptsParams,
+  CategoryUpdatePromptsResponse,
+  CategoryUpdatePromptStatusParams,
+  CategoryUpdatePromptStatusResponse,
+} from './categories';
