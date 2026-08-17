@@ -1,157 +1,69 @@
-// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+// File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-import type { RequestInit, RequestInfo, BodyInit } from './internal/builtin-types';
-import type { HTTPMethod, PromiseOrValue, MergedRequestInit, FinalizedRequestInit } from './internal/types';
-import { uuid4 } from './internal/utils/uuid';
-import { validatePositiveInteger, isAbsoluteURL, safeJSON } from './internal/utils/values';
-import { sleep } from './internal/utils/sleep';
-export type { Logger, LogLevel } from './internal/utils/log';
-import { castToError, isAbortError } from './internal/errors';
+import { APIPromise } from './api-promise';
 import type { APIResponseProps } from './internal/parse';
+import * as Errors from './error';
+import { uuid4 } from './internal/utils/uuid';
+import { validatePositiveInteger, isAbsoluteURL, safeJSON, isEmptyObj } from './internal/utils/values';
+import { sleep } from './internal/utils/sleep';
+import { castToError, isAbortError } from './internal/errors';
 import { getPlatformHeaders } from './internal/detect-platform';
 import * as Shims from './internal/shims';
 import * as Opts from './internal/request-options';
-import { stringifyQuery } from './internal/utils/query';
-import { VERSION } from './version';
-import * as Errors from './core/error';
-import * as Uploads from './core/uploads';
-import * as API from './resources/index';
-import { APIPromise } from './core/api-promise';
-import { type Fetch } from './internal/builtin-types';
-import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
-import { FinalRequestOptions, RequestOptions } from './internal/request-options';
-import {
-  PromptAnswersParams,
-  PromptAnswersResponse,
-  PromptAnswersV2Params,
-  PromptAnswersV2Response,
-  PromptStreamAnswersV2Params,
-  Prompts,
-} from './resources/prompts';
 import { readEnv } from './internal/utils/env';
-import {
-  type LogLevel,
-  type Logger,
-  formatRequestDetails,
-  loggerFor,
-  parseLogLevel,
-} from './internal/utils/log';
-import { isEmptyObj } from './internal/utils/values';
-import {
-  AgentCreateParams,
-  AgentCreateResponse,
-  AgentListParams,
-  AgentListResponse,
-  AgentPublishResponse,
-  AgentRetrieveGraphParams,
-  AgentRetrieveGraphResponse,
-  AgentRetrieveParams,
-  AgentRetrieveResponse,
-  AgentUpdateParams,
-  AgentUpdateResponse,
-  Agents,
-} from './resources/agents/agents';
-import { Content } from './resources/content/content';
-import {
-  KnowledgeBaseListParams,
-  KnowledgeBaseListResponse,
-  KnowledgeBaseSearchParams,
-  KnowledgeBaseSearchResponse,
-  KnowledgeBases,
-} from './resources/knowledge-bases/knowledge-bases';
-import { Logs } from './resources/logs/logs';
-import {
-  Category,
-  NamedResource,
-  Organization,
-  OrganizationDomainsParams,
-  OrganizationDomainsResponse,
-  OrganizationGetPersonasParams,
-  OrganizationGetPersonasResponse,
-  OrganizationListAssetsParams,
-  OrganizationListAssetsResponse,
-  OrganizationListResponse,
-  OrganizationModelsResponse,
-  OrganizationRegionsParams,
-  OrganizationRegionsResponse,
-  Organizations,
-  PersonaProfile,
-  PersonaProfileBehavior,
-  PersonaProfileDemographics,
-  PersonaProfileEmployment,
-} from './resources/organizations/organizations';
-import {
-  HostnameFilter,
-  PromptIDFilter,
-  ReportCitationsParams,
-  ReportCitationsResponse,
-  ReportGetBotsReportParams,
-  ReportGetBotsReportV2Params,
-  ReportGetReferralsReportParams,
-  ReportGetReferralsReportV2Params,
-  ReportInfo,
-  ReportQueryCitationsParams,
-  ReportQueryCitationsResponse,
-  ReportQueryFanoutsParams,
-  ReportQueryQueryFanoutsParams,
-  ReportQueryQueryFanoutsResponse,
-  ReportQuerySentimentParams,
-  ReportQuerySentimentResponse,
-  ReportQueryVisibilityParams,
-  ReportQueryVisibilityResponse,
-  ReportResponse,
-  ReportResult,
-  ReportSentimentParams,
-  ReportSentimentV2Params,
-  ReportSentimentV2Response,
-  ReportStreamCitationsParams,
-  ReportStreamCitationsResponse,
-  ReportStreamCitationsV2Params,
-  ReportStreamQueryFanoutsParams,
-  ReportStreamSentimentParams,
-  ReportStreamSentimentResponse,
-  ReportStreamSentimentV2Params,
-  ReportStreamVisibilityParams,
-  ReportStreamVisibilityResponse,
-  ReportStreamVisibilityV2Params,
-  ReportVisibilityParams,
-  Reports,
-  RootDomainFilter,
-  TagNameFilter,
-  TopicNameFilter,
-  URLFilter,
-} from './resources/reports/reports';
+import { formatRequestDetails, loggerFor, parseLogLevel, type LogLevel, type Logger } from './internal/utils/log';
+export type { Logger, LogLevel } from './internal/utils/log';
+import type { RequestInit, RequestInfo, BodyInit, Fetch } from './internal/builtin-types';
+import { buildHeaders, type HeadersLike } from './internal/headers';
+import type { FinalRequestOptions, RequestOptions } from './internal/request-options';
+import type { HTTPMethod, FinalizedRequestInit, MergedRequestInit, PromiseOrValue } from './internal/types';
+import { stringify as stringifyQuery } from './internal/qs/stringify';
+import type { StringifyOptions } from './internal/qs/types';
+import { toFile } from './core/uploads';
+import { VERSION } from './version';
+import { OrganizationResource, type Organization, type CreatePromptsBody, type UpdatePromptsBody, type UpdatePromptStatusBody, type OrganizationListCategoryRegionsV1OrgCategoriesCategoryRegionsGetResponse } from "./resources/organization";
+import { Prompts } from "./resources/prompts/prompts";
+import { Reports, type SentimentV2ReportQuery, type ReportInfo, type ReportResponse, type ReportResult, type TopicNameFilter, type PromptIDFilter, type TagNameFilter, type RootDomainFilter, type HostnameFilter, type URLFilter, type ReportQuerySentimentV2V1SentimentV2PostResponse, type ReportQuerySentimentV2V1SentimentV2PostParams } from "./resources/reports/reports";
+import { Content } from "./resources/content/content";
+import { KnowledgeBases, type SearchKnowledgeBaseRequest, type KnowledgeBaseListResponse, type KnowledgeBaseSearchResponse, type KnowledgeBaseListParams, type KnowledgeBaseSearchParams } from "./resources/knowledge-bases/knowledge-bases";
+import { Agents, type CreateAgentRequest, type UpdateAgentRequest, type AgentListResponse, type AgentCreateV1PostResponse, type AgentPublishV1IDPublishPostResponse, type AgentRetrieveResponse, type AgentUpdateV1IDPatchResponse, type AgentListGraphV1GraphGetResponse, type AgentListParams, type AgentCreateV1PostParams, type AgentRetrieveParams, type AgentUpdateV1IDPatchParams, type AgentListGraphV1GraphGetParams } from "./resources/agents/agents";
+import { Organizations, type NamedResource, type PersonaProfile, type PersonaProfileBehavior, type PersonaProfileDemographics, type PersonaProfileEmployment, type Category, type OrganizationListResponse, type OrganizationRegionsResponse, type OrganizationModelsResponse, type OrganizationDomainsResponse, type OrganizationListAssetsResponse, type OrganizationGetPersonasResponse, type OrganizationRegionsParams, type OrganizationDomainsParams, type OrganizationListAssetsParams, type OrganizationGetPersonasParams } from "./resources/organizations/organizations";
+
+export type AuthTokenProvider = () => string | Promise<string>;
+
+const queryArrayFormat: NonNullable<StringifyOptions["arrayFormat"]> = "repeat";
+const queryAllowDots = false;
 
 const environments = {
-  production: 'https://api.tryprofound.com',
-  development: 'https://dev.api.tryprofound.com',
+  production: "https://api.tryprofound.com",
+  production_server: "https://api.tryprofound.com",
 };
 type Environment = keyof typeof environments;
 
 export interface ClientOptions {
   /**
-   * WorkOS access token
+   * The API key for header authorization.
    */
-  accessToken?: string | null | undefined;
+  apiKeyHeader?: string | AuthTokenProvider | undefined;
 
   /**
-   * API Key
+   * The token used for authentication.
    */
-  apiKey?: string | null | undefined;
+  bearerAuth?: string | AuthTokenProvider | undefined;
 
   /**
    * Specifies the environment to use for the API.
    *
    * Each environment maps to a different base URL:
    * - `production` corresponds to `https://api.tryprofound.com`
-   * - `development` corresponds to `https://dev.api.tryprofound.com`
+   * - `production_server` corresponds to `https://api.tryprofound.com`
    */
   environment?: Environment | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['PROFOUND_BASE_URL'].
+   * Defaults to process.env["PROFOUND_BASE_URL"].
    */
   baseURL?: string | null | undefined;
 
@@ -165,6 +77,7 @@ export interface ClientOptions {
    * @unit milliseconds
    */
   timeout?: number | undefined;
+
   /**
    * Additional `RequestInit` options to be passed to `fetch` calls.
    * Properties will be overridden by per-request `fetchOptions`.
@@ -205,7 +118,7 @@ export interface ClientOptions {
   /**
    * Set the log level.
    *
-   * Defaults to process.env['PROFOUND_LOG'] or 'warn' if it isn't set.
+   * Defaults to process.env["PROFOUND_LOG"] or 'warn' if it isn't set.
    */
   logLevel?: LogLevel | undefined;
 
@@ -217,12 +130,14 @@ export interface ClientOptions {
   logger?: Logger | undefined;
 }
 
+export type ProfoundOptions = ClientOptions;
+
 /**
  * API Client for interfacing with the Profound API.
  */
 export class Profound {
-  accessToken: string | null;
-  apiKey: string | null;
+  apiKeyHeader: string | AuthTokenProvider | undefined;
+  bearerAuth: string | AuthTokenProvider | undefined;
 
   baseURL: string;
   maxRetries: number;
@@ -230,19 +145,20 @@ export class Profound {
   logger: Logger;
   logLevel: LogLevel | undefined;
   fetchOptions: MergedRequestInit | undefined;
-
   private fetch: Fetch;
   #encoder: Opts.RequestEncoder;
   protected idempotencyHeader?: string;
+  private _baseURLOverridden: boolean;
+  private _defaultBaseURL: string;
   private _options: ClientOptions;
 
   /**
    * API Client for interfacing with the Profound API.
    *
-   * @param {string | null | undefined} [opts.accessToken=process.env['PROFOUND_ACCESS_TOKEN'] ?? null]
-   * @param {string | null | undefined} [opts.apiKey=process.env['PROFOUND_API_KEY'] ?? null]
+   * @param {string | AuthTokenProvider | undefined} [opts.apiKeyHeader=process.env["API_KEY_HEADER"] ?? undefined]
+   * @param {string | AuthTokenProvider | undefined} [opts.bearerAuth=process.env["BEARER_AUTH"] ?? undefined]
    * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
-   * @param {string} [opts.baseURL=process.env['PROFOUND_BASE_URL'] ?? https://api.tryprofound.com] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env["PROFOUND_BASE_URL"] ?? https://api.tryprofound.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -251,26 +167,22 @@ export class Profound {
    * @param {Record<string, string | undefined>} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
-    baseURL = readEnv('PROFOUND_BASE_URL'),
-    accessToken = readEnv('PROFOUND_ACCESS_TOKEN') ?? null,
-    apiKey = readEnv('PROFOUND_API_KEY') ?? null,
+    baseURL = readEnv("PROFOUND_BASE_URL"),
+    apiKeyHeader = readEnv("API_KEY_HEADER"),
+    bearerAuth = readEnv("BEARER_AUTH"),
     ...opts
   }: ClientOptions = {}) {
     const options: ClientOptions = {
-      accessToken,
-      apiKey,
+      apiKeyHeader,
+      bearerAuth,
       ...opts,
-      baseURL,
-      environment: opts.environment ?? 'production',
+      baseURL: baseURL || null,
     };
-
-    if (baseURL && opts.environment) {
-      throw new Errors.ProfoundError(
-        'Ambiguous URL; The `baseURL` option (or PROFOUND_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
-      );
-    }
-
-    this.baseURL = options.baseURL || environments[options.environment || 'production'];
+    const environment = options.environment ?? "production";
+    const baseURLOverridden = baseURL !== null && baseURL !== undefined && baseURL !== "";
+    if (baseURLOverridden && options.environment) throw new Errors.ProfoundError("Ambiguous URL; The `baseURL` option (or PROFOUND_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null");
+    const defaultBaseURL = environments[environment];
+    this.baseURL = options.baseURL || defaultBaseURL;
     this.timeout = options.timeout ?? Profound.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
@@ -278,14 +190,14 @@ export class Profound {
     this.logLevel = defaultLogLevel;
     this.logLevel =
       parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
-      parseLogLevel(readEnv('PROFOUND_LOG'), "process.env['PROFOUND_LOG']", this) ??
+      parseLogLevel(readEnv("PROFOUND_LOG"), "process.env[\"PROFOUND_LOG\"]", this) ??
       defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
     this.maxRetries = options.maxRetries ?? 2;
     this.fetch = options.fetch ?? Shims.getDefaultFetch();
     this.#encoder = Opts.FallbackEncoder;
 
-    const customHeadersEnv = readEnv('PROFOUND_CUSTOM_HEADERS');
+    const customHeadersEnv = readEnv("PROFOUND_CUSTOM_HEADERS");
     if (customHeadersEnv) {
       const parsed: Record<string, string> = {};
       for (const line of customHeadersEnv.split('\n')) {
@@ -297,84 +209,42 @@ export class Profound {
       options.defaultHeaders = { ...parsed, ...options.defaultHeaders };
     }
 
-    this._options = options;
+    this._options = { ...options, baseURL: baseURLOverridden ? this.baseURL : undefined, environment };
+    this._baseURLOverridden = baseURLOverridden;
+    this._defaultBaseURL = defaultBaseURL;
 
-    this.accessToken = accessToken;
-    this.apiKey = apiKey;
+    this.apiKeyHeader = apiKeyHeader;
+    this.bearerAuth = bearerAuth;
   }
 
-  /**
-   * Create a new client instance re-using the same options given to the current client with optional overriding.
-   */
   withOptions(options: Partial<ClientOptions>): this {
-    const client = new (this.constructor as any as new (props: ClientOptions) => typeof this)({
+    const client = new (this.constructor as new (props: ClientOptions) => this)({
       ...this._options,
-      environment: options.environment ? options.environment : undefined,
-      baseURL: options.environment ? undefined : this.baseURL,
+      ...(this.#baseURLOverridden() ? { baseURL: this.baseURL } : {}),
       maxRetries: this.maxRetries,
       timeout: this.timeout,
       logger: this.logger,
       logLevel: this.logLevel,
       fetch: this.fetch,
       fetchOptions: this.fetchOptions,
-      accessToken: this.accessToken,
-      apiKey: this.apiKey,
+      apiKeyHeader: this.apiKeyHeader,
+      bearerAuth: this.bearerAuth,
       ...options,
     });
     return client;
   }
 
-  /**
-   * Check whether the base URL is set to its default.
-   */
   #baseURLOverridden(): boolean {
-    return this.baseURL !== environments[this._options.environment || 'production'];
+    // A named environment selects a default URL; only explicit overrides should bypass per-request defaults.
+    return this._baseURLOverridden || this.baseURL !== this._defaultBaseURL;
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
     return this._options.defaultQuery;
   }
 
-  protected validateHeaders({ values, nulls }: NullableHeaders) {
-    if (this.accessToken && values.get('authorization')) {
-      return;
-    }
-    if (nulls.has('authorization')) {
-      return;
-    }
-
-    if (this.apiKey && values.get('x-api-key')) {
-      return;
-    }
-    if (nulls.has('x-api-key')) {
-      return;
-    }
-
-    throw new Error(
-      'Could not resolve authentication method. Expected either accessToken or apiKey to be set. Or for one of the "Authorization" or "X-API-Key" headers to be explicitly omitted',
-    );
-  }
-
-  protected async authHeaders(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
-    return buildHeaders([await this.bearerAuth(opts), await this.apiKeyHeaderAuth(opts)]);
-  }
-
-  protected async bearerAuth(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
-    if (this.accessToken == null) {
-      return undefined;
-    }
-    return buildHeaders([{ Authorization: `Bearer ${this.accessToken}` }]);
-  }
-
-  protected async apiKeyHeaderAuth(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
-    if (this.apiKey == null) {
-      return undefined;
-    }
-    return buildHeaders([{ 'X-API-Key': this.apiKey }]);
-  }
-
   protected stringifyQuery(query: object | Record<string, unknown>): string {
-    return stringifyQuery(query);
+    return stringifyQuery(query, { arrayFormat: queryArrayFormat, allowDots: queryAllowDots });
   }
 
   private getUserAgent(): string {
@@ -382,12 +252,12 @@ export class Profound {
   }
 
   protected defaultIdempotencyKey(): string {
-    return `stainless-node-retry-${uuid4()}`;
+    return `scalar-node-retry-${uuid4()}`;
   }
 
   protected makeStatusError(
     status: number,
-    error: Object,
+    error: object | undefined,
     message: string | undefined,
     headers: Headers,
   ): Errors.APIError {
@@ -400,10 +270,12 @@ export class Profound {
     defaultBaseURL?: string | undefined,
   ): string {
     const baseURL = (!this.#baseURLOverridden() && defaultBaseURL) || this.baseURL;
+    // Guarantee exactly one "/" between baseURL and path so that bases without a trailing slash
+    // and paths without a leading slash do not fuse into a malformed URL (e.g. ".../v1" + "widgets").
     const url =
       isAbsoluteURL(path) ?
         new URL(path)
-      : new URL(baseURL + (baseURL.endsWith('/') && path.startsWith('/') ? path.slice(1) : path));
+      : new URL((baseURL.endsWith('/') ? baseURL : baseURL + '/') + (path.startsWith('/') ? path.slice(1) : path));
 
     const defaultQuery = this.defaultQuery();
     const pathQuery = Object.fromEntries(url.searchParams);
@@ -411,7 +283,7 @@ export class Profound {
       query = { ...pathQuery, ...defaultQuery, ...query };
     }
 
-    if (typeof query === 'object' && query && !Array.isArray(query)) {
+    if (typeof query === "object" && query && !Array.isArray(query)) {
       url.search = this.stringifyQuery(query);
     }
 
@@ -461,7 +333,7 @@ export class Profound {
   ): APIPromise<Rsp> {
     return this.request(
       Promise.resolve(opts).then((opts) => {
-        return { method, path, ...opts };
+        return { method, path, ...opts } as FinalRequestOptions;
       }),
     );
   }
@@ -630,12 +502,7 @@ export class Profound {
     return { response, options, controller, requestLogID, retryOfRequestLogID, startTime };
   }
 
-  async fetchWithTimeout(
-    url: RequestInfo,
-    init: RequestInit | undefined,
-    ms: number,
-    controller: AbortController,
-  ): Promise<Response> {
+  async fetchWithTimeout(url: RequestInfo, init: RequestInit | undefined, ms: number, controller: AbortController): Promise<Response> {
     const { signal, method, ...options } = init || {};
     const abort = this._makeAbort(controller);
     if (signal) signal.addEventListener('abort', abort, { once: true });
@@ -717,9 +584,18 @@ export class Profound {
       }
     }
 
-    // If the API asks us to wait a certain amount of time, just do what it
-    // says, but otherwise calculate a default
-    if (timeoutMillis === undefined) {
+    // If the API asks us to wait a certain amount of time, just do what it says,
+    // but cap server-provided delays at 60s so an oversized or malformed Retry-After
+    // (e.g. `retry-after-ms: 999999999`, a past HTTP-date, or a value that Date.parse
+    // failed on) cannot block retries for an unbounded amount of time. Otherwise fall
+    // back to the default exponential-backoff calculation.
+    const maxRetryAfterMillis = 60 * 1000;
+    if (
+      timeoutMillis === undefined ||
+      !Number.isFinite(timeoutMillis) ||
+      timeoutMillis <= 0 ||
+      timeoutMillis > maxRetryAfterMillis
+    ) {
       const maxRetries = options.maxRetries ?? this.maxRetries;
       timeoutMillis = this.calculateDefaultRetryTimeoutMillis(retriesRemaining, maxRetries);
     }
@@ -754,7 +630,7 @@ export class Profound {
     if ('timeout' in options) validatePositiveInteger('timeout', options.timeout);
     options.timeout = options.timeout ?? this.timeout;
     const { bodyHeaders, body } = this.buildBody({ options });
-    const reqHeaders = await this.buildHeaders({ options: inputOptions, method, bodyHeaders, retryCount });
+    const reqHeaders = await this.buildHeaders({ options, method, bodyHeaders, retryCount, url });
 
     const req: FinalizedRequestInit = {
       method,
@@ -762,11 +638,12 @@ export class Profound {
       ...(options.signal && { signal: options.signal }),
       ...((globalThis as any).ReadableStream &&
         body instanceof (globalThis as any).ReadableStream && { duplex: 'half' }),
-      ...(body && { body }),
+      // `buildBody` already collapses no-body into `undefined`; here we only need to drop that
+      // sentinel. A truthiness spread would also strip an intentional empty-string body.
+      ...(body !== undefined && { body }),
       ...((this.fetchOptions as any) ?? {}),
       ...((options.fetchOptions as any) ?? {}),
     };
-
     return { req, url, timeout: options.timeout };
   }
 
@@ -775,11 +652,13 @@ export class Profound {
     method,
     bodyHeaders,
     retryCount,
+    url,
   }: {
     options: FinalRequestOptions;
     method: HTTPMethod;
     bodyHeaders: HeadersLike;
     retryCount: number;
+    url: string;
   }): Promise<Headers> {
     let idempotencyHeaders: HeadersLike = {};
     if (this.idempotencyHeader && method !== 'get') {
@@ -792,8 +671,8 @@ export class Profound {
       {
         Accept: 'application/json',
         'User-Agent': this.getUserAgent(),
-        'X-Stainless-Retry-Count': String(retryCount),
-        ...(options.timeout ? { 'X-Stainless-Timeout': String(Math.trunc(options.timeout / 1000)) } : {}),
+        'X-Scalar-Retry-Count': String(retryCount),
+        ...(options.timeout ? { 'X-Scalar-Timeout': String(Math.trunc(options.timeout / 1000)) } : {}),
         ...getPlatformHeaders(),
       },
       await this.authHeaders(options),
@@ -801,8 +680,9 @@ export class Profound {
       bodyHeaders,
       options.headers,
     ]);
+    appendAuthCookies(headers.values, await this.authCookiesAsync());
 
-    this.validateHeaders(headers);
+    this.validateAuth(url, headers.values, options);
 
     return headers.values;
   }
@@ -813,19 +693,15 @@ export class Profound {
     return () => controller.abort();
   }
 
-  private buildBody({ options }: { options: FinalRequestOptions }): {
+  private buildBody({ options: { body, headers: rawHeaders } }: { options: FinalRequestOptions }): {
     bodyHeaders: HeadersLike;
     body: BodyInit | undefined;
   } {
-    const { body, headers: rawHeaders } = options;
-    if (!body) {
-      // A resource method always passes a `body` key when its operation defines a
-      // request body, even if the caller omitted an optional body param. Keep the
-      // content-type for those, and only elide it for operations with no body at
-      // all (e.g. GET/DELETE).
-      if (body == null && 'body' in options) {
-        return this.#encoder({ body, headers: buildHeaders([rawHeaders]) });
-      }
+    // Skip only `null`/`undefined` so an intentional empty-string (or 0/false) payload still
+    // reaches the encoder. A plain `!body` check would silently drop those falsy-but-valid bodies,
+    // and `null` must be excluded here too because the iterator check below uses `in`, which
+    // throws on null.
+    if (body == null) {
       return { bodyHeaders: undefined, body: undefined };
     }
     const headers = buildHeaders([rawHeaders]);
@@ -834,9 +710,12 @@ export class Profound {
       ArrayBuffer.isView(body) ||
       body instanceof ArrayBuffer ||
       body instanceof DataView ||
-      (typeof body === 'string' &&
-        // Preserve legacy string encoding behavior for now
-        headers.values.has('content-type')) ||
+      // Always pass strings through verbatim. The previous guard required a caller-set
+      // `content-type` and otherwise fell through to `FallbackEncoder`, which JSON.stringifies
+      // the value and labels it `application/json` — silently quoting plain-text payloads and
+      // mislabeling them as JSON. fetch defaults a string body to `text/plain;charset=UTF-8`
+      // when no `content-type` is set, which is a safer default than misclaiming JSON.
+      typeof body === 'string' ||
       // `Blob` is superset of `File`
       ((globalThis as any).Blob && body instanceof (globalThis as any).Blob) ||
       // `FormData` -> `multipart/form-data`
@@ -866,6 +745,68 @@ export class Profound {
     }
   }
 
+  private validateAuth(url: string, headers: Headers, options: FinalRequestOptions): void {
+    if (headers.has("X-API-Key")) return;
+    if (headerExplicitlyOmitted(options.headers, "X-API-Key")) return;
+    if (headers.has("Authorization")) return;
+    if (headerExplicitlyOmitted(options.headers, "Authorization")) return;
+    throw new Errors.AuthenticationError(401, {}, "Could not resolve authentication method. Expected X-API-Key or Authorization to be set.", headers);
+  }
+
+  authHeadersSync(): Record<string, string> {
+    const headers: Record<string, string> = {};
+    const apiKeyHeader = this.resolveAuthOptionSync("apiKeyHeader", this.apiKeyHeader);
+    if (apiKeyHeader) headers["X-API-Key"] = apiKeyHeader;
+    const bearerAuth = this.resolveAuthOptionSync("bearerAuth", this.bearerAuth);
+    if (bearerAuth) headers['Authorization'] = `Bearer ${bearerAuth}`;
+    return headers;
+  }
+
+  webSocketAuthHeaders(): Record<string, string> {
+    const bearerAuth = this.resolveAuthOptionSync("bearerAuth", this.bearerAuth);
+    if (bearerAuth) return { Authorization: `Bearer ${bearerAuth}` };
+    const apiKeyHeader = this.resolveAuthOptionSync("apiKeyHeader", this.apiKeyHeader);
+    if (apiKeyHeader) return { "X-API-Key": apiKeyHeader };
+    return {};
+  }
+
+  protected async authHeaders(options: FinalRequestOptions): Promise<HeadersLike | undefined> {
+    return buildHeaders([await this.authHeadersAsync()]);
+  }
+
+  private async authQueryAsync(): Promise<Record<string, string>> {
+    const query: Record<string, string> = {};
+    return query;
+  }
+
+  private async authCookiesAsync(): Promise<Record<string, string>> {
+    const cookies: Record<string, string> = {};
+    return cookies;
+  }
+
+  private async authHeadersAsync(): Promise<Record<string, string>> {
+    const headers: Record<string, string> = {};
+    const apiKeyHeader = await this.resolveAuthOption("apiKeyHeader", this.apiKeyHeader);
+    if (apiKeyHeader) headers["X-API-Key"] = apiKeyHeader;
+    const bearerAuth = await this.resolveAuthOption("bearerAuth", this.bearerAuth);
+    if (bearerAuth) headers['Authorization'] = `Bearer ${bearerAuth}`;
+    return headers;
+  }
+
+  private async resolveAuthOption(optionName: string, value: string | AuthTokenProvider | null | undefined): Promise<string | undefined> {
+    if (value == null) return undefined;
+    const token = typeof value === "function" ? await value() : value;
+    if (!token) throw new Errors.ProfoundError(`Expected '${optionName}' to resolve to a non-empty string.`);
+    return token;
+  }
+
+  private resolveAuthOptionSync(optionName: string, value: string | AuthTokenProvider | null | undefined): string | undefined {
+    if (value == null) return undefined;
+    const token = typeof value === "function" ? value() : value;
+    if (typeof token !== "string" || !token) throw new Errors.ProfoundError(`Expected '${optionName}' to resolve to a non-empty string.`);
+    return token;
+  }
+
   static Profound = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
@@ -883,140 +824,126 @@ export class Profound {
   static PermissionDeniedError = Errors.PermissionDeniedError;
   static UnprocessableEntityError = Errors.UnprocessableEntityError;
 
-  static toFile = Uploads.toFile;
+  static toFile = toFile;
 
-  organizations: API.Organizations = new API.Organizations(this);
-  prompts: API.Prompts = new API.Prompts(this);
-  reports: API.Reports = new API.Reports(this);
-  logs: API.Logs = new API.Logs(this);
-  content: API.Content = new API.Content(this);
-  agents: API.Agents = new API.Agents(this);
-  knowledgeBases: API.KnowledgeBases = new API.KnowledgeBases(this);
+  organization: OrganizationResource = new OrganizationResource(this);
+  prompts: Prompts = new Prompts(this);
+  reports: Reports = new Reports(this);
+  content: Content = new Content(this);
+  knowledgeBases: KnowledgeBases = new KnowledgeBases(this);
+  agents: Agents = new Agents(this);
+  organizations: Organizations = new Organizations(this);
 }
 
-Profound.Organizations = Organizations;
+Profound.OrganizationResource = OrganizationResource;
 Profound.Prompts = Prompts;
 Profound.Reports = Reports;
-Profound.Logs = Logs;
 Profound.Content = Content;
-Profound.Agents = Agents;
 Profound.KnowledgeBases = KnowledgeBases;
+Profound.Agents = Agents;
+Profound.Organizations = Organizations;
 
 export declare namespace Profound {
   export type RequestOptions = Opts.RequestOptions;
-
   export {
-    Organizations as Organizations,
-    type Category as Category,
-    type NamedResource as NamedResource,
+    OrganizationResource as OrganizationResource,
     type Organization as Organization,
-    type PersonaProfile as PersonaProfile,
-    type PersonaProfileBehavior as PersonaProfileBehavior,
-    type PersonaProfileDemographics as PersonaProfileDemographics,
-    type PersonaProfileEmployment as PersonaProfileEmployment,
-    type OrganizationListResponse as OrganizationListResponse,
-    type OrganizationDomainsResponse as OrganizationDomainsResponse,
-    type OrganizationGetPersonasResponse as OrganizationGetPersonasResponse,
-    type OrganizationListAssetsResponse as OrganizationListAssetsResponse,
-    type OrganizationModelsResponse as OrganizationModelsResponse,
-    type OrganizationRegionsResponse as OrganizationRegionsResponse,
-    type OrganizationDomainsParams as OrganizationDomainsParams,
-    type OrganizationGetPersonasParams as OrganizationGetPersonasParams,
-    type OrganizationListAssetsParams as OrganizationListAssetsParams,
-    type OrganizationRegionsParams as OrganizationRegionsParams,
+    type CreatePromptsBody as CreatePromptsBody,
+    type UpdatePromptsBody as UpdatePromptsBody,
+    type UpdatePromptStatusBody as UpdatePromptStatusBody,
+    type OrganizationListCategoryRegionsV1OrgCategoriesCategoryRegionsGetResponse as OrganizationListCategoryRegionsV1OrgCategoriesCategoryRegionsGetResponse,
   };
 
   export {
     Prompts as Prompts,
-    type PromptAnswersResponse as PromptAnswersResponse,
-    type PromptAnswersV2Response as PromptAnswersV2Response,
-    type PromptAnswersParams as PromptAnswersParams,
-    type PromptAnswersV2Params as PromptAnswersV2Params,
-    type PromptStreamAnswersV2Params as PromptStreamAnswersV2Params,
   };
 
   export {
     Reports as Reports,
-    type HostnameFilter as HostnameFilter,
-    type PromptIDFilter as PromptIDFilter,
+    type SentimentV2ReportQuery as SentimentV2ReportQuery,
     type ReportInfo as ReportInfo,
     type ReportResponse as ReportResponse,
     type ReportResult as ReportResult,
-    type RootDomainFilter as RootDomainFilter,
-    type TagNameFilter as TagNameFilter,
     type TopicNameFilter as TopicNameFilter,
+    type PromptIDFilter as PromptIDFilter,
+    type TagNameFilter as TagNameFilter,
+    type RootDomainFilter as RootDomainFilter,
+    type HostnameFilter as HostnameFilter,
     type URLFilter as URLFilter,
-    type ReportCitationsResponse as ReportCitationsResponse,
-    type ReportQueryCitationsResponse as ReportQueryCitationsResponse,
-    type ReportQueryQueryFanoutsResponse as ReportQueryQueryFanoutsResponse,
-    type ReportQuerySentimentResponse as ReportQuerySentimentResponse,
-    type ReportQueryVisibilityResponse as ReportQueryVisibilityResponse,
-    type ReportSentimentV2Response as ReportSentimentV2Response,
-    type ReportStreamCitationsResponse as ReportStreamCitationsResponse,
-    type ReportStreamSentimentResponse as ReportStreamSentimentResponse,
-    type ReportStreamVisibilityResponse as ReportStreamVisibilityResponse,
-    type ReportCitationsParams as ReportCitationsParams,
-    type ReportGetBotsReportParams as ReportGetBotsReportParams,
-    type ReportGetBotsReportV2Params as ReportGetBotsReportV2Params,
-    type ReportGetReferralsReportParams as ReportGetReferralsReportParams,
-    type ReportGetReferralsReportV2Params as ReportGetReferralsReportV2Params,
-    type ReportQueryCitationsParams as ReportQueryCitationsParams,
-    type ReportQueryFanoutsParams as ReportQueryFanoutsParams,
-    type ReportQueryQueryFanoutsParams as ReportQueryQueryFanoutsParams,
-    type ReportQuerySentimentParams as ReportQuerySentimentParams,
-    type ReportQueryVisibilityParams as ReportQueryVisibilityParams,
-    type ReportSentimentParams as ReportSentimentParams,
-    type ReportSentimentV2Params as ReportSentimentV2Params,
-    type ReportStreamCitationsParams as ReportStreamCitationsParams,
-    type ReportStreamCitationsV2Params as ReportStreamCitationsV2Params,
-    type ReportStreamQueryFanoutsParams as ReportStreamQueryFanoutsParams,
-    type ReportStreamSentimentParams as ReportStreamSentimentParams,
-    type ReportStreamSentimentV2Params as ReportStreamSentimentV2Params,
-    type ReportStreamVisibilityParams as ReportStreamVisibilityParams,
-    type ReportStreamVisibilityV2Params as ReportStreamVisibilityV2Params,
-    type ReportVisibilityParams as ReportVisibilityParams,
+    type ReportQuerySentimentV2V1SentimentV2PostResponse as ReportQuerySentimentV2V1SentimentV2PostResponse,
+    type ReportQuerySentimentV2V1SentimentV2PostParams as ReportQuerySentimentV2V1SentimentV2PostParams,
   };
 
-  export { Logs as Logs };
-
-  export { Content as Content };
-
   export {
-    Agents as Agents,
-    type AgentCreateResponse as AgentCreateResponse,
-    type AgentRetrieveResponse as AgentRetrieveResponse,
-    type AgentUpdateResponse as AgentUpdateResponse,
-    type AgentListResponse as AgentListResponse,
-    type AgentPublishResponse as AgentPublishResponse,
-    type AgentRetrieveGraphResponse as AgentRetrieveGraphResponse,
-    type AgentCreateParams as AgentCreateParams,
-    type AgentRetrieveParams as AgentRetrieveParams,
-    type AgentUpdateParams as AgentUpdateParams,
-    type AgentListParams as AgentListParams,
-    type AgentRetrieveGraphParams as AgentRetrieveGraphParams,
+    Content as Content,
   };
 
   export {
     KnowledgeBases as KnowledgeBases,
+    type SearchKnowledgeBaseRequest as SearchKnowledgeBaseRequest,
     type KnowledgeBaseListResponse as KnowledgeBaseListResponse,
     type KnowledgeBaseSearchResponse as KnowledgeBaseSearchResponse,
     type KnowledgeBaseListParams as KnowledgeBaseListParams,
     type KnowledgeBaseSearchParams as KnowledgeBaseSearchParams,
   };
 
-  export type AnalysisTypeFilter = API.AnalysisTypeFilter;
-  export type AssetIDFilter = API.AssetIDFilter;
-  export type BotNameFilter = API.BotNameFilter;
-  export type BotProviderFilter = API.BotProviderFilter;
-  export type CursorPagination = API.CursorPagination;
-  export type ModelIDFilter = API.ModelIDFilter;
-  export type Pagination = API.Pagination;
-  export type PathFilter = API.PathFilter;
-  export type PersonaIDFilter = API.PersonaIDFilter;
-  export type PromptFilter = API.PromptFilter;
-  export type PromptTypeFilter = API.PromptTypeFilter;
-  export type RegionIDFilter = API.RegionIDFilter;
-  export type RegionNameFilter = API.RegionNameFilter;
-  export type TagIDFilter = API.TagIDFilter;
-  export type TopicIDFilter = API.TopicIDFilter;
+  export {
+    Agents as Agents,
+    type CreateAgentRequest as CreateAgentRequest,
+    type UpdateAgentRequest as UpdateAgentRequest,
+    type AgentListResponse as AgentListResponse,
+    type AgentCreateV1PostResponse as AgentCreateV1PostResponse,
+    type AgentPublishV1IDPublishPostResponse as AgentPublishV1IDPublishPostResponse,
+    type AgentRetrieveResponse as AgentRetrieveResponse,
+    type AgentUpdateV1IDPatchResponse as AgentUpdateV1IDPatchResponse,
+    type AgentListGraphV1GraphGetResponse as AgentListGraphV1GraphGetResponse,
+    type AgentListParams as AgentListParams,
+    type AgentCreateV1PostParams as AgentCreateV1PostParams,
+    type AgentRetrieveParams as AgentRetrieveParams,
+    type AgentUpdateV1IDPatchParams as AgentUpdateV1IDPatchParams,
+    type AgentListGraphV1GraphGetParams as AgentListGraphV1GraphGetParams,
+  };
+
+  export {
+    Organizations as Organizations,
+    type NamedResource as NamedResource,
+    type PersonaProfile as PersonaProfile,
+    type PersonaProfileBehavior as PersonaProfileBehavior,
+    type PersonaProfileDemographics as PersonaProfileDemographics,
+    type PersonaProfileEmployment as PersonaProfileEmployment,
+    type Category as Category,
+    type OrganizationListResponse as OrganizationListResponse,
+    type OrganizationRegionsResponse as OrganizationRegionsResponse,
+    type OrganizationModelsResponse as OrganizationModelsResponse,
+    type OrganizationDomainsResponse as OrganizationDomainsResponse,
+    type OrganizationListAssetsResponse as OrganizationListAssetsResponse,
+    type OrganizationGetPersonasResponse as OrganizationGetPersonasResponse,
+    type OrganizationRegionsParams as OrganizationRegionsParams,
+    type OrganizationDomainsParams as OrganizationDomainsParams,
+    type OrganizationListAssetsParams as OrganizationListAssetsParams,
+    type OrganizationGetPersonasParams as OrganizationGetPersonasParams,
+  };
 }
+
+
+const headerExplicitlyOmitted = (source: HeadersLike | undefined, name: string): boolean => {
+  if (!source || Array.isArray(source) || source instanceof Headers) return false;
+  const target = name.toLowerCase();
+  return Object.entries(source).some(([key, value]) => key.toLowerCase() === target && value === null);
+};
+
+const appendAuthCookies = (headers: Headers, cookies: Record<string, string>): void => {
+  for (const [name, value] of Object.entries(cookies)) {
+    if (cookieHeaderHas(headers.get("Cookie"), name)) continue;
+    const cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+    const existing = headers.get("Cookie");
+    headers.set("Cookie", existing ? existing + "; " + cookie : cookie);
+  }
+};
+
+const cookieHeaderHas = (value: string | null, name: string): boolean => {
+  if (!value) return false;
+  const target = encodeURIComponent(name) + "=";
+  return value.split(";").some((cookie) => cookie.trim().startsWith(target));
+};
+

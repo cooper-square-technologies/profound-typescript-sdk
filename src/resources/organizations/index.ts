@@ -1,43 +1,6 @@
-// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+// File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-export {
-  Categories,
-  type FieldDiff,
-  type IDOrName,
-  type NamedResourceDiffList,
-  type CategoryListResponse,
-  type CategoryAssetsResponse,
-  type CategoryCreatePromptsResponse,
-  type CategoryGetCategoryPersonasResponse,
-  type CategoryPromptsResponse,
-  type CategoryRetrieveRegionsResponse,
-  type CategoryTagsResponse,
-  type CategoryTopicsResponse,
-  type CategoryUpdatePromptStatusResponse,
-  type CategoryUpdatePromptsResponse,
-  type CategoryListParams,
-  type CategoryCreatePromptsParams,
-  type CategoryPromptsParams,
-  type CategoryUpdatePromptStatusParams,
-  type CategoryUpdatePromptsParams,
-} from './categories';
-export {
-  Organizations,
-  type Category,
-  type NamedResource,
-  type Organization,
-  type PersonaProfile,
-  type PersonaProfileBehavior,
-  type PersonaProfileDemographics,
-  type PersonaProfileEmployment,
-  type OrganizationListResponse,
-  type OrganizationDomainsResponse,
-  type OrganizationGetPersonasResponse,
-  type OrganizationListAssetsResponse,
-  type OrganizationModelsResponse,
-  type OrganizationRegionsResponse,
-  type OrganizationDomainsParams,
-  type OrganizationGetPersonasParams,
-  type OrganizationListAssetsParams,
-  type OrganizationRegionsParams,
-} from './organizations';
+export { Organizations } from "./organizations";
+export type { NamedResource, PersonaProfile, PersonaProfileBehavior, PersonaProfileDemographics, PersonaProfileEmployment, Organization, Category, OrganizationListResponse, OrganizationRegionsParams, OrganizationRegionsResponse, OrganizationModelsResponse, OrganizationDomainsParams, OrganizationDomainsResponse, OrganizationListAssetsParams, OrganizationListAssetsResponse, OrganizationGetPersonasParams, OrganizationGetPersonasResponse } from "./organizations";
+export { Categories } from "./categories";
+export type { IDOrName, NamedResourceDiffList, FieldDiff, CreatePromptsBody, UpdatePromptsBody, UpdatePromptStatusBody, CategoryListParams, CategoryListResponse, CategoryTopicsResponse, CategoryTagsResponse, CategoryPromptsParams, CategoryPromptsResponse, CategoryCreatePromptsParams, CategoryCreatePromptsResponse, CategoryUpdatePromptsParams, CategoryUpdatePromptsResponse, CategoryUpdatePromptStatusParams, CategoryUpdatePromptStatusResponse, CategoryAssetsResponse, CategoryGetCategoryPersonasResponse } from "./categories";

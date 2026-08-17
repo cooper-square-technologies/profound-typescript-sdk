@@ -1,2 +1,11 @@
-/** @deprecated Import from ./core/resource instead */
-export * from './core/resource';
+// File generated from our OpenAPI spec by Scalar. See README.md for details.
+
+import type { Profound } from './client';
+
+export class APIResource {
+  protected _client: Profound;
+
+  constructor(client: Profound) {
+    this._client = client;
+  }
+}

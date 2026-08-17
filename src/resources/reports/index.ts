@@ -1,105 +1,22 @@
-// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+// File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-export {
-  Accuracy,
-  type AccuracyCreateBreakdownResponse,
-  type AccuracyCreateCitationAnalysisResponse,
-  type AccuracyCreateClaimBreakdownResponse,
-  type AccuracyCreateClaimCitationsResponse,
-  type AccuracyCreateClusterExampleRunsResponse,
-  type AccuracyCreateClusterVerificationPairsResponse,
-  type AccuracyCreateFactcheckSetupStatusResponse,
-  type AccuracyCreateInaccuracyDriversResponse,
-  type AccuracyCreateInaccurateClustersResponse,
-  type AccuracyCreateInaccurateThemesResponse,
-  type AccuracyCreateOverviewResponse,
-  type AccuracyCreateTopInaccurateClaimsResponse,
-  type AccuracyCreateTopicIDsResponse,
-  type AccuracyCreateBreakdownParams,
-  type AccuracyCreateCitationAnalysisParams,
-  type AccuracyCreateClaimBreakdownParams,
-  type AccuracyCreateClaimCitationsParams,
-  type AccuracyCreateClusterExampleRunsParams,
-  type AccuracyCreateClusterVerificationPairsParams,
-  type AccuracyCreateFactcheckSetupStatusParams,
-  type AccuracyCreateInaccuracyDriversParams,
-  type AccuracyCreateInaccurateClustersParams,
-  type AccuracyCreateInaccurateThemesParams,
-  type AccuracyCreateOverviewParams,
-  type AccuracyCreateTopInaccurateClaimsParams,
-  type AccuracyCreateTopicIDsParams,
-} from './accuracy';
-export {
-  Reports,
-  type HostnameFilter,
-  type PromptIDFilter,
-  type ReportInfo,
-  type ReportResponse,
-  type ReportResult,
-  type RootDomainFilter,
-  type TagNameFilter,
-  type TopicNameFilter,
-  type URLFilter,
-  type ReportCitationsResponse,
-  type ReportQueryCitationsResponse,
-  type ReportQueryQueryFanoutsResponse,
-  type ReportQuerySentimentResponse,
-  type ReportQueryVisibilityResponse,
-  type ReportSentimentV2Response,
-  type ReportStreamCitationsResponse,
-  type ReportStreamSentimentResponse,
-  type ReportStreamVisibilityResponse,
-  type ReportCitationsParams,
-  type ReportGetBotsReportParams,
-  type ReportGetBotsReportV2Params,
-  type ReportGetReferralsReportParams,
-  type ReportGetReferralsReportV2Params,
-  type ReportQueryCitationsParams,
-  type ReportQueryFanoutsParams,
-  type ReportQueryQueryFanoutsParams,
-  type ReportQuerySentimentParams,
-  type ReportQueryVisibilityParams,
-  type ReportSentimentParams,
-  type ReportSentimentV2Params,
-  type ReportStreamCitationsParams,
-  type ReportStreamCitationsV2Params,
-  type ReportStreamQueryFanoutsParams,
-  type ReportStreamSentimentParams,
-  type ReportStreamSentimentV2Params,
-  type ReportStreamVisibilityParams,
-  type ReportStreamVisibilityV2Params,
-  type ReportVisibilityParams,
-} from './reports';
-export {
-  Shopping,
-  type BrandNameFilter,
-  type MerchantNameFilter,
-  type ProductNameFilter,
-  type ShoppingAllItemsWithMerchantsResponse,
-  type ShoppingExecutionsResponse,
-  type ShoppingItemVisibilityResponse,
-  type ShoppingMerchantByItemsResponse,
-  type ShoppingMerchantDistributionResponse,
-  type ShoppingMerchantShareResponse,
-  type ShoppingMerchantVisibilityByBrandResponse,
-  type ShoppingProductMerchantURLsResponse,
-  type ShoppingTriggerRateResponse,
-  type ShoppingVisibilityResponse,
-  type ShoppingAllItemsWithMerchantsParams,
-  type ShoppingExecutionsParams,
-  type ShoppingItemVisibilityParams,
-  type ShoppingMerchantByItemsParams,
-  type ShoppingMerchantDistributionParams,
-  type ShoppingMerchantShareParams,
-  type ShoppingMerchantVisibilityByBrandParams,
-  type ShoppingProductMerchantURLsParams,
-  type ShoppingTriggerRateParams,
-  type ShoppingVisibilityParams,
-} from './shopping';
-export {
-  WebSearchResults,
-  type WebSearchResultQueryResponse,
-  type WebSearchResultStreamResponse,
-  type WebSearchResultQueryParams,
-  type WebSearchResultStreamParams,
-} from './web-search-results';
+export { Reports } from "./reports";
+export type { SentimentV2ReportQuery, ReportInfo, ReportResponse, ReportResult, TopicNameFilter, PromptIDFilter, TagNameFilter, RootDomainFilter, HostnameFilter, URLFilter, Pagination, ReportQuerySentimentV2V1SentimentV2PostParams, ReportQuerySentimentV2V1SentimentV2PostResponse } from "./reports";
+export { Citations } from "./citations";
+export type { CitationsQuery, StreamCitationsQuery, CitationsV2Query, PathFilter, RegionIDFilter, RegionNameFilter, TopicIDFilter, ModelIDFilter, TagIDFilter, AnalysisTypeFilter, PromptTypeFilter, PersonaIDFilter, PromptFilter, CitationQueryV1ReportsPostParams, CitationQueryV1ReportsPostResponse, CitationStreamV1ReportsStreamPostParams, CitationStreamV1ReportsStreamPostResponse, CitationQueryV2V2ReportsPostParams, CitationQueryV2V2ReportsPostResponse, CitationStreamV2V2ReportsStreamPostParams } from "./citations";
+export { Visibility } from "./visibility";
+export type { VisibilityQuery, StreamVisibilityQuery, VisibilityV2Query, VisibilityQueryV1ReportsPostParams, VisibilityStreamV1ReportsStreamPostParams, VisibilityStreamV1ReportsStreamPostResponse, VisibilityQueryV2V2ReportsPostParams, VisibilityQueryV2V2ReportsPostResponse, VisibilityStreamV2V2ReportsStreamPostParams } from "./visibility";
+export { Sentiment } from "./sentiment";
+export type { SentimentQuery, StreamSentimentQuery, SentimentV2Query, AssetIDFilter, SentimentQueryV1ReportsPostParams, SentimentStreamV1ReportsStreamPostParams, SentimentStreamV1ReportsStreamPostResponse, SentimentQueryV2V2ReportsPostParams, SentimentQueryV2V2ReportsPostResponse, SentimentStreamV2V2ReportsStreamPostParams } from "./sentiment";
+export { WebSearchResults } from "./web-search-results";
+export type { WebSearchResultsQuery, StreamWebSearchResultsQuery, WebSearchResultQueryParams, WebSearchResultQueryResponse, WebSearchResultStreamParams, WebSearchResultStreamResponse } from "./web-search-results";
+export { Referrals } from "./referrals";
+export type { ReferralsQuery, ReferralsQueryV2, ReferralCreateReportV1V1ReportsPostParams, ReferralCreateReportV2V2ReportsPostParams } from "./referrals";
+export { Bots } from "./bots";
+export type { BotsReportQuery, BotsReportQueryV2, BotNameFilter, BotProviderFilter, BotCreateReportV1V1ReportsPostParams, BotCreateReportV2V2ReportsPostParams } from "./bots";
+export { QueryFanouts } from "./query-fanouts";
+export type { QueryFanoutsQuery, QueryFanoutsV2Query, QueryFanoutV1ReportsPostParams, QueryFanoutV2V2ReportsPostParams, QueryFanoutV2V2ReportsPostResponse, QueryFanoutStreamV2V2ReportsStreamPostParams } from "./query-fanouts";
+export { Shopping } from "./shopping";
+export type { ShoppingVisibilityQuery, ShoppingItemVisibilityQuery, ShoppingMerchantDistributionQuery, ShoppingMerchantVisibilityByBrandQuery, ShoppingMerchantByItemsQuery, ShoppingAllItemsWithMerchantsQuery, ShoppingTriggerRateQuery, ShoppingMerchantShareQuery, ShoppingProductMerchantURLsQuery, ShoppingExecutionsQuery, BrandNameFilter, MerchantNameFilter, ProductNameFilter, ShoppingVisibilityParams, ShoppingVisibilityResponse, ShoppingItemVisibilityParams, ShoppingItemVisibilityResponse, ShoppingMerchantDistributionParams, ShoppingMerchantDistributionResponse, ShoppingMerchantVisibilityByBrandParams, ShoppingMerchantVisibilityByBrandResponse, ShoppingMerchantByItemsParams, ShoppingMerchantByItemsResponse, ShoppingAllItemsWithMerchantsParams, ShoppingAllItemsWithMerchantsResponse, ShoppingTriggerRateParams, ShoppingTriggerRateResponse, ShoppingMerchantShareParams, ShoppingMerchantShareResponse, ShoppingProductMerchantURLsParams, ShoppingProductMerchantURLsResponse, ShoppingExecutionsParams, ShoppingExecutionsResponse } from "./shopping";
+export { Accuracy } from "./accuracy";
+export type { AccuracyOverviewQuery, AccuracyBreakdownQuery, AccuracyCitationAnalysisQuery, AccuracyTopicIDsQuery, InaccurateThemesQuery, InaccurateClustersQuery, InaccuracyDriversQuery, TopInaccurateClaimsQuery, ClaimBreakdownQuery, ClaimCitationsQuery, ClusterExampleRunsQuery, ClusterVerificationPairsQuery, FactCheckSetupStatusQuery, AccuracyOverviewV1ReportsOverviewPostParams, AccuracyOverviewV1ReportsOverviewPostResponse, AccuracyBreakdownV1ReportsBreakdownPostParams, AccuracyBreakdownV1ReportsBreakdownPostResponse, AccuracyCitationAnalysisV1ReportsCitationAnalysisPostParams, AccuracyCitationAnalysisV1ReportsCitationAnalysisPostResponse, AccuracyTopicIDsV1ReportsTopicIDsPostParams, AccuracyTopicIDsV1ReportsTopicIDsPostResponse, AccuracyInaccurateThemesV1ReportsInaccurateThemesPostParams, AccuracyInaccurateThemesV1ReportsInaccurateThemesPostResponse, AccuracyInaccurateClustersV1ReportsInaccurateClustersPostParams, AccuracyInaccurateClustersV1ReportsInaccurateClustersPostResponse, AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostParams, AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostResponse, AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostParams, AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostResponse, AccuracyClaimBreakdownV1ReportsClaimBreakdownPostParams, AccuracyClaimBreakdownV1ReportsClaimBreakdownPostResponse, AccuracyClaimCitationsV1ReportsClaimCitationsPostParams, AccuracyClaimCitationsV1ReportsClaimCitationsPostResponse, AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostParams, AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostResponse, AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostParams, AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostResponse, AccuracyFactcheckSetupStatusV1ReportsFactcheckSetupStatusPostParams, AccuracyFactcheckSetupStatusV1ReportsFactcheckSetupStatusPostResponse } from "./accuracy";

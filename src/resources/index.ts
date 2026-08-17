@@ -1,95 +1,20 @@
-// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+// File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-export * from './shared';
-export {
-  Agents,
-  type AgentCreateResponse,
-  type AgentRetrieveResponse,
-  type AgentUpdateResponse,
-  type AgentListResponse,
-  type AgentPublishResponse,
-  type AgentRetrieveGraphResponse,
-  type AgentCreateParams,
-  type AgentRetrieveParams,
-  type AgentUpdateParams,
-  type AgentListParams,
-  type AgentRetrieveGraphParams,
-} from './agents/agents';
-export { Content } from './content/content';
-export {
-  KnowledgeBases,
-  type KnowledgeBaseListResponse,
-  type KnowledgeBaseSearchResponse,
-  type KnowledgeBaseListParams,
-  type KnowledgeBaseSearchParams,
-} from './knowledge-bases/knowledge-bases';
-export { Logs } from './logs/logs';
-export {
-  Organizations,
-  type Category,
-  type NamedResource,
-  type Organization,
-  type PersonaProfile,
-  type PersonaProfileBehavior,
-  type PersonaProfileDemographics,
-  type PersonaProfileEmployment,
-  type OrganizationListResponse,
-  type OrganizationDomainsResponse,
-  type OrganizationGetPersonasResponse,
-  type OrganizationListAssetsResponse,
-  type OrganizationModelsResponse,
-  type OrganizationRegionsResponse,
-  type OrganizationDomainsParams,
-  type OrganizationGetPersonasParams,
-  type OrganizationListAssetsParams,
-  type OrganizationRegionsParams,
-} from './organizations/organizations';
-export {
-  Prompts,
-  type PromptAnswersResponse,
-  type PromptAnswersV2Response,
-  type PromptAnswersParams,
-  type PromptAnswersV2Params,
-  type PromptStreamAnswersV2Params,
-} from './prompts';
-export {
-  Reports,
-  type HostnameFilter,
-  type PromptIDFilter,
-  type ReportInfo,
-  type ReportResponse,
-  type ReportResult,
-  type RootDomainFilter,
-  type TagNameFilter,
-  type TopicNameFilter,
-  type URLFilter,
-  type ReportCitationsResponse,
-  type ReportQueryCitationsResponse,
-  type ReportQueryQueryFanoutsResponse,
-  type ReportQuerySentimentResponse,
-  type ReportQueryVisibilityResponse,
-  type ReportSentimentV2Response,
-  type ReportStreamCitationsResponse,
-  type ReportStreamSentimentResponse,
-  type ReportStreamVisibilityResponse,
-  type ReportCitationsParams,
-  type ReportGetBotsReportParams,
-  type ReportGetBotsReportV2Params,
-  type ReportGetReferralsReportParams,
-  type ReportGetReferralsReportV2Params,
-  type ReportQueryCitationsParams,
-  type ReportQueryFanoutsParams,
-  type ReportQueryQueryFanoutsParams,
-  type ReportQuerySentimentParams,
-  type ReportQueryVisibilityParams,
-  type ReportSentimentParams,
-  type ReportSentimentV2Params,
-  type ReportStreamCitationsParams,
-  type ReportStreamCitationsV2Params,
-  type ReportStreamQueryFanoutsParams,
-  type ReportStreamSentimentParams,
-  type ReportStreamSentimentV2Params,
-  type ReportStreamVisibilityParams,
-  type ReportStreamVisibilityV2Params,
-  type ReportVisibilityParams,
-} from './reports/reports';
+export { OrganizationResource } from "./organization";
+export type { Organization, CreatePromptsBody, UpdatePromptsBody, UpdatePromptStatusBody, NamedResource, OrganizationListCategoryRegionsV1OrgCategoriesCategoryRegionsGetResponse } from "./organization";
+export { Prompts } from "./prompts/prompts";
+export { Prompts as PromptResource } from "./prompts/prompts";
+export { Reports } from "./reports/reports";
+export type { SentimentV2ReportQuery, ReportInfo, ReportResponse, ReportResult, TopicNameFilter, PromptIDFilter, TagNameFilter, RootDomainFilter, HostnameFilter, URLFilter, Pagination, ReportQuerySentimentV2V1SentimentV2PostParams, ReportQuerySentimentV2V1SentimentV2PostResponse } from "./reports/reports";
+export { Reports as ReportResource } from "./reports/reports";
+export { Content } from "./content/content";
+export { Content as ContentResource } from "./content/content";
+export { KnowledgeBases } from "./knowledge-bases/knowledge-bases";
+export type { SearchKnowledgeBaseRequest, CursorPagination, KnowledgeBaseListParams, KnowledgeBaseListResponse, KnowledgeBaseSearchParams, KnowledgeBaseSearchResponse } from "./knowledge-bases/knowledge-bases";
+export { KnowledgeBases as KnowledgeBaseResource } from "./knowledge-bases/knowledge-bases";
+export { Agents } from "./agents/agents";
+export type { CreateAgentRequest, UpdateAgentRequest, AgentListParams, AgentListResponse, AgentCreateV1PostParams, AgentCreateV1PostResponse, AgentPublishV1IDPublishPostResponse, AgentRetrieveParams, AgentRetrieveResponse, AgentUpdateV1IDPatchParams, AgentUpdateV1IDPatchResponse, AgentListGraphV1GraphGetParams, AgentListGraphV1GraphGetResponse } from "./agents/agents";
+export { Agents as AgentResource } from "./agents/agents";
+export { Organizations } from "./organizations/organizations";
+export type { PersonaProfile, PersonaProfileBehavior, PersonaProfileDemographics, PersonaProfileEmployment, Category, OrganizationListResponse, OrganizationRegionsParams, OrganizationRegionsResponse, OrganizationModelsResponse, OrganizationDomainsParams, OrganizationDomainsResponse, OrganizationListAssetsParams, OrganizationListAssetsResponse, OrganizationGetPersonasParams, OrganizationGetPersonasResponse } from "./organizations/organizations";
+export { Organizations as OrganizationResource } from "./organizations/organizations";

@@ -1,1085 +1,1522 @@
-// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+// File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-import { APIResource } from '../../core/resource';
-import { APIPromise } from '../../core/api-promise';
-import { RequestOptions } from '../../internal/request-options';
+import { APIResource } from "../../resource";
+import { APIPromise } from "../../api-promise";
+import type { RequestOptions } from "../../internal/request-options";
 
 export class Accuracy extends APIResource {
   /**
-   * Accuracy Breakdown
+   * Accuracy Overview
+   *
+   * @param {AccuracyOverviewV1ReportsOverviewPostParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<AccuracyOverviewV1ReportsOverviewPostResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.reports.accuracy.createBreakdown({
-   *     category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *     end_date: 'end_date',
-   *     start_date: 'start_date',
-   *   });
+   * const overviewV1ReportsOverviewPost = await client.reports.accuracy.overviewV1ReportsOverviewPost({
+   *   start_date: "",
+   *   end_date: "",
+   *   category_id: "",
+   *   exclude_topic_ids: false,
+   *   tag_filter_type: "any",
+   *   include_no_tag: true,
+   *   include_no_persona: true,
+   *   group_by: "period",
+   * });
    * ```
    */
-  createBreakdown(
-    body: AccuracyCreateBreakdownParams,
-    options?: RequestOptions,
-  ): APIPromise<AccuracyCreateBreakdownResponse> {
-    return this._client.post('/v1/reports/accuracy/breakdown', { body, ...options });
+  overviewV1ReportsOverviewPost(body: AccuracyOverviewV1ReportsOverviewPostParams, options?: RequestOptions): APIPromise<AccuracyOverviewV1ReportsOverviewPostResponse> {
+    return this._client.post("/v1/reports/accuracy/overview", { body: body, ...options });
+  }
+
+  /**
+   * Accuracy Breakdown
+   *
+   * @param {AccuracyBreakdownV1ReportsBreakdownPostParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<AccuracyBreakdownV1ReportsBreakdownPostResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const breakdownV1ReportsBreakdownPost = await client.reports.accuracy.breakdownV1ReportsBreakdownPost({
+   *   start_date: "",
+   *   end_date: "",
+   *   category_id: "",
+   *   exclude_topic_ids: false,
+   *   tag_filter_type: "any",
+   *   include_no_tag: true,
+   *   include_no_persona: true,
+   *   breakdown_by: "citation",
+   *   limit: 10,
+   *   offset: 0,
+   *   sort_by: "citationShare",
+   *   sort_order: "desc",
+   * });
+   * ```
+   */
+  breakdownV1ReportsBreakdownPost(body: AccuracyBreakdownV1ReportsBreakdownPostParams, options?: RequestOptions): APIPromise<AccuracyBreakdownV1ReportsBreakdownPostResponse> {
+    return this._client.post("/v1/reports/accuracy/breakdown", { body: body, ...options });
   }
 
   /**
    * Accuracy Citation Analysis
    *
-   * @example
-   * ```ts
-   * const response =
-   *   await client.reports.accuracy.createCitationAnalysis({
-   *     category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *     clean_href: 'clean_href',
-   *     end_date: 'end_date',
-   *     start_date: 'start_date',
-   *   });
-   * ```
-   */
-  createCitationAnalysis(
-    body: AccuracyCreateCitationAnalysisParams,
-    options?: RequestOptions,
-  ): APIPromise<AccuracyCreateCitationAnalysisResponse> {
-    return this._client.post('/v1/reports/accuracy/citation-analysis', { body, ...options });
-  }
-
-  /**
-   * Accuracy Claim Breakdown
+   * @param {AccuracyCitationAnalysisV1ReportsCitationAnalysisPostParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<AccuracyCitationAnalysisV1ReportsCitationAnalysisPostResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.reports.accuracy.createClaimBreakdown({
-   *     category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *     cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *     end_date: 'end_date',
-   *     start_date: 'start_date',
-   *   });
+   * const citationAnalysisV1ReportsCitationAnalysisPost = await client.reports.accuracy.citationAnalysisV1ReportsCitationAnalysisPost({
+   *   category_id: "",
+   *   clean_href: "",
+   *   start_date: "",
+   *   end_date: "",
+   * });
    * ```
    */
-  createClaimBreakdown(
-    body: AccuracyCreateClaimBreakdownParams,
-    options?: RequestOptions,
-  ): APIPromise<AccuracyCreateClaimBreakdownResponse> {
-    return this._client.post('/v1/reports/accuracy/claim-breakdown', { body, ...options });
-  }
-
-  /**
-   * Accuracy Claim Citations
-   *
-   * @example
-   * ```ts
-   * const response =
-   *   await client.reports.accuracy.createClaimCitations({
-   *     category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *     cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *     end_date: 'end_date',
-   *     start_date: 'start_date',
-   *   });
-   * ```
-   */
-  createClaimCitations(
-    body: AccuracyCreateClaimCitationsParams,
-    options?: RequestOptions,
-  ): APIPromise<AccuracyCreateClaimCitationsResponse> {
-    return this._client.post('/v1/reports/accuracy/claim-citations', { body, ...options });
-  }
-
-  /**
-   * Accuracy Cluster Example Runs
-   *
-   * @example
-   * ```ts
-   * const response =
-   *   await client.reports.accuracy.createClusterExampleRuns({
-   *     category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *     cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *     end_date: 'end_date',
-   *     start_date: 'start_date',
-   *   });
-   * ```
-   */
-  createClusterExampleRuns(
-    body: AccuracyCreateClusterExampleRunsParams,
-    options?: RequestOptions,
-  ): APIPromise<AccuracyCreateClusterExampleRunsResponse> {
-    return this._client.post('/v1/reports/accuracy/cluster-example-runs', { body, ...options });
-  }
-
-  /**
-   * Accuracy Cluster Verification Pairs
-   *
-   * @example
-   * ```ts
-   * const response =
-   *   await client.reports.accuracy.createClusterVerificationPairs(
-   *     {
-   *       category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *       cluster_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *     },
-   *   );
-   * ```
-   */
-  createClusterVerificationPairs(
-    body: AccuracyCreateClusterVerificationPairsParams,
-    options?: RequestOptions,
-  ): APIPromise<AccuracyCreateClusterVerificationPairsResponse> {
-    return this._client.post('/v1/reports/accuracy/cluster-verification-pairs', { body, ...options });
-  }
-
-  /**
-   * Accuracy Factcheck Setup Status
-   *
-   * @example
-   * ```ts
-   * const response =
-   *   await client.reports.accuracy.createFactcheckSetupStatus({
-   *     category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *   });
-   * ```
-   */
-  createFactcheckSetupStatus(
-    body: AccuracyCreateFactcheckSetupStatusParams,
-    options?: RequestOptions,
-  ): APIPromise<AccuracyCreateFactcheckSetupStatusResponse> {
-    return this._client.post('/v1/reports/accuracy/factcheck-setup-status', { body, ...options });
-  }
-
-  /**
-   * Accuracy Inaccuracy Drivers
-   *
-   * @example
-   * ```ts
-   * const response =
-   *   await client.reports.accuracy.createInaccuracyDrivers({
-   *     category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *     end_date: 'end_date',
-   *     start_date: 'start_date',
-   *   });
-   * ```
-   */
-  createInaccuracyDrivers(
-    body: AccuracyCreateInaccuracyDriversParams,
-    options?: RequestOptions,
-  ): APIPromise<AccuracyCreateInaccuracyDriversResponse> {
-    return this._client.post('/v1/reports/accuracy/inaccuracy-drivers', { body, ...options });
-  }
-
-  /**
-   * Accuracy Inaccurate Clusters
-   *
-   * @example
-   * ```ts
-   * const response =
-   *   await client.reports.accuracy.createInaccurateClusters({
-   *     category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *     end_date: 'end_date',
-   *     start_date: 'start_date',
-   *     theme_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *   });
-   * ```
-   */
-  createInaccurateClusters(
-    body: AccuracyCreateInaccurateClustersParams,
-    options?: RequestOptions,
-  ): APIPromise<AccuracyCreateInaccurateClustersResponse> {
-    return this._client.post('/v1/reports/accuracy/inaccurate-clusters', { body, ...options });
-  }
-
-  /**
-   * Accuracy Inaccurate Themes
-   *
-   * @example
-   * ```ts
-   * const response =
-   *   await client.reports.accuracy.createInaccurateThemes({
-   *     category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *     end_date: 'end_date',
-   *     start_date: 'start_date',
-   *   });
-   * ```
-   */
-  createInaccurateThemes(
-    body: AccuracyCreateInaccurateThemesParams,
-    options?: RequestOptions,
-  ): APIPromise<AccuracyCreateInaccurateThemesResponse> {
-    return this._client.post('/v1/reports/accuracy/inaccurate-themes', { body, ...options });
-  }
-
-  /**
-   * Accuracy Overview
-   *
-   * @example
-   * ```ts
-   * const response =
-   *   await client.reports.accuracy.createOverview({
-   *     category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *     end_date: 'end_date',
-   *     start_date: 'start_date',
-   *   });
-   * ```
-   */
-  createOverview(
-    body: AccuracyCreateOverviewParams,
-    options?: RequestOptions,
-  ): APIPromise<AccuracyCreateOverviewResponse> {
-    return this._client.post('/v1/reports/accuracy/overview', { body, ...options });
-  }
-
-  /**
-   * Accuracy Top Inaccurate Claims
-   *
-   * @example
-   * ```ts
-   * const response =
-   *   await client.reports.accuracy.createTopInaccurateClaims({
-   *     category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *     end_date: 'end_date',
-   *     start_date: 'start_date',
-   *   });
-   * ```
-   */
-  createTopInaccurateClaims(
-    body: AccuracyCreateTopInaccurateClaimsParams,
-    options?: RequestOptions,
-  ): APIPromise<AccuracyCreateTopInaccurateClaimsResponse> {
-    return this._client.post('/v1/reports/accuracy/top-inaccurate-claims', { body, ...options });
+  citationAnalysisV1ReportsCitationAnalysisPost(body: AccuracyCitationAnalysisV1ReportsCitationAnalysisPostParams, options?: RequestOptions): APIPromise<AccuracyCitationAnalysisV1ReportsCitationAnalysisPostResponse> {
+    return this._client.post("/v1/reports/accuracy/citation-analysis", { body: body, ...options });
   }
 
   /**
    * Accuracy Topic Ids
    *
+   * @param {AccuracyTopicIDsV1ReportsTopicIDsPostParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<AccuracyTopicIDsV1ReportsTopicIDsPostResponse>} Successful Response
+   *
    * @example
    * ```ts
-   * const response =
-   *   await client.reports.accuracy.createTopicIDs({
-   *     category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *     end_date: 'end_date',
-   *     start_date: 'start_date',
-   *   });
+   * const topicIDsV1ReportsTopicIDsPost = await client.reports.accuracy.topicIDsV1ReportsTopicIDsPost({
+   *   category_id: "",
+   *   start_date: "",
+   *   end_date: "",
+   * });
    * ```
    */
-  createTopicIDs(
-    body: AccuracyCreateTopicIDsParams,
-    options?: RequestOptions,
-  ): APIPromise<AccuracyCreateTopicIDsResponse> {
-    return this._client.post('/v1/reports/accuracy/topic-ids', { body, ...options });
+  topicIDsV1ReportsTopicIDsPost(body: AccuracyTopicIDsV1ReportsTopicIDsPostParams, options?: RequestOptions): APIPromise<AccuracyTopicIDsV1ReportsTopicIDsPostResponse> {
+    return this._client.post("/v1/reports/accuracy/topic-ids", { body: body, ...options });
+  }
+
+  /**
+   * Accuracy Inaccurate Themes
+   *
+   * @param {AccuracyInaccurateThemesV1ReportsInaccurateThemesPostParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<AccuracyInaccurateThemesV1ReportsInaccurateThemesPostResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const inaccurateThemesV1ReportsInaccurateThemesPost = await client.reports.accuracy.inaccurateThemesV1ReportsInaccurateThemesPost({
+   *   start_date: "",
+   *   end_date: "",
+   *   category_id: "",
+   *   exclude_topic_ids: false,
+   *   tag_filter_type: "any",
+   *   include_no_tag: true,
+   *   include_no_persona: true,
+   *   limit: 10,
+   *   offset: 0,
+   *   sort_by: "response_share",
+   *   sort_order: "desc",
+   * });
+   * ```
+   */
+  inaccurateThemesV1ReportsInaccurateThemesPost(body: AccuracyInaccurateThemesV1ReportsInaccurateThemesPostParams, options?: RequestOptions): APIPromise<AccuracyInaccurateThemesV1ReportsInaccurateThemesPostResponse> {
+    return this._client.post("/v1/reports/accuracy/inaccurate-themes", { body: body, ...options });
+  }
+
+  /**
+   * Accuracy Inaccurate Clusters
+   *
+   * @param {AccuracyInaccurateClustersV1ReportsInaccurateClustersPostParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<AccuracyInaccurateClustersV1ReportsInaccurateClustersPostResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const inaccurateClustersV1ReportsInaccurateClustersPost = await client.reports.accuracy.inaccurateClustersV1ReportsInaccurateClustersPost({
+   *   start_date: "",
+   *   end_date: "",
+   *   category_id: "",
+   *   exclude_topic_ids: false,
+   *   tag_filter_type: "any",
+   *   include_no_tag: true,
+   *   include_no_persona: true,
+   *   theme_id: "",
+   *   limit: 5000,
+   *   offset: 0,
+   * });
+   * ```
+   */
+  inaccurateClustersV1ReportsInaccurateClustersPost(body: AccuracyInaccurateClustersV1ReportsInaccurateClustersPostParams, options?: RequestOptions): APIPromise<AccuracyInaccurateClustersV1ReportsInaccurateClustersPostResponse> {
+    return this._client.post("/v1/reports/accuracy/inaccurate-clusters", { body: body, ...options });
+  }
+
+  /**
+   * Accuracy Inaccuracy Drivers
+   *
+   * @param {AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const inaccuracyDriversV1ReportsInaccuracyDriversPost = await client.reports.accuracy.inaccuracyDriversV1ReportsInaccuracyDriversPost({
+   *   start_date: "",
+   *   end_date: "",
+   *   category_id: "",
+   *   exclude_topic_ids: false,
+   *   tag_filter_type: "any",
+   *   include_no_tag: true,
+   *   include_no_persona: true,
+   *   limit: 5,
+   * });
+   * ```
+   */
+  inaccuracyDriversV1ReportsInaccuracyDriversPost(body: AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostParams, options?: RequestOptions): APIPromise<AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostResponse> {
+    return this._client.post("/v1/reports/accuracy/inaccuracy-drivers", { body: body, ...options });
+  }
+
+  /**
+   * Accuracy Top Inaccurate Claims
+   *
+   * @param {AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const topInaccurateClaimsV1ReportsTopInaccurateClaimsPost = await client.reports.accuracy.topInaccurateClaimsV1ReportsTopInaccurateClaimsPost({
+   *   start_date: "",
+   *   end_date: "",
+   *   category_id: "",
+   *   exclude_topic_ids: false,
+   *   tag_filter_type: "any",
+   *   include_no_tag: true,
+   *   include_no_persona: true,
+   *   limit: 5,
+   * });
+   * ```
+   */
+  topInaccurateClaimsV1ReportsTopInaccurateClaimsPost(body: AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostParams, options?: RequestOptions): APIPromise<AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostResponse> {
+    return this._client.post("/v1/reports/accuracy/top-inaccurate-claims", { body: body, ...options });
+  }
+
+  /**
+   * Accuracy Claim Breakdown
+   *
+   * @param {AccuracyClaimBreakdownV1ReportsClaimBreakdownPostParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<AccuracyClaimBreakdownV1ReportsClaimBreakdownPostResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const claimBreakdownV1ReportsClaimBreakdownPost = await client.reports.accuracy.claimBreakdownV1ReportsClaimBreakdownPost({
+   *   start_date: "",
+   *   end_date: "",
+   *   category_id: "",
+   *   exclude_topic_ids: false,
+   *   tag_filter_type: "any",
+   *   include_no_tag: true,
+   *   include_no_persona: true,
+   *   cluster_id: "",
+   * });
+   * ```
+   */
+  claimBreakdownV1ReportsClaimBreakdownPost(body: AccuracyClaimBreakdownV1ReportsClaimBreakdownPostParams, options?: RequestOptions): APIPromise<AccuracyClaimBreakdownV1ReportsClaimBreakdownPostResponse> {
+    return this._client.post("/v1/reports/accuracy/claim-breakdown", { body: body, ...options });
+  }
+
+  /**
+   * Accuracy Claim Citations
+   *
+   * @param {AccuracyClaimCitationsV1ReportsClaimCitationsPostParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<AccuracyClaimCitationsV1ReportsClaimCitationsPostResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const claimCitationsV1ReportsClaimCitationsPost = await client.reports.accuracy.claimCitationsV1ReportsClaimCitationsPost({
+   *   start_date: "",
+   *   end_date: "",
+   *   category_id: "",
+   *   exclude_topic_ids: false,
+   *   tag_filter_type: "any",
+   *   include_no_tag: true,
+   *   include_no_persona: true,
+   *   cluster_id: "",
+   *   limit: 10,
+   *   offset: 0,
+   *   sort_order: "desc",
+   * });
+   * ```
+   */
+  claimCitationsV1ReportsClaimCitationsPost(body: AccuracyClaimCitationsV1ReportsClaimCitationsPostParams, options?: RequestOptions): APIPromise<AccuracyClaimCitationsV1ReportsClaimCitationsPostResponse> {
+    return this._client.post("/v1/reports/accuracy/claim-citations", { body: body, ...options });
+  }
+
+  /**
+   * Accuracy Cluster Example Runs
+   *
+   * @param {AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const clusterExampleRunsV1ReportsClusterExampleRunsPost = await client.reports.accuracy.clusterExampleRunsV1ReportsClusterExampleRunsPost({
+   *   category_id: "",
+   *   cluster_id: "",
+   *   start_date: "",
+   *   end_date: "",
+   *   limit: 20,
+   *   offset: 0,
+   * });
+   * ```
+   */
+  clusterExampleRunsV1ReportsClusterExampleRunsPost(body: AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostParams, options?: RequestOptions): APIPromise<AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostResponse> {
+    return this._client.post("/v1/reports/accuracy/cluster-example-runs", { body: body, ...options });
+  }
+
+  /**
+   * Accuracy Cluster Verification Pairs
+   *
+   * @param {AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const clusterVerificationPairsV1ReportsClusterVerificationPairsPost = await client.reports.accuracy.clusterVerificationPairsV1ReportsClusterVerificationPairsPost({
+   *   category_id: "",
+   *   cluster_id: "",
+   * });
+   * ```
+   */
+  clusterVerificationPairsV1ReportsClusterVerificationPairsPost(body: AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostParams, options?: RequestOptions): APIPromise<AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostResponse> {
+    return this._client.post("/v1/reports/accuracy/cluster-verification-pairs", { body: body, ...options });
+  }
+
+  /**
+   * Accuracy Factcheck Setup Status
+   *
+   * @param {AccuracyFactcheckSetupStatusV1ReportsFactcheckSetupStatusPostParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<AccuracyFactcheckSetupStatusV1ReportsFactcheckSetupStatusPostResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const factcheckSetupStatusV1ReportsFactcheckSetupStatusPost = await client.reports.accuracy.factcheckSetupStatusV1ReportsFactcheckSetupStatusPost({
+   *   category_id: "",
+   * });
+   * ```
+   */
+  factcheckSetupStatusV1ReportsFactcheckSetupStatusPost(body: AccuracyFactcheckSetupStatusV1ReportsFactcheckSetupStatusPostParams, options?: RequestOptions): APIPromise<AccuracyFactcheckSetupStatusV1ReportsFactcheckSetupStatusPostResponse> {
+    return this._client.post("/v1/reports/accuracy/factcheck-setup-status", { body: body, ...options });
   }
 }
 
-export interface AccuracyCreateBreakdownResponse {
-  data: Array<AccuracyCreateBreakdownResponse.Data>;
+export interface AccuracyOverviewQuery {
+  start_date: string;
+  end_date: string;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  comparison_start_date?: string | null;
+  comparison_end_date?: string | null;
+  topic_ids?: Array<string> | null;
+  /**
+   * @default false
+   */
+  exclude_topic_ids?: boolean;
+  tag_ids?: Array<string> | null;
+  /**
+   * @default any
+   */
+  tag_filter_type?: "all" | "any";
+  /**
+   * @default true
+   */
+  include_no_tag?: boolean;
+  region_ids?: Array<string> | null;
+  platform_ids?: Array<string> | null;
+  persona_ids?: Array<string> | null;
+  /**
+   * @default true
+   */
+  include_no_persona?: boolean;
+  prompt_ids?: Array<string> | null;
+  citation_categories?: Array<string> | null;
+  date_bucket?: string | null;
+  /**
+   * @default period
+   */
+  group_by?: "period" | "theme";
+}
 
+export interface AccuracyBreakdownQuery {
+  start_date: string;
+  end_date: string;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  comparison_start_date?: string | null;
+  comparison_end_date?: string | null;
+  topic_ids?: Array<string> | null;
+  /**
+   * @default false
+   */
+  exclude_topic_ids?: boolean;
+  tag_ids?: Array<string> | null;
+  /**
+   * @default any
+   */
+  tag_filter_type?: "all" | "any";
+  /**
+   * @default true
+   */
+  include_no_tag?: boolean;
+  region_ids?: Array<string> | null;
+  platform_ids?: Array<string> | null;
+  persona_ids?: Array<string> | null;
+  /**
+   * @default true
+   */
+  include_no_persona?: boolean;
+  prompt_ids?: Array<string> | null;
+  citation_categories?: Array<string> | null;
+  /**
+   * @default citation
+   */
+  breakdown_by?: "citation" | "platform" | "topic" | "prompt" | "tag" | "region" | "persona";
+  /**
+   * @default 10
+   * @minimum 1
+   */
+  limit?: number;
+  /**
+   * @default 0
+   * @minimum 0
+   */
+  offset?: number;
+  search_query?: string | null;
+  /**
+   * @default citationShare
+   */
+  sort_by?: "citationShare" | "accuracy";
+  /**
+   * @default desc
+   */
+  sort_order?: "asc" | "desc";
+}
+
+export interface AccuracyCitationAnalysisQuery {
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  clean_href: string;
+  start_date: string;
+  end_date: string;
+}
+
+export interface AccuracyTopicIDsQuery {
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  start_date: string;
+  end_date: string;
+}
+
+export interface InaccurateThemesQuery {
+  start_date: string;
+  end_date: string;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  comparison_start_date?: string | null;
+  comparison_end_date?: string | null;
+  topic_ids?: Array<string> | null;
+  /**
+   * @default false
+   */
+  exclude_topic_ids?: boolean;
+  tag_ids?: Array<string> | null;
+  /**
+   * @default any
+   */
+  tag_filter_type?: "all" | "any";
+  /**
+   * @default true
+   */
+  include_no_tag?: boolean;
+  region_ids?: Array<string> | null;
+  platform_ids?: Array<string> | null;
+  persona_ids?: Array<string> | null;
+  /**
+   * @default true
+   */
+  include_no_persona?: boolean;
+  prompt_ids?: Array<string> | null;
+  citation_categories?: Array<string> | null;
+  /**
+   * @default 10
+   * @minimum 1
+   */
+  limit?: number;
+  /**
+   * @default 0
+   * @minimum 0
+   */
+  offset?: number;
+  /**
+   * @default response_share
+   */
+  sort_by?: "response_share";
+  /**
+   * @default desc
+   */
+  sort_order?: "asc" | "desc";
+  search_query?: string | null;
+}
+
+export interface InaccurateClustersQuery {
+  start_date: string;
+  end_date: string;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  /**
+   * @format uuid
+   */
+  theme_id: string;
+  comparison_start_date?: string | null;
+  comparison_end_date?: string | null;
+  topic_ids?: Array<string> | null;
+  /**
+   * @default false
+   */
+  exclude_topic_ids?: boolean;
+  tag_ids?: Array<string> | null;
+  /**
+   * @default any
+   */
+  tag_filter_type?: "all" | "any";
+  /**
+   * @default true
+   */
+  include_no_tag?: boolean;
+  region_ids?: Array<string> | null;
+  platform_ids?: Array<string> | null;
+  persona_ids?: Array<string> | null;
+  /**
+   * @default true
+   */
+  include_no_persona?: boolean;
+  prompt_ids?: Array<string> | null;
+  citation_categories?: Array<string> | null;
+  /**
+   * @default 5000
+   * @minimum 1
+   * @maximum 10000
+   */
+  limit?: number;
+  /**
+   * @default 0
+   * @minimum 0
+   */
+  offset?: number;
+  search_query?: string | null;
+}
+
+export interface InaccuracyDriversQuery {
+  start_date: string;
+  end_date: string;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  comparison_start_date?: string | null;
+  comparison_end_date?: string | null;
+  topic_ids?: Array<string> | null;
+  /**
+   * @default false
+   */
+  exclude_topic_ids?: boolean;
+  tag_ids?: Array<string> | null;
+  /**
+   * @default any
+   */
+  tag_filter_type?: "all" | "any";
+  /**
+   * @default true
+   */
+  include_no_tag?: boolean;
+  region_ids?: Array<string> | null;
+  platform_ids?: Array<string> | null;
+  persona_ids?: Array<string> | null;
+  /**
+   * @default true
+   */
+  include_no_persona?: boolean;
+  prompt_ids?: Array<string> | null;
+  citation_categories?: Array<string> | null;
+  /**
+   * @default 5
+   * @minimum 1
+   * @maximum 50
+   */
+  limit?: number;
+}
+
+export interface TopInaccurateClaimsQuery {
+  start_date: string;
+  end_date: string;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  comparison_start_date?: string | null;
+  comparison_end_date?: string | null;
+  topic_ids?: Array<string> | null;
+  /**
+   * @default false
+   */
+  exclude_topic_ids?: boolean;
+  tag_ids?: Array<string> | null;
+  /**
+   * @default any
+   */
+  tag_filter_type?: "all" | "any";
+  /**
+   * @default true
+   */
+  include_no_tag?: boolean;
+  region_ids?: Array<string> | null;
+  platform_ids?: Array<string> | null;
+  persona_ids?: Array<string> | null;
+  /**
+   * @default true
+   */
+  include_no_persona?: boolean;
+  prompt_ids?: Array<string> | null;
+  citation_categories?: Array<string> | null;
+  /**
+   * @default 5
+   * @minimum 1
+   * @maximum 50
+   */
+  limit?: number;
+}
+
+export interface ClaimBreakdownQuery {
+  start_date: string;
+  end_date: string;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  /**
+   * @format uuid
+   */
+  cluster_id: string;
+  comparison_start_date?: string | null;
+  comparison_end_date?: string | null;
+  topic_ids?: Array<string> | null;
+  /**
+   * @default false
+   */
+  exclude_topic_ids?: boolean;
+  tag_ids?: Array<string> | null;
+  /**
+   * @default any
+   */
+  tag_filter_type?: "all" | "any";
+  /**
+   * @default true
+   */
+  include_no_tag?: boolean;
+  region_ids?: Array<string> | null;
+  platform_ids?: Array<string> | null;
+  persona_ids?: Array<string> | null;
+  /**
+   * @default true
+   */
+  include_no_persona?: boolean;
+  prompt_ids?: Array<string> | null;
+  citation_categories?: Array<string> | null;
+}
+
+export interface ClaimCitationsQuery {
+  start_date: string;
+  end_date: string;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  /**
+   * @format uuid
+   */
+  cluster_id: string;
+  comparison_start_date?: string | null;
+  comparison_end_date?: string | null;
+  topic_ids?: Array<string> | null;
+  /**
+   * @default false
+   */
+  exclude_topic_ids?: boolean;
+  tag_ids?: Array<string> | null;
+  /**
+   * @default any
+   */
+  tag_filter_type?: "all" | "any";
+  /**
+   * @default true
+   */
+  include_no_tag?: boolean;
+  region_ids?: Array<string> | null;
+  platform_ids?: Array<string> | null;
+  persona_ids?: Array<string> | null;
+  /**
+   * @default true
+   */
+  include_no_persona?: boolean;
+  prompt_ids?: Array<string> | null;
+  citation_categories?: Array<string> | null;
+  /**
+   * @default 10
+   * @minimum 1
+   */
+  limit?: number;
+  /**
+   * @default 0
+   * @minimum 0
+   */
+  offset?: number;
+  search_query?: string | null;
+  /**
+   * @default desc
+   */
+  sort_order?: "asc" | "desc";
+}
+
+export interface ClusterExampleRunsQuery {
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  /**
+   * @format uuid
+   */
+  cluster_id: string;
+  start_date: string;
+  end_date: string;
+  /**
+   * @default 20
+   * @minimum 1
+   */
+  limit?: number;
+  /**
+   * @default 0
+   * @minimum 0
+   */
+  offset?: number;
+}
+
+export interface ClusterVerificationPairsQuery {
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  /**
+   * @format uuid
+   */
+  cluster_id: string;
+}
+
+export interface FactCheckSetupStatusQuery {
+  /**
+   * @format uuid
+   */
+  category_id: string;
+}
+
+export interface AccuracyOverviewV1ReportsOverviewPostParams {
+  start_date: string;
+  end_date: string;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  comparison_start_date?: string | null;
+  comparison_end_date?: string | null;
+  topic_ids?: Array<string> | null;
+  /**
+   * @default false
+   */
+  exclude_topic_ids?: boolean;
+  tag_ids?: Array<string> | null;
+  /**
+   * @default any
+   */
+  tag_filter_type?: "all" | "any";
+  /**
+   * @default true
+   */
+  include_no_tag?: boolean;
+  region_ids?: Array<string> | null;
+  platform_ids?: Array<string> | null;
+  persona_ids?: Array<string> | null;
+  /**
+   * @default true
+   */
+  include_no_persona?: boolean;
+  prompt_ids?: Array<string> | null;
+  citation_categories?: Array<string> | null;
+  date_bucket?: string | null;
+  /**
+   * @default period
+   */
+  group_by?: "period" | "theme";
+}
+
+export interface AccuracyOverviewV1ReportsOverviewPostResponse {
+  trendByPeriod: Array<AccuracyOverviewV1ReportsOverviewPostResponse.TrendByPeriod>;
+  overallAccuracy: number;
+  scoreBreakdown: Array<AccuracyOverviewV1ReportsOverviewPostResponse.ScoreBreakdown>;
+  accuracyChange?: number | null;
+  themeTrend?: Array<AccuracyOverviewV1ReportsOverviewPostResponse.ThemeTrend> | null;
+  availableSeries?: Array<AccuracyOverviewV1ReportsOverviewPostResponse.AvailableSery> | null;
+}
+
+export namespace AccuracyOverviewV1ReportsOverviewPostResponse {
+  export interface TrendByPeriod {
+    date: string;
+    total: number;
+    accurate: number;
+    ratio: number;
+    prevPeriodData?: unknown;
+  }
+
+  export interface ScoreBreakdown {
+    status: string;
+    count: number;
+    share: number;
+    countChange?: number | null;
+    shareChange?: number | null;
+  }
+
+  export interface ThemeTrend {
+    id: string;
+    label: string;
+    data: Array<ThemeTrend.Data>;
+  }
+
+  export namespace ThemeTrend {
+    export interface Data {
+      date: string;
+      total: number;
+      accurate: number;
+      ratio: number;
+    }
+  }
+
+  export interface AvailableSery {
+    id: string;
+    label: string;
+    total: number;
+  }
+}
+
+export interface AccuracyBreakdownV1ReportsBreakdownPostParams {
+  start_date: string;
+  end_date: string;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  comparison_start_date?: string | null;
+  comparison_end_date?: string | null;
+  topic_ids?: Array<string> | null;
+  /**
+   * @default false
+   */
+  exclude_topic_ids?: boolean;
+  tag_ids?: Array<string> | null;
+  /**
+   * @default any
+   */
+  tag_filter_type?: "all" | "any";
+  /**
+   * @default true
+   */
+  include_no_tag?: boolean;
+  region_ids?: Array<string> | null;
+  platform_ids?: Array<string> | null;
+  persona_ids?: Array<string> | null;
+  /**
+   * @default true
+   */
+  include_no_persona?: boolean;
+  prompt_ids?: Array<string> | null;
+  citation_categories?: Array<string> | null;
+  /**
+   * @default citation
+   */
+  breakdown_by?: "citation" | "platform" | "topic" | "prompt" | "tag" | "region" | "persona";
+  /**
+   * @default 10
+   * @minimum 1
+   */
+  limit?: number;
+  /**
+   * @default 0
+   * @minimum 0
+   */
+  offset?: number;
+  search_query?: string | null;
+  /**
+   * @default citationShare
+   */
+  sort_by?: "citationShare" | "accuracy";
+  /**
+   * @default desc
+   */
+  sort_order?: "asc" | "desc";
+}
+
+export interface AccuracyBreakdownV1ReportsBreakdownPostResponse {
+  data: Array<AccuracyBreakdownV1ReportsBreakdownPostResponse.Data>;
   totalCount: number;
 }
 
-export namespace AccuracyCreateBreakdownResponse {
+export namespace AccuracyBreakdownV1ReportsBreakdownPostResponse {
   export interface Data {
     id: string;
-
-    inaccurateCount: number;
-
     name: string;
-
-    responseAccuracy: number;
-
     share: number;
-
-    accuracyChange?: number | null;
-
-    citationCategory?: string | null;
-
-    inaccurateCountChange?: number | null;
-
-    promptCount?: number | null;
-
+    responseAccuracy: number;
+    inaccurateCount: number;
     shareChange?: number | null;
+    accuracyChange?: number | null;
+    inaccurateCountChange?: number | null;
+    promptCount?: number | null;
+    citationCategory?: string | null;
   }
 }
 
-export interface AccuracyCreateCitationAnalysisResponse {
-  domain: string;
-
-  href: string;
-
-  markdownContent: string;
-
-  pageTitle: string;
-
-  claims?: Array<AccuracyCreateCitationAnalysisResponse.Claim>;
+export interface AccuracyCitationAnalysisV1ReportsCitationAnalysisPostParams {
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  clean_href: string;
+  start_date: string;
+  end_date: string;
 }
 
-export namespace AccuracyCreateCitationAnalysisResponse {
-  /**
-   * A single inaccurate claim mapped to a cluster, surfaced on a cited page.
-   *
-   * `attribute` carries the cluster's canonical claim so the drawer can group claims
-   * the same way it groups sentiment attributes.
-   *
-   * `reasoning` and `evidence` mirror the cluster's FactCheck verdict: the "why it's
-   * inaccurate" explanation plus the refuting knowledge-base snippets surfaced in
-   * the Claim Analysis drawer. `kb_path`/`kb_snippet` are retained as the cluster's
-   * single representative snippet for backward compatibility.
-   */
+export interface AccuracyCitationAnalysisV1ReportsCitationAnalysisPostResponse {
+  href: string;
+  domain: string;
+  pageTitle: string;
+  markdownContent: string;
+  claims?: Array<AccuracyCitationAnalysisV1ReportsCitationAnalysisPostResponse.Claim>;
+}
+
+export namespace AccuracyCitationAnalysisV1ReportsCitationAnalysisPostResponse {
   export interface Claim {
-    attribute: string;
-
-    attributeId: string;
-
-    claim: string;
-
     claimId: string;
-
-    neutralTheme: string;
-
+    claim: string;
+    attributeId: string;
+    attribute: string;
     neutralThemeId: string;
-
+    neutralTheme: string;
     snippet: string;
-
-    evidence?: Array<Claim.Evidence>;
-
+    /**
+     * @default negative
+     */
+    polarity?: "positive" | "negative";
+    /**
+     * @default ""
+     */
     kbPath?: string;
-
+    /**
+     * @default ""
+     */
     kbSnippet?: string;
-
-    polarity?: 'positive' | 'negative';
-
+    /**
+     * @default ""
+     */
     reasoning?: string;
+    evidence?: Array<Claim.Evidence>;
   }
 
   export namespace Claim {
-    /**
-     * A single knowledge-base ground-truth snippet that refutes a claim's cluster.
-     *
-     * `kb_name` is the official knowledge base name; `kb_path` is the document path
-     * within that knowledge base. `kb_name` is populated by the external API layer
-     * (which can reach the knowledge-base service) and defaults to `""` elsewhere.
-     */
     export interface Evidence {
+      /**
+       * @default ""
+       */
       kbName?: string;
-
+      /**
+       * @default ""
+       */
       kbPath?: string;
-
+      /**
+       * @default ""
+       */
       kbSnippet?: string;
     }
   }
 }
 
-export interface AccuracyCreateClaimBreakdownResponse {
-  platform: Array<AccuracyCreateClaimBreakdownResponse.Platform>;
-
-  prompt: Array<AccuracyCreateClaimBreakdownResponse.Prompt>;
+export interface AccuracyTopicIDsV1ReportsTopicIDsPostParams {
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  start_date: string;
+  end_date: string;
 }
 
-export namespace AccuracyCreateClaimBreakdownResponse {
+export type AccuracyTopicIDsV1ReportsTopicIDsPostResponse = Array<string>;
+
+export interface AccuracyInaccurateThemesV1ReportsInaccurateThemesPostParams {
+  start_date: string;
+  end_date: string;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  comparison_start_date?: string | null;
+  comparison_end_date?: string | null;
+  topic_ids?: Array<string> | null;
+  /**
+   * @default false
+   */
+  exclude_topic_ids?: boolean;
+  tag_ids?: Array<string> | null;
+  /**
+   * @default any
+   */
+  tag_filter_type?: "all" | "any";
+  /**
+   * @default true
+   */
+  include_no_tag?: boolean;
+  region_ids?: Array<string> | null;
+  platform_ids?: Array<string> | null;
+  persona_ids?: Array<string> | null;
+  /**
+   * @default true
+   */
+  include_no_persona?: boolean;
+  prompt_ids?: Array<string> | null;
+  citation_categories?: Array<string> | null;
+  /**
+   * @default 10
+   * @minimum 1
+   */
+  limit?: number;
+  /**
+   * @default 0
+   * @minimum 0
+   */
+  offset?: number;
+  /**
+   * @default response_share
+   */
+  sort_by?: "response_share";
+  /**
+   * @default desc
+   */
+  sort_order?: "asc" | "desc";
+  search_query?: string | null;
+}
+
+export interface AccuracyInaccurateThemesV1ReportsInaccurateThemesPostResponse {
+  data: Array<AccuracyInaccurateThemesV1ReportsInaccurateThemesPostResponse.Data>;
+  totalCount: number;
+}
+
+export namespace AccuracyInaccurateThemesV1ReportsInaccurateThemesPostResponse {
+  export interface Data {
+    themeId: string;
+    neutralTheme: string;
+    inaccurateClaimCount: number;
+    inaccurateClusterCount: number;
+    totalClaimCount: number;
+    totalClusterCount: number;
+    responseCount: number;
+    totalResponseCount: number;
+    responseShare: number;
+    /**
+     * @default ""
+     */
+    description?: string;
+    responseShareDelta?: number | null;
+  }
+}
+
+export interface AccuracyInaccurateClustersV1ReportsInaccurateClustersPostParams {
+  start_date: string;
+  end_date: string;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  /**
+   * @format uuid
+   */
+  theme_id: string;
+  comparison_start_date?: string | null;
+  comparison_end_date?: string | null;
+  topic_ids?: Array<string> | null;
+  /**
+   * @default false
+   */
+  exclude_topic_ids?: boolean;
+  tag_ids?: Array<string> | null;
+  /**
+   * @default any
+   */
+  tag_filter_type?: "all" | "any";
+  /**
+   * @default true
+   */
+  include_no_tag?: boolean;
+  region_ids?: Array<string> | null;
+  platform_ids?: Array<string> | null;
+  persona_ids?: Array<string> | null;
+  /**
+   * @default true
+   */
+  include_no_persona?: boolean;
+  prompt_ids?: Array<string> | null;
+  citation_categories?: Array<string> | null;
+  /**
+   * @default 5000
+   * @minimum 1
+   * @maximum 10000
+   */
+  limit?: number;
+  /**
+   * @default 0
+   * @minimum 0
+   */
+  offset?: number;
+  search_query?: string | null;
+}
+
+export interface AccuracyInaccurateClustersV1ReportsInaccurateClustersPostResponse {
+  data: Array<AccuracyInaccurateClustersV1ReportsInaccurateClustersPostResponse.Data>;
+  totalCount: number;
+}
+
+export namespace AccuracyInaccurateClustersV1ReportsInaccurateClustersPostResponse {
+  export interface Data {
+    clusterId: string;
+    canonicalClaim: string;
+    kbPath: string;
+    kbSnippet: string;
+    reasoning: string;
+    claimCount: number;
+    responseCount: number;
+    totalResponseCount: number;
+    responseShare: number;
+    citationHostnames: Array<string>;
+    /**
+     * @default ""
+     */
+    description?: string;
+    responseShareDelta?: number | null;
+  }
+}
+
+export interface AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostParams {
+  start_date: string;
+  end_date: string;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  comparison_start_date?: string | null;
+  comparison_end_date?: string | null;
+  topic_ids?: Array<string> | null;
+  /**
+   * @default false
+   */
+  exclude_topic_ids?: boolean;
+  tag_ids?: Array<string> | null;
+  /**
+   * @default any
+   */
+  tag_filter_type?: "all" | "any";
+  /**
+   * @default true
+   */
+  include_no_tag?: boolean;
+  region_ids?: Array<string> | null;
+  platform_ids?: Array<string> | null;
+  persona_ids?: Array<string> | null;
+  /**
+   * @default true
+   */
+  include_no_persona?: boolean;
+  prompt_ids?: Array<string> | null;
+  citation_categories?: Array<string> | null;
+  /**
+   * @default 5
+   * @minimum 1
+   * @maximum 50
+   */
+  limit?: number;
+}
+
+export interface AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostResponse {
+  data: Array<AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostResponse.Data>;
+}
+
+export namespace AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostResponse {
+  export interface Data {
+    rowId: string;
+    clusterId: string;
+    canonicalClaim: string;
+    snippet: string;
+    snippetClaimId: string;
+    claimOccurrence: number;
+    href: string;
+    citationCategory: string;
+    domainCategory: string;
+    citationCount: number;
+    claimOccurrenceDelta?: number | null;
+  }
+}
+
+export interface AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostParams {
+  start_date: string;
+  end_date: string;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  comparison_start_date?: string | null;
+  comparison_end_date?: string | null;
+  topic_ids?: Array<string> | null;
+  /**
+   * @default false
+   */
+  exclude_topic_ids?: boolean;
+  tag_ids?: Array<string> | null;
+  /**
+   * @default any
+   */
+  tag_filter_type?: "all" | "any";
+  /**
+   * @default true
+   */
+  include_no_tag?: boolean;
+  region_ids?: Array<string> | null;
+  platform_ids?: Array<string> | null;
+  persona_ids?: Array<string> | null;
+  /**
+   * @default true
+   */
+  include_no_persona?: boolean;
+  prompt_ids?: Array<string> | null;
+  citation_categories?: Array<string> | null;
+  /**
+   * @default 5
+   * @minimum 1
+   * @maximum 50
+   */
+  limit?: number;
+}
+
+export interface AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostResponse {
+  data: Array<AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostResponse.Data>;
+}
+
+export namespace AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostResponse {
+  export interface Data {
+    clusterId: string;
+    canonicalClaim: string;
+    claimOccurrence: number;
+    claimOccurrenceDelta?: number | null;
+  }
+}
+
+export interface AccuracyClaimBreakdownV1ReportsClaimBreakdownPostParams {
+  start_date: string;
+  end_date: string;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  /**
+   * @format uuid
+   */
+  cluster_id: string;
+  comparison_start_date?: string | null;
+  comparison_end_date?: string | null;
+  topic_ids?: Array<string> | null;
+  /**
+   * @default false
+   */
+  exclude_topic_ids?: boolean;
+  tag_ids?: Array<string> | null;
+  /**
+   * @default any
+   */
+  tag_filter_type?: "all" | "any";
+  /**
+   * @default true
+   */
+  include_no_tag?: boolean;
+  region_ids?: Array<string> | null;
+  platform_ids?: Array<string> | null;
+  persona_ids?: Array<string> | null;
+  /**
+   * @default true
+   */
+  include_no_persona?: boolean;
+  prompt_ids?: Array<string> | null;
+  citation_categories?: Array<string> | null;
+}
+
+export interface AccuracyClaimBreakdownV1ReportsClaimBreakdownPostResponse {
+  platform: Array<AccuracyClaimBreakdownV1ReportsClaimBreakdownPostResponse.Platform>;
+  prompt: Array<AccuracyClaimBreakdownV1ReportsClaimBreakdownPostResponse.Prompt>;
+}
+
+export namespace AccuracyClaimBreakdownV1ReportsClaimBreakdownPostResponse {
   export interface Platform {
     id: string;
-
     label: string;
-
-    prevResponseCount: number;
-
-    prevTotalResponseCount: number;
-
     responseCount: number;
-
-    responseShare: number;
-
     totalResponseCount: number;
-
+    responseShare: number;
+    prevResponseCount: number;
+    prevTotalResponseCount: number;
     responseShareDelta?: number | null;
   }
 
   export interface Prompt {
     id: string;
-
-    hasCurrent: boolean;
-
     label: string;
-
-    prevResponseCount: number;
-
-    prevTotalResponseCount: number;
-
-    promptId: string;
-
-    promptText: string;
-
     responseCount: number;
-
-    responseShare: number;
-
-    topicId: string;
-
     totalResponseCount: number;
-
+    responseShare: number;
+    prevResponseCount: number;
+    prevTotalResponseCount: number;
+    promptId: string;
+    promptText: string;
+    topicId: string;
+    hasCurrent: boolean;
     responseShareDelta?: number | null;
   }
 }
 
-export interface AccuracyCreateClaimCitationsResponse {
-  data: Array<AccuracyCreateClaimCitationsResponse.Data>;
+export interface AccuracyClaimCitationsV1ReportsClaimCitationsPostParams {
+  start_date: string;
+  end_date: string;
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  /**
+   * @format uuid
+   */
+  cluster_id: string;
+  comparison_start_date?: string | null;
+  comparison_end_date?: string | null;
+  topic_ids?: Array<string> | null;
+  /**
+   * @default false
+   */
+  exclude_topic_ids?: boolean;
+  tag_ids?: Array<string> | null;
+  /**
+   * @default any
+   */
+  tag_filter_type?: "all" | "any";
+  /**
+   * @default true
+   */
+  include_no_tag?: boolean;
+  region_ids?: Array<string> | null;
+  platform_ids?: Array<string> | null;
+  persona_ids?: Array<string> | null;
+  /**
+   * @default true
+   */
+  include_no_persona?: boolean;
+  prompt_ids?: Array<string> | null;
+  citation_categories?: Array<string> | null;
+  /**
+   * @default 10
+   * @minimum 1
+   */
+  limit?: number;
+  /**
+   * @default 0
+   * @minimum 0
+   */
+  offset?: number;
+  search_query?: string | null;
+  /**
+   * @default desc
+   */
+  sort_order?: "asc" | "desc";
+}
 
+export interface AccuracyClaimCitationsV1ReportsClaimCitationsPostResponse {
+  data: Array<AccuracyClaimCitationsV1ReportsClaimCitationsPostResponse.Data>;
   totalCount: number;
 }
 
-export namespace AccuracyCreateClaimCitationsResponse {
+export namespace AccuracyClaimCitationsV1ReportsClaimCitationsPostResponse {
   export interface Data {
-    citationCategory: string;
-
-    citationCount: number;
-
-    citationShare: number;
-
-    domainCategory: string;
-
-    hostname: string;
-
     href: string;
-
+    hostname: string;
     path: string;
-
+    citationCategory: string;
+    domainCategory: string;
     snippet: string;
-
+    citationCount: number;
+    citationShare: number;
     citationShareDelta?: number | null;
   }
 }
 
-export interface AccuracyCreateClusterExampleRunsResponse {
-  data: Array<AccuracyCreateClusterExampleRunsResponse.Data>;
+export interface AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostParams {
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  /**
+   * @format uuid
+   */
+  cluster_id: string;
+  start_date: string;
+  end_date: string;
+  /**
+   * @default 20
+   * @minimum 1
+   */
+  limit?: number;
+  /**
+   * @default 0
+   * @minimum 0
+   */
+  offset?: number;
+}
 
+export interface AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostResponse {
+  data: Array<AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostResponse.Data>;
   totalCount: number;
 }
 
-export namespace AccuracyCreateClusterExampleRunsResponse {
+export namespace AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostResponse {
   export interface Data {
-    claim: string;
-
-    createdAt: string;
-
-    modelId: string;
-
-    regionId: string;
-
-    responseSnippet: string;
-
     runId: string;
+    claim: string;
+    responseSnippet: string;
+    modelId: string;
+    regionId: string;
+    createdAt: string;
   }
 }
 
-export interface AccuracyCreateClusterVerificationPairsResponse {
-  data: Array<AccuracyCreateClusterVerificationPairsResponse.Data>;
+export interface AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostParams {
+  /**
+   * @format uuid
+   */
+  category_id: string;
+  /**
+   * @format uuid
+   */
+  cluster_id: string;
+}
 
+export interface AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostResponse {
+  data: Array<AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostResponse.Data>;
   clusterReasoning?: string | null;
 }
 
-export namespace AccuracyCreateClusterVerificationPairsResponse {
+export namespace AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostResponse {
   export interface Data {
-    kbPath: string;
-
     pairId: string;
-
-    quote: string;
-
-    reasoning: string;
-
     snippetIdx: number;
-
+    kbPath: string;
+    quote: string;
+    reasoning: string;
     sourceUpdatedAt?: string | null;
   }
 }
 
-export interface AccuracyCreateFactcheckSetupStatusResponse {
+export interface AccuracyFactcheckSetupStatusV1ReportsFactcheckSetupStatusPostParams {
+  /**
+   * @format uuid
+   */
+  category_id: string;
+}
+
+export interface AccuracyFactcheckSetupStatusV1ReportsFactcheckSetupStatusPostResponse {
   activeAccuracyPromptCount: number;
-
   hasVerificationData: boolean;
-
   isSetupComplete: boolean;
-
   setupCreatedAt?: string | null;
-
   setupKnowledgeBaseId?: string | null;
 }
-
-export interface AccuracyCreateInaccuracyDriversResponse {
-  data: Array<AccuracyCreateInaccuracyDriversResponse.Data>;
-}
-
-export namespace AccuracyCreateInaccuracyDriversResponse {
-  /**
-   * A top inaccurate claim paired with one of its most-cited pages.
-   */
-  export interface Data {
-    canonicalClaim: string;
-
-    citationCategory: string;
-
-    citationCount: number;
-
-    claimOccurrence: number;
-
-    clusterId: string;
-
-    domainCategory: string;
-
-    href: string;
-
-    rowId: string;
-
-    snippet: string;
-
-    snippetClaimId: string;
-
-    claimOccurrenceDelta?: number | null;
-  }
-}
-
-export interface AccuracyCreateInaccurateClustersResponse {
-  data: Array<AccuracyCreateInaccurateClustersResponse.Data>;
-
-  totalCount: number;
-}
-
-export namespace AccuracyCreateInaccurateClustersResponse {
-  export interface Data {
-    canonicalClaim: string;
-
-    citationHostnames: Array<string>;
-
-    claimCount: number;
-
-    clusterId: string;
-
-    kbPath: string;
-
-    kbSnippet: string;
-
-    reasoning: string;
-
-    responseCount: number;
-
-    responseShare: number;
-
-    totalResponseCount: number;
-
-    description?: string;
-
-    responseShareDelta?: number | null;
-  }
-}
-
-export interface AccuracyCreateInaccurateThemesResponse {
-  data: Array<AccuracyCreateInaccurateThemesResponse.Data>;
-
-  totalCount: number;
-}
-
-export namespace AccuracyCreateInaccurateThemesResponse {
-  export interface Data {
-    inaccurateClaimCount: number;
-
-    inaccurateClusterCount: number;
-
-    neutralTheme: string;
-
-    responseCount: number;
-
-    responseShare: number;
-
-    themeId: string;
-
-    totalClaimCount: number;
-
-    totalClusterCount: number;
-
-    totalResponseCount: number;
-
-    description?: string;
-
-    responseShareDelta?: number | null;
-  }
-}
-
-export interface AccuracyCreateOverviewResponse {
-  overallAccuracy: number;
-
-  scoreBreakdown: Array<AccuracyCreateOverviewResponse.ScoreBreakdown>;
-
-  trendByPeriod: Array<AccuracyCreateOverviewResponse.TrendByPeriod>;
-
-  accuracyChange?: number | null;
-
-  availableSeries?: Array<AccuracyCreateOverviewResponse.AvailableSeries> | null;
-
-  themeTrend?: Array<AccuracyCreateOverviewResponse.ThemeTrend> | null;
-}
-
-export namespace AccuracyCreateOverviewResponse {
-  export interface ScoreBreakdown {
-    count: number;
-
-    share: number;
-
-    status: string;
-
-    countChange?: number | null;
-
-    shareChange?: number | null;
-  }
-
-  export interface TrendByPeriod {
-    accurate: number;
-
-    date: string;
-
-    ratio: number;
-
-    total: number;
-
-    prevPeriodData?: unknown;
-  }
-
-  export interface AvailableSeries {
-    id: string;
-
-    label: string;
-
-    total: number;
-  }
-
-  export interface ThemeTrend {
-    id: string;
-
-    data: Array<ThemeTrend.Data>;
-
-    label: string;
-  }
-
-  export namespace ThemeTrend {
-    export interface Data {
-      accurate: number;
-
-      date: string;
-
-      ratio: number;
-
-      total: number;
-    }
-  }
-}
-
-export interface AccuracyCreateTopInaccurateClaimsResponse {
-  data: Array<AccuracyCreateTopInaccurateClaimsResponse.Data>;
-}
-
-export namespace AccuracyCreateTopInaccurateClaimsResponse {
-  export interface Data {
-    canonicalClaim: string;
-
-    claimOccurrence: number;
-
-    clusterId: string;
-
-    claimOccurrenceDelta?: number | null;
-  }
-}
-
-export type AccuracyCreateTopicIDsResponse = Array<string>;
-
-export interface AccuracyCreateBreakdownParams {
-  category_id: string;
-
-  end_date: string;
-
-  start_date: string;
-
-  breakdown_by?: 'citation' | 'platform' | 'topic' | 'prompt' | 'tag' | 'region' | 'persona';
-
-  citation_categories?: Array<string> | null;
-
-  comparison_end_date?: string | null;
-
-  comparison_start_date?: string | null;
-
-  exclude_topic_ids?: boolean;
-
-  include_no_persona?: boolean;
-
-  include_no_tag?: boolean;
-
-  limit?: number;
-
-  offset?: number;
-
-  persona_ids?: Array<string> | null;
-
-  platform_ids?: Array<string> | null;
-
-  prompt_ids?: Array<string> | null;
-
-  region_ids?: Array<string> | null;
-
-  search_query?: string | null;
-
-  sort_by?: 'citationShare' | 'accuracy';
-
-  sort_order?: 'asc' | 'desc';
-
-  tag_filter_type?: 'all' | 'any';
-
-  tag_ids?: Array<string> | null;
-
-  topic_ids?: Array<string> | null;
-}
-
-export interface AccuracyCreateCitationAnalysisParams {
-  category_id: string;
-
-  clean_href: string;
-
-  end_date: string;
-
-  start_date: string;
-}
-
-export interface AccuracyCreateClaimBreakdownParams {
-  category_id: string;
-
-  cluster_id: string;
-
-  end_date: string;
-
-  start_date: string;
-
-  citation_categories?: Array<string> | null;
-
-  comparison_end_date?: string | null;
-
-  comparison_start_date?: string | null;
-
-  exclude_topic_ids?: boolean;
-
-  include_no_persona?: boolean;
-
-  include_no_tag?: boolean;
-
-  persona_ids?: Array<string> | null;
-
-  platform_ids?: Array<string> | null;
-
-  prompt_ids?: Array<string> | null;
-
-  region_ids?: Array<string> | null;
-
-  tag_filter_type?: 'all' | 'any';
-
-  tag_ids?: Array<string> | null;
-
-  topic_ids?: Array<string> | null;
-}
-
-export interface AccuracyCreateClaimCitationsParams {
-  category_id: string;
-
-  cluster_id: string;
-
-  end_date: string;
-
-  start_date: string;
-
-  citation_categories?: Array<string> | null;
-
-  comparison_end_date?: string | null;
-
-  comparison_start_date?: string | null;
-
-  exclude_topic_ids?: boolean;
-
-  include_no_persona?: boolean;
-
-  include_no_tag?: boolean;
-
-  limit?: number;
-
-  offset?: number;
-
-  persona_ids?: Array<string> | null;
-
-  platform_ids?: Array<string> | null;
-
-  prompt_ids?: Array<string> | null;
-
-  region_ids?: Array<string> | null;
-
-  search_query?: string | null;
-
-  sort_order?: 'asc' | 'desc';
-
-  tag_filter_type?: 'all' | 'any';
-
-  tag_ids?: Array<string> | null;
-
-  topic_ids?: Array<string> | null;
-}
-
-export interface AccuracyCreateClusterExampleRunsParams {
-  category_id: string;
-
-  cluster_id: string;
-
-  end_date: string;
-
-  start_date: string;
-
-  limit?: number;
-
-  offset?: number;
-}
-
-export interface AccuracyCreateClusterVerificationPairsParams {
-  category_id: string;
-
-  cluster_id: string;
-}
-
-export interface AccuracyCreateFactcheckSetupStatusParams {
-  category_id: string;
-}
-
-export interface AccuracyCreateInaccuracyDriversParams {
-  category_id: string;
-
-  end_date: string;
-
-  start_date: string;
-
-  citation_categories?: Array<string> | null;
-
-  comparison_end_date?: string | null;
-
-  comparison_start_date?: string | null;
-
-  exclude_topic_ids?: boolean;
-
-  include_no_persona?: boolean;
-
-  include_no_tag?: boolean;
-
-  limit?: number;
-
-  persona_ids?: Array<string> | null;
-
-  platform_ids?: Array<string> | null;
-
-  prompt_ids?: Array<string> | null;
-
-  region_ids?: Array<string> | null;
-
-  tag_filter_type?: 'all' | 'any';
-
-  tag_ids?: Array<string> | null;
-
-  topic_ids?: Array<string> | null;
-}
-
-export interface AccuracyCreateInaccurateClustersParams {
-  category_id: string;
-
-  end_date: string;
-
-  start_date: string;
-
-  theme_id: string;
-
-  citation_categories?: Array<string> | null;
-
-  comparison_end_date?: string | null;
-
-  comparison_start_date?: string | null;
-
-  exclude_topic_ids?: boolean;
-
-  include_no_persona?: boolean;
-
-  include_no_tag?: boolean;
-
-  limit?: number;
-
-  offset?: number;
-
-  persona_ids?: Array<string> | null;
-
-  platform_ids?: Array<string> | null;
-
-  prompt_ids?: Array<string> | null;
-
-  region_ids?: Array<string> | null;
-
-  search_query?: string | null;
-
-  tag_filter_type?: 'all' | 'any';
-
-  tag_ids?: Array<string> | null;
-
-  topic_ids?: Array<string> | null;
-}
-
-export interface AccuracyCreateInaccurateThemesParams {
-  category_id: string;
-
-  end_date: string;
-
-  start_date: string;
-
-  citation_categories?: Array<string> | null;
-
-  comparison_end_date?: string | null;
-
-  comparison_start_date?: string | null;
-
-  exclude_topic_ids?: boolean;
-
-  include_no_persona?: boolean;
-
-  include_no_tag?: boolean;
-
-  limit?: number;
-
-  offset?: number;
-
-  persona_ids?: Array<string> | null;
-
-  platform_ids?: Array<string> | null;
-
-  prompt_ids?: Array<string> | null;
-
-  region_ids?: Array<string> | null;
-
-  search_query?: string | null;
-
-  sort_by?: 'response_share';
-
-  sort_order?: 'asc' | 'desc';
-
-  tag_filter_type?: 'all' | 'any';
-
-  tag_ids?: Array<string> | null;
-
-  topic_ids?: Array<string> | null;
-}
-
-export interface AccuracyCreateOverviewParams {
-  category_id: string;
-
-  end_date: string;
-
-  start_date: string;
-
-  citation_categories?: Array<string> | null;
-
-  comparison_end_date?: string | null;
-
-  comparison_start_date?: string | null;
-
-  date_bucket?: string | null;
-
-  exclude_topic_ids?: boolean;
-
-  group_by?: 'period' | 'theme';
-
-  include_no_persona?: boolean;
-
-  include_no_tag?: boolean;
-
-  persona_ids?: Array<string> | null;
-
-  platform_ids?: Array<string> | null;
-
-  prompt_ids?: Array<string> | null;
-
-  region_ids?: Array<string> | null;
-
-  tag_filter_type?: 'all' | 'any';
-
-  tag_ids?: Array<string> | null;
-
-  topic_ids?: Array<string> | null;
-}
-
-export interface AccuracyCreateTopInaccurateClaimsParams {
-  category_id: string;
-
-  end_date: string;
-
-  start_date: string;
-
-  citation_categories?: Array<string> | null;
-
-  comparison_end_date?: string | null;
-
-  comparison_start_date?: string | null;
-
-  exclude_topic_ids?: boolean;
-
-  include_no_persona?: boolean;
-
-  include_no_tag?: boolean;
-
-  limit?: number;
-
-  persona_ids?: Array<string> | null;
-
-  platform_ids?: Array<string> | null;
-
-  prompt_ids?: Array<string> | null;
-
-  region_ids?: Array<string> | null;
-
-  tag_filter_type?: 'all' | 'any';
-
-  tag_ids?: Array<string> | null;
-
-  topic_ids?: Array<string> | null;
-}
-
-export interface AccuracyCreateTopicIDsParams {
-  category_id: string;
-
-  end_date: string;
-
-  start_date: string;
-}
-
 export declare namespace Accuracy {
   export {
-    type AccuracyCreateBreakdownResponse as AccuracyCreateBreakdownResponse,
-    type AccuracyCreateCitationAnalysisResponse as AccuracyCreateCitationAnalysisResponse,
-    type AccuracyCreateClaimBreakdownResponse as AccuracyCreateClaimBreakdownResponse,
-    type AccuracyCreateClaimCitationsResponse as AccuracyCreateClaimCitationsResponse,
-    type AccuracyCreateClusterExampleRunsResponse as AccuracyCreateClusterExampleRunsResponse,
-    type AccuracyCreateClusterVerificationPairsResponse as AccuracyCreateClusterVerificationPairsResponse,
-    type AccuracyCreateFactcheckSetupStatusResponse as AccuracyCreateFactcheckSetupStatusResponse,
-    type AccuracyCreateInaccuracyDriversResponse as AccuracyCreateInaccuracyDriversResponse,
-    type AccuracyCreateInaccurateClustersResponse as AccuracyCreateInaccurateClustersResponse,
-    type AccuracyCreateInaccurateThemesResponse as AccuracyCreateInaccurateThemesResponse,
-    type AccuracyCreateOverviewResponse as AccuracyCreateOverviewResponse,
-    type AccuracyCreateTopInaccurateClaimsResponse as AccuracyCreateTopInaccurateClaimsResponse,
-    type AccuracyCreateTopicIDsResponse as AccuracyCreateTopicIDsResponse,
-    type AccuracyCreateBreakdownParams as AccuracyCreateBreakdownParams,
-    type AccuracyCreateCitationAnalysisParams as AccuracyCreateCitationAnalysisParams,
-    type AccuracyCreateClaimBreakdownParams as AccuracyCreateClaimBreakdownParams,
-    type AccuracyCreateClaimCitationsParams as AccuracyCreateClaimCitationsParams,
-    type AccuracyCreateClusterExampleRunsParams as AccuracyCreateClusterExampleRunsParams,
-    type AccuracyCreateClusterVerificationPairsParams as AccuracyCreateClusterVerificationPairsParams,
-    type AccuracyCreateFactcheckSetupStatusParams as AccuracyCreateFactcheckSetupStatusParams,
-    type AccuracyCreateInaccuracyDriversParams as AccuracyCreateInaccuracyDriversParams,
-    type AccuracyCreateInaccurateClustersParams as AccuracyCreateInaccurateClustersParams,
-    type AccuracyCreateInaccurateThemesParams as AccuracyCreateInaccurateThemesParams,
-    type AccuracyCreateOverviewParams as AccuracyCreateOverviewParams,
-    type AccuracyCreateTopInaccurateClaimsParams as AccuracyCreateTopInaccurateClaimsParams,
-    type AccuracyCreateTopicIDsParams as AccuracyCreateTopicIDsParams,
+    type AccuracyOverviewQuery as AccuracyOverviewQuery,
+    type AccuracyBreakdownQuery as AccuracyBreakdownQuery,
+    type AccuracyCitationAnalysisQuery as AccuracyCitationAnalysisQuery,
+    type AccuracyTopicIDsQuery as AccuracyTopicIDsQuery,
+    type InaccurateThemesQuery as InaccurateThemesQuery,
+    type InaccurateClustersQuery as InaccurateClustersQuery,
+    type InaccuracyDriversQuery as InaccuracyDriversQuery,
+    type TopInaccurateClaimsQuery as TopInaccurateClaimsQuery,
+    type ClaimBreakdownQuery as ClaimBreakdownQuery,
+    type ClaimCitationsQuery as ClaimCitationsQuery,
+    type ClusterExampleRunsQuery as ClusterExampleRunsQuery,
+    type ClusterVerificationPairsQuery as ClusterVerificationPairsQuery,
+    type FactCheckSetupStatusQuery as FactCheckSetupStatusQuery,
+    type AccuracyOverviewV1ReportsOverviewPostResponse as AccuracyOverviewV1ReportsOverviewPostResponse,
+    type AccuracyBreakdownV1ReportsBreakdownPostResponse as AccuracyBreakdownV1ReportsBreakdownPostResponse,
+    type AccuracyCitationAnalysisV1ReportsCitationAnalysisPostResponse as AccuracyCitationAnalysisV1ReportsCitationAnalysisPostResponse,
+    type AccuracyTopicIDsV1ReportsTopicIDsPostResponse as AccuracyTopicIDsV1ReportsTopicIDsPostResponse,
+    type AccuracyInaccurateThemesV1ReportsInaccurateThemesPostResponse as AccuracyInaccurateThemesV1ReportsInaccurateThemesPostResponse,
+    type AccuracyInaccurateClustersV1ReportsInaccurateClustersPostResponse as AccuracyInaccurateClustersV1ReportsInaccurateClustersPostResponse,
+    type AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostResponse as AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostResponse,
+    type AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostResponse as AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostResponse,
+    type AccuracyClaimBreakdownV1ReportsClaimBreakdownPostResponse as AccuracyClaimBreakdownV1ReportsClaimBreakdownPostResponse,
+    type AccuracyClaimCitationsV1ReportsClaimCitationsPostResponse as AccuracyClaimCitationsV1ReportsClaimCitationsPostResponse,
+    type AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostResponse as AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostResponse,
+    type AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostResponse as AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostResponse,
+    type AccuracyFactcheckSetupStatusV1ReportsFactcheckSetupStatusPostResponse as AccuracyFactcheckSetupStatusV1ReportsFactcheckSetupStatusPostResponse,
+    type AccuracyOverviewV1ReportsOverviewPostParams as AccuracyOverviewV1ReportsOverviewPostParams,
+    type AccuracyBreakdownV1ReportsBreakdownPostParams as AccuracyBreakdownV1ReportsBreakdownPostParams,
+    type AccuracyCitationAnalysisV1ReportsCitationAnalysisPostParams as AccuracyCitationAnalysisV1ReportsCitationAnalysisPostParams,
+    type AccuracyTopicIDsV1ReportsTopicIDsPostParams as AccuracyTopicIDsV1ReportsTopicIDsPostParams,
+    type AccuracyInaccurateThemesV1ReportsInaccurateThemesPostParams as AccuracyInaccurateThemesV1ReportsInaccurateThemesPostParams,
+    type AccuracyInaccurateClustersV1ReportsInaccurateClustersPostParams as AccuracyInaccurateClustersV1ReportsInaccurateClustersPostParams,
+    type AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostParams as AccuracyInaccuracyDriversV1ReportsInaccuracyDriversPostParams,
+    type AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostParams as AccuracyTopInaccurateClaimsV1ReportsTopInaccurateClaimsPostParams,
+    type AccuracyClaimBreakdownV1ReportsClaimBreakdownPostParams as AccuracyClaimBreakdownV1ReportsClaimBreakdownPostParams,
+    type AccuracyClaimCitationsV1ReportsClaimCitationsPostParams as AccuracyClaimCitationsV1ReportsClaimCitationsPostParams,
+    type AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostParams as AccuracyClusterExampleRunsV1ReportsClusterExampleRunsPostParams,
+    type AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostParams as AccuracyClusterVerificationPairsV1ReportsClusterVerificationPairsPostParams,
+    type AccuracyFactcheckSetupStatusV1ReportsFactcheckSetupStatusPostParams as AccuracyFactcheckSetupStatusV1ReportsFactcheckSetupStatusPostParams,
   };
 }
+export { Accuracy as AccuracyResource };
