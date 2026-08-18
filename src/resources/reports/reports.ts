@@ -140,7 +140,8 @@ export class Reports extends APIResource {
    * Get bot traffic report from the hourly aggregated materialized view (UTC-based).
    *
    * Supports date_interval="hour", calendar intervals through "year", "quarter", and
-   * "relative_week".
+   * "relative_week". When `view_id` is provided, the query is scoped to that domain
+   * segment's hosts and paths.
    *
    * Metrics:
    *
@@ -197,7 +198,8 @@ export class Reports extends APIResource {
    * (UTC-based).
    *
    * Supports date_interval="hour", calendar intervals through "year", "quarter", and
-   * "relative_week".
+   * "relative_week". When `view_id` is provided, the query is scoped to that domain
+   * segment's hosts and paths.
    *
    * @example
    * ```ts
@@ -2452,6 +2454,12 @@ export interface ReportGetBotsReportV2Params {
    * IANA timezone name for date bucketing and filter boundaries.
    */
   timezone?: string;
+
+  /**
+   * Domain segment UUID used to scope the query to a configured subset of hosts and
+   * paths.
+   */
+  view_id?: string | null;
 }
 
 export namespace ReportGetBotsReportV2Params {
@@ -2652,6 +2660,12 @@ export interface ReportGetReferralsReportV2Params {
    * IANA timezone name for date bucketing and filter boundaries.
    */
   timezone?: string;
+
+  /**
+   * Domain segment UUID used to scope the query to a configured subset of hosts and
+   * paths.
+   */
+  view_id?: string | null;
 }
 
 export namespace ReportGetReferralsReportV2Params {
