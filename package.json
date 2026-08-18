@@ -2,11 +2,12 @@
   "name": "@profoundai/client",
   "version": "0.1.0",
   "description": "Profound TypeScript SDK",
-  "author": "Profound",
+  "author": "Profound <support@tryprofound.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cooper-square-technologies/profound-typescript-sdk.git"
   },
+  "homepage": "https://docs.tryprofound.com",
   "type": "module",
   "sideEffects": false,
   "main": "./dist/cjs/index.js",

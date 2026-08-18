@@ -67,12 +67,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organizations.list()\n\nprint(organization)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organization.list_v1_org_get()\n\nprint(organization)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst list = await client.organizations.list();\n\nconsole.log(list);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listV1OrgGet = await client.organization.listV1OrgGet();\n\nconsole.log(listV1OrgGet);"
           }
         ]
       }
@@ -147,12 +147,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organizations.regions()\n\nprint(organization)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organization.list_regions_v1_org_regions_get()\n\nprint(organization)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst regions = await client.organizations.regions();\n\nconsole.log(regions);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listRegionsV1OrgRegionsGet = await client.organization.listRegionsV1OrgRegionsGet();\n\nconsole.log(listRegionsV1OrgRegionsGet);"
           }
         ]
       }
@@ -203,12 +203,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organizations.models()\n\nprint(organization)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organization.list_models_v1_org_models_get()\n\nprint(organization)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst models = await client.organizations.models();\n\nconsole.log(models);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listModelsV1OrgModelsGet = await client.organization.listModelsV1OrgModelsGet();\n\nconsole.log(listModelsV1OrgModelsGet);"
           }
         ]
       }
@@ -283,12 +283,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organizations.domains()\n\nprint(organization)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organization.list_domains_v1_org_domains_get()\n\nprint(organization)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst domains = await client.organizations.domains();\n\nconsole.log(domains);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listDomainsV1OrgDomainsGet = await client.organization.listDomainsV1OrgDomainsGet();\n\nconsole.log(listDomainsV1OrgDomainsGet);"
           }
         ]
       }
@@ -359,12 +359,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organizations.list_assets()\n\nprint(organization)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organization.list_assets_v1_org_assets_get()\n\nprint(organization)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst listAssets = await client.organizations.listAssets();\n\nconsole.log(listAssets);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listAssetsV1OrgAssetsGet = await client.organization.listAssetsV1OrgAssetsGet();\n\nconsole.log(listAssetsV1OrgAssetsGet);"
           }
         ]
       }
@@ -435,12 +435,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organizations.get_personas()\n\nprint(organization)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organization.list_personas_v1_org_personas_get()\n\nprint(organization)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst getPersonas = await client.organizations.getPersonas();\n\nconsole.log(getPersonas);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listPersonasV1OrgPersonasGet = await client.organization.listPersonasV1OrgPersonasGet();\n\nconsole.log(listPersonasV1OrgPersonasGet);"
           }
         ]
       }
@@ -516,12 +516,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ncategory = client.organizations.categories.list()\n\nprint(category)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organization.list_categories_v1_org_categories_get()\n\nprint(organization)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst list = await client.organizations.categories.list();\n\nconsole.log(list);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listCategoriesV1OrgCategoriesGet = await client.organization.listCategoriesV1OrgCategoriesGet();\n\nconsole.log(listCategoriesV1OrgCategoriesGet);"
           }
         ]
       }
@@ -585,12 +585,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ncategory = client.organizations.categories.topics(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(category)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organization.list_category_topics_v1_org_categories_category_topics_get(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(organization)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst topics = await client.organizations.categories.topics('7c9e6679-7425-40de-944b-e07fc1f90ae7');\n\nconsole.log(topics);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listCategoryTopicsV1OrgCategoriesCategoryTopicsGet =\n  await client.organization.listCategoryTopicsV1OrgCategoriesCategoryTopicsGet(\n    '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  );\n\nconsole.log(listCategoryTopicsV1OrgCategoriesCategoryTopicsGet);"
           }
         ]
       }
@@ -654,12 +654,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ncategory = client.organizations.categories.tags(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(category)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organization.list_category_tags_v1_org_categories_category_tags_get(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(organization)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst tags = await client.organizations.categories.tags('7c9e6679-7425-40de-944b-e07fc1f90ae7');\n\nconsole.log(tags);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listCategoryTagsV1OrgCategoriesCategoryTagsGet =\n  await client.organization.listCategoryTagsV1OrgCategoriesCategoryTagsGet(\n    '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  );\n\nconsole.log(listCategoryTagsV1OrgCategoriesCategoryTagsGet);"
           }
         ]
       }
@@ -718,7 +718,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organization.list_category_regions_v1_org_categories_category_regions_get(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(organization)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listCategoryRegionsV1OrgCategoriesCategoryRegionsGet =\n  await client.organization.listCategoryRegionsV1OrgCategoriesCategoryRegionsGet(\n    '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  );\n\nconsole.log(listCategoryRegionsV1OrgCategoriesCategoryRegionsGet);"
+          }
+        ]
       }
     },
     "/v1/org/categories/{category_id}/citation-categories": {
@@ -771,7 +783,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organization.list_category_citation_categories_v1_org_categories_category_citation_categories_get(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(organization)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listCategoryCitationCategoriesV1OrgCategoriesCategoryCitationCategoriesGet =\n  await client.organization.listCategoryCitationCategoriesV1OrgCategoriesCategoryCitationCategoriesGet(\n    '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  );\n\nconsole.log(listCategoryCitationCategoriesV1OrgCategoriesCategoryCitationCategoriesGet);"
+          }
+        ]
       }
     },
     "/v1/org/categories/{category_id}/citation-tags": {
@@ -824,7 +848,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organization.list_category_citation_tags_v1_org_categories_category_citation_tags_get(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(organization)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listCategoryCitationTagsV1OrgCategoriesCategoryCitationTagsGet =\n  await client.organization.listCategoryCitationTagsV1OrgCategoriesCategoryCitationTagsGet(\n    '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  );\n\nconsole.log(listCategoryCitationTagsV1OrgCategoriesCategoryCitationTagsGet);"
+          }
+        ]
       }
     },
     "/v1/org/categories/{category_id}/prompts": {
@@ -1067,12 +1103,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ncategory = client.organizations.categories.prompts(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    limit=10000,\n    status=[\"active\"],\n)\n\nprint(category)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organization.list_category_prompts_v1_org_categories_category_prompts_get(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    limit=10000,\n    status=[\"active\"],\n)\n\nprint(organization)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst prompts = await client.organizations.categories.prompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  limit: 10000,\n  status: ['active'],\n});\n\nconsole.log(prompts);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listCategoryPromptsV1OrgCategoriesCategoryPromptsGet =\n  await client.organization.listCategoryPromptsV1OrgCategoriesCategoryPromptsGet(\n    '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    {\n      limit: 10000,\n      status: ['active'],\n    },\n  );\n\nconsole.log(listCategoryPromptsV1OrgCategoriesCategoryPromptsGet);"
           }
         ]
       },
@@ -1140,12 +1176,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ncategory = client.organizations.categories.create_prompts(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    prompts=[],\n    dry_run=False,\n)\n\nprint(category)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organization.create_category_prompts_v1_org_categories_category_id_prompts_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    prompts=[],\n    dry_run=False,\n)\n\nprint(organization)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst createPrompts = await client.organizations.categories.createPrompts(\n  '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  {\n    prompts: [],\n    dry_run: false,\n  },\n);\n\nconsole.log(createPrompts);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst createCategoryPromptsV1OrgCategoriesCategoryIDPromptsPost =\n  await client.organization.createCategoryPromptsV1OrgCategoriesCategoryIDPromptsPost(\n    '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    {\n      prompts: [],\n      dry_run: false,\n    },\n  );\n\nconsole.log(createCategoryPromptsV1OrgCategoriesCategoryIDPromptsPost);"
           }
         ]
       },
@@ -1213,12 +1249,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ncategory = client.organizations.categories.update_prompts(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    prompts=[],\n    dry_run=False,\n)\n\nprint(category)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organization.update_category_prompts_v1_org_categories_category_id_prompts_patch(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    prompts=[],\n    dry_run=False,\n)\n\nprint(organization)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst updatePrompts = await client.organizations.categories.updatePrompts(\n  '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  {\n    prompts: [],\n    dry_run: false,\n  },\n);\n\nconsole.log(updatePrompts);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst updateCategoryPromptsV1OrgCategoriesCategoryIDPromptsPatch =\n  await client.organization.updateCategoryPromptsV1OrgCategoriesCategoryIDPromptsPatch(\n    '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    {\n      prompts: [],\n      dry_run: false,\n    },\n  );\n\nconsole.log(updateCategoryPromptsV1OrgCategoriesCategoryIDPromptsPatch);"
           }
         ]
       }
@@ -1288,12 +1324,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ncategory = client.organizations.categories.update_prompt_status(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    prompt_ids=[],\n    status=\"active\",\n    dry_run=False,\n)\n\nprint(category)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organization.update_category_prompt_status_v1_org_categories_category_id_prompts_status_patch(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    prompt_ids=[],\n    status=\"active\",\n    dry_run=False,\n)\n\nprint(organization)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst updatePromptStatus = await client.organizations.categories.updatePromptStatus(\n  '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  {\n    prompt_ids: [],\n    status: 'active',\n    dry_run: false,\n  },\n);\n\nconsole.log(updatePromptStatus);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst updateCategoryPromptStatusV1OrgCategoriesCategoryIDPromptsStatusPatch =\n  await client.organization.updateCategoryPromptStatusV1OrgCategoriesCategoryIDPromptsStatusPatch(\n    '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    {\n      prompt_ids: [],\n      status: 'active',\n      dry_run: false,\n    },\n  );\n\nconsole.log(updateCategoryPromptStatusV1OrgCategoriesCategoryIDPromptsStatusPatch);"
           }
         ]
       }
@@ -1356,12 +1392,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ncategory = client.organizations.categories.assets(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(category)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organization.list_category_assets_v1_org_categories_category_assets_get(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(organization)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst assets = await client.organizations.categories.assets('7c9e6679-7425-40de-944b-e07fc1f90ae7');\n\nconsole.log(assets);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listCategoryAssetsV1OrgCategoriesCategoryAssetsGet =\n  await client.organization.listCategoryAssetsV1OrgCategoriesCategoryAssetsGet(\n    '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  );\n\nconsole.log(listCategoryAssetsV1OrgCategoriesCategoryAssetsGet);"
           }
         ]
       }
@@ -1420,12 +1456,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ncategory = client.organizations.categories.get_category_personas(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(category)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\norganization = client.organization.list_category_personas_v1_org_categories_category_personas_get(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(organization)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst getCategoryPersonas = await client.organizations.categories.getCategoryPersonas(\n  '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n);\n\nconsole.log(getCategoryPersonas);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listCategoryPersonasV1OrgCategoriesCategoryPersonasGet =\n  await client.organization.listCategoryPersonasV1OrgCategoriesCategoryPersonasGet(\n    '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  );\n\nconsole.log(listCategoryPersonasV1OrgCategoriesCategoryPersonasGet);"
           }
         ]
       }
@@ -1481,12 +1517,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nprompt = client.prompts.answers(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nprint(prompt)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nanswer = client.prompts.answers.create_v1_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nprint(answer)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst answers = await client.prompts.answers({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nconsole.log(answers);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst createV1Post = await client.prompts.answers.createV1Post({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nconsole.log(createV1Post);"
           }
         ]
       }
@@ -1544,12 +1580,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nreport = client.reports.citations(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nprint(report)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ncitation = client.reports.citations.query_v1_post(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nprint(citation)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst citations = await client.reports.citations({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nconsole.log(citations);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst queryV1Post = await client.reports.citations.queryV1Post({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nconsole.log(queryV1Post);"
           }
         ]
       }
@@ -1661,12 +1697,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nstream = client.reports.stream_citations(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nfor event in stream:\n    print(event)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nstream = client.reports.citations.stream_v1_stream_post(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nfor event in stream:\n    print(event)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst stream = await client.reports.streamCitations({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nfor await (const event of stream) {\n  console.log(event);\n}"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst stream = await client.reports.citations.streamV1StreamPost({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nfor await (const event of stream) {\n  console.log(event);\n}"
           }
         ]
       }
@@ -1724,12 +1760,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nreport = client.reports.visibility(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nprint(report)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nvisibility = client.reports.visibility.query_v1_post(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nprint(visibility)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst report = await client.reports.visibility({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nconsole.log(report);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst response = await client.reports.visibility.queryV1Post({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nconsole.log(response);"
           }
         ]
       }
@@ -1840,12 +1876,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nstream = client.reports.stream_visibility(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nfor event in stream:\n    print(event)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nstream = client.reports.visibility.stream_v1_stream_post(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nfor event in stream:\n    print(event)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst stream = await client.reports.streamVisibility({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nfor await (const event of stream) {\n  console.log(event);\n}"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst stream = await client.reports.visibility.streamV1StreamPost({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nfor await (const event of stream) {\n  console.log(event);\n}"
           }
         ]
       }
@@ -1903,12 +1939,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nreport = client.reports.sentiment(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nprint(report)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nsentiment = client.reports.sentiment.query_v1_post(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nprint(sentiment)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst report = await client.reports.sentiment({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nconsole.log(report);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst response = await client.reports.sentiment.queryV1Post({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nconsole.log(response);"
           }
         ]
       }
@@ -2016,12 +2052,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nstream = client.reports.stream_sentiment(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nfor event in stream:\n    print(event)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nstream = client.reports.sentiment.stream_v1_stream_post(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nfor event in stream:\n    print(event)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst stream = await client.reports.streamSentiment({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nfor await (const event of stream) {\n  console.log(event);\n}"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst stream = await client.reports.sentiment.streamV1StreamPost({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nfor await (const event of stream) {\n  console.log(event);\n}"
           }
         ]
       }
@@ -2072,6 +2108,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nreport = client.reports.query_sentiment_v2_v1_sentiment_v2_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    asset_name=\"\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_bucket=\"day\",\n    metrics=[],\n)\n\nprint(report)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst querySentimentV2V1SentimentV2Post = await client.reports.querySentimentV2V1SentimentV2Post({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  asset_name: '',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_bucket: 'day',\n  metrics: [],\n});\n\nconsole.log(querySentimentV2V1SentimentV2Post);"
           }
         ]
       }
@@ -2129,12 +2177,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nweb_search_result = client.reports.web_search_results.query(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nprint(web_search_result)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nweb_search_result = client.reports.web_search_results.query_v1_post(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nprint(web_search_result)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst query = await client.reports.webSearchResults.query({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nconsole.log(query);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst queryV1Post = await client.reports.webSearchResults.queryV1Post({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nconsole.log(queryV1Post);"
           }
         ]
       }
@@ -2245,12 +2293,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nstream = client.reports.web_search_results.stream(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nfor event in stream:\n    print(event)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nstream = client.reports.web_search_results.stream_v1_stream_post(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nfor event in stream:\n    print(event)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst stream = await client.reports.webSearchResults.stream({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nfor await (const event of stream) {\n  console.log(event);\n}"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst stream = await client.reports.webSearchResults.streamV1StreamPost({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nfor await (const event of stream) {\n  console.log(event);\n}"
           }
         ]
       }
@@ -2308,12 +2356,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nreport = client.reports.get_referrals_report(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    domain=\"\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nprint(report)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nreferral = client.reports.referrals.create_v1_v1_post(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    domain=\"\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nprint(referral)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst report = await client.reports.getReferralsReport({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  domain: '',\n  start_date: '2024-01-01T00:00:00.000Z',\n});\n\nconsole.log(report);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst response = await client.reports.referrals.createV1V1Post({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  domain: '',\n  start_date: '2024-01-01T00:00:00.000Z',\n});\n\nconsole.log(response);"
           }
         ]
       }
@@ -2371,12 +2419,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nreport = client.reports.get_bots_report(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    domain=\"\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nprint(report)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nbot = client.reports.bots.create_v1_v1_post(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    domain=\"\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nprint(bot)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst report = await client.reports.getBotsReport({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  domain: '',\n  start_date: '2024-01-01T00:00:00.000Z',\n});\n\nconsole.log(report);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst response = await client.reports.bots.createV1V1Post({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  domain: '',\n  start_date: '2024-01-01T00:00:00.000Z',\n});\n\nconsole.log(response);"
           }
         ]
       }
@@ -2463,12 +2511,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\noptimization = client.content.optimization.list(\n    asset_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    limit=10000,\n    offset=0,\n)\n\nprint(optimization)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\noptimization = client.content.optimization.list_v1_asset_id_get(\n    asset_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    limit=10000,\n    offset=0,\n)\n\nprint(optimization)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst list = await client.content.optimization.list('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  limit: 10000,\n  offset: 0,\n});\n\nconsole.log(list);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listV1AssetIDGet = await client.content.optimization.listV1AssetIDGet(\n  '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  {\n    limit: 10000,\n    offset: 0,\n  },\n);\n\nconsole.log(listV1AssetIDGet);"
           }
         ]
       }
@@ -2538,12 +2586,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\noptimization = client.content.optimization.retrieve(\n    asset_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    content_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(optimization)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\noptimization = client.content.optimization.analysis_v1_asset_id_id_get(\n    asset_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    content_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(optimization)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst retrieve = await client.content.optimization.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  asset_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n});\n\nconsole.log(retrieve);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst analysisV1AssetIDIDGet = await client.content.optimization.analysisV1AssetIDIDGet(\n  '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  {\n    asset_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  },\n);\n\nconsole.log(analysisV1AssetIDIDGet);"
           }
         ]
       }
@@ -2611,12 +2659,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nknowledge_base = client.knowledge_bases.list()\n\nprint(knowledge_base)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nknowledge_base = client.knowledge_bases.list_v1_get()\n\nprint(knowledge_base)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst list = await client.knowledgeBases.list();\n\nconsole.log(list);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listV1Get = await client.knowledgeBases.listV1Get();\n\nconsole.log(listV1Get);"
           }
         ]
       }
@@ -2711,7 +2759,7 @@
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst search = await client.knowledgeBases.search('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  query: 'x',\n  top_k: 0,\n  return_full_page: false,\n});\n\nconsole.log(search);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst search = await client.knowledgeBases.search('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  query: 'x',\n  top_k: 0,\n  return_full_page: false,\n});\n\nconsole.log(search);"
           }
         ]
       }
@@ -2858,12 +2906,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ndocument = client.knowledge_bases.documents.create(\n    knowledge_base_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    name=\"x\",\n    text=\"x\",\n)\n\nprint(document)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ndocument = client.knowledge_bases.documents.create_v1_id_post(\n    knowledge_base_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    name=\"x\",\n    text=\"x\",\n)\n\nprint(document)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst create = await client.knowledgeBases.documents.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  name: 'x',\n  text: 'x',\n});\n\nconsole.log(create);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst operation = await client.knowledgeBases.documents.createV1IDPost(\n  '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  {\n    name: 'x',\n    text: 'x',\n  },\n);\n\nconsole.log(operation);"
           }
         ]
       },
@@ -3008,12 +3056,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ndocument = client.knowledge_bases.documents.update(\n    knowledge_base_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    name=\"x\",\n    text=\"x\",\n)\n\nprint(document)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ndocument = client.knowledge_bases.documents.update_v1_id_put(\n    knowledge_base_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    name=\"x\",\n    text=\"x\",\n)\n\nprint(document)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst update = await client.knowledgeBases.documents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  name: 'x',\n  text: 'x',\n});\n\nconsole.log(update);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst operation = await client.knowledgeBases.documents.updateV1IDPut(\n  '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  {\n    name: 'x',\n    text: 'x',\n  },\n);\n\nconsole.log(operation);"
           }
         ]
       },
@@ -3101,12 +3149,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ndocument = client.knowledge_bases.documents.delete(\n    knowledge_base_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    name=\"x\",\n)\n\nprint(document)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ndocument = client.knowledge_bases.documents.delete_v1_id_delete(\n    knowledge_base_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    name=\"x\",\n)\n\nprint(document)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst delete_ = await client.knowledgeBases.documents.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  name: 'x',\n});\n\nconsole.log(delete_);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst operation = await client.knowledgeBases.documents.deleteV1IDDelete(\n  '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  {\n    name: 'x',\n  },\n);\n\nconsole.log(operation);"
           }
         ]
       }
@@ -3196,12 +3244,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nfolder = client.knowledge_bases.folders.create(\n    knowledge_base_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    path=\"x\",\n)\n\nprint(folder)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nfolder = client.knowledge_bases.folders.create_v1_id_post(\n    knowledge_base_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    path=\"x\",\n)\n\nprint(folder)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst create = await client.knowledgeBases.folders.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  path: 'x',\n});\n\nconsole.log(create);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst createV1IDPost = await client.knowledgeBases.folders.createV1IDPost(\n  '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  {\n    path: 'x',\n  },\n);\n\nconsole.log(createV1IDPost);"
           }
         ]
       },
@@ -3289,12 +3337,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nfolder = client.knowledge_bases.folders.delete(\n    knowledge_base_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    path=\"x\",\n    recursive=False,\n)\n\nprint(folder)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nfolder = client.knowledge_bases.folders.delete_v1_id_delete(\n    knowledge_base_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    path=\"x\",\n    recursive=False,\n)\n\nprint(folder)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst delete_ = await client.knowledgeBases.folders.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  path: 'x',\n  recursive: false,\n});\n\nconsole.log(delete_);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst deleteV1IDDelete = await client.knowledgeBases.folders.deleteV1IDDelete(\n  '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  {\n    path: 'x',\n    recursive: false,\n  },\n);\n\nconsole.log(deleteV1IDDelete);"
           }
         ]
       }
@@ -3400,7 +3448,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nintegration = client.integrations.list_v1_get()\n\nprint(integration)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listV1Get = await client.integrations.listV1Get();\n\nconsole.log(listV1Get);"
+          }
+        ]
       }
     },
     "/v1/documents": {
@@ -3518,7 +3578,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ndocument = client.documents.list_v1_get(\n    organization_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    limit=20,\n)\n\nprint(document)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listV1Get = await client.documents.listV1Get({\n  organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  limit: 20,\n});\n\nconsole.log(listV1Get);"
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -3567,7 +3639,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ndocument = client.documents.create_v1_post(\n    id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    organization_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    name=\"x\",\n    content_markdown=\"x\",\n)\n\nprint(document)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst createV1Post = await client.documents.createV1Post({\n  id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  name: 'x',\n  content_markdown: 'x',\n});\n\nconsole.log(createV1Post);"
+          }
+        ]
       }
     },
     "/v1/documents/{document_id}": {
@@ -3669,7 +3753,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ndocument = client.documents.read_v1_id_get(\n    document_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    organization_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    include_tabs=True,\n    include_comments=True,\n    preview=True,\n)\n\nprint(document)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst readV1IDGet = await client.documents.readV1IDGet('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  include_tabs: true,\n  include_comments: true,\n  preview: true,\n});\n\nconsole.log(readV1IDGet);"
+          }
+        ]
       },
       "patch": {
         "tags": [
@@ -3732,7 +3828,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ndocument = client.documents.patch_v1_id_patch(\n    document_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    organization_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(document)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst patchV1IDPatch = await client.documents.patchV1IDPatch('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n});\n\nconsole.log(patchV1IDPatch);"
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -3789,7 +3897,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nclient.documents.delete_v1_id_delete(\n    document_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    organization_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nawait client.documents.deleteV1IDDelete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n});"
+          }
+        ]
       }
     },
     "/v1/documents/{document_id}/content": {
@@ -3854,7 +3974,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ndocument = client.documents.replace_content_v1_id_content_post(\n    document_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    organization_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    content_markdown=\"\",\n    skip_title_sync=False,\n)\n\nprint(document)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst replaceContentV1IDContentPost = await client.documents.replaceContentV1IDContentPost(\n  '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  {\n    organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    content_markdown: '',\n    skip_title_sync: false,\n  },\n);\n\nconsole.log(replaceContentV1IDContentPost);"
+          }
+        ]
       }
     },
     "/v1/ads/openai-ads/ad-account/insights": {
@@ -4040,7 +4172,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nopen_ai_ad = client.open_ai_ads.list_account_insights_v1_openai_account_insights_get()\n\nprint(open_ai_ad)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listAccountInsightsV1OpenAIAccountInsightsGet =\n  await client.openAIAds.listAccountInsightsV1OpenAIAccountInsightsGet();\n\nconsole.log(listAccountInsightsV1OpenAIAccountInsightsGet);"
+          }
+        ]
       }
     },
     "/v1/projects": {
@@ -4134,7 +4278,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nproject = client.projects.list_v1_get(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    limit=100,\n    offset=0,\n)\n\nprint(project)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listV1Get = await client.projects.listV1Get({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  limit: 100,\n  offset: 0,\n});\n\nconsole.log(listV1Get);"
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -4181,7 +4337,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nproject = client.projects.create_v1_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(project)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst createV1Post = await client.projects.createV1Post({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n});\n\nconsole.log(createV1Post);"
+          }
+        ]
       }
     },
     "/v1/projects/generations": {
@@ -4275,7 +4443,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ngeneration = client.projects.generations.list_v1_get(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    limit=100,\n    offset=0,\n)\n\nprint(generation)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listV1Get = await client.projects.generations.listV1Get({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  limit: 100,\n  offset: 0,\n});\n\nconsole.log(listV1Get);"
+          }
+        ]
       }
     },
     "/v1/projects/generations/{run_id}": {
@@ -4340,7 +4520,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ngeneration = client.projects.generations.retrieve_status_v1_run_get(\n    run_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(generation)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst retrieveStatusV1RunGet = await client.projects.generations.retrieveStatusV1RunGet(\n  '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  {\n    category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  },\n);\n\nconsole.log(retrieveStatusV1RunGet);"
+          }
+        ]
       }
     },
     "/v1/projects/{project_id}": {
@@ -4405,7 +4597,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nproject = client.projects.retrieve_v1_get(\n    project_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(project)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst retrieveV1Get = await client.projects.retrieveV1Get('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n});\n\nconsole.log(retrieveV1Get);"
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -4461,7 +4665,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nclient.projects.delete_v1_id_delete(\n    project_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nawait client.projects.deleteV1IDDelete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n});"
+          }
+        ]
       }
     },
     "/v1/projects/{project_id}/status": {
@@ -4526,7 +4742,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nproject = client.projects.list_status_v1_status_get(\n    project_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(project)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listStatusV1StatusGet = await client.projects.listStatusV1StatusGet(\n  '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  {\n    category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  },\n);\n\nconsole.log(listStatusV1StatusGet);"
+          }
+        ]
       }
     },
     "/v1/projects/{project_id}/archive": {
@@ -4608,7 +4836,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nproject = client.projects.archive_v1_id_archive_post(\n    project_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(project)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst archiveV1IDArchivePost = await client.projects.archiveV1IDArchivePost(\n  '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  {\n    category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  },\n);\n\nconsole.log(archiveV1IDArchivePost);"
+          }
+        ]
       }
     },
     "/v1/projects/{project_id}/unarchive": {
@@ -4673,7 +4913,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nproject = client.projects.unarchive_v1_id_unarchive_post(\n    project_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(project)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst unarchiveV1IDUnarchivePost = await client.projects.unarchiveV1IDUnarchivePost(\n  '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  {\n    category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  },\n);\n\nconsole.log(unarchiveV1IDUnarchivePost);"
+          }
+        ]
       }
     },
     "/v1/projects/{project_id}/tasks": {
@@ -4738,7 +4990,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ntask = client.projects.tasks.list_v1_id_get(\n    project_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(task)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listV1IDGet = await client.projects.tasks.listV1IDGet('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n});\n\nconsole.log(listV1IDGet);"
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -4811,7 +5075,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ntask = client.projects.tasks.create_v1_id_post(\n    project_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    title=\"x\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(task)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst createV1IDPost = await client.projects.tasks.createV1IDPost('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  title: 'x',\n});\n\nconsole.log(createV1IDPost);"
+          }
+        ]
       }
     },
     "/v1/projects/{project_id}/tasks/{task_id}": {
@@ -4888,7 +5164,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ntask = client.projects.tasks.retrieve_v1_get(\n    project_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    task_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(task)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst retrieveV1Get = await client.projects.tasks.retrieveV1Get('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n});\n\nconsole.log(retrieveV1Get);"
+          }
+        ]
       },
       "patch": {
         "tags": [
@@ -4973,7 +5261,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ntask = client.projects.tasks.update_v1_id_id_patch(\n    project_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    task_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(task)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst updateV1IDIDPatch = await client.projects.tasks.updateV1IDIDPatch(\n  '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  {\n    project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  },\n);\n\nconsole.log(updateV1IDIDPatch);"
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -5041,7 +5341,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nclient.projects.tasks.delete_v1_id_id_delete(\n    project_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    task_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nawait client.projects.tasks.deleteV1IDIDDelete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n});"
+          }
+        ]
       }
     },
     "/v1/projects/{project_id}/tasks/{task_id}/status": {
@@ -5128,7 +5440,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ntask = client.projects.tasks.update_status_v1_id_id_status_post(\n    project_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    task_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    status=\"not_started\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(task)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst updateStatusV1IDIDStatusPost = await client.projects.tasks.updateStatusV1IDIDStatusPost(\n  '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  {\n    project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    status: 'not_started',\n  },\n);\n\nconsole.log(updateStatusV1IDIDStatusPost);"
+          }
+        ]
       }
     },
     "/v1/reports/query-fanouts": {
@@ -5182,12 +5506,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nreport = client.reports.query_fanouts(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nprint(report)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nquery_fanout = client.reports.query_fanouts.v1_post(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nprint(query_fanout)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst report = await client.reports.queryFanouts({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nconsole.log(report);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst response = await client.reports.queryFanouts.v1Post({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nconsole.log(response);"
           }
         ]
       }
@@ -5243,12 +5567,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.visibility(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n    include_asset_only=False,\n    rank_by=\"visibility_score\",\n    include_position_frequency=False,\n)\n\nprint(shopping)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.visibility_v1_visibility_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n    include_asset_only=False,\n    rank_by=\"visibility_score\",\n    include_position_frequency=False,\n)\n\nprint(shopping)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst visibility = await client.reports.shopping.visibility({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n  include_asset_only: false,\n  rank_by: 'visibility_score',\n  include_position_frequency: false,\n});\n\nconsole.log(visibility);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst rows = await client.reports.shopping.visibilityV1VisibilityPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n  include_asset_only: false,\n  rank_by: 'visibility_score',\n  include_position_frequency: false,\n});\n\nconsole.log(rows);"
           }
         ]
       }
@@ -5304,12 +5628,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.item_visibility(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n    merchant_filter_type=\"any\",\n    include_competitors=False,\n    competitor_limit=5,\n    include_position_frequency=False,\n)\n\nprint(shopping)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.item_visibility_v1_item_visibility_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n    merchant_filter_type=\"any\",\n    include_competitors=False,\n    competitor_limit=5,\n    include_position_frequency=False,\n)\n\nprint(shopping)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst itemVisibility = await client.reports.shopping.itemVisibility({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n  merchant_filter_type: 'any',\n  include_competitors: false,\n  competitor_limit: 5,\n  include_position_frequency: false,\n});\n\nconsole.log(itemVisibility);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst rows = await client.reports.shopping.itemVisibilityV1ItemVisibilityPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n  merchant_filter_type: 'any',\n  include_competitors: false,\n  competitor_limit: 5,\n  include_position_frequency: false,\n});\n\nconsole.log(rows);"
           }
         ]
       }
@@ -5365,12 +5689,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.merchant_distribution(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n)\n\nprint(shopping)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.merchant_distribution_v1_merchant_distribution_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n)\n\nprint(shopping)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst merchantDistribution = await client.reports.shopping.merchantDistribution({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n});\n\nconsole.log(merchantDistribution);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst rows = await client.reports.shopping.merchantDistributionV1MerchantDistributionPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n});\n\nconsole.log(rows);"
           }
         ]
       }
@@ -5426,12 +5750,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.merchant_visibility_by_brand(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n    include_brand_only=False,\n)\n\nprint(shopping)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.merchant_visibility_by_brand_v1_merchant_visibility_by_brand_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n    include_brand_only=False,\n)\n\nprint(shopping)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst merchantVisibilityByBrand = await client.reports.shopping.merchantVisibilityByBrand({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n  include_brand_only: false,\n});\n\nconsole.log(merchantVisibilityByBrand);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst rows = await client.reports.shopping.merchantVisibilityByBrandV1MerchantVisibilityByBrandPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n  include_brand_only: false,\n});\n\nconsole.log(rows);"
           }
         ]
       }
@@ -5487,12 +5811,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.merchant_by_items(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n)\n\nprint(shopping)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.merchant_by_items_v1_merchant_by_items_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n)\n\nprint(shopping)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst merchantByItems = await client.reports.shopping.merchantByItems({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n});\n\nconsole.log(merchantByItems);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst rows = await client.reports.shopping.merchantByItemsV1MerchantByItemsPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n});\n\nconsole.log(rows);"
           }
         ]
       }
@@ -5548,12 +5872,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.all_items_with_merchants(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n    merchant_filter_type=\"any\",\n    rank_by=\"visibility\",\n    sort_order=\"desc\",\n)\n\nprint(shopping)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.all_items_with_merchants_v1_all_items_with_merchants_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n    merchant_filter_type=\"any\",\n    rank_by=\"visibility\",\n    sort_order=\"desc\",\n)\n\nprint(shopping)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst allItemsWithMerchants = await client.reports.shopping.allItemsWithMerchants({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n  merchant_filter_type: 'any',\n  rank_by: 'visibility',\n  sort_order: 'desc',\n});\n\nconsole.log(allItemsWithMerchants);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst rows = await client.reports.shopping.allItemsWithMerchantsV1AllItemsWithMerchantsPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n  merchant_filter_type: 'any',\n  rank_by: 'visibility',\n  sort_order: 'desc',\n});\n\nconsole.log(rows);"
           }
         ]
       }
@@ -5609,12 +5933,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.trigger_rate(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n)\n\nprint(shopping)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.trigger_rate_v1_trigger_rate_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n)\n\nprint(shopping)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst triggerRate = await client.reports.shopping.triggerRate({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n});\n\nconsole.log(triggerRate);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst rows = await client.reports.shopping.triggerRateV1TriggerRatePost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n});\n\nconsole.log(rows);"
           }
         ]
       }
@@ -5665,6 +5989,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.triggered_prompts_v1_triggered_prompts_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n)\n\nprint(shopping)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst rows = await client.reports.shopping.triggeredPromptsV1TriggeredPromptsPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n});\n\nconsole.log(rows);"
+          }
         ]
       }
     },
@@ -5713,6 +6049,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.triggered_topics_v1_triggered_topics_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n)\n\nprint(shopping)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst rows = await client.reports.shopping.triggeredTopicsV1TriggeredTopicsPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n});\n\nconsole.log(rows);"
           }
         ]
       }
@@ -5768,12 +6116,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.merchant_share(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n)\n\nprint(shopping)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.merchant_share_v1_merchant_share_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n)\n\nprint(shopping)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst merchantShare = await client.reports.shopping.merchantShare({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n});\n\nconsole.log(merchantShare);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst rows = await client.reports.shopping.merchantShareV1MerchantSharePost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n});\n\nconsole.log(rows);"
           }
         ]
       }
@@ -5829,12 +6177,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.product_merchant_urls(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    product_names=[],\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nprint(shopping)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.product_merchant_urls_v1_product_merchant_urls_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    product_names=[],\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n)\n\nprint(shopping)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst productMerchantURLs = await client.reports.shopping.productMerchantURLs({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  product_names: [],\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nconsole.log(productMerchantURLs);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst rows = await client.reports.shopping.productMerchantURLsV1ProductMerchantURLsPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  product_names: [],\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n});\n\nconsole.log(rows);"
           }
         ]
       }
@@ -5890,12 +6238,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.executions(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n    analysis_filter_type=\"any\",\n)\n\nprint(shopping)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.executions_v1_executions_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    end_date=\"2024-01-01T00:00:00.000Z\",\n    date_interval=\"day\",\n    include_count=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    exclude_topic_ids=False,\n    analysis_filter_type=\"any\",\n)\n\nprint(shopping)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst executions = await client.reports.shopping.executions({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n  analysis_filter_type: 'any',\n});\n\nconsole.log(executions);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst rows = await client.reports.shopping.executionsV1ExecutionsPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '2024-01-01T00:00:00.000Z',\n  end_date: '2024-01-01T00:00:00.000Z',\n  date_interval: 'day',\n  include_count: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  exclude_topic_ids: false,\n  analysis_filter_type: 'any',\n});\n\nconsole.log(rows);"
           }
         ]
       }
@@ -5993,12 +6341,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nagent = client.agents.list(\n    limit=100,\n)\n\nprint(agent)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nagent = client.agents.list_v1_get(\n    limit=100,\n)\n\nprint(agent)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst list = await client.agents.list({\n  limit: 100,\n});\n\nconsole.log(list);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listV1Get = await client.agents.listV1Get({\n  limit: 100,\n});\n\nconsole.log(listV1Get);"
           }
         ]
       },
@@ -6049,7 +6397,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nagent = client.agents.create_v1_post(\n    organization_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    name=\"x\",\n)\n\nprint(agent)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst agent = await client.agents.createV1Post({\n  organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  name: 'x',\n});\n\nconsole.log(agent);"
+          }
+        ]
       }
     },
     "/v1/agents/{agent_id}/publish": {
@@ -6103,7 +6463,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nagent = client.agents.publish_v1_id_publish_post(\n    agent_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(agent)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst agent = await client.agents.publishV1IDPublishPost('7c9e6679-7425-40de-944b-e07fc1f90ae7');\n\nconsole.log(agent);"
+          }
+        ]
       }
     },
     "/v1/agents/node-types": {
@@ -6142,6 +6514,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nnode_type = client.agents.node_types.list_v1_get()\n\nprint(node_type)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listV1Get = await client.agents.nodeTypes.listV1Get();\n\nconsole.log(listV1Get);"
           }
         ]
       }
@@ -6196,7 +6580,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nnode_type = client.agents.node_types.list_schema_v1_schema_get(\n    node_type=\"nodeType\",\n)\n\nprint(node_type)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listSchemaV1SchemaGet = await client.agents.nodeTypes.listSchemaV1SchemaGet('nodeType');\n\nconsole.log(listSchemaV1SchemaGet);"
+          }
+        ]
       }
     },
     "/v1/agents/{agent_id}": {
@@ -6265,12 +6661,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nagent = client.agents.retrieve(\n    agent_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(agent)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nagent = client.agents.retrieve_v1_get(\n    agent_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(agent)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst retrieve = await client.agents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7');\n\nconsole.log(retrieve);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst retrieveV1Get = await client.agents.retrieveV1Get('7c9e6679-7425-40de-944b-e07fc1f90ae7');\n\nconsole.log(retrieveV1Get);"
           }
         ]
       },
@@ -6335,7 +6731,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nagent = client.agents.update_v1_id_patch(\n    agent_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    graph={},\n)\n\nprint(agent)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst updateV1IDPatch = await client.agents.updateV1IDPatch('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  graph: {},\n});\n\nconsole.log(updateV1IDPatch);"
+          }
+        ]
       }
     },
     "/v1/agents/{agent_id}/graph": {
@@ -6399,7 +6807,19 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nagent = client.agents.list_graph_v1_graph_get(\n    agent_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(agent)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst listGraphV1GraphGet = await client.agents.listGraphV1GraphGet('7c9e6679-7425-40de-944b-e07fc1f90ae7');\n\nconsole.log(listGraphV1GraphGet);"
+          }
+        ]
       }
     },
     "/v1/agents/{agent_id}/runs": {
@@ -6476,12 +6896,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nrun = client.agents.runs.create(\n    agent_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(run)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nrun = client.agents.runs.v1_id_post(\n    agent_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(run)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst create = await client.agents.runs.create('7c9e6679-7425-40de-944b-e07fc1f90ae7');\n\nconsole.log(create);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst v1IDPost = await client.agents.runs.v1IDPost('7c9e6679-7425-40de-944b-e07fc1f90ae7');\n\nconsole.log(v1IDPost);"
           }
         ]
       }
@@ -6566,12 +6986,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nrun = client.agents.runs.retrieve(\n    agent_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    run_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    verbose=False,\n)\n\nprint(run)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nrun = client.agents.runs.retrieve_v1_get(\n    agent_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    run_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    verbose=False,\n)\n\nprint(run)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst retrieve = await client.agents.runs.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  agent_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  verbose: false,\n});\n\nconsole.log(retrieve);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst retrieveV1Get = await client.agents.runs.retrieveV1Get('7c9e6679-7425-40de-944b-e07fc1f90ae7', {\n  agent_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  verbose: false,\n});\n\nconsole.log(retrieveV1Get);"
           }
         ]
       }
@@ -6622,6 +7042,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\naccuracy = client.reports.accuracy.overview_v1_overview_post(\n    start_date=\"\",\n    end_date=\"\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    exclude_topic_ids=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    include_no_persona=False,\n    group_by=\"period\",\n)\n\nprint(accuracy)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst overviewV1OverviewPost = await client.reports.accuracy.overviewV1OverviewPost({\n  start_date: '',\n  end_date: '',\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  exclude_topic_ids: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  include_no_persona: false,\n  group_by: 'period',\n});\n\nconsole.log(overviewV1OverviewPost);"
+          }
         ]
       }
     },
@@ -6671,6 +7103,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\naccuracy = client.reports.accuracy.breakdown_v1_breakdown_post(\n    start_date=\"\",\n    end_date=\"\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    exclude_topic_ids=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    include_no_persona=False,\n    breakdown_by=\"citation\",\n    limit=10,\n    offset=0,\n    sort_by=\"citationShare\",\n    sort_order=\"desc\",\n)\n\nprint(accuracy)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst breakdownV1BreakdownPost = await client.reports.accuracy.breakdownV1BreakdownPost({\n  start_date: '',\n  end_date: '',\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  exclude_topic_ids: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  include_no_persona: false,\n  breakdown_by: 'citation',\n  limit: 10,\n  offset: 0,\n  sort_by: 'citationShare',\n  sort_order: 'desc',\n});\n\nconsole.log(breakdownV1BreakdownPost);"
+          }
         ]
       }
     },
@@ -6719,6 +7163,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\naccuracy = client.reports.accuracy.citation_analysis_v1_citation_analysis_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    clean_href=\"\",\n    start_date=\"\",\n    end_date=\"\",\n)\n\nprint(accuracy)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst citationAnalysisV1CitationAnalysisPost =\n  await client.reports.accuracy.citationAnalysisV1CitationAnalysisPost({\n    category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    clean_href: '',\n    start_date: '',\n    end_date: '',\n  });\n\nconsole.log(citationAnalysisV1CitationAnalysisPost);"
           }
         ]
       }
@@ -6773,6 +7229,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\naccuracy = client.reports.accuracy.topic_ids_v1_topic_ids_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n)\n\nprint(accuracy)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst topicIDsV1TopicIDsPost = await client.reports.accuracy.topicIDsV1TopicIDsPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n});\n\nconsole.log(topicIDsV1TopicIDsPost);"
+          }
         ]
       }
     },
@@ -6821,6 +7289,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\naccuracy = client.reports.accuracy.inaccurate_themes_v1_inaccurate_themes_post(\n    start_date=\"\",\n    end_date=\"\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    exclude_topic_ids=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    include_no_persona=False,\n    limit=10,\n    offset=0,\n    sort_by=\"response_share\",\n    sort_order=\"desc\",\n)\n\nprint(accuracy)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst inaccurateThemesV1InaccurateThemesPost =\n  await client.reports.accuracy.inaccurateThemesV1InaccurateThemesPost({\n    start_date: '',\n    end_date: '',\n    category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    exclude_topic_ids: false,\n    tag_filter_type: 'any',\n    include_no_tag: false,\n    include_no_persona: false,\n    limit: 10,\n    offset: 0,\n    sort_by: 'response_share',\n    sort_order: 'desc',\n  });\n\nconsole.log(inaccurateThemesV1InaccurateThemesPost);"
           }
         ]
       }
@@ -6871,6 +7351,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\naccuracy = client.reports.accuracy.inaccurate_clusters_v1_inaccurate_clusters_post(\n    start_date=\"\",\n    end_date=\"\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    exclude_topic_ids=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    include_no_persona=False,\n    limit=5000,\n    offset=0,\n    include_models=False,\n)\n\nprint(accuracy)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst inaccurateClustersV1InaccurateClustersPost =\n  await client.reports.accuracy.inaccurateClustersV1InaccurateClustersPost({\n    start_date: '',\n    end_date: '',\n    category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    exclude_topic_ids: false,\n    tag_filter_type: 'any',\n    include_no_tag: false,\n    include_no_persona: false,\n    limit: 5000,\n    offset: 0,\n    include_models: false,\n  });\n\nconsole.log(inaccurateClustersV1InaccurateClustersPost);"
+          }
         ]
       }
     },
@@ -6919,6 +7411,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\naccuracy = client.reports.accuracy.inaccuracy_drivers_v1_inaccuracy_drivers_post(\n    start_date=\"\",\n    end_date=\"\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    exclude_topic_ids=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    include_no_persona=False,\n    limit=5,\n)\n\nprint(accuracy)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst inaccuracyDriversV1InaccuracyDriversPost =\n  await client.reports.accuracy.inaccuracyDriversV1InaccuracyDriversPost({\n    start_date: '',\n    end_date: '',\n    category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    exclude_topic_ids: false,\n    tag_filter_type: 'any',\n    include_no_tag: false,\n    include_no_persona: false,\n    limit: 5,\n  });\n\nconsole.log(inaccuracyDriversV1InaccuracyDriversPost);"
           }
         ]
       }
@@ -6969,6 +7473,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\naccuracy = client.reports.accuracy.top_inaccurate_claims_v1_top_inaccurate_claims_post(\n    start_date=\"\",\n    end_date=\"\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    exclude_topic_ids=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    include_no_persona=False,\n    limit=5,\n)\n\nprint(accuracy)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst topInaccurateClaimsV1TopInaccurateClaimsPost =\n  await client.reports.accuracy.topInaccurateClaimsV1TopInaccurateClaimsPost({\n    start_date: '',\n    end_date: '',\n    category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    exclude_topic_ids: false,\n    tag_filter_type: 'any',\n    include_no_tag: false,\n    include_no_persona: false,\n    limit: 5,\n  });\n\nconsole.log(topInaccurateClaimsV1TopInaccurateClaimsPost);"
+          }
         ]
       }
     },
@@ -7017,6 +7533,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\naccuracy = client.reports.accuracy.claim_breakdown_v1_claim_breakdown_post(\n    start_date=\"\",\n    end_date=\"\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    exclude_topic_ids=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    include_no_persona=False,\n    cluster_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(accuracy)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst claimBreakdownV1ClaimBreakdownPost = await client.reports.accuracy.claimBreakdownV1ClaimBreakdownPost({\n  start_date: '',\n  end_date: '',\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  exclude_topic_ids: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  include_no_persona: false,\n  cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n});\n\nconsole.log(claimBreakdownV1ClaimBreakdownPost);"
           }
         ]
       }
@@ -7067,6 +7595,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\naccuracy = client.reports.accuracy.claim_citations_v1_claim_citations_post(\n    start_date=\"\",\n    end_date=\"\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    exclude_topic_ids=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    include_no_persona=False,\n    cluster_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    limit=10,\n    offset=0,\n    sort_order=\"desc\",\n)\n\nprint(accuracy)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst claimCitationsV1ClaimCitationsPost = await client.reports.accuracy.claimCitationsV1ClaimCitationsPost({\n  start_date: '',\n  end_date: '',\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  exclude_topic_ids: false,\n  tag_filter_type: 'any',\n  include_no_tag: false,\n  include_no_persona: false,\n  cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  limit: 10,\n  offset: 0,\n  sort_order: 'desc',\n});\n\nconsole.log(claimCitationsV1ClaimCitationsPost);"
+          }
         ]
       }
     },
@@ -7115,6 +7655,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\naccuracy = client.reports.accuracy.cluster_example_runs_v1_cluster_example_runs_post(\n    start_date=\"\",\n    end_date=\"\",\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    exclude_topic_ids=False,\n    tag_filter_type=\"any\",\n    include_no_tag=False,\n    include_no_persona=False,\n    cluster_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    limit=20,\n    offset=0,\n)\n\nprint(accuracy)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst clusterExampleRunsV1ClusterExampleRunsPost =\n  await client.reports.accuracy.clusterExampleRunsV1ClusterExampleRunsPost({\n    start_date: '',\n    end_date: '',\n    category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    exclude_topic_ids: false,\n    tag_filter_type: 'any',\n    include_no_tag: false,\n    include_no_persona: false,\n    cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    limit: 20,\n    offset: 0,\n  });\n\nconsole.log(clusterExampleRunsV1ClusterExampleRunsPost);"
           }
         ]
       }
@@ -7165,6 +7717,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\naccuracy = client.reports.accuracy.cluster_verification_pairs_v1_cluster_verification_pairs_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    cluster_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(accuracy)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst clusterVerificationPairsV1ClusterVerificationPairsPost =\n  await client.reports.accuracy.clusterVerificationPairsV1ClusterVerificationPairsPost({\n    category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  });\n\nconsole.log(clusterVerificationPairsV1ClusterVerificationPairsPost);"
+          }
         ]
       }
     },
@@ -7213,6 +7777,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\naccuracy = client.reports.accuracy.factcheck_setup_status_v1_factcheck_setup_status_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n)\n\nprint(accuracy)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst factcheckSetupStatusV1FactcheckSetupStatusPost =\n  await client.reports.accuracy.factcheckSetupStatusV1FactcheckSetupStatusPost({\n    category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  });\n\nconsole.log(factcheckSetupStatusV1FactcheckSetupStatusPost);"
           }
         ]
       }
@@ -7270,12 +7846,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nreport = client.reports.get_referrals_report_v2(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    domain=\"\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    timezone=\"UTC\",\n)\n\nprint(report)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nreferral = client.reports.referrals.create_v2_v2_post(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    domain=\"\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    timezone=\"UTC\",\n)\n\nprint(referral)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst report = await client.reports.getReferralsReportV2({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  domain: '',\n  start_date: '2024-01-01T00:00:00.000Z',\n  timezone: 'UTC',\n});\n\nconsole.log(report);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst response = await client.reports.referrals.createV2V2Post({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  domain: '',\n  start_date: '2024-01-01T00:00:00.000Z',\n  timezone: 'UTC',\n});\n\nconsole.log(response);"
           }
         ]
       }
@@ -7333,12 +7909,12 @@
           {
             "lang": "Python",
             "label": "Python",
-            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nreport = client.reports.get_bots_report_v2(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    domain=\"\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    timezone=\"UTC\",\n)\n\nprint(report)"
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nbot = client.reports.bots.create_v2_v2_post(\n    date_interval=\"day\",\n    dimensions=[],\n    metrics=[],\n    order_by={},\n    domain=\"\",\n    start_date=\"2024-01-01T00:00:00.000Z\",\n    timezone=\"UTC\",\n)\n\nprint(bot)"
           },
           {
             "lang": "TypeScript",
             "label": "TypeScript",
-            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n});\n\nconst report = await client.reports.getBotsReportV2({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  domain: '',\n  start_date: '2024-01-01T00:00:00.000Z',\n  timezone: 'UTC',\n});\n\nconsole.log(report);"
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst response = await client.reports.bots.createV2V2Post({\n  date_interval: 'day',\n  dimensions: [],\n  metrics: [],\n  order_by: {},\n  domain: '',\n  start_date: '2024-01-01T00:00:00.000Z',\n  timezone: 'UTC',\n});\n\nconsole.log(response);"
           }
         ]
       }
@@ -7389,6 +7965,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nvisibility = client.reports.visibility.query_v2_v2_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n    interval=\"day\",\n    scope=\"owned\",\n)\n\nprint(visibility)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst queryV2V2Post = await client.reports.visibility.queryV2V2Post({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n  interval: 'day',\n  scope: 'owned',\n});\n\nconsole.log(queryV2V2Post);"
           }
         ]
       }
@@ -7449,6 +8037,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nstream = client.reports.visibility.stream_v2_v2_stream_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n    interval=\"day\",\n    scope=\"owned\",\n)\n\nfor event in stream:\n    print(event)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst stream = await client.reports.visibility.streamV2V2StreamPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n  interval: 'day',\n  scope: 'owned',\n});\n\nfor await (const event of stream) {\n  console.log(event);\n}"
+          }
         ]
       }
     },
@@ -7498,6 +8098,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\ncitation = client.reports.citations.query_v2_v2_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n    entity=\"domain\",\n    interval=\"day\",\n    scope=\"all\",\n)\n\nprint(citation)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst queryV2V2Post = await client.reports.citations.queryV2V2Post({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n  entity: 'domain',\n  interval: 'day',\n  scope: 'all',\n});\n\nconsole.log(queryV2V2Post);"
           }
         ]
       }
@@ -7558,6 +8170,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nstream = client.reports.citations.stream_v2_v2_stream_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n    entity=\"domain\",\n    interval=\"day\",\n    scope=\"all\",\n)\n\nfor event in stream:\n    print(event)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst stream = await client.reports.citations.streamV2V2StreamPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n  entity: 'domain',\n  interval: 'day',\n  scope: 'all',\n});\n\nfor await (const event of stream) {\n  console.log(event);\n}"
+          }
         ]
       }
     },
@@ -7607,6 +8231,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nsentiment = client.reports.sentiment.query_v2_v2_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    asset=\"\",\n    start_date=\"\",\n    end_date=\"\",\n    interval=\"day\",\n    include_cited_websites=False,\n)\n\nprint(sentiment)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst queryV2V2Post = await client.reports.sentiment.queryV2V2Post({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  asset: '',\n  start_date: '',\n  end_date: '',\n  interval: 'day',\n  include_cited_websites: false,\n});\n\nconsole.log(queryV2V2Post);"
           }
         ]
       }
@@ -7667,6 +8303,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nstream = client.reports.sentiment.stream_v2_v2_stream_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    asset=\"\",\n    start_date=\"\",\n    end_date=\"\",\n    interval=\"day\",\n    include_cited_websites=False,\n)\n\nfor event in stream:\n    print(event)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst stream = await client.reports.sentiment.streamV2V2StreamPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  asset: '',\n  start_date: '',\n  end_date: '',\n  interval: 'day',\n  include_cited_websites: false,\n});\n\nfor await (const event of stream) {\n  console.log(event);\n}"
+          }
         ]
       }
     },
@@ -7716,6 +8364,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nquery_fanout = client.reports.query_fanouts.v2_v2_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n    interval=\"day\",\n)\n\nprint(query_fanout)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst v2V2Post = await client.reports.queryFanouts.v2V2Post({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n  interval: 'day',\n});\n\nconsole.log(v2V2Post);"
           }
         ]
       }
@@ -7776,6 +8436,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nstream = client.reports.query_fanouts.stream_v2_v2_stream_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n    interval=\"day\",\n)\n\nfor event in stream:\n    print(event)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst stream = await client.reports.queryFanouts.streamV2V2StreamPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n  interval: 'day',\n});\n\nfor await (const event of stream) {\n  console.log(event);\n}"
+          }
         ]
       }
     },
@@ -7825,6 +8497,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nfactcheck = client.reports.factcheck.query_scores_v2_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n)\n\nprint(factcheck)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst queryScoresV2Post = await client.reports.factcheck.queryScoresV2Post({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n});\n\nconsole.log(queryScoresV2Post);"
           }
         ]
       }
@@ -7885,6 +8569,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nstream = client.reports.factcheck.stream_scores_v2_stream_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n)\n\nfor event in stream:\n    print(event)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst stream = await client.reports.factcheck.streamScoresV2StreamPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n});\n\nfor await (const event of stream) {\n  console.log(event);\n}"
+          }
         ]
       }
     },
@@ -7934,6 +8630,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nfactcheck = client.reports.factcheck.query_claims_v2_claims_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n)\n\nprint(factcheck)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst queryClaimsV2ClaimsPost = await client.reports.factcheck.queryClaimsV2ClaimsPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n});\n\nconsole.log(queryClaimsV2ClaimsPost);"
           }
         ]
       }
@@ -7994,6 +8702,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nstream = client.reports.factcheck.stream_claims_v2_claims_stream_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n)\n\nfor event in stream:\n    print(event)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst stream = await client.reports.factcheck.streamClaimsV2ClaimsStreamPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n});\n\nfor await (const event of stream) {\n  console.log(event);\n}"
+          }
         ]
       }
     },
@@ -8044,6 +8764,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nsocial = client.reports.social.query_youtube_channels_v2_youtube_channels_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n)\n\nprint(social)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst queryYoutubeChannelsV2YoutubeChannelsPost =\n  await client.reports.social.queryYoutubeChannelsV2YoutubeChannelsPost({\n    category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    start_date: '',\n    end_date: '',\n  });\n\nconsole.log(queryYoutubeChannelsV2YoutubeChannelsPost);"
           }
         ]
       }
@@ -8096,6 +8828,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nsocial = client.reports.social.query_youtube_videos_v2_youtube_videos_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n    attribution=\"attributed\",\n)\n\nprint(social)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst queryYoutubeVideosV2YoutubeVideosPost =\n  await client.reports.social.queryYoutubeVideosV2YoutubeVideosPost({\n    category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    start_date: '',\n    end_date: '',\n    attribution: 'attributed',\n  });\n\nconsole.log(queryYoutubeVideosV2YoutubeVideosPost);"
+          }
         ]
       }
     },
@@ -8147,6 +8891,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nsocial = client.reports.social.query_youtube_summary_v2_youtube_summary_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n)\n\nprint(social)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst queryYoutubeSummaryV2YoutubeSummaryPost =\n  await client.reports.social.queryYoutubeSummaryV2YoutubeSummaryPost({\n    category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    start_date: '',\n    end_date: '',\n  });\n\nconsole.log(queryYoutubeSummaryV2YoutubeSummaryPost);"
+          }
         ]
       }
     },
@@ -8195,6 +8951,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nanswer = client.prompts.answers.query_v2_v2_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n)\n\nprint(answer)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst queryV2V2Post = await client.prompts.answers.queryV2V2Post({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n});\n\nconsole.log(queryV2V2Post);"
           }
         ]
       }
@@ -8254,6 +9022,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nstream = client.prompts.answers.stream_v2_v2_stream_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n)\n\nfor event in stream:\n    print(event)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst stream = await client.prompts.answers.streamV2V2StreamPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n});\n\nfor await (const event of stream) {\n  console.log(event);\n}"
+          }
         ]
       }
     },
@@ -8303,6 +9083,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.query_brands_v2_v2_brands_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n    interval=\"day\",\n    scope=\"owned\",\n)\n\nprint(shopping)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst queryBrandsV2V2BrandsPost = await client.reports.shopping.queryBrandsV2V2BrandsPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n  interval: 'day',\n  scope: 'owned',\n});\n\nconsole.log(queryBrandsV2V2BrandsPost);"
           }
         ]
       }
@@ -8363,6 +9155,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nstream = client.reports.shopping.stream_brands_v2_v2_brands_stream_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n    interval=\"day\",\n    scope=\"owned\",\n)\n\nfor event in stream:\n    print(event)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst stream = await client.reports.shopping.streamBrandsV2V2BrandsStreamPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n  interval: 'day',\n  scope: 'owned',\n});\n\nfor await (const event of stream) {\n  console.log(event);\n}"
+          }
         ]
       }
     },
@@ -8412,6 +9216,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.query_products_v2_v2_products_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n    interval=\"day\",\n    include_merchants=False,\n    competitor_limit=5,\n)\n\nprint(shopping)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst queryProductsV2V2ProductsPost = await client.reports.shopping.queryProductsV2V2ProductsPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n  interval: 'day',\n  include_merchants: false,\n  competitor_limit: 5,\n});\n\nconsole.log(queryProductsV2V2ProductsPost);"
           }
         ]
       }
@@ -8472,6 +9288,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nstream = client.reports.shopping.stream_products_v2_v2_products_stream_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n    interval=\"day\",\n    include_merchants=False,\n    competitor_limit=5,\n)\n\nfor event in stream:\n    print(event)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst stream = await client.reports.shopping.streamProductsV2V2ProductsStreamPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n  interval: 'day',\n  include_merchants: false,\n  competitor_limit: 5,\n});\n\nfor await (const event of stream) {\n  console.log(event);\n}"
+          }
         ]
       }
     },
@@ -8521,6 +9349,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.query_merchants_v2_v2_merchants_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n    interval=\"day\",\n)\n\nprint(shopping)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst queryMerchantsV2V2MerchantsPost = await client.reports.shopping.queryMerchantsV2V2MerchantsPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n  interval: 'day',\n});\n\nconsole.log(queryMerchantsV2V2MerchantsPost);"
           }
         ]
       }
@@ -8581,6 +9421,18 @@
           {
             "BearerAuth": []
           }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nstream = client.reports.shopping.stream_merchants_v2_v2_merchants_stream_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n    interval=\"day\",\n)\n\nfor event in stream:\n    print(event)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst stream = await client.reports.shopping.streamMerchantsV2V2MerchantsStreamPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n  interval: 'day',\n});\n\nfor await (const event of stream) {\n  console.log(event);\n}"
+          }
         ]
       }
     },
@@ -8630,6 +9482,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nshopping = client.reports.shopping.query_trigger_rate_v2_v2_trigger_rate_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n    interval=\"day\",\n)\n\nprint(shopping)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst queryTriggerRateV2V2TriggerRatePost = await client.reports.shopping.queryTriggerRateV2V2TriggerRatePost(\n  {\n    category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n    start_date: '',\n    end_date: '',\n    interval: 'day',\n  },\n);\n\nconsole.log(queryTriggerRateV2V2TriggerRatePost);"
           }
         ]
       }
@@ -8689,6 +9553,18 @@
           },
           {
             "BearerAuth": []
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "label": "Python",
+            "source": "import os\n\nfrom profound import Profound\n\nclient = Profound(\n    api_key=os.environ.get(\"PROFOUND_API_KEY\"),\n)\n\nstream = client.reports.shopping.stream_trigger_rate_v2_v2_trigger_rate_stream_post(\n    category_id=\"7c9e6679-7425-40de-944b-e07fc1f90ae7\",\n    start_date=\"\",\n    end_date=\"\",\n    interval=\"day\",\n)\n\nfor event in stream:\n    print(event)"
+          },
+          {
+            "lang": "TypeScript",
+            "label": "TypeScript",
+            "source": "import Profound from '@profoundai/client';\n\nconst client = new Profound({\n  apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var\n  environment: 'production',\n});\n\nconst stream = await client.reports.shopping.streamTriggerRateV2V2TriggerRateStreamPost({\n  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',\n  start_date: '',\n  end_date: '',\n  interval: 'day',\n});\n\nfor await (const event of stream) {\n  console.log(event);\n}"
           }
         ]
       }

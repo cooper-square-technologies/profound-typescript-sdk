@@ -8,20 +8,20 @@ import type * as Shared from '../shared';
 import * as DocumentsAPI from './documents';
 import {
   Documents,
-  type DocumentCreateResponse,
-  type DocumentUpdateResponse,
-  type DocumentDeleteResponse,
-  type DocumentCreateParams,
-  type DocumentUpdateParams,
-  type DocumentDeleteParams,
+  type DeleteDocumentRequest,
+  type DocumentCreateV1IDPostParams,
+  type DocumentUpdateV1IDPutParams,
+  type DocumentDeleteV1IDDeleteParams,
 } from './documents';
 import * as FoldersAPI from './folders';
 import {
   Folders,
-  type FolderCreateResponse,
-  type FolderDeleteResponse,
-  type FolderCreateParams,
-  type FolderDeleteParams,
+  type AddFolderRequest,
+  type DeleteFolderRequest,
+  type FolderCreateV1IDPostResponse,
+  type FolderDeleteV1IDDeleteResponse,
+  type FolderCreateV1IDPostParams,
+  type FolderDeleteV1IDDeleteParams,
 } from './folders';
 
 export class KnowledgeBases extends APIResource {
@@ -31,19 +31,19 @@ export class KnowledgeBases extends APIResource {
   /**
    * List knowledge bases accessible to the API key.
    *
-   * @param {KnowledgeBaseListParams} [query] - The parameters to send with the request.
+   * @param {KnowledgeBaseListV1GetParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<KnowledgeBaseListResponse>} Successful Response
+   * @returns {APIPromise<KnowledgeBaseListV1GetResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const list = await client.knowledgeBases.list();
+   * const listV1Get = await client.knowledgeBases.listV1Get();
    * ```
    */
-  list(
-    query: KnowledgeBaseListParams | null | undefined = {},
+  listV1Get(
+    query: KnowledgeBaseListV1GetParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<KnowledgeBaseListResponse> {
+  ): APIPromise<KnowledgeBaseListV1GetResponse> {
     return this._client.get('/v1/knowledge-bases', { query, ...options });
   }
 
@@ -78,7 +78,46 @@ export class KnowledgeBases extends APIResource {
   }
 }
 
-export interface KnowledgeBaseListParams {
+export interface SearchKnowledgeBaseRequest {
+  /**
+   * Search query.
+   * @minLength 1
+   */
+  query: string;
+  /**
+   * Maximum number of results to return.
+   * @minimum 1
+   * @maximum 100
+   */
+  top_k: number;
+  /**
+   * Return full page content instead of snippets.
+   * @default false
+   */
+  return_full_page?: boolean;
+  /**
+   * Optional search filters.
+   */
+  filters?: SearchKnowledgeBaseRequest.Filters | null;
+}
+
+export namespace SearchKnowledgeBaseRequest {
+  export interface Filters {
+    /**
+     * Optional tags to match. Documents with any matching tag are included.
+     * @minItems 1
+     */
+    tags?: Array<string> | null;
+    /**
+     * Optional folder paths to search within. Currently limited to one folder.
+     * @minItems 1
+     * @maxItems 1
+     */
+    folders?: Array<string> | null;
+  }
+}
+
+export interface KnowledgeBaseListV1GetParams {
   /**
    * Organization scope for API keys that can access multiple organizations.
    * @format uuid
@@ -86,18 +125,18 @@ export interface KnowledgeBaseListParams {
   organization_id?: string | null;
 }
 
-export interface KnowledgeBaseListResponse {
+export interface KnowledgeBaseListV1GetResponse {
   /**
    * Knowledge bases accessible to the API key.
    */
-  data: Array<KnowledgeBaseListResponse.Data>;
+  data: Array<KnowledgeBaseListV1GetResponse.Data>;
   /**
    * Pagination metadata.
    */
   pagination?: Shared.CursorPagination;
 }
 
-export namespace KnowledgeBaseListResponse {
+export namespace KnowledgeBaseListV1GetResponse {
   export interface Data {
     /**
      * Unique knowledge base ID.
@@ -204,27 +243,28 @@ KnowledgeBases.Folders = Folders;
 
 export declare namespace KnowledgeBases {
   export {
-    type KnowledgeBaseListResponse as KnowledgeBaseListResponse,
+    type SearchKnowledgeBaseRequest as SearchKnowledgeBaseRequest,
+    type KnowledgeBaseListV1GetResponse as KnowledgeBaseListV1GetResponse,
     type KnowledgeBaseSearchResponse as KnowledgeBaseSearchResponse,
-    type KnowledgeBaseListParams as KnowledgeBaseListParams,
+    type KnowledgeBaseListV1GetParams as KnowledgeBaseListV1GetParams,
     type KnowledgeBaseSearchParams as KnowledgeBaseSearchParams,
   };
 
   export {
     Documents as Documents,
-    type DocumentCreateResponse as DocumentCreateResponse,
-    type DocumentUpdateResponse as DocumentUpdateResponse,
-    type DocumentDeleteResponse as DocumentDeleteResponse,
-    type DocumentCreateParams as DocumentCreateParams,
-    type DocumentUpdateParams as DocumentUpdateParams,
-    type DocumentDeleteParams as DocumentDeleteParams,
+    type DeleteDocumentRequest as DeleteDocumentRequest,
+    type DocumentCreateV1IDPostParams as DocumentCreateV1IDPostParams,
+    type DocumentUpdateV1IDPutParams as DocumentUpdateV1IDPutParams,
+    type DocumentDeleteV1IDDeleteParams as DocumentDeleteV1IDDeleteParams,
   };
 
   export {
     Folders as Folders,
-    type FolderCreateResponse as FolderCreateResponse,
-    type FolderDeleteResponse as FolderDeleteResponse,
-    type FolderCreateParams as FolderCreateParams,
-    type FolderDeleteParams as FolderDeleteParams,
+    type AddFolderRequest as AddFolderRequest,
+    type DeleteFolderRequest as DeleteFolderRequest,
+    type FolderCreateV1IDPostResponse as FolderCreateV1IDPostResponse,
+    type FolderDeleteV1IDDeleteResponse as FolderDeleteV1IDDeleteResponse,
+    type FolderCreateV1IDPostParams as FolderCreateV1IDPostParams,
+    type FolderDeleteV1IDDeleteParams as FolderDeleteV1IDDeleteParams,
   };
 }

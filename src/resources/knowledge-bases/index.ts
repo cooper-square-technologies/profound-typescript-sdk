@@ -2,24 +2,25 @@
 
 export { KnowledgeBases } from './knowledge-bases';
 export type {
-  KnowledgeBaseListParams,
-  KnowledgeBaseListResponse,
+  SearchKnowledgeBaseRequest,
+  KnowledgeBaseListV1GetParams,
+  KnowledgeBaseListV1GetResponse,
   KnowledgeBaseSearchParams,
   KnowledgeBaseSearchResponse,
 } from './knowledge-bases';
 export { Documents } from './documents';
 export type {
-  DocumentCreateParams,
-  DocumentCreateResponse,
-  DocumentUpdateParams,
-  DocumentUpdateResponse,
-  DocumentDeleteParams,
-  DocumentDeleteResponse,
+  DeleteDocumentRequest,
+  DocumentCreateV1IDPostParams,
+  DocumentUpdateV1IDPutParams,
+  DocumentDeleteV1IDDeleteParams,
 } from './documents';
 export { Folders } from './folders';
 export type {
-  FolderCreateParams,
-  FolderCreateResponse,
-  FolderDeleteParams,
-  FolderDeleteResponse,
+  AddFolderRequest,
+  DeleteFolderRequest,
+  FolderCreateV1IDPostParams,
+  FolderCreateV1IDPostResponse,
+  FolderDeleteV1IDDeleteParams,
+  FolderDeleteV1IDDeleteResponse,
 } from './folders';

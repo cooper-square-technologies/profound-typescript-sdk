@@ -27,71 +27,123 @@ import { stringifyQuery } from './internal/utils/query';
 import { toFile } from './core/uploads';
 import { VERSION } from './version';
 import {
-  Organizations,
-  type NamedResource,
-  type PersonaProfile,
-  type PersonaProfileBehavior,
-  type PersonaProfileDemographics,
-  type PersonaProfileEmployment,
+  OrganizationResource,
   type Organization,
-  type Category,
-  type OrganizationRegionsResponse,
-  type OrganizationModelsResponse,
-  type OrganizationDomainsResponse,
-  type OrganizationListAssetsResponse,
-  type OrganizationGetPersonasResponse,
-  type OrganizationListResponse,
-  type OrganizationRegionsParams,
-  type OrganizationDomainsParams,
-  type OrganizationListAssetsParams,
-  type OrganizationGetPersonasParams,
-} from './resources/organizations/organizations';
-import { Prompts, type PromptAnswersResponse, type PromptAnswersParams } from './resources/prompts';
+  type CreatePromptsBody,
+  type UpdatePromptsBody,
+  type UpdatePromptStatusBody,
+  type OrganizationListV1OrgGetResponse,
+  type OrganizationListRegionsV1OrgRegionsGetResponse,
+  type OrganizationListModelsV1OrgModelsGetResponse,
+  type OrganizationListDomainsV1OrgDomainsGetResponse,
+  type OrganizationListAssetsV1OrgAssetsGetResponse,
+  type OrganizationListPersonasV1OrgPersonasGetResponse,
+  type OrganizationListCategoriesV1OrgCategoriesGetResponse,
+  type OrganizationListCategoryTopicsV1OrgCategoriesCategoryTopicsGetResponse,
+  type OrganizationListCategoryTagsV1OrgCategoriesCategoryTagsGetResponse,
+  type OrganizationListCategoryRegionsV1OrgCategoriesCategoryRegionsGetResponse,
+  type OrganizationListCategoryCitationCategoriesV1OrgCategoriesCategoryCitationCategoriesGetResponse,
+  type OrganizationListCategoryCitationTagsV1OrgCategoriesCategoryCitationTagsGetResponse,
+  type OrganizationListCategoryPromptsV1OrgCategoriesCategoryPromptsGetResponse,
+  type OrganizationCreateCategoryPromptsV1OrgCategoriesCategoryIDPromptsPostResponse,
+  type OrganizationUpdateCategoryPromptsV1OrgCategoriesCategoryIDPromptsPatchResponse,
+  type OrganizationUpdateCategoryPromptStatusV1OrgCategoriesCategoryIDPromptsStatusPatchResponse,
+  type OrganizationListCategoryAssetsV1OrgCategoriesCategoryAssetsGetResponse,
+  type OrganizationListCategoryPersonasV1OrgCategoriesCategoryPersonasGetResponse,
+  type OrganizationListRegionsV1OrgRegionsGetParams,
+  type OrganizationListDomainsV1OrgDomainsGetParams,
+  type OrganizationListAssetsV1OrgAssetsGetParams,
+  type OrganizationListPersonasV1OrgPersonasGetParams,
+  type OrganizationListCategoriesV1OrgCategoriesGetParams,
+  type OrganizationListCategoryPromptsV1OrgCategoriesCategoryPromptsGetParams,
+  type OrganizationCreateCategoryPromptsV1OrgCategoriesCategoryIDPromptsPostParams,
+  type OrganizationUpdateCategoryPromptsV1OrgCategoriesCategoryIDPromptsPatchParams,
+  type OrganizationUpdateCategoryPromptStatusV1OrgCategoriesCategoryIDPromptsStatusPatchParams,
+} from './resources/organization';
+import { Prompts } from './resources/prompts/prompts';
 import {
   Reports,
-  type ReportInfo,
-  type ReportResponse,
-  type ReportResult,
-  type TopicNameFilter,
-  type PromptIDFilter,
-  type TagNameFilter,
-  type RootDomainFilter,
-  type HostnameFilter,
-  type URLFilter,
-  type ReportCitationsResponse,
-  type ReportStreamCitationsResponse,
-  type ReportStreamVisibilityResponse,
-  type ReportStreamSentimentResponse,
-  type ReportCitationsParams,
-  type ReportVisibilityParams,
-  type ReportSentimentParams,
-  type ReportGetReferralsReportParams,
-  type ReportGetBotsReportParams,
-  type ReportGetReferralsReportV2Params,
-  type ReportGetBotsReportV2Params,
-  type ReportQueryFanoutsParams,
-  type ReportStreamCitationsParams,
-  type ReportStreamVisibilityParams,
-  type ReportStreamSentimentParams,
+  type SentimentV2ReportQuery,
+  type ReportQuerySentimentV2V1SentimentV2PostResponse,
+  type ReportQuerySentimentV2V1SentimentV2PostParams,
 } from './resources/reports/reports';
 import { Content } from './resources/content/content';
 import {
-  Agents,
-  type AgentListResponse,
-  type AgentRetrieveResponse,
-  type AgentListParams,
-  type AgentRetrieveParams,
-} from './resources/agents/agents';
-import {
   KnowledgeBases,
-  type KnowledgeBaseListResponse,
+  type SearchKnowledgeBaseRequest,
+  type KnowledgeBaseListV1GetResponse,
   type KnowledgeBaseSearchResponse,
-  type KnowledgeBaseListParams,
+  type KnowledgeBaseListV1GetParams,
   type KnowledgeBaseSearchParams,
 } from './resources/knowledge-bases/knowledge-bases';
+import {
+  Integrations,
+  type IntegrationListV1GetResponse,
+  type IntegrationListV1GetParams,
+} from './resources/integrations';
+import {
+  Documents,
+  type CreateDocumentRequest,
+  type UpdateDocumentRequest,
+  type ReplaceDocumentContentRequest,
+  type DocumentListV1GetResponse,
+  type DocumentCreateV1PostResponse,
+  type DocumentReadV1IDGetResponse,
+  type DocumentPatchV1IDPatchResponse,
+  type DocumentReplaceContentV1IDContentPostResponse,
+  type DocumentListV1GetParams,
+  type DocumentCreateV1PostParams,
+  type DocumentReadV1IDGetParams,
+  type DocumentPatchV1IDPatchParams,
+  type DocumentDeleteV1IDDeleteParams,
+  type DocumentReplaceContentV1IDContentPostParams,
+} from './resources/documents';
+import {
+  OpenAIAds,
+  type OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetResponse,
+  type OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetParams,
+} from './resources/open-ai-ads';
+import {
+  Projects,
+  type CreateProjectRequest,
+  type ArchiveProjectRequest,
+  type ProjectListV1GetResponse,
+  type ProjectCreateV1PostResponse,
+  type ProjectRetrieveV1GetResponse,
+  type ProjectListStatusV1StatusGetResponse,
+  type ProjectArchiveV1IDArchivePostResponse,
+  type ProjectUnarchiveV1IDUnarchivePostResponse,
+  type ProjectListV1GetParams,
+  type ProjectCreateV1PostParams,
+  type ProjectRetrieveV1GetParams,
+  type ProjectDeleteV1IDDeleteParams,
+  type ProjectListStatusV1StatusGetParams,
+  type ProjectArchiveV1IDArchivePostParams,
+  type ProjectUnarchiveV1IDUnarchivePostParams,
+} from './resources/projects/projects';
+import {
+  Agents,
+  type CreateAgentRequest,
+  type UpdateAgentRequest,
+  type AgentListV1GetResponse,
+  type AgentRetrieveV1GetResponse,
+  type AgentUpdateV1IDPatchResponse,
+  type AgentListGraphV1GraphGetResponse,
+  type AgentListV1GetParams,
+  type AgentCreateV1PostParams,
+  type AgentRetrieveV1GetParams,
+  type AgentUpdateV1IDPatchParams,
+  type AgentListGraphV1GraphGetParams,
+} from './resources/agents/agents';
 import * as SharedAPI from './resources/shared';
 
 export type AuthTokenProvider = () => string | Promise<string>;
+
+const environments = {
+  production: 'https://api.tryprofound.com',
+  development: 'https://dev.api.tryprofound.com',
+};
+type Environment = keyof typeof environments;
 
 export interface ClientOptions {
   /**
@@ -103,6 +155,15 @@ export interface ClientOptions {
    * API Key
    */
   apiKey?: string | AuthTokenProvider | null | undefined;
+
+  /**
+   * Specifies the environment to use for the API.
+   *
+   * Each environment maps to a different base URL:
+   * - `production` corresponds to `https://api.tryprofound.com`
+   * - `development` corresponds to `https://dev.api.tryprofound.com`
+   */
+  environment?: Environment | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -201,6 +262,7 @@ export class Profound {
    *
    * @param {string | AuthTokenProvider | null | undefined} [opts.accessToken=process.env["PROFOUND_ACCESS_TOKEN"] ?? null]
    * @param {string | AuthTokenProvider | null | undefined} [opts.apiKey=process.env["PROFOUND_API_KEY"] ?? null]
+   * @param {Environment} [opts.environment=production] - Specifies the environment URL to use for the API.
    * @param {string} [opts.baseURL=process.env["PROFOUND_BASE_URL"] ?? https://api.tryprofound.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -219,10 +281,15 @@ export class Profound {
       accessToken,
       apiKey,
       ...opts,
-      baseURL: baseURL || 'https://api.tryprofound.com',
+      baseURL: baseURL || null,
     };
+    const environment = options.environment ?? 'production';
     const baseURLOverridden = baseURL !== null && baseURL !== undefined && baseURL !== '';
-    const defaultBaseURL = 'https://api.tryprofound.com';
+    if (baseURLOverridden && options.environment)
+      throw new Errors.ProfoundError(
+        'Ambiguous URL; The `baseURL` option (or PROFOUND_BASE_URL env var) and the `environment` option are given. If you want to use the environment you must pass baseURL: null',
+      );
+    const defaultBaseURL = environments[environment];
     this.baseURL = options.baseURL || defaultBaseURL;
     this.timeout = options.timeout ?? Profound.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
@@ -259,9 +326,20 @@ export class Profound {
   }
 
   withOptions(options: Partial<ClientOptions>): this {
+    // `baseURL` and `environment` are mutually exclusive in the constructor, so resolve exactly one of
+    // them; the inherited pair cannot itself conflict because a base URL wins over a stored environment.
+    // A nullish override counts as "not overridden" and inherits, so that a caller forwarding an optional
+    // value — `withOptions({ environment: config.env })` — cannot silently re-resolve a pinned client onto
+    // the default environment. Passing both explicitly still reaches the constructor guard, which is
+    // intentional. An environment override clears the base URL as `null`, because only `null` skips the
+    // constructor default that would re-read the base-URL env var and be ambiguous all over again.
+    const inheritedBaseURL = this.#baseURLOverridden() ? this.baseURL : undefined;
+    const inheritedEnvironment = inheritedBaseURL ? undefined : this._options.environment;
+    const nextBaseURL =
+      options.baseURL !== undefined ? options.baseURL : options.environment ? null : inheritedBaseURL;
+    const nextEnvironment = options.environment ?? (options.baseURL ? undefined : inheritedEnvironment);
     const client = new (this.constructor as new (props: ClientOptions) => this)({
       ...this._options,
-      ...(this.#baseURLOverridden() ? { baseURL: this.baseURL } : {}),
       maxRetries: this.maxRetries,
       timeout: this.timeout,
       logger: this.logger,
@@ -271,6 +349,8 @@ export class Profound {
       accessToken: this.accessToken,
       apiKey: this.apiKey,
       ...options,
+      baseURL: nextBaseURL,
+      environment: nextEnvironment,
     });
     return client;
   }
@@ -901,111 +981,194 @@ export class Profound {
 
   static toFile = toFile;
 
-  organizations: Organizations = new Organizations(this);
+  organization: OrganizationResource = new OrganizationResource(this);
   prompts: Prompts = new Prompts(this);
   reports: Reports = new Reports(this);
   content: Content = new Content(this);
-  agents: Agents = new Agents(this);
   knowledgeBases: KnowledgeBases = new KnowledgeBases(this);
+  integrations: Integrations = new Integrations(this);
+  documents: Documents = new Documents(this);
+  openAIAds: OpenAIAds = new OpenAIAds(this);
+  projects: Projects = new Projects(this);
+  agents: Agents = new Agents(this);
 }
 
-Profound.Organizations = Organizations;
+Profound.OrganizationResource = OrganizationResource;
 Profound.Prompts = Prompts;
 Profound.Reports = Reports;
 Profound.Content = Content;
-Profound.Agents = Agents;
 Profound.KnowledgeBases = KnowledgeBases;
+Profound.Integrations = Integrations;
+Profound.Documents = Documents;
+Profound.OpenAIAds = OpenAIAds;
+Profound.Projects = Projects;
+Profound.Agents = Agents;
 
 export declare namespace Profound {
   export type RequestOptions = Opts.RequestOptions;
   export {
-    Organizations as Organizations,
-    type NamedResource as NamedResource,
-    type PersonaProfile as PersonaProfile,
-    type PersonaProfileBehavior as PersonaProfileBehavior,
-    type PersonaProfileDemographics as PersonaProfileDemographics,
-    type PersonaProfileEmployment as PersonaProfileEmployment,
+    OrganizationResource as OrganizationResource,
     type Organization as Organization,
-    type Category as Category,
-    type OrganizationRegionsResponse as OrganizationRegionsResponse,
-    type OrganizationModelsResponse as OrganizationModelsResponse,
-    type OrganizationDomainsResponse as OrganizationDomainsResponse,
-    type OrganizationListAssetsResponse as OrganizationListAssetsResponse,
-    type OrganizationGetPersonasResponse as OrganizationGetPersonasResponse,
-    type OrganizationListResponse as OrganizationListResponse,
-    type OrganizationRegionsParams as OrganizationRegionsParams,
-    type OrganizationDomainsParams as OrganizationDomainsParams,
-    type OrganizationListAssetsParams as OrganizationListAssetsParams,
-    type OrganizationGetPersonasParams as OrganizationGetPersonasParams,
+    type CreatePromptsBody as CreatePromptsBody,
+    type UpdatePromptsBody as UpdatePromptsBody,
+    type UpdatePromptStatusBody as UpdatePromptStatusBody,
+    type OrganizationListV1OrgGetResponse as OrganizationListV1OrgGetResponse,
+    type OrganizationListRegionsV1OrgRegionsGetResponse as OrganizationListRegionsV1OrgRegionsGetResponse,
+    type OrganizationListModelsV1OrgModelsGetResponse as OrganizationListModelsV1OrgModelsGetResponse,
+    type OrganizationListDomainsV1OrgDomainsGetResponse as OrganizationListDomainsV1OrgDomainsGetResponse,
+    type OrganizationListAssetsV1OrgAssetsGetResponse as OrganizationListAssetsV1OrgAssetsGetResponse,
+    type OrganizationListPersonasV1OrgPersonasGetResponse as OrganizationListPersonasV1OrgPersonasGetResponse,
+    type OrganizationListCategoriesV1OrgCategoriesGetResponse as OrganizationListCategoriesV1OrgCategoriesGetResponse,
+    type OrganizationListCategoryTopicsV1OrgCategoriesCategoryTopicsGetResponse as OrganizationListCategoryTopicsV1OrgCategoriesCategoryTopicsGetResponse,
+    type OrganizationListCategoryTagsV1OrgCategoriesCategoryTagsGetResponse as OrganizationListCategoryTagsV1OrgCategoriesCategoryTagsGetResponse,
+    type OrganizationListCategoryRegionsV1OrgCategoriesCategoryRegionsGetResponse as OrganizationListCategoryRegionsV1OrgCategoriesCategoryRegionsGetResponse,
+    type OrganizationListCategoryCitationCategoriesV1OrgCategoriesCategoryCitationCategoriesGetResponse as OrganizationListCategoryCitationCategoriesV1OrgCategoriesCategoryCitationCategoriesGetResponse,
+    type OrganizationListCategoryCitationTagsV1OrgCategoriesCategoryCitationTagsGetResponse as OrganizationListCategoryCitationTagsV1OrgCategoriesCategoryCitationTagsGetResponse,
+    type OrganizationListCategoryPromptsV1OrgCategoriesCategoryPromptsGetResponse as OrganizationListCategoryPromptsV1OrgCategoriesCategoryPromptsGetResponse,
+    type OrganizationCreateCategoryPromptsV1OrgCategoriesCategoryIDPromptsPostResponse as OrganizationCreateCategoryPromptsV1OrgCategoriesCategoryIDPromptsPostResponse,
+    type OrganizationUpdateCategoryPromptsV1OrgCategoriesCategoryIDPromptsPatchResponse as OrganizationUpdateCategoryPromptsV1OrgCategoriesCategoryIDPromptsPatchResponse,
+    type OrganizationUpdateCategoryPromptStatusV1OrgCategoriesCategoryIDPromptsStatusPatchResponse as OrganizationUpdateCategoryPromptStatusV1OrgCategoriesCategoryIDPromptsStatusPatchResponse,
+    type OrganizationListCategoryAssetsV1OrgCategoriesCategoryAssetsGetResponse as OrganizationListCategoryAssetsV1OrgCategoriesCategoryAssetsGetResponse,
+    type OrganizationListCategoryPersonasV1OrgCategoriesCategoryPersonasGetResponse as OrganizationListCategoryPersonasV1OrgCategoriesCategoryPersonasGetResponse,
+    type OrganizationListRegionsV1OrgRegionsGetParams as OrganizationListRegionsV1OrgRegionsGetParams,
+    type OrganizationListDomainsV1OrgDomainsGetParams as OrganizationListDomainsV1OrgDomainsGetParams,
+    type OrganizationListAssetsV1OrgAssetsGetParams as OrganizationListAssetsV1OrgAssetsGetParams,
+    type OrganizationListPersonasV1OrgPersonasGetParams as OrganizationListPersonasV1OrgPersonasGetParams,
+    type OrganizationListCategoriesV1OrgCategoriesGetParams as OrganizationListCategoriesV1OrgCategoriesGetParams,
+    type OrganizationListCategoryPromptsV1OrgCategoriesCategoryPromptsGetParams as OrganizationListCategoryPromptsV1OrgCategoriesCategoryPromptsGetParams,
+    type OrganizationCreateCategoryPromptsV1OrgCategoriesCategoryIDPromptsPostParams as OrganizationCreateCategoryPromptsV1OrgCategoriesCategoryIDPromptsPostParams,
+    type OrganizationUpdateCategoryPromptsV1OrgCategoriesCategoryIDPromptsPatchParams as OrganizationUpdateCategoryPromptsV1OrgCategoriesCategoryIDPromptsPatchParams,
+    type OrganizationUpdateCategoryPromptStatusV1OrgCategoriesCategoryIDPromptsStatusPatchParams as OrganizationUpdateCategoryPromptStatusV1OrgCategoriesCategoryIDPromptsStatusPatchParams,
   };
 
-  export {
-    Prompts as Prompts,
-    type PromptAnswersResponse as PromptAnswersResponse,
-    type PromptAnswersParams as PromptAnswersParams,
-  };
+  export { Prompts as Prompts };
 
   export {
     Reports as Reports,
-    type ReportInfo as ReportInfo,
-    type ReportResponse as ReportResponse,
-    type ReportResult as ReportResult,
-    type TopicNameFilter as TopicNameFilter,
-    type PromptIDFilter as PromptIDFilter,
-    type TagNameFilter as TagNameFilter,
-    type RootDomainFilter as RootDomainFilter,
-    type HostnameFilter as HostnameFilter,
-    type URLFilter as URLFilter,
-    type ReportCitationsResponse as ReportCitationsResponse,
-    type ReportStreamCitationsResponse as ReportStreamCitationsResponse,
-    type ReportStreamVisibilityResponse as ReportStreamVisibilityResponse,
-    type ReportStreamSentimentResponse as ReportStreamSentimentResponse,
-    type ReportCitationsParams as ReportCitationsParams,
-    type ReportVisibilityParams as ReportVisibilityParams,
-    type ReportSentimentParams as ReportSentimentParams,
-    type ReportGetReferralsReportParams as ReportGetReferralsReportParams,
-    type ReportGetBotsReportParams as ReportGetBotsReportParams,
-    type ReportGetReferralsReportV2Params as ReportGetReferralsReportV2Params,
-    type ReportGetBotsReportV2Params as ReportGetBotsReportV2Params,
-    type ReportQueryFanoutsParams as ReportQueryFanoutsParams,
-    type ReportStreamCitationsParams as ReportStreamCitationsParams,
-    type ReportStreamVisibilityParams as ReportStreamVisibilityParams,
-    type ReportStreamSentimentParams as ReportStreamSentimentParams,
+    type SentimentV2ReportQuery as SentimentV2ReportQuery,
+    type ReportQuerySentimentV2V1SentimentV2PostResponse as ReportQuerySentimentV2V1SentimentV2PostResponse,
+    type ReportQuerySentimentV2V1SentimentV2PostParams as ReportQuerySentimentV2V1SentimentV2PostParams,
   };
 
   export { Content as Content };
 
   export {
-    Agents as Agents,
-    type AgentListResponse as AgentListResponse,
-    type AgentRetrieveResponse as AgentRetrieveResponse,
-    type AgentListParams as AgentListParams,
-    type AgentRetrieveParams as AgentRetrieveParams,
-  };
-
-  export {
     KnowledgeBases as KnowledgeBases,
-    type KnowledgeBaseListResponse as KnowledgeBaseListResponse,
+    type SearchKnowledgeBaseRequest as SearchKnowledgeBaseRequest,
+    type KnowledgeBaseListV1GetResponse as KnowledgeBaseListV1GetResponse,
     type KnowledgeBaseSearchResponse as KnowledgeBaseSearchResponse,
-    type KnowledgeBaseListParams as KnowledgeBaseListParams,
+    type KnowledgeBaseListV1GetParams as KnowledgeBaseListV1GetParams,
     type KnowledgeBaseSearchParams as KnowledgeBaseSearchParams,
   };
 
+  export {
+    Integrations as Integrations,
+    type IntegrationListV1GetResponse as IntegrationListV1GetResponse,
+    type IntegrationListV1GetParams as IntegrationListV1GetParams,
+  };
+
+  export {
+    Documents as Documents,
+    type CreateDocumentRequest as CreateDocumentRequest,
+    type UpdateDocumentRequest as UpdateDocumentRequest,
+    type ReplaceDocumentContentRequest as ReplaceDocumentContentRequest,
+    type DocumentListV1GetResponse as DocumentListV1GetResponse,
+    type DocumentCreateV1PostResponse as DocumentCreateV1PostResponse,
+    type DocumentReadV1IDGetResponse as DocumentReadV1IDGetResponse,
+    type DocumentPatchV1IDPatchResponse as DocumentPatchV1IDPatchResponse,
+    type DocumentReplaceContentV1IDContentPostResponse as DocumentReplaceContentV1IDContentPostResponse,
+    type DocumentListV1GetParams as DocumentListV1GetParams,
+    type DocumentCreateV1PostParams as DocumentCreateV1PostParams,
+    type DocumentReadV1IDGetParams as DocumentReadV1IDGetParams,
+    type DocumentPatchV1IDPatchParams as DocumentPatchV1IDPatchParams,
+    type DocumentDeleteV1IDDeleteParams as DocumentDeleteV1IDDeleteParams,
+    type DocumentReplaceContentV1IDContentPostParams as DocumentReplaceContentV1IDContentPostParams,
+  };
+
+  export {
+    OpenAIAds as OpenAIAds,
+    type OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetResponse as OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetResponse,
+    type OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetParams as OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetParams,
+  };
+
+  export {
+    Projects as Projects,
+    type CreateProjectRequest as CreateProjectRequest,
+    type ArchiveProjectRequest as ArchiveProjectRequest,
+    type ProjectListV1GetResponse as ProjectListV1GetResponse,
+    type ProjectCreateV1PostResponse as ProjectCreateV1PostResponse,
+    type ProjectRetrieveV1GetResponse as ProjectRetrieveV1GetResponse,
+    type ProjectListStatusV1StatusGetResponse as ProjectListStatusV1StatusGetResponse,
+    type ProjectArchiveV1IDArchivePostResponse as ProjectArchiveV1IDArchivePostResponse,
+    type ProjectUnarchiveV1IDUnarchivePostResponse as ProjectUnarchiveV1IDUnarchivePostResponse,
+    type ProjectListV1GetParams as ProjectListV1GetParams,
+    type ProjectCreateV1PostParams as ProjectCreateV1PostParams,
+    type ProjectRetrieveV1GetParams as ProjectRetrieveV1GetParams,
+    type ProjectDeleteV1IDDeleteParams as ProjectDeleteV1IDDeleteParams,
+    type ProjectListStatusV1StatusGetParams as ProjectListStatusV1StatusGetParams,
+    type ProjectArchiveV1IDArchivePostParams as ProjectArchiveV1IDArchivePostParams,
+    type ProjectUnarchiveV1IDUnarchivePostParams as ProjectUnarchiveV1IDUnarchivePostParams,
+  };
+
+  export {
+    Agents as Agents,
+    type CreateAgentRequest as CreateAgentRequest,
+    type UpdateAgentRequest as UpdateAgentRequest,
+    type AgentListV1GetResponse as AgentListV1GetResponse,
+    type AgentRetrieveV1GetResponse as AgentRetrieveV1GetResponse,
+    type AgentUpdateV1IDPatchResponse as AgentUpdateV1IDPatchResponse,
+    type AgentListGraphV1GraphGetResponse as AgentListGraphV1GraphGetResponse,
+    type AgentListV1GetParams as AgentListV1GetParams,
+    type AgentCreateV1PostParams as AgentCreateV1PostParams,
+    type AgentRetrieveV1GetParams as AgentRetrieveV1GetParams,
+    type AgentUpdateV1IDPatchParams as AgentUpdateV1IDPatchParams,
+    type AgentListGraphV1GraphGetParams as AgentListGraphV1GraphGetParams,
+  };
+
+  export type AccuracyTrendPoint = SharedAPI.AccuracyTrendPoint;
+  export type Agent = SharedAPI.Agent;
+  export type AgentVersion = SharedAPI.AgentVersion;
   export type AnalysisTypeFilter = SharedAPI.AnalysisTypeFilter;
   export type AssetIDFilter = SharedAPI.AssetIDFilter;
-  export type BotNameFilter = SharedAPI.BotNameFilter;
-  export type BotProviderFilter = SharedAPI.BotProviderFilter;
+  export type BrandNameFilter = SharedAPI.BrandNameFilter;
+  export type ClaimModelOccurrence = SharedAPI.ClaimModelOccurrence;
   export type CursorPagination = SharedAPI.CursorPagination;
+  export type DimensionRef = SharedAPI.DimensionRef;
+  export type DocumentOperationResponse = SharedAPI.DocumentOperationResponse;
+  export type FieldDiff = SharedAPI.FieldDiff;
+  export type FilterNode = SharedAPI.FilterNode;
+  export type HostnameFilter = SharedAPI.HostnameFilter;
+  export type HTTPValidationError = SharedAPI.HTTPValidationError;
+  export type IDOrName = SharedAPI.IDOrName;
+  export type Info = SharedAPI.Info;
+  export type LiveGeneration = SharedAPI.LiveGeneration;
+  export type MerchantNameFilter = SharedAPI.MerchantNameFilter;
   export type ModelIDFilter = SharedAPI.ModelIDFilter;
+  export type NamedResource = SharedAPI.NamedResource;
+  export type NamedResourceDiffList = SharedAPI.NamedResourceDiffList;
+  export type NumericMetricFilter = SharedAPI.NumericMetricFilter;
   export type Pagination = SharedAPI.Pagination;
   export type PathFilter = SharedAPI.PathFilter;
   export type PersonaIDFilter = SharedAPI.PersonaIDFilter;
+  export type ProductNameFilter = SharedAPI.ProductNameFilter;
+  export type ProfoundAnswerEngineInsightsFiltersAssetNameFilter =
+    SharedAPI.ProfoundAnswerEngineInsightsFiltersAssetNameFilter;
+  export type ProfoundShoppingAPIAssetNameFilter = SharedAPI.ProfoundShoppingAPIAssetNameFilter;
+  export type ProjectGenerationContextItem = SharedAPI.ProjectGenerationContextItem;
+  export type ProjectTask = SharedAPI.ProjectTask;
   export type PromptFilter = SharedAPI.PromptFilter;
+  export type PromptIDFilter = SharedAPI.PromptIDFilter;
   export type PromptTypeFilter = SharedAPI.PromptTypeFilter;
   export type RegionIDFilter = SharedAPI.RegionIDFilter;
   export type RegionNameFilter = SharedAPI.RegionNameFilter;
+  export type Response = SharedAPI.Response;
+  export type RootDomainFilter = SharedAPI.RootDomainFilter;
+  export type ShoppingRowsResponse = SharedAPI.ShoppingRowsResponse;
   export type TagIDFilter = SharedAPI.TagIDFilter;
+  export type TagNameFilter = SharedAPI.TagNameFilter;
   export type TopicIDFilter = SharedAPI.TopicIDFilter;
+  export type TopicNameFilter = SharedAPI.TopicNameFilter;
+  export type URLFilter = SharedAPI.URLFilter;
 }
 
 const headerExplicitlyOmitted = (source: HeadersLike | undefined, name: string): boolean => {

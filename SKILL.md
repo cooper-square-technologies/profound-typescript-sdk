@@ -20,6 +20,7 @@ import Profound from '@profoundai/client';
 
 const client = new Profound({
   apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var
+  environment: 'production',
 });
 ```
 
@@ -35,11 +36,12 @@ import Profound from '@profoundai/client';
 
 const client = new Profound({
   apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var
+  environment: 'production',
 });
 
-const regions = await client.organizations.regions();
+const listV1OrgGet = await client.organization.listV1OrgGet();
 
-console.log(regions);
+console.log(listV1OrgGet);
 ```
 
 Method names, parameter shapes, and response types are generated from the API description — do not guess them. Look up the exact call signature in [api.md](./api.md) before writing a call.
@@ -49,14 +51,10 @@ Method names, parameter shapes, and response types are generated from the API de
 Streaming endpoints return an iterator that yields results as the server emits them.
 
 ```ts
-const stream = await client.reports.streamCitations({
-  date_interval: 'day',
-  dimensions: [],
-  metrics: [],
-  order_by: {},
+const stream = await client.prompts.answers.streamV2V2StreamPost({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-  start_date: '2024-01-01T00:00:00.000Z',
-  end_date: '2024-01-01T00:00:00.000Z',
+  start_date: '',
+  end_date: '',
 });
 
 for await (const event of stream) {
@@ -72,7 +70,7 @@ Non-success responses throw generated API errors. Error objects expose status, h
 import { APIError } from '@profoundai/client';
 
 try {
-  const regions = await client.organizations.regions();
+  const listV1OrgGet = await client.organization.listV1OrgGet();
 } catch (err) {
   if (err instanceof APIError) {
     console.log(err.status, err.name, err.headers);

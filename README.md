@@ -38,11 +38,12 @@ import Profound from '@profoundai/client';
 
 const client = new Profound({
   apiKey: process.env['PROFOUND_API_KEY'], // defaults to the PROFOUND_API_KEY env var
+  environment: 'production',
 });
 
-const regions = await client.organizations.regions();
+const listV1OrgGet = await client.organization.listV1OrgGet();
 
-console.log(regions);
+console.log(listV1OrgGet);
 ```
 
 The examples in the following sections assume a `client` configured as shown above.
@@ -56,14 +57,10 @@ See the [API reference](./api.md) for every available operation.
 Streaming endpoints return an async iterator that yields results as the server emits them.
 
 ```ts
-const stream = await client.reports.streamCitations({
-  date_interval: 'day',
-  dimensions: [],
-  metrics: [],
-  order_by: {},
+const stream = await client.prompts.answers.streamV2V2StreamPost({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-  start_date: '2024-01-01T00:00:00.000Z',
-  end_date: '2024-01-01T00:00:00.000Z',
+  start_date: '',
+  end_date: '',
 });
 
 for await (const event of stream) {
@@ -97,7 +94,7 @@ Non-success responses throw generated API errors. Error objects expose status, h
 import { APIError } from '@profoundai/client';
 
 try {
-  const regions = await client.organizations.regions();
+  const listV1OrgGet = await client.organization.listV1OrgGet();
 } catch (err) {
   if (err instanceof APIError) {
     console.log(err.status, err.name, err.headers);
@@ -128,6 +125,7 @@ const client = new Profound({
 | --- | --- | --- | --- |
 | `accessToken` | `string \| AuthTokenProvider` | `process.env["PROFOUND_ACCESS_TOKEN"]` | Credential for the BearerAuth scheme. |
 | `apiKey` | `string \| AuthTokenProvider` | `process.env["PROFOUND_API_KEY"]` | Credential for the APIKeyHeader scheme. |
+| `environment` | `Environment` | - | Select one of the configured API environments. |
 | `baseURL` | `string \| null` | `process.env["PROFOUND_BASE_URL"]` | Override the default API base URL. Pass `null` when selecting a configured environment. |
 | `timeout` | `number` | `60000` | Maximum time in milliseconds to wait for a response before aborting a request. |
 | `maxRetries` | `number` | `2` | Number of retries for temporary failures. |
