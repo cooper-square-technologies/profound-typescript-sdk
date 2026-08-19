@@ -43,6 +43,7 @@ export class Bots extends APIResource {
    * Get bot traffic report from the hourly aggregated materialized view (UTC-based).
    *
    * Supports date_interval="hour", calendar intervals through "year", "quarter", and "relative_week".
+   * When `view_id` is provided, the query is scoped to that domain segment's hosts and paths.
    *
    * Metrics:
    * - count: unique bot visits
@@ -267,6 +268,11 @@ export interface BotsReportQueryV2 {
    * @default UTC
    */
   timezone?: string;
+  /**
+   * Domain segment UUID used to scope the query to a configured subset of hosts and paths.
+   * @format uuid
+   */
+  view_id?: string | null;
   /**
    * Numeric filters applied after report metrics are calculated.
    */
@@ -583,6 +589,11 @@ export interface BotCreateV2V2PostParams {
    * @default UTC
    */
   timezone?: string;
+  /**
+   * Domain segment UUID used to scope the query to a configured subset of hosts and paths.
+   * @format uuid
+   */
+  view_id?: string | null;
   /**
    * Numeric filters applied after report metrics are calculated.
    */

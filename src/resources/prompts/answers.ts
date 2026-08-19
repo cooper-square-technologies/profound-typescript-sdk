@@ -619,7 +619,7 @@ export namespace AnswerQueryV2V2PostResponse {
     mentions?: Array<string> | null;
     citations?: Array<string> | null;
     /**
-     * Citation metadata. `positions` identify citation locations in the answer text. Each `groups` entry represents a rendered citation pill; `group_position` is the source's position within that pill.
+     * Citation metadata. `positions` identify citation locations in the answer text. Each `groups` entry represents a rendered citation pill, including single-source pills; `group_position` is the source's position within that pill.
      */
     citation_details?: Array<Data.CitationDetail> | null;
     search_queries?: Array<string> | null;
@@ -758,7 +758,7 @@ export namespace AnswerStreamV2V2StreamPostResponse {
     mentions?: Array<string> | null;
     citations?: Array<string> | null;
     /**
-     * Citation metadata. `positions` identify citation locations in the answer text. Each `groups` entry represents a rendered citation pill; `group_position` is the source's position within that pill.
+     * Citation metadata. `positions` identify citation locations in the answer text. Each `groups` entry represents a rendered citation pill, including single-source pills; `group_position` is the source's position within that pill.
      */
     citation_details?: Array<AnswerRow.CitationDetail> | null;
     search_queries?: Array<string> | null;

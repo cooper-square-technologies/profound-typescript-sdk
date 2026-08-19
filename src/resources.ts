@@ -12,6 +12,7 @@ export {
   OpenAIAds,
   Projects,
   Agents,
+  DomainSegments,
 } from './resources/index';
 export type {
   Organization,
@@ -97,4 +98,6 @@ export type {
   AgentUpdateV1IDPatchResponse,
   AgentListGraphV1GraphGetParams,
   AgentListGraphV1GraphGetResponse,
+  DomainSegmentListV2GetParams,
+  DomainSegmentListV2GetResponse,
 } from './resources/index';

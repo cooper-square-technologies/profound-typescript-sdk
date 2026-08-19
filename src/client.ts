@@ -135,6 +135,11 @@ import {
   type AgentUpdateV1IDPatchParams,
   type AgentListGraphV1GraphGetParams,
 } from './resources/agents/agents';
+import {
+  DomainSegments,
+  type DomainSegmentListV2GetResponse,
+  type DomainSegmentListV2GetParams,
+} from './resources/domain-segments';
 import * as SharedAPI from './resources/shared';
 
 export type AuthTokenProvider = () => string | Promise<string>;
@@ -991,6 +996,7 @@ export class Profound {
   openAIAds: OpenAIAds = new OpenAIAds(this);
   projects: Projects = new Projects(this);
   agents: Agents = new Agents(this);
+  domainSegments: DomainSegments = new DomainSegments(this);
 }
 
 Profound.OrganizationResource = OrganizationResource;
@@ -1003,6 +1009,7 @@ Profound.Documents = Documents;
 Profound.OpenAIAds = OpenAIAds;
 Profound.Projects = Projects;
 Profound.Agents = Agents;
+Profound.DomainSegments = DomainSegments;
 
 export declare namespace Profound {
   export type RequestOptions = Opts.RequestOptions;
@@ -1123,6 +1130,12 @@ export declare namespace Profound {
     type AgentRetrieveV1GetParams as AgentRetrieveV1GetParams,
     type AgentUpdateV1IDPatchParams as AgentUpdateV1IDPatchParams,
     type AgentListGraphV1GraphGetParams as AgentListGraphV1GraphGetParams,
+  };
+
+  export {
+    DomainSegments as DomainSegments,
+    type DomainSegmentListV2GetResponse as DomainSegmentListV2GetResponse,
+    type DomainSegmentListV2GetParams as DomainSegmentListV2GetParams,
   };
 
   export type AccuracyTrendPoint = SharedAPI.AccuracyTrendPoint;

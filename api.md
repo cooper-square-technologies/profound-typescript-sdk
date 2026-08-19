@@ -158,6 +158,8 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [`Agents Runs`](#agents-runs)
     - [Run an agent](#run-an-agent)
     - [Get an agent run](#get-an-agent-run)
+- [`DomainSegments`](#domainsegments)
+  - [List Domain Segments](#list-domain-segments)
 
 ## Setup
 
@@ -867,6 +869,7 @@ const response = await client.reports.referrals.createV1V1Post({
 Get referral traffic report from the hourly aggregated materialized view (UTC-based).
 
 Supports date_interval="hour", calendar intervals through "year", "quarter", and "relative_week".
+When `view_id` is provided, the query is scoped to that domain segment's hosts and paths.
 
 | Direction | Type |
 | --- | --- |
@@ -922,6 +925,7 @@ const response = await client.reports.bots.createV1V1Post({
 Get bot traffic report from the hourly aggregated materialized view (UTC-based).
 
 Supports date_interval="hour", calendar intervals through "year", "quarter", and "relative_week".
+When `view_id` is provided, the query is scoped to that domain segment's hosts and paths.
 
 Metrics:
 - count: unique bot visits
@@ -2595,4 +2599,22 @@ const retrieveV1Get = await client.agents.runs.retrieveV1Get('7c9e6679-7425-40de
   agent_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   verbose: false,
 });
+```
+
+## `DomainSegments`
+
+### List Domain Segments
+
+List domain segments visible to the caller for a workspace.
+
+Returns the id and name of every domain segment the caller can access, so a
+customer can discover a `view_id` to pass into agent analytics report queries.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`DomainSegmentListV2GetParams`](./src/resources/domain-segments.ts) |
+| Response | [`DomainSegmentListV2GetResponse`](./src/resources/domain-segments.ts) |
+
+```ts
+const listV2Get = await client.domainSegments.listV2Get();
 ```

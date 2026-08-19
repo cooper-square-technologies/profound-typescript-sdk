@@ -36,6 +36,7 @@ export class Referrals extends APIResource {
    * Get referral traffic report from the hourly aggregated materialized view (UTC-based).
    *
    * Supports date_interval="hour", calendar intervals through "year", "quarter", and "relative_week".
+   * When `view_id` is provided, the query is scoped to that domain segment's hosts and paths.
    *
    * @param {ReferralCreateV2V2PostParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -185,6 +186,11 @@ export interface ReferralsQueryV2 {
    * @default UTC
    */
   timezone?: string;
+  /**
+   * Domain segment UUID used to scope the query to a configured subset of hosts and paths.
+   * @format uuid
+   */
+  view_id?: string | null;
   /**
    * Numeric filters applied after report metrics are calculated.
    */
@@ -355,6 +361,11 @@ export interface ReferralCreateV2V2PostParams {
    * @default UTC
    */
   timezone?: string;
+  /**
+   * Domain segment UUID used to scope the query to a configured subset of hosts and paths.
+   * @format uuid
+   */
+  view_id?: string | null;
   /**
    * Numeric filters applied after report metrics are calculated.
    */

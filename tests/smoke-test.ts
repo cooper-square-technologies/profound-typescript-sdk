@@ -1895,6 +1895,15 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
       });
     },
   },
+
+  {
+    operation: 'listV2Get',
+    method: 'GET',
+    path: '/v2/domain-segments',
+    run: async () => {
+      const listV2Get = await client.domainSegments.listV2Get();
+    },
+  },
 ];
 
 const main = async (): Promise<void> => {

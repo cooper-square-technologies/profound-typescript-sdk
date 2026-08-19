@@ -107,3 +107,5 @@ export type {
   AgentListGraphV1GraphGetParams,
   AgentListGraphV1GraphGetResponse,
 } from './agents/agents';
+export { DomainSegments } from './domain-segments';
+export type { DomainSegmentListV2GetParams, DomainSegmentListV2GetResponse } from './domain-segments';
