@@ -13,24 +13,24 @@ export class Integrations extends APIResource {
    * `status`; pass `status_filter` to narrow to one status (e.g. `needs_reauth`).
    * Each row's `integration_id` is the value a hub-backed node needs bound to it.
    *
-   * @param {IntegrationListV1GetParams} [query] - The parameters to send with the request.
+   * @param {IntegrationListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<IntegrationListV1GetResponse>} Successful Response
+   * @returns {APIPromise<IntegrationListResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const listV1Get = await client.integrations.listV1Get();
+   * const list = await client.integrations.list();
    * ```
    */
-  listV1Get(
-    query: IntegrationListV1GetParams | null | undefined = {},
+  list(
+    query: IntegrationListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<IntegrationListV1GetResponse> {
+  ): APIPromise<IntegrationListResponse> {
     return this._client.get('/v1/integrations', { query, ...options });
   }
 }
 
-export interface IntegrationListV1GetParams {
+export interface IntegrationListParams {
   /**
    * Organization scope for API keys that can access multiple organizations.
    * @format uuid
@@ -46,14 +46,14 @@ export interface IntegrationListV1GetParams {
   status_filter?: 'active' | 'pending' | 'needs_reauth' | 'revoking' | 'revoked' | null;
 }
 
-export interface IntegrationListV1GetResponse {
+export interface IntegrationListResponse {
   /**
    * Connected integrations.
    */
-  data: Array<IntegrationListV1GetResponse.Data>;
+  data: Array<IntegrationListResponse.Data>;
 }
 
-export namespace IntegrationListV1GetResponse {
+export namespace IntegrationListResponse {
   export interface Data {
     /**
      * Installation id to bind to a hub-backed node's `integration_id`.
@@ -83,7 +83,7 @@ export namespace IntegrationListV1GetResponse {
 }
 export declare namespace Integrations {
   export {
-    type IntegrationListV1GetResponse as IntegrationListV1GetResponse,
-    type IntegrationListV1GetParams as IntegrationListV1GetParams,
+    type IntegrationListResponse as IntegrationListResponse,
+    type IntegrationListParams as IntegrationListParams,
   };
 }

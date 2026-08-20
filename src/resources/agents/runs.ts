@@ -15,20 +15,20 @@ export class Runs extends APIResource {
    * cannot be run.
    *
    * @param {string} agentID - The ID of the agent to run.
-   * @param {RunV1IDPostParams} [body] - The request body to send.
+   * @param {RunCreateParams} [body] - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<RunV1IDPostResponse>} Successful Response
+   * @returns {APIPromise<RunCreateResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const v1IDPost = await client.agents.runs.v1IDPost('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+   * const create = await client.agents.runs.create('7c9e6679-7425-40de-944b-e07fc1f90ae7');
    * ```
    */
-  v1IDPost(
+  create(
     agentID: string,
-    body: RunV1IDPostParams | null | undefined = {},
+    body: RunCreateParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<RunV1IDPostResponse> {
+  ): APIPromise<RunCreateResponse> {
     return this._client.post(__scalarPath`/v1/agents/${agentID}/runs`, { body, ...options });
   }
 
@@ -36,46 +36,36 @@ export class Runs extends APIResource {
    * Retrieve the current status and result details for an agent run.
    *
    * @param {string} runID - The ID of the run to retrieve.
-   * @param {RunRetrieveV1GetParams} params - The parameters to send with the request.
+   * @param {RunRetrieveParams} params - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<RunRetrieveV1GetResponse>} Successful Response
+   * @returns {APIPromise<RunRetrieveResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const retrieveV1Get = await client.agents.runs.retrieveV1Get('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const retrieve = await client.agents.runs.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   agent_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   verbose: false,
    * });
    * ```
    */
-  retrieveV1Get(
+  retrieve(
     runID: string,
-    params: RunRetrieveV1GetParams,
+    params: RunRetrieveParams,
     options?: RequestOptions,
-  ): APIPromise<RunRetrieveV1GetResponse> {
+  ): APIPromise<RunRetrieveResponse> {
     const { agent_id, ...query } = params;
     return this._client.get(__scalarPath`/v1/agents/${agent_id}/runs/${runID}`, { query, ...options });
   }
 }
 
-/**
- * Request body for starting an agent run.
- */
-export interface RunAgentRequest {
+export interface RunCreateParams {
   /**
    * Input values for the run. Keys should match the property names defined in `schema.input`. Omit the request body when the agent does not require inputs.
    */
   inputs?: Record<string, unknown>;
 }
 
-export interface RunV1IDPostParams {
-  /**
-   * Input values for the run. Keys should match the property names defined in `schema.input`. Omit the request body when the agent does not require inputs.
-   */
-  inputs?: Record<string, unknown>;
-}
-
-export interface RunV1IDPostResponse {
+export interface RunCreateResponse {
   /**
    * Unique ID for the accepted run.
    * @format uuid
@@ -97,7 +87,7 @@ export interface RunV1IDPostResponse {
   started_at?: string | null;
 }
 
-export interface RunRetrieveV1GetParams {
+export interface RunRetrieveParams {
   /**
    * Path param: The ID of the agent that owns the run.
    * @format uuid
@@ -110,7 +100,7 @@ export interface RunRetrieveV1GetParams {
   verbose?: boolean;
 }
 
-export interface RunRetrieveV1GetResponse {
+export interface RunRetrieveResponse {
   /**
    * Unique ID for the run.
    * @format uuid
@@ -146,10 +136,10 @@ export interface RunRetrieveV1GetResponse {
   /**
    * Ordered step-by-step execution trace — one entry per node that ran, in execution order. Always present once the run has executed a node; per-node `outputs` inside each step are included only when the request asks for `verbose`.
    */
-  steps?: Array<RunRetrieveV1GetResponse.Step> | null;
+  steps?: Array<RunRetrieveResponse.Step> | null;
 }
 
-export namespace RunRetrieveV1GetResponse {
+export namespace RunRetrieveResponse {
   export interface Step {
     /**
      * ID of the node that ran, within its agent graph.
@@ -188,10 +178,9 @@ export namespace RunRetrieveV1GetResponse {
 }
 export declare namespace Runs {
   export {
-    type RunAgentRequest as RunAgentRequest,
-    type RunV1IDPostResponse as RunV1IDPostResponse,
-    type RunRetrieveV1GetResponse as RunRetrieveV1GetResponse,
-    type RunV1IDPostParams as RunV1IDPostParams,
-    type RunRetrieveV1GetParams as RunRetrieveV1GetParams,
+    type RunCreateResponse as RunCreateResponse,
+    type RunRetrieveResponse as RunRetrieveResponse,
+    type RunCreateParams as RunCreateParams,
+    type RunRetrieveParams as RunRetrieveParams,
   };
 }

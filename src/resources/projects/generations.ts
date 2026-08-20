@@ -10,23 +10,20 @@ export class Generations extends APIResource {
   /**
    * List Project Generations
    *
-   * @param {GenerationListV1GetParams} query - The parameters to send with the request.
+   * @param {GenerationListParams} query - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<GenerationListV1GetResponse>} Successful Response
+   * @returns {APIPromise<GenerationListResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const listV1Get = await client.projects.generations.listV1Get({
+   * const list = await client.projects.generations.list({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   limit: 100,
    *   offset: 0,
    * });
    * ```
    */
-  listV1Get(
-    query: GenerationListV1GetParams,
-    options?: RequestOptions,
-  ): APIPromise<GenerationListV1GetResponse> {
+  list(query: GenerationListParams, options?: RequestOptions): APIPromise<GenerationListResponse> {
     return this._client.get('/v1/projects/generations', { query, ...options });
   }
 
@@ -34,30 +31,27 @@ export class Generations extends APIResource {
    * Get Project Generation Status
    *
    * @param {string} runID - Unique project generation run ID.
-   * @param {GenerationRetrieveStatusV1RunGetParams} query - The parameters to send with the request.
+   * @param {GenerationRetrieveParams} query - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<GenerationRetrieveStatusV1RunGetResponse>} Successful Response
+   * @returns {APIPromise<GenerationRetrieveResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const retrieveStatusV1RunGet = await client.projects.generations.retrieveStatusV1RunGet(
-   *   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   {
-   *     category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   },
-   * );
+   * const retrieve = await client.projects.generations.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   * });
    * ```
    */
-  retrieveStatusV1RunGet(
+  retrieve(
     runID: string,
-    query: GenerationRetrieveStatusV1RunGetParams,
+    query: GenerationRetrieveParams,
     options?: RequestOptions,
-  ): APIPromise<GenerationRetrieveStatusV1RunGetResponse> {
+  ): APIPromise<GenerationRetrieveResponse> {
     return this._client.get(__scalarPath`/v1/projects/generations/${runID}`, { query, ...options });
   }
 }
 
-export interface GenerationListV1GetParams {
+export interface GenerationListParams {
   /**
    * Category that owns the project.
    * @format uuid
@@ -80,15 +74,15 @@ export interface GenerationListV1GetParams {
   offset?: number;
 }
 
-export interface GenerationListV1GetResponse {
-  data: Array<GenerationListV1GetResponse.Data>;
+export interface GenerationListResponse {
+  data: Array<GenerationListResponse.Data>;
   /**
    * Offset-based pagination parameters.
    */
   pagination?: Shared.Pagination;
 }
 
-export namespace GenerationListV1GetResponse {
+export namespace GenerationListResponse {
   export interface Data {
     /**
      * @format uuid
@@ -113,7 +107,7 @@ export namespace GenerationListV1GetResponse {
   }
 }
 
-export interface GenerationRetrieveStatusV1RunGetParams {
+export interface GenerationRetrieveParams {
   /**
    * Category that owns the project.
    * @format uuid
@@ -121,11 +115,11 @@ export interface GenerationRetrieveStatusV1RunGetParams {
   category_id: string;
 }
 
-export interface GenerationRetrieveStatusV1RunGetResponse {
-  data: GenerationRetrieveStatusV1RunGetResponse.Data;
+export interface GenerationRetrieveResponse {
+  data: GenerationRetrieveResponse.Data;
 }
 
-export namespace GenerationRetrieveStatusV1RunGetResponse {
+export namespace GenerationRetrieveResponse {
   export interface Data {
     /**
      * @format uuid
@@ -151,9 +145,9 @@ export namespace GenerationRetrieveStatusV1RunGetResponse {
 }
 export declare namespace Generations {
   export {
-    type GenerationListV1GetResponse as GenerationListV1GetResponse,
-    type GenerationRetrieveStatusV1RunGetResponse as GenerationRetrieveStatusV1RunGetResponse,
-    type GenerationListV1GetParams as GenerationListV1GetParams,
-    type GenerationRetrieveStatusV1RunGetParams as GenerationRetrieveStatusV1RunGetParams,
+    type GenerationListResponse as GenerationListResponse,
+    type GenerationRetrieveResponse as GenerationRetrieveResponse,
+    type GenerationListParams as GenerationListParams,
+    type GenerationRetrieveParams as GenerationRetrieveParams,
   };
 }

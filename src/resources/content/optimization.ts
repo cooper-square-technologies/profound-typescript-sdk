@@ -11,26 +11,23 @@ export class Optimization extends APIResource {
    * Optimization List
    *
    * @param {string} assetID
-   * @param {OptimizationListV1AssetIDGetParams} [query] - The parameters to send with the request.
+   * @param {OptimizationListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<OptimizationListV1AssetIDGetResponse>} Successful Response
+   * @returns {APIPromise<OptimizationListResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const listV1AssetIDGet = await client.content.optimization.listV1AssetIDGet(
-   *   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   {
-   *     limit: 10000,
-   *     offset: 0,
-   *   },
-   * );
+   * const list = await client.content.optimization.list('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   *   limit: 10000,
+   *   offset: 0,
+   * });
    * ```
    */
-  listV1AssetIDGet(
+  list(
     assetID: string,
-    query: OptimizationListV1AssetIDGetParams | null | undefined = {},
+    query: OptimizationListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<OptimizationListV1AssetIDGetResponse> {
+  ): APIPromise<OptimizationListResponse> {
     return this._client.get(__scalarPath`/v1/content/${assetID}/optimization`, { query, ...options });
   }
 
@@ -38,31 +35,28 @@ export class Optimization extends APIResource {
    * Optimization Analysis
    *
    * @param {string} contentID
-   * @param {OptimizationAnalysisV1AssetIDIDGetParams} params - The parameters to send with the request.
+   * @param {OptimizationRetrieveParams} params - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<OptimizationAnalysisV1AssetIDIDGetResponse>} Successful Response
+   * @returns {APIPromise<OptimizationRetrieveResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const analysisV1AssetIDIDGet = await client.content.optimization.analysisV1AssetIDIDGet(
-   *   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   {
-   *     asset_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   },
-   * );
+   * const retrieve = await client.content.optimization.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   *   asset_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   * });
    * ```
    */
-  analysisV1AssetIDIDGet(
+  retrieve(
     contentID: string,
-    params: OptimizationAnalysisV1AssetIDIDGetParams,
+    params: OptimizationRetrieveParams,
     options?: RequestOptions,
-  ): APIPromise<OptimizationAnalysisV1AssetIDIDGetResponse> {
+  ): APIPromise<OptimizationRetrieveResponse> {
     const { asset_id } = params;
     return this._client.get(__scalarPath`/v1/content/${asset_id}/optimization/${contentID}`, options);
   }
 }
 
-export interface OptimizationListV1AssetIDGetParams {
+export interface OptimizationListParams {
   /**
    * Maximum number of results to return
    * @default 10000
@@ -77,12 +71,12 @@ export interface OptimizationListV1AssetIDGetParams {
   offset?: number;
 }
 
-export interface OptimizationListV1AssetIDGetResponse {
-  info: OptimizationListV1AssetIDGetResponse.Info;
-  data: Array<OptimizationListV1AssetIDGetResponse.Data>;
+export interface OptimizationListResponse {
+  info: OptimizationListResponse.Info;
+  data: Array<OptimizationListResponse.Data>;
 }
 
-export namespace OptimizationListV1AssetIDGetResponse {
+export namespace OptimizationListResponse {
   export interface Info {
     total_rows: number;
     query: Info.Query;
@@ -117,18 +111,18 @@ export namespace OptimizationListV1AssetIDGetResponse {
   }
 }
 
-export interface OptimizationAnalysisV1AssetIDIDGetParams {
+export interface OptimizationRetrieveParams {
   /**
    * @format uuid
    */
   asset_id: string;
 }
 
-export interface OptimizationAnalysisV1AssetIDIDGetResponse {
-  data: OptimizationAnalysisV1AssetIDIDGetResponse.Data;
+export interface OptimizationRetrieveResponse {
+  data: OptimizationRetrieveResponse.Data;
 }
 
-export namespace OptimizationAnalysisV1AssetIDIDGetResponse {
+export namespace OptimizationRetrieveResponse {
   export interface Data {
     content: Data.Content;
     aeo_content_score: Data.AeoContentScore | null;
@@ -220,9 +214,9 @@ export namespace OptimizationAnalysisV1AssetIDIDGetResponse {
 }
 export declare namespace Optimization {
   export {
-    type OptimizationListV1AssetIDGetResponse as OptimizationListV1AssetIDGetResponse,
-    type OptimizationAnalysisV1AssetIDIDGetResponse as OptimizationAnalysisV1AssetIDIDGetResponse,
-    type OptimizationListV1AssetIDGetParams as OptimizationListV1AssetIDGetParams,
-    type OptimizationAnalysisV1AssetIDIDGetParams as OptimizationAnalysisV1AssetIDIDGetParams,
+    type OptimizationListResponse as OptimizationListResponse,
+    type OptimizationRetrieveResponse as OptimizationRetrieveResponse,
+    type OptimizationListParams as OptimizationListParams,
+    type OptimizationRetrieveParams as OptimizationRetrieveParams,
   };
 }

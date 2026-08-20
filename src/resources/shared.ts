@@ -1,5 +1,7 @@
 // File generated from our OpenAPI spec by Scalar. See README.md for details.
 
+import type * as ReportsAPI from './reports/reports';
+
 export interface AccuracyTrendPoint {
   date: string;
   total: number;
@@ -74,8 +76,12 @@ export interface AssetIDFilter {
   operator: 'is' | 'not_is' | 'in' | 'not_in';
   value: string | Array<string>;
 }
-export interface BrandNameFilter {
-  field: 'brand_name';
+/**
+ * Filter by bot name (user agent). Values come from analytics data and should
+ * not be enum-constrained because web-v2 may send newly cataloged user-agent names.
+ */
+export interface BotNameFilter {
+  field: 'bot_name';
   operator:
     | 'is'
     | 'not_is'
@@ -87,6 +93,73 @@ export interface BrandNameFilter {
     | 'contains_case_insensitive'
     | 'not_contains_case_insensitive';
   value: string | Array<string>;
+}
+/**
+ * Filter by bot provider
+ */
+export interface BotProviderFilter {
+  field: 'bot_provider';
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
+  value:
+    | 'openai'
+    | 'anthropic'
+    | 'chatgpt'
+    | 'deepseek'
+    | 'google'
+    | 'microsoft'
+    | 'perplexity'
+    | 'apple'
+    | 'bytedance'
+    | 'amazon'
+    | 'meta'
+    | 'duckduckgo'
+    | 'you'
+    | 'you.com'
+    | 'xai'
+    | 'grok'
+    | 'gemini'
+    | 'mistral'
+    | 'huawei'
+    | 'yandex'
+    | 'baidu'
+    | 'yahoo'
+    | 'commoncrawl'
+    | 'openclaw'
+    | Array<
+        | 'openai'
+        | 'anthropic'
+        | 'chatgpt'
+        | 'deepseek'
+        | 'google'
+        | 'microsoft'
+        | 'perplexity'
+        | 'apple'
+        | 'bytedance'
+        | 'amazon'
+        | 'meta'
+        | 'duckduckgo'
+        | 'you'
+        | 'you.com'
+        | 'xai'
+        | 'grok'
+        | 'gemini'
+        | 'mistral'
+        | 'huawei'
+        | 'yandex'
+        | 'baidu'
+        | 'yahoo'
+        | 'commoncrawl'
+        | 'openclaw'
+      >;
 }
 export interface ClaimModelOccurrence {
   id?: string | null;
@@ -137,19 +210,6 @@ export interface DocumentOperationResponse {
   folder?: string | null;
 }
 /**
- * Shows the old and new value for a changed field.
- */
-export interface FieldDiff {
-  /**
-   * Previous value.
-   */
-  old?: unknown;
-  /**
-   * New value.
-   */
-  new?: unknown;
-}
-/**
  * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
  */
 export interface FilterNode {
@@ -159,23 +219,6 @@ export interface FilterNode {
   field?: string | null;
   op?: string | null;
   value?: unknown;
-}
-/**
- * Filter by hostname
- */
-export interface HostnameFilter {
-  field: 'hostname';
-  operator:
-    | 'is'
-    | 'not_is'
-    | 'in'
-    | 'not_in'
-    | 'contains'
-    | 'not_contains'
-    | 'matches'
-    | 'contains_case_insensitive'
-    | 'not_contains_case_insensitive';
-  value: string | Array<string>;
 }
 export interface HTTPValidationError {
   detail?: Array<HTTPValidationError.Detail>;
@@ -189,27 +232,6 @@ export namespace HTTPValidationError {
     input?: unknown;
     ctx?: Record<string, unknown>;
   }
-}
-/**
- * Reference by id, name, or both. Plain strings work too:
- * UUIDs become id lookups, other strings become name lookups.
- */
-export interface IDOrName {
-  /**
-   * UUID of the resource.
-   */
-  id?: string | null;
-  /**
-   * Display name of the resource.
-   */
-  name?: string | null;
-}
-/**
- * Base model for report information.
- */
-export interface Info {
-  total_rows: number;
-  query?: Record<string, unknown> | null;
 }
 export interface LiveGeneration {
   /**
@@ -227,20 +249,6 @@ export interface LiveGeneration {
   finished_at?: string | null;
   error?: string | null;
 }
-export interface MerchantNameFilter {
-  field: 'merchant_name';
-  operator:
-    | 'is'
-    | 'not_is'
-    | 'in'
-    | 'not_in'
-    | 'contains'
-    | 'not_contains'
-    | 'matches'
-    | 'contains_case_insensitive'
-    | 'not_contains_case_insensitive';
-  value: string | Array<string>;
-}
 /**
  * Filter by AI model/platform UUID.
  */
@@ -248,28 +256,6 @@ export interface ModelIDFilter {
   field: 'model_id' | 'model';
   operator: 'is' | 'not_is' | 'in' | 'not_in';
   value: string | Array<string>;
-}
-/**
- * Generic id+name reference used across domain boundaries.
- */
-export interface NamedResource {
-  id: string;
-  name: string;
-}
-/**
- * Shows which resources were added or removed.
- */
-export interface NamedResourceDiffList {
-  /**
-   * Resources that were added.
-   * @default []
-   */
-  added?: Array<NamedResource>;
-  /**
-   * Resources that were removed.
-   * @default []
-   */
-  removed?: Array<NamedResource>;
 }
 export interface NumericMetricFilter {
   field: string;
@@ -316,20 +302,6 @@ export interface PathFilter {
 export interface PersonaIDFilter {
   field: 'persona_id';
   operator: 'is' | 'not_is' | 'in' | 'not_in';
-  value: string | Array<string>;
-}
-export interface ProductNameFilter {
-  field: 'product_name';
-  operator:
-    | 'is'
-    | 'not_is'
-    | 'in'
-    | 'not_in'
-    | 'contains'
-    | 'not_contains'
-    | 'matches'
-    | 'contains_case_insensitive'
-    | 'not_contains_case_insensitive';
   value: string | Array<string>;
 }
 /**
@@ -439,14 +411,6 @@ export interface PromptFilter {
   value: string | Array<string>;
 }
 /**
- * Filter by prompt UUID.
- */
-export interface PromptIDFilter {
-  field: 'prompt_id';
-  operator: 'is' | 'not_is' | 'in' | 'not_in';
-  value: string | Array<string>;
-}
-/**
  * Filter by prompt type (visibility or sentiment).
  *
  * .. deprecated::
@@ -492,45 +456,11 @@ export interface RegionNameFilter {
     | 'not_contains_case_insensitive';
   value: string | Array<string>;
 }
-/**
- * Base response model for reports.
- */
-export interface Response {
-  /**
-   * Base model for report information.
-   */
-  info: Info;
-  data: Array<Response.Data>;
-}
-
-export namespace Response {
-  export interface Data {
-    metrics: Array<number | string>;
-    dimensions: Array<string>;
-  }
-}
-/**
- * Filter by root domain
- */
-export interface RootDomainFilter {
-  field: 'root_domain';
-  operator:
-    | 'is'
-    | 'not_is'
-    | 'in'
-    | 'not_in'
-    | 'contains'
-    | 'not_contains'
-    | 'matches'
-    | 'contains_case_insensitive'
-    | 'not_contains_case_insensitive';
-  value: string | Array<string>;
-}
 export interface ShoppingRowsResponse {
   /**
    * Base model for report information.
    */
-  info: Info;
+  info: ReportsAPI.ReportInfo;
   data: Array<Record<string, unknown>>;
 }
 /**
@@ -542,61 +472,10 @@ export interface TagIDFilter {
   value: string | Array<string>;
 }
 /**
- * Filter by tag name.
- */
-export interface TagNameFilter {
-  field: 'tag_name';
-  operator:
-    | 'is'
-    | 'not_is'
-    | 'in'
-    | 'not_in'
-    | 'contains'
-    | 'not_contains'
-    | 'matches'
-    | 'contains_case_insensitive'
-    | 'not_contains_case_insensitive';
-  value: string | Array<string>;
-}
-/**
  * Filter by topic UUID.
  */
 export interface TopicIDFilter {
   field: 'topic_id' | 'topic';
   operator: 'is' | 'not_is' | 'in' | 'not_in';
-  value: string | Array<string>;
-}
-/**
- * Filter by topic name
- */
-export interface TopicNameFilter {
-  field: 'topic_name';
-  operator:
-    | 'is'
-    | 'not_is'
-    | 'in'
-    | 'not_in'
-    | 'contains'
-    | 'not_contains'
-    | 'matches'
-    | 'contains_case_insensitive'
-    | 'not_contains_case_insensitive';
-  value: string | Array<string>;
-}
-/**
- * Filter by URL
- */
-export interface URLFilter {
-  field: 'url';
-  operator:
-    | 'is'
-    | 'not_is'
-    | 'in'
-    | 'not_in'
-    | 'contains'
-    | 'not_contains'
-    | 'matches'
-    | 'contains_case_insensitive'
-    | 'not_contains_case_insensitive';
   value: string | Array<string>;
 }

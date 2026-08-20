@@ -1,11 +1,11 @@
 // File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-import { APIResource } from '../resource';
-import { APIPromise } from '../api-promise';
-import type { RequestOptions } from '../internal/request-options';
-import type * as Shared from './shared';
+import { APIResource } from '../../../resource';
+import { APIPromise } from '../../../api-promise';
+import type { RequestOptions } from '../../../internal/request-options';
+import type * as Shared from '../../shared';
 
-export class OpenAIAds extends APIResource {
+export class AdAccount extends APIResource {
   /**
    * Get ad account insights for the organization's OpenAI Ads partner brand.
    *
@@ -13,25 +13,24 @@ export class OpenAIAds extends APIResource {
    * / `campaign_name` and all metrics), so every campaign's insights come back in
    * a single call; `time_granularity=daily` gives per-day rows (e.g. daily spend).
    *
-   * @param {OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetParams} [query] - The parameters to send with the request.
+   * @param {AdAccountRetrieveInsightsParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetResponse>} Successful Response
+   * @returns {APIPromise<AdAccountRetrieveInsightsResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const listAccountInsightsV1OpenAIAccountInsightsGet =
-   *   await client.openAIAds.listAccountInsightsV1OpenAIAccountInsightsGet();
+   * const retrieveInsights = await client.ads.openaiAds.adAccount.retrieveInsights();
    * ```
    */
-  listAccountInsightsV1OpenAIAccountInsightsGet(
-    query: OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetParams | null | undefined = {},
+  retrieveInsights(
+    query: AdAccountRetrieveInsightsParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetResponse> {
+  ): APIPromise<AdAccountRetrieveInsightsResponse> {
     return this._client.get('/v1/ads/openai-ads/ad-account/insights', { query, ...options });
   }
 }
 
-export interface OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetParams {
+export interface AdAccountRetrieveInsightsParams {
   /**
    * Organization scope for API keys that can access multiple organizations.
    * @format uuid
@@ -65,11 +64,11 @@ export interface OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetParams {
   before?: string | null;
 }
 
-export interface OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetResponse {
+export interface AdAccountRetrieveInsightsResponse {
   /**
    * Insight rows.
    */
-  data: Array<OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetResponse.Data>;
+  data: Array<AdAccountRetrieveInsightsResponse.Data>;
   /**
    * Total row count, when reported upstream.
    */
@@ -89,7 +88,7 @@ export interface OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetResponse {
   has_more?: boolean;
 }
 
-export namespace OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetResponse {
+export namespace AdAccountRetrieveInsightsResponse {
   export interface Data {
     /**
      * Row ID.
@@ -161,9 +160,9 @@ export namespace OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetResponse {
     cpm?: number | null;
   }
 }
-export declare namespace OpenAIAds {
+export declare namespace AdAccount {
   export {
-    type OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetResponse as OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetResponse,
-    type OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetParams as OpenAIAdListAccountInsightsV1OpenAIAccountInsightsGetParams,
+    type AdAccountRetrieveInsightsResponse as AdAccountRetrieveInsightsResponse,
+    type AdAccountRetrieveInsightsParams as AdAccountRetrieveInsightsParams,
   };
 }

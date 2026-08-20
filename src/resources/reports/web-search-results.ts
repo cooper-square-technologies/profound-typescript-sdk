@@ -5,19 +5,20 @@ import { APIPromise } from '../../api-promise';
 import { Stream } from '../../core/streaming';
 import type { RequestOptions } from '../../internal/request-options';
 import { buildHeaders } from '../../internal/headers';
+import type * as ReportsAPI from './reports';
 import type * as Shared from '../shared';
 
 export class WebSearchResults extends APIResource {
   /**
    * Get web search results for a given category.
    *
-   * @param {WebSearchResultQueryV1PostParams} body - The request body to send.
+   * @param {WebSearchResultQueryParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<WebSearchResultQueryV1PostResponse>} Successful Response
+   * @returns {APIPromise<WebSearchResultQueryResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const queryV1Post = await client.reports.webSearchResults.queryV1Post({
+   * const query = await client.reports.webSearchResults.query({
    *   date_interval: 'day',
    *   dimensions: [],
    *   metrics: [],
@@ -28,23 +29,23 @@ export class WebSearchResults extends APIResource {
    * });
    * ```
    */
-  queryV1Post(
-    body: WebSearchResultQueryV1PostParams,
+  query(
+    body: WebSearchResultQueryParams,
     options?: RequestOptions,
-  ): APIPromise<WebSearchResultQueryV1PostResponse> {
+  ): APIPromise<WebSearchResultQueryResponse> {
     return this._client.post('/v1/reports/web-search-results', { body, ...options });
   }
 
   /**
    * Stream Web Search Results
    *
-   * @param {WebSearchResultStreamV1StreamPostParams} body - The request body to send.
+   * @param {WebSearchResultStreamParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Stream<WebSearchResultStreamV1StreamPostResponse>>} Server-sent events stream. Emits a `summary` event first, then one `row` event per streamed row.
+   * @returns {APIPromise<Stream<WebSearchResultStreamResponse>>} Server-sent events stream. Emits a `summary` event first, then one `row` event per streamed row.
    *
    * @example
    * ```ts
-   * const stream = await client.reports.webSearchResults.streamV1StreamPost({
+   * const stream = await client.reports.webSearchResults.stream({
    *   date_interval: 'day',
    *   dimensions: [],
    *   metrics: [],
@@ -59,10 +60,10 @@ export class WebSearchResults extends APIResource {
    * }
    * ```
    */
-  streamV1StreamPost(
-    body: WebSearchResultStreamV1StreamPostParams,
+  stream(
+    body: WebSearchResultStreamParams,
     options?: RequestOptions,
-  ): APIPromise<Stream<WebSearchResultStreamV1StreamPostResponse>> {
+  ): APIPromise<Stream<WebSearchResultStreamResponse>> {
     return this._client.post('/v1/reports/web-search-results/stream', {
       body,
       ...options,
@@ -72,7 +73,7 @@ export class WebSearchResults extends APIResource {
   }
 }
 
-export interface WebSearchResultsQuery {
+export interface WebSearchResultQueryParams {
   /**
    * Metrics to include. `search_share` is the per-prompt occurrence rate.
    * @minItems 1
@@ -138,22 +139,22 @@ export interface WebSearchResultsQuery {
    * List of filters to apply to the web search results report.
    */
   filters?: Array<
-    | Shared.HostnameFilter
+    | ReportsAPI.HostnameFilter
     | Shared.PathFilter
     | Shared.RegionIDFilter
     | Shared.TopicIDFilter
     | Shared.ModelIDFilter
     | Shared.TagIDFilter
-    | Shared.URLFilter
-    | Shared.RootDomainFilter
+    | ReportsAPI.URLFilter
+    | ReportsAPI.RootDomainFilter
     | Shared.PersonaIDFilter
     | Shared.PromptFilter
-    | Shared.PromptIDFilter
-    | WebSearchResultsQuery.SearchQueryFilter
+    | ReportsAPI.PromptIDFilter
+    | WebSearchResultQueryParams.SearchQueryFilter
   >;
 }
 
-export namespace WebSearchResultsQuery {
+export namespace WebSearchResultQueryParams {
   export interface SearchQueryFilter {
     field: 'search_query';
     operator:
@@ -170,215 +171,22 @@ export namespace WebSearchResultsQuery {
   }
 }
 
-export interface StreamWebSearchResultsQuery {
-  /**
-   * Metrics to include. `search_share` is the per-prompt occurrence rate.
-   * @minItems 1
-   */
-  metrics: Array<'count' | 'search_share'>;
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * Date interval for the report. (only used with date dimension)
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  /**
-   * Dimensions to group the report by.
-   * @default []
-   */
-  dimensions?: Array<
-    | 'hostname'
-    | 'path'
-    | 'url'
-    | 'root_domain'
-    | 'date'
-    | 'region'
-    | 'topic'
-    | 'topic_id'
-    | 'model'
-    | 'tag'
-    | 'prompt'
-    | 'prompt_id'
-    | 'persona'
-    | 'search_query'
-  >;
-  /**
-   *
-   *     Custom ordering of the report results.
-   *
-   *     The order is a record of key-value pairs where:
-   *     - `key` is the field to order by, which can be a metric or dimension
-   *     - `value` is the direction of the order, either `asc` for ascending or `desc` for descending.
-   *
-   *     When not specified, the default order is the first metric in the query descending.
-   *
-   * @default {}
-   */
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: Shared.Pagination | null;
-  /**
-   * List of filters to apply to the web search results report.
-   */
-  filters?: Array<
-    | Shared.HostnameFilter
-    | Shared.PathFilter
-    | Shared.RegionIDFilter
-    | Shared.TopicIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TagIDFilter
-    | Shared.URLFilter
-    | Shared.RootDomainFilter
-    | Shared.PersonaIDFilter
-    | Shared.PromptFilter
-    | Shared.PromptIDFilter
-    | StreamWebSearchResultsQuery.SearchQueryFilter
-  >;
-}
-
-export namespace StreamWebSearchResultsQuery {
-  export interface SearchQueryFilter {
-    field: 'search_query';
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-    value: string | Array<string>;
-  }
-}
-
-export interface WebSearchResultQueryV1PostParams {
-  /**
-   * Metrics to include. `search_share` is the per-prompt occurrence rate.
-   * @minItems 1
-   */
-  metrics: Array<'count' | 'search_share'>;
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * Date interval for the report. (only used with date dimension)
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  /**
-   * Dimensions to group the report by.
-   * @default []
-   */
-  dimensions?: Array<
-    | 'hostname'
-    | 'path'
-    | 'url'
-    | 'root_domain'
-    | 'date'
-    | 'region'
-    | 'topic'
-    | 'topic_id'
-    | 'model'
-    | 'tag'
-    | 'prompt'
-    | 'prompt_id'
-    | 'persona'
-    | 'search_query'
-  >;
-  /**
-   *
-   *     Custom ordering of the report results.
-   *
-   *     The order is a record of key-value pairs where:
-   *     - `key` is the field to order by, which can be a metric or dimension
-   *     - `value` is the direction of the order, either `asc` for ascending or `desc` for descending.
-   *
-   *     When not specified, the default order is the first metric in the query descending.
-   *
-   * @default {}
-   */
-  order_by?: Record<string, 'asc' | 'desc'>;
-  /**
-   * Pagination settings for the report results.
-   */
-  pagination?: Shared.Pagination;
-  /**
-   * List of filters to apply to the web search results report.
-   */
-  filters?: Array<
-    | Shared.HostnameFilter
-    | Shared.PathFilter
-    | Shared.RegionIDFilter
-    | Shared.TopicIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TagIDFilter
-    | Shared.URLFilter
-    | Shared.RootDomainFilter
-    | Shared.PersonaIDFilter
-    | Shared.PromptFilter
-    | Shared.PromptIDFilter
-    | WebSearchResultQueryV1PostParams.SearchQueryFilter
-  >;
-}
-
-export namespace WebSearchResultQueryV1PostParams {
-  export interface SearchQueryFilter {
-    field: 'search_query';
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-    value: string | Array<string>;
-  }
-}
-
-export interface WebSearchResultQueryV1PostResponse {
+export interface WebSearchResultQueryResponse {
   /**
    * Base model for report information.
    */
-  info: Shared.Info;
-  data: Array<WebSearchResultQueryV1PostResponse.Data>;
+  info: ReportsAPI.ReportInfo;
+  data: Array<WebSearchResultQueryResponse.Data>;
 }
 
-export namespace WebSearchResultQueryV1PostResponse {
+export namespace WebSearchResultQueryResponse {
   export interface Data {
     metrics: Array<number | string>;
     dimensions: Array<string | null>;
   }
 }
 
-export interface WebSearchResultStreamV1StreamPostParams {
+export interface WebSearchResultStreamParams {
   /**
    * Metrics to include. `search_share` is the per-prompt occurrence rate.
    * @minItems 1
@@ -441,22 +249,22 @@ export interface WebSearchResultStreamV1StreamPostParams {
    * List of filters to apply to the web search results report.
    */
   filters?: Array<
-    | Shared.HostnameFilter
+    | ReportsAPI.HostnameFilter
     | Shared.PathFilter
     | Shared.RegionIDFilter
     | Shared.TopicIDFilter
     | Shared.ModelIDFilter
     | Shared.TagIDFilter
-    | Shared.URLFilter
-    | Shared.RootDomainFilter
+    | ReportsAPI.URLFilter
+    | ReportsAPI.RootDomainFilter
     | Shared.PersonaIDFilter
     | Shared.PromptFilter
-    | Shared.PromptIDFilter
-    | WebSearchResultStreamV1StreamPostParams.SearchQueryFilter
+    | ReportsAPI.PromptIDFilter
+    | WebSearchResultStreamParams.SearchQueryFilter
   >;
 }
 
-export namespace WebSearchResultStreamV1StreamPostParams {
+export namespace WebSearchResultStreamParams {
   export interface SearchQueryFilter {
     field: 'search_query';
     operator:
@@ -473,11 +281,11 @@ export namespace WebSearchResultStreamV1StreamPostParams {
   }
 }
 
-export type WebSearchResultStreamV1StreamPostResponse =
-  | WebSearchResultStreamV1StreamPostResponse.SseSummaryEventData
+export type WebSearchResultStreamResponse =
+  | WebSearchResultStreamResponse.SseSummaryEventData
   | Record<string, unknown>;
 
-export namespace WebSearchResultStreamV1StreamPostResponse {
+export namespace WebSearchResultStreamResponse {
   export interface SseSummaryEventData {
     /**
      * The normalized query used to build the stream.
@@ -491,11 +299,9 @@ export namespace WebSearchResultStreamV1StreamPostResponse {
 }
 export declare namespace WebSearchResults {
   export {
-    type WebSearchResultsQuery as WebSearchResultsQuery,
-    type StreamWebSearchResultsQuery as StreamWebSearchResultsQuery,
-    type WebSearchResultQueryV1PostResponse as WebSearchResultQueryV1PostResponse,
-    type WebSearchResultStreamV1StreamPostResponse as WebSearchResultStreamV1StreamPostResponse,
-    type WebSearchResultQueryV1PostParams as WebSearchResultQueryV1PostParams,
-    type WebSearchResultStreamV1StreamPostParams as WebSearchResultStreamV1StreamPostParams,
+    type WebSearchResultQueryResponse as WebSearchResultQueryResponse,
+    type WebSearchResultStreamResponse as WebSearchResultStreamResponse,
+    type WebSearchResultQueryParams as WebSearchResultQueryParams,
+    type WebSearchResultStreamParams as WebSearchResultStreamParams,
   };
 }

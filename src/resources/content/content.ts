@@ -6,10 +6,10 @@ import type { RequestOptions } from '../../internal/request-options';
 import * as OptimizationAPI from './optimization';
 import {
   Optimization,
-  type OptimizationListV1AssetIDGetResponse,
-  type OptimizationAnalysisV1AssetIDIDGetResponse,
-  type OptimizationListV1AssetIDGetParams,
-  type OptimizationAnalysisV1AssetIDIDGetParams,
+  type OptimizationListResponse,
+  type OptimizationRetrieveResponse,
+  type OptimizationListParams,
+  type OptimizationRetrieveParams,
 } from './optimization';
 
 export class Content extends APIResource {
@@ -21,9 +21,9 @@ Content.Optimization = Optimization;
 export declare namespace Content {
   export {
     Optimization as Optimization,
-    type OptimizationListV1AssetIDGetResponse as OptimizationListV1AssetIDGetResponse,
-    type OptimizationAnalysisV1AssetIDIDGetResponse as OptimizationAnalysisV1AssetIDIDGetResponse,
-    type OptimizationListV1AssetIDGetParams as OptimizationListV1AssetIDGetParams,
-    type OptimizationAnalysisV1AssetIDIDGetParams as OptimizationAnalysisV1AssetIDIDGetParams,
+    type OptimizationListResponse as OptimizationListResponse,
+    type OptimizationRetrieveResponse as OptimizationRetrieveResponse,
+    type OptimizationListParams as OptimizationListParams,
+    type OptimizationRetrieveParams as OptimizationRetrieveParams,
   };
 }

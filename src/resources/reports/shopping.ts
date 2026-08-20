@@ -9,359 +9,15 @@ import type * as Shared from '../shared';
 
 export class Shopping extends APIResource {
   /**
-   * Shopping Visibility
-   *
-   * @param {ShoppingVisibilityV1VisibilityPostParams} body - The request body to send.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Shared.ShoppingRowsResponse>} Successful Response
-   *
-   * @example
-   * ```ts
-   * const rows = await client.reports.shopping.visibilityV1VisibilityPost({
-   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   start_date: '2024-01-01T00:00:00.000Z',
-   *   end_date: '2024-01-01T00:00:00.000Z',
-   *   date_interval: 'day',
-   *   include_count: false,
-   *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   exclude_topic_ids: false,
-   *   include_asset_only: false,
-   *   rank_by: 'visibility_score',
-   *   include_position_frequency: false,
-   * });
-   * ```
-   */
-  visibilityV1VisibilityPost(
-    body: ShoppingVisibilityV1VisibilityPostParams,
-    options?: RequestOptions,
-  ): APIPromise<Shared.ShoppingRowsResponse> {
-    return this._client.post('/v1/reports/shopping/visibility', { body, ...options });
-  }
-
-  /**
-   * Shopping Item Visibility
-   *
-   * @param {ShoppingItemVisibilityV1ItemVisibilityPostParams} body - The request body to send.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Shared.ShoppingRowsResponse>} Successful Response
-   *
-   * @example
-   * ```ts
-   * const rows = await client.reports.shopping.itemVisibilityV1ItemVisibilityPost({
-   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   start_date: '2024-01-01T00:00:00.000Z',
-   *   end_date: '2024-01-01T00:00:00.000Z',
-   *   date_interval: 'day',
-   *   include_count: false,
-   *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   exclude_topic_ids: false,
-   *   merchant_filter_type: 'any',
-   *   include_competitors: false,
-   *   competitor_limit: 5,
-   *   include_position_frequency: false,
-   * });
-   * ```
-   */
-  itemVisibilityV1ItemVisibilityPost(
-    body: ShoppingItemVisibilityV1ItemVisibilityPostParams,
-    options?: RequestOptions,
-  ): APIPromise<Shared.ShoppingRowsResponse> {
-    return this._client.post('/v1/reports/shopping/item-visibility', { body, ...options });
-  }
-
-  /**
-   * Shopping Merchant Distribution
-   *
-   * @param {ShoppingMerchantDistributionV1MerchantDistributionPostParams} body - The request body to send.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Shared.ShoppingRowsResponse>} Successful Response
-   *
-   * @example
-   * ```ts
-   * const rows = await client.reports.shopping.merchantDistributionV1MerchantDistributionPost({
-   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   start_date: '2024-01-01T00:00:00.000Z',
-   *   end_date: '2024-01-01T00:00:00.000Z',
-   *   date_interval: 'day',
-   *   include_count: false,
-   *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   exclude_topic_ids: false,
-   * });
-   * ```
-   */
-  merchantDistributionV1MerchantDistributionPost(
-    body: ShoppingMerchantDistributionV1MerchantDistributionPostParams,
-    options?: RequestOptions,
-  ): APIPromise<Shared.ShoppingRowsResponse> {
-    return this._client.post('/v1/reports/shopping/merchant-distribution', { body, ...options });
-  }
-
-  /**
-   * Shopping Merchant Visibility By Brand
-   *
-   * @param {ShoppingMerchantVisibilityByBrandV1MerchantVisibilityByBrandPostParams} body - The request body to send.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Shared.ShoppingRowsResponse>} Successful Response
-   *
-   * @example
-   * ```ts
-   * const rows = await client.reports.shopping.merchantVisibilityByBrandV1MerchantVisibilityByBrandPost({
-   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   start_date: '2024-01-01T00:00:00.000Z',
-   *   end_date: '2024-01-01T00:00:00.000Z',
-   *   date_interval: 'day',
-   *   include_count: false,
-   *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   exclude_topic_ids: false,
-   *   include_brand_only: false,
-   * });
-   * ```
-   */
-  merchantVisibilityByBrandV1MerchantVisibilityByBrandPost(
-    body: ShoppingMerchantVisibilityByBrandV1MerchantVisibilityByBrandPostParams,
-    options?: RequestOptions,
-  ): APIPromise<Shared.ShoppingRowsResponse> {
-    return this._client.post('/v1/reports/shopping/merchant-visibility-by-brand', { body, ...options });
-  }
-
-  /**
-   * Shopping Merchant By Items
-   *
-   * @param {ShoppingMerchantByItemsV1MerchantByItemsPostParams} body - The request body to send.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Shared.ShoppingRowsResponse>} Successful Response
-   *
-   * @example
-   * ```ts
-   * const rows = await client.reports.shopping.merchantByItemsV1MerchantByItemsPost({
-   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   start_date: '2024-01-01T00:00:00.000Z',
-   *   end_date: '2024-01-01T00:00:00.000Z',
-   *   date_interval: 'day',
-   *   include_count: false,
-   *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   exclude_topic_ids: false,
-   * });
-   * ```
-   */
-  merchantByItemsV1MerchantByItemsPost(
-    body: ShoppingMerchantByItemsV1MerchantByItemsPostParams,
-    options?: RequestOptions,
-  ): APIPromise<Shared.ShoppingRowsResponse> {
-    return this._client.post('/v1/reports/shopping/merchant-by-items', { body, ...options });
-  }
-
-  /**
-   * Shopping All Items With Merchants
-   *
-   * @param {ShoppingAllItemsWithMerchantsV1AllItemsWithMerchantsPostParams} body - The request body to send.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Shared.ShoppingRowsResponse>} Successful Response
-   *
-   * @example
-   * ```ts
-   * const rows = await client.reports.shopping.allItemsWithMerchantsV1AllItemsWithMerchantsPost({
-   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   start_date: '2024-01-01T00:00:00.000Z',
-   *   end_date: '2024-01-01T00:00:00.000Z',
-   *   date_interval: 'day',
-   *   include_count: false,
-   *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   exclude_topic_ids: false,
-   *   merchant_filter_type: 'any',
-   *   rank_by: 'visibility',
-   *   sort_order: 'desc',
-   * });
-   * ```
-   */
-  allItemsWithMerchantsV1AllItemsWithMerchantsPost(
-    body: ShoppingAllItemsWithMerchantsV1AllItemsWithMerchantsPostParams,
-    options?: RequestOptions,
-  ): APIPromise<Shared.ShoppingRowsResponse> {
-    return this._client.post('/v1/reports/shopping/all-items-with-merchants', { body, ...options });
-  }
-
-  /**
-   * Shopping Trigger Rate
-   *
-   * @param {ShoppingTriggerRateV1TriggerRatePostParams} body - The request body to send.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Shared.ShoppingRowsResponse>} Successful Response
-   *
-   * @example
-   * ```ts
-   * const rows = await client.reports.shopping.triggerRateV1TriggerRatePost({
-   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   start_date: '2024-01-01T00:00:00.000Z',
-   *   end_date: '2024-01-01T00:00:00.000Z',
-   *   date_interval: 'day',
-   *   include_count: false,
-   *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   exclude_topic_ids: false,
-   * });
-   * ```
-   */
-  triggerRateV1TriggerRatePost(
-    body: ShoppingTriggerRateV1TriggerRatePostParams,
-    options?: RequestOptions,
-  ): APIPromise<Shared.ShoppingRowsResponse> {
-    return this._client.post('/v1/reports/shopping/trigger-rate', { body, ...options });
-  }
-
-  /**
-   * Shopping Triggered Prompts
-   *
-   * @param {ShoppingTriggeredPromptsV1TriggeredPromptsPostParams} body - The request body to send.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Shared.ShoppingRowsResponse>} Successful Response
-   *
-   * @example
-   * ```ts
-   * const rows = await client.reports.shopping.triggeredPromptsV1TriggeredPromptsPost({
-   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   start_date: '2024-01-01T00:00:00.000Z',
-   *   end_date: '2024-01-01T00:00:00.000Z',
-   *   date_interval: 'day',
-   *   include_count: false,
-   *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   exclude_topic_ids: false,
-   * });
-   * ```
-   */
-  triggeredPromptsV1TriggeredPromptsPost(
-    body: ShoppingTriggeredPromptsV1TriggeredPromptsPostParams,
-    options?: RequestOptions,
-  ): APIPromise<Shared.ShoppingRowsResponse> {
-    return this._client.post('/v1/reports/shopping/triggered-prompts', { body, ...options });
-  }
-
-  /**
-   * Shopping Triggered Topics
-   *
-   * @param {ShoppingTriggeredTopicsV1TriggeredTopicsPostParams} body - The request body to send.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Shared.ShoppingRowsResponse>} Successful Response
-   *
-   * @example
-   * ```ts
-   * const rows = await client.reports.shopping.triggeredTopicsV1TriggeredTopicsPost({
-   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   start_date: '2024-01-01T00:00:00.000Z',
-   *   end_date: '2024-01-01T00:00:00.000Z',
-   *   date_interval: 'day',
-   *   include_count: false,
-   *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   exclude_topic_ids: false,
-   * });
-   * ```
-   */
-  triggeredTopicsV1TriggeredTopicsPost(
-    body: ShoppingTriggeredTopicsV1TriggeredTopicsPostParams,
-    options?: RequestOptions,
-  ): APIPromise<Shared.ShoppingRowsResponse> {
-    return this._client.post('/v1/reports/shopping/triggered-topics', { body, ...options });
-  }
-
-  /**
-   * Shopping Merchant Share
-   *
-   * @param {ShoppingMerchantShareV1MerchantSharePostParams} body - The request body to send.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Shared.ShoppingRowsResponse>} Successful Response
-   *
-   * @example
-   * ```ts
-   * const rows = await client.reports.shopping.merchantShareV1MerchantSharePost({
-   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   start_date: '2024-01-01T00:00:00.000Z',
-   *   end_date: '2024-01-01T00:00:00.000Z',
-   *   date_interval: 'day',
-   *   include_count: false,
-   *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   exclude_topic_ids: false,
-   * });
-   * ```
-   */
-  merchantShareV1MerchantSharePost(
-    body: ShoppingMerchantShareV1MerchantSharePostParams,
-    options?: RequestOptions,
-  ): APIPromise<Shared.ShoppingRowsResponse> {
-    return this._client.post('/v1/reports/shopping/merchant-share', { body, ...options });
-  }
-
-  /**
-   * Shopping Product Merchant Urls
-   *
-   * @param {ShoppingProductMerchantURLsV1ProductMerchantURLsPostParams} body - The request body to send.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Shared.ShoppingRowsResponse>} Successful Response
-   *
-   * @example
-   * ```ts
-   * const rows = await client.reports.shopping.productMerchantURLsV1ProductMerchantURLsPost({
-   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   product_names: [],
-   *   start_date: '2024-01-01T00:00:00.000Z',
-   *   end_date: '2024-01-01T00:00:00.000Z',
-   * });
-   * ```
-   */
-  productMerchantURLsV1ProductMerchantURLsPost(
-    body: ShoppingProductMerchantURLsV1ProductMerchantURLsPostParams,
-    options?: RequestOptions,
-  ): APIPromise<Shared.ShoppingRowsResponse> {
-    return this._client.post('/v1/reports/shopping/product-merchant-urls', { body, ...options });
-  }
-
-  /**
-   * Shopping Executions
-   *
-   * @param {ShoppingExecutionsV1ExecutionsPostParams} body - The request body to send.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Shared.ShoppingRowsResponse>} Successful Response
-   *
-   * @example
-   * ```ts
-   * const rows = await client.reports.shopping.executionsV1ExecutionsPost({
-   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   start_date: '2024-01-01T00:00:00.000Z',
-   *   end_date: '2024-01-01T00:00:00.000Z',
-   *   date_interval: 'day',
-   *   include_count: false,
-   *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   exclude_topic_ids: false,
-   *   analysis_filter_type: 'any',
-   * });
-   * ```
-   */
-  executionsV1ExecutionsPost(
-    body: ShoppingExecutionsV1ExecutionsPostParams,
-    options?: RequestOptions,
-  ): APIPromise<Shared.ShoppingRowsResponse> {
-    return this._client.post('/v1/reports/shopping/executions', { body, ...options });
-  }
-
-  /**
    * Query Shopping Brands V2
    *
-   * @param {ShoppingQueryBrandsV2V2BrandsPostParams} body - The request body to send.
+   * @param {ShoppingBrandsParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<ShoppingQueryBrandsV2V2BrandsPostResponse>} Successful Response
+   * @returns {APIPromise<ShoppingBrandsResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const queryBrandsV2V2BrandsPost = await client.reports.shopping.queryBrandsV2V2BrandsPost({
+   * const brands = await client.reports.shopping.brands({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -370,23 +26,20 @@ export class Shopping extends APIResource {
    * });
    * ```
    */
-  queryBrandsV2V2BrandsPost(
-    body: ShoppingQueryBrandsV2V2BrandsPostParams,
-    options?: RequestOptions,
-  ): APIPromise<ShoppingQueryBrandsV2V2BrandsPostResponse> {
+  brands(body: ShoppingBrandsParams, options?: RequestOptions): APIPromise<ShoppingBrandsResponse> {
     return this._client.post('/v2/reports/shopping/brands', { body, ...options });
   }
 
   /**
    * Stream Shopping Brands V2
    *
-   * @param {ShoppingStreamBrandsV2V2BrandsStreamPostParams} body - The request body to send.
+   * @param {ShoppingStreamBrandsParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Stream<ShoppingStreamBrandsV2V2BrandsStreamPostResponse>>} Server-sent events stream. Emits one `summary` event (the report `info` block) first, then one `result` event per row.
+   * @returns {APIPromise<Stream<ShoppingStreamBrandsResponse>>} Server-sent events stream. Emits one `summary` event (the report `info` block) first, then one `result` event per row.
    *
    * @example
    * ```ts
-   * const stream = await client.reports.shopping.streamBrandsV2V2BrandsStreamPost({
+   * const stream = await client.reports.shopping.streamBrands({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -399,10 +52,10 @@ export class Shopping extends APIResource {
    * }
    * ```
    */
-  streamBrandsV2V2BrandsStreamPost(
-    body: ShoppingStreamBrandsV2V2BrandsStreamPostParams,
+  streamBrands(
+    body: ShoppingStreamBrandsParams,
     options?: RequestOptions,
-  ): APIPromise<Stream<ShoppingStreamBrandsV2V2BrandsStreamPostResponse>> {
+  ): APIPromise<Stream<ShoppingStreamBrandsResponse>> {
     return this._client.post('/v2/reports/shopping/brands/stream', {
       body,
       ...options,
@@ -414,13 +67,13 @@ export class Shopping extends APIResource {
   /**
    * Query Shopping Products V2
    *
-   * @param {ShoppingQueryProductsV2V2ProductsPostParams} body - The request body to send.
+   * @param {ShoppingProductsParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<ShoppingQueryProductsV2V2ProductsPostResponse>} Successful Response
+   * @returns {APIPromise<ShoppingProductsResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const queryProductsV2V2ProductsPost = await client.reports.shopping.queryProductsV2V2ProductsPost({
+   * const products = await client.reports.shopping.products({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -430,23 +83,20 @@ export class Shopping extends APIResource {
    * });
    * ```
    */
-  queryProductsV2V2ProductsPost(
-    body: ShoppingQueryProductsV2V2ProductsPostParams,
-    options?: RequestOptions,
-  ): APIPromise<ShoppingQueryProductsV2V2ProductsPostResponse> {
+  products(body: ShoppingProductsParams, options?: RequestOptions): APIPromise<ShoppingProductsResponse> {
     return this._client.post('/v2/reports/shopping/products', { body, ...options });
   }
 
   /**
    * Stream Shopping Products V2
    *
-   * @param {ShoppingStreamProductsV2V2ProductsStreamPostParams} body - The request body to send.
+   * @param {ShoppingStreamProductsParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Stream<ShoppingStreamProductsV2V2ProductsStreamPostResponse>>} Server-sent events stream. Emits one `summary` event (the report `info` block) first, then one `result` event per row.
+   * @returns {APIPromise<Stream<ShoppingStreamProductsResponse>>} Server-sent events stream. Emits one `summary` event (the report `info` block) first, then one `result` event per row.
    *
    * @example
    * ```ts
-   * const stream = await client.reports.shopping.streamProductsV2V2ProductsStreamPost({
+   * const stream = await client.reports.shopping.streamProducts({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -460,10 +110,10 @@ export class Shopping extends APIResource {
    * }
    * ```
    */
-  streamProductsV2V2ProductsStreamPost(
-    body: ShoppingStreamProductsV2V2ProductsStreamPostParams,
+  streamProducts(
+    body: ShoppingStreamProductsParams,
     options?: RequestOptions,
-  ): APIPromise<Stream<ShoppingStreamProductsV2V2ProductsStreamPostResponse>> {
+  ): APIPromise<Stream<ShoppingStreamProductsResponse>> {
     return this._client.post('/v2/reports/shopping/products/stream', {
       body,
       ...options,
@@ -475,13 +125,13 @@ export class Shopping extends APIResource {
   /**
    * Query Shopping Merchants V2
    *
-   * @param {ShoppingQueryMerchantsV2V2MerchantsPostParams} body - The request body to send.
+   * @param {ShoppingMerchantsParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<ShoppingQueryMerchantsV2V2MerchantsPostResponse>} Successful Response
+   * @returns {APIPromise<ShoppingMerchantsResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const queryMerchantsV2V2MerchantsPost = await client.reports.shopping.queryMerchantsV2V2MerchantsPost({
+   * const merchants = await client.reports.shopping.merchants({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -489,23 +139,20 @@ export class Shopping extends APIResource {
    * });
    * ```
    */
-  queryMerchantsV2V2MerchantsPost(
-    body: ShoppingQueryMerchantsV2V2MerchantsPostParams,
-    options?: RequestOptions,
-  ): APIPromise<ShoppingQueryMerchantsV2V2MerchantsPostResponse> {
+  merchants(body: ShoppingMerchantsParams, options?: RequestOptions): APIPromise<ShoppingMerchantsResponse> {
     return this._client.post('/v2/reports/shopping/merchants', { body, ...options });
   }
 
   /**
    * Stream Shopping Merchants V2
    *
-   * @param {ShoppingStreamMerchantsV2V2MerchantsStreamPostParams} body - The request body to send.
+   * @param {ShoppingStreamMerchantsParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Stream<ShoppingStreamMerchantsV2V2MerchantsStreamPostResponse>>} Server-sent events stream. Emits one `summary` event (the report `info` block) first, then one `result` event per row.
+   * @returns {APIPromise<Stream<ShoppingStreamMerchantsResponse>>} Server-sent events stream. Emits one `summary` event (the report `info` block) first, then one `result` event per row.
    *
    * @example
    * ```ts
-   * const stream = await client.reports.shopping.streamMerchantsV2V2MerchantsStreamPost({
+   * const stream = await client.reports.shopping.streamMerchants({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -517,10 +164,10 @@ export class Shopping extends APIResource {
    * }
    * ```
    */
-  streamMerchantsV2V2MerchantsStreamPost(
-    body: ShoppingStreamMerchantsV2V2MerchantsStreamPostParams,
+  streamMerchants(
+    body: ShoppingStreamMerchantsParams,
     options?: RequestOptions,
-  ): APIPromise<Stream<ShoppingStreamMerchantsV2V2MerchantsStreamPostResponse>> {
+  ): APIPromise<Stream<ShoppingStreamMerchantsResponse>> {
     return this._client.post('/v2/reports/shopping/merchants/stream', {
       body,
       ...options,
@@ -532,39 +179,37 @@ export class Shopping extends APIResource {
   /**
    * Query Shopping Trigger Rate V2
    *
-   * @param {ShoppingQueryTriggerRateV2V2TriggerRatePostParams} body - The request body to send.
+   * @param {ShoppingTriggerRateParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<ShoppingQueryTriggerRateV2V2TriggerRatePostResponse>} Successful Response
+   * @returns {APIPromise<ShoppingTriggerRateResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const queryTriggerRateV2V2TriggerRatePost = await client.reports.shopping.queryTriggerRateV2V2TriggerRatePost(
-   *   {
-   *     category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *     start_date: '',
-   *     end_date: '',
-   *     interval: 'day',
-   *   },
-   * );
+   * const triggerRate = await client.reports.shopping.triggerRate({
+   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   start_date: '',
+   *   end_date: '',
+   *   interval: 'day',
+   * });
    * ```
    */
-  queryTriggerRateV2V2TriggerRatePost(
-    body: ShoppingQueryTriggerRateV2V2TriggerRatePostParams,
+  triggerRate(
+    body: ShoppingTriggerRateParams,
     options?: RequestOptions,
-  ): APIPromise<ShoppingQueryTriggerRateV2V2TriggerRatePostResponse> {
+  ): APIPromise<ShoppingTriggerRateResponse> {
     return this._client.post('/v2/reports/shopping/trigger-rate', { body, ...options });
   }
 
   /**
    * Stream Shopping Trigger Rate V2
    *
-   * @param {ShoppingStreamTriggerRateV2V2TriggerRateStreamPostParams} body - The request body to send.
+   * @param {ShoppingStreamTriggerRateParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Stream<ShoppingStreamTriggerRateV2V2TriggerRateStreamPostResponse>>} Server-sent events stream. Emits one `summary` event (the report `info` block) first, then one `result` event per row.
+   * @returns {APIPromise<Stream<ShoppingStreamTriggerRateResponse>>} Server-sent events stream. Emits one `summary` event (the report `info` block) first, then one `result` event per row.
    *
    * @example
    * ```ts
-   * const stream = await client.reports.shopping.streamTriggerRateV2V2TriggerRateStreamPost({
+   * const stream = await client.reports.shopping.streamTriggerRate({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -576,10 +221,10 @@ export class Shopping extends APIResource {
    * }
    * ```
    */
-  streamTriggerRateV2V2TriggerRateStreamPost(
-    body: ShoppingStreamTriggerRateV2V2TriggerRateStreamPostParams,
+  streamTriggerRate(
+    body: ShoppingStreamTriggerRateParams,
     options?: RequestOptions,
-  ): APIPromise<Stream<ShoppingStreamTriggerRateV2V2TriggerRateStreamPostResponse>> {
+  ): APIPromise<Stream<ShoppingStreamTriggerRateResponse>> {
     return this._client.post('/v2/reports/shopping/trigger-rate/stream', {
       body,
       ...options,
@@ -589,831 +234,52 @@ export class Shopping extends APIResource {
   }
 }
 
-export interface ShoppingVisibilityQuery {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: Shared.Pagination | null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-  dimensions?: Array<
-    'period' | 'asset_name' | 'date' | 'model_id' | 'topic_id' | 'region_id' | 'prompt_id' | 'prompt'
-  >;
-  metrics?: Array<
-    | 'visibility_score'
-    | 'share_of_voice'
-    | 'average_position'
-    | 'visibility_rank'
-    | 'average_position_rank'
-    | 'position1_percentage'
-    | 'position2_percentage'
-    | 'position3_percentage'
-    | 'position_above3_percentage'
-    | 'total_count'
-  >;
-  owned_asset_names?: Array<string>;
-  search_asset?: string | null;
-  include_asset?: string | null;
-  /**
-   * @default false
-   */
-  include_asset_only?: boolean;
-  include_assets_only?: Array<string>;
-  /**
-   * @default visibility_score
-   */
-  rank_by?: 'visibility_score' | 'average_position';
-  /**
-   * @default false
-   */
-  include_position_frequency?: boolean;
+export interface BrandNameFilter {
+  field: 'brand_name';
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
+  value: string | Array<string>;
 }
 
-export interface ShoppingItemVisibilityQuery {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: Shared.Pagination | null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-  dimensions?: Array<
-    | 'period'
-    | 'product_key'
-    | 'product_name'
-    | 'brand_name'
-    | 'date'
-    | 'topic_id'
-    | 'prompt_id'
-    | 'prompt'
-    | 'product_url'
-    | 'product_image_urls'
-    | 'product_price'
-  >;
-  metrics?: Array<
-    | 'visibility_score'
-    | 'share_of_voice'
-    | 'average_position'
-    | 'visibility_rank'
-    | 'position1_percentage'
-    | 'position2_percentage'
-    | 'position3_percentage'
-    | 'position_above3_percentage'
-    | 'product_rating'
-    | 'product_num_reviews'
-    | 'total_count'
-  >;
-  owned_asset_names?: Array<string>;
-  include_items?: Array<string>;
-  search_item?: string | null;
-  /**
-   * @default any
-   */
-  merchant_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_competitors?: boolean;
-  target_product?: string | null;
-  /**
-   * @default 5
-   * @minimum 1
-   */
-  competitor_limit?: number;
-  /**
-   * @default false
-   */
-  include_position_frequency?: boolean;
+export interface MerchantNameFilter {
+  field: 'merchant_name';
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
+  value: string | Array<string>;
 }
 
-export interface ShoppingMerchantDistributionQuery {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: Shared.Pagination | null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-  dimensions?: Array<'period' | 'merchant_name' | 'date' | 'owned_asset_name'>;
-  metrics?: Array<
-    'offer_count' | 'product_count' | 'average_rank' | 'share_of_offers' | 'visibility_rank' | 'total_count'
-  >;
-  owned_asset_names?: Array<string>;
-  search_merchant?: string | null;
+export interface ProductNameFilter {
+  field: 'product_name';
+  operator:
+    | 'is'
+    | 'not_is'
+    | 'in'
+    | 'not_in'
+    | 'contains'
+    | 'not_contains'
+    | 'matches'
+    | 'contains_case_insensitive'
+    | 'not_contains_case_insensitive';
+  value: string | Array<string>;
 }
 
-export interface ShoppingMerchantVisibilityByBrandQuery {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: Shared.Pagination | null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-  dimensions?: Array<'period' | 'merchant_name' | 'brand_name'>;
-  metrics?: Array<
-    'visibility_score' | 'share_of_voice' | 'average_position' | 'visibility_rank' | 'total_count'
-  >;
-  owned_asset_names?: Array<string>;
-  search_brand?: string | null;
-  include_brand?: string | null;
-  /**
-   * @default false
-   */
-  include_brand_only?: boolean;
-}
-
-export interface ShoppingMerchantByItemsQuery {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: Shared.Pagination | null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-  dimensions?: Array<
-    | 'period'
-    | 'merchant_name'
-    | 'product_name'
-    | 'brand_name'
-    | 'product_image_urls'
-    | 'product_price'
-    | 'merchant_prices'
-    | 'has_instant_checkout'
-    | 'delivery_options'
-    | 'merchant_url'
-  >;
-  metrics?: Array<
-    'merchant_visibility' | 'product_visibility' | 'product_rank' | 'avg_position' | 'total_count'
-  >;
-  product_name?: string | null;
-}
-
-export interface ShoppingAllItemsWithMerchantsQuery {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: Shared.Pagination | null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-  dimensions?: Array<
-    | 'period'
-    | 'product_name'
-    | 'brand_name'
-    | 'product_url'
-    | 'product_image_urls'
-    | 'product_price'
-    | 'merchant_names'
-    | 'merchant_prices'
-  >;
-  metrics?: Array<
-    | 'visibility_score'
-    | 'share_of_voice'
-    | 'average_position'
-    | 'visibility_rank'
-    | 'product_rating'
-    | 'product_num_reviews'
-    | 'total_count'
-  >;
-  owned_asset_names?: Array<string>;
-  include_items?: Array<string>;
-  search_item?: string | null;
-  /**
-   * @default any
-   */
-  merchant_filter_type?: 'any' | 'all';
-  /**
-   * @default visibility
-   */
-  rank_by?: 'visibility' | 'average_position' | 'name';
-  /**
-   * @default desc
-   */
-  sort_order?: 'asc' | 'desc';
-}
-
-export interface ShoppingTriggerRateQuery {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: Shared.Pagination | null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-  dimensions?: Array<
-    'period' | 'date' | 'model_id' | 'topic_id' | 'region_id' | 'persona_id' | 'prompt_id' | 'prompt'
-  >;
-  metrics?: Array<'total_runs' | 'shopping_triggered_runs' | 'trigger_rate_percentage'>;
-}
-
-export interface ShoppingTriggeredPromptsQuery {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-}
-
-export interface ShoppingTriggeredTopicsQuery {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-}
-
-export interface ShoppingMerchantShareQuery {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: Shared.Pagination | null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-  dimensions?: Array<'period' | 'topic_id' | 'prompt_id'>;
-  metrics?: Array<'merchant_share'>;
-  target_asset_names?: Array<string>;
-  owned_asset_names?: Array<string>;
-}
-
-export interface ShoppingProductMerchantURLsQuery {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  product_names: Array<string>;
-  /**
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * @format date-time
-   */
-  end_date: string;
-}
-
-export interface ShoppingExecutionsQuery {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: Shared.Pagination | null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-  analysis_types?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'>;
-  /**
-   * @default any
-   */
-  analysis_filter_type?: 'any' | 'all';
-  owned_asset_names?: Array<string>;
-}
-
-export interface ShoppingBrandsV2Query {
+export interface ShoppingBrandsParams {
   /**
    * @format uuid
    */
@@ -1454,1020 +320,12 @@ export interface ShoppingBrandsV2Query {
   cursor?: string | null;
 }
 
-export interface ShoppingProductsV2Query {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * YYYY-MM-DD, ET, inclusive
-   */
-  start_date: string;
-  /**
-   * YYYY-MM-DD, ET, inclusive
-   */
-  end_date: string;
-  group_by?: Array<'date' | 'topic' | 'prompt'>;
-  metrics?: Array<
-    | 'visibility_score'
-    | 'average_position'
-    | 'visibility_rank'
-    | 'position1_percentage'
-    | 'position2_percentage'
-    | 'position3_percentage'
-    | 'position_above3_percentage'
-    | 'product_rating'
-    | 'product_num_reviews'
-  > | null;
-  /**
-   * @default day
-   */
-  interval?: 'day' | 'week' | 'month';
-  /**
-   * Include per-product merchant offers (names, prices, urls, images).
-   * @default false
-   */
-  include_merchants?: boolean;
-  /**
-   * Return this product plus its top competitors (item view only).
-   * @minLength 1
-   */
-  target_product?: string | null;
-  /**
-   * Competitors returned when `target_product` is set.
-   * @default 5
-   * @minimum 1
-   */
-  competitor_limit?: number;
-  filter?: Shared.FilterNode | null;
-  /**
-   * Page size; default 10, max 50.
-   * @maximum 50
-   */
-  limit?: number | null;
-  /**
-   * Stream endpoint only: cap streamed rows.
-   * @maximum 50000
-   */
-  max_results?: number | null;
-  cursor?: string | null;
+export interface ShoppingBrandsResponse {
+  info: ShoppingBrandsResponse.Info;
+  data: Array<ShoppingBrandsResponse.Data>;
 }
 
-export interface ShoppingMerchantsV2Query {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * YYYY-MM-DD, ET, inclusive
-   */
-  start_date: string;
-  /**
-   * YYYY-MM-DD, ET, inclusive
-   */
-  end_date: string;
-  /**
-   * `[]` = distribution; `[brand]` = brand share within each merchant; `[product]` = top products per merchant. `date` (distribution only) adds a time series.
-   */
-  group_by?: Array<'date' | 'brand' | 'product'>;
-  /**
-   * Defaults to the chosen view's metrics; must be valid for that view.
-   */
-  metrics?: Array<
-    | 'merchant_share'
-    | 'merchant_share_rank'
-    | 'merchant_visibility'
-    | 'merchant_visibility_rank'
-    | 'visibility_rank'
-    | 'brand_share'
-    | 'product_visibility'
-    | 'product_rank'
-  > | null;
-  /**
-   * @default day
-   */
-  interval?: 'day' | 'week' | 'month';
-  filter?: Shared.FilterNode | null;
-  /**
-   * Page size; default 10, max 50.
-   * @maximum 50
-   */
-  limit?: number | null;
-  /**
-   * Stream endpoint only: cap streamed rows.
-   * @maximum 50000
-   */
-  max_results?: number | null;
-  cursor?: string | null;
-}
-
-export interface ShoppingTriggerRateV2Query {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * YYYY-MM-DD, ET, inclusive
-   */
-  start_date: string;
-  /**
-   * YYYY-MM-DD, ET, inclusive
-   */
-  end_date: string;
-  /**
-   * Group by `prompt`/`topic` for the per-prompt/-topic trigger rate.
-   */
-  group_by?: Array<'date' | 'topic' | 'region' | 'persona' | 'prompt'>;
-  metrics?: Array<'total_runs' | 'shopping_triggered_runs' | 'trigger_rate_percentage'> | null;
-  /**
-   * @default day
-   */
-  interval?: 'day' | 'week' | 'month';
-  filter?: Shared.FilterNode | null;
-  /**
-   * Page size; default 10, max 50.
-   * @maximum 50
-   */
-  limit?: number | null;
-  /**
-   * Stream endpoint only: cap streamed rows.
-   * @maximum 50000
-   */
-  max_results?: number | null;
-  cursor?: string | null;
-}
-
-export interface ShoppingVisibilityV1VisibilityPostParams {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: Shared.Pagination | null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-  dimensions?: Array<
-    'period' | 'asset_name' | 'date' | 'model_id' | 'topic_id' | 'region_id' | 'prompt_id' | 'prompt'
-  >;
-  metrics?: Array<
-    | 'visibility_score'
-    | 'share_of_voice'
-    | 'average_position'
-    | 'visibility_rank'
-    | 'average_position_rank'
-    | 'position1_percentage'
-    | 'position2_percentage'
-    | 'position3_percentage'
-    | 'position_above3_percentage'
-    | 'total_count'
-  >;
-  owned_asset_names?: Array<string>;
-  search_asset?: string | null;
-  include_asset?: string | null;
-  /**
-   * @default false
-   */
-  include_asset_only?: boolean;
-  include_assets_only?: Array<string>;
-  /**
-   * @default visibility_score
-   */
-  rank_by?: 'visibility_score' | 'average_position';
-  /**
-   * @default false
-   */
-  include_position_frequency?: boolean;
-}
-
-export interface ShoppingItemVisibilityV1ItemVisibilityPostParams {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: Shared.Pagination | null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-  dimensions?: Array<
-    | 'period'
-    | 'product_key'
-    | 'product_name'
-    | 'brand_name'
-    | 'date'
-    | 'topic_id'
-    | 'prompt_id'
-    | 'prompt'
-    | 'product_url'
-    | 'product_image_urls'
-    | 'product_price'
-  >;
-  metrics?: Array<
-    | 'visibility_score'
-    | 'share_of_voice'
-    | 'average_position'
-    | 'visibility_rank'
-    | 'position1_percentage'
-    | 'position2_percentage'
-    | 'position3_percentage'
-    | 'position_above3_percentage'
-    | 'product_rating'
-    | 'product_num_reviews'
-    | 'total_count'
-  >;
-  owned_asset_names?: Array<string>;
-  include_items?: Array<string>;
-  search_item?: string | null;
-  /**
-   * @default any
-   */
-  merchant_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_competitors?: boolean;
-  target_product?: string | null;
-  /**
-   * @default 5
-   * @minimum 1
-   */
-  competitor_limit?: number;
-  /**
-   * @default false
-   */
-  include_position_frequency?: boolean;
-}
-
-export interface ShoppingMerchantDistributionV1MerchantDistributionPostParams {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: Shared.Pagination | null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-  dimensions?: Array<'period' | 'merchant_name' | 'date' | 'owned_asset_name'>;
-  metrics?: Array<
-    'offer_count' | 'product_count' | 'average_rank' | 'share_of_offers' | 'visibility_rank' | 'total_count'
-  >;
-  owned_asset_names?: Array<string>;
-  search_merchant?: string | null;
-}
-
-export interface ShoppingMerchantVisibilityByBrandV1MerchantVisibilityByBrandPostParams {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: Shared.Pagination | null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-  dimensions?: Array<'period' | 'merchant_name' | 'brand_name'>;
-  metrics?: Array<
-    'visibility_score' | 'share_of_voice' | 'average_position' | 'visibility_rank' | 'total_count'
-  >;
-  owned_asset_names?: Array<string>;
-  search_brand?: string | null;
-  include_brand?: string | null;
-  /**
-   * @default false
-   */
-  include_brand_only?: boolean;
-}
-
-export interface ShoppingMerchantByItemsV1MerchantByItemsPostParams {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: Shared.Pagination | null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-  dimensions?: Array<
-    | 'period'
-    | 'merchant_name'
-    | 'product_name'
-    | 'brand_name'
-    | 'product_image_urls'
-    | 'product_price'
-    | 'merchant_prices'
-    | 'has_instant_checkout'
-    | 'delivery_options'
-    | 'merchant_url'
-  >;
-  metrics?: Array<
-    'merchant_visibility' | 'product_visibility' | 'product_rank' | 'avg_position' | 'total_count'
-  >;
-  product_name?: string | null;
-}
-
-export interface ShoppingAllItemsWithMerchantsV1AllItemsWithMerchantsPostParams {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: Shared.Pagination | null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-  dimensions?: Array<
-    | 'period'
-    | 'product_name'
-    | 'brand_name'
-    | 'product_url'
-    | 'product_image_urls'
-    | 'product_price'
-    | 'merchant_names'
-    | 'merchant_prices'
-  >;
-  metrics?: Array<
-    | 'visibility_score'
-    | 'share_of_voice'
-    | 'average_position'
-    | 'visibility_rank'
-    | 'product_rating'
-    | 'product_num_reviews'
-    | 'total_count'
-  >;
-  owned_asset_names?: Array<string>;
-  include_items?: Array<string>;
-  search_item?: string | null;
-  /**
-   * @default any
-   */
-  merchant_filter_type?: 'any' | 'all';
-  /**
-   * @default visibility
-   */
-  rank_by?: 'visibility' | 'average_position' | 'name';
-  /**
-   * @default desc
-   */
-  sort_order?: 'asc' | 'desc';
-}
-
-export interface ShoppingTriggerRateV1TriggerRatePostParams {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: Shared.Pagination | null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-  dimensions?: Array<
-    'period' | 'date' | 'model_id' | 'topic_id' | 'region_id' | 'persona_id' | 'prompt_id' | 'prompt'
-  >;
-  metrics?: Array<'total_runs' | 'shopping_triggered_runs' | 'trigger_rate_percentage'>;
-}
-
-export interface ShoppingTriggeredPromptsV1TriggeredPromptsPostParams {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-}
-
-export interface ShoppingTriggeredTopicsV1TriggeredTopicsPostParams {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-}
-
-export interface ShoppingMerchantShareV1MerchantSharePostParams {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: Shared.Pagination | null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-  dimensions?: Array<'period' | 'topic_id' | 'prompt_id'>;
-  metrics?: Array<'merchant_share'>;
-  target_asset_names?: Array<string>;
-  owned_asset_names?: Array<string>;
-}
-
-export interface ShoppingProductMerchantURLsV1ProductMerchantURLsPostParams {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  product_names: Array<string>;
-  /**
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * @format date-time
-   */
-  end_date: string;
-}
-
-export interface ShoppingExecutionsV1ExecutionsPostParams {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * Start date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  start_date: string;
-  /**
-   * End date. Accepts YYYY-MM-DD, YYYY-MM-DD HH:MM, or ISO timestamp.
-   * @format date-time
-   */
-  end_date: string;
-  /**
-   * @format date-time
-   */
-  comparison_start_date?: string | null;
-  /**
-   * @format date-time
-   */
-  comparison_end_date?: string | null;
-  /**
-   * @default day
-   */
-  date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-  filters?: Array<
-    | Shared.RegionIDFilter
-    | Shared.ModelIDFilter
-    | Shared.TopicIDFilter
-    | Shared.TagIDFilter
-    | Shared.PromptIDFilter
-    | Shared.PersonaIDFilter
-    | Shared.BrandNameFilter
-    | Shared.MerchantNameFilter
-    | Shared.ProductNameFilter
-    | Shared.ProfoundShoppingAPIAssetNameFilter
-  >;
-  order_by?: Record<string, 'asc' | 'desc'>;
-  pagination?: Shared.Pagination | null;
-  /**
-   * @default false
-   */
-  include_count?: boolean;
-  /**
-   * @default any
-   */
-  tag_filter_type?: 'any' | 'all';
-  /**
-   * @default false
-   */
-  include_no_tag?: boolean;
-  /**
-   * @default false
-   */
-  exclude_topic_ids?: boolean;
-  analysis_types?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'>;
-  /**
-   * @default any
-   */
-  analysis_filter_type?: 'any' | 'all';
-  owned_asset_names?: Array<string>;
-}
-
-export interface ShoppingQueryBrandsV2V2BrandsPostParams {
-  /**
-   * @format uuid
-   */
-  category_id: string;
-  /**
-   * YYYY-MM-DD, ET, inclusive
-   */
-  start_date: string;
-  /**
-   * YYYY-MM-DD, ET, inclusive
-   */
-  end_date: string;
-  group_by?: Array<'date' | 'topic' | 'region' | 'prompt'>;
-  metrics?: Array<'visibility_score' | 'average_position' | 'visibility_rank'> | null;
-  /**
-   * @default day
-   */
-  interval?: 'day' | 'week' | 'month';
-  /**
-   * @default owned
-   */
-  scope?: 'owned' | 'all';
-  /**
-   * Restrict to these asset names (a name or list). Overrides `scope`.
-   */
-  assets?: string | Array<string> | null;
-  filter?: Shared.FilterNode | null;
-  /**
-   * Page size for scope=all; default 10, max 50.
-   * @maximum 50
-   */
-  limit?: number | null;
-  /**
-   * Stream endpoint only: cap the number of streamed rows (default: all).
-   * @maximum 50000
-   */
-  max_results?: number | null;
-  cursor?: string | null;
-}
-
-export interface ShoppingQueryBrandsV2V2BrandsPostResponse {
-  info: ShoppingQueryBrandsV2V2BrandsPostResponse.Info;
-  data: Array<ShoppingQueryBrandsV2V2BrandsPostResponse.Data>;
-}
-
-export namespace ShoppingQueryBrandsV2V2BrandsPostResponse {
+export namespace ShoppingBrandsResponse {
   export interface Info {
     /**
      * Number of assets on this page. When grouped by `date`, `data` holds one row per asset x bucket, so `len(data)` can exceed `count`.
@@ -2532,7 +390,7 @@ export namespace ShoppingQueryBrandsV2V2BrandsPostResponse {
   }
 }
 
-export interface ShoppingStreamBrandsV2V2BrandsStreamPostParams {
+export interface ShoppingStreamBrandsParams {
   /**
    * @format uuid
    */
@@ -2573,11 +431,11 @@ export interface ShoppingStreamBrandsV2V2BrandsStreamPostParams {
   cursor?: string | null;
 }
 
-export type ShoppingStreamBrandsV2V2BrandsStreamPostResponse =
-  | ShoppingStreamBrandsV2V2BrandsStreamPostResponse.ShoppingBrandsV2Info
-  | ShoppingStreamBrandsV2V2BrandsStreamPostResponse.ShoppingBrandRow;
+export type ShoppingStreamBrandsResponse =
+  | ShoppingStreamBrandsResponse.ShoppingBrandsV2Info
+  | ShoppingStreamBrandsResponse.ShoppingBrandRow;
 
-export namespace ShoppingStreamBrandsV2V2BrandsStreamPostResponse {
+export namespace ShoppingStreamBrandsResponse {
   export interface ShoppingBrandsV2Info {
     /**
      * Number of assets on this page. When grouped by `date`, `data` holds one row per asset x bucket, so `len(data)` can exceed `count`.
@@ -2642,7 +500,7 @@ export namespace ShoppingStreamBrandsV2V2BrandsStreamPostResponse {
   }
 }
 
-export interface ShoppingQueryProductsV2V2ProductsPostParams {
+export interface ShoppingProductsParams {
   /**
    * @format uuid
    */
@@ -2701,12 +559,12 @@ export interface ShoppingQueryProductsV2V2ProductsPostParams {
   cursor?: string | null;
 }
 
-export interface ShoppingQueryProductsV2V2ProductsPostResponse {
-  info: ShoppingQueryProductsV2V2ProductsPostResponse.Info;
-  data: Array<ShoppingQueryProductsV2V2ProductsPostResponse.Data>;
+export interface ShoppingProductsResponse {
+  info: ShoppingProductsResponse.Info;
+  data: Array<ShoppingProductsResponse.Data>;
 }
 
-export namespace ShoppingQueryProductsV2V2ProductsPostResponse {
+export namespace ShoppingProductsResponse {
   export interface Info {
     /**
      * Number of products on this page. When grouped by `date`/`topic`/`prompt`, `data` holds one row per product x bucket, so `len(data)` can exceed `count`.
@@ -2771,7 +629,7 @@ export namespace ShoppingQueryProductsV2V2ProductsPostResponse {
   }
 }
 
-export interface ShoppingStreamProductsV2V2ProductsStreamPostParams {
+export interface ShoppingStreamProductsParams {
   /**
    * @format uuid
    */
@@ -2830,11 +688,11 @@ export interface ShoppingStreamProductsV2V2ProductsStreamPostParams {
   cursor?: string | null;
 }
 
-export type ShoppingStreamProductsV2V2ProductsStreamPostResponse =
-  | ShoppingStreamProductsV2V2ProductsStreamPostResponse.ShoppingProductsV2Info
-  | ShoppingStreamProductsV2V2ProductsStreamPostResponse.ShoppingProductRow;
+export type ShoppingStreamProductsResponse =
+  | ShoppingStreamProductsResponse.ShoppingProductsV2Info
+  | ShoppingStreamProductsResponse.ShoppingProductRow;
 
-export namespace ShoppingStreamProductsV2V2ProductsStreamPostResponse {
+export namespace ShoppingStreamProductsResponse {
   export interface ShoppingProductsV2Info {
     /**
      * Number of products on this page. When grouped by `date`/`topic`/`prompt`, `data` holds one row per product x bucket, so `len(data)` can exceed `count`.
@@ -2899,7 +757,7 @@ export namespace ShoppingStreamProductsV2V2ProductsStreamPostResponse {
   }
 }
 
-export interface ShoppingQueryMerchantsV2V2MerchantsPostParams {
+export interface ShoppingMerchantsParams {
   /**
    * @format uuid
    */
@@ -2947,12 +805,12 @@ export interface ShoppingQueryMerchantsV2V2MerchantsPostParams {
   cursor?: string | null;
 }
 
-export interface ShoppingQueryMerchantsV2V2MerchantsPostResponse {
-  info: ShoppingQueryMerchantsV2V2MerchantsPostResponse.Info;
-  data: Array<ShoppingQueryMerchantsV2V2MerchantsPostResponse.Data>;
+export interface ShoppingMerchantsResponse {
+  info: ShoppingMerchantsResponse.Info;
+  data: Array<ShoppingMerchantsResponse.Data>;
 }
 
-export namespace ShoppingQueryMerchantsV2V2MerchantsPostResponse {
+export namespace ShoppingMerchantsResponse {
   export interface Info {
     /**
      * Number of rows returned in `data` for this page.
@@ -3010,7 +868,7 @@ export namespace ShoppingQueryMerchantsV2V2MerchantsPostResponse {
   }
 }
 
-export interface ShoppingStreamMerchantsV2V2MerchantsStreamPostParams {
+export interface ShoppingStreamMerchantsParams {
   /**
    * @format uuid
    */
@@ -3058,11 +916,11 @@ export interface ShoppingStreamMerchantsV2V2MerchantsStreamPostParams {
   cursor?: string | null;
 }
 
-export type ShoppingStreamMerchantsV2V2MerchantsStreamPostResponse =
-  | ShoppingStreamMerchantsV2V2MerchantsStreamPostResponse.ShoppingMerchantsV2Info
-  | ShoppingStreamMerchantsV2V2MerchantsStreamPostResponse.ShoppingMerchantRow;
+export type ShoppingStreamMerchantsResponse =
+  | ShoppingStreamMerchantsResponse.ShoppingMerchantsV2Info
+  | ShoppingStreamMerchantsResponse.ShoppingMerchantRow;
 
-export namespace ShoppingStreamMerchantsV2V2MerchantsStreamPostResponse {
+export namespace ShoppingStreamMerchantsResponse {
   export interface ShoppingMerchantsV2Info {
     /**
      * Number of rows returned in `data` for this page.
@@ -3120,7 +978,7 @@ export namespace ShoppingStreamMerchantsV2V2MerchantsStreamPostResponse {
   }
 }
 
-export interface ShoppingQueryTriggerRateV2V2TriggerRatePostParams {
+export interface ShoppingTriggerRateParams {
   /**
    * @format uuid
    */
@@ -3156,12 +1014,12 @@ export interface ShoppingQueryTriggerRateV2V2TriggerRatePostParams {
   cursor?: string | null;
 }
 
-export interface ShoppingQueryTriggerRateV2V2TriggerRatePostResponse {
-  info: ShoppingQueryTriggerRateV2V2TriggerRatePostResponse.Info;
-  data: Array<ShoppingQueryTriggerRateV2V2TriggerRatePostResponse.Data>;
+export interface ShoppingTriggerRateResponse {
+  info: ShoppingTriggerRateResponse.Info;
+  data: Array<ShoppingTriggerRateResponse.Data>;
 }
 
-export namespace ShoppingQueryTriggerRateV2V2TriggerRatePostResponse {
+export namespace ShoppingTriggerRateResponse {
   export interface Info {
     /**
      * Number of rows returned in `data` for this page.
@@ -3211,7 +1069,7 @@ export namespace ShoppingQueryTriggerRateV2V2TriggerRatePostResponse {
   }
 }
 
-export interface ShoppingStreamTriggerRateV2V2TriggerRateStreamPostParams {
+export interface ShoppingStreamTriggerRateParams {
   /**
    * @format uuid
    */
@@ -3247,11 +1105,11 @@ export interface ShoppingStreamTriggerRateV2V2TriggerRateStreamPostParams {
   cursor?: string | null;
 }
 
-export type ShoppingStreamTriggerRateV2V2TriggerRateStreamPostResponse =
-  | ShoppingStreamTriggerRateV2V2TriggerRateStreamPostResponse.ShoppingTriggerRateV2Info
-  | ShoppingStreamTriggerRateV2V2TriggerRateStreamPostResponse.ShoppingTriggerRateRow;
+export type ShoppingStreamTriggerRateResponse =
+  | ShoppingStreamTriggerRateResponse.ShoppingTriggerRateV2Info
+  | ShoppingStreamTriggerRateResponse.ShoppingTriggerRateRow;
 
-export namespace ShoppingStreamTriggerRateV2V2TriggerRateStreamPostResponse {
+export namespace ShoppingStreamTriggerRateResponse {
   export interface ShoppingTriggerRateV2Info {
     /**
      * Number of rows returned in `data` for this page.
@@ -3302,49 +1160,24 @@ export namespace ShoppingStreamTriggerRateV2V2TriggerRateStreamPostResponse {
 }
 export declare namespace Shopping {
   export {
-    type ShoppingVisibilityQuery as ShoppingVisibilityQuery,
-    type ShoppingItemVisibilityQuery as ShoppingItemVisibilityQuery,
-    type ShoppingMerchantDistributionQuery as ShoppingMerchantDistributionQuery,
-    type ShoppingMerchantVisibilityByBrandQuery as ShoppingMerchantVisibilityByBrandQuery,
-    type ShoppingMerchantByItemsQuery as ShoppingMerchantByItemsQuery,
-    type ShoppingAllItemsWithMerchantsQuery as ShoppingAllItemsWithMerchantsQuery,
-    type ShoppingTriggerRateQuery as ShoppingTriggerRateQuery,
-    type ShoppingTriggeredPromptsQuery as ShoppingTriggeredPromptsQuery,
-    type ShoppingTriggeredTopicsQuery as ShoppingTriggeredTopicsQuery,
-    type ShoppingMerchantShareQuery as ShoppingMerchantShareQuery,
-    type ShoppingProductMerchantURLsQuery as ShoppingProductMerchantURLsQuery,
-    type ShoppingExecutionsQuery as ShoppingExecutionsQuery,
-    type ShoppingBrandsV2Query as ShoppingBrandsV2Query,
-    type ShoppingProductsV2Query as ShoppingProductsV2Query,
-    type ShoppingMerchantsV2Query as ShoppingMerchantsV2Query,
-    type ShoppingTriggerRateV2Query as ShoppingTriggerRateV2Query,
-    type ShoppingQueryBrandsV2V2BrandsPostResponse as ShoppingQueryBrandsV2V2BrandsPostResponse,
-    type ShoppingStreamBrandsV2V2BrandsStreamPostResponse as ShoppingStreamBrandsV2V2BrandsStreamPostResponse,
-    type ShoppingQueryProductsV2V2ProductsPostResponse as ShoppingQueryProductsV2V2ProductsPostResponse,
-    type ShoppingStreamProductsV2V2ProductsStreamPostResponse as ShoppingStreamProductsV2V2ProductsStreamPostResponse,
-    type ShoppingQueryMerchantsV2V2MerchantsPostResponse as ShoppingQueryMerchantsV2V2MerchantsPostResponse,
-    type ShoppingStreamMerchantsV2V2MerchantsStreamPostResponse as ShoppingStreamMerchantsV2V2MerchantsStreamPostResponse,
-    type ShoppingQueryTriggerRateV2V2TriggerRatePostResponse as ShoppingQueryTriggerRateV2V2TriggerRatePostResponse,
-    type ShoppingStreamTriggerRateV2V2TriggerRateStreamPostResponse as ShoppingStreamTriggerRateV2V2TriggerRateStreamPostResponse,
-    type ShoppingVisibilityV1VisibilityPostParams as ShoppingVisibilityV1VisibilityPostParams,
-    type ShoppingItemVisibilityV1ItemVisibilityPostParams as ShoppingItemVisibilityV1ItemVisibilityPostParams,
-    type ShoppingMerchantDistributionV1MerchantDistributionPostParams as ShoppingMerchantDistributionV1MerchantDistributionPostParams,
-    type ShoppingMerchantVisibilityByBrandV1MerchantVisibilityByBrandPostParams as ShoppingMerchantVisibilityByBrandV1MerchantVisibilityByBrandPostParams,
-    type ShoppingMerchantByItemsV1MerchantByItemsPostParams as ShoppingMerchantByItemsV1MerchantByItemsPostParams,
-    type ShoppingAllItemsWithMerchantsV1AllItemsWithMerchantsPostParams as ShoppingAllItemsWithMerchantsV1AllItemsWithMerchantsPostParams,
-    type ShoppingTriggerRateV1TriggerRatePostParams as ShoppingTriggerRateV1TriggerRatePostParams,
-    type ShoppingTriggeredPromptsV1TriggeredPromptsPostParams as ShoppingTriggeredPromptsV1TriggeredPromptsPostParams,
-    type ShoppingTriggeredTopicsV1TriggeredTopicsPostParams as ShoppingTriggeredTopicsV1TriggeredTopicsPostParams,
-    type ShoppingMerchantShareV1MerchantSharePostParams as ShoppingMerchantShareV1MerchantSharePostParams,
-    type ShoppingProductMerchantURLsV1ProductMerchantURLsPostParams as ShoppingProductMerchantURLsV1ProductMerchantURLsPostParams,
-    type ShoppingExecutionsV1ExecutionsPostParams as ShoppingExecutionsV1ExecutionsPostParams,
-    type ShoppingQueryBrandsV2V2BrandsPostParams as ShoppingQueryBrandsV2V2BrandsPostParams,
-    type ShoppingStreamBrandsV2V2BrandsStreamPostParams as ShoppingStreamBrandsV2V2BrandsStreamPostParams,
-    type ShoppingQueryProductsV2V2ProductsPostParams as ShoppingQueryProductsV2V2ProductsPostParams,
-    type ShoppingStreamProductsV2V2ProductsStreamPostParams as ShoppingStreamProductsV2V2ProductsStreamPostParams,
-    type ShoppingQueryMerchantsV2V2MerchantsPostParams as ShoppingQueryMerchantsV2V2MerchantsPostParams,
-    type ShoppingStreamMerchantsV2V2MerchantsStreamPostParams as ShoppingStreamMerchantsV2V2MerchantsStreamPostParams,
-    type ShoppingQueryTriggerRateV2V2TriggerRatePostParams as ShoppingQueryTriggerRateV2V2TriggerRatePostParams,
-    type ShoppingStreamTriggerRateV2V2TriggerRateStreamPostParams as ShoppingStreamTriggerRateV2V2TriggerRateStreamPostParams,
+    type BrandNameFilter as BrandNameFilter,
+    type MerchantNameFilter as MerchantNameFilter,
+    type ProductNameFilter as ProductNameFilter,
+    type ShoppingBrandsResponse as ShoppingBrandsResponse,
+    type ShoppingStreamBrandsResponse as ShoppingStreamBrandsResponse,
+    type ShoppingProductsResponse as ShoppingProductsResponse,
+    type ShoppingStreamProductsResponse as ShoppingStreamProductsResponse,
+    type ShoppingMerchantsResponse as ShoppingMerchantsResponse,
+    type ShoppingStreamMerchantsResponse as ShoppingStreamMerchantsResponse,
+    type ShoppingTriggerRateResponse as ShoppingTriggerRateResponse,
+    type ShoppingStreamTriggerRateResponse as ShoppingStreamTriggerRateResponse,
+    type ShoppingBrandsParams as ShoppingBrandsParams,
+    type ShoppingStreamBrandsParams as ShoppingStreamBrandsParams,
+    type ShoppingProductsParams as ShoppingProductsParams,
+    type ShoppingStreamProductsParams as ShoppingStreamProductsParams,
+    type ShoppingMerchantsParams as ShoppingMerchantsParams,
+    type ShoppingStreamMerchantsParams as ShoppingStreamMerchantsParams,
+    type ShoppingTriggerRateParams as ShoppingTriggerRateParams,
+    type ShoppingStreamTriggerRateParams as ShoppingStreamTriggerRateParams,
   };
 }

@@ -15,14 +15,14 @@ export class NodeTypes extends APIResource {
    * node types are intentionally excluded in v1.
    *
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<NodeTypeListV1GetResponse>} Successful Response
+   * @returns {APIPromise<NodeTypeListResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const listV1Get = await client.agents.nodeTypes.listV1Get();
+   * const list = await client.agents.nodeTypes.list();
    * ```
    */
-  listV1Get(options?: RequestOptions): APIPromise<NodeTypeListV1GetResponse> {
+  list(options?: RequestOptions): APIPromise<NodeTypeListResponse> {
     return this._client.get('/v1/agents/node-types', options);
   }
 
@@ -34,29 +34,26 @@ export class NodeTypes extends APIResource {
    *
    * @param {string} nodeType - The node type to fetch the schema for, e.g. `llm`.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<NodeTypeListSchemaV1SchemaGetResponse>} Successful Response
+   * @returns {APIPromise<NodeTypeRetrieveSchemaResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const listSchemaV1SchemaGet = await client.agents.nodeTypes.listSchemaV1SchemaGet('nodeType');
+   * const retrieveSchema = await client.agents.nodeTypes.retrieveSchema('nodeType');
    * ```
    */
-  listSchemaV1SchemaGet(
-    nodeType: string,
-    options?: RequestOptions,
-  ): APIPromise<NodeTypeListSchemaV1SchemaGetResponse> {
+  retrieveSchema(nodeType: string, options?: RequestOptions): APIPromise<NodeTypeRetrieveSchemaResponse> {
     return this._client.get(__scalarPath`/v1/agents/node-types/${nodeType}/schema`, options);
   }
 }
 
-export interface NodeTypeListV1GetResponse {
+export interface NodeTypeListResponse {
   /**
    * Allowlisted node types, returned as thin summaries.
    */
-  data: Array<NodeTypeListV1GetResponse.Data>;
+  data: Array<NodeTypeListResponse.Data>;
 }
 
-export namespace NodeTypeListV1GetResponse {
+export namespace NodeTypeListResponse {
   export interface Data {
     /**
      * Stable identifier for the node type, e.g. `llm`.
@@ -73,7 +70,7 @@ export namespace NodeTypeListV1GetResponse {
   }
 }
 
-export interface NodeTypeListSchemaV1SchemaGetResponse {
+export interface NodeTypeRetrieveSchemaResponse {
   /**
    * Stable identifier for the node type, e.g. `llm`.
    */
@@ -105,7 +102,7 @@ export interface NodeTypeListSchemaV1SchemaGetResponse {
 }
 export declare namespace NodeTypes {
   export {
-    type NodeTypeListV1GetResponse as NodeTypeListV1GetResponse,
-    type NodeTypeListSchemaV1SchemaGetResponse as NodeTypeListSchemaV1SchemaGetResponse,
+    type NodeTypeListResponse as NodeTypeListResponse,
+    type NodeTypeRetrieveSchemaResponse as NodeTypeRetrieveSchemaResponse,
   };
 }

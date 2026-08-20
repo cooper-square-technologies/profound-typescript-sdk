@@ -5,25 +5,20 @@ import { APIPromise } from '../../api-promise';
 import type { RequestOptions } from '../../internal/request-options';
 import { path as __scalarPath } from '../../internal/utils/path';
 import type * as Shared from '../shared';
-import * as NodeTypesAPI from './node-types';
-import {
-  NodeTypes,
-  type NodeTypeListV1GetResponse,
-  type NodeTypeListSchemaV1SchemaGetResponse,
-} from './node-types';
 import * as RunsAPI from './runs';
 import {
   Runs,
-  type RunAgentRequest,
-  type RunV1IDPostResponse,
-  type RunRetrieveV1GetResponse,
-  type RunV1IDPostParams,
-  type RunRetrieveV1GetParams,
+  type RunCreateResponse,
+  type RunRetrieveResponse,
+  type RunCreateParams,
+  type RunRetrieveParams,
 } from './runs';
+import * as NodeTypesAPI from './node-types';
+import { NodeTypes, type NodeTypeListResponse, type NodeTypeRetrieveSchemaResponse } from './node-types';
 
 export class Agents extends APIResource {
-  nodeTypes: NodeTypesAPI.NodeTypes = new NodeTypesAPI.NodeTypes(this._client);
   runs: RunsAPI.Runs = new RunsAPI.Runs(this._client);
+  nodeTypes: NodeTypesAPI.NodeTypes = new NodeTypesAPI.NodeTypes(this._client);
 
   /**
    * List agents available to your organization.
@@ -32,22 +27,46 @@ export class Agents extends APIResource {
    * agents have a live published version. `draft` agents have not been
    * published yet.
    *
-   * @param {AgentListV1GetParams} [query] - The parameters to send with the request.
+   * @param {AgentListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<AgentListV1GetResponse>} Successful Response
+   * @returns {APIPromise<AgentListResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const listV1Get = await client.agents.listV1Get({
+   * const list = await client.agents.list({
    *   limit: 100,
    * });
    * ```
    */
-  listV1Get(
-    query: AgentListV1GetParams | null | undefined = {},
+  list(
+    query: AgentListParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<AgentListV1GetResponse> {
+  ): APIPromise<AgentListResponse> {
     return this._client.get('/v1/agents', { query, ...options });
+  }
+
+  /**
+   * Retrieve an agent and its schema details.
+   *
+   * Agents can have both a live published version and a draft version with newer
+   * unpublished changes. Use the `version` parameter to choose which state to return.
+   *
+   * @param {string} agentID - The ID of the agent to retrieve.
+   * @param {AgentRetrieveParams} [query] - The parameters to send with the request.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<AgentRetrieveResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const retrieve = await client.agents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+   * ```
+   */
+  retrieve(
+    agentID: string,
+    query: AgentRetrieveParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AgentRetrieveResponse> {
+    return this._client.get(__scalarPath`/v1/agents/${agentID}`, { query, ...options });
   }
 
   /**
@@ -57,19 +76,19 @@ export class Agents extends APIResource {
    * as a `draft`; publish it with `POST /v1/agents/{agent_id}/publish` once its graph
    * is ready.
    *
-   * @param {AgentCreateV1PostParams} body - The request body to send.
+   * @param {AgentCreateParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<Shared.Agent>} Successful Response
    *
    * @example
    * ```ts
-   * const agent = await client.agents.createV1Post({
+   * const agent = await client.agents.create({
    *   organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   name: 'x',
    * });
    * ```
    */
-  createV1Post(body: AgentCreateV1PostParams, options?: RequestOptions): APIPromise<Shared.Agent> {
+  create(body: AgentCreateParams, options?: RequestOptions): APIPromise<Shared.Agent> {
     return this._client.post('/v1/agents', { body, ...options });
   }
 
@@ -86,35 +105,11 @@ export class Agents extends APIResource {
    *
    * @example
    * ```ts
-   * const agent = await client.agents.publishV1IDPublishPost('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+   * const agent = await client.agents.publish('7c9e6679-7425-40de-944b-e07fc1f90ae7');
    * ```
    */
-  publishV1IDPublishPost(agentID: string, options?: RequestOptions): APIPromise<Shared.Agent> {
+  publish(agentID: string, options?: RequestOptions): APIPromise<Shared.Agent> {
     return this._client.post(__scalarPath`/v1/agents/${agentID}/publish`, options);
-  }
-
-  /**
-   * Retrieve an agent and its schema details.
-   *
-   * Agents can have both a live published version and a draft version with newer
-   * unpublished changes. Use the `version` parameter to choose which state to return.
-   *
-   * @param {string} agentID - The ID of the agent to retrieve.
-   * @param {AgentRetrieveV1GetParams} [query] - The parameters to send with the request.
-   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<AgentRetrieveV1GetResponse>} Successful Response
-   *
-   * @example
-   * ```ts
-   * const retrieveV1Get = await client.agents.retrieveV1Get('7c9e6679-7425-40de-944b-e07fc1f90ae7');
-   * ```
-   */
-  retrieveV1Get(
-    agentID: string,
-    query: AgentRetrieveV1GetParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<AgentRetrieveV1GetResponse> {
-    return this._client.get(__scalarPath`/v1/agents/${agentID}`, { query, ...options });
   }
 
   /**
@@ -126,22 +121,22 @@ export class Agents extends APIResource {
    * `validation`; publish with `POST /v1/agents/{agent_id}/publish` once `validation.valid`.
    *
    * @param {string} agentID - The ID of the agent to update.
-   * @param {AgentUpdateV1IDPatchParams} body - The request body to send.
+   * @param {AgentUpdateParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<AgentUpdateV1IDPatchResponse>} Successful Response
+   * @returns {APIPromise<AgentUpdateResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const updateV1IDPatch = await client.agents.updateV1IDPatch('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const update = await client.agents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   graph: {},
    * });
    * ```
    */
-  updateV1IDPatch(
+  update(
     agentID: string,
-    body: AgentUpdateV1IDPatchParams,
+    body: AgentUpdateParams,
     options?: RequestOptions,
-  ): APIPromise<AgentUpdateV1IDPatchResponse> {
+  ): APIPromise<AgentUpdateResponse> {
     return this._client.patch(__scalarPath`/v1/agents/${agentID}`, { body, ...options });
   }
 
@@ -155,59 +150,25 @@ export class Agents extends APIResource {
    * across its organization.
    *
    * @param {string} agentID - The ID of the agent whose graph to retrieve.
-   * @param {AgentListGraphV1GraphGetParams} [query] - The parameters to send with the request.
+   * @param {AgentRetrieveGraphParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<AgentListGraphV1GraphGetResponse>} Successful Response
+   * @returns {APIPromise<AgentRetrieveGraphResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const listGraphV1GraphGet = await client.agents.listGraphV1GraphGet('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+   * const retrieveGraph = await client.agents.retrieveGraph('7c9e6679-7425-40de-944b-e07fc1f90ae7');
    * ```
    */
-  listGraphV1GraphGet(
+  retrieveGraph(
     agentID: string,
-    query: AgentListGraphV1GraphGetParams | null | undefined = {},
+    query: AgentRetrieveGraphParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<AgentListGraphV1GraphGetResponse> {
+  ): APIPromise<AgentRetrieveGraphResponse> {
     return this._client.get(__scalarPath`/v1/agents/${agentID}/graph`, { query, ...options });
   }
 }
 
-/**
- * Request body for creating a draft agent.
- */
-export interface CreateAgentRequest {
-  /**
-   * ID of the organization that will own the agent. Required — Profound API keys are user-scoped, so the owning organization must be chosen explicitly. The caller must be a member of this organization.
-   * @format uuid
-   */
-  organization_id: string;
-  /**
-   * Display name for the agent. Must be non-empty.
-   * @minLength 1
-   */
-  name: string;
-  /**
-   * Short description of the agent.
-   */
-  description?: string | null;
-  /**
-   * Initial workflow graph for the agent's draft version. Optional — an agent can be created empty and have its graph filled in later.
-   */
-  graph?: Record<string, unknown> | null;
-}
-
-/**
- * Request body for updating a draft agent's graph in place.
- */
-export interface UpdateAgentRequest {
-  /**
-   * New workflow graph for the agent's draft version. Replaces the current draft graph; the agent is iterated in place rather than re-created, so its ID is stable. Required — a null graph is rejected as a 422 here rather than as a relayed upstream error.
-   */
-  graph: Record<string, unknown>;
-}
-
-export interface AgentListV1GetParams {
+export interface AgentListParams {
   /**
    * Optional status filter. Use `published` to list agents that have a live published version, or `draft` to list agents that have not been published yet. Defaults to `published`.
    */
@@ -220,7 +181,7 @@ export interface AgentListV1GetParams {
   next_cursor?: string | null;
 }
 
-export interface AgentListV1GetResponse {
+export interface AgentListResponse {
   /**
    * Agents returned for this page.
    */
@@ -231,7 +192,109 @@ export interface AgentListV1GetResponse {
   pagination?: Shared.CursorPagination;
 }
 
-export interface AgentCreateV1PostParams {
+export interface AgentRetrieveParams {
+  /**
+   * Version of the agent to retrieve. Use `published` for the live version, or `draft` for the latest unpublished changes for the same agent. Defaults to `published`.
+   */
+  version?: Shared.AgentVersion;
+}
+
+export interface AgentRetrieveResponse {
+  /**
+   * Unique ID for the agent.
+   * @format uuid
+   */
+  id: string;
+  /**
+   * Unique ID of the organization that owns the agent.
+   * @format uuid
+   */
+  organization_id: string;
+  /**
+   * Display name of the agent.
+   */
+  name: string;
+  /**
+   * Current status of the agent.
+   */
+  status: 'draft' | 'published' | 'unknown';
+  /**
+   * When the agent was created.
+   * @format date-time
+   */
+  created_at: string;
+  /**
+   * Short description of the agent, if provided.
+   */
+  description?: string | null;
+  /**
+   * Input and output schemas for this agent. Omitted while the agent's graph cannot be previewed (e.g. an empty or structurally-invalid draft); check `validation` to see what needs fixing.
+   */
+  schema?: AgentRetrieveResponse.Schema | null;
+  /**
+   * Validation report for the agent's graph, when available. Use `validation.valid` to check the agent is publishable.
+   */
+  validation?: AgentRetrieveResponse.Validation | null;
+}
+
+export namespace AgentRetrieveResponse {
+  export interface Schema {
+    /**
+     * JSON Schema for the agent's `inputs` object. Use the top-level property keys as input field names when starting a run.
+     */
+    input: Record<string, unknown>;
+    /**
+     * JSON Schema for the `outputs` object returned by `GET /v1/agents/{agent_id}/runs/{run_id}`.
+     */
+    output: Record<string, unknown>;
+  }
+
+  export interface Validation {
+    /**
+     * Whether the agent's graph is valid and ready to publish.
+     */
+    valid: boolean;
+    /**
+     * Problems found while validating the graph. Empty when `valid` is true.
+     */
+    issues?: Array<Validation.Issue>;
+  }
+
+  export namespace Validation {
+    export interface Issue {
+      /**
+       * Stable machine-readable identifier for the kind of issue.
+       */
+      code: string;
+      /**
+       * Human-readable description of the issue.
+       */
+      message: string;
+      /**
+       * ID of the node the issue applies to, if node-specific.
+       */
+      node_id?: string | null;
+      /**
+       * Display title of the affected node, if available.
+       */
+      node_title?: string | null;
+      /**
+       * Name of the offending field on the node, if field-specific.
+       */
+      field?: string | null;
+      /**
+       * Display title of the affected field, if available.
+       */
+      field_title?: string | null;
+      /**
+       * The specific constraint that was violated, if available.
+       */
+      violation?: string | null;
+    }
+  }
+}
+
+export interface AgentCreateParams {
   /**
    * ID of the organization that will own the agent. Required — Profound API keys are user-scoped, so the owning organization must be chosen explicitly. The caller must be a member of this organization.
    * @format uuid
@@ -252,116 +315,14 @@ export interface AgentCreateV1PostParams {
   graph?: Record<string, unknown> | null;
 }
 
-export interface AgentRetrieveV1GetParams {
-  /**
-   * Version of the agent to retrieve. Use `published` for the live version, or `draft` for the latest unpublished changes for the same agent. Defaults to `published`.
-   */
-  version?: Shared.AgentVersion;
-}
-
-export interface AgentRetrieveV1GetResponse {
-  /**
-   * Unique ID for the agent.
-   * @format uuid
-   */
-  id: string;
-  /**
-   * Unique ID of the organization that owns the agent.
-   * @format uuid
-   */
-  organization_id: string;
-  /**
-   * Display name of the agent.
-   */
-  name: string;
-  /**
-   * Current status of the agent.
-   */
-  status: 'draft' | 'published' | 'unknown';
-  /**
-   * When the agent was created.
-   * @format date-time
-   */
-  created_at: string;
-  /**
-   * Short description of the agent, if provided.
-   */
-  description?: string | null;
-  /**
-   * Input and output schemas for this agent. Omitted while the agent's graph cannot be previewed (e.g. an empty or structurally-invalid draft); check `validation` to see what needs fixing.
-   */
-  schema?: AgentRetrieveV1GetResponse.Schema | null;
-  /**
-   * Validation report for the agent's graph, when available. Use `validation.valid` to check the agent is publishable.
-   */
-  validation?: AgentRetrieveV1GetResponse.Validation | null;
-}
-
-export namespace AgentRetrieveV1GetResponse {
-  export interface Schema {
-    /**
-     * JSON Schema for the agent's `inputs` object. Use the top-level property keys as input field names when starting a run.
-     */
-    input: Record<string, unknown>;
-    /**
-     * JSON Schema for the `outputs` object returned by `GET /v1/agents/{agent_id}/runs/{run_id}`.
-     */
-    output: Record<string, unknown>;
-  }
-
-  export interface Validation {
-    /**
-     * Whether the agent's graph is valid and ready to publish.
-     */
-    valid: boolean;
-    /**
-     * Problems found while validating the graph. Empty when `valid` is true.
-     */
-    issues?: Array<Validation.Issue>;
-  }
-
-  export namespace Validation {
-    export interface Issue {
-      /**
-       * Stable machine-readable identifier for the kind of issue.
-       */
-      code: string;
-      /**
-       * Human-readable description of the issue.
-       */
-      message: string;
-      /**
-       * ID of the node the issue applies to, if node-specific.
-       */
-      node_id?: string | null;
-      /**
-       * Display title of the affected node, if available.
-       */
-      node_title?: string | null;
-      /**
-       * Name of the offending field on the node, if field-specific.
-       */
-      field?: string | null;
-      /**
-       * Display title of the affected field, if available.
-       */
-      field_title?: string | null;
-      /**
-       * The specific constraint that was violated, if available.
-       */
-      violation?: string | null;
-    }
-  }
-}
-
-export interface AgentUpdateV1IDPatchParams {
+export interface AgentUpdateParams {
   /**
    * New workflow graph for the agent's draft version. Replaces the current draft graph; the agent is iterated in place rather than re-created, so its ID is stable. Required — a null graph is rejected as a 422 here rather than as a relayed upstream error.
    */
   graph: Record<string, unknown>;
 }
 
-export interface AgentUpdateV1IDPatchResponse {
+export interface AgentUpdateResponse {
   /**
    * Unique ID for the agent.
    * @format uuid
@@ -392,14 +353,14 @@ export interface AgentUpdateV1IDPatchResponse {
   /**
    * Input and output schemas for this agent. Omitted while the agent's graph cannot be previewed (e.g. an empty or structurally-invalid draft); check `validation` to see what needs fixing.
    */
-  schema?: AgentUpdateV1IDPatchResponse.Schema | null;
+  schema?: AgentUpdateResponse.Schema | null;
   /**
    * Validation report for the agent's graph, when available. Use `validation.valid` to check the agent is publishable.
    */
-  validation?: AgentUpdateV1IDPatchResponse.Validation | null;
+  validation?: AgentUpdateResponse.Validation | null;
 }
 
-export namespace AgentUpdateV1IDPatchResponse {
+export namespace AgentUpdateResponse {
   export interface Schema {
     /**
      * JSON Schema for the agent's `inputs` object. Use the top-level property keys as input field names when starting a run.
@@ -456,14 +417,14 @@ export namespace AgentUpdateV1IDPatchResponse {
   }
 }
 
-export interface AgentListGraphV1GraphGetParams {
+export interface AgentRetrieveGraphParams {
   /**
    * Version of the agent whose graph to retrieve. Use `published` for the live version, or `draft` for the latest unpublished changes. Defaults to `published`.
    */
   version?: Shared.AgentVersion;
 }
 
-export interface AgentListGraphV1GraphGetResponse {
+export interface AgentRetrieveGraphResponse {
   /**
    * Unique ID of the agent the graph belongs to.
    * @format uuid
@@ -478,36 +439,33 @@ export interface AgentListGraphV1GraphGetResponse {
    */
   graph: Record<string, unknown>;
 }
-Agents.NodeTypes = NodeTypes;
 Agents.Runs = Runs;
+Agents.NodeTypes = NodeTypes;
 
 export declare namespace Agents {
   export {
-    type CreateAgentRequest as CreateAgentRequest,
-    type UpdateAgentRequest as UpdateAgentRequest,
-    type AgentListV1GetResponse as AgentListV1GetResponse,
-    type AgentRetrieveV1GetResponse as AgentRetrieveV1GetResponse,
-    type AgentUpdateV1IDPatchResponse as AgentUpdateV1IDPatchResponse,
-    type AgentListGraphV1GraphGetResponse as AgentListGraphV1GraphGetResponse,
-    type AgentListV1GetParams as AgentListV1GetParams,
-    type AgentCreateV1PostParams as AgentCreateV1PostParams,
-    type AgentRetrieveV1GetParams as AgentRetrieveV1GetParams,
-    type AgentUpdateV1IDPatchParams as AgentUpdateV1IDPatchParams,
-    type AgentListGraphV1GraphGetParams as AgentListGraphV1GraphGetParams,
-  };
-
-  export {
-    NodeTypes as NodeTypes,
-    type NodeTypeListV1GetResponse as NodeTypeListV1GetResponse,
-    type NodeTypeListSchemaV1SchemaGetResponse as NodeTypeListSchemaV1SchemaGetResponse,
+    type AgentListResponse as AgentListResponse,
+    type AgentRetrieveResponse as AgentRetrieveResponse,
+    type AgentUpdateResponse as AgentUpdateResponse,
+    type AgentRetrieveGraphResponse as AgentRetrieveGraphResponse,
+    type AgentListParams as AgentListParams,
+    type AgentRetrieveParams as AgentRetrieveParams,
+    type AgentCreateParams as AgentCreateParams,
+    type AgentUpdateParams as AgentUpdateParams,
+    type AgentRetrieveGraphParams as AgentRetrieveGraphParams,
   };
 
   export {
     Runs as Runs,
-    type RunAgentRequest as RunAgentRequest,
-    type RunV1IDPostResponse as RunV1IDPostResponse,
-    type RunRetrieveV1GetResponse as RunRetrieveV1GetResponse,
-    type RunV1IDPostParams as RunV1IDPostParams,
-    type RunRetrieveV1GetParams as RunRetrieveV1GetParams,
+    type RunCreateResponse as RunCreateResponse,
+    type RunRetrieveResponse as RunRetrieveResponse,
+    type RunCreateParams as RunCreateParams,
+    type RunRetrieveParams as RunRetrieveParams,
+  };
+
+  export {
+    NodeTypes as NodeTypes,
+    type NodeTypeListResponse as NodeTypeListResponse,
+    type NodeTypeRetrieveSchemaResponse as NodeTypeRetrieveSchemaResponse,
   };
 }

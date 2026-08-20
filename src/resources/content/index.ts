@@ -3,8 +3,8 @@
 export { Content } from './content';
 export { Optimization } from './optimization';
 export type {
-  OptimizationListV1AssetIDGetParams,
-  OptimizationListV1AssetIDGetResponse,
-  OptimizationAnalysisV1AssetIDIDGetParams,
-  OptimizationAnalysisV1AssetIDIDGetResponse,
+  OptimizationListParams,
+  OptimizationListResponse,
+  OptimizationRetrieveParams,
+  OptimizationRetrieveResponse,
 } from './optimization';

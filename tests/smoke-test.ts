@@ -33,223 +33,192 @@ type SmokeResult = {
 // the SDK surface.
 const cases: { operation: string; method: string; path: string; run: () => Promise<unknown> }[] = [
   {
-    operation: 'listV1OrgGet',
-    method: 'GET',
-    path: '/v1/org',
-    run: async () => {
-      const listV1OrgGet = await client.organization.listV1OrgGet();
-    },
-  },
-
-  {
-    operation: 'listRegionsV1OrgRegionsGet',
+    operation: 'regions',
     method: 'GET',
     path: '/v1/org/regions',
     run: async () => {
-      const listRegionsV1OrgRegionsGet = await client.organization.listRegionsV1OrgRegionsGet();
+      const regions = await client.organizations.regions();
     },
   },
 
   {
-    operation: 'listModelsV1OrgModelsGet',
+    operation: 'models',
     method: 'GET',
     path: '/v1/org/models',
     run: async () => {
-      const listModelsV1OrgModelsGet = await client.organization.listModelsV1OrgModelsGet();
+      const models = await client.organizations.models();
     },
   },
 
   {
-    operation: 'listDomainsV1OrgDomainsGet',
+    operation: 'domains',
     method: 'GET',
     path: '/v1/org/domains',
     run: async () => {
-      const listDomainsV1OrgDomainsGet = await client.organization.listDomainsV1OrgDomainsGet();
+      const domains = await client.organizations.domains();
     },
   },
 
   {
-    operation: 'listAssetsV1OrgAssetsGet',
+    operation: 'listAssets',
     method: 'GET',
     path: '/v1/org/assets',
     run: async () => {
-      const listAssetsV1OrgAssetsGet = await client.organization.listAssetsV1OrgAssetsGet();
+      const listAssets = await client.organizations.listAssets();
     },
   },
 
   {
-    operation: 'listPersonasV1OrgPersonasGet',
+    operation: 'getPersonas',
     method: 'GET',
     path: '/v1/org/personas',
     run: async () => {
-      const listPersonasV1OrgPersonasGet = await client.organization.listPersonasV1OrgPersonasGet();
+      const getPersonas = await client.organizations.getPersonas();
     },
   },
 
   {
-    operation: 'listCategoriesV1OrgCategoriesGet',
+    operation: 'list',
+    method: 'GET',
+    path: '/v1/org',
+    run: async () => {
+      const list = await client.organizations.list();
+    },
+  },
+
+  {
+    operation: 'list',
     method: 'GET',
     path: '/v1/org/categories',
     run: async () => {
-      const listCategoriesV1OrgCategoriesGet = await client.organization.listCategoriesV1OrgCategoriesGet();
+      const list = await client.organizations.categories.list();
     },
   },
 
   {
-    operation: 'listCategoryTopicsV1OrgCategoriesCategoryTopicsGet',
+    operation: 'topics',
     method: 'GET',
     path: '/v1/org/categories/{category_id}/topics',
     run: async () => {
-      const listCategoryTopicsV1OrgCategoriesCategoryTopicsGet =
-        await client.organization.listCategoryTopicsV1OrgCategoriesCategoryTopicsGet(
-          '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        );
+      const topics = await client.organizations.categories.topics('7c9e6679-7425-40de-944b-e07fc1f90ae7');
     },
   },
 
   {
-    operation: 'listCategoryTagsV1OrgCategoriesCategoryTagsGet',
+    operation: 'tags',
     method: 'GET',
     path: '/v1/org/categories/{category_id}/tags',
     run: async () => {
-      const listCategoryTagsV1OrgCategoriesCategoryTagsGet =
-        await client.organization.listCategoryTagsV1OrgCategoriesCategoryTagsGet(
-          '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        );
+      const tags = await client.organizations.categories.tags('7c9e6679-7425-40de-944b-e07fc1f90ae7');
     },
   },
 
   {
-    operation: 'listCategoryRegionsV1OrgCategoriesCategoryRegionsGet',
-    method: 'GET',
-    path: '/v1/org/categories/{category_id}/regions',
-    run: async () => {
-      const listCategoryRegionsV1OrgCategoriesCategoryRegionsGet =
-        await client.organization.listCategoryRegionsV1OrgCategoriesCategoryRegionsGet(
-          '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        );
-    },
-  },
-
-  {
-    operation: 'listCategoryCitationCategoriesV1OrgCategoriesCategoryCitationCategoriesGet',
-    method: 'GET',
-    path: '/v1/org/categories/{category_id}/citation-categories',
-    run: async () => {
-      const listCategoryCitationCategoriesV1OrgCategoriesCategoryCitationCategoriesGet =
-        await client.organization.listCategoryCitationCategoriesV1OrgCategoriesCategoryCitationCategoriesGet(
-          '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        );
-    },
-  },
-
-  {
-    operation: 'listCategoryCitationTagsV1OrgCategoriesCategoryCitationTagsGet',
-    method: 'GET',
-    path: '/v1/org/categories/{category_id}/citation-tags',
-    run: async () => {
-      const listCategoryCitationTagsV1OrgCategoriesCategoryCitationTagsGet =
-        await client.organization.listCategoryCitationTagsV1OrgCategoriesCategoryCitationTagsGet(
-          '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        );
-    },
-  },
-
-  {
-    operation: 'listCategoryPromptsV1OrgCategoriesCategoryPromptsGet',
+    operation: 'prompts',
     method: 'GET',
     path: '/v1/org/categories/{category_id}/prompts',
     run: async () => {
-      const listCategoryPromptsV1OrgCategoriesCategoryPromptsGet =
-        await client.organization.listCategoryPromptsV1OrgCategoriesCategoryPromptsGet(
-          '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          {
-            limit: 10000,
-            status: ['active'],
-          },
-        );
+      const prompts = await client.organizations.categories.prompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        limit: 10000,
+        status: ['active'],
+      });
     },
   },
 
   {
-    operation: 'createCategoryPromptsV1OrgCategoriesCategoryIdPromptsPost',
-    method: 'POST',
-    path: '/v1/org/categories/{category_id}/prompts',
-    run: async () => {
-      const createCategoryPromptsV1OrgCategoriesCategoryIDPromptsPost =
-        await client.organization.createCategoryPromptsV1OrgCategoriesCategoryIDPromptsPost(
-          '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          {
-            prompts: [],
-            dry_run: false,
-          },
-        );
-    },
-  },
-
-  {
-    operation: 'updateCategoryPromptsV1OrgCategoriesCategoryIdPromptsPatch',
-    method: 'PATCH',
-    path: '/v1/org/categories/{category_id}/prompts',
-    run: async () => {
-      const updateCategoryPromptsV1OrgCategoriesCategoryIDPromptsPatch =
-        await client.organization.updateCategoryPromptsV1OrgCategoriesCategoryIDPromptsPatch(
-          '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          {
-            prompts: [],
-            dry_run: false,
-          },
-        );
-    },
-  },
-
-  {
-    operation: 'updateCategoryPromptStatusV1OrgCategoriesCategoryIdPromptsStatusPatch',
-    method: 'PATCH',
-    path: '/v1/org/categories/{category_id}/prompts/status',
-    run: async () => {
-      const updateCategoryPromptStatusV1OrgCategoriesCategoryIDPromptsStatusPatch =
-        await client.organization.updateCategoryPromptStatusV1OrgCategoriesCategoryIDPromptsStatusPatch(
-          '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          {
-            prompt_ids: [],
-            status: 'active',
-            dry_run: false,
-          },
-        );
-    },
-  },
-
-  {
-    operation: 'listCategoryAssetsV1OrgCategoriesCategoryAssetsGet',
+    operation: 'assets',
     method: 'GET',
     path: '/v1/org/categories/{category_id}/assets',
     run: async () => {
-      const listCategoryAssetsV1OrgCategoriesCategoryAssetsGet =
-        await client.organization.listCategoryAssetsV1OrgCategoriesCategoryAssetsGet(
-          '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        );
+      const assets = await client.organizations.categories.assets('7c9e6679-7425-40de-944b-e07fc1f90ae7');
     },
   },
 
   {
-    operation: 'listCategoryPersonasV1OrgCategoriesCategoryPersonasGet',
+    operation: 'getCategoryPersonas',
     method: 'GET',
     path: '/v1/org/categories/{category_id}/personas',
     run: async () => {
-      const listCategoryPersonasV1OrgCategoriesCategoryPersonasGet =
-        await client.organization.listCategoryPersonasV1OrgCategoriesCategoryPersonasGet(
-          '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        );
+      const getCategoryPersonas = await client.organizations.categories.getCategoryPersonas(
+        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+      );
     },
   },
 
   {
-    operation: 'createV1Post',
+    operation: 'createPrompts',
+    method: 'POST',
+    path: '/v1/org/categories/{category_id}/prompts',
+    run: async () => {
+      const createPrompts = await client.organizations.categories.createPrompts(
+        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        {
+          prompts: [],
+          dry_run: false,
+        },
+      );
+    },
+  },
+
+  {
+    operation: 'updatePrompts',
+    method: 'PATCH',
+    path: '/v1/org/categories/{category_id}/prompts',
+    run: async () => {
+      const updatePrompts = await client.organizations.categories.updatePrompts(
+        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        {
+          prompts: [],
+          dry_run: false,
+        },
+      );
+    },
+  },
+
+  {
+    operation: 'updatePromptStatus',
+    method: 'PATCH',
+    path: '/v1/org/categories/{category_id}/prompts/status',
+    run: async () => {
+      const updatePromptStatus = await client.organizations.categories.updatePromptStatus(
+        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        {
+          prompt_ids: [],
+          status: 'active',
+          dry_run: false,
+        },
+      );
+    },
+  },
+
+  {
+    operation: 'retrieveRegions',
+    method: 'GET',
+    path: '/v1/org/categories/{category_id}/regions',
+    run: async () => {
+      const retrieveRegions = await client.organizations.categories.retrieveRegions(
+        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+      );
+    },
+  },
+
+  {
+    operation: 'getCitationCategories',
+    method: 'GET',
+    path: '/v1/org/categories/{category_id}/citation-categories',
+    run: async () => {
+      const getCitationCategories = await client.organizations.categories.getCitationCategories(
+        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+      );
+    },
+  },
+
+  {
+    operation: 'answers',
     method: 'POST',
     path: '/v1/prompts/answers',
     run: async () => {
-      const createV1Post = await client.prompts.answers.createV1Post({
+      const answers = await client.prompts.answers({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
         end_date: '2024-01-01T00:00:00.000Z',
@@ -258,11 +227,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'queryV2V2Post',
+    operation: 'answersV2',
     method: 'POST',
     path: '/v2/prompts/answers',
     run: async () => {
-      const queryV2V2Post = await client.prompts.answers.queryV2V2Post({
+      const answersV2 = await client.prompts.answersV2({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -271,11 +240,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'streamV2V2StreamPost',
+    operation: 'streamAnswersV2',
     method: 'POST',
     path: '/v2/prompts/answers/stream',
     run: async () => {
-      const stream = await client.prompts.answers.streamV2V2StreamPost({
+      const stream = await client.prompts.streamAnswersV2({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -288,11 +257,62 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'querySentimentV2V1SentimentV2Post',
+    operation: 'citations',
+    method: 'POST',
+    path: '/v1/reports/citations',
+    run: async () => {
+      const citations = await client.reports.citations({
+        date_interval: 'day',
+        dimensions: [],
+        metrics: [],
+        order_by: {},
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        start_date: '2024-01-01T00:00:00.000Z',
+        end_date: '2024-01-01T00:00:00.000Z',
+      });
+    },
+  },
+
+  {
+    operation: 'visibility',
+    method: 'POST',
+    path: '/v1/reports/visibility',
+    run: async () => {
+      const report = await client.reports.visibility({
+        date_interval: 'day',
+        dimensions: [],
+        metrics: [],
+        order_by: {},
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        start_date: '2024-01-01T00:00:00.000Z',
+        end_date: '2024-01-01T00:00:00.000Z',
+      });
+    },
+  },
+
+  {
+    operation: 'sentiment',
+    method: 'POST',
+    path: '/v1/reports/sentiment',
+    run: async () => {
+      const report = await client.reports.sentiment({
+        date_interval: 'day',
+        dimensions: [],
+        metrics: [],
+        order_by: {},
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        start_date: '2024-01-01T00:00:00.000Z',
+        end_date: '2024-01-01T00:00:00.000Z',
+      });
+    },
+  },
+
+  {
+    operation: 'sentimentV2',
     method: 'POST',
     path: '/v1/reports/sentiment-v2',
     run: async () => {
-      const querySentimentV2V1SentimentV2Post = await client.reports.querySentimentV2V1SentimentV2Post({
+      const sentimentV2 = await client.reports.sentimentV2({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         asset_name: '',
         start_date: '2024-01-01T00:00:00.000Z',
@@ -304,269 +324,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'queryV1Post',
-    method: 'POST',
-    path: '/v1/reports/citations',
-    run: async () => {
-      const queryV1Post = await client.reports.citations.queryV1Post({
-        date_interval: 'day',
-        dimensions: [],
-        metrics: [],
-        order_by: {},
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-      });
-    },
-  },
-
-  {
-    operation: 'streamV1StreamPost',
-    method: 'POST',
-    path: '/v1/reports/citations/stream',
-    run: async () => {
-      const stream = await client.reports.citations.streamV1StreamPost({
-        date_interval: 'day',
-        dimensions: [],
-        metrics: [],
-        order_by: {},
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-      });
-
-      for await (const event of stream) {
-        console.log(event);
-      }
-    },
-  },
-
-  {
-    operation: 'queryV2V2Post',
-    method: 'POST',
-    path: '/v2/reports/citations',
-    run: async () => {
-      const queryV2V2Post = await client.reports.citations.queryV2V2Post({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '',
-        end_date: '',
-        entity: 'domain',
-        interval: 'day',
-        scope: 'all',
-      });
-    },
-  },
-
-  {
-    operation: 'streamV2V2StreamPost',
-    method: 'POST',
-    path: '/v2/reports/citations/stream',
-    run: async () => {
-      const stream = await client.reports.citations.streamV2V2StreamPost({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '',
-        end_date: '',
-        entity: 'domain',
-        interval: 'day',
-        scope: 'all',
-      });
-
-      for await (const event of stream) {
-        console.log(event);
-      }
-    },
-  },
-
-  {
-    operation: 'queryV1Post',
-    method: 'POST',
-    path: '/v1/reports/visibility',
-    run: async () => {
-      const response = await client.reports.visibility.queryV1Post({
-        date_interval: 'day',
-        dimensions: [],
-        metrics: [],
-        order_by: {},
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-      });
-    },
-  },
-
-  {
-    operation: 'streamV1StreamPost',
-    method: 'POST',
-    path: '/v1/reports/visibility/stream',
-    run: async () => {
-      const stream = await client.reports.visibility.streamV1StreamPost({
-        date_interval: 'day',
-        dimensions: [],
-        metrics: [],
-        order_by: {},
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-      });
-
-      for await (const event of stream) {
-        console.log(event);
-      }
-    },
-  },
-
-  {
-    operation: 'queryV2V2Post',
-    method: 'POST',
-    path: '/v2/reports/visibility',
-    run: async () => {
-      const queryV2V2Post = await client.reports.visibility.queryV2V2Post({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '',
-        end_date: '',
-        interval: 'day',
-        scope: 'owned',
-      });
-    },
-  },
-
-  {
-    operation: 'streamV2V2StreamPost',
-    method: 'POST',
-    path: '/v2/reports/visibility/stream',
-    run: async () => {
-      const stream = await client.reports.visibility.streamV2V2StreamPost({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '',
-        end_date: '',
-        interval: 'day',
-        scope: 'owned',
-      });
-
-      for await (const event of stream) {
-        console.log(event);
-      }
-    },
-  },
-
-  {
-    operation: 'queryV1Post',
-    method: 'POST',
-    path: '/v1/reports/sentiment',
-    run: async () => {
-      const response = await client.reports.sentiment.queryV1Post({
-        date_interval: 'day',
-        dimensions: [],
-        metrics: [],
-        order_by: {},
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-      });
-    },
-  },
-
-  {
-    operation: 'streamV1StreamPost',
-    method: 'POST',
-    path: '/v1/reports/sentiment/stream',
-    run: async () => {
-      const stream = await client.reports.sentiment.streamV1StreamPost({
-        date_interval: 'day',
-        dimensions: [],
-        metrics: [],
-        order_by: {},
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-      });
-
-      for await (const event of stream) {
-        console.log(event);
-      }
-    },
-  },
-
-  {
-    operation: 'queryV2V2Post',
-    method: 'POST',
-    path: '/v2/reports/sentiment',
-    run: async () => {
-      const queryV2V2Post = await client.reports.sentiment.queryV2V2Post({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        asset: '',
-        start_date: '',
-        end_date: '',
-        interval: 'day',
-        include_cited_websites: false,
-      });
-    },
-  },
-
-  {
-    operation: 'streamV2V2StreamPost',
-    method: 'POST',
-    path: '/v2/reports/sentiment/stream',
-    run: async () => {
-      const stream = await client.reports.sentiment.streamV2V2StreamPost({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        asset: '',
-        start_date: '',
-        end_date: '',
-        interval: 'day',
-        include_cited_websites: false,
-      });
-
-      for await (const event of stream) {
-        console.log(event);
-      }
-    },
-  },
-
-  {
-    operation: 'queryV1Post',
-    method: 'POST',
-    path: '/v1/reports/web-search-results',
-    run: async () => {
-      const queryV1Post = await client.reports.webSearchResults.queryV1Post({
-        date_interval: 'day',
-        dimensions: [],
-        metrics: [],
-        order_by: {},
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-      });
-    },
-  },
-
-  {
-    operation: 'streamV1StreamPost',
-    method: 'POST',
-    path: '/v1/reports/web-search-results/stream',
-    run: async () => {
-      const stream = await client.reports.webSearchResults.streamV1StreamPost({
-        date_interval: 'day',
-        dimensions: [],
-        metrics: [],
-        order_by: {},
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-      });
-
-      for await (const event of stream) {
-        console.log(event);
-      }
-    },
-  },
-
-  {
-    operation: 'createV1V1Post',
+    operation: 'getReferralsReport',
     method: 'POST',
     path: '/v1/reports/referrals',
     run: async () => {
-      const response = await client.reports.referrals.createV1V1Post({
+      const report = await client.reports.getReferralsReport({
         date_interval: 'day',
         dimensions: [],
         metrics: [],
@@ -578,28 +340,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'createV2V2Post',
-    method: 'POST',
-    path: '/v2/reports/referrals',
-    run: async () => {
-      const response = await client.reports.referrals.createV2V2Post({
-        date_interval: 'day',
-        dimensions: [],
-        metrics: [],
-        order_by: {},
-        domain: '',
-        start_date: '2024-01-01T00:00:00.000Z',
-        timezone: 'UTC',
-      });
-    },
-  },
-
-  {
-    operation: 'createV1V1Post',
+    operation: 'getBotsReport',
     method: 'POST',
     path: '/v1/reports/bots',
     run: async () => {
-      const response = await client.reports.bots.createV1V1Post({
+      const report = await client.reports.getBotsReport({
         date_interval: 'day',
         dimensions: [],
         metrics: [],
@@ -611,11 +356,168 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'createV2V2Post',
+    operation: 'queryFanouts',
     method: 'POST',
-    path: '/v2/reports/bots',
+    path: '/v1/reports/query-fanouts',
     run: async () => {
-      const response = await client.reports.bots.createV2V2Post({
+      const report = await client.reports.queryFanouts({
+        date_interval: 'day',
+        dimensions: [],
+        metrics: [],
+        order_by: {},
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        start_date: '2024-01-01T00:00:00.000Z',
+        end_date: '2024-01-01T00:00:00.000Z',
+      });
+    },
+  },
+
+  {
+    operation: 'streamCitations',
+    method: 'POST',
+    path: '/v1/reports/citations/stream',
+    run: async () => {
+      const stream = await client.reports.streamCitations({
+        date_interval: 'day',
+        dimensions: [],
+        metrics: [],
+        order_by: {},
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        start_date: '2024-01-01T00:00:00.000Z',
+        end_date: '2024-01-01T00:00:00.000Z',
+      });
+
+      for await (const event of stream) {
+        console.log(event);
+      }
+    },
+  },
+
+  {
+    operation: 'streamVisibility',
+    method: 'POST',
+    path: '/v1/reports/visibility/stream',
+    run: async () => {
+      const stream = await client.reports.streamVisibility({
+        date_interval: 'day',
+        dimensions: [],
+        metrics: [],
+        order_by: {},
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        start_date: '2024-01-01T00:00:00.000Z',
+        end_date: '2024-01-01T00:00:00.000Z',
+      });
+
+      for await (const event of stream) {
+        console.log(event);
+      }
+    },
+  },
+
+  {
+    operation: 'streamSentiment',
+    method: 'POST',
+    path: '/v1/reports/sentiment/stream',
+    run: async () => {
+      const stream = await client.reports.streamSentiment({
+        date_interval: 'day',
+        dimensions: [],
+        metrics: [],
+        order_by: {},
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        start_date: '2024-01-01T00:00:00.000Z',
+        end_date: '2024-01-01T00:00:00.000Z',
+      });
+
+      for await (const event of stream) {
+        console.log(event);
+      }
+    },
+  },
+
+  {
+    operation: 'streamCitationsV2',
+    method: 'POST',
+    path: '/v2/reports/citations/stream',
+    run: async () => {
+      const stream = await client.reports.streamCitationsV2({
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        start_date: '',
+        end_date: '',
+        entity: 'domain',
+        interval: 'day',
+        scope: 'all',
+      });
+
+      for await (const event of stream) {
+        console.log(event);
+      }
+    },
+  },
+
+  {
+    operation: 'streamVisibilityV2',
+    method: 'POST',
+    path: '/v2/reports/visibility/stream',
+    run: async () => {
+      const stream = await client.reports.streamVisibilityV2({
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        start_date: '',
+        end_date: '',
+        interval: 'day',
+        scope: 'owned',
+      });
+
+      for await (const event of stream) {
+        console.log(event);
+      }
+    },
+  },
+
+  {
+    operation: 'streamSentimentV2',
+    method: 'POST',
+    path: '/v2/reports/sentiment/stream',
+    run: async () => {
+      const stream = await client.reports.streamSentimentV2({
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        asset: '',
+        start_date: '',
+        end_date: '',
+        interval: 'day',
+        include_cited_websites: false,
+      });
+
+      for await (const event of stream) {
+        console.log(event);
+      }
+    },
+  },
+
+  {
+    operation: 'streamQueryFanouts',
+    method: 'POST',
+    path: '/v2/reports/query-fanouts/stream',
+    run: async () => {
+      const stream = await client.reports.streamQueryFanouts({
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        start_date: '',
+        end_date: '',
+        interval: 'day',
+      });
+
+      for await (const event of stream) {
+        console.log(event);
+      }
+    },
+  },
+
+  {
+    operation: 'getReferralsReportV2',
+    method: 'POST',
+    path: '/v2/reports/referrals',
+    run: async () => {
+      const report = await client.reports.getReferralsReportV2({
         date_interval: 'day',
         dimensions: [],
         metrics: [],
@@ -628,11 +530,89 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'v1Post',
+    operation: 'getBotsReportV2',
     method: 'POST',
-    path: '/v1/reports/query-fanouts',
+    path: '/v2/reports/bots',
     run: async () => {
-      const response = await client.reports.queryFanouts.v1Post({
+      const report = await client.reports.getBotsReportV2({
+        date_interval: 'day',
+        dimensions: [],
+        metrics: [],
+        order_by: {},
+        domain: '',
+        start_date: '2024-01-01T00:00:00.000Z',
+        timezone: 'UTC',
+      });
+    },
+  },
+
+  {
+    operation: 'queryVisibility',
+    method: 'POST',
+    path: '/v2/reports/visibility',
+    run: async () => {
+      const queryVisibility = await client.reports.queryVisibility({
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        start_date: '',
+        end_date: '',
+        interval: 'day',
+        scope: 'owned',
+      });
+    },
+  },
+
+  {
+    operation: 'queryCitations',
+    method: 'POST',
+    path: '/v2/reports/citations',
+    run: async () => {
+      const queryCitations = await client.reports.queryCitations({
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        start_date: '',
+        end_date: '',
+        entity: 'domain',
+        interval: 'day',
+        scope: 'all',
+      });
+    },
+  },
+
+  {
+    operation: 'querySentiment',
+    method: 'POST',
+    path: '/v2/reports/sentiment',
+    run: async () => {
+      const querySentiment = await client.reports.querySentiment({
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        asset: '',
+        start_date: '',
+        end_date: '',
+        interval: 'day',
+        include_cited_websites: false,
+      });
+    },
+  },
+
+  {
+    operation: 'queryQueryFanouts',
+    method: 'POST',
+    path: '/v2/reports/query-fanouts',
+    run: async () => {
+      const queryQueryFanouts = await client.reports.queryQueryFanouts({
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        start_date: '',
+        end_date: '',
+        interval: 'day',
+      });
+    },
+  },
+
+  {
+    operation: 'query',
+    method: 'POST',
+    path: '/v1/reports/web-search-results',
+    run: async () => {
+      const query = await client.reports.webSearchResults.query({
         date_interval: 'day',
         dimensions: [],
         metrics: [],
@@ -645,29 +625,18 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'v2V2Post',
+    operation: 'stream',
     method: 'POST',
-    path: '/v2/reports/query-fanouts',
+    path: '/v1/reports/web-search-results/stream',
     run: async () => {
-      const v2V2Post = await client.reports.queryFanouts.v2V2Post({
+      const stream = await client.reports.webSearchResults.stream({
+        date_interval: 'day',
+        dimensions: [],
+        metrics: [],
+        order_by: {},
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '',
-        end_date: '',
-        interval: 'day',
-      });
-    },
-  },
-
-  {
-    operation: 'streamV2V2StreamPost',
-    method: 'POST',
-    path: '/v2/reports/query-fanouts/stream',
-    run: async () => {
-      const stream = await client.reports.queryFanouts.streamV2V2StreamPost({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '',
-        end_date: '',
-        interval: 'day',
+        start_date: '2024-01-01T00:00:00.000Z',
+        end_date: '2024-01-01T00:00:00.000Z',
       });
 
       for await (const event of stream) {
@@ -677,235 +646,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'visibilityV1VisibilityPost',
-    method: 'POST',
-    path: '/v1/reports/shopping/visibility',
-    run: async () => {
-      const rows = await client.reports.shopping.visibilityV1VisibilityPost({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-        date_interval: 'day',
-        include_count: false,
-        tag_filter_type: 'any',
-        include_no_tag: false,
-        exclude_topic_ids: false,
-        include_asset_only: false,
-        rank_by: 'visibility_score',
-        include_position_frequency: false,
-      });
-    },
-  },
-
-  {
-    operation: 'itemVisibilityV1ItemVisibilityPost',
-    method: 'POST',
-    path: '/v1/reports/shopping/item-visibility',
-    run: async () => {
-      const rows = await client.reports.shopping.itemVisibilityV1ItemVisibilityPost({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-        date_interval: 'day',
-        include_count: false,
-        tag_filter_type: 'any',
-        include_no_tag: false,
-        exclude_topic_ids: false,
-        merchant_filter_type: 'any',
-        include_competitors: false,
-        competitor_limit: 5,
-        include_position_frequency: false,
-      });
-    },
-  },
-
-  {
-    operation: 'merchantDistributionV1MerchantDistributionPost',
-    method: 'POST',
-    path: '/v1/reports/shopping/merchant-distribution',
-    run: async () => {
-      const rows = await client.reports.shopping.merchantDistributionV1MerchantDistributionPost({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-        date_interval: 'day',
-        include_count: false,
-        tag_filter_type: 'any',
-        include_no_tag: false,
-        exclude_topic_ids: false,
-      });
-    },
-  },
-
-  {
-    operation: 'merchantVisibilityByBrandV1MerchantVisibilityByBrandPost',
-    method: 'POST',
-    path: '/v1/reports/shopping/merchant-visibility-by-brand',
-    run: async () => {
-      const rows = await client.reports.shopping.merchantVisibilityByBrandV1MerchantVisibilityByBrandPost({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-        date_interval: 'day',
-        include_count: false,
-        tag_filter_type: 'any',
-        include_no_tag: false,
-        exclude_topic_ids: false,
-        include_brand_only: false,
-      });
-    },
-  },
-
-  {
-    operation: 'merchantByItemsV1MerchantByItemsPost',
-    method: 'POST',
-    path: '/v1/reports/shopping/merchant-by-items',
-    run: async () => {
-      const rows = await client.reports.shopping.merchantByItemsV1MerchantByItemsPost({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-        date_interval: 'day',
-        include_count: false,
-        tag_filter_type: 'any',
-        include_no_tag: false,
-        exclude_topic_ids: false,
-      });
-    },
-  },
-
-  {
-    operation: 'allItemsWithMerchantsV1AllItemsWithMerchantsPost',
-    method: 'POST',
-    path: '/v1/reports/shopping/all-items-with-merchants',
-    run: async () => {
-      const rows = await client.reports.shopping.allItemsWithMerchantsV1AllItemsWithMerchantsPost({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-        date_interval: 'day',
-        include_count: false,
-        tag_filter_type: 'any',
-        include_no_tag: false,
-        exclude_topic_ids: false,
-        merchant_filter_type: 'any',
-        rank_by: 'visibility',
-        sort_order: 'desc',
-      });
-    },
-  },
-
-  {
-    operation: 'triggerRateV1TriggerRatePost',
-    method: 'POST',
-    path: '/v1/reports/shopping/trigger-rate',
-    run: async () => {
-      const rows = await client.reports.shopping.triggerRateV1TriggerRatePost({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-        date_interval: 'day',
-        include_count: false,
-        tag_filter_type: 'any',
-        include_no_tag: false,
-        exclude_topic_ids: false,
-      });
-    },
-  },
-
-  {
-    operation: 'triggeredPromptsV1TriggeredPromptsPost',
-    method: 'POST',
-    path: '/v1/reports/shopping/triggered-prompts',
-    run: async () => {
-      const rows = await client.reports.shopping.triggeredPromptsV1TriggeredPromptsPost({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-        date_interval: 'day',
-        include_count: false,
-        tag_filter_type: 'any',
-        include_no_tag: false,
-        exclude_topic_ids: false,
-      });
-    },
-  },
-
-  {
-    operation: 'triggeredTopicsV1TriggeredTopicsPost',
-    method: 'POST',
-    path: '/v1/reports/shopping/triggered-topics',
-    run: async () => {
-      const rows = await client.reports.shopping.triggeredTopicsV1TriggeredTopicsPost({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-        date_interval: 'day',
-        include_count: false,
-        tag_filter_type: 'any',
-        include_no_tag: false,
-        exclude_topic_ids: false,
-      });
-    },
-  },
-
-  {
-    operation: 'merchantShareV1MerchantSharePost',
-    method: 'POST',
-    path: '/v1/reports/shopping/merchant-share',
-    run: async () => {
-      const rows = await client.reports.shopping.merchantShareV1MerchantSharePost({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-        date_interval: 'day',
-        include_count: false,
-        tag_filter_type: 'any',
-        include_no_tag: false,
-        exclude_topic_ids: false,
-      });
-    },
-  },
-
-  {
-    operation: 'productMerchantUrlsV1ProductMerchantUrlsPost',
-    method: 'POST',
-    path: '/v1/reports/shopping/product-merchant-urls',
-    run: async () => {
-      const rows = await client.reports.shopping.productMerchantURLsV1ProductMerchantURLsPost({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        product_names: [],
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-      });
-    },
-  },
-
-  {
-    operation: 'executionsV1ExecutionsPost',
-    method: 'POST',
-    path: '/v1/reports/shopping/executions',
-    run: async () => {
-      const rows = await client.reports.shopping.executionsV1ExecutionsPost({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        start_date: '2024-01-01T00:00:00.000Z',
-        end_date: '2024-01-01T00:00:00.000Z',
-        date_interval: 'day',
-        include_count: false,
-        tag_filter_type: 'any',
-        include_no_tag: false,
-        exclude_topic_ids: false,
-        analysis_filter_type: 'any',
-      });
-    },
-  },
-
-  {
-    operation: 'queryBrandsV2V2BrandsPost',
+    operation: 'brands',
     method: 'POST',
     path: '/v2/reports/shopping/brands',
     run: async () => {
-      const queryBrandsV2V2BrandsPost = await client.reports.shopping.queryBrandsV2V2BrandsPost({
+      const brands = await client.reports.shopping.brands({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -916,11 +661,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'streamBrandsV2V2BrandsStreamPost',
+    operation: 'streamBrands',
     method: 'POST',
     path: '/v2/reports/shopping/brands/stream',
     run: async () => {
-      const stream = await client.reports.shopping.streamBrandsV2V2BrandsStreamPost({
+      const stream = await client.reports.shopping.streamBrands({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -935,11 +680,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'queryProductsV2V2ProductsPost',
+    operation: 'products',
     method: 'POST',
     path: '/v2/reports/shopping/products',
     run: async () => {
-      const queryProductsV2V2ProductsPost = await client.reports.shopping.queryProductsV2V2ProductsPost({
+      const products = await client.reports.shopping.products({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -951,11 +696,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'streamProductsV2V2ProductsStreamPost',
+    operation: 'streamProducts',
     method: 'POST',
     path: '/v2/reports/shopping/products/stream',
     run: async () => {
-      const stream = await client.reports.shopping.streamProductsV2V2ProductsStreamPost({
+      const stream = await client.reports.shopping.streamProducts({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -971,11 +716,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'queryMerchantsV2V2MerchantsPost',
+    operation: 'merchants',
     method: 'POST',
     path: '/v2/reports/shopping/merchants',
     run: async () => {
-      const queryMerchantsV2V2MerchantsPost = await client.reports.shopping.queryMerchantsV2V2MerchantsPost({
+      const merchants = await client.reports.shopping.merchants({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -985,11 +730,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'streamMerchantsV2V2MerchantsStreamPost',
+    operation: 'streamMerchants',
     method: 'POST',
     path: '/v2/reports/shopping/merchants/stream',
     run: async () => {
-      const stream = await client.reports.shopping.streamMerchantsV2V2MerchantsStreamPost({
+      const stream = await client.reports.shopping.streamMerchants({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -1003,26 +748,25 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'queryTriggerRateV2V2TriggerRatePost',
+    operation: 'triggerRate',
     method: 'POST',
     path: '/v2/reports/shopping/trigger-rate',
     run: async () => {
-      const queryTriggerRateV2V2TriggerRatePost =
-        await client.reports.shopping.queryTriggerRateV2V2TriggerRatePost({
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          start_date: '',
-          end_date: '',
-          interval: 'day',
-        });
+      const triggerRate = await client.reports.shopping.triggerRate({
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        start_date: '',
+        end_date: '',
+        interval: 'day',
+      });
     },
   },
 
   {
-    operation: 'streamTriggerRateV2V2TriggerRateStreamPost',
+    operation: 'streamTriggerRate',
     method: 'POST',
     path: '/v2/reports/shopping/trigger-rate/stream',
     run: async () => {
-      const stream = await client.reports.shopping.streamTriggerRateV2V2TriggerRateStreamPost({
+      const stream = await client.reports.shopping.streamTriggerRate({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -1036,11 +780,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'overviewV1OverviewPost',
+    operation: 'createOverview',
     method: 'POST',
     path: '/v1/reports/accuracy/overview',
     run: async () => {
-      const overviewV1OverviewPost = await client.reports.accuracy.overviewV1OverviewPost({
+      const createOverview = await client.reports.accuracy.createOverview({
         start_date: '',
         end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -1054,11 +798,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'breakdownV1BreakdownPost',
+    operation: 'createBreakdown',
     method: 'POST',
     path: '/v1/reports/accuracy/breakdown',
     run: async () => {
-      const breakdownV1BreakdownPost = await client.reports.accuracy.breakdownV1BreakdownPost({
+      const createBreakdown = await client.reports.accuracy.createBreakdown({
         start_date: '',
         end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -1076,26 +820,25 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'citationAnalysisV1CitationAnalysisPost',
+    operation: 'createCitationAnalysis',
     method: 'POST',
     path: '/v1/reports/accuracy/citation-analysis',
     run: async () => {
-      const citationAnalysisV1CitationAnalysisPost =
-        await client.reports.accuracy.citationAnalysisV1CitationAnalysisPost({
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          clean_href: '',
-          start_date: '',
-          end_date: '',
-        });
+      const createCitationAnalysis = await client.reports.accuracy.createCitationAnalysis({
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        clean_href: '',
+        start_date: '',
+        end_date: '',
+      });
     },
   },
 
   {
-    operation: 'topicIdsV1TopicIdsPost',
+    operation: 'createTopicIds',
     method: 'POST',
     path: '/v1/reports/accuracy/topic-ids',
     run: async () => {
-      const topicIDsV1TopicIDsPost = await client.reports.accuracy.topicIDsV1TopicIDsPost({
+      const createTopicIDs = await client.reports.accuracy.createTopicIDs({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -1104,179 +847,170 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'inaccurateThemesV1InaccurateThemesPost',
+    operation: 'createInaccurateThemes',
     method: 'POST',
     path: '/v1/reports/accuracy/inaccurate-themes',
     run: async () => {
-      const inaccurateThemesV1InaccurateThemesPost =
-        await client.reports.accuracy.inaccurateThemesV1InaccurateThemesPost({
-          start_date: '',
-          end_date: '',
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          exclude_topic_ids: false,
-          tag_filter_type: 'any',
-          include_no_tag: false,
-          include_no_persona: false,
-          limit: 10,
-          offset: 0,
-          sort_by: 'response_share',
-          sort_order: 'desc',
-        });
+      const createInaccurateThemes = await client.reports.accuracy.createInaccurateThemes({
+        start_date: '',
+        end_date: '',
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        exclude_topic_ids: false,
+        tag_filter_type: 'any',
+        include_no_tag: false,
+        include_no_persona: false,
+        limit: 10,
+        offset: 0,
+        sort_by: 'response_share',
+        sort_order: 'desc',
+      });
     },
   },
 
   {
-    operation: 'inaccurateClustersV1InaccurateClustersPost',
+    operation: 'createInaccurateClusters',
     method: 'POST',
     path: '/v1/reports/accuracy/inaccurate-clusters',
     run: async () => {
-      const inaccurateClustersV1InaccurateClustersPost =
-        await client.reports.accuracy.inaccurateClustersV1InaccurateClustersPost({
-          start_date: '',
-          end_date: '',
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          exclude_topic_ids: false,
-          tag_filter_type: 'any',
-          include_no_tag: false,
-          include_no_persona: false,
-          limit: 5000,
-          offset: 0,
-          include_models: false,
-        });
+      const createInaccurateClusters = await client.reports.accuracy.createInaccurateClusters({
+        start_date: '',
+        end_date: '',
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        exclude_topic_ids: false,
+        tag_filter_type: 'any',
+        include_no_tag: false,
+        include_no_persona: false,
+        limit: 5000,
+        offset: 0,
+        include_models: false,
+      });
     },
   },
 
   {
-    operation: 'inaccuracyDriversV1InaccuracyDriversPost',
+    operation: 'createInaccuracyDrivers',
     method: 'POST',
     path: '/v1/reports/accuracy/inaccuracy-drivers',
     run: async () => {
-      const inaccuracyDriversV1InaccuracyDriversPost =
-        await client.reports.accuracy.inaccuracyDriversV1InaccuracyDriversPost({
-          start_date: '',
-          end_date: '',
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          exclude_topic_ids: false,
-          tag_filter_type: 'any',
-          include_no_tag: false,
-          include_no_persona: false,
-          limit: 5,
-        });
+      const createInaccuracyDrivers = await client.reports.accuracy.createInaccuracyDrivers({
+        start_date: '',
+        end_date: '',
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        exclude_topic_ids: false,
+        tag_filter_type: 'any',
+        include_no_tag: false,
+        include_no_persona: false,
+        limit: 5,
+      });
     },
   },
 
   {
-    operation: 'topInaccurateClaimsV1TopInaccurateClaimsPost',
+    operation: 'createTopInaccurateClaims',
     method: 'POST',
     path: '/v1/reports/accuracy/top-inaccurate-claims',
     run: async () => {
-      const topInaccurateClaimsV1TopInaccurateClaimsPost =
-        await client.reports.accuracy.topInaccurateClaimsV1TopInaccurateClaimsPost({
-          start_date: '',
-          end_date: '',
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          exclude_topic_ids: false,
-          tag_filter_type: 'any',
-          include_no_tag: false,
-          include_no_persona: false,
-          limit: 5,
-        });
+      const createTopInaccurateClaims = await client.reports.accuracy.createTopInaccurateClaims({
+        start_date: '',
+        end_date: '',
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        exclude_topic_ids: false,
+        tag_filter_type: 'any',
+        include_no_tag: false,
+        include_no_persona: false,
+        limit: 5,
+      });
     },
   },
 
   {
-    operation: 'claimBreakdownV1ClaimBreakdownPost',
+    operation: 'createClaimBreakdown',
     method: 'POST',
     path: '/v1/reports/accuracy/claim-breakdown',
     run: async () => {
-      const claimBreakdownV1ClaimBreakdownPost =
-        await client.reports.accuracy.claimBreakdownV1ClaimBreakdownPost({
-          start_date: '',
-          end_date: '',
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          exclude_topic_ids: false,
-          tag_filter_type: 'any',
-          include_no_tag: false,
-          include_no_persona: false,
-          cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        });
+      const createClaimBreakdown = await client.reports.accuracy.createClaimBreakdown({
+        start_date: '',
+        end_date: '',
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        exclude_topic_ids: false,
+        tag_filter_type: 'any',
+        include_no_tag: false,
+        include_no_persona: false,
+        cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+      });
     },
   },
 
   {
-    operation: 'claimCitationsV1ClaimCitationsPost',
+    operation: 'createClaimCitations',
     method: 'POST',
     path: '/v1/reports/accuracy/claim-citations',
     run: async () => {
-      const claimCitationsV1ClaimCitationsPost =
-        await client.reports.accuracy.claimCitationsV1ClaimCitationsPost({
-          start_date: '',
-          end_date: '',
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          exclude_topic_ids: false,
-          tag_filter_type: 'any',
-          include_no_tag: false,
-          include_no_persona: false,
-          cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          limit: 10,
-          offset: 0,
-          sort_order: 'desc',
-        });
+      const createClaimCitations = await client.reports.accuracy.createClaimCitations({
+        start_date: '',
+        end_date: '',
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        exclude_topic_ids: false,
+        tag_filter_type: 'any',
+        include_no_tag: false,
+        include_no_persona: false,
+        cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        limit: 10,
+        offset: 0,
+        sort_order: 'desc',
+      });
     },
   },
 
   {
-    operation: 'clusterExampleRunsV1ClusterExampleRunsPost',
+    operation: 'createClusterExampleRuns',
     method: 'POST',
     path: '/v1/reports/accuracy/cluster-example-runs',
     run: async () => {
-      const clusterExampleRunsV1ClusterExampleRunsPost =
-        await client.reports.accuracy.clusterExampleRunsV1ClusterExampleRunsPost({
-          start_date: '',
-          end_date: '',
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          exclude_topic_ids: false,
-          tag_filter_type: 'any',
-          include_no_tag: false,
-          include_no_persona: false,
-          cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          limit: 20,
-          offset: 0,
-        });
+      const createClusterExampleRuns = await client.reports.accuracy.createClusterExampleRuns({
+        start_date: '',
+        end_date: '',
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        exclude_topic_ids: false,
+        tag_filter_type: 'any',
+        include_no_tag: false,
+        include_no_persona: false,
+        cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        limit: 20,
+        offset: 0,
+      });
     },
   },
 
   {
-    operation: 'clusterVerificationPairsV1ClusterVerificationPairsPost',
+    operation: 'createClusterVerificationPairs',
     method: 'POST',
     path: '/v1/reports/accuracy/cluster-verification-pairs',
     run: async () => {
-      const clusterVerificationPairsV1ClusterVerificationPairsPost =
-        await client.reports.accuracy.clusterVerificationPairsV1ClusterVerificationPairsPost({
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        });
+      const createClusterVerificationPairs = await client.reports.accuracy.createClusterVerificationPairs({
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+      });
     },
   },
 
   {
-    operation: 'factcheckSetupStatusV1FactcheckSetupStatusPost',
+    operation: 'createFactcheckSetupStatus',
     method: 'POST',
     path: '/v1/reports/accuracy/factcheck-setup-status',
     run: async () => {
-      const factcheckSetupStatusV1FactcheckSetupStatusPost =
-        await client.reports.accuracy.factcheckSetupStatusV1FactcheckSetupStatusPost({
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        });
+      const createFactcheckSetupStatus = await client.reports.accuracy.createFactcheckSetupStatus({
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+      });
     },
   },
 
   {
-    operation: 'queryScoresV2Post',
+    operation: 'queryScores',
     method: 'POST',
     path: '/v2/reports/factcheck',
     run: async () => {
-      const queryScoresV2Post = await client.reports.factcheck.queryScoresV2Post({
+      const queryScores = await client.reports.factcheck.queryScores({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -1285,11 +1019,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'streamScoresV2StreamPost',
+    operation: 'streamScores',
     method: 'POST',
     path: '/v2/reports/factcheck/stream',
     run: async () => {
-      const stream = await client.reports.factcheck.streamScoresV2StreamPost({
+      const stream = await client.reports.factcheck.streamScores({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -1302,11 +1036,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'queryClaimsV2ClaimsPost',
+    operation: 'queryClaims',
     method: 'POST',
     path: '/v2/reports/factcheck/claims',
     run: async () => {
-      const queryClaimsV2ClaimsPost = await client.reports.factcheck.queryClaimsV2ClaimsPost({
+      const queryClaims = await client.reports.factcheck.claims.queryClaims({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -1315,11 +1049,11 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'streamClaimsV2ClaimsStreamPost',
+    operation: 'streamClaims',
     method: 'POST',
     path: '/v2/reports/factcheck/claims/stream',
     run: async () => {
-      const stream = await client.reports.factcheck.streamClaimsV2ClaimsStreamPost({
+      const stream = await client.reports.factcheck.claims.streamClaims({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -1332,83 +1066,174 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'queryYoutubeChannelsV2YoutubeChannelsPost',
+    operation: 'getChannels',
     method: 'POST',
     path: '/v2/reports/social/youtube/channels',
     run: async () => {
-      const queryYoutubeChannelsV2YoutubeChannelsPost =
-        await client.reports.social.queryYoutubeChannelsV2YoutubeChannelsPost({
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          start_date: '',
-          end_date: '',
-        });
+      const getChannels = await client.reports.social.youtube.getChannels({
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        start_date: '',
+        end_date: '',
+      });
     },
   },
 
   {
-    operation: 'queryYoutubeVideosV2YoutubeVideosPost',
+    operation: 'getVideos',
     method: 'POST',
     path: '/v2/reports/social/youtube/videos',
     run: async () => {
-      const queryYoutubeVideosV2YoutubeVideosPost =
-        await client.reports.social.queryYoutubeVideosV2YoutubeVideosPost({
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          start_date: '',
-          end_date: '',
-          attribution: 'attributed',
-        });
+      const getVideos = await client.reports.social.youtube.getVideos({
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        start_date: '',
+        end_date: '',
+        attribution: 'attributed',
+      });
     },
   },
 
   {
-    operation: 'queryYoutubeSummaryV2YoutubeSummaryPost',
+    operation: 'getSummary',
     method: 'POST',
     path: '/v2/reports/social/youtube/summary',
     run: async () => {
-      const queryYoutubeSummaryV2YoutubeSummaryPost =
-        await client.reports.social.queryYoutubeSummaryV2YoutubeSummaryPost({
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          start_date: '',
-          end_date: '',
-        });
+      const getSummary = await client.reports.social.youtube.getSummary({
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        start_date: '',
+        end_date: '',
+      });
     },
   },
 
   {
-    operation: 'listV1AssetIdGet',
+    operation: 'list',
     method: 'GET',
     path: '/v1/content/{asset_id}/optimization',
     run: async () => {
-      const listV1AssetIDGet = await client.content.optimization.listV1AssetIDGet(
-        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        {
-          limit: 10000,
-          offset: 0,
-        },
-      );
+      const list = await client.content.optimization.list('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        limit: 10000,
+        offset: 0,
+      });
     },
   },
 
   {
-    operation: 'analysisV1AssetIdIdGet',
+    operation: 'retrieve',
     method: 'GET',
     path: '/v1/content/{asset_id}/optimization/{content_id}',
     run: async () => {
-      const analysisV1AssetIDIDGet = await client.content.optimization.analysisV1AssetIDIDGet(
-        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        {
-          asset_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        },
-      );
+      const retrieve = await client.content.optimization.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        asset_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+      });
     },
   },
 
   {
-    operation: 'listV1Get',
+    operation: 'list',
+    method: 'GET',
+    path: '/v1/agents',
+    run: async () => {
+      const list = await client.agents.list({
+        limit: 100,
+      });
+    },
+  },
+
+  {
+    operation: 'retrieve',
+    method: 'GET',
+    path: '/v1/agents/{agent_id}',
+    run: async () => {
+      const retrieve = await client.agents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+    },
+  },
+
+  {
+    operation: 'create',
+    method: 'POST',
+    path: '/v1/agents',
+    run: async () => {
+      const agent = await client.agents.create({
+        organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        name: 'x',
+      });
+    },
+  },
+
+  {
+    operation: 'publish',
+    method: 'POST',
+    path: '/v1/agents/{agent_id}/publish',
+    run: async () => {
+      const agent = await client.agents.publish('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+    },
+  },
+
+  {
+    operation: 'update',
+    method: 'PATCH',
+    path: '/v1/agents/{agent_id}',
+    run: async () => {
+      const update = await client.agents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        graph: {},
+      });
+    },
+  },
+
+  {
+    operation: 'retrieveGraph',
+    method: 'GET',
+    path: '/v1/agents/{agent_id}/graph',
+    run: async () => {
+      const retrieveGraph = await client.agents.retrieveGraph('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+    },
+  },
+
+  {
+    operation: 'create',
+    method: 'POST',
+    path: '/v1/agents/{agent_id}/runs',
+    run: async () => {
+      const create = await client.agents.runs.create('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+    },
+  },
+
+  {
+    operation: 'retrieve',
+    method: 'GET',
+    path: '/v1/agents/{agent_id}/runs/{run_id}',
+    run: async () => {
+      const retrieve = await client.agents.runs.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        agent_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        verbose: false,
+      });
+    },
+  },
+
+  {
+    operation: 'list',
+    method: 'GET',
+    path: '/v1/agents/node-types',
+    run: async () => {
+      const list = await client.agents.nodeTypes.list();
+    },
+  },
+
+  {
+    operation: 'retrieveSchema',
+    method: 'GET',
+    path: '/v1/agents/node-types/{node_type}/schema',
+    run: async () => {
+      const retrieveSchema = await client.agents.nodeTypes.retrieveSchema('nodeType');
+    },
+  },
+
+  {
+    operation: 'list',
     method: 'GET',
     path: '/v1/knowledge-bases',
     run: async () => {
-      const listV1Get = await client.knowledgeBases.listV1Get();
+      const list = await client.knowledgeBases.list();
     },
   },
 
@@ -1426,105 +1251,253 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'createV1IdPost',
+    operation: 'create',
     method: 'POST',
     path: '/v1/knowledge-bases/{knowledge_base_id}/documents',
     run: async () => {
-      const operation = await client.knowledgeBases.documents.createV1IDPost(
-        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        {
-          name: 'x',
-          text: 'x',
-        },
-      );
-    },
-  },
-
-  {
-    operation: 'updateV1IdPut',
-    method: 'PUT',
-    path: '/v1/knowledge-bases/{knowledge_base_id}/documents',
-    run: async () => {
-      const operation = await client.knowledgeBases.documents.updateV1IDPut(
-        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        {
-          name: 'x',
-          text: 'x',
-        },
-      );
-    },
-  },
-
-  {
-    operation: 'deleteV1IdDelete',
-    method: 'DELETE',
-    path: '/v1/knowledge-bases/{knowledge_base_id}/documents',
-    run: async () => {
-      const operation = await client.knowledgeBases.documents.deleteV1IDDelete(
-        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        {
-          name: 'x',
-        },
-      );
-    },
-  },
-
-  {
-    operation: 'createV1IdPost',
-    method: 'POST',
-    path: '/v1/knowledge-bases/{knowledge_base_id}/folders',
-    run: async () => {
-      const createV1IDPost = await client.knowledgeBases.folders.createV1IDPost(
-        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        {
-          path: 'x',
-        },
-      );
-    },
-  },
-
-  {
-    operation: 'deleteV1IdDelete',
-    method: 'DELETE',
-    path: '/v1/knowledge-bases/{knowledge_base_id}/folders',
-    run: async () => {
-      const deleteV1IDDelete = await client.knowledgeBases.folders.deleteV1IDDelete(
-        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        {
-          path: 'x',
-          recursive: false,
-        },
-      );
-    },
-  },
-
-  {
-    operation: 'listV1Get',
-    method: 'GET',
-    path: '/v1/integrations',
-    run: async () => {
-      const listV1Get = await client.integrations.listV1Get();
-    },
-  },
-
-  {
-    operation: 'listV1Get',
-    method: 'GET',
-    path: '/v1/documents',
-    run: async () => {
-      const listV1Get = await client.documents.listV1Get({
-        organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        limit: 20,
+      const operation = await client.knowledgeBases.documents.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        name: 'x',
+        text: 'x',
       });
     },
   },
 
   {
-    operation: 'createV1Post',
+    operation: 'update',
+    method: 'PUT',
+    path: '/v1/knowledge-bases/{knowledge_base_id}/documents',
+    run: async () => {
+      const operation = await client.knowledgeBases.documents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        name: 'x',
+        text: 'x',
+      });
+    },
+  },
+
+  {
+    operation: 'delete',
+    method: 'DELETE',
+    path: '/v1/knowledge-bases/{knowledge_base_id}/documents',
+    run: async () => {
+      const operation = await client.knowledgeBases.documents.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        name: 'x',
+      });
+    },
+  },
+
+  {
+    operation: 'create',
+    method: 'POST',
+    path: '/v1/knowledge-bases/{knowledge_base_id}/folders',
+    run: async () => {
+      const create = await client.knowledgeBases.folders.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        path: 'x',
+      });
+    },
+  },
+
+  {
+    operation: 'delete',
+    method: 'DELETE',
+    path: '/v1/knowledge-bases/{knowledge_base_id}/folders',
+    run: async () => {
+      const delete_ = await client.knowledgeBases.folders.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        path: 'x',
+        recursive: false,
+      });
+    },
+  },
+
+  {
+    operation: 'list',
+    method: 'GET',
+    path: '/v1/projects',
+    run: async () => {
+      const list = await client.projects.list({
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        limit: 100,
+        offset: 0,
+      });
+    },
+  },
+
+  {
+    operation: 'create',
+    method: 'POST',
+    path: '/v1/projects',
+    run: async () => {
+      const create = await client.projects.create({
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+      });
+    },
+  },
+
+  {
+    operation: 'retrieve',
+    method: 'GET',
+    path: '/v1/projects/{project_id}',
+    run: async () => {
+      const retrieve = await client.projects.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+      });
+    },
+  },
+
+  {
+    operation: 'delete',
+    method: 'DELETE',
+    path: '/v1/projects/{project_id}',
+    run: async () => {
+      await client.projects.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+      });
+    },
+  },
+
+  {
+    operation: 'getStatus',
+    method: 'GET',
+    path: '/v1/projects/{project_id}/status',
+    run: async () => {
+      const getStatus = await client.projects.getStatus('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+      });
+    },
+  },
+
+  {
+    operation: 'archive',
+    method: 'POST',
+    path: '/v1/projects/{project_id}/archive',
+    run: async () => {
+      const archive = await client.projects.archive('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+      });
+    },
+  },
+
+  {
+    operation: 'unarchive',
+    method: 'POST',
+    path: '/v1/projects/{project_id}/unarchive',
+    run: async () => {
+      const unarchive = await client.projects.unarchive('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+      });
+    },
+  },
+
+  {
+    operation: 'list',
+    method: 'GET',
+    path: '/v1/projects/generations',
+    run: async () => {
+      const list = await client.projects.generations.list({
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        limit: 100,
+        offset: 0,
+      });
+    },
+  },
+
+  {
+    operation: 'retrieve',
+    method: 'GET',
+    path: '/v1/projects/generations/{run_id}',
+    run: async () => {
+      const retrieve = await client.projects.generations.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+      });
+    },
+  },
+
+  {
+    operation: 'list',
+    method: 'GET',
+    path: '/v1/projects/{project_id}/tasks',
+    run: async () => {
+      const list = await client.projects.tasks.list('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+      });
+    },
+  },
+
+  {
+    operation: 'create',
+    method: 'POST',
+    path: '/v1/projects/{project_id}/tasks',
+    run: async () => {
+      const create = await client.projects.tasks.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        title: 'x',
+      });
+    },
+  },
+
+  {
+    operation: 'retrieve',
+    method: 'GET',
+    path: '/v1/projects/{project_id}/tasks/{task_id}',
+    run: async () => {
+      const retrieve = await client.projects.tasks.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+      });
+    },
+  },
+
+  {
+    operation: 'update',
+    method: 'PATCH',
+    path: '/v1/projects/{project_id}/tasks/{task_id}',
+    run: async () => {
+      const update = await client.projects.tasks.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+      });
+    },
+  },
+
+  {
+    operation: 'delete',
+    method: 'DELETE',
+    path: '/v1/projects/{project_id}/tasks/{task_id}',
+    run: async () => {
+      await client.projects.tasks.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+      });
+    },
+  },
+
+  {
+    operation: 'updateStatus',
+    method: 'POST',
+    path: '/v1/projects/{project_id}/tasks/{task_id}/status',
+    run: async () => {
+      const updateStatus = await client.projects.tasks.updateStatus('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        status: 'not_started',
+      });
+    },
+  },
+
+  {
+    operation: 'list',
+    method: 'GET',
+    path: '/v1/integrations',
+    run: async () => {
+      const list = await client.integrations.list();
+    },
+  },
+
+  {
+    operation: 'create',
     method: 'POST',
     path: '/v1/documents',
     run: async () => {
-      const createV1Post = await client.documents.createV1Post({
+      const create = await client.documents.create({
         id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         name: 'x',
@@ -1534,11 +1507,23 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'readV1IdGet',
+    operation: 'list',
+    method: 'GET',
+    path: '/v1/documents',
+    run: async () => {
+      const list = await client.documents.list({
+        organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        limit: 20,
+      });
+    },
+  },
+
+  {
+    operation: 'retrieve',
     method: 'GET',
     path: '/v1/documents/{document_id}',
     run: async () => {
-      const readV1IDGet = await client.documents.readV1IDGet('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const retrieve = await client.documents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         include_tabs: true,
         include_comments: true,
@@ -1548,360 +1533,46 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
   },
 
   {
-    operation: 'patchV1IdPatch',
+    operation: 'update',
     method: 'PATCH',
     path: '/v1/documents/{document_id}',
     run: async () => {
-      const patchV1IDPatch = await client.documents.patchV1IDPatch('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const update = await client.documents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
       });
     },
   },
 
   {
-    operation: 'deleteV1IdDelete',
+    operation: 'delete',
     method: 'DELETE',
     path: '/v1/documents/{document_id}',
     run: async () => {
-      await client.documents.deleteV1IDDelete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      await client.documents.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
       });
     },
   },
 
   {
-    operation: 'replaceContentV1IdContentPost',
+    operation: 'replaceContent',
     method: 'POST',
     path: '/v1/documents/{document_id}/content',
     run: async () => {
-      const replaceContentV1IDContentPost = await client.documents.replaceContentV1IDContentPost(
-        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        {
-          organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          content_markdown: '',
-          skip_title_sync: false,
-        },
-      );
+      const replaceContent = await client.documents.replaceContent('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+        organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        content_markdown: '',
+        skip_title_sync: false,
+      });
     },
   },
 
   {
-    operation: 'listAccountInsightsV1OpenaiAccountInsightsGet',
+    operation: 'retrieveInsights',
     method: 'GET',
     path: '/v1/ads/openai-ads/ad-account/insights',
     run: async () => {
-      const listAccountInsightsV1OpenAIAccountInsightsGet =
-        await client.openAIAds.listAccountInsightsV1OpenAIAccountInsightsGet();
-    },
-  },
-
-  {
-    operation: 'listV1Get',
-    method: 'GET',
-    path: '/v1/projects',
-    run: async () => {
-      const listV1Get = await client.projects.listV1Get({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        limit: 100,
-        offset: 0,
-      });
-    },
-  },
-
-  {
-    operation: 'createV1Post',
-    method: 'POST',
-    path: '/v1/projects',
-    run: async () => {
-      const createV1Post = await client.projects.createV1Post({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-      });
-    },
-  },
-
-  {
-    operation: 'retrieveV1Get',
-    method: 'GET',
-    path: '/v1/projects/{project_id}',
-    run: async () => {
-      const retrieveV1Get = await client.projects.retrieveV1Get('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-      });
-    },
-  },
-
-  {
-    operation: 'deleteV1IdDelete',
-    method: 'DELETE',
-    path: '/v1/projects/{project_id}',
-    run: async () => {
-      await client.projects.deleteV1IDDelete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-      });
-    },
-  },
-
-  {
-    operation: 'listStatusV1StatusGet',
-    method: 'GET',
-    path: '/v1/projects/{project_id}/status',
-    run: async () => {
-      const listStatusV1StatusGet = await client.projects.listStatusV1StatusGet(
-        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        {
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        },
-      );
-    },
-  },
-
-  {
-    operation: 'archiveV1IdArchivePost',
-    method: 'POST',
-    path: '/v1/projects/{project_id}/archive',
-    run: async () => {
-      const archiveV1IDArchivePost = await client.projects.archiveV1IDArchivePost(
-        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        {
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        },
-      );
-    },
-  },
-
-  {
-    operation: 'unarchiveV1IdUnarchivePost',
-    method: 'POST',
-    path: '/v1/projects/{project_id}/unarchive',
-    run: async () => {
-      const unarchiveV1IDUnarchivePost = await client.projects.unarchiveV1IDUnarchivePost(
-        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        {
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        },
-      );
-    },
-  },
-
-  {
-    operation: 'listV1Get',
-    method: 'GET',
-    path: '/v1/projects/generations',
-    run: async () => {
-      const listV1Get = await client.projects.generations.listV1Get({
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        limit: 100,
-        offset: 0,
-      });
-    },
-  },
-
-  {
-    operation: 'retrieveStatusV1RunGet',
-    method: 'GET',
-    path: '/v1/projects/generations/{run_id}',
-    run: async () => {
-      const retrieveStatusV1RunGet = await client.projects.generations.retrieveStatusV1RunGet(
-        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        {
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        },
-      );
-    },
-  },
-
-  {
-    operation: 'listV1IdGet',
-    method: 'GET',
-    path: '/v1/projects/{project_id}/tasks',
-    run: async () => {
-      const listV1IDGet = await client.projects.tasks.listV1IDGet('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-      });
-    },
-  },
-
-  {
-    operation: 'createV1IdPost',
-    method: 'POST',
-    path: '/v1/projects/{project_id}/tasks',
-    run: async () => {
-      const createV1IDPost = await client.projects.tasks.createV1IDPost(
-        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        {
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          title: 'x',
-        },
-      );
-    },
-  },
-
-  {
-    operation: 'retrieveV1Get',
-    method: 'GET',
-    path: '/v1/projects/{project_id}/tasks/{task_id}',
-    run: async () => {
-      const retrieveV1Get = await client.projects.tasks.retrieveV1Get(
-        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        {
-          project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        },
-      );
-    },
-  },
-
-  {
-    operation: 'updateV1IdIdPatch',
-    method: 'PATCH',
-    path: '/v1/projects/{project_id}/tasks/{task_id}',
-    run: async () => {
-      const updateV1IDIDPatch = await client.projects.tasks.updateV1IDIDPatch(
-        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        {
-          project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        },
-      );
-    },
-  },
-
-  {
-    operation: 'deleteV1IdIdDelete',
-    method: 'DELETE',
-    path: '/v1/projects/{project_id}/tasks/{task_id}',
-    run: async () => {
-      await client.projects.tasks.deleteV1IDIDDelete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
-        project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-      });
-    },
-  },
-
-  {
-    operation: 'updateStatusV1IdIdStatusPost',
-    method: 'POST',
-    path: '/v1/projects/{project_id}/tasks/{task_id}/status',
-    run: async () => {
-      const updateStatusV1IDIDStatusPost = await client.projects.tasks.updateStatusV1IDIDStatusPost(
-        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        {
-          project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-          status: 'not_started',
-        },
-      );
-    },
-  },
-
-  {
-    operation: 'listV1Get',
-    method: 'GET',
-    path: '/v1/agents',
-    run: async () => {
-      const listV1Get = await client.agents.listV1Get({
-        limit: 100,
-      });
-    },
-  },
-
-  {
-    operation: 'createV1Post',
-    method: 'POST',
-    path: '/v1/agents',
-    run: async () => {
-      const agent = await client.agents.createV1Post({
-        organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        name: 'x',
-      });
-    },
-  },
-
-  {
-    operation: 'publishV1IdPublishPost',
-    method: 'POST',
-    path: '/v1/agents/{agent_id}/publish',
-    run: async () => {
-      const agent = await client.agents.publishV1IDPublishPost('7c9e6679-7425-40de-944b-e07fc1f90ae7');
-    },
-  },
-
-  {
-    operation: 'retrieveV1Get',
-    method: 'GET',
-    path: '/v1/agents/{agent_id}',
-    run: async () => {
-      const retrieveV1Get = await client.agents.retrieveV1Get('7c9e6679-7425-40de-944b-e07fc1f90ae7');
-    },
-  },
-
-  {
-    operation: 'updateV1IdPatch',
-    method: 'PATCH',
-    path: '/v1/agents/{agent_id}',
-    run: async () => {
-      const updateV1IDPatch = await client.agents.updateV1IDPatch('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
-        graph: {},
-      });
-    },
-  },
-
-  {
-    operation: 'listGraphV1GraphGet',
-    method: 'GET',
-    path: '/v1/agents/{agent_id}/graph',
-    run: async () => {
-      const listGraphV1GraphGet = await client.agents.listGraphV1GraphGet(
-        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-      );
-    },
-  },
-
-  {
-    operation: 'listV1Get',
-    method: 'GET',
-    path: '/v1/agents/node-types',
-    run: async () => {
-      const listV1Get = await client.agents.nodeTypes.listV1Get();
-    },
-  },
-
-  {
-    operation: 'listSchemaV1SchemaGet',
-    method: 'GET',
-    path: '/v1/agents/node-types/{node_type}/schema',
-    run: async () => {
-      const listSchemaV1SchemaGet = await client.agents.nodeTypes.listSchemaV1SchemaGet('nodeType');
-    },
-  },
-
-  {
-    operation: 'v1IdPost',
-    method: 'POST',
-    path: '/v1/agents/{agent_id}/runs',
-    run: async () => {
-      const v1IDPost = await client.agents.runs.v1IDPost('7c9e6679-7425-40de-944b-e07fc1f90ae7');
-    },
-  },
-
-  {
-    operation: 'retrieveV1Get',
-    method: 'GET',
-    path: '/v1/agents/{agent_id}/runs/{run_id}',
-    run: async () => {
-      const retrieveV1Get = await client.agents.runs.retrieveV1Get('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
-        agent_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        verbose: false,
-      });
-    },
-  },
-
-  {
-    operation: 'listV2Get',
-    method: 'GET',
-    path: '/v2/domain-segments',
-    run: async () => {
-      const listV2Get = await client.domainSegments.listV2Get();
+      const retrieveInsights = await client.ads.openaiAds.adAccount.retrieveInsights();
     },
   },
 ];

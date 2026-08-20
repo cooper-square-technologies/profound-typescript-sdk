@@ -12,24 +12,21 @@ export class Documents extends APIResource {
    * Add a document to a knowledge base using JSON text or multipart file upload.
    *
    * @param {string} knowledgeBaseID - Unique knowledge base ID.
-   * @param {DocumentCreateV1IDPostParams} params - The parameters to send with the request.
+   * @param {DocumentCreateParams} params - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<Shared.DocumentOperationResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const operation = await client.knowledgeBases.documents.createV1IDPost(
-   *   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   {
-   *     name: 'x',
-   *     text: 'x',
-   *   },
-   * );
+   * const operation = await client.knowledgeBases.documents.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   *   name: 'x',
+   *   text: 'x',
+   * });
    * ```
    */
-  createV1IDPost(
+  create(
     knowledgeBaseID: string,
-    params: DocumentCreateV1IDPostParams,
+    params: DocumentCreateParams,
     options?: RequestOptions,
   ): APIPromise<Shared.DocumentOperationResponse> {
     const { organization_id, ...body } = params;
@@ -43,24 +40,21 @@ export class Documents extends APIResource {
    * Overwrite a knowledge base document using JSON text or multipart file upload.
    *
    * @param {string} knowledgeBaseID - Unique knowledge base ID.
-   * @param {DocumentUpdateV1IDPutParams} params - The parameters to send with the request.
+   * @param {DocumentUpdateParams} params - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<Shared.DocumentOperationResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const operation = await client.knowledgeBases.documents.updateV1IDPut(
-   *   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   {
-   *     name: 'x',
-   *     text: 'x',
-   *   },
-   * );
+   * const operation = await client.knowledgeBases.documents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   *   name: 'x',
+   *   text: 'x',
+   * });
    * ```
    */
-  updateV1IDPut(
+  update(
     knowledgeBaseID: string,
-    params: DocumentUpdateV1IDPutParams,
+    params: DocumentUpdateParams,
     options?: RequestOptions,
   ): APIPromise<Shared.DocumentOperationResponse> {
     const { organization_id, ...body } = params;
@@ -74,23 +68,20 @@ export class Documents extends APIResource {
    * Delete an existing document from a knowledge base.
    *
    * @param {string} knowledgeBaseID - Unique knowledge base ID.
-   * @param {DocumentDeleteV1IDDeleteParams} params - The parameters to send with the request.
+   * @param {DocumentDeleteParams} params - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<Shared.DocumentOperationResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const operation = await client.knowledgeBases.documents.deleteV1IDDelete(
-   *   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   {
-   *     name: 'x',
-   *   },
-   * );
+   * const operation = await client.knowledgeBases.documents.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   *   name: 'x',
+   * });
    * ```
    */
-  deleteV1IDDelete(
+  delete(
     knowledgeBaseID: string,
-    params: DocumentDeleteV1IDDeleteParams,
+    params: DocumentDeleteParams,
     options?: RequestOptions,
   ): APIPromise<Shared.DocumentOperationResponse> {
     const { organization_id, ...body } = params;
@@ -102,15 +93,7 @@ export class Documents extends APIResource {
   }
 }
 
-export interface DeleteDocumentRequest {
-  /**
-   * Document path to delete.
-   * @minLength 1
-   */
-  name: string;
-}
-
-export interface DocumentCreateV1IDPostParams {
+export interface DocumentCreateParams {
   /**
    * Query param: Organization scope for API keys that can access multiple organizations.
    * @format uuid
@@ -133,7 +116,7 @@ export interface DocumentCreateV1IDPostParams {
   folder?: string | null;
 }
 
-export interface DocumentUpdateV1IDPutParams {
+export interface DocumentUpdateParams {
   /**
    * Query param: Organization scope for API keys that can access multiple organizations.
    * @format uuid
@@ -156,7 +139,7 @@ export interface DocumentUpdateV1IDPutParams {
   folder?: string | null;
 }
 
-export interface DocumentDeleteV1IDDeleteParams {
+export interface DocumentDeleteParams {
   /**
    * Query param: Organization scope for API keys that can access multiple organizations.
    * @format uuid
@@ -170,9 +153,8 @@ export interface DocumentDeleteV1IDDeleteParams {
 }
 export declare namespace Documents {
   export {
-    type DeleteDocumentRequest as DeleteDocumentRequest,
-    type DocumentCreateV1IDPostParams as DocumentCreateV1IDPostParams,
-    type DocumentUpdateV1IDPutParams as DocumentUpdateV1IDPutParams,
-    type DocumentDeleteV1IDDeleteParams as DocumentDeleteV1IDDeleteParams,
+    type DocumentCreateParams as DocumentCreateParams,
+    type DocumentUpdateParams as DocumentUpdateParams,
+    type DocumentDeleteParams as DocumentDeleteParams,
   };
 }

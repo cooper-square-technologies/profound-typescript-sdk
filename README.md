@@ -41,9 +41,9 @@ const client = new Profound({
   environment: 'production',
 });
 
-const listV1OrgGet = await client.organization.listV1OrgGet();
+const regions = await client.organizations.regions();
 
-console.log(listV1OrgGet);
+console.log(regions);
 ```
 
 The examples in the following sections assume a `client` configured as shown above.
@@ -57,7 +57,7 @@ See the [API reference](./api.md) for every available operation.
 Streaming endpoints return an async iterator that yields results as the server emits them.
 
 ```ts
-const stream = await client.prompts.answers.streamV2V2StreamPost({
+const stream = await client.prompts.streamAnswersV2({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '',
   end_date: '',
@@ -94,7 +94,7 @@ Non-success responses throw generated API errors. Error objects expose status, h
 import { APIError } from '@profoundai/client';
 
 try {
-  const listV1OrgGet = await client.organization.listV1OrgGet();
+  const regions = await client.organizations.regions();
 } catch (err) {
   if (err instanceof APIError) {
     console.log(err.status, err.name, err.headers);

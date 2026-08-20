@@ -12,22 +12,18 @@ export class Tasks extends APIResource {
    * List Project Tasks
    *
    * @param {string} projectID - Unique project ID.
-   * @param {TaskListV1IDGetParams} query - The parameters to send with the request.
+   * @param {TaskListParams} query - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<TaskListV1IDGetResponse>} Successful Response
+   * @returns {APIPromise<TaskListResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const listV1IDGet = await client.projects.tasks.listV1IDGet('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const list = await client.projects.tasks.list('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * });
    * ```
    */
-  listV1IDGet(
-    projectID: string,
-    query: TaskListV1IDGetParams,
-    options?: RequestOptions,
-  ): APIPromise<TaskListV1IDGetResponse> {
+  list(projectID: string, query: TaskListParams, options?: RequestOptions): APIPromise<TaskListResponse> {
     return this._client.get(__scalarPath`/v1/projects/${projectID}/tasks`, { query, ...options });
   }
 
@@ -35,23 +31,23 @@ export class Tasks extends APIResource {
    * Create Project Task
    *
    * @param {string} projectID - Unique project ID.
-   * @param {TaskCreateV1IDPostParams} params - The parameters to send with the request.
+   * @param {TaskCreateParams} params - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<TaskCreateV1IDPostResponse>} Successful Response
+   * @returns {APIPromise<TaskCreateResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const createV1IDPost = await client.projects.tasks.createV1IDPost('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const create = await client.projects.tasks.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   title: 'x',
    * });
    * ```
    */
-  createV1IDPost(
+  create(
     projectID: string,
-    params: TaskCreateV1IDPostParams,
+    params: TaskCreateParams,
     options?: RequestOptions,
-  ): APIPromise<TaskCreateV1IDPostResponse> {
+  ): APIPromise<TaskCreateResponse> {
     const { category_id, ...body } = params;
     return this._client.post(__scalarPath`/v1/projects/${projectID}/tasks`, {
       body,
@@ -64,23 +60,23 @@ export class Tasks extends APIResource {
    * Get Project Task
    *
    * @param {string} taskID - Unique project task ID.
-   * @param {TaskRetrieveV1GetParams} params - The parameters to send with the request.
+   * @param {TaskRetrieveParams} params - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<TaskRetrieveV1GetResponse>} Successful Response
+   * @returns {APIPromise<TaskRetrieveResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const retrieveV1Get = await client.projects.tasks.retrieveV1Get('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const retrieve = await client.projects.tasks.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * });
    * ```
    */
-  retrieveV1Get(
+  retrieve(
     taskID: string,
-    params: TaskRetrieveV1GetParams,
+    params: TaskRetrieveParams,
     options?: RequestOptions,
-  ): APIPromise<TaskRetrieveV1GetResponse> {
+  ): APIPromise<TaskRetrieveResponse> {
     const { project_id, ...query } = params;
     return this._client.get(__scalarPath`/v1/projects/${project_id}/tasks/${taskID}`, { query, ...options });
   }
@@ -89,26 +85,19 @@ export class Tasks extends APIResource {
    * Update Project Task
    *
    * @param {string} taskID - Unique project task ID.
-   * @param {TaskUpdateV1IDIDPatchParams} params - The parameters to send with the request.
+   * @param {TaskUpdateParams} params - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<TaskUpdateV1IDIDPatchResponse>} Successful Response
+   * @returns {APIPromise<TaskUpdateResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const updateV1IDIDPatch = await client.projects.tasks.updateV1IDIDPatch(
-   *   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   {
-   *     project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *     category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   },
-   * );
+   * const update = await client.projects.tasks.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   *   project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   * });
    * ```
    */
-  updateV1IDIDPatch(
-    taskID: string,
-    params: TaskUpdateV1IDIDPatchParams,
-    options?: RequestOptions,
-  ): APIPromise<TaskUpdateV1IDIDPatchResponse> {
+  update(taskID: string, params: TaskUpdateParams, options?: RequestOptions): APIPromise<TaskUpdateResponse> {
     const { project_id, category_id, ...body } = params;
     return this._client.patch(__scalarPath`/v1/projects/${project_id}/tasks/${taskID}`, {
       body,
@@ -121,23 +110,19 @@ export class Tasks extends APIResource {
    * Delete Project Task
    *
    * @param {string} taskID - Unique project task ID.
-   * @param {TaskDeleteV1IDIDDeleteParams} params - The parameters to send with the request.
+   * @param {TaskDeleteParams} params - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns Successful Response
    *
    * @example
    * ```ts
-   * await client.projects.tasks.deleteV1IDIDDelete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * await client.projects.tasks.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * });
    * ```
    */
-  deleteV1IDIDDelete(
-    taskID: string,
-    params: TaskDeleteV1IDIDDeleteParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
+  delete(taskID: string, params: TaskDeleteParams, options?: RequestOptions): APIPromise<void> {
     const { project_id, category_id } = params;
     return this._client.delete(__scalarPath`/v1/projects/${project_id}/tasks/${taskID}`, {
       query: { category_id },
@@ -150,27 +135,24 @@ export class Tasks extends APIResource {
    * Update Project Task Status
    *
    * @param {string} taskID - Unique project task ID.
-   * @param {TaskUpdateStatusV1IDIDStatusPostParams} params - The parameters to send with the request.
+   * @param {TaskUpdateStatusParams} params - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<TaskUpdateStatusV1IDIDStatusPostResponse>} Successful Response
+   * @returns {APIPromise<TaskUpdateStatusResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const updateStatusV1IDIDStatusPost = await client.projects.tasks.updateStatusV1IDIDStatusPost(
-   *   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   {
-   *     project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *     category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *     status: 'not_started',
-   *   },
-   * );
+   * const updateStatus = await client.projects.tasks.updateStatus('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   *   project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   status: 'not_started',
+   * });
    * ```
    */
-  updateStatusV1IDIDStatusPost(
+  updateStatus(
     taskID: string,
-    params: TaskUpdateStatusV1IDIDStatusPostParams,
+    params: TaskUpdateStatusParams,
     options?: RequestOptions,
-  ): APIPromise<TaskUpdateStatusV1IDIDStatusPostResponse> {
+  ): APIPromise<TaskUpdateStatusResponse> {
     const { project_id, category_id, ...body } = params;
     return this._client.post(__scalarPath`/v1/projects/${project_id}/tasks/${taskID}/status`, {
       body,
@@ -180,103 +162,7 @@ export class Tasks extends APIResource {
   }
 }
 
-export interface CreateProjectTaskRequest {
-  /**
-   * @minLength 1
-   * @maxLength 240
-   */
-  title: string;
-  /**
-   * @minLength 1
-   * @maxLength 2000
-   */
-  summary?: string | null;
-  /**
-   * @minLength 1
-   * @maxLength 8000
-   */
-  brief?: string | null;
-  /**
-   * @minLength 1
-   * @maxLength 80
-   */
-  type?: string | null;
-  /**
-   * @minLength 1
-   * @maxLength 120
-   */
-  topic?: string | null;
-  /**
-   * @minimum 1
-   * @maximum 5
-   */
-  impact?: number | null;
-  /**
-   * @minLength 1
-   * @maxLength 2048
-   */
-  reference_url?: string | null;
-  /**
-   * @minLength 1
-   * @maxLength 240
-   */
-  reference_label?: string | null;
-  position?: number | null;
-}
-
-export interface UpdateProjectTaskRequest {
-  /**
-   * @minLength 1
-   * @maxLength 240
-   */
-  title?: string | null;
-  /**
-   * @minLength 1
-   * @maxLength 2000
-   */
-  summary?: string | null;
-  /**
-   * @minLength 1
-   * @maxLength 8000
-   */
-  brief?: string | null;
-  /**
-   * @minLength 1
-   * @maxLength 80
-   */
-  type?: string | null;
-  /**
-   * @minLength 1
-   * @maxLength 120
-   */
-  topic?: string | null;
-  /**
-   * @minimum 1
-   * @maximum 5
-   */
-  impact?: number | null;
-  /**
-   * @minLength 1
-   * @maxLength 2048
-   */
-  reference_url?: string | null;
-  /**
-   * @minLength 1
-   * @maxLength 240
-   */
-  reference_label?: string | null;
-}
-
-export interface UpdateProjectTaskStatusRequest {
-  status: 'not_started' | 'in_progress' | 'done' | 'abandoned';
-  /**
-   * @minLength 1
-   * @maxLength 2000
-   */
-  note?: string | null;
-}
-
-export interface TaskListV1IDGetParams {
+export interface TaskListParams {
   /**
    * Category that owns the project.
    * @format uuid
@@ -284,7 +170,7 @@ export interface TaskListV1IDGetParams {
   category_id: string;
 }
 
-export interface TaskListV1IDGetResponse {
+export interface TaskListResponse {
   data: Array<Shared.ProjectTask>;
   /**
    * Offset-based pagination parameters.
@@ -292,7 +178,7 @@ export interface TaskListV1IDGetResponse {
   pagination?: Shared.Pagination;
 }
 
-export interface TaskCreateV1IDPostParams {
+export interface TaskCreateParams {
   /**
    * Query param: Category that owns the project.
    * @format uuid
@@ -352,11 +238,11 @@ export interface TaskCreateV1IDPostParams {
   position?: number | null;
 }
 
-export interface TaskCreateV1IDPostResponse {
+export interface TaskCreateResponse {
   data: Shared.ProjectTask;
 }
 
-export interface TaskRetrieveV1GetParams {
+export interface TaskRetrieveParams {
   /**
    * Path param: Unique project ID.
    * @format uuid
@@ -369,11 +255,11 @@ export interface TaskRetrieveV1GetParams {
   category_id: string;
 }
 
-export interface TaskRetrieveV1GetResponse {
-  data: TaskRetrieveV1GetResponse.Data;
+export interface TaskRetrieveResponse {
+  data: TaskRetrieveResponse.Data;
 }
 
-export namespace TaskRetrieveV1GetResponse {
+export namespace TaskRetrieveResponse {
   export interface Data {
     /**
      * @format uuid
@@ -419,7 +305,7 @@ export namespace TaskRetrieveV1GetResponse {
   }
 }
 
-export interface TaskUpdateV1IDIDPatchParams {
+export interface TaskUpdateParams {
   /**
    * Path param: Unique project ID.
    * @format uuid
@@ -480,11 +366,11 @@ export interface TaskUpdateV1IDIDPatchParams {
   reference_label?: string | null;
 }
 
-export interface TaskUpdateV1IDIDPatchResponse {
+export interface TaskUpdateResponse {
   data: Shared.ProjectTask;
 }
 
-export interface TaskDeleteV1IDIDDeleteParams {
+export interface TaskDeleteParams {
   /**
    * Path param: Unique project ID.
    * @format uuid
@@ -497,7 +383,7 @@ export interface TaskDeleteV1IDIDDeleteParams {
   category_id: string;
 }
 
-export interface TaskUpdateStatusV1IDIDStatusPostParams {
+export interface TaskUpdateStatusParams {
   /**
    * Path param: Unique project ID.
    * @format uuid
@@ -520,11 +406,11 @@ export interface TaskUpdateStatusV1IDIDStatusPostParams {
   note?: string | null;
 }
 
-export interface TaskUpdateStatusV1IDIDStatusPostResponse {
-  data: TaskUpdateStatusV1IDIDStatusPostResponse.Data;
+export interface TaskUpdateStatusResponse {
+  data: TaskUpdateStatusResponse.Data;
 }
 
-export namespace TaskUpdateStatusV1IDIDStatusPostResponse {
+export namespace TaskUpdateStatusResponse {
   export interface Data {
     /**
      * @format uuid
@@ -545,19 +431,16 @@ export namespace TaskUpdateStatusV1IDIDStatusPostResponse {
 }
 export declare namespace Tasks {
   export {
-    type CreateProjectTaskRequest as CreateProjectTaskRequest,
-    type UpdateProjectTaskRequest as UpdateProjectTaskRequest,
-    type UpdateProjectTaskStatusRequest as UpdateProjectTaskStatusRequest,
-    type TaskListV1IDGetResponse as TaskListV1IDGetResponse,
-    type TaskCreateV1IDPostResponse as TaskCreateV1IDPostResponse,
-    type TaskRetrieveV1GetResponse as TaskRetrieveV1GetResponse,
-    type TaskUpdateV1IDIDPatchResponse as TaskUpdateV1IDIDPatchResponse,
-    type TaskUpdateStatusV1IDIDStatusPostResponse as TaskUpdateStatusV1IDIDStatusPostResponse,
-    type TaskListV1IDGetParams as TaskListV1IDGetParams,
-    type TaskCreateV1IDPostParams as TaskCreateV1IDPostParams,
-    type TaskRetrieveV1GetParams as TaskRetrieveV1GetParams,
-    type TaskUpdateV1IDIDPatchParams as TaskUpdateV1IDIDPatchParams,
-    type TaskDeleteV1IDIDDeleteParams as TaskDeleteV1IDIDDeleteParams,
-    type TaskUpdateStatusV1IDIDStatusPostParams as TaskUpdateStatusV1IDIDStatusPostParams,
+    type TaskListResponse as TaskListResponse,
+    type TaskCreateResponse as TaskCreateResponse,
+    type TaskRetrieveResponse as TaskRetrieveResponse,
+    type TaskUpdateResponse as TaskUpdateResponse,
+    type TaskUpdateStatusResponse as TaskUpdateStatusResponse,
+    type TaskListParams as TaskListParams,
+    type TaskCreateParams as TaskCreateParams,
+    type TaskRetrieveParams as TaskRetrieveParams,
+    type TaskUpdateParams as TaskUpdateParams,
+    type TaskDeleteParams as TaskDeleteParams,
+    type TaskUpdateStatusParams as TaskUpdateStatusParams,
   };
 }
