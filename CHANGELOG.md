@@ -2,7 +2,7 @@
 
 ## [0.48.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.47.0...v0.48.0) (2026-08-20)
 
-We've changed how this SDK is generated, so there may be slight differences from 0.47.0 — see [api.md](./api.md) for the current surface. This SDK is pre-1.0 and in beta.
+We've changed how this SDK is generated, so there may be slight differences from 0.47.0 — see [api.md](./api.md) for the current surface.
 
 
 ### ⚠ BREAKING CHANGES
