@@ -48,12 +48,57 @@ jobs:
       # push fails loudly here, and the platform's next sync re-converges.
       - name: Sync release back to scalar-next
         if: ${{ steps.release.outputs.release_created == 'true' }}
+        env:
+          TAG_NAME: ${{ steps.release.outputs.tag_name }}
+          RELEASE_SHA: ${{ steps.release.outputs.sha }}
         run: |
+          set -o pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin scalar-next
           git checkout -B scalar-next origin/scalar-next
-          git merge --no-edit -m "Sync release ${{ steps.release.outputs.tag_name }} back to scalar-next" "${{ steps.release.outputs.sha }}"
+          if git merge --no-edit -m "Sync release ${TAG_NAME} back to scalar-next" "${RELEASE_SHA}"; then
+            git push origin scalar-next
+            exit 0
+          fi
+          # Version-bearing files are the whole point of this sync, so they are also the one
+          # thing that predictably conflicts: a regeneration that reseeds scalar-next carries a
+          # version of its own, and every subsequent release then collides on the same lines.
+          # Resolve only those files — in favor of the release for the generated ones, and by
+          # writing the released version into scalar-next's own package.json so customizations
+          # there survive. Any other conflicted path is real custom-code divergence and still
+          # fails loudly for a human to resolve.
+          conflicts="$(git diff --name-only --diff-filter=U)"
+          unexpected="$(printf '%s\n' "${conflicts}" | grep -vxF -e package.json -e src/version.ts -e CHANGELOG.md -e .release-please-manifest.json || true)"
+          if [ -n "${unexpected}" ]; then
+            echo "::error::Cannot sync ${TAG_NAME} to scalar-next: conflicts outside the version-bearing files: ${unexpected}"
+            git merge --abort
+            exit 1
+          fi
+          released_version="$(git show "${RELEASE_SHA}:package.json" | node -p "JSON.parse(require('node:fs').readFileSync(0, 'utf8')).version")"
+          for path in ${conflicts}; do
+            if [ "${path}" = package.json ]; then
+              git checkout --ours -- package.json
+              package_backup="$(mktemp)"
+              cp package.json "${package_backup}"
+              # npm pkg set normalizes package metadata, so restore scalar-next's document and
+              # keep only the released version change.
+              npm pkg set "version=${released_version}"
+              PACKAGE_BACKUP="${package_backup}" RELEASED_VERSION="${released_version}" node <<'NODE'
+          const fs = require("node:fs");
+          const packageJson = JSON.parse(
+            fs.readFileSync(process.env.PACKAGE_BACKUP, "utf8"),
+          );
+          packageJson.version = process.env.RELEASED_VERSION;
+          fs.writeFileSync("package.json", `${JSON.stringify(packageJson, null, 2)}\n`);
+          NODE
+              rm -f "${package_backup}"
+            else
+              git checkout --theirs -- "${path}"
+            fi
+            git add -- "${path}"
+          done
+          git commit --no-edit
           git push origin scalar-next
   publish:
     needs: release-please
