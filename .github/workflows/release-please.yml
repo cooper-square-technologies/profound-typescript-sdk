@@ -79,20 +79,9 @@ jobs:
           for path in ${conflicts}; do
             if [ "${path}" = package.json ]; then
               git checkout --ours -- package.json
-              package_backup="$(mktemp)"
-              cp package.json "${package_backup}"
-              # npm pkg set normalizes package metadata, so restore scalar-next's document and
-              # keep only the released version change.
-              npm pkg set "version=${released_version}"
-              PACKAGE_BACKUP="${package_backup}" RELEASED_VERSION="${released_version}" node <<'NODE'
-          const fs = require("node:fs");
-          const packageJson = JSON.parse(
-            fs.readFileSync(process.env.PACKAGE_BACKUP, "utf8"),
-          );
-          packageJson.version = process.env.RELEASED_VERSION;
-          fs.writeFileSync("package.json", `${JSON.stringify(packageJson, null, 2)}\n`);
-          NODE
-              rm -f "${package_backup}"
+              # Keep scalar-next's package metadata and overwrite only its version with the
+              # released value.
+              VERSION="${released_version}" node -e 'const fs = require("node:fs"); const p = JSON.parse(fs.readFileSync("package.json", "utf8")); p.version = process.env.VERSION; fs.writeFileSync("package.json", `${JSON.stringify(p, null, 2)}\n`);'
             else
               git checkout --theirs -- "${path}"
             fi
