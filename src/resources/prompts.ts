@@ -1,14 +1,29 @@
-// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+// File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-import { APIResource } from '../core/resource';
-import * as Shared from './shared';
-import { APIPromise } from '../core/api-promise';
+import { APIResource } from '../resource';
+import { APIPromise } from '../api-promise';
+import { Stream } from '../core/streaming';
+import type { RequestOptions } from '../internal/request-options';
 import { buildHeaders } from '../internal/headers';
-import { RequestOptions } from '../internal/request-options';
+import type * as Shared from './shared';
+import type * as ReportsAPI from './reports/reports';
 
 export class Prompts extends APIResource {
   /**
    * Get Answers
+   *
+   * @param {PromptAnswersParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<PromptAnswersResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const answers = await client.prompts.answers({
+   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   start_date: '2024-01-01T00:00:00.000Z',
+   *   end_date: '2024-01-01T00:00:00.000Z',
+   * });
+   * ```
    */
   answers(body: PromptAnswersParams, options?: RequestOptions): APIPromise<PromptAnswersResponse> {
     return this._client.post('/v1/prompts/answers', { body, ...options });
@@ -16,6 +31,19 @@ export class Prompts extends APIResource {
 
   /**
    * Query Answers V2
+   *
+   * @param {PromptAnswersV2Params} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<PromptAnswersV2Response>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const answersV2 = await client.prompts.answersV2({
+   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   start_date: '',
+   *   end_date: '',
+   * });
+   * ```
    */
   answersV2(body: PromptAnswersV2Params, options?: RequestOptions): APIPromise<PromptAnswersV2Response> {
     return this._client.post('/v2/prompts/answers', { body, ...options });
@@ -23,134 +51,54 @@ export class Prompts extends APIResource {
 
   /**
    * Stream Answers V2
+   *
+   * @param {PromptStreamAnswersV2Params} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<Stream<PromptStreamAnswersV2Response>>} Server-sent events stream. Emits one `summary` event (the report `info` block) first, then one `result` event per row.
+   *
+   * @example
+   * ```ts
+   * const stream = await client.prompts.streamAnswersV2({
+   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   start_date: '',
+   *   end_date: '',
+   * });
+   *
+   * for await (const event of stream) {
+   *   console.log(event);
+   * }
+   * ```
    */
-  streamAnswersV2(body: PromptStreamAnswersV2Params, options?: RequestOptions): APIPromise<void> {
+  streamAnswersV2(
+    body: PromptStreamAnswersV2Params,
+    options?: RequestOptions,
+  ): APIPromise<Stream<PromptStreamAnswersV2Response>> {
     return this._client.post('/v2/prompts/answers/stream', {
       body,
       ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+      headers: buildHeaders([{ Accept: 'text/event-stream' }, options?.headers]),
+      stream: true,
     });
   }
 }
 
-/**
- * Response for the answers endpoint.
- */
-export interface PromptAnswersResponse {
-  data: Array<PromptAnswersResponse.Data>;
-
-  info: PromptAnswersResponse.Info;
-}
-
-export namespace PromptAnswersResponse {
-  /**
-   * Raw data for the answers endpoint.
-   */
-  export interface Data {
-    analysis_types?: Array<string> | null;
-
-    asset?: string | null;
-
-    asset_id?: string | null;
-
-    citation_details?: Array<Data.CitationDetail> | null;
-
-    citations?: Array<string> | null;
-
-    created_at?: string | null;
-
-    mentions?: Array<string> | null;
-
-    model?: string | null;
-
-    model_id?: string | null;
-
-    persona?: string | null;
-
-    prompt?: string | null;
-
-    prompt_id?: string | null;
-
-    prompt_type?: string | null;
-
-    region?: string | null;
-
-    response?: string | null;
-
-    run_id?: string | null;
-
-    search_queries?: Array<string> | null;
-
-    search_triggered?: boolean | null;
-
-    /**
-     * Uses legacy sentiment data.
-     */
-    sentiment_themes?: Array<Data.SentimentTheme> | null;
-
-    tags?: Array<string> | null;
-
-    themes?: Array<string> | null;
-
-    topic?: string | null;
-
-    topic_id?: string | null;
-
-    web_search_results?: Array<string> | null;
-  }
-
-  export namespace Data {
-    export interface CitationDetail {
-      clean_url: string;
-
-      hostname: string;
-
-      path: string;
-
-      title: string;
-
-      url: string;
-
-      citation_category?: string | null;
-
-      first_cited_at?: string | null;
-
-      groups?: Array<CitationDetail.Group> | null;
-
-      positions?: Array<number>;
-
-      text?: string | null;
-    }
-
-    export namespace CitationDetail {
-      export interface Group {
-        group_id: number;
-
-        group_position: number;
-      }
-    }
-
-    export interface SentimentTheme {
-      name: string;
-
-      type: 'positive' | 'negative';
-    }
-  }
-
-  export interface Info {
-    total_rows: number;
-  }
-}
-
-export type PromptAnswersV2Response = { [key: string]: unknown };
-
 export interface PromptAnswersParams {
+  /**
+   * @format uuid
+   */
   category_id: string;
-
-  end_date: string;
-
+  /**
+   * @format date-time
+   */
   start_date: string;
-
+  /**
+   * @format date-time
+   */
+  end_date: string;
+  /**
+   * Pagination parameters for the results. Default is 10,000 rows with no offset.
+   */
+  pagination?: Shared.Pagination;
   /**
    * List of filters to apply to the answers report.
    */
@@ -162,126 +110,221 @@ export interface PromptAnswersParams {
     | Shared.AnalysisTypeFilter
     | Shared.PromptTypeFilter
     | Shared.PromptFilter
+    | ReportsAPI.PromptIDFilter
     | Shared.PersonaIDFilter
     | Shared.TopicIDFilter
     | Shared.AssetIDFilter
-    | PromptAnswersParams.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
+    | Shared.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
   >;
-
   include?: PromptAnswersParams.Include;
-
-  /**
-   * Pagination parameters for the results. Default is 10,000 rows with no offset.
-   */
-  pagination?: Shared.Pagination;
 }
 
 export namespace PromptAnswersParams {
-  /**
-   * Filter by asset name
-   */
-  export interface ProfoundAnswerEngineInsightsFiltersAssetNameFilter {
-    field: 'asset_name';
-
-    operator:
-      | 'is'
-      | 'not_is'
-      | 'in'
-      | 'not_in'
-      | 'contains'
-      | 'not_contains'
-      | 'matches'
-      | 'contains_case_insensitive'
-      | 'not_contains_case_insensitive';
-
-    value: string | Array<string>;
-  }
-
   export interface Include {
-    analysis_types?: boolean;
-
-    asset?: boolean;
-
-    asset_id?: boolean;
-
-    citation_details?: boolean;
-
-    citations?: boolean;
-
-    created_at?: boolean;
-
-    mentions?: boolean;
-
-    model?: boolean;
-
-    model_id?: boolean;
-
-    persona?: boolean;
-
-    prompt?: boolean;
-
-    prompt_id?: boolean;
-
     /**
+     * @default false
+     */
+    run_id?: boolean;
+    /**
+     * @default true
+     */
+    created_at?: boolean;
+    /**
+     * @default true
+     */
+    prompt?: boolean;
+    /**
+     * @default false
+     */
+    prompt_id?: boolean;
+    /**
+     * @default true
+     */
+    mentions?: boolean;
+    /**
+     * @default false
+     */
+    analysis_types?: boolean;
+    /**
+     * @default true
      * @deprecated
      */
     prompt_type?: boolean;
-
-    region?: boolean;
-
+    /**
+     * @default true
+     */
     response?: boolean;
-
-    run_id?: boolean;
-
-    search_queries?: boolean;
-
+    /**
+     * @default true
+     */
+    citations?: boolean;
+    /**
+     * @default false
+     */
+    citation_details?: boolean;
+    /**
+     * @default false
+     */
+    web_search_results?: boolean;
+    /**
+     * @default false
+     */
     search_triggered?: boolean;
+    /**
+     * Use 'sentiment_themes' instead
+     * @default true
+     * @deprecated
+     */
+    themes?: boolean;
+    /**
+     * Uses legacy sentiment data.
+     * @default false
+     */
+    sentiment_themes?: boolean;
+    /**
+     * @default true
+     */
+    topic?: boolean;
+    /**
+     * @default false
+     */
+    topic_id?: boolean;
+    /**
+     * @default true
+     */
+    region?: boolean;
+    /**
+     * @default true
+     */
+    model?: boolean;
+    /**
+     * @default true
+     */
+    model_id?: boolean;
+    /**
+     * @default true
+     */
+    asset?: boolean;
+    /**
+     * @default false
+     */
+    asset_id?: boolean;
+    /**
+     * @default false
+     */
+    tags?: boolean;
+    /**
+     * @default false
+     */
+    search_queries?: boolean;
+    /**
+     * @default false
+     */
+    persona?: boolean;
+  }
+}
 
+export interface PromptAnswersResponse {
+  info: PromptAnswersResponse.Info;
+  data: Array<PromptAnswersResponse.Data>;
+}
+
+export namespace PromptAnswersResponse {
+  export interface Info {
+    total_rows: number;
+  }
+
+  export interface Data {
+    /**
+     * @format uuid
+     */
+    run_id?: string | null;
+    /**
+     * @format date-time
+     */
+    created_at?: string | null;
+    prompt?: string | null;
+    /**
+     * @format uuid
+     */
+    prompt_id?: string | null;
+    mentions?: Array<string> | null;
+    analysis_types?: Array<string> | null;
+    prompt_type?: string | null;
+    response?: string | null;
+    citations?: Array<string> | null;
+    citation_details?: Array<Data.CitationDetail> | null;
+    web_search_results?: Array<string> | null;
+    search_triggered?: boolean | null;
+    themes?: Array<string> | null;
     /**
      * Uses legacy sentiment data.
      */
-    sentiment_themes?: boolean;
-
-    tags?: boolean;
-
+    sentiment_themes?: Array<Data.SentimentTheme> | null;
+    search_queries?: Array<string> | null;
+    topic?: string | null;
     /**
-     * @deprecated Use 'sentiment_themes' instead
+     * @format uuid
      */
-    themes?: boolean;
+    topic_id?: string | null;
+    region?: string | null;
+    model?: string | null;
+    /**
+     * @format uuid
+     */
+    model_id?: string | null;
+    asset?: string | null;
+    /**
+     * @format uuid
+     */
+    asset_id?: string | null;
+    tags?: Array<string> | null;
+    persona?: string | null;
+  }
 
-    topic?: boolean;
+  export namespace Data {
+    export interface CitationDetail {
+      url: string;
+      clean_url: string;
+      title: string;
+      hostname: string;
+      path: string;
+      text?: string | null;
+      first_cited_at?: string | null;
+      positions?: Array<number>;
+      groups?: Array<CitationDetail.Group> | null;
+      citation_category?: string | null;
+    }
 
-    topic_id?: boolean;
+    export namespace CitationDetail {
+      export interface Group {
+        group_id: number;
+        group_position: number;
+      }
+    }
 
-    web_search_results?: boolean;
+    export interface SentimentTheme {
+      type: 'positive' | 'negative';
+      name: string;
+    }
   }
 }
 
 export interface PromptAnswersV2Params {
-  category_id: string;
-
   /**
-   * YYYY-MM-DD, ET, inclusive
+   * @format uuid
    */
-  end_date: string;
-
+  category_id: string;
   /**
    * YYYY-MM-DD, ET, inclusive
    */
   start_date: string;
-
-  cursor?: string | null;
-
   /**
-   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   * YYYY-MM-DD, ET, inclusive
    */
-  filter?: PromptAnswersV2Params.Filter | null;
-
+  end_date: string;
   /**
-   * Which row fields to return: `run_id`, `date`, `model`, `topic`, `topic_id`,
-   * `region`, `persona`, `tags`, `prompt`, `prompt_id`, `response`, `mentions`,
-   * `citations`, `search_queries`, `analysis_types`, `sentiment_claims`. Omit for
-   * all of them.
+   * Which row fields to return: `run_id`, `date`, `model`, `topic`, `topic_id`, `region`, `persona`, `tags`, `prompt`, `prompt_id`, `response`, `mentions`, `citations`, `citation_details`, `search_queries`, `analysis_types`, `sentiment_claims`. Omit for all fields except `citation_details`, which must be requested explicitly because it is expensive.
    */
   include?: Array<
     | 'run_id'
@@ -297,66 +340,131 @@ export interface PromptAnswersV2Params {
     | 'response'
     | 'mentions'
     | 'citations'
+    | 'citation_details'
     | 'search_queries'
     | 'analysis_types'
     | 'sentiment_claims'
   > | null;
-
   /**
-   * Page size; default 10, max 50.
+   * and/or/not tree over `model`, `topic`, `region`, `persona`, `prompt`, `tag`, `analysis_type` (visibility/sentiment/factcheck); plus top-level `and` leaves `domain` or `page` (`is` one value, or `in` a list). Substring-search the prompt with `{"field": "prompt", "op": "contains", "value": "…"}`.
+   */
+  filter?: Shared.FilterNode | null;
+  /**
+   * Page size; default 10, max 200.
+   * @maximum 200
    */
   limit?: number | null;
-
   /**
    * Stream endpoint only: cap the number of streamed rows (default: all).
    */
   max_results?: number | null;
+  cursor?: string | null;
 }
 
-export namespace PromptAnswersV2Params {
-  /**
-   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
-   */
-  export interface Filter {
-    and?: Array<unknown> | null;
+export interface PromptAnswersV2Response {
+  info: PromptAnswersV2Response.Info;
+  data: Array<PromptAnswersV2Response.Data>;
+}
 
-    field?: string | null;
+export namespace PromptAnswersV2Response {
+  export interface Info {
+    /**
+     * Number of rows returned in `data` for this page.
+     */
+    count: number;
+    /**
+     * Display names of the models the report covers.
+     */
+    models: Array<string>;
+    /**
+     * Echoed request start date (YYYY-MM-DD, ET).
+     */
+    start_date: string;
+    /**
+     * Echoed request end date (YYYY-MM-DD, ET).
+     */
+    end_date: string;
+    /**
+     * Row fields returned (echoes `include`, or all fields when omitted).
+     */
+    include: Array<string>;
+    /**
+     * Total rows matching the query before pagination (null when not computed).
+     */
+    total_results?: number | null;
+    /**
+     * Opaque cursor for the next page; null on the last page.
+     */
+    next_cursor?: string | null;
+    /**
+     * Echoed normalized filter tree, or null when no filter was sent.
+     */
+    filter?: Record<string, unknown> | null;
+    [k: string]: unknown;
+  }
 
-    not?: unknown;
+  export interface Data {
+    run_id?: string | null;
+    date?: string | null;
+    model?: Shared.DimensionRef | null;
+    topic?: string | null;
+    topic_id?: string | null;
+    region?: string | null;
+    persona?: string | null;
+    tags?: Array<string> | null;
+    prompt?: string | null;
+    prompt_id?: string | null;
+    response?: string | null;
+    mentions?: Array<string> | null;
+    citations?: Array<string> | null;
+    /**
+     * Citation metadata. `positions` identify citation locations in the answer text. Each `groups` entry represents a rendered citation pill, including single-source pills; `group_position` is the source's position within that pill.
+     */
+    citation_details?: Array<Data.CitationDetail> | null;
+    search_queries?: Array<string> | null;
+    analysis_types?: Array<string> | null;
+    sentiment_claims?: Array<Record<string, unknown>> | null;
+    [k: string]: unknown;
+  }
 
-    op?: string | null;
+  export namespace Data {
+    export interface CitationDetail {
+      url: string;
+      clean_url: string;
+      title: string;
+      hostname: string;
+      path: string;
+      text?: string | null;
+      positions?: Array<number>;
+      groups?: Array<CitationDetail.Group> | null;
+      first_cited_at?: string | null;
+      citation_category?: string | null;
+    }
 
-    or?: Array<unknown> | null;
-
-    value?: unknown;
+    export namespace CitationDetail {
+      export interface Group {
+        group_id: number;
+        group_position: number;
+      }
+    }
   }
 }
 
 export interface PromptStreamAnswersV2Params {
-  category_id: string;
-
   /**
-   * YYYY-MM-DD, ET, inclusive
+   * @format uuid
    */
-  end_date: string;
-
+  category_id: string;
   /**
    * YYYY-MM-DD, ET, inclusive
    */
   start_date: string;
-
-  cursor?: string | null;
-
   /**
-   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   * YYYY-MM-DD, ET, inclusive
    */
-  filter?: PromptStreamAnswersV2Params.Filter | null;
-
+  end_date: string;
   /**
-   * Which row fields to return: `run_id`, `date`, `model`, `topic`, `topic_id`,
-   * `region`, `persona`, `tags`, `prompt`, `prompt_id`, `response`, `mentions`,
-   * `citations`, `search_queries`, `analysis_types`, `sentiment_claims`. Omit for
-   * all of them.
+   * Which row fields to return: `run_id`, `date`, `model`, `topic`, `topic_id`, `region`, `persona`, `tags`, `prompt`, `prompt_id`, `response`, `mentions`, `citations`, `citation_details`, `search_queries`, `analysis_types`, `sentiment_claims`. Omit for all fields except `citation_details`, which must be requested explicitly because it is expensive.
    */
   include?: Array<
     | 'run_id'
@@ -372,45 +480,119 @@ export interface PromptStreamAnswersV2Params {
     | 'response'
     | 'mentions'
     | 'citations'
+    | 'citation_details'
     | 'search_queries'
     | 'analysis_types'
     | 'sentiment_claims'
   > | null;
-
   /**
-   * Page size; default 10, max 50.
+   * and/or/not tree over `model`, `topic`, `region`, `persona`, `prompt`, `tag`, `analysis_type` (visibility/sentiment/factcheck); plus top-level `and` leaves `domain` or `page` (`is` one value, or `in` a list). Substring-search the prompt with `{"field": "prompt", "op": "contains", "value": "…"}`.
+   */
+  filter?: Shared.FilterNode | null;
+  /**
+   * Page size; default 10, max 200.
+   * @maximum 200
    */
   limit?: number | null;
-
   /**
    * Stream endpoint only: cap the number of streamed rows (default: all).
    */
   max_results?: number | null;
+  cursor?: string | null;
 }
 
-export namespace PromptStreamAnswersV2Params {
-  /**
-   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
-   */
-  export interface Filter {
-    and?: Array<unknown> | null;
+export type PromptStreamAnswersV2Response =
+  | PromptStreamAnswersV2Response.AnswersV2Info
+  | PromptStreamAnswersV2Response.AnswerRow;
 
-    field?: string | null;
+export namespace PromptStreamAnswersV2Response {
+  export interface AnswersV2Info {
+    /**
+     * Number of rows returned in `data` for this page.
+     */
+    count: number;
+    /**
+     * Display names of the models the report covers.
+     */
+    models: Array<string>;
+    /**
+     * Echoed request start date (YYYY-MM-DD, ET).
+     */
+    start_date: string;
+    /**
+     * Echoed request end date (YYYY-MM-DD, ET).
+     */
+    end_date: string;
+    /**
+     * Row fields returned (echoes `include`, or all fields when omitted).
+     */
+    include: Array<string>;
+    /**
+     * Total rows matching the query before pagination (null when not computed).
+     */
+    total_results?: number | null;
+    /**
+     * Opaque cursor for the next page; null on the last page.
+     */
+    next_cursor?: string | null;
+    /**
+     * Echoed normalized filter tree, or null when no filter was sent.
+     */
+    filter?: Record<string, unknown> | null;
+    [k: string]: unknown;
+  }
 
-    not?: unknown;
+  export interface AnswerRow {
+    run_id?: string | null;
+    date?: string | null;
+    model?: Shared.DimensionRef | null;
+    topic?: string | null;
+    topic_id?: string | null;
+    region?: string | null;
+    persona?: string | null;
+    tags?: Array<string> | null;
+    prompt?: string | null;
+    prompt_id?: string | null;
+    response?: string | null;
+    mentions?: Array<string> | null;
+    citations?: Array<string> | null;
+    /**
+     * Citation metadata. `positions` identify citation locations in the answer text. Each `groups` entry represents a rendered citation pill, including single-source pills; `group_position` is the source's position within that pill.
+     */
+    citation_details?: Array<AnswerRow.CitationDetail> | null;
+    search_queries?: Array<string> | null;
+    analysis_types?: Array<string> | null;
+    sentiment_claims?: Array<Record<string, unknown>> | null;
+    [k: string]: unknown;
+  }
 
-    op?: string | null;
+  export namespace AnswerRow {
+    export interface CitationDetail {
+      url: string;
+      clean_url: string;
+      title: string;
+      hostname: string;
+      path: string;
+      text?: string | null;
+      positions?: Array<number>;
+      groups?: Array<CitationDetail.Group> | null;
+      first_cited_at?: string | null;
+      citation_category?: string | null;
+    }
 
-    or?: Array<unknown> | null;
-
-    value?: unknown;
+    export namespace CitationDetail {
+      export interface Group {
+        group_id: number;
+        group_position: number;
+      }
+    }
   }
 }
-
 export declare namespace Prompts {
   export {
     type PromptAnswersResponse as PromptAnswersResponse,
     type PromptAnswersV2Response as PromptAnswersV2Response,
+    type PromptStreamAnswersV2Response as PromptStreamAnswersV2Response,
     type PromptAnswersParams as PromptAnswersParams,
     type PromptAnswersV2Params as PromptAnswersV2Params,
     type PromptStreamAnswersV2Params as PromptStreamAnswersV2Params,

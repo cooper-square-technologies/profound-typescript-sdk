@@ -1,26 +1,32 @@
-// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+// File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-import { APIResource } from '../../core/resource';
-import * as Shared from '../shared';
-import * as ReportsAPI from './reports';
-import { APIPromise } from '../../core/api-promise';
+import { APIResource } from '../../resource';
+import { APIPromise } from '../../api-promise';
 import { Stream } from '../../core/streaming';
+import type { RequestOptions } from '../../internal/request-options';
 import { buildHeaders } from '../../internal/headers';
-import { RequestOptions } from '../../internal/request-options';
+import type * as ReportsAPI from './reports';
+import type * as Shared from '../shared';
 
 export class WebSearchResults extends APIResource {
   /**
    * Get web search results for a given category.
    *
+   * @param {WebSearchResultQueryParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<WebSearchResultQueryResponse>} Successful Response
+   *
    * @example
    * ```ts
-   * const response =
-   *   await client.reports.webSearchResults.query({
-   *     category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *     end_date: '2019-12-27T18:11:19.117Z',
-   *     metrics: ['count'],
-   *     start_date: '2019-12-27T18:11:19.117Z',
-   *   });
+   * const query = await client.reports.webSearchResults.query({
+   *   date_interval: 'day',
+   *   dimensions: [],
+   *   metrics: [],
+   *   order_by: {},
+   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   start_date: '2024-01-01T00:00:00.000Z',
+   *   end_date: '2024-01-01T00:00:00.000Z',
+   * });
    * ```
    */
   query(
@@ -33,15 +39,25 @@ export class WebSearchResults extends APIResource {
   /**
    * Stream Web Search Results
    *
+   * @param {WebSearchResultStreamParams} body - The request body to send.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<Stream<WebSearchResultStreamResponse>>} Server-sent events stream. Emits a `summary` event first, then one `row` event per streamed row.
+   *
    * @example
    * ```ts
-   * const response =
-   *   await client.reports.webSearchResults.stream({
-   *     category_id: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-   *     end_date: '2019-12-27T18:11:19.117Z',
-   *     metrics: ['count'],
-   *     start_date: '2019-12-27T18:11:19.117Z',
-   *   });
+   * const stream = await client.reports.webSearchResults.stream({
+   *   date_interval: 'day',
+   *   dimensions: [],
+   *   metrics: [],
+   *   order_by: {},
+   *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   start_date: '2024-01-01T00:00:00.000Z',
+   *   end_date: '2024-01-01T00:00:00.000Z',
+   * });
+   *
+   * for await (const event of stream) {
+   *   console.log(event);
+   * }
    * ```
    */
   stream(
@@ -53,75 +69,38 @@ export class WebSearchResults extends APIResource {
       ...options,
       headers: buildHeaders([{ Accept: 'text/event-stream' }, options?.headers]),
       stream: true,
-    }) as APIPromise<Stream<WebSearchResultStreamResponse>>;
-  }
-}
-
-export interface WebSearchResultQueryResponse {
-  data: Array<WebSearchResultQueryResponse.Data>;
-
-  /**
-   * Base model for report information.
-   */
-  info: ReportsAPI.ReportInfo;
-}
-
-export namespace WebSearchResultQueryResponse {
-  export interface Data {
-    dimensions: Array<string | null>;
-
-    metrics: Array<number>;
-  }
-}
-
-/**
- * A streamed web-search-results report row payload.
- */
-export type WebSearchResultStreamResponse =
-  | WebSearchResultStreamResponse.SseSummaryEventData
-  | { [key: string]: unknown };
-
-export namespace WebSearchResultStreamResponse {
-  export interface SseSummaryEventData {
-    /**
-     * The normalized query used to build the stream.
-     */
-    query: { [key: string]: unknown };
-
-    /**
-     * Total number of rows available before pagination is applied.
-     */
-    total_rows: number;
+    });
   }
 }
 
 export interface WebSearchResultQueryParams {
-  category_id: string;
-
-  /**
-   * End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full
-   * ISO timestamp.
-   */
-  end_date: string;
-
   /**
    * Metrics to include. `search_share` is the per-prompt occurrence rate.
+   * @minItems 1
    */
   metrics: Array<'count' | 'search_share'>;
-
   /**
-   * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or
-   * full ISO timestamp.
+   * @format uuid
+   */
+  category_id: string;
+  /**
+   * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
+   * @format date-time
    */
   start_date: string;
-
+  /**
+   * End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
+   * @format date-time
+   */
+  end_date: string;
   /**
    * Date interval for the report. (only used with date dimension)
+   * @default day
    */
   date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-
   /**
    * Dimensions to group the report by.
+   * @default []
    */
   dimensions?: Array<
     | 'hostname'
@@ -139,7 +118,23 @@ export interface WebSearchResultQueryParams {
     | 'persona'
     | 'search_query'
   >;
-
+  /**
+   *
+   *     Custom ordering of the report results.
+   *
+   *     The order is a record of key-value pairs where:
+   *     - `key` is the field to order by, which can be a metric or dimension
+   *     - `value` is the direction of the order, either `asc` for ascending or `desc` for descending.
+   *
+   *     When not specified, the default order is the first metric in the query descending.
+   *
+   * @default {}
+   */
+  order_by?: Record<string, 'asc' | 'desc'>;
+  /**
+   * Pagination settings for the report results.
+   */
+  pagination?: Shared.Pagination;
   /**
    * List of filters to apply to the web search results report.
    */
@@ -157,31 +152,11 @@ export interface WebSearchResultQueryParams {
     | ReportsAPI.PromptIDFilter
     | WebSearchResultQueryParams.SearchQueryFilter
   >;
-
-  /**
-   * Custom ordering of the report results.
-   *
-   *     The order is a record of key-value pairs where:
-   *     - `key` is the field to order by, which can be a metric or dimension
-   *     - `value` is the direction of the order, either `asc` for ascending or `desc` for descending.
-   *
-   *     When not specified, the default order is the first metric in the query descending.
-   */
-  order_by?: { [key: string]: 'asc' | 'desc' };
-
-  /**
-   * Pagination settings for the report results.
-   */
-  pagination?: Shared.Pagination;
 }
 
 export namespace WebSearchResultQueryParams {
-  /**
-   * Filter by web-search query string.
-   */
   export interface SearchQueryFilter {
     field: 'search_query';
-
     operator:
       | 'is'
       | 'not_is'
@@ -192,38 +167,53 @@ export namespace WebSearchResultQueryParams {
       | 'matches'
       | 'contains_case_insensitive'
       | 'not_contains_case_insensitive';
-
     value: string | Array<string>;
   }
 }
 
-export interface WebSearchResultStreamParams {
-  category_id: string;
-
+export interface WebSearchResultQueryResponse {
   /**
-   * End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full
-   * ISO timestamp.
+   * Base model for report information.
    */
-  end_date: string;
+  info: ReportsAPI.ReportInfo;
+  data: Array<WebSearchResultQueryResponse.Data>;
+}
 
+export namespace WebSearchResultQueryResponse {
+  export interface Data {
+    metrics: Array<number | string>;
+    dimensions: Array<string | null>;
+  }
+}
+
+export interface WebSearchResultStreamParams {
   /**
    * Metrics to include. `search_share` is the per-prompt occurrence rate.
+   * @minItems 1
    */
   metrics: Array<'count' | 'search_share'>;
-
   /**
-   * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or
-   * full ISO timestamp.
+   * @format uuid
+   */
+  category_id: string;
+  /**
+   * Start date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
+   * @format date-time
    */
   start_date: string;
-
+  /**
+   * End date for the report. Accepts formats: YYYY-MM-DD, YYYY-MM-DD HH:MM, or full ISO timestamp.
+   * @format date-time
+   */
+  end_date: string;
   /**
    * Date interval for the report. (only used with date dimension)
+   * @default day
    */
   date_interval?: 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year' | 'relative_week';
-
   /**
    * Dimensions to group the report by.
+   * @default []
    */
   dimensions?: Array<
     | 'hostname'
@@ -241,7 +231,20 @@ export interface WebSearchResultStreamParams {
     | 'persona'
     | 'search_query'
   >;
-
+  /**
+   *
+   *     Custom ordering of the report results.
+   *
+   *     The order is a record of key-value pairs where:
+   *     - `key` is the field to order by, which can be a metric or dimension
+   *     - `value` is the direction of the order, either `asc` for ascending or `desc` for descending.
+   *
+   *     When not specified, the default order is the first metric in the query descending.
+   *
+   * @default {}
+   */
+  order_by?: Record<string, 'asc' | 'desc'>;
+  pagination?: Shared.Pagination | null;
   /**
    * List of filters to apply to the web search results report.
    */
@@ -259,31 +262,11 @@ export interface WebSearchResultStreamParams {
     | ReportsAPI.PromptIDFilter
     | WebSearchResultStreamParams.SearchQueryFilter
   >;
-
-  /**
-   * Custom ordering of the report results.
-   *
-   *     The order is a record of key-value pairs where:
-   *     - `key` is the field to order by, which can be a metric or dimension
-   *     - `value` is the direction of the order, either `asc` for ascending or `desc` for descending.
-   *
-   *     When not specified, the default order is the first metric in the query descending.
-   */
-  order_by?: { [key: string]: 'asc' | 'desc' };
-
-  /**
-   * Offset-based pagination parameters.
-   */
-  pagination?: Shared.Pagination | null;
 }
 
 export namespace WebSearchResultStreamParams {
-  /**
-   * Filter by web-search query string.
-   */
   export interface SearchQueryFilter {
     field: 'search_query';
-
     operator:
       | 'is'
       | 'not_is'
@@ -294,11 +277,26 @@ export namespace WebSearchResultStreamParams {
       | 'matches'
       | 'contains_case_insensitive'
       | 'not_contains_case_insensitive';
-
     value: string | Array<string>;
   }
 }
 
+export type WebSearchResultStreamResponse =
+  | WebSearchResultStreamResponse.SseSummaryEventData
+  | Record<string, unknown>;
+
+export namespace WebSearchResultStreamResponse {
+  export interface SseSummaryEventData {
+    /**
+     * The normalized query used to build the stream.
+     */
+    query: Record<string, unknown>;
+    /**
+     * Total number of rows available before pagination is applied.
+     */
+    total_rows: number;
+  }
+}
 export declare namespace WebSearchResults {
   export {
     type WebSearchResultQueryResponse as WebSearchResultQueryResponse,

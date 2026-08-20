@@ -1,19 +1,35 @@
+// File generated from our OpenAPI spec by Scalar. See README.md for details.
+
 import { ProfoundError } from './error';
 import { type ReadableStream } from '../internal/shim-types';
 import { makeReadableStream } from '../internal/shims';
 import { findDoubleNewlineIndex, LineDecoder } from '../internal/decoders/line';
 import { ReadableStreamToAsyncIterable } from '../internal/shims';
 import { isAbortError } from '../internal/errors';
+import { safeJSON } from '../internal/utils/values';
 import { encodeUTF8 } from '../internal/utils/bytes';
 import { loggerFor } from '../internal/utils/log';
 import type { Profound } from '../client';
 
+import { APIError } from './error';
+
 type Bytes = string | ArrayBuffer | Uint8Array | null | undefined;
+// Upper bound on how much a JSONL stream may buffer behind an unparseable line before the parse
+// error is surfaced. A single JSON value (even pretty-printed) completes well within this; the cap
+// only trips when a malformed line would otherwise accumulate the rest of the stream into memory.
+const MAX_JSONL_BUFFER_BYTES = 10_000_000;
 
 export type ServerSentEvent = {
   event: string | null;
   data: string;
   raw: string[];
+};
+export type StreamingEventHandler = {
+  kind: 'event' | 'fallthrough' | 'data';
+  handle: string;
+  eventType?: string | readonly string[] | null;
+  errorProperty?: string;
+  dataStartsWith?: string;
 };
 
 export class Stream<Item> implements AsyncIterable<Item> {
@@ -33,6 +49,7 @@ export class Stream<Item> implements AsyncIterable<Item> {
     response: Response,
     controller: AbortController,
     client?: Profound,
+    handlers?: readonly StreamingEventHandler[],
   ): Stream<Item> {
     let consumed = false;
     const logger = client ? loggerFor(client) : console;
@@ -45,12 +62,16 @@ export class Stream<Item> implements AsyncIterable<Item> {
       let done = false;
       try {
         for await (const sse of _iterSSEMessages(response, controller)) {
+          const handler = streamHandlerForSSE(sse, handlers);
+          if (handler?.handle === 'continue' || handler?.handle === 'ignore') continue;
+          if (handler?.handle === 'error') throw streamError(sse, handler, response.headers);
+          if (handlers?.length && handler?.handle !== 'yield') continue;
           try {
             yield JSON.parse(sse.data) as Item;
-          } catch (e) {
-            logger.error(`Could not parse message into JSON:`, sse.data);
-            logger.error(`From chunk:`, sse.raw);
-            throw e;
+          } catch (error) {
+            client?.logger?.error('Could not parse message into JSON:', sse.data);
+            client?.logger?.error('From chunk:', sse.raw);
+            throw error;
           }
         }
         done = true;
@@ -100,10 +121,30 @@ export class Stream<Item> implements AsyncIterable<Item> {
       consumed = true;
       let done = false;
       try {
+        // NDJSON/JSONL sends one complete JSON value per line, so each line parses on its own and
+        // this buffer stays empty across iterations. Some servers (and mock servers) pretty-print a
+        // single value across several lines; accumulate until the buffer forms a complete JSON value,
+        // then yield it and reset. This never changes valid one-value-per-line behavior.
+        let buffer = '';
         for await (const line of iterLines()) {
           if (done) continue;
-          if (line) yield JSON.parse(line) as Item;
+          if (!line) continue;
+          buffer = buffer ? buffer + '\n' + line : line;
+          let value: Item;
+          try {
+            value = JSON.parse(buffer) as Item;
+          } catch (error) {
+            // The buffer is not yet a complete JSON value (a multi-line value mid-stream); keep
+            // accumulating. A bounded cap stops one malformed line from buffering the whole stream
+            // (and exhausting memory): past the cap we surface the parse error instead of growing.
+            if (buffer.length > MAX_JSONL_BUFFER_BYTES) throw error;
+            continue;
+          }
+          buffer = '';
+          yield value;
         }
+        // A non-whitespace remainder never parsed: surface that error rather than dropping data.
+        if (buffer.trim()) yield JSON.parse(buffer) as Item;
         done = true;
       } catch (e) {
         // If the user calls `stream.controller.abort()`, we should exit without throwing.
@@ -229,9 +270,11 @@ async function* iterSSEChunks(iterator: AsyncIterableIterator<Bytes>): AsyncGene
     }
 
     const binaryChunk =
-      chunk instanceof ArrayBuffer ? new Uint8Array(chunk)
-      : typeof chunk === 'string' ? encodeUTF8(chunk)
-      : chunk;
+      chunk instanceof ArrayBuffer
+        ? new Uint8Array(chunk)
+        : typeof chunk === 'string'
+          ? encodeUTF8(chunk)
+          : chunk;
 
     let newData = new Uint8Array(data.length + binaryChunk.length);
     newData.set(data);
@@ -313,3 +356,36 @@ function partition(str: string, delimiter: string): [string, string, string] {
 
   return [str, '', ''];
 }
+const streamHandlerForSSE = (
+  sse: ServerSentEvent,
+  handlers: readonly StreamingEventHandler[] | undefined,
+): StreamingEventHandler | undefined => {
+  if (!handlers?.length) return undefined;
+  const dataHandler = handlers.find(
+    (handler) =>
+      handler.kind === 'data' &&
+      handler.dataStartsWith !== undefined &&
+      sse.data.startsWith(handler.dataStartsWith),
+  );
+  if (dataHandler) return dataHandler;
+  for (const handler of handlers) {
+    if (handler.kind === 'event' && eventTypeMatches(sse.event, handler.eventType)) return handler;
+    if (handler.kind === 'fallthrough') return handler;
+  }
+  return undefined;
+};
+
+const eventTypeMatches = (event: string | null, expected: StreamingEventHandler['eventType']): boolean => {
+  if (expected === null) return event === null;
+  if (Array.isArray(expected)) return expected.includes(event ?? '');
+  return expected !== undefined && event === expected;
+};
+
+const streamError = (sse: ServerSentEvent, handler: StreamingEventHandler, headers: Headers): APIError => {
+  const parsed = safeJSON(sse.data);
+  const error = handler.errorProperty && isObject(parsed) ? parsed[handler.errorProperty] : parsed;
+  return new APIError(undefined, error ?? parsed ?? sse.data, undefined, headers);
+};
+
+const isObject = (value: unknown): value is Record<string, unknown> =>
+  typeof value === 'object' && value !== null && !Array.isArray(value);

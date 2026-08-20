@@ -1,25 +1,18 @@
-// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+// File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-export {
-  Documents,
-  type DocumentCreateResponse,
-  type DocumentUpdateResponse,
-  type DocumentDeleteResponse,
-  type DocumentCreateParams,
-  type DocumentUpdateParams,
-  type DocumentDeleteParams,
-} from './documents';
-export {
-  Folders,
-  type FolderCreateResponse,
-  type FolderDeleteResponse,
-  type FolderCreateParams,
-  type FolderDeleteParams,
-} from './folders';
-export {
-  KnowledgeBases,
-  type KnowledgeBaseListResponse,
-  type KnowledgeBaseSearchResponse,
-  type KnowledgeBaseListParams,
-  type KnowledgeBaseSearchParams,
+export { KnowledgeBases } from './knowledge-bases';
+export type {
+  KnowledgeBaseListParams,
+  KnowledgeBaseListResponse,
+  KnowledgeBaseSearchParams,
+  KnowledgeBaseSearchResponse,
 } from './knowledge-bases';
+export { Documents } from './documents';
+export type { DocumentCreateParams, DocumentUpdateParams, DocumentDeleteParams } from './documents';
+export { Folders } from './folders';
+export type {
+  FolderCreateParams,
+  FolderCreateResponse,
+  FolderDeleteParams,
+  FolderDeleteResponse,
+} from './folders';

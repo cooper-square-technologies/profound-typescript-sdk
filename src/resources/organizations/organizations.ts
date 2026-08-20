@@ -1,46 +1,81 @@
-// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+// File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-import { APIResource } from '../../core/resource';
-import * as OrganizationsAPI from './organizations';
+import { APIResource } from '../../resource';
+import { APIPromise } from '../../api-promise';
+import type { RequestOptions } from '../../internal/request-options';
+import type * as Shared from '../shared';
 import * as CategoriesAPI from './categories';
 import {
   Categories,
-  CategoryAssetsResponse,
-  CategoryCreatePromptsParams,
-  CategoryCreatePromptsResponse,
-  CategoryGetCategoryPersonasResponse,
-  CategoryListParams,
-  CategoryListResponse,
-  CategoryPromptsParams,
-  CategoryPromptsResponse,
-  CategoryRetrieveRegionsResponse,
-  CategoryTagsResponse,
-  CategoryTopicsResponse,
-  CategoryUpdatePromptStatusParams,
-  CategoryUpdatePromptStatusResponse,
-  CategoryUpdatePromptsParams,
-  CategoryUpdatePromptsResponse,
-  FieldDiff,
-  IDOrName,
-  NamedResourceDiffList,
+  type IDOrName,
+  type NamedResourceDiffList,
+  type FieldDiff,
+  type CategoryListResponse,
+  type CategoryTopicsResponse,
+  type CategoryTagsResponse,
+  type CategoryPromptsResponse,
+  type CategoryAssetsResponse,
+  type CategoryGetCategoryPersonasResponse,
+  type CategoryCreatePromptsResponse,
+  type CategoryUpdatePromptsResponse,
+  type CategoryUpdatePromptStatusResponse,
+  type CategoryRetrieveRegionsResponse,
+  type CategoryGetCitationCategoriesResponse,
+  type CategoryListParams,
+  type CategoryPromptsParams,
+  type CategoryCreatePromptsParams,
+  type CategoryUpdatePromptsParams,
+  type CategoryUpdatePromptStatusParams,
 } from './categories';
-import { APIPromise } from '../../core/api-promise';
-import { RequestOptions } from '../../internal/request-options';
 
 export class Organizations extends APIResource {
   categories: CategoriesAPI.Categories = new CategoriesAPI.Categories(this._client);
 
   /**
-   * Return every organization the caller's API key grants access to. Use this to
-   * discover organization IDs before calling endpoints that accept an
-   * `organization_id` filter.
+   * Get the organization regions.
+   *
+   * @param {OrganizationRegionsParams} [query] - The parameters to send with the request.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<OrganizationRegionsResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const regions = await client.organizations.regions();
+   * ```
    */
-  list(options?: RequestOptions): APIPromise<OrganizationListResponse> {
-    return this._client.get('/v1/org', options);
+  regions(
+    query: OrganizationRegionsParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OrganizationRegionsResponse> {
+    return this._client.get('/v1/org/regions', { query, ...options });
+  }
+
+  /**
+   * Get the organization models.
+   *
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<OrganizationModelsResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const models = await client.organizations.models();
+   * ```
+   */
+  models(options?: RequestOptions): APIPromise<OrganizationModelsResponse> {
+    return this._client.get('/v1/org/models', options);
   }
 
   /**
    * Get the organization domains.
+   *
+   * @param {OrganizationDomainsParams} [query] - The parameters to send with the request.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<OrganizationDomainsResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const domains = await client.organizations.domains();
+   * ```
    */
   domains(
     query: OrganizationDomainsParams | null | undefined = {},
@@ -50,24 +85,19 @@ export class Organizations extends APIResource {
   }
 
   /**
-   * Get the organization personas, one row per (persona, organization) pair.
-   *
-   * Same (item, org) fan-out as `get_assets`: a persona's category can be owned by
-   * multiple orgs, and each owning org gets its own row so no association is
-   * silently dropped.
-   */
-  getPersonas(
-    query: OrganizationGetPersonasParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<OrganizationGetPersonasResponse> {
-    return this._client.get('/v1/org/personas', { query, ...options });
-  }
-
-  /**
    * Get the organization assets, one row per (asset, organization) pair.
    *
    * An asset's category can belong to multiple organizations; one asset row is
    * emitted per owning org so no association is silently dropped.
+   *
+   * @param {OrganizationListAssetsParams} [query] - The parameters to send with the request.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<OrganizationListAssetsResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const listAssets = await client.organizations.listAssets();
+   * ```
    */
   listAssets(
     query: OrganizationListAssetsParams | null | undefined = {},
@@ -77,27 +107,42 @@ export class Organizations extends APIResource {
   }
 
   /**
-   * Get the organization models.
+   * Get the organization personas, one row per (persona, organization) pair.
+   *
+   * Same (item, org) fan-out as ``get_assets``: a persona's category can be
+   * owned by multiple orgs, and each owning org gets its own row so no
+   * association is silently dropped.
+   *
+   * @param {OrganizationGetPersonasParams} [query] - The parameters to send with the request.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<OrganizationGetPersonasResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const getPersonas = await client.organizations.getPersonas();
+   * ```
    */
-  models(options?: RequestOptions): APIPromise<OrganizationModelsResponse> {
-    return this._client.get('/v1/org/models', options);
+  getPersonas(
+    query: OrganizationGetPersonasParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OrganizationGetPersonasResponse> {
+    return this._client.get('/v1/org/personas', { query, ...options });
   }
 
   /**
-   * Get the organization regions.
+   * Return every organization the caller's API key grants access to. Use this to discover organization IDs before calling endpoints that accept an `organization_id` filter.
+   *
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<OrganizationListResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const list = await client.organizations.list();
+   * ```
    */
-  regions(
-    query: OrganizationRegionsParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<OrganizationRegionsResponse> {
-    return this._client.get('/v1/org/regions', { query, ...options });
+  list(options?: RequestOptions): APIPromise<OrganizationListResponse> {
+    return this._client.get('/v1/org', options);
   }
-}
-
-export interface Category {
-  id: string;
-
-  name: string;
 }
 
 /**
@@ -105,28 +150,18 @@ export interface Category {
  */
 export interface NamedResource {
   id: string;
-
   name: string;
-}
-
-export interface Organization {
-  id: string;
-
-  name: string | null;
 }
 
 export interface PersonaProfile {
   behavior: PersonaProfileBehavior;
-
-  demographics: PersonaProfileDemographics;
-
   employment: PersonaProfileEmployment;
+  demographics: PersonaProfileDemographics;
 }
 
 export interface PersonaProfileBehavior {
-  motivations?: string | null;
-
   painPoints?: string | null;
+  motivations?: string | null;
 }
 
 export interface PersonaProfileDemographics {
@@ -134,32 +169,100 @@ export interface PersonaProfileDemographics {
 }
 
 export interface PersonaProfileEmployment {
-  companySize?: Array<string>;
-
   industry?: Array<string>;
-
   jobTitle?: Array<string>;
-
+  companySize?: Array<string>;
   roleSeniority?: Array<string>;
 }
 
-export type OrganizationListResponse = Array<Organization>;
+export interface Organization {
+  /**
+   * @format uuid
+   */
+  id: string;
+  name: string | null;
+}
+
+export interface Category {
+  /**
+   * @format uuid
+   */
+  id: string;
+  name: string;
+  internal_name?: string | null;
+}
+
+export interface OrganizationRegionsParams {
+  /**
+   * Restrict results to one or more organizations the caller belongs to. Repeat the parameter to target multiple orgs (e.g. `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from every organization the caller has access to.
+   */
+  organization_ids?: Array<string> | null;
+}
+
+export type OrganizationRegionsResponse = Array<NamedResource>;
+
+export type OrganizationModelsResponse = Array<NamedResource>;
+
+export interface OrganizationDomainsParams {
+  /**
+   * Restrict results to one or more organizations the caller belongs to. Repeat the parameter to target multiple orgs (e.g. `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from every organization the caller has access to.
+   */
+  organization_ids?: Array<string> | null;
+}
 
 export type OrganizationDomainsResponse = Array<OrganizationDomainsResponse.OrganizationDomainsResponseItem>;
 
 export namespace OrganizationDomainsResponse {
-  /**
-   * A domain paired with the organization edge it belongs to.
-   */
   export interface OrganizationDomainsResponseItem {
-    id: string;
-
+    /**
+     * @format date-time
+     */
     created_at: string;
-
+    /**
+     * @format uuid
+     */
+    id: string;
     name: string;
-
-    organization: OrganizationsAPI.Organization;
+    organization: Organization;
   }
+}
+
+export interface OrganizationListAssetsParams {
+  /**
+   * Restrict results to one or more organizations the caller belongs to. Repeat the parameter to target multiple orgs (e.g. `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from every organization the caller has access to.
+   */
+  organization_ids?: Array<string> | null;
+}
+
+export interface OrganizationListAssetsResponse {
+  data: Array<OrganizationListAssetsResponse.Data>;
+}
+
+export namespace OrganizationListAssetsResponse {
+  export interface Data {
+    /**
+     * @format uuid
+     */
+    id: string;
+    name: string;
+    website: string;
+    is_owned: boolean;
+    /**
+     * @format date-time
+     */
+    created_at: string;
+    logo_url: string;
+    category: Category;
+    organization: Organization;
+    alternate_domains?: Array<string> | null;
+  }
+}
+
+export interface OrganizationGetPersonasParams {
+  /**
+   * Restrict results to one or more organizations the caller belongs to. Repeat the parameter to target multiple orgs (e.g. `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from every organization the caller has access to.
+   */
+  organization_ids?: Array<string> | null;
 }
 
 export interface OrganizationGetPersonasResponse {
@@ -169,129 +272,57 @@ export interface OrganizationGetPersonasResponse {
 export namespace OrganizationGetPersonasResponse {
   export interface Data {
     id: string;
-
-    category: OrganizationsAPI.Category;
-
     name: string;
-
-    organization: OrganizationsAPI.Organization;
-
-    persona: OrganizationsAPI.PersonaProfile;
+    persona: PersonaProfile;
+    category: Category;
+    organization: Organization;
   }
 }
 
-export interface OrganizationListAssetsResponse {
-  data: Array<OrganizationListAssetsResponse.Data>;
-}
-
-export namespace OrganizationListAssetsResponse {
-  export interface Data {
-    id: string;
-
-    category: OrganizationsAPI.Category;
-
-    created_at: string;
-
-    is_owned: boolean;
-
-    logo_url: string;
-
-    name: string;
-
-    organization: OrganizationsAPI.Organization;
-
-    website: string;
-
-    alternate_domains?: Array<string> | null;
-  }
-}
-
-export type OrganizationModelsResponse = Array<NamedResource>;
-
-export type OrganizationRegionsResponse = Array<NamedResource>;
-
-export interface OrganizationDomainsParams {
-  /**
-   * Restrict results to one or more organizations the caller belongs to. Repeat the
-   * parameter to target multiple orgs (e.g.
-   * `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from
-   * every organization the caller has access to.
-   */
-  organization_ids?: Array<string> | null;
-}
-
-export interface OrganizationGetPersonasParams {
-  /**
-   * Restrict results to one or more organizations the caller belongs to. Repeat the
-   * parameter to target multiple orgs (e.g.
-   * `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from
-   * every organization the caller has access to.
-   */
-  organization_ids?: Array<string> | null;
-}
-
-export interface OrganizationListAssetsParams {
-  /**
-   * Restrict results to one or more organizations the caller belongs to. Repeat the
-   * parameter to target multiple orgs (e.g.
-   * `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from
-   * every organization the caller has access to.
-   */
-  organization_ids?: Array<string> | null;
-}
-
-export interface OrganizationRegionsParams {
-  /**
-   * Restrict results to one or more organizations the caller belongs to. Repeat the
-   * parameter to target multiple orgs (e.g.
-   * `?organization_ids=<id1>&organization_ids=<id2>`). Omit to return data from
-   * every organization the caller has access to.
-   */
-  organization_ids?: Array<string> | null;
-}
-
+export type OrganizationListResponse = Array<Organization>;
 Organizations.Categories = Categories;
 
 export declare namespace Organizations {
   export {
-    type Category as Category,
     type NamedResource as NamedResource,
-    type Organization as Organization,
     type PersonaProfile as PersonaProfile,
     type PersonaProfileBehavior as PersonaProfileBehavior,
     type PersonaProfileDemographics as PersonaProfileDemographics,
     type PersonaProfileEmployment as PersonaProfileEmployment,
-    type OrganizationListResponse as OrganizationListResponse,
-    type OrganizationDomainsResponse as OrganizationDomainsResponse,
-    type OrganizationGetPersonasResponse as OrganizationGetPersonasResponse,
-    type OrganizationListAssetsResponse as OrganizationListAssetsResponse,
-    type OrganizationModelsResponse as OrganizationModelsResponse,
+    type Organization as Organization,
+    type Category as Category,
     type OrganizationRegionsResponse as OrganizationRegionsResponse,
-    type OrganizationDomainsParams as OrganizationDomainsParams,
-    type OrganizationGetPersonasParams as OrganizationGetPersonasParams,
-    type OrganizationListAssetsParams as OrganizationListAssetsParams,
+    type OrganizationModelsResponse as OrganizationModelsResponse,
+    type OrganizationDomainsResponse as OrganizationDomainsResponse,
+    type OrganizationListAssetsResponse as OrganizationListAssetsResponse,
+    type OrganizationGetPersonasResponse as OrganizationGetPersonasResponse,
+    type OrganizationListResponse as OrganizationListResponse,
     type OrganizationRegionsParams as OrganizationRegionsParams,
+    type OrganizationDomainsParams as OrganizationDomainsParams,
+    type OrganizationListAssetsParams as OrganizationListAssetsParams,
+    type OrganizationGetPersonasParams as OrganizationGetPersonasParams,
   };
 
   export {
     Categories as Categories,
-    type FieldDiff as FieldDiff,
     type IDOrName as IDOrName,
     type NamedResourceDiffList as NamedResourceDiffList,
+    type FieldDiff as FieldDiff,
     type CategoryListResponse as CategoryListResponse,
-    type CategoryAssetsResponse as CategoryAssetsResponse,
-    type CategoryCreatePromptsResponse as CategoryCreatePromptsResponse,
-    type CategoryGetCategoryPersonasResponse as CategoryGetCategoryPersonasResponse,
-    type CategoryPromptsResponse as CategoryPromptsResponse,
-    type CategoryRetrieveRegionsResponse as CategoryRetrieveRegionsResponse,
-    type CategoryTagsResponse as CategoryTagsResponse,
     type CategoryTopicsResponse as CategoryTopicsResponse,
-    type CategoryUpdatePromptStatusResponse as CategoryUpdatePromptStatusResponse,
+    type CategoryTagsResponse as CategoryTagsResponse,
+    type CategoryPromptsResponse as CategoryPromptsResponse,
+    type CategoryAssetsResponse as CategoryAssetsResponse,
+    type CategoryGetCategoryPersonasResponse as CategoryGetCategoryPersonasResponse,
+    type CategoryCreatePromptsResponse as CategoryCreatePromptsResponse,
     type CategoryUpdatePromptsResponse as CategoryUpdatePromptsResponse,
+    type CategoryUpdatePromptStatusResponse as CategoryUpdatePromptStatusResponse,
+    type CategoryRetrieveRegionsResponse as CategoryRetrieveRegionsResponse,
+    type CategoryGetCitationCategoriesResponse as CategoryGetCitationCategoriesResponse,
     type CategoryListParams as CategoryListParams,
-    type CategoryCreatePromptsParams as CategoryCreatePromptsParams,
     type CategoryPromptsParams as CategoryPromptsParams,
-    type CategoryUpdatePromptStatusParams as CategoryUpdatePromptStatusParams,
+    type CategoryCreatePromptsParams as CategoryCreatePromptsParams,
     type CategoryUpdatePromptsParams as CategoryUpdatePromptsParams,
+    type CategoryUpdatePromptStatusParams as CategoryUpdatePromptStatusParams,
   };
 }

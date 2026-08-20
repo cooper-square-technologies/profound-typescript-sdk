@@ -1,14 +1,50 @@
-// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+// File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-import { APIResource } from '../../core/resource';
-import * as Shared from '../shared';
-import { APIPromise } from '../../core/api-promise';
-import { RequestOptions } from '../../internal/request-options';
-import { path } from '../../internal/utils/path';
+import { APIResource } from '../../resource';
+import { APIPromise } from '../../api-promise';
+import type { RequestOptions } from '../../internal/request-options';
+import { path as __scalarPath } from '../../internal/utils/path';
+import type * as Shared from '../shared';
 
 export class Optimization extends APIResource {
   /**
+   * Optimization List
+   *
+   * @param {string} assetID
+   * @param {OptimizationListParams} [query] - The parameters to send with the request.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<OptimizationListResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const list = await client.content.optimization.list('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   *   limit: 10000,
+   *   offset: 0,
+   * });
+   * ```
+   */
+  list(
+    assetID: string,
+    query: OptimizationListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OptimizationListResponse> {
+    return this._client.get(__scalarPath`/v1/content/${assetID}/optimization`, { query, ...options });
+  }
+
+  /**
    * Optimization Analysis
+   *
+   * @param {string} contentID
+   * @param {OptimizationRetrieveParams} params - The parameters to send with the request.
+   * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
+   * @returns {APIPromise<OptimizationRetrieveResponse>} Successful Response
+   *
+   * @example
+   * ```ts
+   * const retrieve = await client.content.optimization.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   *   asset_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   * });
+   * ```
    */
   retrieve(
     contentID: string,
@@ -16,19 +52,70 @@ export class Optimization extends APIResource {
     options?: RequestOptions,
   ): APIPromise<OptimizationRetrieveResponse> {
     const { asset_id } = params;
-    return this._client.get(path`/v1/content/${asset_id}/optimization/${contentID}`, options);
+    return this._client.get(__scalarPath`/v1/content/${asset_id}/optimization/${contentID}`, options);
+  }
+}
+
+export interface OptimizationListParams {
+  /**
+   * Maximum number of results to return
+   * @default 10000
+   * @maximum 50000
+   */
+  limit?: number;
+  /**
+   * Offset for pagination
+   * @default 0
+   * @minimum 0
+   */
+  offset?: number;
+}
+
+export interface OptimizationListResponse {
+  info: OptimizationListResponse.Info;
+  data: Array<OptimizationListResponse.Data>;
+}
+
+export namespace OptimizationListResponse {
+  export interface Info {
+    total_rows: number;
+    query: Info.Query;
   }
 
-  /**
-   * Optimization List
-   */
-  list(
-    assetID: string,
-    query: OptimizationListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<OptimizationListResponse> {
-    return this._client.get(path`/v1/content/${assetID}/optimization`, { query, ...options });
+  export namespace Info {
+    export interface Query {
+      /**
+       * @format uuid
+       */
+      asset_id: string;
+      /**
+       * Pagination parameters for the results. Default is 10,000 rows with no offset.
+       */
+      pagination?: Shared.Pagination;
+    }
   }
+
+  export interface Data {
+    /**
+     * @format uuid
+     */
+    id: string;
+    title: string;
+    /**
+     * @format date-time
+     */
+    created_at: string;
+    extracted_input: string | null;
+    type: 'file' | 'text' | 'url';
+    status: string;
+  }
+}
+
+export interface OptimizationRetrieveParams {
+  /**
+   * @format uuid
+   */
+  asset_id: string;
 }
 
 export interface OptimizationRetrieveResponse {
@@ -37,29 +124,28 @@ export interface OptimizationRetrieveResponse {
 
 export namespace OptimizationRetrieveResponse {
   export interface Data {
-    aeo_content_score: Data.AeoContentScore | null;
-
-    analysis: Data.Analysis;
-
     content: Data.Content;
-
-    inputs: Data.Inputs;
-
+    aeo_content_score: Data.AeoContentScore | null;
+    analysis: Data.Analysis;
     recommendations: Array<Data.Recommendation>;
+    inputs: Data.Inputs;
   }
 
   export namespace Data {
+    export interface Content {
+      format: 'markdown' | 'html';
+      value: string;
+    }
+
     export interface AeoContentScore {
       target_zone: AeoContentScore.TargetZone;
-
       value: number;
     }
 
     export namespace AeoContentScore {
       export interface TargetZone {
-        high: number;
-
         low: number;
+        high: number;
       }
     }
 
@@ -69,138 +155,68 @@ export namespace OptimizationRetrieveResponse {
 
     export namespace Analysis {
       export interface Breakdown {
-        score: number;
-
         title: string;
-
         weight: number;
-      }
-    }
-
-    export interface Content {
-      format: 'markdown' | 'html';
-
-      value: string;
-    }
-
-    export interface Inputs {
-      prompt: Inputs.Prompt | null;
-
-      top_citations: Array<string>;
-
-      topic: Inputs.Topic | null;
-
-      user: Inputs.User;
-    }
-
-    export namespace Inputs {
-      export interface Prompt {
-        id: string;
-
-        name: string;
-      }
-
-      export interface Topic {
-        id: string;
-
-        name: string;
-      }
-
-      export interface User {
-        metadata: { [key: string]: number | string };
-
-        type: 'file' | 'text' | 'url';
-
-        value: string;
+        score: number;
       }
     }
 
     export interface Recommendation {
-      impact: Recommendation.Impact | null;
-
-      status: 'done' | 'pending';
-
-      suggestion: Recommendation.Suggestion;
-
       title: string;
+      status: 'done' | 'pending';
+      impact: Recommendation.Impact | null;
+      suggestion: Recommendation.Suggestion;
     }
 
     export namespace Recommendation {
       export interface Impact {
-        score: number;
-
         section: string;
+        score: number;
       }
 
       export interface Suggestion {
-        rationale: string;
-
         text: string;
+        rationale: string;
+      }
+    }
+
+    export interface Inputs {
+      topic: Inputs.Topic | null;
+      prompt: Inputs.Prompt | null;
+      top_citations: Array<string>;
+      user: Inputs.User;
+    }
+
+    export namespace Inputs {
+      export interface Topic {
+        /**
+         * @format uuid
+         */
+        id: string;
+        name: string;
+      }
+
+      export interface Prompt {
+        /**
+         * @format uuid
+         */
+        id: string;
+        name: string;
+      }
+
+      export interface User {
+        type: 'file' | 'text' | 'url';
+        value: string;
+        metadata: Record<string, number | string>;
       }
     }
   }
 }
-
-export interface OptimizationListResponse {
-  data: Array<OptimizationListResponse.Data>;
-
-  info: OptimizationListResponse.Info;
-}
-
-export namespace OptimizationListResponse {
-  export interface Data {
-    id: string;
-
-    created_at: string;
-
-    extracted_input: string | null;
-
-    status: string;
-
-    title: string;
-
-    type: 'file' | 'text' | 'url';
-  }
-
-  export interface Info {
-    query: Info.Query;
-
-    total_rows: number;
-  }
-
-  export namespace Info {
-    export interface Query {
-      asset_id: string;
-
-      /**
-       * Pagination parameters for the results. Default is 10,000 rows with no offset.
-       */
-      pagination?: Shared.Pagination;
-    }
-  }
-}
-
-export interface OptimizationRetrieveParams {
-  asset_id: string;
-}
-
-export interface OptimizationListParams {
-  /**
-   * Maximum number of results to return
-   */
-  limit?: number;
-
-  /**
-   * Offset for pagination
-   */
-  offset?: number;
-}
-
 export declare namespace Optimization {
   export {
-    type OptimizationRetrieveResponse as OptimizationRetrieveResponse,
     type OptimizationListResponse as OptimizationListResponse,
-    type OptimizationRetrieveParams as OptimizationRetrieveParams,
+    type OptimizationRetrieveResponse as OptimizationRetrieveResponse,
     type OptimizationListParams as OptimizationListParams,
+    type OptimizationRetrieveParams as OptimizationRetrieveParams,
   };
 }
