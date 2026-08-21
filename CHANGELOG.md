@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.48.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.47.0...v0.48.0) (2026-08-20)
+
+We've changed how this SDK is generated, so there may be slight differences from 0.47.0 — see [api.md](./api.md) for the current surface.
+
+
+### Changes
+
+* **api:** the v1 shopping reports (`POST /v1/reports/shopping/*`) are superseded by their v2 equivalents (`POST /v2/reports/shopping/*`); `POST /v1/logs/raw` and `POST /v1/logs/raw/bots` are no longer exposed.
+* **api:** added factcheck (`/v2/reports/factcheck`), YouTube social, projects, documents, integrations, and OpenAI ads insights endpoints.
+* **api:** regenerated the SDK ([18c978f](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/18c978ffafe6ddf12c5afbafe27d4e1ee30b121a))
+
 ## 0.47.0 (2026-06-30)
 
 Full Changelog: [v0.46.0...v0.47.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.46.0...v0.47.0)
