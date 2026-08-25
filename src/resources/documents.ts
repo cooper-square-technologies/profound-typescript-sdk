@@ -29,7 +29,7 @@ export class Documents extends APIResource {
    *
    * @example
    * ```ts
-   * const create = await client.documents.create({
+   * const document = await client.documents.create({
    *   id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   name: 'x',
@@ -63,7 +63,7 @@ export class Documents extends APIResource {
    *
    * @example
    * ```ts
-   * const list = await client.documents.list({
+   * const document = await client.documents.list({
    *   organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   limit: 20,
    * });
@@ -90,7 +90,7 @@ export class Documents extends APIResource {
    *
    * @example
    * ```ts
-   * const retrieve = await client.documents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const document = await client.documents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   include_tabs: true,
    *   include_comments: true,
@@ -124,7 +124,7 @@ export class Documents extends APIResource {
    *
    * @example
    * ```ts
-   * const update = await client.documents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const document = await client.documents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * });
    * ```
@@ -215,7 +215,7 @@ export class Documents extends APIResource {
    *
    * @example
    * ```ts
-   * const replaceContent = await client.documents.replaceContent('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const document = await client.documents.replaceContent('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   content_markdown: '',
    *   skip_title_sync: false,

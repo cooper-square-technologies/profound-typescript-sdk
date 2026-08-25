@@ -37,7 +37,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/org/regions',
     run: async () => {
-      const regions = await client.organizations.regions();
+      const organization = await client.organizations.regions();
     },
   },
 
@@ -46,7 +46,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/org/models',
     run: async () => {
-      const models = await client.organizations.models();
+      const organization = await client.organizations.models();
     },
   },
 
@@ -55,7 +55,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/org/domains',
     run: async () => {
-      const domains = await client.organizations.domains();
+      const organization = await client.organizations.domains();
     },
   },
 
@@ -64,7 +64,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/org/assets',
     run: async () => {
-      const listAssets = await client.organizations.listAssets();
+      const organization = await client.organizations.listAssets();
     },
   },
 
@@ -73,7 +73,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/org/personas',
     run: async () => {
-      const getPersonas = await client.organizations.getPersonas();
+      const organization = await client.organizations.getPersonas();
     },
   },
 
@@ -82,7 +82,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/org',
     run: async () => {
-      const list = await client.organizations.list();
+      const organization = await client.organizations.list();
     },
   },
 
@@ -91,7 +91,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/org/categories',
     run: async () => {
-      const list = await client.organizations.categories.list();
+      const category = await client.organizations.categories.list();
     },
   },
 
@@ -100,7 +100,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/org/categories/{category_id}/topics',
     run: async () => {
-      const topics = await client.organizations.categories.topics('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+      const category = await client.organizations.categories.topics('7c9e6679-7425-40de-944b-e07fc1f90ae7');
     },
   },
 
@@ -109,7 +109,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/org/categories/{category_id}/tags',
     run: async () => {
-      const tags = await client.organizations.categories.tags('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+      const category = await client.organizations.categories.tags('7c9e6679-7425-40de-944b-e07fc1f90ae7');
     },
   },
 
@@ -118,7 +118,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/org/categories/{category_id}/prompts',
     run: async () => {
-      const prompts = await client.organizations.categories.prompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const category = await client.organizations.categories.prompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         limit: 10000,
         status: ['active'],
       });
@@ -130,7 +130,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/org/categories/{category_id}/assets',
     run: async () => {
-      const assets = await client.organizations.categories.assets('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+      const category = await client.organizations.categories.assets('7c9e6679-7425-40de-944b-e07fc1f90ae7');
     },
   },
 
@@ -139,7 +139,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/org/categories/{category_id}/personas',
     run: async () => {
-      const getCategoryPersonas = await client.organizations.categories.getCategoryPersonas(
+      const category = await client.organizations.categories.getCategoryPersonas(
         '7c9e6679-7425-40de-944b-e07fc1f90ae7',
       );
     },
@@ -150,7 +150,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/org/categories/{category_id}/prompts',
     run: async () => {
-      const createPrompts = await client.organizations.categories.createPrompts(
+      const category = await client.organizations.categories.createPrompts(
         '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         {
           prompts: [],
@@ -165,7 +165,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'PATCH',
     path: '/v1/org/categories/{category_id}/prompts',
     run: async () => {
-      const updatePrompts = await client.organizations.categories.updatePrompts(
+      const category = await client.organizations.categories.updatePrompts(
         '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         {
           prompts: [],
@@ -180,7 +180,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'PATCH',
     path: '/v1/org/categories/{category_id}/prompts/status',
     run: async () => {
-      const updatePromptStatus = await client.organizations.categories.updatePromptStatus(
+      const category = await client.organizations.categories.updatePromptStatus(
         '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         {
           prompt_ids: [],
@@ -196,7 +196,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/org/categories/{category_id}/regions',
     run: async () => {
-      const retrieveRegions = await client.organizations.categories.retrieveRegions(
+      const category = await client.organizations.categories.retrieveRegions(
         '7c9e6679-7425-40de-944b-e07fc1f90ae7',
       );
     },
@@ -207,7 +207,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/org/categories/{category_id}/citation-categories',
     run: async () => {
-      const getCitationCategories = await client.organizations.categories.getCitationCategories(
+      const category = await client.organizations.categories.getCitationCategories(
         '7c9e6679-7425-40de-944b-e07fc1f90ae7',
       );
     },
@@ -218,7 +218,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/prompts/answers',
     run: async () => {
-      const answers = await client.prompts.answers({
+      const prompt = await client.prompts.answers({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
         end_date: '2024-01-01T00:00:00.000Z',
@@ -231,7 +231,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v2/prompts/answers',
     run: async () => {
-      const answersV2 = await client.prompts.answersV2({
+      const prompt = await client.prompts.answersV2({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -261,7 +261,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/reports/citations',
     run: async () => {
-      const citations = await client.reports.citations({
+      const report = await client.reports.citations({
         date_interval: 'day',
         dimensions: [],
         metrics: [],
@@ -312,7 +312,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/reports/sentiment-v2',
     run: async () => {
-      const sentimentV2 = await client.reports.sentimentV2({
+      const report = await client.reports.sentimentV2({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         asset_name: '',
         start_date: '2024-01-01T00:00:00.000Z',
@@ -551,7 +551,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v2/reports/visibility',
     run: async () => {
-      const queryVisibility = await client.reports.queryVisibility({
+      const report = await client.reports.queryVisibility({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -566,7 +566,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v2/reports/citations',
     run: async () => {
-      const queryCitations = await client.reports.queryCitations({
+      const report = await client.reports.queryCitations({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -582,7 +582,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v2/reports/sentiment',
     run: async () => {
-      const querySentiment = await client.reports.querySentiment({
+      const report = await client.reports.querySentiment({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         asset: '',
         start_date: '',
@@ -598,7 +598,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v2/reports/query-fanouts',
     run: async () => {
-      const queryQueryFanouts = await client.reports.queryQueryFanouts({
+      const report = await client.reports.queryQueryFanouts({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -612,7 +612,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/reports/web-search-results',
     run: async () => {
-      const query = await client.reports.webSearchResults.query({
+      const webSearchResult = await client.reports.webSearchResults.query({
         date_interval: 'day',
         dimensions: [],
         metrics: [],
@@ -650,7 +650,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v2/reports/shopping/brands',
     run: async () => {
-      const brands = await client.reports.shopping.brands({
+      const shopping = await client.reports.shopping.brands({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -684,7 +684,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v2/reports/shopping/products',
     run: async () => {
-      const products = await client.reports.shopping.products({
+      const shopping = await client.reports.shopping.products({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -720,7 +720,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v2/reports/shopping/merchants',
     run: async () => {
-      const merchants = await client.reports.shopping.merchants({
+      const shopping = await client.reports.shopping.merchants({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -752,7 +752,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v2/reports/shopping/trigger-rate',
     run: async () => {
-      const triggerRate = await client.reports.shopping.triggerRate({
+      const shopping = await client.reports.shopping.triggerRate({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -784,7 +784,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/reports/accuracy/overview',
     run: async () => {
-      const createOverview = await client.reports.accuracy.createOverview({
+      const accuracy = await client.reports.accuracy.createOverview({
         start_date: '',
         end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -802,7 +802,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/reports/accuracy/breakdown',
     run: async () => {
-      const createBreakdown = await client.reports.accuracy.createBreakdown({
+      const accuracy = await client.reports.accuracy.createBreakdown({
         start_date: '',
         end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -824,7 +824,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/reports/accuracy/citation-analysis',
     run: async () => {
-      const createCitationAnalysis = await client.reports.accuracy.createCitationAnalysis({
+      const accuracy = await client.reports.accuracy.createCitationAnalysis({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         clean_href: '',
         start_date: '',
@@ -838,7 +838,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/reports/accuracy/topic-ids',
     run: async () => {
-      const createTopicIDs = await client.reports.accuracy.createTopicIDs({
+      const accuracy = await client.reports.accuracy.createTopicIDs({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -851,7 +851,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/reports/accuracy/inaccurate-themes',
     run: async () => {
-      const createInaccurateThemes = await client.reports.accuracy.createInaccurateThemes({
+      const accuracy = await client.reports.accuracy.createInaccurateThemes({
         start_date: '',
         end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -872,7 +872,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/reports/accuracy/inaccurate-clusters',
     run: async () => {
-      const createInaccurateClusters = await client.reports.accuracy.createInaccurateClusters({
+      const accuracy = await client.reports.accuracy.createInaccurateClusters({
         start_date: '',
         end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -892,7 +892,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/reports/accuracy/inaccuracy-drivers',
     run: async () => {
-      const createInaccuracyDrivers = await client.reports.accuracy.createInaccuracyDrivers({
+      const accuracy = await client.reports.accuracy.createInaccuracyDrivers({
         start_date: '',
         end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -910,7 +910,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/reports/accuracy/top-inaccurate-claims',
     run: async () => {
-      const createTopInaccurateClaims = await client.reports.accuracy.createTopInaccurateClaims({
+      const accuracy = await client.reports.accuracy.createTopInaccurateClaims({
         start_date: '',
         end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -928,7 +928,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/reports/accuracy/claim-breakdown',
     run: async () => {
-      const createClaimBreakdown = await client.reports.accuracy.createClaimBreakdown({
+      const accuracy = await client.reports.accuracy.createClaimBreakdown({
         start_date: '',
         end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -946,7 +946,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/reports/accuracy/claim-citations',
     run: async () => {
-      const createClaimCitations = await client.reports.accuracy.createClaimCitations({
+      const accuracy = await client.reports.accuracy.createClaimCitations({
         start_date: '',
         end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -967,7 +967,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/reports/accuracy/cluster-example-runs',
     run: async () => {
-      const createClusterExampleRuns = await client.reports.accuracy.createClusterExampleRuns({
+      const accuracy = await client.reports.accuracy.createClusterExampleRuns({
         start_date: '',
         end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -987,7 +987,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/reports/accuracy/cluster-verification-pairs',
     run: async () => {
-      const createClusterVerificationPairs = await client.reports.accuracy.createClusterVerificationPairs({
+      const accuracy = await client.reports.accuracy.createClusterVerificationPairs({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
       });
@@ -999,7 +999,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/reports/accuracy/factcheck-setup-status',
     run: async () => {
-      const createFactcheckSetupStatus = await client.reports.accuracy.createFactcheckSetupStatus({
+      const accuracy = await client.reports.accuracy.createFactcheckSetupStatus({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
       });
     },
@@ -1010,7 +1010,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v2/reports/factcheck',
     run: async () => {
-      const queryScores = await client.reports.factcheck.queryScores({
+      const factcheck = await client.reports.factcheck.queryScores({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -1040,7 +1040,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v2/reports/factcheck/claims',
     run: async () => {
-      const queryClaims = await client.reports.factcheck.claims.queryClaims({
+      const claim = await client.reports.factcheck.claims.queryClaims({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -1070,7 +1070,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v2/reports/social/youtube/channels',
     run: async () => {
-      const getChannels = await client.reports.social.youtube.getChannels({
+      const youtube = await client.reports.social.youtube.getChannels({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -1083,7 +1083,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v2/reports/social/youtube/videos',
     run: async () => {
-      const getVideos = await client.reports.social.youtube.getVideos({
+      const youtube = await client.reports.social.youtube.getVideos({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -1097,7 +1097,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v2/reports/social/youtube/summary',
     run: async () => {
-      const getSummary = await client.reports.social.youtube.getSummary({
+      const youtube = await client.reports.social.youtube.getSummary({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
@@ -1110,7 +1110,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/content/{asset_id}/optimization',
     run: async () => {
-      const list = await client.content.optimization.list('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const optimization = await client.content.optimization.list('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         limit: 10000,
         offset: 0,
       });
@@ -1122,9 +1122,12 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/content/{asset_id}/optimization/{content_id}',
     run: async () => {
-      const retrieve = await client.content.optimization.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
-        asset_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-      });
+      const optimization = await client.content.optimization.retrieve(
+        '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        {
+          asset_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+        },
+      );
     },
   },
 
@@ -1133,7 +1136,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/agents',
     run: async () => {
-      const list = await client.agents.list({
+      const agent = await client.agents.list({
         limit: 100,
       });
     },
@@ -1144,7 +1147,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/agents/{agent_id}',
     run: async () => {
-      const retrieve = await client.agents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+      const agent = await client.agents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7');
     },
   },
 
@@ -1174,7 +1177,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'PATCH',
     path: '/v1/agents/{agent_id}',
     run: async () => {
-      const update = await client.agents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const agent = await client.agents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         graph: {},
       });
     },
@@ -1185,7 +1188,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/agents/{agent_id}/graph',
     run: async () => {
-      const retrieveGraph = await client.agents.retrieveGraph('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+      const agent = await client.agents.retrieveGraph('7c9e6679-7425-40de-944b-e07fc1f90ae7');
     },
   },
 
@@ -1194,7 +1197,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/agents/{agent_id}/runs',
     run: async () => {
-      const create = await client.agents.runs.create('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+      const run = await client.agents.runs.create('7c9e6679-7425-40de-944b-e07fc1f90ae7');
     },
   },
 
@@ -1203,7 +1206,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/agents/{agent_id}/runs/{run_id}',
     run: async () => {
-      const retrieve = await client.agents.runs.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const run = await client.agents.runs.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         agent_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         verbose: false,
       });
@@ -1215,7 +1218,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/agents/node-types',
     run: async () => {
-      const list = await client.agents.nodeTypes.list();
+      const nodeType = await client.agents.nodeTypes.list();
     },
   },
 
@@ -1224,7 +1227,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/agents/node-types/{node_type}/schema',
     run: async () => {
-      const retrieveSchema = await client.agents.nodeTypes.retrieveSchema('nodeType');
+      const nodeType = await client.agents.nodeTypes.retrieveSchema('nodeType');
     },
   },
 
@@ -1233,7 +1236,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/knowledge-bases',
     run: async () => {
-      const list = await client.knowledgeBases.list();
+      const knowledgeBase = await client.knowledgeBases.list();
     },
   },
 
@@ -1242,7 +1245,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/knowledge-bases/{knowledge_base_id}/search',
     run: async () => {
-      const search = await client.knowledgeBases.search('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const knowledgeBase = await client.knowledgeBases.search('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         query: 'x',
         top_k: 0,
         return_full_page: false,
@@ -1255,7 +1258,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/knowledge-bases/{knowledge_base_id}/documents',
     run: async () => {
-      const operation = await client.knowledgeBases.documents.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const document = await client.knowledgeBases.documents.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         name: 'x',
         text: 'x',
       });
@@ -1267,7 +1270,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'PUT',
     path: '/v1/knowledge-bases/{knowledge_base_id}/documents',
     run: async () => {
-      const operation = await client.knowledgeBases.documents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const document = await client.knowledgeBases.documents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         name: 'x',
         text: 'x',
       });
@@ -1279,7 +1282,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'DELETE',
     path: '/v1/knowledge-bases/{knowledge_base_id}/documents',
     run: async () => {
-      const operation = await client.knowledgeBases.documents.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const document = await client.knowledgeBases.documents.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         name: 'x',
       });
     },
@@ -1290,7 +1293,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/knowledge-bases/{knowledge_base_id}/folders',
     run: async () => {
-      const create = await client.knowledgeBases.folders.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const folder = await client.knowledgeBases.folders.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         path: 'x',
       });
     },
@@ -1301,7 +1304,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'DELETE',
     path: '/v1/knowledge-bases/{knowledge_base_id}/folders',
     run: async () => {
-      const delete_ = await client.knowledgeBases.folders.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const folder = await client.knowledgeBases.folders.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         path: 'x',
         recursive: false,
       });
@@ -1313,7 +1316,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/projects',
     run: async () => {
-      const list = await client.projects.list({
+      const project = await client.projects.list({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         limit: 100,
         offset: 0,
@@ -1326,7 +1329,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/projects',
     run: async () => {
-      const create = await client.projects.create({
+      const project = await client.projects.create({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
       });
     },
@@ -1337,7 +1340,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/projects/{project_id}',
     run: async () => {
-      const retrieve = await client.projects.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const project = await client.projects.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
       });
     },
@@ -1359,7 +1362,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/projects/{project_id}/status',
     run: async () => {
-      const getStatus = await client.projects.getStatus('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const project = await client.projects.getStatus('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
       });
     },
@@ -1370,7 +1373,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/projects/{project_id}/archive',
     run: async () => {
-      const archive = await client.projects.archive('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const project = await client.projects.archive('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
       });
     },
@@ -1381,7 +1384,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/projects/{project_id}/unarchive',
     run: async () => {
-      const unarchive = await client.projects.unarchive('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const project = await client.projects.unarchive('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
       });
     },
@@ -1392,7 +1395,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/projects/generations',
     run: async () => {
-      const list = await client.projects.generations.list({
+      const generation = await client.projects.generations.list({
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         limit: 100,
         offset: 0,
@@ -1405,7 +1408,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/projects/generations/{run_id}',
     run: async () => {
-      const retrieve = await client.projects.generations.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const generation = await client.projects.generations.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
       });
     },
@@ -1416,7 +1419,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/projects/{project_id}/tasks',
     run: async () => {
-      const list = await client.projects.tasks.list('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const task = await client.projects.tasks.list('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
       });
     },
@@ -1427,7 +1430,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/projects/{project_id}/tasks',
     run: async () => {
-      const create = await client.projects.tasks.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const task = await client.projects.tasks.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         title: 'x',
       });
@@ -1439,7 +1442,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/projects/{project_id}/tasks/{task_id}',
     run: async () => {
-      const retrieve = await client.projects.tasks.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const task = await client.projects.tasks.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
       });
@@ -1451,7 +1454,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'PATCH',
     path: '/v1/projects/{project_id}/tasks/{task_id}',
     run: async () => {
-      const update = await client.projects.tasks.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const task = await client.projects.tasks.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
       });
@@ -1475,7 +1478,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/projects/{project_id}/tasks/{task_id}/status',
     run: async () => {
-      const updateStatus = await client.projects.tasks.updateStatus('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const task = await client.projects.tasks.updateStatus('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         status: 'not_started',
@@ -1488,7 +1491,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/integrations',
     run: async () => {
-      const list = await client.integrations.list();
+      const integration = await client.integrations.list();
     },
   },
 
@@ -1497,7 +1500,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/documents',
     run: async () => {
-      const create = await client.documents.create({
+      const document = await client.documents.create({
         id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         name: 'x',
@@ -1511,7 +1514,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/documents',
     run: async () => {
-      const list = await client.documents.list({
+      const document = await client.documents.list({
         organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         limit: 20,
       });
@@ -1523,7 +1526,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/documents/{document_id}',
     run: async () => {
-      const retrieve = await client.documents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const document = await client.documents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         include_tabs: true,
         include_comments: true,
@@ -1537,7 +1540,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'PATCH',
     path: '/v1/documents/{document_id}',
     run: async () => {
-      const update = await client.documents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const document = await client.documents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
       });
     },
@@ -1559,7 +1562,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'POST',
     path: '/v1/documents/{document_id}/content',
     run: async () => {
-      const replaceContent = await client.documents.replaceContent('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+      const document = await client.documents.replaceContent('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         content_markdown: '',
         skip_title_sync: false,
@@ -1572,7 +1575,7 @@ const cases: { operation: string; method: string; path: string; run: () => Promi
     method: 'GET',
     path: '/v1/ads/openai-ads/ad-account/insights',
     run: async () => {
-      const retrieveInsights = await client.ads.openaiAds.adAccount.retrieveInsights();
+      const adAccount = await client.ads.openaiAds.adAccount.retrieveInsights();
     },
   },
 ];

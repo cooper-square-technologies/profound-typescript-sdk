@@ -3,7 +3,6 @@
 import { APIResource } from '../resource';
 import { APIPromise } from '../api-promise';
 import type { RequestOptions } from '../internal/request-options';
-import type * as Shared from './shared';
 
 export class Integrations extends APIResource {
   /**
@@ -19,7 +18,7 @@ export class Integrations extends APIResource {
    *
    * @example
    * ```ts
-   * const list = await client.integrations.list();
+   * const integration = await client.integrations.list();
    * ```
    */
   list(

@@ -8,6 +8,9 @@ import type * as Shared from '../shared';
 import * as DocumentsAPI from './documents';
 import {
   Documents,
+  type DocumentCreateResponse,
+  type DocumentUpdateResponse,
+  type DocumentDeleteResponse,
   type DocumentCreateParams,
   type DocumentUpdateParams,
   type DocumentDeleteParams,
@@ -34,7 +37,7 @@ export class KnowledgeBases extends APIResource {
    *
    * @example
    * ```ts
-   * const list = await client.knowledgeBases.list();
+   * const knowledgeBase = await client.knowledgeBases.list();
    * ```
    */
   list(
@@ -54,7 +57,7 @@ export class KnowledgeBases extends APIResource {
    *
    * @example
    * ```ts
-   * const search = await client.knowledgeBases.search('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const knowledgeBase = await client.knowledgeBases.search('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   query: 'x',
    *   top_k: 0,
    *   return_full_page: false,
@@ -209,6 +212,9 @@ export declare namespace KnowledgeBases {
 
   export {
     Documents as Documents,
+    type DocumentCreateResponse as DocumentCreateResponse,
+    type DocumentUpdateResponse as DocumentUpdateResponse,
+    type DocumentDeleteResponse as DocumentDeleteResponse,
     type DocumentCreateParams as DocumentCreateParams,
     type DocumentUpdateParams as DocumentUpdateParams,
     type DocumentDeleteParams as DocumentDeleteParams,

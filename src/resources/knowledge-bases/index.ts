@@ -8,7 +8,14 @@ export type {
   KnowledgeBaseSearchResponse,
 } from './knowledge-bases';
 export { Documents } from './documents';
-export type { DocumentCreateParams, DocumentUpdateParams, DocumentDeleteParams } from './documents';
+export type {
+  DocumentCreateParams,
+  DocumentCreateResponse,
+  DocumentUpdateParams,
+  DocumentUpdateResponse,
+  DocumentDeleteParams,
+  DocumentDeleteResponse,
+} from './documents';
 export { Folders } from './folders';
 export type {
   FolderCreateParams,

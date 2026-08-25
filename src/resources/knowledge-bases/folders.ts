@@ -4,7 +4,6 @@ import { APIResource } from '../../resource';
 import { APIPromise } from '../../api-promise';
 import type { RequestOptions } from '../../internal/request-options';
 import { path as __scalarPath } from '../../internal/utils/path';
-import type * as Shared from '../shared';
 
 export class Folders extends APIResource {
   /**
@@ -17,7 +16,7 @@ export class Folders extends APIResource {
    *
    * @example
    * ```ts
-   * const create = await client.knowledgeBases.folders.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const folder = await client.knowledgeBases.folders.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   path: 'x',
    * });
    * ```
@@ -45,7 +44,7 @@ export class Folders extends APIResource {
    *
    * @example
    * ```ts
-   * const delete_ = await client.knowledgeBases.folders.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const folder = await client.knowledgeBases.folders.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   path: 'x',
    *   recursive: false,
    * });

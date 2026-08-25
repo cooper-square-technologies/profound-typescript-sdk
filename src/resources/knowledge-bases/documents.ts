@@ -5,7 +5,6 @@ import { APIPromise } from '../../api-promise';
 import type { RequestOptions } from '../../internal/request-options';
 import { maybeMultipartFormRequestOptions } from '../../internal/uploads';
 import { path as __scalarPath } from '../../internal/utils/path';
-import type * as Shared from '../shared';
 
 export class Documents extends APIResource {
   /**
@@ -14,11 +13,11 @@ export class Documents extends APIResource {
    * @param {string} knowledgeBaseID - Unique knowledge base ID.
    * @param {DocumentCreateParams} params - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Shared.DocumentOperationResponse>} Successful Response
+   * @returns {APIPromise<DocumentCreateResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const operation = await client.knowledgeBases.documents.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const document = await client.knowledgeBases.documents.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   name: 'x',
    *   text: 'x',
    * });
@@ -28,7 +27,7 @@ export class Documents extends APIResource {
     knowledgeBaseID: string,
     params: DocumentCreateParams,
     options?: RequestOptions,
-  ): APIPromise<Shared.DocumentOperationResponse> {
+  ): APIPromise<DocumentCreateResponse> {
     const { organization_id, ...body } = params;
     return this._client.post(
       __scalarPath`/v1/knowledge-bases/${knowledgeBaseID}/documents`,
@@ -42,11 +41,11 @@ export class Documents extends APIResource {
    * @param {string} knowledgeBaseID - Unique knowledge base ID.
    * @param {DocumentUpdateParams} params - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Shared.DocumentOperationResponse>} Successful Response
+   * @returns {APIPromise<DocumentUpdateResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const operation = await client.knowledgeBases.documents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const document = await client.knowledgeBases.documents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   name: 'x',
    *   text: 'x',
    * });
@@ -56,7 +55,7 @@ export class Documents extends APIResource {
     knowledgeBaseID: string,
     params: DocumentUpdateParams,
     options?: RequestOptions,
-  ): APIPromise<Shared.DocumentOperationResponse> {
+  ): APIPromise<DocumentUpdateResponse> {
     const { organization_id, ...body } = params;
     return this._client.put(
       __scalarPath`/v1/knowledge-bases/${knowledgeBaseID}/documents`,
@@ -70,11 +69,11 @@ export class Documents extends APIResource {
    * @param {string} knowledgeBaseID - Unique knowledge base ID.
    * @param {DocumentDeleteParams} params - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Shared.DocumentOperationResponse>} Successful Response
+   * @returns {APIPromise<DocumentDeleteResponse>} Successful Response
    *
    * @example
    * ```ts
-   * const operation = await client.knowledgeBases.documents.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const document = await client.knowledgeBases.documents.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   name: 'x',
    * });
    * ```
@@ -83,7 +82,7 @@ export class Documents extends APIResource {
     knowledgeBaseID: string,
     params: DocumentDeleteParams,
     options?: RequestOptions,
-  ): APIPromise<Shared.DocumentOperationResponse> {
+  ): APIPromise<DocumentDeleteResponse> {
     const { organization_id, ...body } = params;
     return this._client.delete(__scalarPath`/v1/knowledge-bases/${knowledgeBaseID}/documents`, {
       body,
@@ -116,6 +115,25 @@ export interface DocumentCreateParams {
   folder?: string | null;
 }
 
+export interface DocumentCreateResponse {
+  /**
+   * Operation result message.
+   */
+  message: string;
+  /**
+   * Document name.
+   */
+  name: string;
+  /**
+   * Document path.
+   */
+  path: string;
+  /**
+   * Document folder path.
+   */
+  folder?: string | null;
+}
+
 export interface DocumentUpdateParams {
   /**
    * Query param: Organization scope for API keys that can access multiple organizations.
@@ -139,6 +157,25 @@ export interface DocumentUpdateParams {
   folder?: string | null;
 }
 
+export interface DocumentUpdateResponse {
+  /**
+   * Operation result message.
+   */
+  message: string;
+  /**
+   * Document name.
+   */
+  name: string;
+  /**
+   * Document path.
+   */
+  path: string;
+  /**
+   * Document folder path.
+   */
+  folder?: string | null;
+}
+
 export interface DocumentDeleteParams {
   /**
    * Query param: Organization scope for API keys that can access multiple organizations.
@@ -151,8 +188,30 @@ export interface DocumentDeleteParams {
    */
   name: string;
 }
+
+export interface DocumentDeleteResponse {
+  /**
+   * Operation result message.
+   */
+  message: string;
+  /**
+   * Document name.
+   */
+  name: string;
+  /**
+   * Document path.
+   */
+  path: string;
+  /**
+   * Document folder path.
+   */
+  folder?: string | null;
+}
 export declare namespace Documents {
   export {
+    type DocumentCreateResponse as DocumentCreateResponse,
+    type DocumentUpdateResponse as DocumentUpdateResponse,
+    type DocumentDeleteResponse as DocumentDeleteResponse,
     type DocumentCreateParams as DocumentCreateParams,
     type DocumentUpdateParams as DocumentUpdateParams,
     type DocumentDeleteParams as DocumentDeleteParams,

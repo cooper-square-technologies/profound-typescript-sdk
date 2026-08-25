@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { APIPromise } from '../../api-promise';
 import type { RequestOptions } from '../../internal/request-options';
-import type * as Shared from '../shared';
 import * as CategoriesAPI from './categories';
 import {
   Categories,
@@ -40,7 +39,7 @@ export class Organizations extends APIResource {
    *
    * @example
    * ```ts
-   * const regions = await client.organizations.regions();
+   * const organization = await client.organizations.regions();
    * ```
    */
   regions(
@@ -58,7 +57,7 @@ export class Organizations extends APIResource {
    *
    * @example
    * ```ts
-   * const models = await client.organizations.models();
+   * const organization = await client.organizations.models();
    * ```
    */
   models(options?: RequestOptions): APIPromise<OrganizationModelsResponse> {
@@ -74,7 +73,7 @@ export class Organizations extends APIResource {
    *
    * @example
    * ```ts
-   * const domains = await client.organizations.domains();
+   * const organization = await client.organizations.domains();
    * ```
    */
   domains(
@@ -96,7 +95,7 @@ export class Organizations extends APIResource {
    *
    * @example
    * ```ts
-   * const listAssets = await client.organizations.listAssets();
+   * const organization = await client.organizations.listAssets();
    * ```
    */
   listAssets(
@@ -119,7 +118,7 @@ export class Organizations extends APIResource {
    *
    * @example
    * ```ts
-   * const getPersonas = await client.organizations.getPersonas();
+   * const organization = await client.organizations.getPersonas();
    * ```
    */
   getPersonas(
@@ -137,7 +136,7 @@ export class Organizations extends APIResource {
    *
    * @example
    * ```ts
-   * const list = await client.organizations.list();
+   * const organization = await client.organizations.list();
    * ```
    */
   list(options?: RequestOptions): APIPromise<OrganizationListResponse> {
