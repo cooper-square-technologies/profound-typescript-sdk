@@ -160,10 +160,10 @@ export namespace ClaimQueryClaimsResponse {
     claim?: string | null;
     occurrence?: number | null;
     reasoning?: string | null;
-    models?: Array<Data.Model> | null;
+    models?: Array<Data.ClaimModelOccurrence> | null;
     evidence?: Array<Data.Evidence> | null;
     citation_sources?: Array<Data.CitationSource> | null;
-    model?: Data.Model2 | null;
+    model?: Data.Model | null;
     region?: Data.Region | null;
     persona?: Data.Persona | null;
     prompt?: Data.Prompt | null;
@@ -182,7 +182,7 @@ export namespace ClaimQueryClaimsResponse {
   }
 
   export namespace Data {
-    export interface Model {
+    export interface ClaimModelOccurrence {
       id?: string | null;
       name?: string | null;
       /**
@@ -207,7 +207,7 @@ export namespace ClaimQueryClaimsResponse {
       citation_share?: number | null;
     }
 
-    export interface Model2 {
+    export interface Model {
       id?: string | null;
       name?: string | null;
       /**
@@ -386,10 +386,10 @@ export namespace ClaimStreamClaimsResponse {
     claim?: string | null;
     occurrence?: number | null;
     reasoning?: string | null;
-    models?: Array<FactcheckClaimsRow.Model> | null;
+    models?: Array<FactcheckClaimsRow.ClaimModelOccurrence> | null;
     evidence?: Array<FactcheckClaimsRow.Evidence> | null;
     citation_sources?: Array<FactcheckClaimsRow.CitationSource> | null;
-    model?: FactcheckClaimsRow.Model2 | null;
+    model?: FactcheckClaimsRow.Model | null;
     region?: FactcheckClaimsRow.Region | null;
     persona?: FactcheckClaimsRow.Persona | null;
     prompt?: FactcheckClaimsRow.Prompt | null;
@@ -408,7 +408,7 @@ export namespace ClaimStreamClaimsResponse {
   }
 
   export namespace FactcheckClaimsRow {
-    export interface Model {
+    export interface ClaimModelOccurrence {
       id?: string | null;
       name?: string | null;
       /**
@@ -433,7 +433,7 @@ export namespace ClaimStreamClaimsResponse {
       citation_share?: number | null;
     }
 
-    export interface Model2 {
+    export interface Model {
       id?: string | null;
       name?: string | null;
       /**
