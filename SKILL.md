@@ -39,9 +39,9 @@ const client = new Profound({
   environment: 'production',
 });
 
-const regions = await client.organizations.regions();
+const category = await client.organizations.categories.list();
 
-console.log(regions);
+console.log(category);
 ```
 
 Method names, parameter shapes, and response types are generated from the API description — do not guess them. Look up the exact call signature in [api.md](./api.md) before writing a call.
@@ -70,7 +70,7 @@ Non-success responses throw generated API errors. Error objects expose status, h
 import { APIError } from '@profoundai/client';
 
 try {
-  const regions = await client.organizations.regions();
+  const category = await client.organizations.categories.list();
 } catch (err) {
   if (err instanceof APIError) {
     console.log(err.status, err.name, err.headers);

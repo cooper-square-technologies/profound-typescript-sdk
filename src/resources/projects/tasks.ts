@@ -18,7 +18,7 @@ export class Tasks extends APIResource {
    *
    * @example
    * ```ts
-   * const list = await client.projects.tasks.list('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const task = await client.projects.tasks.list('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * });
    * ```
@@ -37,7 +37,7 @@ export class Tasks extends APIResource {
    *
    * @example
    * ```ts
-   * const create = await client.projects.tasks.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const task = await client.projects.tasks.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   title: 'x',
    * });
@@ -66,7 +66,7 @@ export class Tasks extends APIResource {
    *
    * @example
    * ```ts
-   * const retrieve = await client.projects.tasks.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const task = await client.projects.tasks.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * });
@@ -91,7 +91,7 @@ export class Tasks extends APIResource {
    *
    * @example
    * ```ts
-   * const update = await client.projects.tasks.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const task = await client.projects.tasks.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * });
@@ -141,7 +141,7 @@ export class Tasks extends APIResource {
    *
    * @example
    * ```ts
-   * const updateStatus = await client.projects.tasks.updateStatus('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const task = await client.projects.tasks.updateStatus('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   status: 'not_started',
@@ -171,11 +171,56 @@ export interface TaskListParams {
 }
 
 export interface TaskListResponse {
-  data: Array<Shared.ProjectTask>;
+  data: Array<TaskListResponse.Data>;
   /**
    * Offset-based pagination parameters.
    */
   pagination?: Shared.Pagination;
+}
+
+export namespace TaskListResponse {
+  export interface Data {
+    /**
+     * @format uuid
+     */
+    task_id: string;
+    /**
+     * @format uuid
+     */
+    project_id: string;
+    /**
+     * @format uuid
+     */
+    category_id: string;
+    title: string;
+    type?: string | null;
+    summary?: string | null;
+    brief?: string | null;
+    topic?: string | null;
+    /**
+     * @minimum 1
+     * @maximum 5
+     */
+    impact?: number | null;
+    reference_url?: string | null;
+    reference_label?: string | null;
+    /**
+     * @default not_started
+     */
+    status?: 'not_started' | 'in_progress' | 'done' | 'abandoned';
+    /**
+     * @format date-time
+     */
+    status_changed_at?: string | null;
+    /**
+     * @default true
+     */
+    is_new?: boolean;
+    /**
+     * @format date-time
+     */
+    created_at?: string | null;
+  }
 }
 
 export interface TaskCreateParams {
@@ -239,7 +284,52 @@ export interface TaskCreateParams {
 }
 
 export interface TaskCreateResponse {
-  data: Shared.ProjectTask;
+  data: TaskCreateResponse.Data;
+}
+
+export namespace TaskCreateResponse {
+  export interface Data {
+    /**
+     * @format uuid
+     */
+    task_id: string;
+    /**
+     * @format uuid
+     */
+    project_id: string;
+    /**
+     * @format uuid
+     */
+    category_id: string;
+    title: string;
+    type?: string | null;
+    summary?: string | null;
+    brief?: string | null;
+    topic?: string | null;
+    /**
+     * @minimum 1
+     * @maximum 5
+     */
+    impact?: number | null;
+    reference_url?: string | null;
+    reference_label?: string | null;
+    /**
+     * @default not_started
+     */
+    status?: 'not_started' | 'in_progress' | 'done' | 'abandoned';
+    /**
+     * @format date-time
+     */
+    status_changed_at?: string | null;
+    /**
+     * @default true
+     */
+    is_new?: boolean;
+    /**
+     * @format date-time
+     */
+    created_at?: string | null;
+  }
 }
 
 export interface TaskRetrieveParams {
@@ -367,7 +457,52 @@ export interface TaskUpdateParams {
 }
 
 export interface TaskUpdateResponse {
-  data: Shared.ProjectTask;
+  data: TaskUpdateResponse.Data;
+}
+
+export namespace TaskUpdateResponse {
+  export interface Data {
+    /**
+     * @format uuid
+     */
+    task_id: string;
+    /**
+     * @format uuid
+     */
+    project_id: string;
+    /**
+     * @format uuid
+     */
+    category_id: string;
+    title: string;
+    type?: string | null;
+    summary?: string | null;
+    brief?: string | null;
+    topic?: string | null;
+    /**
+     * @minimum 1
+     * @maximum 5
+     */
+    impact?: number | null;
+    reference_url?: string | null;
+    reference_label?: string | null;
+    /**
+     * @default not_started
+     */
+    status?: 'not_started' | 'in_progress' | 'done' | 'abandoned';
+    /**
+     * @format date-time
+     */
+    status_changed_at?: string | null;
+    /**
+     * @default true
+     */
+    is_new?: boolean;
+    /**
+     * @format date-time
+     */
+    created_at?: string | null;
+  }
 }
 
 export interface TaskDeleteParams {

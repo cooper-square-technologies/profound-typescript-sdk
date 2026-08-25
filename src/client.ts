@@ -105,6 +105,8 @@ import {
   Agents,
   type AgentListResponse,
   type AgentRetrieveResponse,
+  type AgentCreateResponse,
+  type AgentPublishResponse,
   type AgentUpdateResponse,
   type AgentRetrieveGraphResponse,
   type AgentListParams,
@@ -1110,6 +1112,8 @@ export declare namespace Profound {
     Agents as Agents,
     type AgentListResponse as AgentListResponse,
     type AgentRetrieveResponse as AgentRetrieveResponse,
+    type AgentCreateResponse as AgentCreateResponse,
+    type AgentPublishResponse as AgentPublishResponse,
     type AgentUpdateResponse as AgentUpdateResponse,
     type AgentRetrieveGraphResponse as AgentRetrieveGraphResponse,
     type AgentListParams as AgentListParams,
@@ -1167,35 +1171,19 @@ export declare namespace Profound {
 
   export { Ads as Ads };
 
-  export type AccuracyTrendPoint = SharedAPI.AccuracyTrendPoint;
-  export type Agent = SharedAPI.Agent;
-  export type AgentVersion = SharedAPI.AgentVersion;
   export type AnalysisTypeFilter = SharedAPI.AnalysisTypeFilter;
   export type AssetIDFilter = SharedAPI.AssetIDFilter;
   export type BotNameFilter = SharedAPI.BotNameFilter;
   export type BotProviderFilter = SharedAPI.BotProviderFilter;
-  export type ClaimModelOccurrence = SharedAPI.ClaimModelOccurrence;
   export type CursorPagination = SharedAPI.CursorPagination;
-  export type DimensionRef = SharedAPI.DimensionRef;
-  export type DocumentOperationResponse = SharedAPI.DocumentOperationResponse;
-  export type FilterNode = SharedAPI.FilterNode;
-  export type HTTPValidationError = SharedAPI.HTTPValidationError;
-  export type LiveGeneration = SharedAPI.LiveGeneration;
   export type ModelIDFilter = SharedAPI.ModelIDFilter;
-  export type NumericMetricFilter = SharedAPI.NumericMetricFilter;
   export type Pagination = SharedAPI.Pagination;
   export type PathFilter = SharedAPI.PathFilter;
   export type PersonaIDFilter = SharedAPI.PersonaIDFilter;
-  export type ProfoundAnswerEngineInsightsFiltersAssetNameFilter =
-    SharedAPI.ProfoundAnswerEngineInsightsFiltersAssetNameFilter;
-  export type ProfoundShoppingAPIAssetNameFilter = SharedAPI.ProfoundShoppingAPIAssetNameFilter;
-  export type ProjectGenerationContextItem = SharedAPI.ProjectGenerationContextItem;
-  export type ProjectTask = SharedAPI.ProjectTask;
   export type PromptFilter = SharedAPI.PromptFilter;
   export type PromptTypeFilter = SharedAPI.PromptTypeFilter;
   export type RegionIDFilter = SharedAPI.RegionIDFilter;
   export type RegionNameFilter = SharedAPI.RegionNameFilter;
-  export type ShoppingRowsResponse = SharedAPI.ShoppingRowsResponse;
   export type TagIDFilter = SharedAPI.TagIDFilter;
   export type TopicIDFilter = SharedAPI.TopicIDFilter;
 }

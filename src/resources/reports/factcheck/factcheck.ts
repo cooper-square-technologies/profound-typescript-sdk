@@ -5,7 +5,6 @@ import { APIPromise } from '../../../api-promise';
 import { Stream } from '../../../core/streaming';
 import type { RequestOptions } from '../../../internal/request-options';
 import { buildHeaders } from '../../../internal/headers';
-import type * as Shared from '../../shared';
 import * as ClaimsAPI from './claims';
 import {
   Claims,
@@ -27,7 +26,7 @@ export class Factcheck extends APIResource {
    *
    * @example
    * ```ts
-   * const queryScores = await client.reports.factcheck.queryScores({
+   * const factcheck = await client.reports.factcheck.queryScores({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -97,7 +96,7 @@ export interface FactcheckQueryScoresParams {
   /**
    * Scope which responses count (see Filtering).
    */
-  filter?: Shared.FilterNode | null;
+  filter?: FactcheckQueryScoresParams.Filter | null;
   /**
    * Rows per page; default 100.
    * @maximum 100
@@ -108,6 +107,17 @@ export interface FactcheckQueryScoresParams {
    */
   max_results?: number | null;
   cursor?: string | null;
+}
+
+export namespace FactcheckQueryScoresParams {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
 }
 
 export interface FactcheckQueryScoresResponse {
@@ -154,13 +164,13 @@ export namespace FactcheckQueryScoresResponse {
 
   export interface Data {
     date?: string | null;
-    model?: Shared.DimensionRef | null;
-    region?: Shared.DimensionRef | null;
-    persona?: Shared.DimensionRef | null;
-    prompt?: Shared.DimensionRef | null;
-    topic?: Shared.DimensionRef | null;
-    tag?: Shared.DimensionRef | null;
-    theme?: Shared.DimensionRef | null;
+    model?: Data.Model | null;
+    region?: Data.Region | null;
+    persona?: Data.Persona | null;
+    prompt?: Data.Prompt | null;
+    topic?: Data.Topic | null;
+    tag?: Data.Tag | null;
+    theme?: Data.Theme | null;
     citation?: Data.Citation | null;
     accuracy?: number | null;
     accurate?: number | null;
@@ -169,6 +179,41 @@ export namespace FactcheckQueryScoresResponse {
   }
 
   export namespace Data {
+    export interface Model {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Region {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Persona {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Prompt {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Topic {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Tag {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Theme {
+      id?: string | null;
+      name?: string | null;
+    }
+
     export interface Citation {
       url?: string | null;
       citation_category?: string | null;
@@ -199,7 +244,7 @@ export interface FactcheckStreamScoresParams {
   /**
    * Scope which responses count (see Filtering).
    */
-  filter?: Shared.FilterNode | null;
+  filter?: FactcheckStreamScoresParams.Filter | null;
   /**
    * Rows per page; default 100.
    * @maximum 100
@@ -210,6 +255,17 @@ export interface FactcheckStreamScoresParams {
    */
   max_results?: number | null;
   cursor?: string | null;
+}
+
+export namespace FactcheckStreamScoresParams {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
 }
 
 export type FactcheckStreamScoresResponse =
@@ -255,13 +311,13 @@ export namespace FactcheckStreamScoresResponse {
 
   export interface FactcheckScoreRow {
     date?: string | null;
-    model?: Shared.DimensionRef | null;
-    region?: Shared.DimensionRef | null;
-    persona?: Shared.DimensionRef | null;
-    prompt?: Shared.DimensionRef | null;
-    topic?: Shared.DimensionRef | null;
-    tag?: Shared.DimensionRef | null;
-    theme?: Shared.DimensionRef | null;
+    model?: FactcheckScoreRow.Model | null;
+    region?: FactcheckScoreRow.Region | null;
+    persona?: FactcheckScoreRow.Persona | null;
+    prompt?: FactcheckScoreRow.Prompt | null;
+    topic?: FactcheckScoreRow.Topic | null;
+    tag?: FactcheckScoreRow.Tag | null;
+    theme?: FactcheckScoreRow.Theme | null;
     citation?: FactcheckScoreRow.Citation | null;
     accuracy?: number | null;
     accurate?: number | null;
@@ -270,6 +326,41 @@ export namespace FactcheckStreamScoresResponse {
   }
 
   export namespace FactcheckScoreRow {
+    export interface Model {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Region {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Persona {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Prompt {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Topic {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Tag {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Theme {
+      id?: string | null;
+      name?: string | null;
+    }
+
     export interface Citation {
       url?: string | null;
       citation_category?: string | null;

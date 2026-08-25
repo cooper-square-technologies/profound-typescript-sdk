@@ -43,7 +43,7 @@ export class Projects extends APIResource {
    *
    * @example
    * ```ts
-   * const list = await client.projects.list({
+   * const project = await client.projects.list({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   limit: 100,
    *   offset: 0,
@@ -63,7 +63,7 @@ export class Projects extends APIResource {
    *
    * @example
    * ```ts
-   * const create = await client.projects.create({
+   * const project = await client.projects.create({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * });
    * ```
@@ -82,7 +82,7 @@ export class Projects extends APIResource {
    *
    * @example
    * ```ts
-   * const retrieve = await client.projects.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const project = await client.projects.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * });
    * ```
@@ -129,7 +129,7 @@ export class Projects extends APIResource {
    *
    * @example
    * ```ts
-   * const getStatus = await client.projects.getStatus('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const project = await client.projects.getStatus('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * });
    * ```
@@ -152,7 +152,7 @@ export class Projects extends APIResource {
    *
    * @example
    * ```ts
-   * const archive = await client.projects.archive('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const project = await client.projects.archive('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * });
    * ```
@@ -180,7 +180,7 @@ export class Projects extends APIResource {
    *
    * @example
    * ```ts
-   * const unarchive = await client.projects.unarchive('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const project = await client.projects.unarchive('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * });
    * ```
@@ -267,7 +267,26 @@ export namespace ProjectListResponse {
      */
     retired_at?: string | null;
     retired_reason?: string | null;
-    live_generation?: Shared.LiveGeneration | null;
+    live_generation?: Data.LiveGeneration | null;
+  }
+
+  export namespace Data {
+    export interface LiveGeneration {
+      /**
+       * @format uuid
+       */
+      run_id: string;
+      status: 'queued' | 'running' | 'completed' | 'failed';
+      /**
+       * @format date-time
+       */
+      started_at?: string | null;
+      /**
+       * @format date-time
+       */
+      finished_at?: string | null;
+      error?: string | null;
+    }
   }
 }
 
@@ -333,7 +352,7 @@ export namespace ProjectCreateParams {
     /**
      * @maxItems 20
      */
-    platforms?: Array<Shared.ProjectGenerationContextItem>;
+    platforms?: Array<GenerationContext.Platform>;
     /**
      * @maxItems 5
      */
@@ -341,11 +360,11 @@ export namespace ProjectCreateParams {
     /**
      * @maxItems 50
      */
-    regions?: Array<Shared.ProjectGenerationContextItem>;
+    regions?: Array<GenerationContext.Region>;
     /**
      * @maxItems 100
      */
-    tags?: Array<Shared.ProjectGenerationContextItem>;
+    tags?: Array<GenerationContext.Tag>;
   }
 
   export namespace GenerationContext {
@@ -369,6 +388,57 @@ export namespace ProjectCreateParams {
        * @maxLength 40
        */
       startDate?: string | null;
+    }
+
+    export interface Platform {
+      /**
+       * @minLength 1
+       * @maxLength 200
+       */
+      id: string;
+      /**
+       * @minLength 1
+       * @maxLength 200
+       */
+      name: string;
+      /**
+       * @maxLength 200
+       */
+      slug?: string | null;
+    }
+
+    export interface Region {
+      /**
+       * @minLength 1
+       * @maxLength 200
+       */
+      id: string;
+      /**
+       * @minLength 1
+       * @maxLength 200
+       */
+      name: string;
+      /**
+       * @maxLength 200
+       */
+      slug?: string | null;
+    }
+
+    export interface Tag {
+      /**
+       * @minLength 1
+       * @maxLength 200
+       */
+      id: string;
+      /**
+       * @minLength 1
+       * @maxLength 200
+       */
+      name: string;
+      /**
+       * @maxLength 200
+       */
+      slug?: string | null;
     }
   }
 }
@@ -468,8 +538,70 @@ export namespace ProjectRetrieveResponse {
      * @format date-time
      */
     updated_at?: string | null;
-    live_generation?: Shared.LiveGeneration | null;
-    tasks?: Array<Shared.ProjectTask>;
+    live_generation?: Data.LiveGeneration | null;
+    tasks?: Array<Data.Task>;
+  }
+
+  export namespace Data {
+    export interface LiveGeneration {
+      /**
+       * @format uuid
+       */
+      run_id: string;
+      status: 'queued' | 'running' | 'completed' | 'failed';
+      /**
+       * @format date-time
+       */
+      started_at?: string | null;
+      /**
+       * @format date-time
+       */
+      finished_at?: string | null;
+      error?: string | null;
+    }
+
+    export interface Task {
+      /**
+       * @format uuid
+       */
+      task_id: string;
+      /**
+       * @format uuid
+       */
+      project_id: string;
+      /**
+       * @format uuid
+       */
+      category_id: string;
+      title: string;
+      type?: string | null;
+      summary?: string | null;
+      brief?: string | null;
+      topic?: string | null;
+      /**
+       * @minimum 1
+       * @maximum 5
+       */
+      impact?: number | null;
+      reference_url?: string | null;
+      reference_label?: string | null;
+      /**
+       * @default not_started
+       */
+      status?: 'not_started' | 'in_progress' | 'done' | 'abandoned';
+      /**
+       * @format date-time
+       */
+      status_changed_at?: string | null;
+      /**
+       * @default true
+       */
+      is_new?: boolean;
+      /**
+       * @format date-time
+       */
+      created_at?: string | null;
+    }
   }
 }
 
@@ -504,11 +636,30 @@ export namespace ProjectGetStatusResponse {
      */
     category_id: string;
     status: 'suggested' | 'tracked' | 'retired';
-    live_generation?: Shared.LiveGeneration | null;
+    live_generation?: Data.LiveGeneration | null;
     /**
      * @format date-time
      */
     updated_at?: string | null;
+  }
+
+  export namespace Data {
+    export interface LiveGeneration {
+      /**
+       * @format uuid
+       */
+      run_id: string;
+      status: 'queued' | 'running' | 'completed' | 'failed';
+      /**
+       * @format date-time
+       */
+      started_at?: string | null;
+      /**
+       * @format date-time
+       */
+      finished_at?: string | null;
+      error?: string | null;
+    }
   }
 }
 
@@ -592,7 +743,26 @@ export namespace ProjectArchiveResponse {
      * @format date-time
      */
     updated_at?: string | null;
-    live_generation?: Shared.LiveGeneration | null;
+    live_generation?: Data.LiveGeneration | null;
+  }
+
+  export namespace Data {
+    export interface LiveGeneration {
+      /**
+       * @format uuid
+       */
+      run_id: string;
+      status: 'queued' | 'running' | 'completed' | 'failed';
+      /**
+       * @format date-time
+       */
+      started_at?: string | null;
+      /**
+       * @format date-time
+       */
+      finished_at?: string | null;
+      error?: string | null;
+    }
   }
 }
 
@@ -670,7 +840,26 @@ export namespace ProjectUnarchiveResponse {
      * @format date-time
      */
     updated_at?: string | null;
-    live_generation?: Shared.LiveGeneration | null;
+    live_generation?: Data.LiveGeneration | null;
+  }
+
+  export namespace Data {
+    export interface LiveGeneration {
+      /**
+       * @format uuid
+       */
+      run_id: string;
+      status: 'queued' | 'running' | 'completed' | 'failed';
+      /**
+       * @format date-time
+       */
+      started_at?: string | null;
+      /**
+       * @format date-time
+       */
+      finished_at?: string | null;
+      error?: string | null;
+    }
   }
 }
 Projects.Generations = Generations;

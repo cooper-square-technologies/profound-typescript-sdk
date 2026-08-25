@@ -41,9 +41,9 @@ const client = new Profound({
   environment: 'production',
 });
 
-const regions = await client.organizations.regions();
+const category = await client.organizations.categories.list();
 
-console.log(regions);
+console.log(category);
 ```
 
 The examples in the following sections assume a `client` configured as shown above.
@@ -94,7 +94,7 @@ Non-success responses throw generated API errors. Error objects expose status, h
 import { APIError } from '@profoundai/client';
 
 try {
-  const regions = await client.organizations.regions();
+  const category = await client.organizations.categories.list();
 } catch (err) {
   if (err instanceof APIError) {
     console.log(err.status, err.name, err.headers);

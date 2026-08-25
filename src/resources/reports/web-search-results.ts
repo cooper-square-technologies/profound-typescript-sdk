@@ -18,7 +18,7 @@ export class WebSearchResults extends APIResource {
    *
    * @example
    * ```ts
-   * const query = await client.reports.webSearchResults.query({
+   * const webSearchResult = await client.reports.webSearchResults.query({
    *   date_interval: 'day',
    *   dimensions: [],
    *   metrics: [],

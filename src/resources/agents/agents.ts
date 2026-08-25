@@ -33,7 +33,7 @@ export class Agents extends APIResource {
    *
    * @example
    * ```ts
-   * const list = await client.agents.list({
+   * const agent = await client.agents.list({
    *   limit: 100,
    * });
    * ```
@@ -58,7 +58,7 @@ export class Agents extends APIResource {
    *
    * @example
    * ```ts
-   * const retrieve = await client.agents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+   * const agent = await client.agents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7');
    * ```
    */
   retrieve(
@@ -78,7 +78,7 @@ export class Agents extends APIResource {
    *
    * @param {AgentCreateParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Shared.Agent>} Successful Response
+   * @returns {APIPromise<AgentCreateResponse>} Successful Response
    *
    * @example
    * ```ts
@@ -88,7 +88,7 @@ export class Agents extends APIResource {
    * });
    * ```
    */
-  create(body: AgentCreateParams, options?: RequestOptions): APIPromise<Shared.Agent> {
+  create(body: AgentCreateParams, options?: RequestOptions): APIPromise<AgentCreateResponse> {
     return this._client.post('/v1/agents', { body, ...options });
   }
 
@@ -101,14 +101,14 @@ export class Agents extends APIResource {
    *
    * @param {string} agentID - The ID of the agent to publish.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
-   * @returns {APIPromise<Shared.Agent>} Successful Response
+   * @returns {APIPromise<AgentPublishResponse>} Successful Response
    *
    * @example
    * ```ts
    * const agent = await client.agents.publish('7c9e6679-7425-40de-944b-e07fc1f90ae7');
    * ```
    */
-  publish(agentID: string, options?: RequestOptions): APIPromise<Shared.Agent> {
+  publish(agentID: string, options?: RequestOptions): APIPromise<AgentPublishResponse> {
     return this._client.post(__scalarPath`/v1/agents/${agentID}/publish`, options);
   }
 
@@ -127,7 +127,7 @@ export class Agents extends APIResource {
    *
    * @example
    * ```ts
-   * const update = await client.agents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const agent = await client.agents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   graph: {},
    * });
    * ```
@@ -156,7 +156,7 @@ export class Agents extends APIResource {
    *
    * @example
    * ```ts
-   * const retrieveGraph = await client.agents.retrieveGraph('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+   * const agent = await client.agents.retrieveGraph('7c9e6679-7425-40de-944b-e07fc1f90ae7');
    * ```
    */
   retrieveGraph(
@@ -185,18 +185,50 @@ export interface AgentListResponse {
   /**
    * Agents returned for this page.
    */
-  data: Array<Shared.Agent>;
+  data: Array<AgentListResponse.Data>;
   /**
    * Cursor pagination details for this response.
    */
   pagination?: Shared.CursorPagination;
 }
 
+export namespace AgentListResponse {
+  export interface Data {
+    /**
+     * Unique ID for the agent.
+     * @format uuid
+     */
+    id: string;
+    /**
+     * Unique ID of the organization that owns the agent.
+     * @format uuid
+     */
+    organization_id: string;
+    /**
+     * Display name of the agent.
+     */
+    name: string;
+    /**
+     * Current status of the agent.
+     */
+    status: 'draft' | 'published' | 'unknown';
+    /**
+     * When the agent was created.
+     * @format date-time
+     */
+    created_at: string;
+    /**
+     * Short description of the agent, if provided.
+     */
+    description?: string | null;
+  }
+}
+
 export interface AgentRetrieveParams {
   /**
    * Version of the agent to retrieve. Use `published` for the live version, or `draft` for the latest unpublished changes for the same agent. Defaults to `published`.
    */
-  version?: Shared.AgentVersion;
+  version?: 'published' | 'draft';
 }
 
 export interface AgentRetrieveResponse {
@@ -315,6 +347,66 @@ export interface AgentCreateParams {
   graph?: Record<string, unknown> | null;
 }
 
+export interface AgentCreateResponse {
+  /**
+   * Unique ID for the agent.
+   * @format uuid
+   */
+  id: string;
+  /**
+   * Unique ID of the organization that owns the agent.
+   * @format uuid
+   */
+  organization_id: string;
+  /**
+   * Display name of the agent.
+   */
+  name: string;
+  /**
+   * Current status of the agent.
+   */
+  status: 'draft' | 'published' | 'unknown';
+  /**
+   * When the agent was created.
+   * @format date-time
+   */
+  created_at: string;
+  /**
+   * Short description of the agent, if provided.
+   */
+  description?: string | null;
+}
+
+export interface AgentPublishResponse {
+  /**
+   * Unique ID for the agent.
+   * @format uuid
+   */
+  id: string;
+  /**
+   * Unique ID of the organization that owns the agent.
+   * @format uuid
+   */
+  organization_id: string;
+  /**
+   * Display name of the agent.
+   */
+  name: string;
+  /**
+   * Current status of the agent.
+   */
+  status: 'draft' | 'published' | 'unknown';
+  /**
+   * When the agent was created.
+   * @format date-time
+   */
+  created_at: string;
+  /**
+   * Short description of the agent, if provided.
+   */
+  description?: string | null;
+}
+
 export interface AgentUpdateParams {
   /**
    * New workflow graph for the agent's draft version. Replaces the current draft graph; the agent is iterated in place rather than re-created, so its ID is stable. Required — a null graph is rejected as a 422 here rather than as a relayed upstream error.
@@ -421,7 +513,7 @@ export interface AgentRetrieveGraphParams {
   /**
    * Version of the agent whose graph to retrieve. Use `published` for the live version, or `draft` for the latest unpublished changes. Defaults to `published`.
    */
-  version?: Shared.AgentVersion;
+  version?: 'published' | 'draft';
 }
 
 export interface AgentRetrieveGraphResponse {
@@ -433,7 +525,7 @@ export interface AgentRetrieveGraphResponse {
   /**
    * Which version of the agent this graph is — `published` or `draft`.
    */
-  version: Shared.AgentVersion;
+  version: 'published' | 'draft';
   /**
    * Workflow graph (`{nodes, edges}`) in the canonical dialect — the same shape `create` and `update` accept. Treat it as an opaque object: it is returned verbatim, so tool-backed nodes appear in their lowered `tool` form rather than the friendly v1 node types. Read it back to copy and edit a known-good agent.
    */
@@ -446,6 +538,8 @@ export declare namespace Agents {
   export {
     type AgentListResponse as AgentListResponse,
     type AgentRetrieveResponse as AgentRetrieveResponse,
+    type AgentCreateResponse as AgentCreateResponse,
+    type AgentPublishResponse as AgentPublishResponse,
     type AgentUpdateResponse as AgentUpdateResponse,
     type AgentRetrieveGraphResponse as AgentRetrieveGraphResponse,
     type AgentListParams as AgentListParams,

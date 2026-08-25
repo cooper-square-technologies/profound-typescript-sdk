@@ -4,7 +4,6 @@ import { APIResource } from '../../resource';
 import { APIPromise } from '../../api-promise';
 import type { RequestOptions } from '../../internal/request-options';
 import { path as __scalarPath } from '../../internal/utils/path';
-import type * as Shared from '../shared';
 
 export class Runs extends APIResource {
   /**
@@ -21,7 +20,7 @@ export class Runs extends APIResource {
    *
    * @example
    * ```ts
-   * const create = await client.agents.runs.create('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+   * const run = await client.agents.runs.create('7c9e6679-7425-40de-944b-e07fc1f90ae7');
    * ```
    */
   create(
@@ -42,7 +41,7 @@ export class Runs extends APIResource {
    *
    * @example
    * ```ts
-   * const retrieve = await client.agents.runs.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const run = await client.agents.runs.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   agent_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   verbose: false,
    * });

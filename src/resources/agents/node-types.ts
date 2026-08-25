@@ -4,7 +4,6 @@ import { APIResource } from '../../resource';
 import { APIPromise } from '../../api-promise';
 import type { RequestOptions } from '../../internal/request-options';
 import { path as __scalarPath } from '../../internal/utils/path';
-import type * as Shared from '../shared';
 
 export class NodeTypes extends APIResource {
   /**
@@ -19,7 +18,7 @@ export class NodeTypes extends APIResource {
    *
    * @example
    * ```ts
-   * const list = await client.agents.nodeTypes.list();
+   * const nodeType = await client.agents.nodeTypes.list();
    * ```
    */
   list(options?: RequestOptions): APIPromise<NodeTypeListResponse> {
@@ -38,7 +37,7 @@ export class NodeTypes extends APIResource {
    *
    * @example
    * ```ts
-   * const retrieveSchema = await client.agents.nodeTypes.retrieveSchema('nodeType');
+   * const nodeType = await client.agents.nodeTypes.retrieveSchema('nodeType');
    * ```
    */
   retrieveSchema(nodeType: string, options?: RequestOptions): APIPromise<NodeTypeRetrieveSchemaResponse> {

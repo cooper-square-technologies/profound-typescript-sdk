@@ -5,7 +5,6 @@ import { APIPromise } from '../../../api-promise';
 import { Stream } from '../../../core/streaming';
 import type { RequestOptions } from '../../../internal/request-options';
 import { buildHeaders } from '../../../internal/headers';
-import type * as Shared from '../../shared';
 
 export class Claims extends APIResource {
   /**
@@ -17,7 +16,7 @@ export class Claims extends APIResource {
    *
    * @example
    * ```ts
-   * const queryClaims = await client.reports.factcheck.claims.queryClaims({
+   * const claim = await client.reports.factcheck.claims.queryClaims({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -82,7 +81,7 @@ export interface ClaimQueryClaimsParams {
   /**
    * Scope which responses count (see Filtering).
    */
-  filter?: Shared.FilterNode | null;
+  filter?: ClaimQueryClaimsParams.Filter | null;
   /**
    * Optional per-claim detail fields to add to each claim (see options).
    */
@@ -97,6 +96,17 @@ export interface ClaimQueryClaimsParams {
    */
   max_results?: number | null;
   cursor?: string | null;
+}
+
+export namespace ClaimQueryClaimsParams {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
 }
 
 export interface ClaimQueryClaimsResponse {
@@ -150,19 +160,19 @@ export namespace ClaimQueryClaimsResponse {
     claim?: string | null;
     occurrence?: number | null;
     reasoning?: string | null;
-    models?: Array<Shared.ClaimModelOccurrence> | null;
+    models?: Array<Data.Model> | null;
     evidence?: Array<Data.Evidence> | null;
     citation_sources?: Array<Data.CitationSource> | null;
-    model?: Shared.ClaimModelOccurrence | null;
-    region?: Shared.DimensionRef | null;
-    persona?: Shared.DimensionRef | null;
-    prompt?: Shared.DimensionRef | null;
-    topic?: Shared.DimensionRef | null;
-    tag?: Shared.DimensionRef | null;
+    model?: Data.Model2 | null;
+    region?: Data.Region | null;
+    persona?: Data.Persona | null;
+    prompt?: Data.Prompt | null;
+    topic?: Data.Topic | null;
+    tag?: Data.Tag | null;
     /**
      * Claim theme (string), or an `{id, name}` ref when sectioning by `theme`.
      */
-    theme?: string | Shared.DimensionRef | null;
+    theme?: string | Data.DimensionRef | null;
     accuracy?: number | null;
     accurate?: number | null;
     inaccurate?: number | null;
@@ -172,6 +182,15 @@ export namespace ClaimQueryClaimsResponse {
   }
 
   export namespace Data {
+    export interface Model {
+      id?: string | null;
+      name?: string | null;
+      /**
+       * Only populated for entries in `models`; omitted from grouped-section `model`.
+       */
+      occurrence?: number | null;
+    }
+
     export interface Evidence {
       id?: string | null;
       kb_path?: string | null;
@@ -188,19 +207,67 @@ export namespace ClaimQueryClaimsResponse {
       citation_share?: number | null;
     }
 
+    export interface Model2 {
+      id?: string | null;
+      name?: string | null;
+      /**
+       * Only populated for entries in `models`; omitted from grouped-section `model`.
+       */
+      occurrence?: number | null;
+    }
+
+    export interface Region {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Persona {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Prompt {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Topic {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Tag {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface DimensionRef {
+      id?: string | null;
+      name?: string | null;
+    }
+
     export interface Claim {
       cluster_id?: string | null;
       claim?: string | null;
       occurrence?: number | null;
       theme?: string | null;
       reasoning?: string | null;
-      models?: Array<Shared.ClaimModelOccurrence> | null;
+      models?: Array<Claim.Model> | null;
       evidence?: Array<Claim.Evidence> | null;
       citation_sources?: Array<Claim.CitationSource> | null;
       [k: string]: unknown;
     }
 
     export namespace Claim {
+      export interface Model {
+        id?: string | null;
+        name?: string | null;
+        /**
+         * Only populated for entries in `models`; omitted from grouped-section `model`.
+         */
+        occurrence?: number | null;
+      }
+
       export interface Evidence {
         id?: string | null;
         kb_path?: string | null;
@@ -241,7 +308,7 @@ export interface ClaimStreamClaimsParams {
   /**
    * Scope which responses count (see Filtering).
    */
-  filter?: Shared.FilterNode | null;
+  filter?: ClaimStreamClaimsParams.Filter | null;
   /**
    * Optional per-claim detail fields to add to each claim (see options).
    */
@@ -256,6 +323,17 @@ export interface ClaimStreamClaimsParams {
    */
   max_results?: number | null;
   cursor?: string | null;
+}
+
+export namespace ClaimStreamClaimsParams {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
 }
 
 export type ClaimStreamClaimsResponse =
@@ -308,19 +386,19 @@ export namespace ClaimStreamClaimsResponse {
     claim?: string | null;
     occurrence?: number | null;
     reasoning?: string | null;
-    models?: Array<Shared.ClaimModelOccurrence> | null;
+    models?: Array<FactcheckClaimsRow.Model> | null;
     evidence?: Array<FactcheckClaimsRow.Evidence> | null;
     citation_sources?: Array<FactcheckClaimsRow.CitationSource> | null;
-    model?: Shared.ClaimModelOccurrence | null;
-    region?: Shared.DimensionRef | null;
-    persona?: Shared.DimensionRef | null;
-    prompt?: Shared.DimensionRef | null;
-    topic?: Shared.DimensionRef | null;
-    tag?: Shared.DimensionRef | null;
+    model?: FactcheckClaimsRow.Model2 | null;
+    region?: FactcheckClaimsRow.Region | null;
+    persona?: FactcheckClaimsRow.Persona | null;
+    prompt?: FactcheckClaimsRow.Prompt | null;
+    topic?: FactcheckClaimsRow.Topic | null;
+    tag?: FactcheckClaimsRow.Tag | null;
     /**
      * Claim theme (string), or an `{id, name}` ref when sectioning by `theme`.
      */
-    theme?: string | Shared.DimensionRef | null;
+    theme?: string | FactcheckClaimsRow.DimensionRef | null;
     accuracy?: number | null;
     accurate?: number | null;
     inaccurate?: number | null;
@@ -330,6 +408,15 @@ export namespace ClaimStreamClaimsResponse {
   }
 
   export namespace FactcheckClaimsRow {
+    export interface Model {
+      id?: string | null;
+      name?: string | null;
+      /**
+       * Only populated for entries in `models`; omitted from grouped-section `model`.
+       */
+      occurrence?: number | null;
+    }
+
     export interface Evidence {
       id?: string | null;
       kb_path?: string | null;
@@ -346,19 +433,67 @@ export namespace ClaimStreamClaimsResponse {
       citation_share?: number | null;
     }
 
+    export interface Model2 {
+      id?: string | null;
+      name?: string | null;
+      /**
+       * Only populated for entries in `models`; omitted from grouped-section `model`.
+       */
+      occurrence?: number | null;
+    }
+
+    export interface Region {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Persona {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Prompt {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Topic {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Tag {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface DimensionRef {
+      id?: string | null;
+      name?: string | null;
+    }
+
     export interface Claim {
       cluster_id?: string | null;
       claim?: string | null;
       occurrence?: number | null;
       theme?: string | null;
       reasoning?: string | null;
-      models?: Array<Shared.ClaimModelOccurrence> | null;
+      models?: Array<Claim.Model> | null;
       evidence?: Array<Claim.Evidence> | null;
       citation_sources?: Array<Claim.CitationSource> | null;
       [k: string]: unknown;
     }
 
     export namespace Claim {
+      export interface Model {
+        id?: string | null;
+        name?: string | null;
+        /**
+         * Only populated for entries in `models`; omitted from grouped-section `model`.
+         */
+        occurrence?: number | null;
+      }
+
       export interface Evidence {
         id?: string | null;
         kb_path?: string | null;

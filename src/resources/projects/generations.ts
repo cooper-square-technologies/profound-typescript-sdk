@@ -16,7 +16,7 @@ export class Generations extends APIResource {
    *
    * @example
    * ```ts
-   * const list = await client.projects.generations.list({
+   * const generation = await client.projects.generations.list({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   limit: 100,
    *   offset: 0,
@@ -37,7 +37,7 @@ export class Generations extends APIResource {
    *
    * @example
    * ```ts
-   * const retrieve = await client.projects.generations.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const generation = await client.projects.generations.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * });
    * ```

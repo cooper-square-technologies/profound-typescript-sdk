@@ -167,7 +167,7 @@ Get the organization regions.
 | Response | [`OrganizationRegionsResponse`](./src/resources/organizations/organizations.ts) |
 
 ```ts
-const regions = await client.organizations.regions();
+const organization = await client.organizations.regions();
 ```
 
 ### Get Models
@@ -179,7 +179,7 @@ Get the organization models.
 | Response | [`OrganizationModelsResponse`](./src/resources/organizations/organizations.ts) |
 
 ```ts
-const models = await client.organizations.models();
+const organization = await client.organizations.models();
 ```
 
 ### Get Domains
@@ -192,7 +192,7 @@ Get the organization domains.
 | Response | [`OrganizationDomainsResponse`](./src/resources/organizations/organizations.ts) |
 
 ```ts
-const domains = await client.organizations.domains();
+const organization = await client.organizations.domains();
 ```
 
 ### Get Assets
@@ -208,7 +208,7 @@ emitted per owning org so no association is silently dropped.
 | Response | [`OrganizationListAssetsResponse`](./src/resources/organizations/organizations.ts) |
 
 ```ts
-const listAssets = await client.organizations.listAssets();
+const organization = await client.organizations.listAssets();
 ```
 
 ### Get Personas
@@ -225,7 +225,7 @@ association is silently dropped.
 | Response | [`OrganizationGetPersonasResponse`](./src/resources/organizations/organizations.ts) |
 
 ```ts
-const getPersonas = await client.organizations.getPersonas();
+const organization = await client.organizations.getPersonas();
 ```
 
 ### List organizations
@@ -237,7 +237,7 @@ Return every organization the caller's API key grants access to. Use this to dis
 | Response | [`OrganizationListResponse`](./src/resources/organizations/organizations.ts) |
 
 ```ts
-const list = await client.organizations.list();
+const organization = await client.organizations.list();
 ```
 
 ### `Organizations Categories`
@@ -252,7 +252,7 @@ Get the organization categories, one row per (category, organization) pair.
 | Response | [`CategoryListResponse`](./src/resources/organizations/categories.ts) |
 
 ```ts
-const list = await client.organizations.categories.list();
+const category = await client.organizations.categories.list();
 ```
 
 #### Get Category Topics
@@ -264,7 +264,7 @@ Get the topics for a specific category.
 | Response | [`CategoryTopicsResponse`](./src/resources/organizations/categories.ts) |
 
 ```ts
-const topics = await client.organizations.categories.topics('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+const category = await client.organizations.categories.topics('7c9e6679-7425-40de-944b-e07fc1f90ae7');
 ```
 
 #### Get Category Tags
@@ -276,7 +276,7 @@ Get the tags for a specific category.
 | Response | [`CategoryTagsResponse`](./src/resources/organizations/categories.ts) |
 
 ```ts
-const tags = await client.organizations.categories.tags('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+const category = await client.organizations.categories.tags('7c9e6679-7425-40de-944b-e07fc1f90ae7');
 ```
 
 #### List prompts
@@ -289,7 +289,7 @@ Retrieve prompts in a category with optional filtering by type, topic, tag, regi
 | Response | [`CategoryPromptsResponse`](./src/resources/organizations/categories.ts) |
 
 ```ts
-const prompts = await client.organizations.categories.prompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const category = await client.organizations.categories.prompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   limit: 10000,
   status: ['active'],
 });
@@ -302,7 +302,7 @@ const prompts = await client.organizations.categories.prompts('7c9e6679-7425-40d
 | Response | [`CategoryAssetsResponse`](./src/resources/organizations/categories.ts) |
 
 ```ts
-const assets = await client.organizations.categories.assets('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+const category = await client.organizations.categories.assets('7c9e6679-7425-40de-944b-e07fc1f90ae7');
 ```
 
 #### Get Category Personas
@@ -312,7 +312,7 @@ const assets = await client.organizations.categories.assets('7c9e6679-7425-40de-
 | Response | [`CategoryGetCategoryPersonasResponse`](./src/resources/organizations/categories.ts) |
 
 ```ts
-const getCategoryPersonas = await client.organizations.categories.getCategoryPersonas(
+const category = await client.organizations.categories.getCategoryPersonas(
   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
 );
 ```
@@ -327,13 +327,10 @@ Create one or more prompts in a category. Topics and tags are auto-created if re
 | Response | [`CategoryCreatePromptsResponse`](./src/resources/organizations/categories.ts) |
 
 ```ts
-const createPrompts = await client.organizations.categories.createPrompts(
-  '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-  {
-    prompts: [],
-    dry_run: false,
-  },
-);
+const category = await client.organizations.categories.createPrompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+  prompts: [],
+  dry_run: false,
+});
 ```
 
 #### Update prompts
@@ -346,13 +343,10 @@ Update one or more existing prompts. Only provided fields are changed. Dimension
 | Response | [`CategoryUpdatePromptsResponse`](./src/resources/organizations/categories.ts) |
 
 ```ts
-const updatePrompts = await client.organizations.categories.updatePrompts(
-  '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-  {
-    prompts: [],
-    dry_run: false,
-  },
-);
+const category = await client.organizations.categories.updatePrompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+  prompts: [],
+  dry_run: false,
+});
 ```
 
 #### Update prompt status
@@ -370,7 +364,7 @@ Status options:
 | Response | [`CategoryUpdatePromptStatusResponse`](./src/resources/organizations/categories.ts) |
 
 ```ts
-const updatePromptStatus = await client.organizations.categories.updatePromptStatus(
+const category = await client.organizations.categories.updatePromptStatus(
   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   {
     prompt_ids: [],
@@ -389,7 +383,7 @@ Get the regions for a specific category.
 | Response | [`CategoryRetrieveRegionsResponse`](./src/resources/organizations/categories.ts) |
 
 ```ts
-const retrieveRegions = await client.organizations.categories.retrieveRegions(
+const category = await client.organizations.categories.retrieveRegions(
   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
 );
 ```
@@ -403,7 +397,7 @@ Get the citation categories for a category: the built-in buckets plus any custom
 | Response | [`CategoryGetCitationCategoriesResponse`](./src/resources/organizations/categories.ts) |
 
 ```ts
-const getCitationCategories = await client.organizations.categories.getCitationCategories(
+const category = await client.organizations.categories.getCitationCategories(
   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
 );
 ```
@@ -418,7 +412,7 @@ const getCitationCategories = await client.organizations.categories.getCitationC
 | Response | [`PromptAnswersResponse`](./src/resources/prompts.ts) |
 
 ```ts
-const answers = await client.prompts.answers({
+const prompt = await client.prompts.answers({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '2024-01-01T00:00:00.000Z',
   end_date: '2024-01-01T00:00:00.000Z',
@@ -433,7 +427,7 @@ const answers = await client.prompts.answers({
 | Response | [`PromptAnswersV2Response`](./src/resources/prompts.ts) |
 
 ```ts
-const answersV2 = await client.prompts.answersV2({
+const prompt = await client.prompts.answersV2({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '',
   end_date: '',
@@ -476,7 +470,7 @@ otherwise eligible citations in its denominator when this filter is used.
 | Response | [`ReportCitationsResponse`](./src/resources/reports/reports.ts) |
 
 ```ts
-const citations = await client.reports.citations({
+const report = await client.reports.citations({
   date_interval: 'day',
   dimensions: [],
   metrics: [],
@@ -537,7 +531,7 @@ const report = await client.reports.sentiment({
 | Response | [`ReportSentimentV2Response`](./src/resources/reports/reports.ts) |
 
 ```ts
-const sentimentV2 = await client.reports.sentimentV2({
+const report = await client.reports.sentimentV2({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   asset_name: '',
   start_date: '2024-01-01T00:00:00.000Z',
@@ -841,7 +835,7 @@ const report = await client.reports.getBotsReportV2({
 | Response | [`ReportQueryVisibilityResponse`](./src/resources/reports/reports.ts) |
 
 ```ts
-const queryVisibility = await client.reports.queryVisibility({
+const report = await client.reports.queryVisibility({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '',
   end_date: '',
@@ -858,7 +852,7 @@ const queryVisibility = await client.reports.queryVisibility({
 | Response | [`ReportQueryCitationsResponse`](./src/resources/reports/reports.ts) |
 
 ```ts
-const queryCitations = await client.reports.queryCitations({
+const report = await client.reports.queryCitations({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '',
   end_date: '',
@@ -876,7 +870,7 @@ const queryCitations = await client.reports.queryCitations({
 | Response | [`ReportQuerySentimentResponse`](./src/resources/reports/reports.ts) |
 
 ```ts
-const querySentiment = await client.reports.querySentiment({
+const report = await client.reports.querySentiment({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   asset: '',
   start_date: '',
@@ -894,7 +888,7 @@ const querySentiment = await client.reports.querySentiment({
 | Response | [`ReportQueryQueryFanoutsResponse`](./src/resources/reports/reports.ts) |
 
 ```ts
-const queryQueryFanouts = await client.reports.queryQueryFanouts({
+const report = await client.reports.queryQueryFanouts({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '',
   end_date: '',
@@ -914,7 +908,7 @@ Get web search results for a given category.
 | Response | [`WebSearchResultQueryResponse`](./src/resources/reports/web-search-results.ts) |
 
 ```ts
-const query = await client.reports.webSearchResults.query({
+const webSearchResult = await client.reports.webSearchResults.query({
   date_interval: 'day',
   dimensions: [],
   metrics: [],
@@ -958,7 +952,7 @@ for await (const event of stream) {
 | Response | [`ShoppingBrandsResponse`](./src/resources/reports/shopping.ts) |
 
 ```ts
-const brands = await client.reports.shopping.brands({
+const shopping = await client.reports.shopping.brands({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '',
   end_date: '',
@@ -996,7 +990,7 @@ for await (const event of stream) {
 | Response | [`ShoppingProductsResponse`](./src/resources/reports/shopping.ts) |
 
 ```ts
-const products = await client.reports.shopping.products({
+const shopping = await client.reports.shopping.products({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '',
   end_date: '',
@@ -1036,7 +1030,7 @@ for await (const event of stream) {
 | Response | [`ShoppingMerchantsResponse`](./src/resources/reports/shopping.ts) |
 
 ```ts
-const merchants = await client.reports.shopping.merchants({
+const shopping = await client.reports.shopping.merchants({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '',
   end_date: '',
@@ -1072,7 +1066,7 @@ for await (const event of stream) {
 | Response | [`ShoppingTriggerRateResponse`](./src/resources/reports/shopping.ts) |
 
 ```ts
-const triggerRate = await client.reports.shopping.triggerRate({
+const shopping = await client.reports.shopping.triggerRate({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '',
   end_date: '',
@@ -1110,7 +1104,7 @@ for await (const event of stream) {
 | Response | [`AccuracyCreateOverviewResponse`](./src/resources/reports/accuracy.ts) |
 
 ```ts
-const createOverview = await client.reports.accuracy.createOverview({
+const accuracy = await client.reports.accuracy.createOverview({
   start_date: '',
   end_date: '',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -1130,7 +1124,7 @@ const createOverview = await client.reports.accuracy.createOverview({
 | Response | [`AccuracyCreateBreakdownResponse`](./src/resources/reports/accuracy.ts) |
 
 ```ts
-const createBreakdown = await client.reports.accuracy.createBreakdown({
+const accuracy = await client.reports.accuracy.createBreakdown({
   start_date: '',
   end_date: '',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -1154,7 +1148,7 @@ const createBreakdown = await client.reports.accuracy.createBreakdown({
 | Response | [`AccuracyCreateCitationAnalysisResponse`](./src/resources/reports/accuracy.ts) |
 
 ```ts
-const createCitationAnalysis = await client.reports.accuracy.createCitationAnalysis({
+const accuracy = await client.reports.accuracy.createCitationAnalysis({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   clean_href: '',
   start_date: '',
@@ -1170,7 +1164,7 @@ const createCitationAnalysis = await client.reports.accuracy.createCitationAnaly
 | Response | [`AccuracyCreateTopicIDsResponse`](./src/resources/reports/accuracy.ts) |
 
 ```ts
-const createTopicIDs = await client.reports.accuracy.createTopicIDs({
+const accuracy = await client.reports.accuracy.createTopicIDs({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '',
   end_date: '',
@@ -1185,7 +1179,7 @@ const createTopicIDs = await client.reports.accuracy.createTopicIDs({
 | Response | [`AccuracyCreateInaccurateThemesResponse`](./src/resources/reports/accuracy.ts) |
 
 ```ts
-const createInaccurateThemes = await client.reports.accuracy.createInaccurateThemes({
+const accuracy = await client.reports.accuracy.createInaccurateThemes({
   start_date: '',
   end_date: '',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -1208,7 +1202,7 @@ const createInaccurateThemes = await client.reports.accuracy.createInaccurateThe
 | Response | [`AccuracyCreateInaccurateClustersResponse`](./src/resources/reports/accuracy.ts) |
 
 ```ts
-const createInaccurateClusters = await client.reports.accuracy.createInaccurateClusters({
+const accuracy = await client.reports.accuracy.createInaccurateClusters({
   start_date: '',
   end_date: '',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -1230,7 +1224,7 @@ const createInaccurateClusters = await client.reports.accuracy.createInaccurateC
 | Response | [`AccuracyCreateInaccuracyDriversResponse`](./src/resources/reports/accuracy.ts) |
 
 ```ts
-const createInaccuracyDrivers = await client.reports.accuracy.createInaccuracyDrivers({
+const accuracy = await client.reports.accuracy.createInaccuracyDrivers({
   start_date: '',
   end_date: '',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -1250,7 +1244,7 @@ const createInaccuracyDrivers = await client.reports.accuracy.createInaccuracyDr
 | Response | [`AccuracyCreateTopInaccurateClaimsResponse`](./src/resources/reports/accuracy.ts) |
 
 ```ts
-const createTopInaccurateClaims = await client.reports.accuracy.createTopInaccurateClaims({
+const accuracy = await client.reports.accuracy.createTopInaccurateClaims({
   start_date: '',
   end_date: '',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -1270,7 +1264,7 @@ const createTopInaccurateClaims = await client.reports.accuracy.createTopInaccur
 | Response | [`AccuracyCreateClaimBreakdownResponse`](./src/resources/reports/accuracy.ts) |
 
 ```ts
-const createClaimBreakdown = await client.reports.accuracy.createClaimBreakdown({
+const accuracy = await client.reports.accuracy.createClaimBreakdown({
   start_date: '',
   end_date: '',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -1290,7 +1284,7 @@ const createClaimBreakdown = await client.reports.accuracy.createClaimBreakdown(
 | Response | [`AccuracyCreateClaimCitationsResponse`](./src/resources/reports/accuracy.ts) |
 
 ```ts
-const createClaimCitations = await client.reports.accuracy.createClaimCitations({
+const accuracy = await client.reports.accuracy.createClaimCitations({
   start_date: '',
   end_date: '',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -1313,7 +1307,7 @@ const createClaimCitations = await client.reports.accuracy.createClaimCitations(
 | Response | [`AccuracyCreateClusterExampleRunsResponse`](./src/resources/reports/accuracy.ts) |
 
 ```ts
-const createClusterExampleRuns = await client.reports.accuracy.createClusterExampleRuns({
+const accuracy = await client.reports.accuracy.createClusterExampleRuns({
   start_date: '',
   end_date: '',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -1335,7 +1329,7 @@ const createClusterExampleRuns = await client.reports.accuracy.createClusterExam
 | Response | [`AccuracyCreateClusterVerificationPairsResponse`](./src/resources/reports/accuracy.ts) |
 
 ```ts
-const createClusterVerificationPairs = await client.reports.accuracy.createClusterVerificationPairs({
+const accuracy = await client.reports.accuracy.createClusterVerificationPairs({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
 });
@@ -1349,7 +1343,7 @@ const createClusterVerificationPairs = await client.reports.accuracy.createClust
 | Response | [`AccuracyCreateFactcheckSetupStatusResponse`](./src/resources/reports/accuracy.ts) |
 
 ```ts
-const createFactcheckSetupStatus = await client.reports.accuracy.createFactcheckSetupStatus({
+const accuracy = await client.reports.accuracy.createFactcheckSetupStatus({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
 });
 ```
@@ -1364,7 +1358,7 @@ const createFactcheckSetupStatus = await client.reports.accuracy.createFactcheck
 | Response | [`FactcheckQueryScoresResponse`](./src/resources/reports/factcheck/factcheck.ts) |
 
 ```ts
-const queryScores = await client.reports.factcheck.queryScores({
+const factcheck = await client.reports.factcheck.queryScores({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '',
   end_date: '',
@@ -1400,7 +1394,7 @@ for await (const event of stream) {
 | Response | [`ClaimQueryClaimsResponse`](./src/resources/reports/factcheck/claims.ts) |
 
 ```ts
-const queryClaims = await client.reports.factcheck.claims.queryClaims({
+const claim = await client.reports.factcheck.claims.queryClaims({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '',
   end_date: '',
@@ -1440,7 +1434,7 @@ Rank the YouTube channels cited in a category, or the video categories they publ
 | Response | [`YoutubeGetChannelsResponse`](./src/resources/reports/social/youtube.ts) |
 
 ```ts
-const getChannels = await client.reports.social.youtube.getChannels({
+const youtube = await client.reports.social.youtube.getChannels({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '',
   end_date: '',
@@ -1457,7 +1451,7 @@ Rank cited YouTube videos, for one channel or across all of them.
 | Response | [`YoutubeGetVideosResponse`](./src/resources/reports/social/youtube.ts) |
 
 ```ts
-const getVideos = await client.reports.social.youtube.getVideos({
+const youtube = await client.reports.social.youtube.getVideos({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '',
   end_date: '',
@@ -1475,7 +1469,7 @@ Report how much of youtube.com the channel and video rankings account for.
 | Response | [`YoutubeGetSummaryResponse`](./src/resources/reports/social/youtube.ts) |
 
 ```ts
-const getSummary = await client.reports.social.youtube.getSummary({
+const youtube = await client.reports.social.youtube.getSummary({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '',
   end_date: '',
@@ -1494,7 +1488,7 @@ const getSummary = await client.reports.social.youtube.getSummary({
 | Response | [`OptimizationListResponse`](./src/resources/content/optimization.ts) |
 
 ```ts
-const list = await client.content.optimization.list('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const optimization = await client.content.optimization.list('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   limit: 10000,
   offset: 0,
 });
@@ -1508,7 +1502,7 @@ const list = await client.content.optimization.list('7c9e6679-7425-40de-944b-e07
 | Response | [`OptimizationRetrieveResponse`](./src/resources/content/optimization.ts) |
 
 ```ts
-const retrieve = await client.content.optimization.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const optimization = await client.content.optimization.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   asset_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
 });
 ```
@@ -1529,7 +1523,7 @@ published yet.
 | Response | [`AgentListResponse`](./src/resources/agents/agents.ts) |
 
 ```ts
-const list = await client.agents.list({
+const agent = await client.agents.list({
   limit: 100,
 });
 ```
@@ -1547,7 +1541,7 @@ unpublished changes. Use the `version` parameter to choose which state to return
 | Response | [`AgentRetrieveResponse`](./src/resources/agents/agents.ts) |
 
 ```ts
-const retrieve = await client.agents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+const agent = await client.agents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7');
 ```
 
 ### Create an agent
@@ -1561,7 +1555,7 @@ is ready.
 | Direction | Type |
 | --- | --- |
 | Request | [`AgentCreateParams`](./src/resources/agents/agents.ts) |
-| Response | [`Agent`](./src/resources/shared.ts) |
+| Response | [`AgentCreateResponse`](./src/resources/agents/agents.ts) |
 
 ```ts
 const agent = await client.agents.create({
@@ -1580,7 +1574,7 @@ input/output contract is rejected with `422` and is not published.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`Agent`](./src/resources/shared.ts) |
+| Response | [`AgentPublishResponse`](./src/resources/agents/agents.ts) |
 
 ```ts
 const agent = await client.agents.publish('7c9e6679-7425-40de-944b-e07fc1f90ae7');
@@ -1601,7 +1595,7 @@ fix — instead of creating a new agent on every change. The response carries th
 | Response | [`AgentUpdateResponse`](./src/resources/agents/agents.ts) |
 
 ```ts
-const update = await client.agents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const agent = await client.agents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   graph: {},
 });
 ```
@@ -1622,7 +1616,7 @@ across its organization.
 | Response | [`AgentRetrieveGraphResponse`](./src/resources/agents/agents.ts) |
 
 ```ts
-const retrieveGraph = await client.agents.retrieveGraph('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+const agent = await client.agents.retrieveGraph('7c9e6679-7425-40de-944b-e07fc1f90ae7');
 ```
 
 ### `Agents Runs`
@@ -1641,7 +1635,7 @@ cannot be run.
 | Response | [`RunCreateResponse`](./src/resources/agents/runs.ts) |
 
 ```ts
-const create = await client.agents.runs.create('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+const run = await client.agents.runs.create('7c9e6679-7425-40de-944b-e07fc1f90ae7');
 ```
 
 #### Get an agent run
@@ -1654,7 +1648,7 @@ Retrieve the current status and result details for an agent run.
 | Response | [`RunRetrieveResponse`](./src/resources/agents/runs.ts) |
 
 ```ts
-const retrieve = await client.agents.runs.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const run = await client.agents.runs.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   agent_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   verbose: false,
 });
@@ -1675,7 +1669,7 @@ node types are intentionally excluded in v1.
 | Response | [`NodeTypeListResponse`](./src/resources/agents/node-types.ts) |
 
 ```ts
-const list = await client.agents.nodeTypes.list();
+const nodeType = await client.agents.nodeTypes.list();
 ```
 
 #### Get a node type schema
@@ -1690,7 +1684,7 @@ Use `schema_version` as a cache key — it bumps whenever the schema changes.
 | Response | [`NodeTypeRetrieveSchemaResponse`](./src/resources/agents/node-types.ts) |
 
 ```ts
-const retrieveSchema = await client.agents.nodeTypes.retrieveSchema('nodeType');
+const nodeType = await client.agents.nodeTypes.retrieveSchema('nodeType');
 ```
 
 ## `KnowledgeBases`
@@ -1705,7 +1699,7 @@ List knowledge bases accessible to the API key.
 | Response | [`KnowledgeBaseListResponse`](./src/resources/knowledge-bases/knowledge-bases.ts) |
 
 ```ts
-const list = await client.knowledgeBases.list();
+const knowledgeBase = await client.knowledgeBases.list();
 ```
 
 ### Search Knowledge Base
@@ -1718,7 +1712,7 @@ Search a knowledge base and return matching snippets or pages.
 | Response | [`KnowledgeBaseSearchResponse`](./src/resources/knowledge-bases/knowledge-bases.ts) |
 
 ```ts
-const search = await client.knowledgeBases.search('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const knowledgeBase = await client.knowledgeBases.search('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   query: 'x',
   top_k: 0,
   return_full_page: false,
@@ -1734,10 +1728,10 @@ Add a document to a knowledge base using JSON text or multipart file upload.
 | Direction | Type |
 | --- | --- |
 | Request | [`DocumentCreateParams`](./src/resources/knowledge-bases/documents.ts) |
-| Response | [`DocumentOperationResponse`](./src/resources/shared.ts) |
+| Response | [`DocumentCreateResponse`](./src/resources/knowledge-bases/documents.ts) |
 
 ```ts
-const operation = await client.knowledgeBases.documents.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const document = await client.knowledgeBases.documents.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   name: 'x',
   text: 'x',
 });
@@ -1750,10 +1744,10 @@ Overwrite a knowledge base document using JSON text or multipart file upload.
 | Direction | Type |
 | --- | --- |
 | Request | [`DocumentUpdateParams`](./src/resources/knowledge-bases/documents.ts) |
-| Response | [`DocumentOperationResponse`](./src/resources/shared.ts) |
+| Response | [`DocumentUpdateResponse`](./src/resources/knowledge-bases/documents.ts) |
 
 ```ts
-const operation = await client.knowledgeBases.documents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const document = await client.knowledgeBases.documents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   name: 'x',
   text: 'x',
 });
@@ -1766,10 +1760,10 @@ Delete an existing document from a knowledge base.
 | Direction | Type |
 | --- | --- |
 | Request | [`DocumentDeleteParams`](./src/resources/knowledge-bases/documents.ts) |
-| Response | [`DocumentOperationResponse`](./src/resources/shared.ts) |
+| Response | [`DocumentDeleteResponse`](./src/resources/knowledge-bases/documents.ts) |
 
 ```ts
-const operation = await client.knowledgeBases.documents.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const document = await client.knowledgeBases.documents.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   name: 'x',
 });
 ```
@@ -1786,7 +1780,7 @@ Create an empty folder at the requested knowledge base path.
 | Response | [`FolderCreateResponse`](./src/resources/knowledge-bases/folders.ts) |
 
 ```ts
-const create = await client.knowledgeBases.folders.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const folder = await client.knowledgeBases.folders.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   path: 'x',
 });
 ```
@@ -1801,7 +1795,7 @@ Delete a folder. With recursive=false, non-empty folders return 409 and no conte
 | Response | [`FolderDeleteResponse`](./src/resources/knowledge-bases/folders.ts) |
 
 ```ts
-const delete_ = await client.knowledgeBases.folders.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const folder = await client.knowledgeBases.folders.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   path: 'x',
   recursive: false,
 });
@@ -1817,7 +1811,7 @@ const delete_ = await client.knowledgeBases.folders.delete('7c9e6679-7425-40de-9
 | Response | [`ProjectListResponse`](./src/resources/projects/projects.ts) |
 
 ```ts
-const list = await client.projects.list({
+const project = await client.projects.list({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   limit: 100,
   offset: 0,
@@ -1832,7 +1826,7 @@ const list = await client.projects.list({
 | Response | [`ProjectCreateResponse`](./src/resources/projects/projects.ts) |
 
 ```ts
-const create = await client.projects.create({
+const project = await client.projects.create({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
 });
 ```
@@ -1845,7 +1839,7 @@ const create = await client.projects.create({
 | Response | [`ProjectRetrieveResponse`](./src/resources/projects/projects.ts) |
 
 ```ts
-const retrieve = await client.projects.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const project = await client.projects.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
 });
 ```
@@ -1870,7 +1864,7 @@ await client.projects.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
 | Response | [`ProjectGetStatusResponse`](./src/resources/projects/projects.ts) |
 
 ```ts
-const getStatus = await client.projects.getStatus('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const project = await client.projects.getStatus('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
 });
 ```
@@ -1883,7 +1877,7 @@ const getStatus = await client.projects.getStatus('7c9e6679-7425-40de-944b-e07fc
 | Response | [`ProjectArchiveResponse`](./src/resources/projects/projects.ts) |
 
 ```ts
-const archive = await client.projects.archive('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const project = await client.projects.archive('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
 });
 ```
@@ -1896,7 +1890,7 @@ const archive = await client.projects.archive('7c9e6679-7425-40de-944b-e07fc1f90
 | Response | [`ProjectUnarchiveResponse`](./src/resources/projects/projects.ts) |
 
 ```ts
-const unarchive = await client.projects.unarchive('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const project = await client.projects.unarchive('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
 });
 ```
@@ -1911,7 +1905,7 @@ const unarchive = await client.projects.unarchive('7c9e6679-7425-40de-944b-e07fc
 | Response | [`GenerationListResponse`](./src/resources/projects/generations.ts) |
 
 ```ts
-const list = await client.projects.generations.list({
+const generation = await client.projects.generations.list({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   limit: 100,
   offset: 0,
@@ -1926,7 +1920,7 @@ const list = await client.projects.generations.list({
 | Response | [`GenerationRetrieveResponse`](./src/resources/projects/generations.ts) |
 
 ```ts
-const retrieve = await client.projects.generations.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const generation = await client.projects.generations.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
 });
 ```
@@ -1941,7 +1935,7 @@ const retrieve = await client.projects.generations.retrieve('7c9e6679-7425-40de-
 | Response | [`TaskListResponse`](./src/resources/projects/tasks.ts) |
 
 ```ts
-const list = await client.projects.tasks.list('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const task = await client.projects.tasks.list('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
 });
 ```
@@ -1954,7 +1948,7 @@ const list = await client.projects.tasks.list('7c9e6679-7425-40de-944b-e07fc1f90
 | Response | [`TaskCreateResponse`](./src/resources/projects/tasks.ts) |
 
 ```ts
-const create = await client.projects.tasks.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const task = await client.projects.tasks.create('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   title: 'x',
 });
@@ -1968,7 +1962,7 @@ const create = await client.projects.tasks.create('7c9e6679-7425-40de-944b-e07fc
 | Response | [`TaskRetrieveResponse`](./src/resources/projects/tasks.ts) |
 
 ```ts
-const retrieve = await client.projects.tasks.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const task = await client.projects.tasks.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
 });
@@ -1982,7 +1976,7 @@ const retrieve = await client.projects.tasks.retrieve('7c9e6679-7425-40de-944b-e
 | Response | [`TaskUpdateResponse`](./src/resources/projects/tasks.ts) |
 
 ```ts
-const update = await client.projects.tasks.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const task = await client.projects.tasks.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
 });
@@ -2009,7 +2003,7 @@ await client.projects.tasks.delete('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
 | Response | [`TaskUpdateStatusResponse`](./src/resources/projects/tasks.ts) |
 
 ```ts
-const updateStatus = await client.projects.tasks.updateStatus('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const task = await client.projects.tasks.updateStatus('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   project_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   status: 'not_started',
@@ -2032,7 +2026,7 @@ Each row's `integration_id` is the value a hub-backed node needs bound to it.
 | Response | [`IntegrationListResponse`](./src/resources/integrations.ts) |
 
 ```ts
-const list = await client.integrations.list();
+const integration = await client.integrations.list();
 ```
 
 ## `Documents`
@@ -2059,7 +2053,7 @@ does not claim to either — it is safe to retry with the same `id` either way.
 | Response | [`DocumentCreateResponse`](./src/resources/documents.ts) |
 
 ```ts
-const create = await client.documents.create({
+const document = await client.documents.create({
   id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   name: 'x',
@@ -2090,7 +2084,7 @@ documents, so the last page of a walk may legitimately be an empty one.
 | Response | [`DocumentListResponse`](./src/resources/documents.ts) |
 
 ```ts
-const list = await client.documents.list({
+const document = await client.documents.list({
   organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   limit: 20,
 });
@@ -2113,7 +2107,7 @@ blindly. Pass `preview=false` when you intend to write.
 | Response | [`DocumentRetrieveResponse`](./src/resources/documents.ts) |
 
 ```ts
-const retrieve = await client.documents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const document = await client.documents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   include_tabs: true,
   include_comments: true,
@@ -2139,7 +2133,7 @@ yourself in the Profound app — not one merely shared with you.
 | Response | [`DocumentUpdateResponse`](./src/resources/documents.ts) |
 
 ```ts
-const update = await client.documents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const document = await client.documents.update('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
 });
 ```
@@ -2212,7 +2206,7 @@ not merely one shared with you.
 | Response | [`DocumentReplaceContentResponse`](./src/resources/documents.ts) |
 
 ```ts
-const replaceContent = await client.documents.replaceContent('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+const document = await client.documents.replaceContent('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   content_markdown: '',
   skip_title_sync: false,
@@ -2239,5 +2233,5 @@ a single call; `time_granularity=daily` gives per-day rows (e.g. daily spend).
 | Response | [`AdAccountRetrieveInsightsResponse`](./src/resources/ads/openai-ads/ad-account.ts) |
 
 ```ts
-const retrieveInsights = await client.ads.openaiAds.adAccount.retrieveInsights();
+const adAccount = await client.ads.openaiAds.adAccount.retrieveInsights();
 ```
