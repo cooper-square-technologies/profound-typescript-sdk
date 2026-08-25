@@ -4,6 +4,10 @@ on:
   push:
   pull_request:
 
+# Checkout, build, and format-check only ever read the repository.
+permissions:
+  contents: read
+
 jobs:
   verify:
     runs-on: ubuntu-latest
