@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.49.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.48.0...v0.49.0) (2026-08-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 2 breaking changes to the SDK surface.
+    - Removed schema `shopping_rows_response`.
+    - Removed schema `profound_shopping_api_asset_name_filter`.
+* **api:** 2 breaking changes to the SDK surface.
+    - Removed schema `shopping_rows_response`.
+    - Removed schema `profound_shopping_api_asset_name_filter`.
+
+### Features
+
+* **api:** remove schema shopping_rows_response (+2 more changes) ([f4cf1e3](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/f4cf1e372904980a6f9c8c50030fd53141231208))
+* **api:** remove schema shopping_rows_response (+2 more changes) ([#90](https://github.com/cooper-square-technologies/profound-typescript-sdk/issues/90)) ([fdce778](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/fdce77862e948f1dc5c436a3e24a110cd13935ec))
+
+
+### Chores
+
+* **api:** regenerate SDK ([b639621](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/b63962122d230a08361026e90bb9bb565b5a0978))
+
 ## [0.48.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.47.0...v0.48.0) (2026-08-20)
 
 We've changed how this SDK is generated, so there may be slight differences from 0.47.0 — see [api.md](./api.md) for the current surface.
