@@ -3,7 +3,6 @@
 import { APIResource } from '../../../resource';
 import { APIPromise } from '../../../api-promise';
 import type { RequestOptions } from '../../../internal/request-options';
-import type * as Shared from '../../shared';
 
 export class AdAccount extends APIResource {
   /**
@@ -19,7 +18,7 @@ export class AdAccount extends APIResource {
    *
    * @example
    * ```ts
-   * const retrieveInsights = await client.ads.openaiAds.adAccount.retrieveInsights();
+   * const adAccount = await client.ads.openaiAds.adAccount.retrieveInsights();
    * ```
    */
   retrieveInsights(

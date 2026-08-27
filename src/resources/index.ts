@@ -83,6 +83,8 @@ export type {
   AgentRetrieveParams,
   AgentRetrieveResponse,
   AgentCreateParams,
+  AgentCreateResponse,
+  AgentPublishResponse,
   AgentUpdateParams,
   AgentUpdateResponse,
   AgentRetrieveGraphParams,

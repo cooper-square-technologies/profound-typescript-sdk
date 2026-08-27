@@ -18,7 +18,7 @@ export class Prompts extends APIResource {
    *
    * @example
    * ```ts
-   * const answers = await client.prompts.answers({
+   * const prompt = await client.prompts.answers({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '2024-01-01T00:00:00.000Z',
    *   end_date: '2024-01-01T00:00:00.000Z',
@@ -38,7 +38,7 @@ export class Prompts extends APIResource {
    *
    * @example
    * ```ts
-   * const answersV2 = await client.prompts.answersV2({
+   * const prompt = await client.prompts.answersV2({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -114,12 +114,27 @@ export interface PromptAnswersParams {
     | Shared.PersonaIDFilter
     | Shared.TopicIDFilter
     | Shared.AssetIDFilter
-    | Shared.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
+    | PromptAnswersParams.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
   >;
   include?: PromptAnswersParams.Include;
 }
 
 export namespace PromptAnswersParams {
+  export interface ProfoundAnswerEngineInsightsFiltersAssetNameFilter {
+    field: 'asset_name';
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+    value: string | Array<string>;
+  }
+
   export interface Include {
     /**
      * @default false
@@ -348,7 +363,7 @@ export interface PromptAnswersV2Params {
   /**
    * and/or/not tree over `model`, `topic`, `region`, `persona`, `prompt`, `tag`, `analysis_type` (visibility/sentiment/factcheck); plus top-level `and` leaves `domain` or `page` (`is` one value, or `in` a list). Substring-search the prompt with `{"field": "prompt", "op": "contains", "value": "…"}`.
    */
-  filter?: Shared.FilterNode | null;
+  filter?: PromptAnswersV2Params.Filter | null;
   /**
    * Page size; default 10, max 200.
    * @maximum 200
@@ -359,6 +374,17 @@ export interface PromptAnswersV2Params {
    */
   max_results?: number | null;
   cursor?: string | null;
+}
+
+export namespace PromptAnswersV2Params {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
 }
 
 export interface PromptAnswersV2Response {
@@ -406,7 +432,7 @@ export namespace PromptAnswersV2Response {
   export interface Data {
     run_id?: string | null;
     date?: string | null;
-    model?: Shared.DimensionRef | null;
+    model?: Data.Model | null;
     topic?: string | null;
     topic_id?: string | null;
     region?: string | null;
@@ -428,6 +454,11 @@ export namespace PromptAnswersV2Response {
   }
 
   export namespace Data {
+    export interface Model {
+      id?: string | null;
+      name?: string | null;
+    }
+
     export interface CitationDetail {
       url: string;
       clean_url: string;
@@ -488,7 +519,7 @@ export interface PromptStreamAnswersV2Params {
   /**
    * and/or/not tree over `model`, `topic`, `region`, `persona`, `prompt`, `tag`, `analysis_type` (visibility/sentiment/factcheck); plus top-level `and` leaves `domain` or `page` (`is` one value, or `in` a list). Substring-search the prompt with `{"field": "prompt", "op": "contains", "value": "…"}`.
    */
-  filter?: Shared.FilterNode | null;
+  filter?: PromptStreamAnswersV2Params.Filter | null;
   /**
    * Page size; default 10, max 200.
    * @maximum 200
@@ -499,6 +530,17 @@ export interface PromptStreamAnswersV2Params {
    */
   max_results?: number | null;
   cursor?: string | null;
+}
+
+export namespace PromptStreamAnswersV2Params {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
 }
 
 export type PromptStreamAnswersV2Response =
@@ -545,7 +587,7 @@ export namespace PromptStreamAnswersV2Response {
   export interface AnswerRow {
     run_id?: string | null;
     date?: string | null;
-    model?: Shared.DimensionRef | null;
+    model?: AnswerRow.Model | null;
     topic?: string | null;
     topic_id?: string | null;
     region?: string | null;
@@ -567,6 +609,11 @@ export namespace PromptStreamAnswersV2Response {
   }
 
   export namespace AnswerRow {
+    export interface Model {
+      id?: string | null;
+      name?: string | null;
+    }
+
     export interface CitationDetail {
       url: string;
       clean_url: string;

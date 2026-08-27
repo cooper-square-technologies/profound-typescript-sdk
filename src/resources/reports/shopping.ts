@@ -5,7 +5,6 @@ import { APIPromise } from '../../api-promise';
 import { Stream } from '../../core/streaming';
 import type { RequestOptions } from '../../internal/request-options';
 import { buildHeaders } from '../../internal/headers';
-import type * as Shared from '../shared';
 
 export class Shopping extends APIResource {
   /**
@@ -17,7 +16,7 @@ export class Shopping extends APIResource {
    *
    * @example
    * ```ts
-   * const brands = await client.reports.shopping.brands({
+   * const shopping = await client.reports.shopping.brands({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -73,7 +72,7 @@ export class Shopping extends APIResource {
    *
    * @example
    * ```ts
-   * const products = await client.reports.shopping.products({
+   * const shopping = await client.reports.shopping.products({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -131,7 +130,7 @@ export class Shopping extends APIResource {
    *
    * @example
    * ```ts
-   * const merchants = await client.reports.shopping.merchants({
+   * const shopping = await client.reports.shopping.merchants({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -185,7 +184,7 @@ export class Shopping extends APIResource {
    *
    * @example
    * ```ts
-   * const triggerRate = await client.reports.shopping.triggerRate({
+   * const shopping = await client.reports.shopping.triggerRate({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -306,7 +305,7 @@ export interface ShoppingBrandsParams {
    * Restrict to these asset names (a name or list). Overrides `scope`.
    */
   assets?: string | Array<string> | null;
-  filter?: Shared.FilterNode | null;
+  filter?: ShoppingBrandsParams.Filter | null;
   /**
    * Page size for scope=all; default 10, max 50.
    * @maximum 50
@@ -318,6 +317,17 @@ export interface ShoppingBrandsParams {
    */
   max_results?: number | null;
   cursor?: string | null;
+}
+
+export namespace ShoppingBrandsParams {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
 }
 
 export interface ShoppingBrandsResponse {
@@ -377,9 +387,9 @@ export namespace ShoppingBrandsResponse {
      */
     rank?: number | null;
     date?: string | null;
-    topic?: Shared.DimensionRef | null;
-    region?: Shared.DimensionRef | null;
-    prompt?: Shared.DimensionRef | null;
+    topic?: Data.Topic | null;
+    region?: Data.Region | null;
+    prompt?: Data.Prompt | null;
     visibility_score?: number | null;
     average_position?: number | null;
     /**
@@ -387,6 +397,23 @@ export namespace ShoppingBrandsResponse {
      */
     visibility_rank?: number | null;
     [k: string]: unknown;
+  }
+
+  export namespace Data {
+    export interface Topic {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Region {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Prompt {
+      id?: string | null;
+      name?: string | null;
+    }
   }
 }
 
@@ -417,7 +444,7 @@ export interface ShoppingStreamBrandsParams {
    * Restrict to these asset names (a name or list). Overrides `scope`.
    */
   assets?: string | Array<string> | null;
-  filter?: Shared.FilterNode | null;
+  filter?: ShoppingStreamBrandsParams.Filter | null;
   /**
    * Page size for scope=all; default 10, max 50.
    * @maximum 50
@@ -429,6 +456,17 @@ export interface ShoppingStreamBrandsParams {
    */
   max_results?: number | null;
   cursor?: string | null;
+}
+
+export namespace ShoppingStreamBrandsParams {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
 }
 
 export type ShoppingStreamBrandsResponse =
@@ -487,9 +525,9 @@ export namespace ShoppingStreamBrandsResponse {
      */
     rank?: number | null;
     date?: string | null;
-    topic?: Shared.DimensionRef | null;
-    region?: Shared.DimensionRef | null;
-    prompt?: Shared.DimensionRef | null;
+    topic?: ShoppingBrandRow.Topic | null;
+    region?: ShoppingBrandRow.Region | null;
+    prompt?: ShoppingBrandRow.Prompt | null;
     visibility_score?: number | null;
     average_position?: number | null;
     /**
@@ -497,6 +535,23 @@ export namespace ShoppingStreamBrandsResponse {
      */
     visibility_rank?: number | null;
     [k: string]: unknown;
+  }
+
+  export namespace ShoppingBrandRow {
+    export interface Topic {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Region {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Prompt {
+      id?: string | null;
+      name?: string | null;
+    }
   }
 }
 
@@ -545,7 +600,7 @@ export interface ShoppingProductsParams {
    * @minimum 1
    */
   competitor_limit?: number;
-  filter?: Shared.FilterNode | null;
+  filter?: ShoppingProductsParams.Filter | null;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
@@ -557,6 +612,17 @@ export interface ShoppingProductsParams {
    */
   max_results?: number | null;
   cursor?: string | null;
+}
+
+export namespace ShoppingProductsParams {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
 }
 
 export interface ShoppingProductsResponse {
@@ -608,8 +674,8 @@ export namespace ShoppingProductsResponse {
   export interface Data {
     product?: Record<string, unknown> | null;
     date?: string | null;
-    topic?: Shared.DimensionRef | null;
-    prompt?: Shared.DimensionRef | null;
+    topic?: Data.Topic | null;
+    prompt?: Data.Prompt | null;
     visibility_score?: number | null;
     average_position?: number | null;
     visibility_rank?: number | null;
@@ -626,6 +692,18 @@ export namespace ShoppingProductsResponse {
      */
     merchants?: Array<Record<string, unknown>> | null;
     [k: string]: unknown;
+  }
+
+  export namespace Data {
+    export interface Topic {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Prompt {
+      id?: string | null;
+      name?: string | null;
+    }
   }
 }
 
@@ -674,7 +752,7 @@ export interface ShoppingStreamProductsParams {
    * @minimum 1
    */
   competitor_limit?: number;
-  filter?: Shared.FilterNode | null;
+  filter?: ShoppingStreamProductsParams.Filter | null;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
@@ -686,6 +764,17 @@ export interface ShoppingStreamProductsParams {
    */
   max_results?: number | null;
   cursor?: string | null;
+}
+
+export namespace ShoppingStreamProductsParams {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
 }
 
 export type ShoppingStreamProductsResponse =
@@ -736,8 +825,8 @@ export namespace ShoppingStreamProductsResponse {
   export interface ShoppingProductRow {
     product?: Record<string, unknown> | null;
     date?: string | null;
-    topic?: Shared.DimensionRef | null;
-    prompt?: Shared.DimensionRef | null;
+    topic?: ShoppingProductRow.Topic | null;
+    prompt?: ShoppingProductRow.Prompt | null;
     visibility_score?: number | null;
     average_position?: number | null;
     visibility_rank?: number | null;
@@ -754,6 +843,18 @@ export namespace ShoppingStreamProductsResponse {
      */
     merchants?: Array<Record<string, unknown>> | null;
     [k: string]: unknown;
+  }
+
+  export namespace ShoppingProductRow {
+    export interface Topic {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Prompt {
+      id?: string | null;
+      name?: string | null;
+    }
   }
 }
 
@@ -791,7 +892,7 @@ export interface ShoppingMerchantsParams {
    * @default day
    */
   interval?: 'day' | 'week' | 'month';
-  filter?: Shared.FilterNode | null;
+  filter?: ShoppingMerchantsParams.Filter | null;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
@@ -803,6 +904,17 @@ export interface ShoppingMerchantsParams {
    */
   max_results?: number | null;
   cursor?: string | null;
+}
+
+export namespace ShoppingMerchantsParams {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
 }
 
 export interface ShoppingMerchantsResponse {
@@ -902,7 +1014,7 @@ export interface ShoppingStreamMerchantsParams {
    * @default day
    */
   interval?: 'day' | 'week' | 'month';
-  filter?: Shared.FilterNode | null;
+  filter?: ShoppingStreamMerchantsParams.Filter | null;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
@@ -914,6 +1026,17 @@ export interface ShoppingStreamMerchantsParams {
    */
   max_results?: number | null;
   cursor?: string | null;
+}
+
+export namespace ShoppingStreamMerchantsParams {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
 }
 
 export type ShoppingStreamMerchantsResponse =
@@ -1000,7 +1123,7 @@ export interface ShoppingTriggerRateParams {
    * @default day
    */
   interval?: 'day' | 'week' | 'month';
-  filter?: Shared.FilterNode | null;
+  filter?: ShoppingTriggerRateParams.Filter | null;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
@@ -1012,6 +1135,17 @@ export interface ShoppingTriggerRateParams {
    */
   max_results?: number | null;
   cursor?: string | null;
+}
+
+export namespace ShoppingTriggerRateParams {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
 }
 
 export interface ShoppingTriggerRateResponse {
@@ -1058,14 +1192,36 @@ export namespace ShoppingTriggerRateResponse {
 
   export interface Data {
     date?: string | null;
-    topic?: Shared.DimensionRef | null;
-    region?: Shared.DimensionRef | null;
-    persona?: Shared.DimensionRef | null;
-    prompt?: Shared.DimensionRef | null;
+    topic?: Data.Topic | null;
+    region?: Data.Region | null;
+    persona?: Data.Persona | null;
+    prompt?: Data.Prompt | null;
     total_runs?: number | null;
     shopping_triggered_runs?: number | null;
     trigger_rate_percentage?: number | null;
     [k: string]: unknown;
+  }
+
+  export namespace Data {
+    export interface Topic {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Region {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Persona {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Prompt {
+      id?: string | null;
+      name?: string | null;
+    }
   }
 }
 
@@ -1091,7 +1247,7 @@ export interface ShoppingStreamTriggerRateParams {
    * @default day
    */
   interval?: 'day' | 'week' | 'month';
-  filter?: Shared.FilterNode | null;
+  filter?: ShoppingStreamTriggerRateParams.Filter | null;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
@@ -1103,6 +1259,17 @@ export interface ShoppingStreamTriggerRateParams {
    */
   max_results?: number | null;
   cursor?: string | null;
+}
+
+export namespace ShoppingStreamTriggerRateParams {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
 }
 
 export type ShoppingStreamTriggerRateResponse =
@@ -1148,14 +1315,36 @@ export namespace ShoppingStreamTriggerRateResponse {
 
   export interface ShoppingTriggerRateRow {
     date?: string | null;
-    topic?: Shared.DimensionRef | null;
-    region?: Shared.DimensionRef | null;
-    persona?: Shared.DimensionRef | null;
-    prompt?: Shared.DimensionRef | null;
+    topic?: ShoppingTriggerRateRow.Topic | null;
+    region?: ShoppingTriggerRateRow.Region | null;
+    persona?: ShoppingTriggerRateRow.Persona | null;
+    prompt?: ShoppingTriggerRateRow.Prompt | null;
     total_runs?: number | null;
     shopping_triggered_runs?: number | null;
     trigger_rate_percentage?: number | null;
     [k: string]: unknown;
+  }
+
+  export namespace ShoppingTriggerRateRow {
+    export interface Topic {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Region {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Persona {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Prompt {
+      id?: string | null;
+      name?: string | null;
+    }
   }
 }
 export declare namespace Shopping {

@@ -3,7 +3,6 @@
 import { APIResource } from '../../../resource';
 import { APIPromise } from '../../../api-promise';
 import type { RequestOptions } from '../../../internal/request-options';
-import type * as Shared from '../../shared';
 
 export class Youtube extends APIResource {
   /**
@@ -15,7 +14,7 @@ export class Youtube extends APIResource {
    *
    * @example
    * ```ts
-   * const getChannels = await client.reports.social.youtube.getChannels({
+   * const youtube = await client.reports.social.youtube.getChannels({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -38,7 +37,7 @@ export class Youtube extends APIResource {
    *
    * @example
    * ```ts
-   * const getVideos = await client.reports.social.youtube.getVideos({
+   * const youtube = await client.reports.social.youtube.getVideos({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -59,7 +58,7 @@ export class Youtube extends APIResource {
    *
    * @example
    * ```ts
-   * const getSummary = await client.reports.social.youtube.getSummary({
+   * const youtube = await client.reports.social.youtube.getSummary({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -87,7 +86,7 @@ export interface YoutubeGetChannelsParams {
   /**
    * Advanced filter tree. Prompt-level dimensions are `model`, `topic`, `region`, `prompt`, `persona`, `tag`, `analysis_type`. `channel` covers both channel cases: `in` with a list of handles selects exactly those channels, resolving each handle to its channel so a renamed channel is never returned in pieces; `contains` matches a channel's title or handle by name. Combine with `and`/`or`/`not` up to 3 deep. An exact `channel` selection must be its own `and` clause, and a `channel` leaf cannot share an `or` or `not` with a prompt-level leaf, because those compile at different stages of the query. `domain` and `page` are rejected rather than approximated: every row here is one domain, and `page` is not a video id.
    */
-  filter?: Shared.FilterNode | null;
+  filter?: YoutubeGetChannelsParams.Filter | null;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
@@ -106,6 +105,17 @@ export interface YoutubeGetChannelsParams {
    * Return a time series instead of window totals: one row per entity per period, each carrying `date`. `citation_share` is then relative to that period, so the series is comparable across periods. Omit for window totals.
    */
   interval?: 'day' | 'week' | 'month' | null;
+}
+
+export namespace YoutubeGetChannelsParams {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
 }
 
 export interface YoutubeGetChannelsResponse {
@@ -214,12 +224,19 @@ export namespace YoutubeGetChannelsResponse {
     /**
      * Answer engine as an object `{id, name}`, present when grouped by model. The name matches `info.models`; the id is the model id the other reports accept.
      */
-    model?: Shared.DimensionRef | null;
+    model?: Data.Model | null;
     /**
      * YouTube source type, present when grouped by source type, including as the second dimension of a cross-tab.
      */
     source_type?: 'video' | 'short' | 'channel' | 'playlist' | 'other' | null;
     [k: string]: unknown;
+  }
+
+  export namespace Data {
+    export interface Model {
+      id?: string | null;
+      name?: string | null;
+    }
   }
 }
 
@@ -239,7 +256,7 @@ export interface YoutubeGetVideosParams {
   /**
    * Advanced filter tree. Prompt-level dimensions are `model`, `topic`, `region`, `prompt`, `persona`, `tag`, `analysis_type`. `channel` covers both channel cases: `in` with a list of handles selects exactly those channels, resolving each handle to its channel so a renamed channel is never returned in pieces; `contains` matches a channel's title or handle by name. Combine with `and`/`or`/`not` up to 3 deep. An exact `channel` selection must be its own `and` clause, and a `channel` leaf cannot share an `or` or `not` with a prompt-level leaf, because those compile at different stages of the query. `domain` and `page` are rejected rather than approximated: every row here is one domain, and `page` is not a video id.
    */
-  filter?: Shared.FilterNode | null;
+  filter?: YoutubeGetVideosParams.Filter | null;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
@@ -255,6 +272,17 @@ export interface YoutubeGetVideosParams {
    * @default attributed
    */
   attribution?: 'attributed' | 'unattributed' | 'all';
+}
+
+export namespace YoutubeGetVideosParams {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
 }
 
 export interface YoutubeGetVideosResponse {
@@ -392,7 +420,18 @@ export interface YoutubeGetSummaryParams {
   /**
    * Advanced filter tree. Prompt-level dimensions are `model`, `topic`, `region`, `prompt`, `persona`, `tag`, `analysis_type`. `channel` covers both channel cases: `in` with a list of handles selects exactly those channels, resolving each handle to its channel so a renamed channel is never returned in pieces; `contains` matches a channel's title or handle by name. Combine with `and`/`or`/`not` up to 3 deep. An exact `channel` selection must be its own `and` clause, and a `channel` leaf cannot share an `or` or `not` with a prompt-level leaf, because those compile at different stages of the query. `domain` and `page` are rejected rather than approximated: every row here is one domain, and `page` is not a video id.
    */
-  filter?: Shared.FilterNode | null;
+  filter?: YoutubeGetSummaryParams.Filter | null;
+}
+
+export namespace YoutubeGetSummaryParams {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
 }
 
 export interface YoutubeGetSummaryResponse {

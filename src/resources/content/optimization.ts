@@ -17,7 +17,7 @@ export class Optimization extends APIResource {
    *
    * @example
    * ```ts
-   * const list = await client.content.optimization.list('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const optimization = await client.content.optimization.list('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   limit: 10000,
    *   offset: 0,
    * });
@@ -41,7 +41,7 @@ export class Optimization extends APIResource {
    *
    * @example
    * ```ts
-   * const retrieve = await client.content.optimization.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const optimization = await client.content.optimization.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   asset_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * });
    * ```

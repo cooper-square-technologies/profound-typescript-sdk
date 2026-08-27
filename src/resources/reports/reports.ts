@@ -101,7 +101,7 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const citations = await client.reports.citations({
+   * const report = await client.reports.citations({
    *   date_interval: 'day',
    *   dimensions: [],
    *   metrics: [],
@@ -173,7 +173,7 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const sentimentV2 = await client.reports.sentimentV2({
+   * const report = await client.reports.sentimentV2({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   asset_name: '',
    *   start_date: '2024-01-01T00:00:00.000Z',
@@ -597,7 +597,7 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const queryVisibility = await client.reports.queryVisibility({
+   * const report = await client.reports.queryVisibility({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -622,7 +622,7 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const queryCitations = await client.reports.queryCitations({
+   * const report = await client.reports.queryCitations({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -648,7 +648,7 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const querySentiment = await client.reports.querySentiment({
+   * const report = await client.reports.querySentiment({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   asset: '',
    *   start_date: '',
@@ -674,7 +674,7 @@ export class Reports extends APIResource {
    *
    * @example
    * ```ts
-   * const queryQueryFanouts = await client.reports.queryQueryFanouts({
+   * const report = await client.reports.queryQueryFanouts({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -1006,13 +1006,30 @@ export interface ReportVisibilityParams {
     | Shared.ModelIDFilter
     | Shared.TopicIDFilter
     | TopicNameFilter
-    | Shared.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
+    | ReportVisibilityParams.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
     | Shared.TagIDFilter
     | TagNameFilter
     | PromptIDFilter
     | Shared.PromptFilter
     | Shared.PersonaIDFilter
   >;
+}
+
+export namespace ReportVisibilityParams {
+  export interface ProfoundAnswerEngineInsightsFiltersAssetNameFilter {
+    field: 'asset_name';
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+    value: string | Array<string>;
+  }
 }
 
 export interface ReportSentimentParams {
@@ -1077,7 +1094,7 @@ export interface ReportSentimentParams {
    */
   filters?: Array<
     | Shared.AssetIDFilter
-    | Shared.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
+    | ReportSentimentParams.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
     | ReportSentimentParams.ThemeFilter
     | Shared.RegionIDFilter
     | Shared.RegionNameFilter
@@ -1092,6 +1109,21 @@ export interface ReportSentimentParams {
 }
 
 export namespace ReportSentimentParams {
+  export interface ProfoundAnswerEngineInsightsFiltersAssetNameFilter {
+    field: 'asset_name';
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+    value: string | Array<string>;
+  }
+
   export interface ThemeFilter {
     field: 'theme';
     operator:
@@ -1394,7 +1426,7 @@ export interface ReportGetReferralsReportParams {
   /**
    * Numeric filters applied after report metrics are calculated.
    */
-  metric_filters?: Array<Shared.NumericMetricFilter>;
+  metric_filters?: Array<ReportGetReferralsReportParams.MetricFilter>;
   /**
    * Filters for referrals report.
    */
@@ -1402,6 +1434,12 @@ export interface ReportGetReferralsReportParams {
 }
 
 export namespace ReportGetReferralsReportParams {
+  export interface MetricFilter {
+    field: string;
+    operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!=';
+    value: number;
+  }
+
   export interface ReferralSourceFilter {
     field: 'referral_source';
     operator:
@@ -1468,11 +1506,19 @@ export interface ReportGetBotsReportParams {
   /**
    * Numeric filters applied after report metrics are calculated.
    */
-  metric_filters?: Array<Shared.NumericMetricFilter>;
+  metric_filters?: Array<ReportGetBotsReportParams.MetricFilter>;
   /**
    * Filters for bots report.
    */
   filters?: Array<Shared.PathFilter | Shared.BotNameFilter | Shared.BotProviderFilter>;
+}
+
+export namespace ReportGetBotsReportParams {
+  export interface MetricFilter {
+    field: string;
+    operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!=';
+    value: number;
+  }
 }
 
 export interface ReportQueryFanoutsParams {
@@ -1716,13 +1762,30 @@ export interface ReportStreamVisibilityParams {
     | Shared.ModelIDFilter
     | Shared.TopicIDFilter
     | TopicNameFilter
-    | Shared.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
+    | ReportStreamVisibilityParams.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
     | Shared.TagIDFilter
     | TagNameFilter
     | PromptIDFilter
     | Shared.PromptFilter
     | Shared.PersonaIDFilter
   >;
+}
+
+export namespace ReportStreamVisibilityParams {
+  export interface ProfoundAnswerEngineInsightsFiltersAssetNameFilter {
+    field: 'asset_name';
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+    value: string | Array<string>;
+  }
 }
 
 export type ReportStreamVisibilityResponse =
@@ -1801,7 +1864,7 @@ export interface ReportStreamSentimentParams {
    */
   filters?: Array<
     | Shared.AssetIDFilter
-    | Shared.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
+    | ReportStreamSentimentParams.ProfoundAnswerEngineInsightsFiltersAssetNameFilter
     | ReportStreamSentimentParams.ThemeFilter
     | Shared.RegionIDFilter
     | Shared.RegionNameFilter
@@ -1816,6 +1879,21 @@ export interface ReportStreamSentimentParams {
 }
 
 export namespace ReportStreamSentimentParams {
+  export interface ProfoundAnswerEngineInsightsFiltersAssetNameFilter {
+    field: 'asset_name';
+    operator:
+      | 'is'
+      | 'not_is'
+      | 'in'
+      | 'not_in'
+      | 'contains'
+      | 'not_contains'
+      | 'matches'
+      | 'contains_case_insensitive'
+      | 'not_contains_case_insensitive';
+    value: string | Array<string>;
+  }
+
   export interface ThemeFilter {
     field: 'theme';
     operator:
@@ -1881,7 +1959,7 @@ export interface ReportStreamCitationsV2Params {
   /**
    * `citation_category` filters on a cited URL's single category; `citation_tag` filters on the custom citation tags a URL carries (a URL can carry several). List the category's tags with `GET /v1/org/categories/{category_id}/citation-tags`.
    */
-  filter?: Shared.FilterNode | null;
+  filter?: ReportStreamCitationsV2Params.Filter | null;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
@@ -1892,6 +1970,17 @@ export interface ReportStreamCitationsV2Params {
    */
   max_results?: number | null;
   cursor?: string | null;
+}
+
+export namespace ReportStreamCitationsV2Params {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
 }
 
 export type ReportStreamCitationsV2Response =
@@ -1948,11 +2037,11 @@ export namespace ReportStreamCitationsV2Response {
     page?: string | null;
     rank?: number | null;
     date?: string | null;
-    model?: Shared.DimensionRef | null;
-    topic?: Shared.DimensionRef | null;
-    region?: Shared.DimensionRef | null;
-    persona?: Shared.DimensionRef | null;
-    prompt?: Shared.DimensionRef | null;
+    model?: CitationRow.Model | null;
+    topic?: CitationRow.Topic | null;
+    region?: CitationRow.Region | null;
+    persona?: CitationRow.Persona | null;
+    prompt?: CitationRow.Prompt | null;
     count?: number | null;
     citation_share?: number | null;
     /**
@@ -1960,6 +2049,33 @@ export namespace ReportStreamCitationsV2Response {
      */
     first_cited_at?: string | null;
     [k: string]: unknown;
+  }
+
+  export namespace CitationRow {
+    export interface Model {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Topic {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Region {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Persona {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Prompt {
+      id?: string | null;
+      name?: string | null;
+    }
   }
 }
 
@@ -1990,7 +2106,7 @@ export interface ReportStreamVisibilityV2Params {
    * A name (`is`), a list (`in`), or {op,value} with op `is`/`in`/`not_in`.
    */
   assets?: string | Array<string> | ReportStreamVisibilityV2Params.EntityFilterClause | null;
-  filter?: Shared.FilterNode | null;
+  filter?: ReportStreamVisibilityV2Params.Filter | null;
   sort?: ReportStreamVisibilityV2Params.Sort;
   /**
    * Page size; default 10, max 50.
@@ -2017,6 +2133,15 @@ export namespace ReportStreamVisibilityV2Params {
       | 'contains_case_insensitive'
       | 'not_contains_case_insensitive';
     value: string | Array<string>;
+  }
+
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
   }
 
   export interface Sort {
@@ -2079,11 +2204,11 @@ export namespace ReportStreamVisibilityV2Response {
      */
     rank?: number | null;
     date?: string | null;
-    model?: Shared.DimensionRef | null;
-    topic?: Shared.DimensionRef | null;
-    region?: Shared.DimensionRef | null;
-    prompt?: Shared.DimensionRef | null;
-    persona?: Shared.DimensionRef | null;
+    model?: VisibilityRow.Model | null;
+    topic?: VisibilityRow.Topic | null;
+    region?: VisibilityRow.Region | null;
+    prompt?: VisibilityRow.Prompt | null;
+    persona?: VisibilityRow.Persona | null;
     visibility_score?: number | null;
     share_of_voice?: number | null;
     average_position?: number | null;
@@ -2097,6 +2222,31 @@ export namespace ReportStreamVisibilityV2Response {
        * Whether the asset is owned by the category.
        */
       owned?: boolean | null;
+    }
+
+    export interface Model {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Topic {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Region {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Prompt {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Persona {
+      id?: string | null;
+      name?: string | null;
     }
   }
 }
@@ -2144,7 +2294,7 @@ export interface ReportStreamSentimentV2Params {
    * @default day
    */
   interval?: 'day' | 'week' | 'month';
-  filter?: Shared.FilterNode | null;
+  filter?: ReportStreamSentimentV2Params.Filter | null;
   sort?: ReportStreamSentimentV2Params.Sort;
   /**
    * Return cited websites per row (only when grouping by `theme`/`claim`).
@@ -2164,6 +2314,15 @@ export interface ReportStreamSentimentV2Params {
 }
 
 export namespace ReportStreamSentimentV2Params {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
+
   export interface Sort {
     /**
      * @default positive_sentiment
@@ -2231,16 +2390,16 @@ export namespace ReportStreamSentimentV2Response {
 
   export interface SentimentRow {
     date?: string | null;
-    model?: Shared.DimensionRef | null;
-    topic?: Shared.DimensionRef | null;
-    region?: Shared.DimensionRef | null;
-    prompt?: Shared.DimensionRef | null;
-    persona?: Shared.DimensionRef | null;
-    tag?: Shared.DimensionRef | null;
-    theme?: Shared.DimensionRef | null;
-    claim?: Shared.DimensionRef | null;
-    run?: Shared.DimensionRef | null;
-    competitor?: Shared.DimensionRef | null;
+    model?: SentimentRow.Model | null;
+    topic?: SentimentRow.Topic | null;
+    region?: SentimentRow.Region | null;
+    prompt?: SentimentRow.Prompt | null;
+    persona?: SentimentRow.Persona | null;
+    tag?: SentimentRow.Tag | null;
+    theme?: SentimentRow.Theme | null;
+    claim?: SentimentRow.Claim | null;
+    run?: SentimentRow.Run | null;
+    competitor?: SentimentRow.Competitor | null;
     positive_sentiment?: number | null;
     negative_sentiment?: number | null;
     occurrence?: number | null;
@@ -2255,6 +2414,56 @@ export namespace ReportStreamSentimentV2Response {
   }
 
   export namespace SentimentRow {
+    export interface Model {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Topic {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Region {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Prompt {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Persona {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Tag {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Theme {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Claim {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Run {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Competitor {
+      id?: string | null;
+      name?: string | null;
+    }
+
     export interface Previous {
       positive_sentiment?: number | null;
       negative_sentiment?: number | null;
@@ -2283,7 +2492,7 @@ export interface ReportStreamQueryFanoutsParams {
    * @default day
    */
   interval?: 'day' | 'week' | 'month';
-  filter?: Shared.FilterNode | null;
+  filter?: ReportStreamQueryFanoutsParams.Filter | null;
   sort?: ReportStreamQueryFanoutsParams.Sort | null;
   /**
    * Page size; default 10, max 50.
@@ -2298,6 +2507,15 @@ export interface ReportStreamQueryFanoutsParams {
 }
 
 export namespace ReportStreamQueryFanoutsParams {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
+
   export interface Sort {
     field: string;
     /**
@@ -2427,7 +2645,7 @@ export interface ReportGetReferralsReportV2Params {
   /**
    * Numeric filters applied after report metrics are calculated.
    */
-  metric_filters?: Array<Shared.NumericMetricFilter>;
+  metric_filters?: Array<ReportGetReferralsReportV2Params.MetricFilter>;
   /**
    * Filters for referrals report.
    */
@@ -2439,6 +2657,12 @@ export interface ReportGetReferralsReportV2Params {
 }
 
 export namespace ReportGetReferralsReportV2Params {
+  export interface MetricFilter {
+    field: string;
+    operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!=';
+    value: number;
+  }
+
   export interface ReferralSourceFilter {
     field: 'referral_source';
     operator:
@@ -2530,7 +2754,7 @@ export interface ReportGetBotsReportV2Params {
   /**
    * Numeric filters applied after report metrics are calculated.
    */
-  metric_filters?: Array<Shared.NumericMetricFilter>;
+  metric_filters?: Array<ReportGetBotsReportV2Params.MetricFilter>;
   /**
    * Filters for bots report.
    */
@@ -2549,6 +2773,12 @@ export interface ReportGetBotsReportV2Params {
 }
 
 export namespace ReportGetBotsReportV2Params {
+  export interface MetricFilter {
+    field: string;
+    operator: '>' | '>=' | '<' | '<=' | '=' | '==' | '!=';
+    value: number;
+  }
+
   export interface BotTypeFilter {
     field: 'bot_type';
     operator:
@@ -2597,7 +2827,7 @@ export interface ReportQueryVisibilityParams {
    * A name (`is`), a list (`in`), or {op,value} with op `is`/`in`/`not_in`.
    */
   assets?: string | Array<string> | ReportQueryVisibilityParams.EntityFilterClause | null;
-  filter?: Shared.FilterNode | null;
+  filter?: ReportQueryVisibilityParams.Filter | null;
   sort?: ReportQueryVisibilityParams.Sort;
   /**
    * Page size; default 10, max 50.
@@ -2624,6 +2854,15 @@ export namespace ReportQueryVisibilityParams {
       | 'contains_case_insensitive'
       | 'not_contains_case_insensitive';
     value: string | Array<string>;
+  }
+
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
   }
 
   export interface Sort {
@@ -2687,11 +2926,11 @@ export namespace ReportQueryVisibilityResponse {
      */
     rank?: number | null;
     date?: string | null;
-    model?: Shared.DimensionRef | null;
-    topic?: Shared.DimensionRef | null;
-    region?: Shared.DimensionRef | null;
-    prompt?: Shared.DimensionRef | null;
-    persona?: Shared.DimensionRef | null;
+    model?: Data.Model | null;
+    topic?: Data.Topic | null;
+    region?: Data.Region | null;
+    prompt?: Data.Prompt | null;
+    persona?: Data.Persona | null;
     visibility_score?: number | null;
     share_of_voice?: number | null;
     average_position?: number | null;
@@ -2705,6 +2944,31 @@ export namespace ReportQueryVisibilityResponse {
        * Whether the asset is owned by the category.
        */
       owned?: boolean | null;
+    }
+
+    export interface Model {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Topic {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Region {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Prompt {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Persona {
+      id?: string | null;
+      name?: string | null;
     }
   }
 }
@@ -2741,7 +3005,7 @@ export interface ReportQueryCitationsParams {
   /**
    * `citation_category` filters on a cited URL's single category; `citation_tag` filters on the custom citation tags a URL carries (a URL can carry several). List the category's tags with `GET /v1/org/categories/{category_id}/citation-tags`.
    */
-  filter?: Shared.FilterNode | null;
+  filter?: ReportQueryCitationsParams.Filter | null;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
@@ -2752,6 +3016,17 @@ export interface ReportQueryCitationsParams {
    */
   max_results?: number | null;
   cursor?: string | null;
+}
+
+export namespace ReportQueryCitationsParams {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
 }
 
 export interface ReportQueryCitationsResponse {
@@ -2809,11 +3084,11 @@ export namespace ReportQueryCitationsResponse {
     page?: string | null;
     rank?: number | null;
     date?: string | null;
-    model?: Shared.DimensionRef | null;
-    topic?: Shared.DimensionRef | null;
-    region?: Shared.DimensionRef | null;
-    persona?: Shared.DimensionRef | null;
-    prompt?: Shared.DimensionRef | null;
+    model?: Data.Model | null;
+    topic?: Data.Topic | null;
+    region?: Data.Region | null;
+    persona?: Data.Persona | null;
+    prompt?: Data.Prompt | null;
     count?: number | null;
     citation_share?: number | null;
     /**
@@ -2821,6 +3096,33 @@ export namespace ReportQueryCitationsResponse {
      */
     first_cited_at?: string | null;
     [k: string]: unknown;
+  }
+
+  export namespace Data {
+    export interface Model {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Topic {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Region {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Persona {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Prompt {
+      id?: string | null;
+      name?: string | null;
+    }
   }
 }
 
@@ -2867,7 +3169,7 @@ export interface ReportQuerySentimentParams {
    * @default day
    */
   interval?: 'day' | 'week' | 'month';
-  filter?: Shared.FilterNode | null;
+  filter?: ReportQuerySentimentParams.Filter | null;
   sort?: ReportQuerySentimentParams.Sort;
   /**
    * Return cited websites per row (only when grouping by `theme`/`claim`).
@@ -2887,6 +3189,15 @@ export interface ReportQuerySentimentParams {
 }
 
 export namespace ReportQuerySentimentParams {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
+
   export interface Sort {
     /**
      * @default positive_sentiment
@@ -2955,16 +3266,16 @@ export namespace ReportQuerySentimentResponse {
 
   export interface Data {
     date?: string | null;
-    model?: Shared.DimensionRef | null;
-    topic?: Shared.DimensionRef | null;
-    region?: Shared.DimensionRef | null;
-    prompt?: Shared.DimensionRef | null;
-    persona?: Shared.DimensionRef | null;
-    tag?: Shared.DimensionRef | null;
-    theme?: Shared.DimensionRef | null;
-    claim?: Shared.DimensionRef | null;
-    run?: Shared.DimensionRef | null;
-    competitor?: Shared.DimensionRef | null;
+    model?: Data.Model | null;
+    topic?: Data.Topic | null;
+    region?: Data.Region | null;
+    prompt?: Data.Prompt | null;
+    persona?: Data.Persona | null;
+    tag?: Data.Tag | null;
+    theme?: Data.Theme | null;
+    claim?: Data.Claim | null;
+    run?: Data.Run | null;
+    competitor?: Data.Competitor | null;
     positive_sentiment?: number | null;
     negative_sentiment?: number | null;
     occurrence?: number | null;
@@ -2979,6 +3290,56 @@ export namespace ReportQuerySentimentResponse {
   }
 
   export namespace Data {
+    export interface Model {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Topic {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Region {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Prompt {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Persona {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Tag {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Theme {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Claim {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Run {
+      id?: string | null;
+      name?: string | null;
+    }
+
+    export interface Competitor {
+      id?: string | null;
+      name?: string | null;
+    }
+
     export interface Previous {
       positive_sentiment?: number | null;
       negative_sentiment?: number | null;
@@ -3007,7 +3368,7 @@ export interface ReportQueryQueryFanoutsParams {
    * @default day
    */
   interval?: 'day' | 'week' | 'month';
-  filter?: Shared.FilterNode | null;
+  filter?: ReportQueryQueryFanoutsParams.Filter | null;
   sort?: ReportQueryQueryFanoutsParams.Sort | null;
   /**
    * Page size; default 10, max 50.
@@ -3022,6 +3383,15 @@ export interface ReportQueryQueryFanoutsParams {
 }
 
 export namespace ReportQueryQueryFanoutsParams {
+  export interface Filter {
+    and?: Array<unknown> | null;
+    or?: Array<unknown> | null;
+    not?: unknown;
+    field?: string | null;
+    op?: string | null;
+    value?: unknown;
+  }
+
   export interface Sort {
     field: string;
     /**

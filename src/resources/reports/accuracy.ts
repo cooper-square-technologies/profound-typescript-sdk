@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { APIPromise } from '../../api-promise';
 import type { RequestOptions } from '../../internal/request-options';
-import type * as Shared from '../shared';
 
 export class Accuracy extends APIResource {
   /**
@@ -15,7 +14,7 @@ export class Accuracy extends APIResource {
    *
    * @example
    * ```ts
-   * const createOverview = await client.reports.accuracy.createOverview({
+   * const accuracy = await client.reports.accuracy.createOverview({
    *   start_date: '',
    *   end_date: '',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -43,7 +42,7 @@ export class Accuracy extends APIResource {
    *
    * @example
    * ```ts
-   * const createBreakdown = await client.reports.accuracy.createBreakdown({
+   * const accuracy = await client.reports.accuracy.createBreakdown({
    *   start_date: '',
    *   end_date: '',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -75,7 +74,7 @@ export class Accuracy extends APIResource {
    *
    * @example
    * ```ts
-   * const createCitationAnalysis = await client.reports.accuracy.createCitationAnalysis({
+   * const accuracy = await client.reports.accuracy.createCitationAnalysis({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   clean_href: '',
    *   start_date: '',
@@ -99,7 +98,7 @@ export class Accuracy extends APIResource {
    *
    * @example
    * ```ts
-   * const createTopicIDs = await client.reports.accuracy.createTopicIDs({
+   * const accuracy = await client.reports.accuracy.createTopicIDs({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '',
    *   end_date: '',
@@ -122,7 +121,7 @@ export class Accuracy extends APIResource {
    *
    * @example
    * ```ts
-   * const createInaccurateThemes = await client.reports.accuracy.createInaccurateThemes({
+   * const accuracy = await client.reports.accuracy.createInaccurateThemes({
    *   start_date: '',
    *   end_date: '',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -153,7 +152,7 @@ export class Accuracy extends APIResource {
    *
    * @example
    * ```ts
-   * const createInaccurateClusters = await client.reports.accuracy.createInaccurateClusters({
+   * const accuracy = await client.reports.accuracy.createInaccurateClusters({
    *   start_date: '',
    *   end_date: '',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -183,7 +182,7 @@ export class Accuracy extends APIResource {
    *
    * @example
    * ```ts
-   * const createInaccuracyDrivers = await client.reports.accuracy.createInaccuracyDrivers({
+   * const accuracy = await client.reports.accuracy.createInaccuracyDrivers({
    *   start_date: '',
    *   end_date: '',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -211,7 +210,7 @@ export class Accuracy extends APIResource {
    *
    * @example
    * ```ts
-   * const createTopInaccurateClaims = await client.reports.accuracy.createTopInaccurateClaims({
+   * const accuracy = await client.reports.accuracy.createTopInaccurateClaims({
    *   start_date: '',
    *   end_date: '',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -239,7 +238,7 @@ export class Accuracy extends APIResource {
    *
    * @example
    * ```ts
-   * const createClaimBreakdown = await client.reports.accuracy.createClaimBreakdown({
+   * const accuracy = await client.reports.accuracy.createClaimBreakdown({
    *   start_date: '',
    *   end_date: '',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -267,7 +266,7 @@ export class Accuracy extends APIResource {
    *
    * @example
    * ```ts
-   * const createClaimCitations = await client.reports.accuracy.createClaimCitations({
+   * const accuracy = await client.reports.accuracy.createClaimCitations({
    *   start_date: '',
    *   end_date: '',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -298,7 +297,7 @@ export class Accuracy extends APIResource {
    *
    * @example
    * ```ts
-   * const createClusterExampleRuns = await client.reports.accuracy.createClusterExampleRuns({
+   * const accuracy = await client.reports.accuracy.createClusterExampleRuns({
    *   start_date: '',
    *   end_date: '',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
@@ -328,7 +327,7 @@ export class Accuracy extends APIResource {
    *
    * @example
    * ```ts
-   * const createClusterVerificationPairs = await client.reports.accuracy.createClusterVerificationPairs({
+   * const accuracy = await client.reports.accuracy.createClusterVerificationPairs({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * });
@@ -350,7 +349,7 @@ export class Accuracy extends APIResource {
    *
    * @example
    * ```ts
-   * const createFactcheckSetupStatus = await client.reports.accuracy.createFactcheckSetupStatus({
+   * const accuracy = await client.reports.accuracy.createFactcheckSetupStatus({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * });
    * ```
@@ -403,7 +402,7 @@ export interface AccuracyCreateOverviewParams {
 }
 
 export interface AccuracyCreateOverviewResponse {
-  trendByPeriod: Array<Shared.AccuracyTrendPoint>;
+  trendByPeriod: Array<AccuracyCreateOverviewResponse.TrendByPeriod>;
   overallAccuracy: number;
   scoreBreakdown: Array<AccuracyCreateOverviewResponse.ScoreBreakdown>;
   accuracyChange?: number | null;
@@ -412,6 +411,18 @@ export interface AccuracyCreateOverviewResponse {
 }
 
 export namespace AccuracyCreateOverviewResponse {
+  export interface TrendByPeriod {
+    date: string;
+    total: number;
+    accurate: number;
+    ratio: number;
+    /**
+     * @default 0
+     */
+    verified?: number;
+    prevPeriodData?: unknown;
+  }
+
   export interface ScoreBreakdown {
     status: string;
     count: number;

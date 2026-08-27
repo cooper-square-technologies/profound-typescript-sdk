@@ -5,7 +5,6 @@ import { APIPromise } from '../../api-promise';
 import type { RequestOptions } from '../../internal/request-options';
 import { path as __scalarPath } from '../../internal/utils/path';
 import type * as OrganizationsAPI from './organizations';
-import type * as Shared from '../shared';
 
 export class Categories extends APIResource {
   /**
@@ -17,7 +16,7 @@ export class Categories extends APIResource {
    *
    * @example
    * ```ts
-   * const list = await client.organizations.categories.list();
+   * const category = await client.organizations.categories.list();
    * ```
    */
   list(
@@ -36,7 +35,7 @@ export class Categories extends APIResource {
    *
    * @example
    * ```ts
-   * const topics = await client.organizations.categories.topics('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+   * const category = await client.organizations.categories.topics('7c9e6679-7425-40de-944b-e07fc1f90ae7');
    * ```
    */
   topics(categoryID: string, options?: RequestOptions): APIPromise<CategoryTopicsResponse> {
@@ -52,7 +51,7 @@ export class Categories extends APIResource {
    *
    * @example
    * ```ts
-   * const tags = await client.organizations.categories.tags('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+   * const category = await client.organizations.categories.tags('7c9e6679-7425-40de-944b-e07fc1f90ae7');
    * ```
    */
   tags(categoryID: string, options?: RequestOptions): APIPromise<CategoryTagsResponse> {
@@ -69,7 +68,7 @@ export class Categories extends APIResource {
    *
    * @example
    * ```ts
-   * const prompts = await client.organizations.categories.prompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   * const category = await client.organizations.categories.prompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   limit: 10000,
    *   status: ['active'],
    * });
@@ -92,7 +91,7 @@ export class Categories extends APIResource {
    *
    * @example
    * ```ts
-   * const assets = await client.organizations.categories.assets('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+   * const category = await client.organizations.categories.assets('7c9e6679-7425-40de-944b-e07fc1f90ae7');
    * ```
    */
   assets(categoryID: string, options?: RequestOptions): APIPromise<CategoryAssetsResponse> {
@@ -108,7 +107,7 @@ export class Categories extends APIResource {
    *
    * @example
    * ```ts
-   * const getCategoryPersonas = await client.organizations.categories.getCategoryPersonas(
+   * const category = await client.organizations.categories.getCategoryPersonas(
    *   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * );
    * ```
@@ -130,13 +129,10 @@ export class Categories extends APIResource {
    *
    * @example
    * ```ts
-   * const createPrompts = await client.organizations.categories.createPrompts(
-   *   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   {
-   *     prompts: [],
-   *     dry_run: false,
-   *   },
-   * );
+   * const category = await client.organizations.categories.createPrompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   *   prompts: [],
+   *   dry_run: false,
+   * });
    * ```
    */
   createPrompts(
@@ -157,13 +153,10 @@ export class Categories extends APIResource {
    *
    * @example
    * ```ts
-   * const updatePrompts = await client.organizations.categories.updatePrompts(
-   *   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   {
-   *     prompts: [],
-   *     dry_run: false,
-   *   },
-   * );
+   * const category = await client.organizations.categories.updatePrompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   *   prompts: [],
+   *   dry_run: false,
+   * });
    * ```
    */
   updatePrompts(
@@ -189,7 +182,7 @@ export class Categories extends APIResource {
    *
    * @example
    * ```ts
-   * const updatePromptStatus = await client.organizations.categories.updatePromptStatus(
+   * const category = await client.organizations.categories.updatePromptStatus(
    *   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   {
    *     prompt_ids: [],
@@ -219,7 +212,7 @@ export class Categories extends APIResource {
    *
    * @example
    * ```ts
-   * const retrieveRegions = await client.organizations.categories.retrieveRegions(
+   * const category = await client.organizations.categories.retrieveRegions(
    *   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * );
    * ```
@@ -237,7 +230,7 @@ export class Categories extends APIResource {
    *
    * @example
    * ```ts
-   * const getCitationCategories = await client.organizations.categories.getCitationCategories(
+   * const category = await client.organizations.categories.getCitationCategories(
    *   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    * );
    * ```
