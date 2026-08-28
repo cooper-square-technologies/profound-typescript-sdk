@@ -1,6 +1,6 @@
 {
   "name": "@profoundai/client",
-  "version": "0.49.1",
+  "version": "0.49.2",
   "description": "Profound TypeScript SDK",
   "author": "Profound <support@tryprofound.com>",
   "repository": {

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.49.2](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.49.1...v0.49.2) (2026-08-28)
+
+
+### Chores
+
+* **api:** update generated SDK content ([5f72bab](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/5f72bab99988243c1d8252467d8b81399fbf74e1))
+
 ## [0.49.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.49.0...v0.49.1) (2026-08-27)
 
 
