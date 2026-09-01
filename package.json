@@ -48,8 +48,8 @@
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.cjs.json --noEmit",
     "prepublishOnly": "npm run build"
   },
-  "dependencies": {},
   "devDependencies": {
+    "@types/node": "^26.4.0",
     "typescript": "^6.0.0"
   },
   "license": "Apache-2.0"

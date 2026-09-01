@@ -2,6 +2,16 @@
 
 export { Profound as default } from './client.js';
 
+export {
+  filter,
+  Fields,
+  type FilterNode,
+  type LeafNode,
+  type FieldName,
+  type FieldRef,
+  type Op,
+} from './lib/filter.js';
+
 export { type Uploadable, toFile } from './core/uploads';
 export { APIPromise } from './api-promise';
 export { Profound, type ClientOptions, type AuthTokenProvider } from './client.js';
