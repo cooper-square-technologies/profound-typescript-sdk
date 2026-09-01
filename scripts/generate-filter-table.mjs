@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
 
 const src = process.argv[2];
@@ -31,4 +32,11 @@ lines.push('} as const;', '');
 
 const out = new URL('../src/lib/filter-table.ts', import.meta.url);
 writeFileSync(out, lines.join('\n'));
+try {
+  execFileSync('npx', ['--yes', '@biomejs/biome@2.5.7', 'format', '--write', out.pathname], {
+    stdio: 'pipe',
+  });
+} catch {
+  console.warn('biome format failed; run it manually before committing');
+}
 console.log(`wrote ${out.pathname}`);

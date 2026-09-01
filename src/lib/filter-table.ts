@@ -6,33 +6,19 @@ export const MAX_DEPTH = 3;
 export const FIELD_TABLE = {
   analysis_type: {
     layer: 'entity',
-    ops: [
-      'is',
-      'not_is',
-      'in',
-      'not_in',
-    ],
+    ops: ['is', 'not_is', 'in', 'not_in'],
   },
   citation_category: {
     layer: 'entity',
-    ops: [
-      'is',
-      'in',
-    ],
+    ops: ['is', 'in'],
   },
   citation_tag: {
     layer: 'entity',
-    ops: [
-      'is',
-      'in',
-    ],
+    ops: ['is', 'in'],
   },
   claim: {
     layer: 'entity',
-    ops: [
-      'is',
-      'in',
-    ],
+    ops: ['is', 'in'],
   },
   domain: {
     layer: 'entity',
@@ -136,10 +122,7 @@ export const FIELD_TABLE = {
   },
   theme: {
     layer: 'entity',
-    ops: [
-      'is',
-      'in',
-    ],
+    ops: ['is', 'in'],
   },
   topic: {
     layer: 'prompt',

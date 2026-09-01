@@ -5,10 +5,7 @@ import type { ReportQueryVisibilityParams } from '../src/resources/reports/repor
 
 test('docs example serializes to the exact JSON tree', () => {
   const tree = filter.and(
-    filter.or(
-      filter.equals(Fields.model, 'ChatGPT'),
-      filter.equals(Fields.model, 'Perplexity'),
-    ),
+    filter.or(filter.equals(Fields.model, 'ChatGPT'), filter.equals(Fields.model, 'Perplexity')),
     filter.not(filter.equals(Fields.region, 'United States')),
   );
   const assignable: ReportQueryVisibilityParams['filter'] = tree;

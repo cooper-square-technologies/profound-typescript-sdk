@@ -11,9 +11,9 @@ export interface FieldRef<N extends FieldName = FieldName> {
   readonly name: N;
 }
 
-export const Fields = Object.fromEntries(
-  Object.keys(FIELD_TABLE).map((name) => [name, { name }]),
-) as { readonly [K in FieldName]: FieldRef<K> };
+export const Fields = Object.fromEntries(Object.keys(FIELD_TABLE).map((name) => [name, { name }])) as {
+  readonly [K in FieldName]: FieldRef<K>;
+};
 
 type NamesWithOp<O extends Op> = {
   [K in FieldName]: O extends (typeof FIELD_TABLE)[K]['ops'][number] ? K : never;
@@ -25,11 +25,7 @@ export interface LeafNode {
   value?: string | string[];
 }
 
-export type FilterNode =
-  | LeafNode
-  | { and: FilterNode[] }
-  | { or: FilterNode[] }
-  | { not: FilterNode };
+export type FilterNode = LeafNode | { and: FilterNode[] } | { or: FilterNode[] } | { not: FilterNode };
 
 function depth(node: FilterNode): number {
   if ('and' in node) return 1 + Math.max(...node.and.map(depth));
@@ -67,9 +63,7 @@ function leaf(field: FieldRef, op: Op, value?: string | string[]): LeafNode {
   const spec = FIELD_TABLE[field.name];
   if (!spec) throw new Error(`Unknown field: ${String(field?.name ?? field)}`);
   if (!(spec.ops as readonly Op[]).includes(op)) {
-    throw new Error(
-      `Field "${field.name}" does not support op "${op}" (allowed: ${spec.ops.join(', ')})`,
-    );
+    throw new Error(`Field "${field.name}" does not support op "${op}" (allowed: ${spec.ops.join(', ')})`);
   }
   return value === undefined ? { field: field.name, op } : { field: field.name, op, value };
 }
@@ -124,10 +118,7 @@ export const filter = {
     return leaf(field, 'not_contains', value);
   },
 
-  containsInsensitive(
-    field: FieldRef<NamesWithOp<'contains_case_insensitive'>>,
-    value: string,
-  ): LeafNode {
+  containsInsensitive(field: FieldRef<NamesWithOp<'contains_case_insensitive'>>, value: string): LeafNode {
     return leaf(field, 'contains_case_insensitive', value);
   },
 
