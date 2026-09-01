@@ -1,50 +1,11 @@
-// Field/op/layer table mirrors the v2 filter grammar at
-// https://docs.tryprofound.com/rest-api/reports/reports-v2-overview
-// (the published OpenAPI spec does not describe the v2 filter tree).
+import { FIELD_TABLE, MAX_DEPTH } from './filter-table.js';
 
-export type Op =
-  | 'is'
-  | 'not_is'
-  | 'in'
-  | 'not_in'
-  | 'contains'
-  | 'not_contains'
-  | 'contains_case_insensitive'
-  | 'not_contains_case_insensitive'
-  | 'matches'
-  | 'exists';
-
-type Layer = 'prompt' | 'entity';
-
-const BASE_OPS = [
-  'is',
-  'not_is',
-  'in',
-  'not_in',
-  'contains',
-  'not_contains',
-  'contains_case_insensitive',
-  'not_contains_case_insensitive',
-  'matches',
-] as const;
-
-const FIELD_TABLE = {
-  model: { layer: 'prompt', ops: BASE_OPS },
-  topic: { layer: 'prompt', ops: BASE_OPS },
-  region: { layer: 'prompt', ops: BASE_OPS },
-  persona: { layer: 'prompt', ops: [...BASE_OPS, 'exists'] },
-  prompt: { layer: 'prompt', ops: BASE_OPS },
-  tag: { layer: 'prompt', ops: [...BASE_OPS, 'exists'] },
-  domain: { layer: 'entity', ops: BASE_OPS },
-  page: { layer: 'entity', ops: BASE_OPS },
-  analysis_type: { layer: 'entity', ops: ['is', 'in', 'not_in'] },
-  citation_category: { layer: 'entity', ops: ['is', 'in'] },
-  citation_tag: { layer: 'entity', ops: ['is', 'in'] },
-  theme: { layer: 'entity', ops: ['is', 'in'] },
-  claim: { layer: 'entity', ops: ['is', 'in'] },
-} as const satisfies Record<string, { layer: Layer; ops: readonly Op[] }>;
+export { MAX_DEPTH };
 
 export type FieldName = keyof typeof FIELD_TABLE;
+export type Op = (typeof FIELD_TABLE)[FieldName]['ops'][number];
+
+type Layer = (typeof FIELD_TABLE)[FieldName]['layer'];
 
 export interface FieldRef<N extends FieldName = FieldName> {
   readonly name: N;
@@ -69,8 +30,6 @@ export type FilterNode =
   | { and: FilterNode[] }
   | { or: FilterNode[] }
   | { not: FilterNode };
-
-export const MAX_DEPTH = 3;
 
 function depth(node: FilterNode): number {
   if ('and' in node) return 1 + Math.max(...node.and.map(depth));
