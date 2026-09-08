@@ -23,33 +23,19 @@
     "fields": {
       "analysis_type": {
         "layer": "entity",
-        "ops": [
-          "is",
-          "not_is",
-          "in",
-          "not_in"
-        ]
+        "ops": ["is", "not_is", "in", "not_in"]
       },
       "citation_category": {
         "layer": "entity",
-        "ops": [
-          "is",
-          "in"
-        ]
+        "ops": ["is", "in"]
       },
       "citation_tag": {
         "layer": "entity",
-        "ops": [
-          "is",
-          "in"
-        ]
+        "ops": ["is", "in"]
       },
       "claim": {
         "layer": "entity",
-        "ops": [
-          "is",
-          "in"
-        ]
+        "ops": ["is", "in"]
       },
       "domain": {
         "layer": "entity",
@@ -153,10 +139,7 @@
       },
       "theme": {
         "layer": "entity",
-        "ops": [
-          "is",
-          "in"
-        ]
+        "ops": ["is", "in"]
       },
       "topic": {
         "layer": "prompt",
@@ -174,14 +157,7 @@
       }
     },
     "reports": {
-      "visibility": [
-        "model",
-        "persona",
-        "prompt",
-        "region",
-        "tag",
-        "topic"
-      ],
+      "visibility": ["model", "persona", "prompt", "region", "tag", "topic"],
       "citations": [
         "analysis_type",
         "citation_category",
@@ -195,36 +171,9 @@
         "tag",
         "topic"
       ],
-      "sentiment": [
-        "claim",
-        "model",
-        "persona",
-        "prompt",
-        "region",
-        "tag",
-        "theme",
-        "topic"
-      ],
-      "query_fanouts": [
-        "analysis_type",
-        "model",
-        "persona",
-        "prompt",
-        "region",
-        "tag",
-        "topic"
-      ],
-      "answers": [
-        "analysis_type",
-        "domain",
-        "model",
-        "page",
-        "persona",
-        "prompt",
-        "region",
-        "tag",
-        "topic"
-      ]
+      "sentiment": ["claim", "model", "persona", "prompt", "region", "tag", "theme", "topic"],
+      "query_fanouts": ["analysis_type", "model", "persona", "prompt", "region", "tag", "topic"],
+      "answers": ["analysis_type", "domain", "model", "page", "persona", "prompt", "region", "tag", "topic"]
     }
   }
 }

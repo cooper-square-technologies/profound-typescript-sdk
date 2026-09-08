@@ -2,8 +2,7 @@
 import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
 
-const src =
-  process.argv[2] ?? 'https://registry.scalar.com/@profound/apis/external-api/latest?format=json';
+const src = process.argv[2] ?? 'https://registry.scalar.com/@profound/apis/external-api/latest?format=json';
 
 const text = /^https?:\/\//.test(src) ? await (await fetch(src)).text() : readFileSync(src, 'utf8');
 const grammar = JSON.parse(text)['x-profound-filter-grammar'];
