@@ -46,6 +46,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json && tsc -p tsconfig.cjs.json && node scripts/finalize-build.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.cjs.json --noEmit",
+    "generate:filter-table": "node scripts/generate-filter-table.mjs",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
