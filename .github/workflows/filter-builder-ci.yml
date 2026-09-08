@@ -18,6 +18,6 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - run: npm install
       - run: npx tsc -p tests/tsconfig.json
-      - run: npx --yes tsx tests/filter.test.ts
+      - run: npx --yes tsx@4.23.12 tests/filter.test.ts
       - run: npm run generate:filter-table -- tests/fixtures/filter-grammar.openapi.json
       - run: git diff --exit-code -- src/lib/filter-table.ts
