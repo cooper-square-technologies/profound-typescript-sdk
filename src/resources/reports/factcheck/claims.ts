@@ -89,10 +89,12 @@ export interface ClaimQueryClaimsParams {
   /**
    * Claims (or sections) per page; default 25.
    * @maximum 100
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream only: cap entries returned.
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -316,10 +318,12 @@ export interface ClaimStreamClaimsParams {
   /**
    * Claims (or sections) per page; default 25.
    * @maximum 100
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream only: cap entries returned.
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;

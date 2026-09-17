@@ -338,6 +338,7 @@ export namespace ProjectCreateParams {
     mime_type: string;
     /**
      * @maximum 10485760
+     * @exclusiveMinimum 0
      */
     size_bytes: number;
     /**

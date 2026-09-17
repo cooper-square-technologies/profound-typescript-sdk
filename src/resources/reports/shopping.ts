@@ -309,11 +309,13 @@ export interface ShoppingBrandsParams {
   /**
    * Page size for scope=all; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap the number of streamed rows (default: all).
    * @maximum 50000
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -448,11 +450,13 @@ export interface ShoppingStreamBrandsParams {
   /**
    * Page size for scope=all; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap the number of streamed rows (default: all).
    * @maximum 50000
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -604,11 +608,13 @@ export interface ShoppingProductsParams {
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap streamed rows.
    * @maximum 50000
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -756,11 +762,13 @@ export interface ShoppingStreamProductsParams {
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap streamed rows.
    * @maximum 50000
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -896,11 +904,13 @@ export interface ShoppingMerchantsParams {
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap streamed rows.
    * @maximum 50000
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -1018,11 +1028,13 @@ export interface ShoppingStreamMerchantsParams {
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap streamed rows.
    * @maximum 50000
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -1127,11 +1139,13 @@ export interface ShoppingTriggerRateParams {
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap streamed rows.
    * @maximum 50000
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -1251,11 +1265,13 @@ export interface ShoppingStreamTriggerRateParams {
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap streamed rows.
    * @maximum 50000
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;

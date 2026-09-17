@@ -21,7 +21,7 @@ export class WebSearchResults extends APIResource {
    * const webSearchResult = await client.reports.webSearchResults.query({
    *   date_interval: 'day',
    *   dimensions: [],
-   *   metrics: [],
+   *   metrics: ['count'],
    *   order_by: {},
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '2024-01-01T00:00:00.000Z',
@@ -48,7 +48,7 @@ export class WebSearchResults extends APIResource {
    * const stream = await client.reports.webSearchResults.stream({
    *   date_interval: 'day',
    *   dimensions: [],
-   *   metrics: [],
+   *   metrics: ['count'],
    *   order_by: {},
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '2024-01-01T00:00:00.000Z',

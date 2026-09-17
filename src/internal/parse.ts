@@ -27,12 +27,6 @@ export async function defaultParseResponse<T>(client: Profound, props: APIRespon
         return props.options.__streamClass.fromSSEResponse(response, props.controller, client) as any;
       }
 
-      const contentType = response.headers.get('content-type');
-      if (contentType?.includes('ndjson') || contentType?.includes('jsonl')) {
-        if (!response.body) throw new Error('Attempted to iterate over a response with no body');
-        return Stream.fromReadableStream(response.body, props.controller, client) as any;
-      }
-
       return Stream.fromSSEResponse(response, props.controller, client) as any;
     }
 
