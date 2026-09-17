@@ -1,5 +1,76 @@
 # Changelog
 
+## [0.50.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.49.1...v0.50.0) (2026-09-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 54 breaking changes to the SDK surface.
+    - Property `accuracy_breakdown_query.limit` type changed from `integer` to `integer`.
+    - Property `accuracy_breakdown_query.offset` type changed from `integer` to `integer`.
+    - Property `answers_v2_query.limit` type changed from `integer | null` to `integer | null`.
+    - Property `answers_v2_query.max_results` type changed from `integer | null` to `integer | null`.
+    - Property `citations_v2_query.limit` type changed from `integer | null` to `integer | null`.
+    - Property `citations_v2_query.max_results` type changed from `integer | null` to `integer | null`.
+    - Property `claim_citations_query.limit` type changed from `integer` to `integer`.
+    - Property `claim_citations_query.offset` type changed from `integer` to `integer`.
+    - Property `cluster_example_runs_query.limit` type changed from `integer` to `integer`.
+    - Property `cluster_example_runs_query.offset` type changed from `integer` to `integer`.
+    - Property `create_project_task_request.impact` type changed from `integer | null` to `integer | null`.
+    - Property `cursor_pagination.limit` type changed from `integer` to `integer`.
+    - Property `factcheck_claims_query.limit` type changed from `integer | null` to `integer | null`.
+    - Property `factcheck_claims_query.max_results` type changed from `integer | null` to `integer | null`.
+    - Property `factcheck_scores_query.limit` type changed from `integer | null` to `integer | null`.
+    - Property `factcheck_scores_query.max_results` type changed from `integer | null` to `integer | null`.
+    - Property `inaccuracy_drivers_query.limit` type changed from `integer` to `integer`.
+    - Property `inaccurate_clusters_query.limit` type changed from `integer` to `integer`.
+    - Property `inaccurate_clusters_query.offset` type changed from `integer` to `integer`.
+    - Property `inaccurate_themes_query.limit` type changed from `integer` to `integer`.
+    - Property `inaccurate_themes_query.offset` type changed from `integer` to `integer`.
+    - Property `pagination.limit` type changed from `integer` to `integer`.
+    - Property `pagination.offset` type changed from `integer` to `integer`.
+    - Property `project.task_count` type changed from `integer` to `integer`.
+    - Property `project.new_task_count` type changed from `integer` to `integer`.
+    - Property `project.version_count` type changed from `integer` to `integer`.
+    - Property `project_attachment.size_bytes` type changed from `integer` to `integer`.
+    - Property `project_detail.task_count` type changed from `integer` to `integer`.
+    - Property `project_detail.new_task_count` type changed from `integer` to `integer`.
+    - Property `project_detail.version_count` type changed from `integer` to `integer`.
+    - Property `project_list_item.task_count` type changed from `integer` to `integer`.
+    - Property `project_list_item.new_task_count` type changed from `integer` to `integer`.
+    - Property `project_task.impact` type changed from `integer | null` to `integer | null`.
+    - Property `project_task_detail.impact` type changed from `integer | null` to `integer | null`.
+    - Property `query_fanouts_v2_query.limit` type changed from `integer | null` to `integer | null`.
+    - Property `query_fanouts_v2_query.max_results` type changed from `integer | null` to `integer | null`.
+    - Property `search_knowledge_base_request.top_k` type changed from `integer` to `integer`.
+    - Property `sentiment_v2_query.limit` type changed from `integer | null` to `integer | null`.
+    - Property `sentiment_v2_query.max_results` type changed from `integer | null` to `integer | null`.
+    - Property `shopping_brands_v2_query.limit` type changed from `integer | null` to `integer | null`.
+    - Property `shopping_brands_v2_query.max_results` type changed from `integer | null` to `integer | null`.
+    - Property `shopping_merchants_v2_query.limit` type changed from `integer | null` to `integer | null`.
+    - Property `shopping_merchants_v2_query.max_results` type changed from `integer | null` to `integer | null`.
+    - Property `shopping_products_v2_query.competitor_limit` type changed from `integer` to `integer`.
+    - Property `shopping_products_v2_query.limit` type changed from `integer | null` to `integer | null`.
+    - Property `shopping_products_v2_query.max_results` type changed from `integer | null` to `integer | null`.
+    - Property `shopping_trigger_rate_v2_query.limit` type changed from `integer | null` to `integer | null`.
+    - Property `shopping_trigger_rate_v2_query.max_results` type changed from `integer | null` to `integer | null`.
+    - Property `top_inaccurate_claims_query.limit` type changed from `integer` to `integer`.
+    - Property `update_project_task_request.impact` type changed from `integer | null` to `integer | null`.
+    - Property `visibility_v2_query.limit` type changed from `integer | null` to `integer | null`.
+    - Property `visibility_v2_query.max_results` type changed from `integer | null` to `integer | null`.
+    - Property `youtube_channels_query.limit` type changed from `integer | null` to `integer | null`.
+    - Property `youtube_videos_query.limit` type changed from `integer | null` to `integer | null`.
+
+### Features
+
+* **api:** update SDK surface (55 changes) ([66645a8](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/66645a80e0e134751d401676abba8cfc4b3f1dc1))
+
+
+### Chores
+
+* **api:** regenerate SDK ([48d8362](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/48d8362580be14f4359ad2e8c7bdc2d99608e13a))
+* **api:** update generated SDK content ([5f72bab](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/5f72bab99988243c1d8252467d8b81399fbf74e1))
+
 ## [0.49.1](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.49.0...v0.49.1) (2026-08-27)
 
 
