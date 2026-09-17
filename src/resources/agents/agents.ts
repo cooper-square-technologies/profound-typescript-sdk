@@ -176,6 +176,7 @@ export interface AgentListParams {
   /**
    * @default 100
    * @maximum 100
+   * @exclusiveMinimum 0
    */
   limit?: number;
   next_cursor?: string | null;

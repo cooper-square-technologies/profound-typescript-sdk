@@ -100,10 +100,12 @@ export interface FactcheckQueryScoresParams {
   /**
    * Rows per page; default 100.
    * @maximum 100
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream only: cap rows returned.
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -248,10 +250,12 @@ export interface FactcheckStreamScoresParams {
   /**
    * Rows per page; default 100.
    * @maximum 100
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream only: cap rows returned.
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;

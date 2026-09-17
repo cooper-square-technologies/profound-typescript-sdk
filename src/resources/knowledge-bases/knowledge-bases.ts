@@ -59,7 +59,7 @@ export class KnowledgeBases extends APIResource {
    * ```ts
    * const knowledgeBase = await client.knowledgeBases.search('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   query: 'x',
-   *   top_k: 0,
+   *   top_k: 1,
    *   return_full_page: false,
    * });
    * ```

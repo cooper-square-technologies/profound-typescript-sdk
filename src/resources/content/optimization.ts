@@ -61,6 +61,7 @@ export interface OptimizationListParams {
    * Maximum number of results to return
    * @default 10000
    * @maximum 50000
+   * @exclusiveMinimum 0
    */
   limit?: number;
   /**

@@ -120,6 +120,7 @@ export interface CursorPagination {
    * Maximum number of results to return. Default is 10,000, maximum is 50,000.
    * @default 10000
    * @maximum 50000
+   * @exclusiveMinimum 0
    */
   limit?: number;
   /**
@@ -143,6 +144,7 @@ export interface Pagination {
    * Maximum number of results to return. Default is 10,000, maximum is 50,000.
    * @default 10000
    * @maximum 50000
+   * @exclusiveMinimum 0
    */
   limit?: number;
   /**

@@ -90,6 +90,7 @@ export interface YoutubeGetChannelsParams {
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   cursor?: string | null;
@@ -260,6 +261,7 @@ export interface YoutubeGetVideosParams {
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   cursor?: string | null;

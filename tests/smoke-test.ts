@@ -251,7 +251,17 @@ const cases: {
       const category = await client.organizations.categories.createPrompts(
         '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         {
-          prompts: [],
+          prompts: [
+            {
+              prompt: 'x',
+              topic: {},
+              language: '',
+              tags: [],
+              regions: [{}],
+              platforms: [{}],
+              personas: [],
+            },
+          ],
           dry_run: false,
         },
       );
@@ -266,7 +276,11 @@ const cases: {
       const category = await client.organizations.categories.updatePrompts(
         '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         {
-          prompts: [],
+          prompts: [
+            {
+              id: '',
+            },
+          ],
           dry_run: false,
         },
       );
@@ -281,7 +295,7 @@ const cases: {
       const category = await client.organizations.categories.updatePromptStatus(
         '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         {
-          prompt_ids: [],
+          prompt_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
           status: 'active',
           dry_run: false,
         },
@@ -339,7 +353,13 @@ const cases: {
           limit: 10000,
           offset: 0,
         },
-        filters: [],
+        filters: [
+          {
+            field: 'region_id',
+            operator: 'is',
+            value: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+          },
+        ],
         include: {
           run_id: false,
           created_at: true,
@@ -394,10 +414,10 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
-        include: [],
+        include: ['run_id'],
         filter: {},
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
     },
@@ -431,10 +451,10 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
-        include: [],
+        include: ['run_id'],
         filter: {},
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
 
@@ -453,7 +473,7 @@ const cases: {
       const report = await client.reports.citations({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['count'],
         order_by: {},
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
@@ -471,7 +491,7 @@ const cases: {
       const report = await client.reports.citations({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['count'],
         order_by: {},
         pagination: {
           limit: 10000,
@@ -480,7 +500,13 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
         end_date: '2024-01-01T00:00:00.000Z',
-        filters: [],
+        filters: [
+          {
+            field: 'hostname',
+            operator: 'is',
+            value: '',
+          },
+        ],
       });
     },
   },
@@ -494,7 +520,7 @@ const cases: {
       const report = await client.reports.visibility({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['share_of_voice'],
         order_by: {},
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
@@ -512,7 +538,7 @@ const cases: {
       const report = await client.reports.visibility({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['share_of_voice'],
         order_by: {},
         pagination: {
           limit: 10000,
@@ -521,7 +547,13 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
         end_date: '2024-01-01T00:00:00.000Z',
-        filters: [],
+        filters: [
+          {
+            field: 'region_id',
+            operator: 'is',
+            value: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+          },
+        ],
       });
     },
   },
@@ -535,7 +567,7 @@ const cases: {
       const report = await client.reports.sentiment({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['positive'],
         order_by: {},
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
@@ -553,7 +585,7 @@ const cases: {
       const report = await client.reports.sentiment({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['positive'],
         order_by: {},
         pagination: {
           limit: 10000,
@@ -562,7 +594,13 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
         end_date: '2024-01-01T00:00:00.000Z',
-        filters: [],
+        filters: [
+          {
+            field: 'asset_id',
+            operator: 'is',
+            value: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+          },
+        ],
       });
     },
   },
@@ -579,7 +617,7 @@ const cases: {
         start_date: '2024-01-01T00:00:00.000Z',
         end_date: '2024-01-01T00:00:00.000Z',
         date_bucket: 'day',
-        metrics: [],
+        metrics: ['sentiment'],
       });
     },
   },
@@ -598,9 +636,15 @@ const cases: {
         comparison_start_date: '2024-01-01T00:00:00.000Z',
         comparison_end_date: '2024-01-01T00:00:00.000Z',
         date_bucket: 'day',
-        dimensions: [],
-        metrics: [],
-        filters: [],
+        dimensions: ['date'],
+        metrics: ['sentiment'],
+        filters: [
+          {
+            field: 'model_id',
+            operator: 'is',
+            value: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+          },
+        ],
         order_by: { occurrence: 'desc' },
         pagination: {
           limit: 10000,
@@ -619,7 +663,7 @@ const cases: {
       const report = await client.reports.getReferralsReport({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['visits'],
         order_by: {},
         domain: '',
         start_date: '2024-01-01T00:00:00.000Z',
@@ -636,7 +680,7 @@ const cases: {
       const report = await client.reports.getReferralsReport({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['visits'],
         order_by: {},
         pagination: {
           limit: 10000,
@@ -646,8 +690,20 @@ const cases: {
         start_date: '2024-01-01T00:00:00.000Z',
         end_date: '2024-01-01T00:00:00.000Z',
         organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        metric_filters: [],
-        filters: [],
+        metric_filters: [
+          {
+            field: '',
+            operator: '>',
+            value: 0,
+          },
+        ],
+        filters: [
+          {
+            field: 'path',
+            operator: 'is',
+            value: '',
+          },
+        ],
       });
     },
   },
@@ -661,7 +717,7 @@ const cases: {
       const report = await client.reports.getBotsReport({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['count'],
         order_by: {},
         domain: '',
         start_date: '2024-01-01T00:00:00.000Z',
@@ -678,7 +734,7 @@ const cases: {
       const report = await client.reports.getBotsReport({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['count'],
         order_by: {},
         pagination: {
           limit: 10000,
@@ -688,8 +744,20 @@ const cases: {
         start_date: '2024-01-01T00:00:00.000Z',
         end_date: '2024-01-01T00:00:00.000Z',
         organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        metric_filters: [],
-        filters: [],
+        metric_filters: [
+          {
+            field: '',
+            operator: '>',
+            value: 0,
+          },
+        ],
+        filters: [
+          {
+            field: 'path',
+            operator: 'is',
+            value: '',
+          },
+        ],
       });
     },
   },
@@ -703,7 +771,7 @@ const cases: {
       const report = await client.reports.queryFanouts({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['fanouts_per_execution'],
         order_by: {},
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
@@ -721,7 +789,7 @@ const cases: {
       const report = await client.reports.queryFanouts({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['fanouts_per_execution'],
         order_by: {},
         pagination: {
           limit: 10000,
@@ -730,7 +798,13 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
         end_date: '2024-01-01T00:00:00.000Z',
-        filters: [],
+        filters: [
+          {
+            field: 'region_id',
+            operator: 'is',
+            value: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+          },
+        ],
       });
     },
   },
@@ -744,7 +818,7 @@ const cases: {
       const stream = await client.reports.streamCitations({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['count'],
         order_by: {},
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
@@ -766,7 +840,7 @@ const cases: {
       const stream = await client.reports.streamCitations({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['count'],
         order_by: {},
         pagination: {
           limit: 10000,
@@ -775,7 +849,13 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
         end_date: '2024-01-01T00:00:00.000Z',
-        filters: [],
+        filters: [
+          {
+            field: 'hostname',
+            operator: 'is',
+            value: '',
+          },
+        ],
       });
 
       for await (const event of stream) {
@@ -793,7 +873,7 @@ const cases: {
       const stream = await client.reports.streamVisibility({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['share_of_voice'],
         order_by: {},
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
@@ -815,7 +895,7 @@ const cases: {
       const stream = await client.reports.streamVisibility({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['share_of_voice'],
         order_by: {},
         pagination: {
           limit: 10000,
@@ -824,7 +904,13 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
         end_date: '2024-01-01T00:00:00.000Z',
-        filters: [],
+        filters: [
+          {
+            field: 'region_id',
+            operator: 'is',
+            value: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+          },
+        ],
       });
 
       for await (const event of stream) {
@@ -842,7 +928,7 @@ const cases: {
       const stream = await client.reports.streamSentiment({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['positive'],
         order_by: {},
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
@@ -864,7 +950,7 @@ const cases: {
       const stream = await client.reports.streamSentiment({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['positive'],
         order_by: {},
         pagination: {
           limit: 10000,
@@ -873,7 +959,13 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
         end_date: '2024-01-01T00:00:00.000Z',
-        filters: [],
+        filters: [
+          {
+            field: 'asset_id',
+            operator: 'is',
+            value: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+          },
+        ],
       });
 
       for await (const event of stream) {
@@ -914,13 +1006,13 @@ const cases: {
         start_date: '',
         end_date: '',
         entity: 'domain',
-        group_by: [],
-        metrics: [],
+        group_by: ['page'],
+        metrics: ['count'],
         interval: 'day',
         scope: 'all',
         filter: {},
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
 
@@ -960,8 +1052,8 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
-        group_by: [],
-        metrics: [],
+        group_by: ['date'],
+        metrics: ['visibility_score'],
         interval: 'day',
         scope: 'owned',
         assets: '',
@@ -969,8 +1061,8 @@ const cases: {
         sort: {
           field: 'visibility_score',
         },
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
 
@@ -1014,8 +1106,8 @@ const cases: {
         end_date: '',
         comparison_start_date: '',
         comparison_end_date: '',
-        group_by: [],
-        metrics: [],
+        group_by: ['date'],
+        metrics: ['positive_sentiment'],
         interval: 'day',
         filter: {},
         sort: {
@@ -1023,8 +1115,8 @@ const cases: {
           dir: 'desc',
         },
         include_cited_websites: false,
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
 
@@ -1063,16 +1155,16 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
-        group_by: [],
-        metrics: [],
+        group_by: ['date'],
+        metrics: ['fanouts_per_execution'],
         interval: 'day',
         filter: {},
         sort: {
           field: '',
           dir: 'desc',
         },
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
 
@@ -1091,7 +1183,7 @@ const cases: {
       const report = await client.reports.getReferralsReportV2({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['visits'],
         order_by: {},
         domain: '',
         start_date: '2024-01-01T00:00:00.000Z',
@@ -1109,7 +1201,7 @@ const cases: {
       const report = await client.reports.getReferralsReportV2({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['visits'],
         order_by: {},
         pagination: {
           limit: 10000,
@@ -1121,8 +1213,20 @@ const cases: {
         organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         timezone: 'UTC',
         view_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        metric_filters: [],
-        filters: [],
+        metric_filters: [
+          {
+            field: '',
+            operator: '>',
+            value: 0,
+          },
+        ],
+        filters: [
+          {
+            field: 'path',
+            operator: 'is',
+            value: '',
+          },
+        ],
       });
     },
   },
@@ -1136,7 +1240,7 @@ const cases: {
       const report = await client.reports.getBotsReportV2({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['count'],
         order_by: {},
         domain: '',
         start_date: '2024-01-01T00:00:00.000Z',
@@ -1154,7 +1258,7 @@ const cases: {
       const report = await client.reports.getBotsReportV2({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['count'],
         order_by: {},
         pagination: {
           limit: 10000,
@@ -1166,10 +1270,22 @@ const cases: {
         organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         timezone: 'UTC',
         view_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        metric_filters: [],
-        filters: [],
+        metric_filters: [
+          {
+            field: '',
+            operator: '>',
+            value: 0,
+          },
+        ],
+        filters: [
+          {
+            field: 'path',
+            operator: 'is',
+            value: '',
+          },
+        ],
         domain_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        tags: [],
+        tags: [''],
       });
     },
   },
@@ -1200,8 +1316,8 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
-        group_by: [],
-        metrics: [],
+        group_by: ['date'],
+        metrics: ['visibility_score'],
         interval: 'day',
         scope: 'owned',
         assets: '',
@@ -1209,8 +1325,8 @@ const cases: {
         sort: {
           field: 'visibility_score',
         },
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
     },
@@ -1244,13 +1360,13 @@ const cases: {
         start_date: '',
         end_date: '',
         entity: 'domain',
-        group_by: [],
-        metrics: [],
+        group_by: ['page'],
+        metrics: ['count'],
         interval: 'day',
         scope: 'all',
         filter: {},
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
     },
@@ -1286,8 +1402,8 @@ const cases: {
         end_date: '',
         comparison_start_date: '',
         comparison_end_date: '',
-        group_by: [],
-        metrics: [],
+        group_by: ['date'],
+        metrics: ['positive_sentiment'],
         interval: 'day',
         filter: {},
         sort: {
@@ -1295,8 +1411,8 @@ const cases: {
           dir: 'desc',
         },
         include_cited_websites: false,
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
     },
@@ -1327,16 +1443,16 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
-        group_by: [],
-        metrics: [],
+        group_by: ['date'],
+        metrics: ['fanouts_per_execution'],
         interval: 'day',
         filter: {},
         sort: {
           field: '',
           dir: 'desc',
         },
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
     },
@@ -1351,7 +1467,7 @@ const cases: {
       const webSearchResult = await client.reports.webSearchResults.query({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['count'],
         order_by: {},
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
@@ -1369,7 +1485,7 @@ const cases: {
       const webSearchResult = await client.reports.webSearchResults.query({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['count'],
         order_by: {},
         pagination: {
           limit: 10000,
@@ -1378,7 +1494,13 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
         end_date: '2024-01-01T00:00:00.000Z',
-        filters: [],
+        filters: [
+          {
+            field: 'hostname',
+            operator: 'is',
+            value: '',
+          },
+        ],
       });
     },
   },
@@ -1392,7 +1514,7 @@ const cases: {
       const stream = await client.reports.webSearchResults.stream({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['count'],
         order_by: {},
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
@@ -1414,7 +1536,7 @@ const cases: {
       const stream = await client.reports.webSearchResults.stream({
         date_interval: 'day',
         dimensions: [],
-        metrics: [],
+        metrics: ['count'],
         order_by: {},
         pagination: {
           limit: 10000,
@@ -1423,7 +1545,13 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '2024-01-01T00:00:00.000Z',
         end_date: '2024-01-01T00:00:00.000Z',
-        filters: [],
+        filters: [
+          {
+            field: 'hostname',
+            operator: 'is',
+            value: '',
+          },
+        ],
       });
 
       for await (const event of stream) {
@@ -1458,14 +1586,14 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
-        group_by: [],
-        metrics: [],
+        group_by: ['date'],
+        metrics: ['visibility_score'],
         interval: 'day',
         scope: 'owned',
         assets: '',
         filter: {},
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
     },
@@ -1501,14 +1629,14 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
-        group_by: [],
-        metrics: [],
+        group_by: ['date'],
+        metrics: ['visibility_score'],
         interval: 'day',
         scope: 'owned',
         assets: '',
         filter: {},
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
 
@@ -1545,15 +1673,15 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
-        group_by: [],
-        metrics: [],
+        group_by: ['date'],
+        metrics: ['visibility_score'],
         interval: 'day',
         include_merchants: false,
         target_product: 'x',
         competitor_limit: 5,
         filter: {},
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
     },
@@ -1590,15 +1718,15 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
-        group_by: [],
-        metrics: [],
+        group_by: ['date'],
+        metrics: ['visibility_score'],
         interval: 'day',
         include_merchants: false,
         target_product: 'x',
         competitor_limit: 5,
         filter: {},
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
 
@@ -1633,12 +1761,12 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
-        group_by: [],
-        metrics: [],
+        group_by: ['date'],
+        metrics: ['merchant_share'],
         interval: 'day',
         filter: {},
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
     },
@@ -1673,12 +1801,12 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
-        group_by: [],
-        metrics: [],
+        group_by: ['date'],
+        metrics: ['merchant_share'],
         interval: 'day',
         filter: {},
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
 
@@ -1713,12 +1841,12 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
-        group_by: [],
-        metrics: [],
+        group_by: ['date'],
+        metrics: ['total_runs'],
         interval: 'day',
         filter: {},
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
     },
@@ -1753,12 +1881,12 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
-        group_by: [],
-        metrics: [],
+        group_by: ['date'],
+        metrics: ['total_runs'],
         interval: 'day',
         filter: {},
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
 
@@ -1799,17 +1927,17 @@ const cases: {
         comparison_start_date: '',
         comparison_end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        topic_ids: [],
+        topic_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         exclude_topic_ids: false,
-        tag_ids: [],
+        tag_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         tag_filter_type: 'any',
         include_no_tag: false,
-        region_ids: [],
-        platform_ids: [],
-        persona_ids: [],
+        region_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        platform_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        persona_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         include_no_persona: false,
-        prompt_ids: [],
-        citation_categories: [],
+        prompt_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        citation_categories: [''],
         date_bucket: '',
         group_by: 'period',
       });
@@ -1851,19 +1979,19 @@ const cases: {
         comparison_start_date: '',
         comparison_end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        topic_ids: [],
+        topic_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         exclude_topic_ids: false,
-        tag_ids: [],
+        tag_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         tag_filter_type: 'any',
         include_no_tag: false,
-        region_ids: [],
-        platform_ids: [],
-        persona_ids: [],
+        region_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        platform_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        persona_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         include_no_persona: false,
-        prompt_ids: [],
-        citation_categories: [],
+        prompt_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        citation_categories: [''],
         breakdown_by: 'citation',
-        group_by: [],
+        group_by: ['platform'],
         date_bucket: '',
         limit: 10,
         offset: 0,
@@ -1940,17 +2068,17 @@ const cases: {
         comparison_start_date: '',
         comparison_end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        topic_ids: [],
+        topic_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         exclude_topic_ids: false,
-        tag_ids: [],
+        tag_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         tag_filter_type: 'any',
         include_no_tag: false,
-        region_ids: [],
-        platform_ids: [],
-        persona_ids: [],
+        region_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        platform_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        persona_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         include_no_persona: false,
-        prompt_ids: [],
-        citation_categories: [],
+        prompt_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        citation_categories: [''],
         limit: 10,
         offset: 0,
         sort_by: 'response_share',
@@ -1993,17 +2121,17 @@ const cases: {
         comparison_start_date: '',
         comparison_end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        topic_ids: [],
+        topic_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         exclude_topic_ids: false,
-        tag_ids: [],
+        tag_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         tag_filter_type: 'any',
         include_no_tag: false,
-        region_ids: [],
-        platform_ids: [],
-        persona_ids: [],
+        region_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        platform_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        persona_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         include_no_persona: false,
-        prompt_ids: [],
-        citation_categories: [],
+        prompt_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        citation_categories: [''],
         theme_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         limit: 5000,
         offset: 0,
@@ -2044,17 +2172,17 @@ const cases: {
         comparison_start_date: '',
         comparison_end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        topic_ids: [],
+        topic_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         exclude_topic_ids: false,
-        tag_ids: [],
+        tag_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         tag_filter_type: 'any',
         include_no_tag: false,
-        region_ids: [],
-        platform_ids: [],
-        persona_ids: [],
+        region_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        platform_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        persona_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         include_no_persona: false,
-        prompt_ids: [],
-        citation_categories: [],
+        prompt_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        citation_categories: [''],
         limit: 5,
       });
     },
@@ -2091,17 +2219,17 @@ const cases: {
         comparison_start_date: '',
         comparison_end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        topic_ids: [],
+        topic_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         exclude_topic_ids: false,
-        tag_ids: [],
+        tag_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         tag_filter_type: 'any',
         include_no_tag: false,
-        region_ids: [],
-        platform_ids: [],
-        persona_ids: [],
+        region_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        platform_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        persona_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         include_no_persona: false,
-        prompt_ids: [],
-        citation_categories: [],
+        prompt_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        citation_categories: [''],
         limit: 5,
       });
     },
@@ -2138,17 +2266,17 @@ const cases: {
         comparison_start_date: '',
         comparison_end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        topic_ids: [],
+        topic_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         exclude_topic_ids: false,
-        tag_ids: [],
+        tag_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         tag_filter_type: 'any',
         include_no_tag: false,
-        region_ids: [],
-        platform_ids: [],
-        persona_ids: [],
+        region_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        platform_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        persona_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         include_no_persona: false,
-        prompt_ids: [],
-        citation_categories: [],
+        prompt_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        citation_categories: [''],
         cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
       });
     },
@@ -2188,17 +2316,17 @@ const cases: {
         comparison_start_date: '',
         comparison_end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        topic_ids: [],
+        topic_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         exclude_topic_ids: false,
-        tag_ids: [],
+        tag_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         tag_filter_type: 'any',
         include_no_tag: false,
-        region_ids: [],
-        platform_ids: [],
-        persona_ids: [],
+        region_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        platform_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        persona_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         include_no_persona: false,
-        prompt_ids: [],
-        citation_categories: [],
+        prompt_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        citation_categories: [''],
         cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         limit: 10,
         offset: 0,
@@ -2241,17 +2369,17 @@ const cases: {
         comparison_start_date: '',
         comparison_end_date: '',
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-        topic_ids: [],
+        topic_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         exclude_topic_ids: false,
-        tag_ids: [],
+        tag_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         tag_filter_type: 'any',
         include_no_tag: false,
-        region_ids: [],
-        platform_ids: [],
-        persona_ids: [],
+        region_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        platform_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        persona_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
         include_no_persona: false,
-        prompt_ids: [],
-        citation_categories: [],
+        prompt_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
+        citation_categories: [''],
         cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         limit: 20,
         offset: 0,
@@ -2306,10 +2434,10 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
-        group_by: [],
+        group_by: ['date'],
         filter: {},
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
     },
@@ -2343,10 +2471,10 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
-        group_by: [],
+        group_by: ['date'],
         filter: {},
-        limit: 0,
-        max_results: 0,
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
 
@@ -2380,11 +2508,11 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
-        group_by: [],
+        group_by: ['model'],
         filter: {},
-        include: [],
-        limit: 0,
-        max_results: 0,
+        include: ['theme'],
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
     },
@@ -2418,11 +2546,11 @@ const cases: {
         category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         start_date: '',
         end_date: '',
-        group_by: [],
+        group_by: ['model'],
         filter: {},
-        include: [],
-        limit: 0,
-        max_results: 0,
+        include: ['theme'],
+        limit: 1,
+        max_results: 1,
         cursor: '',
       });
 
@@ -2457,10 +2585,10 @@ const cases: {
         start_date: '',
         end_date: '',
         filter: {},
-        limit: 0,
+        limit: 1,
         cursor: '',
-        source_types: [],
-        group_by: [],
+        source_types: ['video'],
+        group_by: ['channel'],
         interval: 'day',
       });
     },
@@ -2492,9 +2620,9 @@ const cases: {
         start_date: '',
         end_date: '',
         filter: {},
-        limit: 0,
+        limit: 1,
         cursor: '',
-        source_types: [],
+        source_types: ['video'],
         attribution: 'attributed',
       });
     },
@@ -2755,7 +2883,7 @@ const cases: {
     run: async () => {
       const knowledgeBase = await client.knowledgeBases.search('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         query: 'x',
-        top_k: 0,
+        top_k: 1,
         return_full_page: false,
       });
     },
@@ -2770,11 +2898,11 @@ const cases: {
       const knowledgeBase = await client.knowledgeBases.search('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
         query: 'x',
-        top_k: 0,
+        top_k: 1,
         return_full_page: false,
         filters: {
-          tags: [],
-          folders: [],
+          tags: ['x'],
+          folders: ['x'],
         },
       });
     },
@@ -2965,8 +3093,16 @@ const cases: {
         title: 'x',
         project_name: 'x',
         focus: 'x',
-        topics: [],
-        attachments: [],
+        topics: ['x'],
+        attachments: [
+          {
+            id: 'x',
+            name: 'x',
+            mime_type: 'x',
+            size_bytes: 1,
+            data_base64: 'x',
+          },
+        ],
         generation_context: {},
       });
     },
@@ -3118,7 +3254,7 @@ const cases: {
         brief: 'x',
         type: 'x',
         topic: 'x',
-        impact: 0,
+        impact: 1,
         reference_url: 'x',
         reference_label: 'x',
         position: 0,
@@ -3165,7 +3301,7 @@ const cases: {
         brief: 'x',
         type: 'x',
         topic: 'x',
-        impact: 0,
+        impact: 1,
         reference_url: 'x',
         reference_label: 'x',
       });
@@ -3373,6 +3509,17 @@ const cases: {
   },
 ];
 
+/**
+ * How many cases run at once, capped at the number of cases there are.
+ *
+ * SCALAR_SMOKE_CONCURRENCY overrides the default; anything unparseable falls back to it.
+ */
+const smokeConcurrency = (caseCount: number): number => {
+  const override = Number.parseInt(process.env['SCALAR_SMOKE_CONCURRENCY'] ?? '', 10);
+  const limit = Number.isInteger(override) && override > 0 ? override : 32;
+  return Math.min(limit, caseCount);
+};
+
 const main = async (): Promise<void> => {
   // SCALAR_SMOKE_FILTER (comma-separated) keeps only cases whose operation name or path matches
   // one of the needles, so a caller can smoke-test a subset. With no filter, every case runs.
@@ -3390,10 +3537,18 @@ const main = async (): Promise<void> => {
         )
       : cases;
 
-  // Run every selected case concurrently. Promise.allSettled means one failing operation never
-  // blocks the others, so a single run reports the status of every endpoint.
-  const settled = await Promise.allSettled(
-    selected.map(async (testCase): Promise<SmokeResult> => {
+  // Run the selected cases under a bounded worker pool rather than all at once. A large SDK has
+  // hundreds of operations, and firing every request together exceeds what the client's transport
+  // keeps connections for while the runner is already busy with other targets. Each worker pulls
+  // the next index off a shared cursor and writes into a pre-sized array, so results stay in case
+  // order however the workers interleave. The per-case body catches everything and never rejects,
+  // so one failing operation still cannot block the others.
+  const results: SmokeResult[] = new Array<SmokeResult>(selected.length);
+  let cursor = 0;
+  const runNext = async (): Promise<void> => {
+    for (let index = cursor++; index < selected.length; index = cursor++) {
+      const testCase = selected[index];
+      if (!testCase) continue;
       const startedAt = Date.now();
       // `label` distinguishes the required-params run from the all-params run of the same
       // operation; it is omitted entirely when the operation contributed only one case.
@@ -3405,28 +3560,20 @@ const main = async (): Promise<void> => {
       };
       try {
         await testCase.run();
-        return { ...identity, status: 'passed', durationMs: Date.now() - startedAt };
+        results[index] = { ...identity, status: 'passed', durationMs: Date.now() - startedAt };
       } catch (error) {
         // Prefer the stack so a failure points at the failing SDK call; fall back to the message.
         const message = error instanceof Error ? (error.stack ?? error.message) : String(error);
-        return { ...identity, status: 'failed', durationMs: Date.now() - startedAt, error: message };
-      }
-    }),
-  );
-
-  // allSettled never rejects, but defensively map any rejected slot to a failed result.
-  const results: SmokeResult[] = settled.map((result) =>
-    result.status === 'fulfilled'
-      ? result.value
-      : {
-          operation: 'unknown',
-          method: '',
-          path: '',
+        results[index] = {
+          ...identity,
           status: 'failed',
-          durationMs: 0,
-          error: String(result.reason),
-        },
-  );
+          durationMs: Date.now() - startedAt,
+          error: message,
+        };
+      }
+    }
+  };
+  await Promise.all(Array.from({ length: smokeConcurrency(selected.length) }, runNext));
   const failed = results.filter((result) => result.status === 'failed');
 
   // With SCALAR_SMOKE_REPORT set, write a machine-readable report; otherwise print a table.

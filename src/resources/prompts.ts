@@ -367,10 +367,12 @@ export interface PromptAnswersV2Params {
   /**
    * Page size; default 10, max 200.
    * @maximum 200
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap the number of streamed rows (default: all).
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -523,10 +525,12 @@ export interface PromptStreamAnswersV2Params {
   /**
    * Page size; default 10, max 200.
    * @maximum 200
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap the number of streamed rows (default: all).
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;

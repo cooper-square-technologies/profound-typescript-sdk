@@ -130,7 +130,17 @@ export class Categories extends APIResource {
    * @example
    * ```ts
    * const category = await client.organizations.categories.createPrompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
-   *   prompts: [],
+   *   prompts: [
+   *     {
+   *       prompt: 'x',
+   *       topic: {},
+   *       language: '',
+   *       tags: [],
+   *       regions: [{}],
+   *       platforms: [{}],
+   *       personas: [],
+   *     },
+   *   ],
    *   dry_run: false,
    * });
    * ```
@@ -154,7 +164,11 @@ export class Categories extends APIResource {
    * @example
    * ```ts
    * const category = await client.organizations.categories.updatePrompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
-   *   prompts: [],
+   *   prompts: [
+   *     {
+   *       id: '',
+   *     },
+   *   ],
    *   dry_run: false,
    * });
    * ```
@@ -185,7 +199,7 @@ export class Categories extends APIResource {
    * const category = await client.organizations.categories.updatePromptStatus(
    *   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   {
-   *     prompt_ids: [],
+   *     prompt_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
    *     status: 'active',
    *     dry_run: false,
    *   },
@@ -333,6 +347,7 @@ export interface CategoryPromptsParams {
    * Maximum number of prompts to return.
    * @default 10000
    * @maximum 10000
+   * @exclusiveMinimum 0
    */
   limit?: number;
   /**
