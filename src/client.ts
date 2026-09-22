@@ -158,6 +158,7 @@ import {
   type DocumentReplaceContentParams,
 } from './resources/documents';
 import { Ads } from './resources/ads/ads';
+import { PromptVolumes } from './resources/prompt-volumes/prompt-volumes';
 import * as SharedAPI from './resources/shared';
 
 export type AuthTokenProvider = () => string | Promise<string>;
@@ -1015,6 +1016,7 @@ export class Profound {
   integrations: Integrations = new Integrations(this);
   documents: Documents = new Documents(this);
   ads: Ads = new Ads(this);
+  promptVolumes: PromptVolumes = new PromptVolumes(this);
 }
 
 Profound.Organizations = Organizations;
@@ -1027,6 +1029,7 @@ Profound.Projects = Projects;
 Profound.Integrations = Integrations;
 Profound.Documents = Documents;
 Profound.Ads = Ads;
+Profound.PromptVolumes = PromptVolumes;
 
 export declare namespace Profound {
   export type RequestOptions = Opts.RequestOptions;
@@ -1171,6 +1174,8 @@ export declare namespace Profound {
   };
 
   export { Ads as Ads };
+
+  export { PromptVolumes as PromptVolumes };
 
   export type AnalysisTypeFilter = SharedAPI.AnalysisTypeFilter;
   export type AssetIDFilter = SharedAPI.AssetIDFilter;

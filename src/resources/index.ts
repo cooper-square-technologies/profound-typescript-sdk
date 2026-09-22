@@ -130,3 +130,4 @@ export type {
   DocumentReplaceContentResponse,
 } from './documents';
 export { Ads } from './ads/ads';
+export { PromptVolumes } from './prompt-volumes/prompt-volumes';
