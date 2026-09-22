@@ -115,6 +115,9 @@ export namespace FactcheckQueryScoresParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -166,12 +169,33 @@ export namespace FactcheckQueryScoresResponse {
 
   export interface Data {
     date?: string | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     model?: Data.Model | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     region?: Data.Region | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     persona?: Data.Persona | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     prompt?: Data.Prompt | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     topic?: Data.Topic | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     tag?: Data.Tag | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     theme?: Data.Theme | null;
     citation?: Data.Citation | null;
     accuracy?: number | null;
@@ -265,6 +289,9 @@ export namespace FactcheckStreamScoresParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -315,12 +342,33 @@ export namespace FactcheckStreamScoresResponse {
 
   export interface FactcheckScoreRow {
     date?: string | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     model?: FactcheckScoreRow.Model | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     region?: FactcheckScoreRow.Region | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     persona?: FactcheckScoreRow.Persona | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     prompt?: FactcheckScoreRow.Prompt | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     topic?: FactcheckScoreRow.Topic | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     tag?: FactcheckScoreRow.Tag | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     theme?: FactcheckScoreRow.Theme | null;
     citation?: FactcheckScoreRow.Citation | null;
     accuracy?: number | null;

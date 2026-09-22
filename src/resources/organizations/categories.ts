@@ -70,6 +70,8 @@ export class Categories extends APIResource {
    * ```ts
    * const category = await client.organizations.categories.prompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
    *   limit: 10000,
+   *   order_by: 'created_at',
+   *   order_dir: 'desc',
    *   status: ['active'],
    * });
    * ```
@@ -356,10 +358,12 @@ export interface CategoryPromptsParams {
   cursor?: string | null;
   /**
    * Field used to order prompts.
+   * @default created_at
    */
   order_by?: 'created_at' | 'prompt';
   /**
    * Sort direction for the selected order field.
+   * @default desc
    */
   order_dir?: 'asc' | 'desc';
   /**

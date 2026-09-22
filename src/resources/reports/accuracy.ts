@@ -510,6 +510,9 @@ export interface AccuracyCreateBreakdownParams {
    * @default desc
    */
   sort_order?: 'asc' | 'desc';
+  /**
+   * Canonical grouped pagination plan for Accuracy Breakdown rows.
+   */
   pagination?: AccuracyCreateBreakdownParams.Pagination | null;
 }
 
