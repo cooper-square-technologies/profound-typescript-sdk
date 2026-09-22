@@ -129,9 +129,13 @@ export interface RunRetrieveResponse {
    */
   error?: Record<string, unknown> | null;
   /**
-   * Output values returned by the run, keyed by variable ID. This object conforms to `schema.output` from the agent detail response and is empty when no outputs are available.
+   * Output values returned by the run, keyed by output-variable UUID. This UUID-keyed object is retained for compatibility and is empty when no outputs are available.
    */
   outputs?: Record<string, unknown>;
+  /**
+   * Expanded form of `outputs`, keyed by the same output-variable UUIDs. Each entry carries the agent's configured human-readable key as `title` alongside the returned value. `title` is null when the agent has no configured key for that output. Entries preserve the key order of `outputs`. The UUID-keyed `outputs` field remains the stable compatibility field.
+   */
+  outputs_expanded?: Record<string, RunRetrieveResponse.OutputsExpanded> | null;
   /**
    * Ordered step-by-step execution trace — one entry per node that ran, in execution order. Always present once the run has executed a node; per-node `outputs` inside each step are included only when the request asks for `verbose`.
    */
@@ -139,6 +143,17 @@ export interface RunRetrieveResponse {
 }
 
 export namespace RunRetrieveResponse {
+  export interface OutputsExpanded {
+    /**
+     * The agent's configured, human-readable key for this output. null when the agent has no configured key for this output.
+     */
+    title: string | null;
+    /**
+     * Value returned for the output variable.
+     */
+    value: unknown;
+  }
+
   export interface Step {
     /**
      * ID of the node that ran, within its agent graph.

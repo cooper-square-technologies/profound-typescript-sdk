@@ -1085,6 +1085,7 @@ const cases: {
         asset: '',
         start_date: '',
         end_date: '',
+        source: 'response',
         interval: 'day',
         include_cited_websites: false,
       });
@@ -1108,6 +1109,7 @@ const cases: {
         end_date: '',
         comparison_start_date: '',
         comparison_end_date: '',
+        source: 'response',
         group_by: ['date'],
         metrics: ['positive_sentiment'],
         interval: 'day',
@@ -1385,6 +1387,7 @@ const cases: {
         asset: '',
         start_date: '',
         end_date: '',
+        source: 'response',
         interval: 'day',
         include_cited_websites: false,
       });
@@ -1404,6 +1407,7 @@ const cases: {
         end_date: '',
         comparison_start_date: '',
         comparison_end_date: '',
+        source: 'response',
         group_by: ['date'],
         metrics: ['positive_sentiment'],
         interval: 'day',

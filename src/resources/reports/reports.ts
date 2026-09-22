@@ -467,6 +467,7 @@ export class Reports extends APIResource {
    *   asset: '',
    *   start_date: '',
    *   end_date: '',
+   *   source: 'response',
    *   interval: 'day',
    *   include_cited_websites: false,
    * });
@@ -653,6 +654,7 @@ export class Reports extends APIResource {
    *   asset: '',
    *   start_date: '',
    *   end_date: '',
+   *   source: 'response',
    *   interval: 'day',
    *   include_cited_websites: false,
    * });
@@ -2328,6 +2330,10 @@ export interface ReportStreamSentimentV2Params {
    * YYYY-MM-DD, ET, inclusive (with start).
    */
   comparison_end_date?: string | null;
+  /**
+   * @default response
+   */
+  source?: 'response' | 'citation';
   group_by?: Array<
     | 'date'
     | 'model'
@@ -2341,7 +2347,7 @@ export interface ReportStreamSentimentV2Params {
     | 'run'
     | 'competitor'
   >;
-  metrics?: Array<'positive_sentiment' | 'negative_sentiment' | 'occurrence'> | null;
+  metrics?: Array<'positive_sentiment' | 'negative_sentiment' | 'occurrence' | 'citation_share'> | null;
   /**
    * @default day
    */
@@ -2387,7 +2393,7 @@ export namespace ReportStreamSentimentV2Params {
     /**
      * @default positive_sentiment
      */
-    field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment';
+    field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment' | 'citation_share';
     /**
      * @default desc
      */
@@ -2490,9 +2496,11 @@ export namespace ReportStreamSentimentV2Response {
      * An ``{id, name}`` reference for a grouped dimension value.
      */
     competitor?: SentimentRow.Competitor | null;
+    page?: string | null;
     positive_sentiment?: number | null;
     negative_sentiment?: number | null;
     occurrence?: number | null;
+    citation_share?: number | null;
     /**
      * Comparison-window metrics (when requested).
      */
@@ -2558,6 +2566,7 @@ export namespace ReportStreamSentimentV2Response {
       positive_sentiment?: number | null;
       negative_sentiment?: number | null;
       occurrence?: number | null;
+      citation_share?: number | null;
       [k: string]: unknown;
     }
   }
@@ -3292,6 +3301,10 @@ export interface ReportQuerySentimentParams {
    * YYYY-MM-DD, ET, inclusive (with start).
    */
   comparison_end_date?: string | null;
+  /**
+   * @default response
+   */
+  source?: 'response' | 'citation';
   group_by?: Array<
     | 'date'
     | 'model'
@@ -3305,7 +3318,7 @@ export interface ReportQuerySentimentParams {
     | 'run'
     | 'competitor'
   >;
-  metrics?: Array<'positive_sentiment' | 'negative_sentiment' | 'occurrence'> | null;
+  metrics?: Array<'positive_sentiment' | 'negative_sentiment' | 'occurrence' | 'citation_share'> | null;
   /**
    * @default day
    */
@@ -3351,7 +3364,7 @@ export namespace ReportQuerySentimentParams {
     /**
      * @default positive_sentiment
      */
-    field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment';
+    field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment' | 'citation_share';
     /**
      * @default desc
      */
@@ -3455,9 +3468,11 @@ export namespace ReportQuerySentimentResponse {
      * An ``{id, name}`` reference for a grouped dimension value.
      */
     competitor?: Data.Competitor | null;
+    page?: string | null;
     positive_sentiment?: number | null;
     negative_sentiment?: number | null;
     occurrence?: number | null;
+    citation_share?: number | null;
     /**
      * Comparison-window metrics (when requested).
      */
@@ -3523,6 +3538,7 @@ export namespace ReportQuerySentimentResponse {
       positive_sentiment?: number | null;
       negative_sentiment?: number | null;
       occurrence?: number | null;
+      citation_share?: number | null;
       [k: string]: unknown;
     }
   }

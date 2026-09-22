@@ -579,6 +579,11 @@ export interface AccuracyCreateCitationAnalysisResponse {
   domain: string;
   pageTitle: string;
   markdownContent: string;
+  /**
+   * Whether the page preview was shortened.
+   * @default false
+   */
+  markdownContentTruncated?: boolean;
   claims?: Array<AccuracyCreateCitationAnalysisResponse.Claim>;
 }
 
