@@ -85,6 +85,7 @@ export interface BotProviderFilter {
     | 'yahoo'
     | 'commoncrawl'
     | 'openclaw'
+    | 'exa'
     | Array<
         | 'openai'
         | 'anthropic'
@@ -110,6 +111,7 @@ export interface BotProviderFilter {
         | 'yahoo'
         | 'commoncrawl'
         | 'openclaw'
+        | 'exa'
       >;
 }
 /**

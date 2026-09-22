@@ -756,6 +756,7 @@ const stream = await client.reports.streamSentimentV2({
   asset: '',
   start_date: '',
   end_date: '',
+  source: 'response',
   interval: 'day',
   include_cited_websites: false,
 });
@@ -891,6 +892,7 @@ const report = await client.reports.querySentiment({
   asset: '',
   start_date: '',
   end_date: '',
+  source: 'response',
   interval: 'day',
   include_cited_websites: false,
 });
