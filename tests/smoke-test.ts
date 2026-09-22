@@ -3491,6 +3491,71 @@ const cases: {
       });
     },
   },
+
+  {
+    operation: 'onTheFly',
+    method: 'POST',
+    path: '/v2/prompt-volumes/volume/on-the-fly',
+    label: 'required params',
+    run: async () => {
+      const volume = await client.promptVolumes.volume.onTheFly({
+        keyword: '',
+        matching_type: 'exact_match',
+        start_date: '2024-01-01',
+        end_date: '2024-01-01',
+      });
+    },
+  },
+
+  {
+    operation: 'onTheFly',
+    method: 'POST',
+    path: '/v2/prompt-volumes/volume/on-the-fly',
+    label: 'all params',
+    run: async () => {
+      const volume = await client.promptVolumes.volume.onTheFly({
+        keyword: '',
+        matching_type: 'exact_match',
+        start_date: '2024-01-01',
+        end_date: '2024-01-01',
+        regions: [''],
+        platforms: [''],
+        organization_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+      });
+    },
+  },
+
+  {
+    operation: 'onTheFly',
+    method: 'POST',
+    path: '/v2/prompt-volumes/intents/on-the-fly',
+    label: 'required params',
+    run: async () => {
+      const intent = await client.promptVolumes.intents.onTheFly({
+        keyword: '',
+        matching_type: 'exact_match',
+        start_date: '2024-01-01',
+        end_date: '2024-01-01',
+      });
+    },
+  },
+
+  {
+    operation: 'onTheFly',
+    method: 'POST',
+    path: '/v2/prompt-volumes/intents/on-the-fly',
+    label: 'all params',
+    run: async () => {
+      const intent = await client.promptVolumes.intents.onTheFly({
+        keyword: '',
+        matching_type: 'exact_match',
+        start_date: '2024-01-01',
+        end_date: '2024-01-01',
+        regions: [''],
+        platforms: [''],
+      });
+    },
+  },
 ];
 
 /**
