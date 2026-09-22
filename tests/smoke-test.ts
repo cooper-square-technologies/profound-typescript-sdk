@@ -16,7 +16,7 @@ import { writeFileSync } from 'node:fs';
 import Profound from '@profoundai/client';
 
 // One shared client runs every case.
-const client = new Profound();
+const client = new Profound({ maxRetries: 2, timeout: 10_000 });
 
 // The result of running one case, collected for the JSON report or the printed table.
 type SmokeResult = {
@@ -195,6 +195,8 @@ const cases: {
     run: async () => {
       const category = await client.organizations.categories.prompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         limit: 10000,
+        order_by: 'created_at',
+        order_dir: 'desc',
         status: ['active'],
       });
     },
@@ -210,7 +212,7 @@ const cases: {
         limit: 10000,
         cursor: 'cursor',
         order_by: 'created_at',
-        order_dir: 'asc',
+        order_dir: 'desc',
         analysis_type: ['visibility'],
         prompt_type: ['visibility'],
         status: ['active'],
@@ -2713,17 +2715,6 @@ const cases: {
     operation: 'retrieve',
     method: 'GET',
     path: '/v1/agents/{agent_id}',
-    label: 'required params',
-    run: async () => {
-      const agent = await client.agents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7');
-    },
-  },
-
-  {
-    operation: 'retrieve',
-    method: 'GET',
-    path: '/v1/agents/{agent_id}',
-    label: 'all params',
     run: async () => {
       const agent = await client.agents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         version: 'published',
@@ -2783,17 +2774,6 @@ const cases: {
     operation: 'retrieveGraph',
     method: 'GET',
     path: '/v1/agents/{agent_id}/graph',
-    label: 'required params',
-    run: async () => {
-      const agent = await client.agents.retrieveGraph('7c9e6679-7425-40de-944b-e07fc1f90ae7');
-    },
-  },
-
-  {
-    operation: 'retrieveGraph',
-    method: 'GET',
-    path: '/v1/agents/{agent_id}/graph',
-    label: 'all params',
     run: async () => {
       const agent = await client.agents.retrieveGraph('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
         version: 'published',

@@ -104,6 +104,9 @@ export namespace ClaimQueryClaimsParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -166,10 +169,25 @@ export namespace ClaimQueryClaimsResponse {
     evidence?: Array<Data.Evidence> | null;
     citation_sources?: Array<Data.CitationSource> | null;
     model?: Data.Model | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     region?: Data.Region | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     persona?: Data.Persona | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     prompt?: Data.Prompt | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     topic?: Data.Topic | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     tag?: Data.Tag | null;
     /**
      * Claim theme (string), or an `{id, name}` ref when sectioning by `theme`.
@@ -333,6 +351,9 @@ export namespace ClaimStreamClaimsParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -394,10 +415,25 @@ export namespace ClaimStreamClaimsResponse {
     evidence?: Array<FactcheckClaimsRow.Evidence> | null;
     citation_sources?: Array<FactcheckClaimsRow.CitationSource> | null;
     model?: FactcheckClaimsRow.Model | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     region?: FactcheckClaimsRow.Region | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     persona?: FactcheckClaimsRow.Persona | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     prompt?: FactcheckClaimsRow.Prompt | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     topic?: FactcheckClaimsRow.Topic | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     tag?: FactcheckClaimsRow.Tag | null;
     /**
      * Claim theme (string), or an `{id, name}` ref when sectioning by `theme`.

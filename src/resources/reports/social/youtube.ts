@@ -112,6 +112,9 @@ export namespace YoutubeGetChannelsParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -280,6 +283,9 @@ export namespace YoutubeGetVideosParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -429,6 +435,9 @@ export namespace YoutubeGetSummaryParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;

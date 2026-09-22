@@ -244,6 +244,9 @@ export interface WebSearchResultStreamParams {
    * @default {}
    */
   order_by?: Record<string, 'asc' | 'desc'>;
+  /**
+   * Offset-based pagination parameters.
+   */
   pagination?: Shared.Pagination | null;
   /**
    * List of filters to apply to the web search results report.

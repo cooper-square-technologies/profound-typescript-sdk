@@ -382,6 +382,9 @@ export namespace PromptAnswersV2Params {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -434,6 +437,9 @@ export namespace PromptAnswersV2Response {
   export interface Data {
     run_id?: string | null;
     date?: string | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     model?: Data.Model | null;
     topic?: string | null;
     topic_id?: string | null;
@@ -540,6 +546,9 @@ export namespace PromptStreamAnswersV2Params {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -591,6 +600,9 @@ export namespace PromptStreamAnswersV2Response {
   export interface AnswerRow {
     run_id?: string | null;
     date?: string | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     model?: AnswerRow.Model | null;
     topic?: string | null;
     topic_id?: string | null;

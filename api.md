@@ -291,6 +291,8 @@ Retrieve prompts in a category with optional filtering by type, topic, tag, regi
 ```ts
 const category = await client.organizations.categories.prompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   limit: 10000,
+  order_by: 'created_at',
+  order_dir: 'desc',
   status: ['active'],
 });
 ```
@@ -1555,7 +1557,9 @@ unpublished changes. Use the `version` parameter to choose which state to return
 | Response | [`AgentRetrieveResponse`](./src/resources/agents/agents.ts) |
 
 ```ts
-const agent = await client.agents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+const agent = await client.agents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+  version: 'published',
+});
 ```
 
 ### Create an agent
@@ -1630,7 +1634,9 @@ across its organization.
 | Response | [`AgentRetrieveGraphResponse`](./src/resources/agents/agents.ts) |
 
 ```ts
-const agent = await client.agents.retrieveGraph('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+const agent = await client.agents.retrieveGraph('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+  version: 'published',
+});
 ```
 
 ### `Agents Runs`
