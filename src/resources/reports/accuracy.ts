@@ -510,6 +510,9 @@ export interface AccuracyCreateBreakdownParams {
    * @default desc
    */
   sort_order?: 'asc' | 'desc';
+  /**
+   * Canonical grouped pagination plan for Accuracy Breakdown rows.
+   */
   pagination?: AccuracyCreateBreakdownParams.Pagination | null;
 }
 
@@ -576,6 +579,11 @@ export interface AccuracyCreateCitationAnalysisResponse {
   domain: string;
   pageTitle: string;
   markdownContent: string;
+  /**
+   * Whether the page preview was shortened.
+   * @default false
+   */
+  markdownContentTruncated?: boolean;
   claims?: Array<AccuracyCreateCitationAnalysisResponse.Claim>;
 }
 

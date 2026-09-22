@@ -12,6 +12,7 @@ export {
   Integrations,
   Documents,
   Ads,
+  PromptVolumes,
 } from './resources/index';
 export type {
   NamedResource,

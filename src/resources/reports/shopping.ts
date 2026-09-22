@@ -305,15 +305,20 @@ export interface ShoppingBrandsParams {
    * Restrict to these asset names (a name or list). Overrides `scope`.
    */
   assets?: string | Array<string> | null;
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
   filter?: ShoppingBrandsParams.Filter | null;
   /**
    * Page size for scope=all; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap the number of streamed rows (default: all).
    * @maximum 50000
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -323,6 +328,9 @@ export namespace ShoppingBrandsParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -387,8 +395,17 @@ export namespace ShoppingBrandsResponse {
      */
     rank?: number | null;
     date?: string | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     topic?: Data.Topic | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     region?: Data.Region | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     prompt?: Data.Prompt | null;
     visibility_score?: number | null;
     average_position?: number | null;
@@ -444,15 +461,20 @@ export interface ShoppingStreamBrandsParams {
    * Restrict to these asset names (a name or list). Overrides `scope`.
    */
   assets?: string | Array<string> | null;
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
   filter?: ShoppingStreamBrandsParams.Filter | null;
   /**
    * Page size for scope=all; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap the number of streamed rows (default: all).
    * @maximum 50000
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -462,6 +484,9 @@ export namespace ShoppingStreamBrandsParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -525,8 +550,17 @@ export namespace ShoppingStreamBrandsResponse {
      */
     rank?: number | null;
     date?: string | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     topic?: ShoppingBrandRow.Topic | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     region?: ShoppingBrandRow.Region | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     prompt?: ShoppingBrandRow.Prompt | null;
     visibility_score?: number | null;
     average_position?: number | null;
@@ -600,15 +634,20 @@ export interface ShoppingProductsParams {
    * @minimum 1
    */
   competitor_limit?: number;
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
   filter?: ShoppingProductsParams.Filter | null;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap streamed rows.
    * @maximum 50000
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -618,6 +657,9 @@ export namespace ShoppingProductsParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -674,7 +716,13 @@ export namespace ShoppingProductsResponse {
   export interface Data {
     product?: Record<string, unknown> | null;
     date?: string | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     topic?: Data.Topic | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     prompt?: Data.Prompt | null;
     visibility_score?: number | null;
     average_position?: number | null;
@@ -752,15 +800,20 @@ export interface ShoppingStreamProductsParams {
    * @minimum 1
    */
   competitor_limit?: number;
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
   filter?: ShoppingStreamProductsParams.Filter | null;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap streamed rows.
    * @maximum 50000
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -770,6 +823,9 @@ export namespace ShoppingStreamProductsParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -825,7 +881,13 @@ export namespace ShoppingStreamProductsResponse {
   export interface ShoppingProductRow {
     product?: Record<string, unknown> | null;
     date?: string | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     topic?: ShoppingProductRow.Topic | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     prompt?: ShoppingProductRow.Prompt | null;
     visibility_score?: number | null;
     average_position?: number | null;
@@ -892,15 +954,20 @@ export interface ShoppingMerchantsParams {
    * @default day
    */
   interval?: 'day' | 'week' | 'month';
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
   filter?: ShoppingMerchantsParams.Filter | null;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap streamed rows.
    * @maximum 50000
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -910,6 +977,9 @@ export namespace ShoppingMerchantsParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -1014,15 +1084,20 @@ export interface ShoppingStreamMerchantsParams {
    * @default day
    */
   interval?: 'day' | 'week' | 'month';
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
   filter?: ShoppingStreamMerchantsParams.Filter | null;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap streamed rows.
    * @maximum 50000
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -1032,6 +1107,9 @@ export namespace ShoppingStreamMerchantsParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -1123,15 +1201,20 @@ export interface ShoppingTriggerRateParams {
    * @default day
    */
   interval?: 'day' | 'week' | 'month';
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
   filter?: ShoppingTriggerRateParams.Filter | null;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap streamed rows.
    * @maximum 50000
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -1141,6 +1224,9 @@ export namespace ShoppingTriggerRateParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -1192,9 +1278,21 @@ export namespace ShoppingTriggerRateResponse {
 
   export interface Data {
     date?: string | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     topic?: Data.Topic | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     region?: Data.Region | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     persona?: Data.Persona | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     prompt?: Data.Prompt | null;
     total_runs?: number | null;
     shopping_triggered_runs?: number | null;
@@ -1247,15 +1345,20 @@ export interface ShoppingStreamTriggerRateParams {
    * @default day
    */
   interval?: 'day' | 'week' | 'month';
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
   filter?: ShoppingStreamTriggerRateParams.Filter | null;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap streamed rows.
    * @maximum 50000
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -1265,6 +1368,9 @@ export namespace ShoppingStreamTriggerRateParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -1315,9 +1421,21 @@ export namespace ShoppingStreamTriggerRateResponse {
 
   export interface ShoppingTriggerRateRow {
     date?: string | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     topic?: ShoppingTriggerRateRow.Topic | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     region?: ShoppingTriggerRateRow.Region | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     persona?: ShoppingTriggerRateRow.Persona | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     prompt?: ShoppingTriggerRateRow.Prompt | null;
     total_runs?: number | null;
     shopping_triggered_runs?: number | null;

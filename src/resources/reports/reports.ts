@@ -104,7 +104,7 @@ export class Reports extends APIResource {
    * const report = await client.reports.citations({
    *   date_interval: 'day',
    *   dimensions: [],
-   *   metrics: [],
+   *   metrics: ['count'],
    *   order_by: {},
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '2024-01-01T00:00:00.000Z',
@@ -128,7 +128,7 @@ export class Reports extends APIResource {
    * const report = await client.reports.visibility({
    *   date_interval: 'day',
    *   dimensions: [],
-   *   metrics: [],
+   *   metrics: ['share_of_voice'],
    *   order_by: {},
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '2024-01-01T00:00:00.000Z',
@@ -152,7 +152,7 @@ export class Reports extends APIResource {
    * const report = await client.reports.sentiment({
    *   date_interval: 'day',
    *   dimensions: [],
-   *   metrics: [],
+   *   metrics: ['positive'],
    *   order_by: {},
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '2024-01-01T00:00:00.000Z',
@@ -179,7 +179,7 @@ export class Reports extends APIResource {
    *   start_date: '2024-01-01T00:00:00.000Z',
    *   end_date: '2024-01-01T00:00:00.000Z',
    *   date_bucket: 'day',
-   *   metrics: [],
+   *   metrics: ['sentiment'],
    * });
    * ```
    */
@@ -205,7 +205,7 @@ export class Reports extends APIResource {
    * const report = await client.reports.getReferralsReport({
    *   date_interval: 'day',
    *   dimensions: [],
-   *   metrics: [],
+   *   metrics: ['visits'],
    *   order_by: {},
    *   domain: '',
    *   start_date: '2024-01-01T00:00:00.000Z',
@@ -241,7 +241,7 @@ export class Reports extends APIResource {
    * const report = await client.reports.getBotsReport({
    *   date_interval: 'day',
    *   dimensions: [],
-   *   metrics: [],
+   *   metrics: ['count'],
    *   order_by: {},
    *   domain: '',
    *   start_date: '2024-01-01T00:00:00.000Z',
@@ -264,7 +264,7 @@ export class Reports extends APIResource {
    * const report = await client.reports.queryFanouts({
    *   date_interval: 'day',
    *   dimensions: [],
-   *   metrics: [],
+   *   metrics: ['fanouts_per_execution'],
    *   order_by: {},
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '2024-01-01T00:00:00.000Z',
@@ -288,7 +288,7 @@ export class Reports extends APIResource {
    * const stream = await client.reports.streamCitations({
    *   date_interval: 'day',
    *   dimensions: [],
-   *   metrics: [],
+   *   metrics: ['count'],
    *   order_by: {},
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '2024-01-01T00:00:00.000Z',
@@ -324,7 +324,7 @@ export class Reports extends APIResource {
    * const stream = await client.reports.streamVisibility({
    *   date_interval: 'day',
    *   dimensions: [],
-   *   metrics: [],
+   *   metrics: ['share_of_voice'],
    *   order_by: {},
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '2024-01-01T00:00:00.000Z',
@@ -360,7 +360,7 @@ export class Reports extends APIResource {
    * const stream = await client.reports.streamSentiment({
    *   date_interval: 'day',
    *   dimensions: [],
-   *   metrics: [],
+   *   metrics: ['positive'],
    *   order_by: {},
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   start_date: '2024-01-01T00:00:00.000Z',
@@ -467,6 +467,7 @@ export class Reports extends APIResource {
    *   asset: '',
    *   start_date: '',
    *   end_date: '',
+   *   source: 'response',
    *   interval: 'day',
    *   include_cited_websites: false,
    * });
@@ -536,7 +537,7 @@ export class Reports extends APIResource {
    * const report = await client.reports.getReferralsReportV2({
    *   date_interval: 'day',
    *   dimensions: [],
-   *   metrics: [],
+   *   metrics: ['visits'],
    *   order_by: {},
    *   domain: '',
    *   start_date: '2024-01-01T00:00:00.000Z',
@@ -576,7 +577,7 @@ export class Reports extends APIResource {
    * const report = await client.reports.getBotsReportV2({
    *   date_interval: 'day',
    *   dimensions: [],
-   *   metrics: [],
+   *   metrics: ['count'],
    *   order_by: {},
    *   domain: '',
    *   start_date: '2024-01-01T00:00:00.000Z',
@@ -653,6 +654,7 @@ export class Reports extends APIResource {
    *   asset: '',
    *   start_date: '',
    *   end_date: '',
+   *   source: 'response',
    *   interval: 'day',
    *   include_cited_websites: false,
    * });
@@ -1633,6 +1635,9 @@ export interface ReportStreamCitationsParams {
    * @default {}
    */
   order_by?: Record<string, 'asc' | 'desc'>;
+  /**
+   * Offset-based pagination parameters.
+   */
   pagination?: Shared.Pagination | null;
   /**
    * List of filters to apply to the citations report.
@@ -1752,6 +1757,9 @@ export interface ReportStreamVisibilityParams {
    * @default {}
    */
   order_by?: Record<string, 'asc' | 'desc'>;
+  /**
+   * Offset-based pagination parameters.
+   */
   pagination?: Shared.Pagination | null;
   /**
    * List of filters to apply to the visibility report.
@@ -1858,6 +1866,9 @@ export interface ReportStreamSentimentParams {
    * @default {}
    */
   order_by?: Record<string, 'asc' | 'desc'>;
+  /**
+   * Offset-based pagination parameters.
+   */
   pagination?: Shared.Pagination | null;
   /**
    * List of filters to apply to the sentiment report.
@@ -1963,10 +1974,12 @@ export interface ReportStreamCitationsV2Params {
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap the number of streamed rows (default: all).
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -1976,6 +1989,9 @@ export namespace ReportStreamCitationsV2Params {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -2037,10 +2053,25 @@ export namespace ReportStreamCitationsV2Response {
     page?: string | null;
     rank?: number | null;
     date?: string | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     model?: CitationRow.Model | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     topic?: CitationRow.Topic | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     region?: CitationRow.Region | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     persona?: CitationRow.Persona | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     prompt?: CitationRow.Prompt | null;
     count?: number | null;
     citation_share?: number | null;
@@ -2106,15 +2137,20 @@ export interface ReportStreamVisibilityV2Params {
    * A name (`is`), a list (`in`), or {op,value} with op `is`/`in`/`not_in`.
    */
   assets?: string | Array<string> | ReportStreamVisibilityV2Params.EntityFilterClause | null;
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
   filter?: ReportStreamVisibilityV2Params.Filter | null;
   sort?: ReportStreamVisibilityV2Params.Sort;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap the number of streamed rows (default: all).
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -2138,6 +2174,9 @@ export namespace ReportStreamVisibilityV2Params {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -2204,10 +2243,25 @@ export namespace ReportStreamVisibilityV2Response {
      */
     rank?: number | null;
     date?: string | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     model?: VisibilityRow.Model | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     topic?: VisibilityRow.Topic | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     region?: VisibilityRow.Region | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     prompt?: VisibilityRow.Prompt | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     persona?: VisibilityRow.Persona | null;
     visibility_score?: number | null;
     share_of_voice?: number | null;
@@ -2276,6 +2330,10 @@ export interface ReportStreamSentimentV2Params {
    * YYYY-MM-DD, ET, inclusive (with start).
    */
   comparison_end_date?: string | null;
+  /**
+   * @default response
+   */
+  source?: 'response' | 'citation';
   group_by?: Array<
     | 'date'
     | 'model'
@@ -2289,11 +2347,14 @@ export interface ReportStreamSentimentV2Params {
     | 'run'
     | 'competitor'
   >;
-  metrics?: Array<'positive_sentiment' | 'negative_sentiment' | 'occurrence'> | null;
+  metrics?: Array<'positive_sentiment' | 'negative_sentiment' | 'occurrence' | 'citation_share'> | null;
   /**
    * @default day
    */
   interval?: 'day' | 'week' | 'month';
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
   filter?: ReportStreamSentimentV2Params.Filter | null;
   sort?: ReportStreamSentimentV2Params.Sort;
   /**
@@ -2304,10 +2365,12 @@ export interface ReportStreamSentimentV2Params {
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap the number of streamed rows (default: all).
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -2317,6 +2380,9 @@ export namespace ReportStreamSentimentV2Params {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -2327,7 +2393,7 @@ export namespace ReportStreamSentimentV2Params {
     /**
      * @default positive_sentiment
      */
-    field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment';
+    field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment' | 'citation_share';
     /**
      * @default desc
      */
@@ -2390,19 +2456,51 @@ export namespace ReportStreamSentimentV2Response {
 
   export interface SentimentRow {
     date?: string | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     model?: SentimentRow.Model | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     topic?: SentimentRow.Topic | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     region?: SentimentRow.Region | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     prompt?: SentimentRow.Prompt | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     persona?: SentimentRow.Persona | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     tag?: SentimentRow.Tag | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     theme?: SentimentRow.Theme | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     claim?: SentimentRow.Claim | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     run?: SentimentRow.Run | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     competitor?: SentimentRow.Competitor | null;
+    page?: string | null;
     positive_sentiment?: number | null;
     negative_sentiment?: number | null;
     occurrence?: number | null;
+    citation_share?: number | null;
     /**
      * Comparison-window metrics (when requested).
      */
@@ -2468,6 +2566,7 @@ export namespace ReportStreamSentimentV2Response {
       positive_sentiment?: number | null;
       negative_sentiment?: number | null;
       occurrence?: number | null;
+      citation_share?: number | null;
       [k: string]: unknown;
     }
   }
@@ -2492,15 +2591,20 @@ export interface ReportStreamQueryFanoutsParams {
    * @default day
    */
   interval?: 'day' | 'week' | 'month';
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
   filter?: ReportStreamQueryFanoutsParams.Filter | null;
   sort?: ReportStreamQueryFanoutsParams.Sort | null;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap the number of streamed rows (default: all).
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -2510,6 +2614,9 @@ export namespace ReportStreamQueryFanoutsParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -2827,15 +2934,20 @@ export interface ReportQueryVisibilityParams {
    * A name (`is`), a list (`in`), or {op,value} with op `is`/`in`/`not_in`.
    */
   assets?: string | Array<string> | ReportQueryVisibilityParams.EntityFilterClause | null;
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
   filter?: ReportQueryVisibilityParams.Filter | null;
   sort?: ReportQueryVisibilityParams.Sort;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap the number of streamed rows (default: all).
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -2859,6 +2971,9 @@ export namespace ReportQueryVisibilityParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -2926,10 +3041,25 @@ export namespace ReportQueryVisibilityResponse {
      */
     rank?: number | null;
     date?: string | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     model?: Data.Model | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     topic?: Data.Topic | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     region?: Data.Region | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     prompt?: Data.Prompt | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     persona?: Data.Persona | null;
     visibility_score?: number | null;
     share_of_voice?: number | null;
@@ -3009,10 +3139,12 @@ export interface ReportQueryCitationsParams {
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap the number of streamed rows (default: all).
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -3022,6 +3154,9 @@ export namespace ReportQueryCitationsParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -3084,10 +3219,25 @@ export namespace ReportQueryCitationsResponse {
     page?: string | null;
     rank?: number | null;
     date?: string | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     model?: Data.Model | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     topic?: Data.Topic | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     region?: Data.Region | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     persona?: Data.Persona | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     prompt?: Data.Prompt | null;
     count?: number | null;
     citation_share?: number | null;
@@ -3151,6 +3301,10 @@ export interface ReportQuerySentimentParams {
    * YYYY-MM-DD, ET, inclusive (with start).
    */
   comparison_end_date?: string | null;
+  /**
+   * @default response
+   */
+  source?: 'response' | 'citation';
   group_by?: Array<
     | 'date'
     | 'model'
@@ -3164,11 +3318,14 @@ export interface ReportQuerySentimentParams {
     | 'run'
     | 'competitor'
   >;
-  metrics?: Array<'positive_sentiment' | 'negative_sentiment' | 'occurrence'> | null;
+  metrics?: Array<'positive_sentiment' | 'negative_sentiment' | 'occurrence' | 'citation_share'> | null;
   /**
    * @default day
    */
   interval?: 'day' | 'week' | 'month';
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
   filter?: ReportQuerySentimentParams.Filter | null;
   sort?: ReportQuerySentimentParams.Sort;
   /**
@@ -3179,10 +3336,12 @@ export interface ReportQuerySentimentParams {
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap the number of streamed rows (default: all).
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -3192,6 +3351,9 @@ export namespace ReportQuerySentimentParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;
@@ -3202,7 +3364,7 @@ export namespace ReportQuerySentimentParams {
     /**
      * @default positive_sentiment
      */
-    field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment';
+    field?: 'occurrence' | 'positive_sentiment' | 'negative_sentiment' | 'citation_share';
     /**
      * @default desc
      */
@@ -3266,19 +3428,51 @@ export namespace ReportQuerySentimentResponse {
 
   export interface Data {
     date?: string | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     model?: Data.Model | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     topic?: Data.Topic | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     region?: Data.Region | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     prompt?: Data.Prompt | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     persona?: Data.Persona | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     tag?: Data.Tag | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     theme?: Data.Theme | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     claim?: Data.Claim | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     run?: Data.Run | null;
+    /**
+     * An ``{id, name}`` reference for a grouped dimension value.
+     */
     competitor?: Data.Competitor | null;
+    page?: string | null;
     positive_sentiment?: number | null;
     negative_sentiment?: number | null;
     occurrence?: number | null;
+    citation_share?: number | null;
     /**
      * Comparison-window metrics (when requested).
      */
@@ -3344,6 +3538,7 @@ export namespace ReportQuerySentimentResponse {
       positive_sentiment?: number | null;
       negative_sentiment?: number | null;
       occurrence?: number | null;
+      citation_share?: number | null;
       [k: string]: unknown;
     }
   }
@@ -3368,15 +3563,20 @@ export interface ReportQueryQueryFanoutsParams {
    * @default day
    */
   interval?: 'day' | 'week' | 'month';
+  /**
+   * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+   */
   filter?: ReportQueryQueryFanoutsParams.Filter | null;
   sort?: ReportQueryQueryFanoutsParams.Sort | null;
   /**
    * Page size; default 10, max 50.
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number | null;
   /**
    * Stream endpoint only: cap the number of streamed rows (default: all).
+   * @exclusiveMinimum 0
    */
   max_results?: number | null;
   cursor?: string | null;
@@ -3386,6 +3586,9 @@ export namespace ReportQueryQueryFanoutsParams {
   export interface Filter {
     and?: Array<unknown> | null;
     or?: Array<unknown> | null;
+    /**
+     * A leaf (`field`/`op`/`value`) or an `and`/`or`/`not` group.
+     */
     not?: unknown;
     field?: string | null;
     op?: string | null;

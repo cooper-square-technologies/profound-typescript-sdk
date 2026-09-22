@@ -58,7 +58,9 @@ export class Agents extends APIResource {
    *
    * @example
    * ```ts
-   * const agent = await client.agents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+   * const agent = await client.agents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   *   version: 'published',
+   * });
    * ```
    */
   retrieve(
@@ -156,7 +158,9 @@ export class Agents extends APIResource {
    *
    * @example
    * ```ts
-   * const agent = await client.agents.retrieveGraph('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+   * const agent = await client.agents.retrieveGraph('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+   *   version: 'published',
+   * });
    * ```
    */
   retrieveGraph(
@@ -176,6 +180,7 @@ export interface AgentListParams {
   /**
    * @default 100
    * @maximum 100
+   * @exclusiveMinimum 0
    */
   limit?: number;
   next_cursor?: string | null;

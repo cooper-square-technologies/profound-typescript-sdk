@@ -1,3 +1,3 @@
 // File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-export const VERSION = '0.50.0'; // x-release-please-version
+export * from './prompt-volumes/index';

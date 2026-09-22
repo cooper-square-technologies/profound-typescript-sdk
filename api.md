@@ -143,6 +143,11 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [`Ads OpenaiAds`](#ads-openaiads)
     - [`Ads OpenaiAds AdAccount`](#ads-openaiads-adaccount)
       - [Get Account Insights](#get-account-insights)
+- [`PromptVolumes`](#promptvolumes)
+  - [`PromptVolumes Volume`](#promptvolumes-volume)
+    - [Get On The Fly Volume](#get-on-the-fly-volume)
+  - [`PromptVolumes Intents`](#promptvolumes-intents)
+    - [Get On The Fly Intent Shares](#get-on-the-fly-intent-shares)
 
 ## Setup
 
@@ -291,6 +296,8 @@ Retrieve prompts in a category with optional filtering by type, topic, tag, regi
 ```ts
 const category = await client.organizations.categories.prompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   limit: 10000,
+  order_by: 'created_at',
+  order_dir: 'desc',
   status: ['active'],
 });
 ```
@@ -328,7 +335,17 @@ Create one or more prompts in a category. Topics and tags are auto-created if re
 
 ```ts
 const category = await client.organizations.categories.createPrompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
-  prompts: [],
+  prompts: [
+    {
+      prompt: 'x',
+      topic: {},
+      language: '',
+      tags: [],
+      regions: [{}],
+      platforms: [{}],
+      personas: [],
+    },
+  ],
   dry_run: false,
 });
 ```
@@ -344,7 +361,11 @@ Update one or more existing prompts. Only provided fields are changed. Dimension
 
 ```ts
 const category = await client.organizations.categories.updatePrompts('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
-  prompts: [],
+  prompts: [
+    {
+      id: '',
+    },
+  ],
   dry_run: false,
 });
 ```
@@ -367,7 +388,7 @@ Status options:
 const category = await client.organizations.categories.updatePromptStatus(
   '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   {
-    prompt_ids: [],
+    prompt_ids: ['7c9e6679-7425-40de-944b-e07fc1f90ae7'],
     status: 'active',
     dry_run: false,
   },
@@ -473,7 +494,7 @@ otherwise eligible citations in its denominator when this filter is used.
 const report = await client.reports.citations({
   date_interval: 'day',
   dimensions: [],
-  metrics: [],
+  metrics: ['count'],
   order_by: {},
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '2024-01-01T00:00:00.000Z',
@@ -494,7 +515,7 @@ Query visibility report.
 const report = await client.reports.visibility({
   date_interval: 'day',
   dimensions: [],
-  metrics: [],
+  metrics: ['share_of_voice'],
   order_by: {},
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '2024-01-01T00:00:00.000Z',
@@ -515,7 +536,7 @@ Get citations for a given category.
 const report = await client.reports.sentiment({
   date_interval: 'day',
   dimensions: [],
-  metrics: [],
+  metrics: ['positive'],
   order_by: {},
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '2024-01-01T00:00:00.000Z',
@@ -537,7 +558,7 @@ const report = await client.reports.sentimentV2({
   start_date: '2024-01-01T00:00:00.000Z',
   end_date: '2024-01-01T00:00:00.000Z',
   date_bucket: 'day',
-  metrics: [],
+  metrics: ['sentiment'],
 });
 ```
 
@@ -557,7 +578,7 @@ for large date ranges and high-traffic sites.
 const report = await client.reports.getReferralsReport({
   date_interval: 'day',
   dimensions: [],
-  metrics: [],
+  metrics: ['visits'],
   order_by: {},
   domain: '',
   start_date: '2024-01-01T00:00:00.000Z',
@@ -587,7 +608,7 @@ Metrics:
 const report = await client.reports.getBotsReport({
   date_interval: 'day',
   dimensions: [],
-  metrics: [],
+  metrics: ['count'],
   order_by: {},
   domain: '',
   start_date: '2024-01-01T00:00:00.000Z',
@@ -605,7 +626,7 @@ const report = await client.reports.getBotsReport({
 const report = await client.reports.queryFanouts({
   date_interval: 'day',
   dimensions: [],
-  metrics: [],
+  metrics: ['fanouts_per_execution'],
   order_by: {},
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '2024-01-01T00:00:00.000Z',
@@ -626,7 +647,7 @@ Stream citations with the same filter semantics as the non-streaming route.
 const stream = await client.reports.streamCitations({
   date_interval: 'day',
   dimensions: [],
-  metrics: [],
+  metrics: ['count'],
   order_by: {},
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '2024-01-01T00:00:00.000Z',
@@ -649,7 +670,7 @@ for await (const event of stream) {
 const stream = await client.reports.streamVisibility({
   date_interval: 'day',
   dimensions: [],
-  metrics: [],
+  metrics: ['share_of_voice'],
   order_by: {},
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '2024-01-01T00:00:00.000Z',
@@ -672,7 +693,7 @@ for await (const event of stream) {
 const stream = await client.reports.streamSentiment({
   date_interval: 'day',
   dimensions: [],
-  metrics: [],
+  metrics: ['positive'],
   order_by: {},
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '2024-01-01T00:00:00.000Z',
@@ -740,6 +761,7 @@ const stream = await client.reports.streamSentimentV2({
   asset: '',
   start_date: '',
   end_date: '',
+  source: 'response',
   interval: 'day',
   include_cited_websites: false,
 });
@@ -785,7 +807,7 @@ When `view_id` is provided, the query is scoped to that domain segment's hosts a
 const report = await client.reports.getReferralsReportV2({
   date_interval: 'day',
   dimensions: [],
-  metrics: [],
+  metrics: ['visits'],
   order_by: {},
   domain: '',
   start_date: '2024-01-01T00:00:00.000Z',
@@ -819,7 +841,7 @@ Dimensions:
 const report = await client.reports.getBotsReportV2({
   date_interval: 'day',
   dimensions: [],
-  metrics: [],
+  metrics: ['count'],
   order_by: {},
   domain: '',
   start_date: '2024-01-01T00:00:00.000Z',
@@ -875,6 +897,7 @@ const report = await client.reports.querySentiment({
   asset: '',
   start_date: '',
   end_date: '',
+  source: 'response',
   interval: 'day',
   include_cited_websites: false,
 });
@@ -911,7 +934,7 @@ Get web search results for a given category.
 const webSearchResult = await client.reports.webSearchResults.query({
   date_interval: 'day',
   dimensions: [],
-  metrics: [],
+  metrics: ['count'],
   order_by: {},
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '2024-01-01T00:00:00.000Z',
@@ -930,7 +953,7 @@ const webSearchResult = await client.reports.webSearchResults.query({
 const stream = await client.reports.webSearchResults.stream({
   date_interval: 'day',
   dimensions: [],
-  metrics: [],
+  metrics: ['count'],
   order_by: {},
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   start_date: '2024-01-01T00:00:00.000Z',
@@ -1541,7 +1564,9 @@ unpublished changes. Use the `version` parameter to choose which state to return
 | Response | [`AgentRetrieveResponse`](./src/resources/agents/agents.ts) |
 
 ```ts
-const agent = await client.agents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+const agent = await client.agents.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+  version: 'published',
+});
 ```
 
 ### Create an agent
@@ -1616,7 +1641,9 @@ across its organization.
 | Response | [`AgentRetrieveGraphResponse`](./src/resources/agents/agents.ts) |
 
 ```ts
-const agent = await client.agents.retrieveGraph('7c9e6679-7425-40de-944b-e07fc1f90ae7');
+const agent = await client.agents.retrieveGraph('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
+  version: 'published',
+});
 ```
 
 ### `Agents Runs`
@@ -1714,7 +1741,7 @@ Search a knowledge base and return matching snippets or pages.
 ```ts
 const knowledgeBase = await client.knowledgeBases.search('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
   query: 'x',
-  top_k: 0,
+  top_k: 1,
   return_full_page: false,
 });
 ```
@@ -2234,4 +2261,57 @@ a single call; `time_granularity=daily` gives per-day rows (e.g. daily spend).
 
 ```ts
 const adAccount = await client.ads.openaiAds.adAccount.retrieveInsights();
+```
+
+## `PromptVolumes`
+
+### `PromptVolumes Volume`
+
+#### Get On The Fly Volume
+
+Weekly and monthly volume projections for one keyword.
+
+Each organization can look up 1,000 distinct normalized keywords per UTC
+day. Repeats consume no additional allowance. New keywords over the cap
+return 429 with X-KeywordQuota-* and Retry-After headers. Quota admission
+requires Redis (503 when unavailable); empty results and query failures
+retain the reservation. Slices with at most two users are omitted.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`VolumeOnTheFlyParams`](./src/resources/prompt-volumes/volume.ts) |
+| Response | [`VolumeOnTheFlyResponse`](./src/resources/prompt-volumes/volume.ts) |
+
+```ts
+const volume = await client.promptVolumes.volume.onTheFly({
+  keyword: '',
+  matching_type: 'exact_match',
+  start_date: '2024-01-01',
+  end_date: '2024-01-01',
+});
+```
+
+### `PromptVolumes Intents`
+
+#### Get On The Fly Intent Shares
+
+Intent shares for one keyword across the requested cohort weeks.
+
+Shares are fractions from 0 to 1 over classified matching conversations.
+Cohorts with at most two matching users are omitted for privacy. This
+endpoint shares the volume endpoint's burst limit but consumes no daily
+keyword quota.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`IntentOnTheFlyParams`](./src/resources/prompt-volumes/intents.ts) |
+| Response | [`IntentOnTheFlyResponse`](./src/resources/prompt-volumes/intents.ts) |
+
+```ts
+const intent = await client.promptVolumes.intents.onTheFly({
+  keyword: '',
+  matching_type: 'exact_match',
+  start_date: '2024-01-01',
+  end_date: '2024-01-01',
+});
 ```

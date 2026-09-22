@@ -330,6 +330,7 @@ export interface DocumentListParams {
   /**
    * @default 20
    * @maximum 50
+   * @exclusiveMinimum 0
    */
   limit?: number;
   next_cursor?: string | null;
