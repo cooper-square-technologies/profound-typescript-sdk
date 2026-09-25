@@ -15,6 +15,7 @@ import {
   formatRequestDetails,
   loggerFor,
   parseLogLevel,
+  redactUrl,
   type LogLevel,
   type Logger,
 } from './internal/utils/log';
@@ -579,7 +580,7 @@ export class Profound {
       throw new Errors.APIConnectionError({ cause: response });
     }
 
-    const responseInfo = `[${requestLogID}${retryLogStr}] ${req.method} ${url} ${
+    const responseInfo = `[${requestLogID}${retryLogStr}] ${req.method} ${redactUrl(url)} ${
       response.ok ? 'succeeded' : 'failed'
     } with status ${response.status} in ${headersTime - startTime}ms`;
 
