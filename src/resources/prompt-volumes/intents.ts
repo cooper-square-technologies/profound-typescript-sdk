@@ -8,10 +8,8 @@ export class Intents extends APIResource {
   /**
    * Intent shares for one keyword across the requested cohort weeks.
    *
-   * Shares are fractions from 0 to 1 over classified matching conversations.
-   * Cohorts with at most two matching users are omitted for privacy. This
-   * endpoint shares the volume endpoint's burst limit but consumes no daily
-   * keyword quota.
+   * Shares are fractions from 0 to 1. Cohorts with two or fewer matching users
+   * are omitted for privacy. Doesn't use the daily keyword allowance.
    *
    * @param {IntentOnTheFlyParams} body - The request body to send.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -43,8 +41,14 @@ export interface IntentOnTheFlyParams {
    * @format date
    */
   end_date: string;
+  /**
+   * ISO 3166-1 alpha-3 country codes (e.g. USA). Omit to include every region.
+   */
   regions?: Array<string>;
-  platforms?: Array<string>;
+  /**
+   * Platforms to restrict to. Omit to include every platform.
+   */
+  platforms?: Array<'chatgpt.com' | 'gemini.google.com' | 'perplexity.ai'>;
 }
 
 export interface IntentOnTheFlyResponse {

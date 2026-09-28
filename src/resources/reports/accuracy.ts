@@ -371,6 +371,7 @@ export interface AccuracyCreateOverviewParams {
   category_id: string;
   comparison_start_date?: string | null;
   comparison_end_date?: string | null;
+  languages?: Array<string> | null;
   topic_ids?: Array<string> | null;
   /**
    * @default false
@@ -462,6 +463,7 @@ export interface AccuracyCreateBreakdownParams {
   category_id: string;
   comparison_start_date?: string | null;
   comparison_end_date?: string | null;
+  languages?: Array<string> | null;
   topic_ids?: Array<string> | null;
   /**
    * @default false
@@ -653,6 +655,7 @@ export interface AccuracyCreateInaccurateThemesParams {
   category_id: string;
   comparison_start_date?: string | null;
   comparison_end_date?: string | null;
+  languages?: Array<string> | null;
   topic_ids?: Array<string> | null;
   /**
    * @default false
@@ -730,6 +733,7 @@ export interface AccuracyCreateInaccurateClustersParams {
   category_id: string;
   comparison_start_date?: string | null;
   comparison_end_date?: string | null;
+  languages?: Array<string> | null;
   topic_ids?: Array<string> | null;
   /**
    * @default false
@@ -821,6 +825,7 @@ export interface AccuracyCreateInaccuracyDriversParams {
   category_id: string;
   comparison_start_date?: string | null;
   comparison_end_date?: string | null;
+  languages?: Array<string> | null;
   topic_ids?: Array<string> | null;
   /**
    * @default false
@@ -863,11 +868,17 @@ export namespace AccuracyCreateInaccuracyDriversResponse {
     canonicalClaim: string;
     snippet: string;
     snippetClaimId: string;
+    /**
+     * Claim response share as a 0-100 percent, not citation share.
+     */
     claimOccurrence: number;
     href: string;
     citationCategory: string;
     domainCategory: string;
     citationCount: number;
+    /**
+     * Change in claim occurrence in percentage points.
+     */
     claimOccurrenceDelta?: number | null;
   }
 }
@@ -881,6 +892,7 @@ export interface AccuracyCreateTopInaccurateClaimsParams {
   category_id: string;
   comparison_start_date?: string | null;
   comparison_end_date?: string | null;
+  languages?: Array<string> | null;
   topic_ids?: Array<string> | null;
   /**
    * @default false
@@ -938,6 +950,7 @@ export interface AccuracyCreateClaimBreakdownParams {
   cluster_id: string;
   comparison_start_date?: string | null;
   comparison_end_date?: string | null;
+  languages?: Array<string> | null;
   topic_ids?: Array<string> | null;
   /**
    * @default false
@@ -1009,6 +1022,7 @@ export interface AccuracyCreateClaimCitationsParams {
   cluster_id: string;
   comparison_start_date?: string | null;
   comparison_end_date?: string | null;
+  languages?: Array<string> | null;
   topic_ids?: Array<string> | null;
   /**
    * @default false
@@ -1063,7 +1077,13 @@ export namespace AccuracyCreateClaimCitationsResponse {
     domainCategory: string;
     snippet: string;
     citationCount: number;
+    /**
+     * Citation share as a 0-100 percentage; 0.4718 means 0.4718%.
+     */
     citationShare: number;
+    /**
+     * Change in citation share in percentage points.
+     */
     citationShareDelta?: number | null;
   }
 }
@@ -1081,6 +1101,7 @@ export interface AccuracyCreateClusterExampleRunsParams {
   cluster_id: string;
   comparison_start_date?: string | null;
   comparison_end_date?: string | null;
+  languages?: Array<string> | null;
   topic_ids?: Array<string> | null;
   /**
    * @default false

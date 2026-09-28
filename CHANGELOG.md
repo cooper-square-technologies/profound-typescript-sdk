@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.51.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.50.0...v0.51.0) (2026-09-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 3 breaking changes to the SDK surface.
+    - Property `bot_provider_filter.value` type changed from `enum(openai | anthropic | chatgpt | …) | Array<enum(openai | anthropic | chatgpt | …)>` to `enum(openai | anthropic | chatgpt | …) | Array<enum(openai | anthropic | chatgpt | …)>`.
+    - Property `otf_intent_shares_query.platforms` type changed from `Array<string>` to `Array<enum(chatgpt.com | gemini.google.com | perplexity.ai)>`.
+    - Property `otf_volume_request.platforms` type changed from `Array<string>` to `Array<enum(chatgpt.com | gemini.google.com | perplexity.ai)>`.
+
+### Features
+
+* **api:** update property bot_provider_filter.value (+21 more changes) ([698c838](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/698c838f300f4beb8753b2f728d71afbbd5df5b1))
+
 ## [0.50.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.49.1...v0.50.0) (2026-09-22)
 
 
