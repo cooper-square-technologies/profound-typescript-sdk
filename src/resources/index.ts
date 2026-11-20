@@ -101,8 +101,6 @@ export { Projects } from './projects/projects';
 export type {
   ProjectListParams,
   ProjectListResponse,
-  ProjectCreateParams,
-  ProjectCreateResponse,
   ProjectRetrieveParams,
   ProjectRetrieveResponse,
   ProjectDeleteParams,

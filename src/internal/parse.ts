@@ -4,6 +4,7 @@ import type { FinalRequestOptions } from './request-options';
 import { Stream } from '../core/streaming';
 import { type Profound } from '../client';
 import { formatRequestDetails, loggerFor, redactHeaders, redactUrl } from './utils/log';
+import { MAX_RESPONSE_BODY_BYTES, readBodyText, readUnderDeadline } from './utils/body';
 
 export type APIResponseProps = {
   response: Response;
@@ -16,7 +17,9 @@ export type APIResponseProps = {
 
 export async function defaultParseResponse<T>(client: Profound, props: APIResponseProps): Promise<T> {
   const { response, requestLogID, retryOfRequestLogID, startTime } = props;
-  const body = await (async () => {
+  // The read runs under the request deadline, which `makeRequest` left armed for it and which is
+  // disarmed here once the body is in, however the read ends.
+  const body = await readUnderDeadline(props, async () => {
     if (props.options.stream) {
       // Redacted like every other logged request: `response.url` keeps the query string, so an
       // `apiKey` scheme with `in: query` puts the credential here, and the raw header bag would
@@ -58,13 +61,13 @@ export async function defaultParseResponse<T>(client: Profound, props: APIRespon
         return undefined as T;
       }
 
-      const json = await response.json();
+      const json = JSON.parse(await readBodyText(response, MAX_RESPONSE_BODY_BYTES));
       return json as T;
     }
 
-    const text = await response.text();
+    const text = await readBodyText(response, MAX_RESPONSE_BODY_BYTES);
     return text as unknown as T;
-  })();
+  });
   loggerFor(client).debug(
     `[${requestLogID}] response parsed`,
     formatRequestDetails({

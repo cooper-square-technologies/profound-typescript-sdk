@@ -8,7 +8,10 @@ import type * as OrganizationsAPI from './organizations';
 
 export class Categories extends APIResource {
   /**
-   * Get the organization categories, one row per (category, organization) pair.
+   * Get categories, one row per (category, organization) pair.
+   *
+   * Super-org members discover all categories regardless of organization_ids, including
+   * categories with no organization association (organization is null).
    *
    * @param {CategoryListParams} [query] - The parameters to send with the request.
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
@@ -320,7 +323,7 @@ export namespace CategoryListResponse {
      */
     id: string;
     name: string;
-    organization: OrganizationsAPI.Organization;
+    organization: OrganizationsAPI.Organization | null;
     internal_name?: string | null;
   }
 }
@@ -369,7 +372,7 @@ export interface CategoryPromptsParams {
   /**
    * Filter by analysis type (visibility, sentiment, accuracy).
    */
-  analysis_type?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'>;
+  analysis_type?: Array<'visibility' | 'sentiment' | 'accuracy'>;
   /**
    * Deprecated. Use analysis_type instead.
    */
@@ -424,15 +427,10 @@ export namespace CategoryPromptsResponse {
     topic: OrganizationsAPI.NamedResource;
     regions: Array<OrganizationsAPI.NamedResource>;
     platforms: Array<OrganizationsAPI.NamedResource>;
-    /**
-     * @format date-time
-     */
     created_at: string;
-    /**
-     * @format date-time
-     */
     updated_at: string;
     /**
+     * Analysis types assigned to this prompt. `sentiment_v2` is current sentiment, the same as the `sentiment` input.
      * @default []
      */
     analysis_types?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'>;
@@ -538,7 +536,7 @@ export namespace CategoryCreatePromptsParams {
     /**
      * Analysis types: 'visibility', 'sentiment', 'accuracy'. Defaults to ['visibility'].
      */
-    analysis_types?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'> | null;
+    analysis_types?: Array<'visibility' | 'sentiment' | 'accuracy'> | null;
     /**
      * Deprecated. Use analysis_types instead. 'Visibility' or 'Sentiment'.
      * @deprecated
@@ -617,7 +615,7 @@ export namespace CategoryCreatePromptsResponse {
      */
     personas?: Array<OrganizationsAPI.NamedResource>;
     /**
-     * Analysis types assigned to this prompt.
+     * Analysis types assigned to this prompt. `sentiment_v2` is current sentiment, the same as the `sentiment` input.
      * @default []
      */
     analysis_types?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'>;
@@ -677,7 +675,7 @@ export namespace CategoryUpdatePromptsParams {
     /**
      * New analysis types. Replaces all existing analysis types on the prompt.
      */
-    analysis_types?: Array<'visibility' | 'sentiment' | 'sentiment_v2' | 'accuracy'> | null;
+    analysis_types?: Array<'visibility' | 'sentiment' | 'accuracy'> | null;
     /**
      * Deprecated. Use analysis_types instead.
      * @deprecated
@@ -746,7 +744,7 @@ export namespace CategoryUpdatePromptsResponse {
     /**
      * Platforms added and removed.
      */
-    platforms?: NamedResourceDiffList | null;
+    platforms?: Prompt.Platforms | null;
     /**
      * Personas added and removed.
      */
@@ -759,6 +757,33 @@ export namespace CategoryUpdatePromptsResponse {
      * Asset diff.
      */
     asset?: FieldDiff | null;
+  }
+
+  export namespace Prompt {
+    export interface Platforms {
+      added?: Array<Platforms.Added>;
+      removed?: Array<Platforms.Removed>;
+    }
+
+    export namespace Platforms {
+      export interface Added {
+        id: string;
+        name: string;
+        /**
+         * Stable platform slug, independent of its display name.
+         */
+        slug: string;
+      }
+
+      export interface Removed {
+        id: string;
+        name: string;
+        /**
+         * Stable platform slug, independent of its display name.
+         */
+        slug: string;
+      }
+    }
   }
 }
 

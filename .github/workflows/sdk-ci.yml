@@ -19,12 +19,31 @@ jobs:
         with:
           node-version: "24"
           registry-url: "https://registry.npmjs.org"
-      - run: npm install
-      - run: npm run build
+      # Installed after Node is set up, so it lands ahead of the Yarn 1 the runner image ships. A
+      # repository whose `.yarnrc.yml` names a `yarnPath` still runs its own committed Yarn release.
+      - run: npm install -g @yarnpkg/cli-dist@4.18.1
+      # The generator writes no lockfile, so the generated branch never carries one, while a branch
+      # that commits `yarn.lock` wants every install held to it, the release job most of all. Yarn
+      # turns immutable installs on whenever `CI` is set and then refuses to create a lockfile, so both
+      # flags are spelled out. `node-modules` replaces Plug'n'Play because the npm publish build reads
+      # `tsc` from `node_modules`; the build step sets it too, or Yarn looks for a Plug'n'Play install
+      # and reports the project as not installed.
+      - name: Install dependencies
+        env:
+          YARN_NODE_LINKER: node-modules
+        run: |
+          if [ -f yarn.lock ]; then
+            yarn install --immutable
+          else
+            yarn install --no-immutable
+          fi
+      - run: yarn run build
+        env:
+          YARN_NODE_LINKER: node-modules
       # Verification only, never auto-fix: the SDK is generated formatted, so a diff here means
       # either hand-edited custom code or a regenerate that was not committed. Auto-fixing would
       # make the pushed bytes differ from generator output. `format` without `--write` is already
       # check-only and exits non-zero on a diff; Biome has no `--check` flag, and `biome ci` is
       # avoided so enabling the linter in this repo's biome.json cannot fail CI on generator-owned
       # code the shipped config deliberately exempts.
-      - run: npx --yes @biomejs/biome@2.5.14 format .
+      - run: npx --yes @biomejs/biome@2.6.6 format .

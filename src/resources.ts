@@ -97,8 +97,6 @@ export type {
   KnowledgeBaseSearchResponse,
   ProjectListParams,
   ProjectListResponse,
-  ProjectCreateParams,
-  ProjectCreateResponse,
   ProjectRetrieveParams,
   ProjectRetrieveResponse,
   ProjectDeleteParams,
