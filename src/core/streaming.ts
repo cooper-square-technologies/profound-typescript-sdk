@@ -9,15 +9,39 @@ import { isAbortError } from '../internal/errors';
 import { safeJSON } from '../internal/utils/values';
 import { encodeUTF8 } from '../internal/utils/bytes';
 import { loggerFor } from '../internal/utils/log';
+import { MAX_STREAM_PENDING_BYTES, sizeLimitError } from '../internal/utils/body';
 import type { Profound } from '../client';
 
 import { APIError } from './error';
 
 type Bytes = string | ArrayBuffer | Uint8Array | null | undefined;
-// Upper bound on how much a JSONL stream may buffer behind an unparseable line before the parse
-// error is surfaced. A single JSON value (even pretty-printed) completes well within this; the cap
-// only trips when a malformed line would otherwise accumulate the rest of the stream into memory.
-const MAX_JSONL_BUFFER_BYTES = 10_000_000;
+// Upper bound on how much a JSONL stream may buffer for one value spread over several lines before
+// the stream is given up on. A pretty-printed value completes well within this; the cap only trips
+// when a malformed value never closes and would otherwise accumulate the rest of the stream.
+const MAX_JSONL_BUFFER_BYTES = 4 * 1024 * 1024;
+
+/** How far one JSON text has nested after a line: open brackets and braces, and whether a string is open. */
+type JsonDepth = { depth: number; inString: boolean; escaped: boolean };
+
+/**
+ * Carries the bracket/brace depth of a JSON text across one more line, ignoring brackets inside
+ * strings. A value can only be complete where the depth is back to zero outside a string, so the
+ * JSONL reader parses only there instead of re-parsing the growing buffer after every line.
+ */
+const jsonDepthAfter = (line: string, state: JsonDepth): JsonDepth => {
+  let { depth, inString, escaped } = state;
+  for (let i = 0; i < line.length; i++) {
+    const char = line.charCodeAt(i);
+    if (inString) {
+      if (escaped) escaped = false;
+      else if (char === 0x5c) escaped = true;
+      else if (char === 0x22) inString = false;
+    } else if (char === 0x22) inString = true;
+    else if (char === 0x7b || char === 0x5b) depth++;
+    else if (char === 0x7d || char === 0x5d) depth--;
+  }
+  return { depth, inString, escaped };
+};
 
 export type ServerSentEvent = {
   event: string | null;
@@ -122,29 +146,34 @@ export class Stream<Item> implements AsyncIterable<Item> {
       let done = false;
       try {
         // NDJSON/JSONL sends one complete JSON value per line, so each line parses on its own and
-        // this buffer stays empty across iterations. Some servers (and mock servers) pretty-print a
-        // single value across several lines; accumulate until the buffer forms a complete JSON value,
-        // then yield it and reset. This never changes valid one-value-per-line behavior.
-        let buffer = '';
+        // nothing accumulates. Some servers (and mock servers) pretty-print a single value across
+        // several lines; those lines accumulate until the brackets they opened are closed, and only
+        // then is the value parsed — once, so a long value costs linear time rather than a re-parse
+        // of the whole buffer after every line.
+        let pending: string[] = [];
+        let pendingLength = 0;
+        let state: JsonDepth = { depth: 0, inString: false, escaped: false };
         for await (const line of iterLines()) {
           if (done) continue;
-          if (!line) continue;
-          buffer = buffer ? buffer + '\n' + line : line;
-          let value: Item;
-          try {
-            value = JSON.parse(buffer) as Item;
-          } catch (error) {
-            // The buffer is not yet a complete JSON value (a multi-line value mid-stream); keep
-            // accumulating. A bounded cap stops one malformed line from buffering the whole stream
-            // (and exhausting memory): past the cap we surface the parse error instead of growing.
-            if (buffer.length > MAX_JSONL_BUFFER_BYTES) throw error;
+          // A blank or whitespace-only line (a keep-alive) carries no value: JSON.parse would throw on it.
+          if (!line.trim()) continue;
+          pending.push(line);
+          pendingLength += line.length + 1;
+          state = jsonDepthAfter(line, state);
+          if (state.depth > 0 || state.inString) {
+            if (pendingLength > MAX_JSONL_BUFFER_BYTES) {
+              throw sizeLimitError('JSON Lines value', MAX_JSONL_BUFFER_BYTES);
+            }
             continue;
           }
-          buffer = '';
-          yield value;
+          const text = pending.join('\n');
+          pending = [];
+          pendingLength = 0;
+          state = { depth: 0, inString: false, escaped: false };
+          yield JSON.parse(text) as Item;
         }
-        // A non-whitespace remainder never parsed: surface that error rather than dropping data.
-        if (buffer.trim()) yield JSON.parse(buffer) as Item;
+        // A value still open when the stream ended never parsed: surface that error rather than dropping data.
+        if (pending.length) yield JSON.parse(pending.join('\n')) as Item;
         done = true;
       } catch (e) {
         // If the user calls `stream.controller.abort()`, we should exit without throwing.
@@ -260,9 +289,15 @@ export async function* _iterSSEMessages(
 /**
  * Given an async iterable iterator, iterates over it and yields full
  * SSE chunks, i.e. yields when a double new-line is encountered.
+ *
+ * The pending bytes live in a buffer that grows by doubling, and each search resumes where the last
+ * one stopped, so an event arriving in many small chunks costs linear time. One event may not grow
+ * past `MAX_STREAM_PENDING_BYTES`: a server that never ends it would otherwise exhaust memory.
  */
 async function* iterSSEChunks(iterator: AsyncIterableIterator<Bytes>): AsyncGenerator<Uint8Array> {
   let data = new Uint8Array();
+  let length = 0;
+  let scanFrom = 0;
 
   for await (const chunk of iterator) {
     if (chunk == null) {
@@ -276,20 +311,38 @@ async function* iterSSEChunks(iterator: AsyncIterableIterator<Bytes>): AsyncGene
           ? encodeUTF8(chunk)
           : chunk;
 
-    let newData = new Uint8Array(data.length + binaryChunk.length);
-    newData.set(data);
-    newData.set(binaryChunk, data.length);
-    data = newData;
+    if (length + binaryChunk.length > data.length) {
+      const grown = new Uint8Array(Math.max(length + binaryChunk.length, data.length * 2));
+      grown.set(data.subarray(0, length));
+      data = grown;
+    }
+    data.set(binaryChunk, length);
+    length += binaryChunk.length;
 
-    let patternIndex;
-    while ((patternIndex = findDoubleNewlineIndex(data)) !== -1) {
-      yield data.slice(0, patternIndex);
-      data = data.slice(patternIndex);
+    let start = 0;
+    for (;;) {
+      const pending = data.subarray(start, length);
+      const patternIndex = findDoubleNewlineIndex(pending, scanFrom);
+      if (patternIndex === -1) {
+        // The longest terminator is four bytes, so the last three may begin one the next chunk ends.
+        scanFrom = Math.max(0, pending.length - 3);
+        break;
+      }
+      yield pending.slice(0, patternIndex);
+      start += patternIndex;
+      scanFrom = 0;
+    }
+    if (start > 0) {
+      data.copyWithin(0, start, length);
+      length -= start;
+    }
+    if (length > MAX_STREAM_PENDING_BYTES) {
+      throw sizeLimitError('server-sent event', MAX_STREAM_PENDING_BYTES);
     }
   }
 
-  if (data.length > 0) {
-    yield data;
+  if (length > 0) {
+    yield data.slice(0, length);
   }
 }
 

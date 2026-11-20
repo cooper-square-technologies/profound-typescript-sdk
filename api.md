@@ -249,7 +249,10 @@ const organization = await client.organizations.list();
 
 #### Get Categories
 
-Get the organization categories, one row per (category, organization) pair.
+Get categories, one row per (category, organization) pair.
+
+Super-org members discover all categories regardless of organization_ids, including
+categories with no organization association (organization is null).
 
 | Direction | Type |
 | --- | --- |
@@ -1128,13 +1131,14 @@ for await (const event of stream) {
 
 ```ts
 const accuracy = await client.reports.accuracy.createOverview({
+  citation_category_taxonomy: 'legacy',
   start_date: '',
   end_date: '',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   exclude_topic_ids: false,
   tag_filter_type: 'any',
-  include_no_tag: false,
-  include_no_persona: false,
+  include_no_tag: true,
+  include_no_persona: true,
   group_by: 'period',
 });
 ```
@@ -1148,13 +1152,14 @@ const accuracy = await client.reports.accuracy.createOverview({
 
 ```ts
 const accuracy = await client.reports.accuracy.createBreakdown({
+  citation_category_taxonomy: 'legacy',
   start_date: '',
   end_date: '',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   exclude_topic_ids: false,
   tag_filter_type: 'any',
-  include_no_tag: false,
-  include_no_persona: false,
+  include_no_tag: true,
+  include_no_persona: true,
   breakdown_by: 'citation',
   limit: 10,
   offset: 0,
@@ -1173,7 +1178,7 @@ const accuracy = await client.reports.accuracy.createBreakdown({
 ```ts
 const accuracy = await client.reports.accuracy.createCitationAnalysis({
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-  clean_href: '',
+  clean_href: 'x',
   start_date: '',
   end_date: '',
 });
@@ -1203,13 +1208,15 @@ const accuracy = await client.reports.accuracy.createTopicIDs({
 
 ```ts
 const accuracy = await client.reports.accuracy.createInaccurateThemes({
+  citation_category_taxonomy: 'legacy',
   start_date: '',
   end_date: '',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   exclude_topic_ids: false,
   tag_filter_type: 'any',
-  include_no_tag: false,
-  include_no_persona: false,
+  include_no_tag: true,
+  include_no_persona: true,
+  verification_status: 'inaccurate',
   limit: 10,
   offset: 0,
   sort_by: 'response_share',
@@ -1226,16 +1233,20 @@ const accuracy = await client.reports.accuracy.createInaccurateThemes({
 
 ```ts
 const accuracy = await client.reports.accuracy.createInaccurateClusters({
+  citation_category_taxonomy: 'legacy',
   start_date: '',
   end_date: '',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   exclude_topic_ids: false,
   tag_filter_type: 'any',
-  include_no_tag: false,
-  include_no_persona: false,
+  include_no_tag: true,
+  include_no_persona: true,
+  verification_status: 'inaccurate',
   limit: 5000,
   offset: 0,
   include_models: false,
+  include_citations: true,
+  include_citation_hostnames: true,
 });
 ```
 
@@ -1248,13 +1259,14 @@ const accuracy = await client.reports.accuracy.createInaccurateClusters({
 
 ```ts
 const accuracy = await client.reports.accuracy.createInaccuracyDrivers({
+  citation_category_taxonomy: 'legacy',
   start_date: '',
   end_date: '',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   exclude_topic_ids: false,
   tag_filter_type: 'any',
-  include_no_tag: false,
-  include_no_persona: false,
+  include_no_tag: true,
+  include_no_persona: true,
   limit: 5,
 });
 ```
@@ -1268,13 +1280,14 @@ const accuracy = await client.reports.accuracy.createInaccuracyDrivers({
 
 ```ts
 const accuracy = await client.reports.accuracy.createTopInaccurateClaims({
+  citation_category_taxonomy: 'legacy',
   start_date: '',
   end_date: '',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   exclude_topic_ids: false,
   tag_filter_type: 'any',
-  include_no_tag: false,
-  include_no_persona: false,
+  include_no_tag: true,
+  include_no_persona: true,
   limit: 5,
 });
 ```
@@ -1288,14 +1301,16 @@ const accuracy = await client.reports.accuracy.createTopInaccurateClaims({
 
 ```ts
 const accuracy = await client.reports.accuracy.createClaimBreakdown({
+  citation_category_taxonomy: 'legacy',
   start_date: '',
   end_date: '',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   exclude_topic_ids: false,
   tag_filter_type: 'any',
-  include_no_tag: false,
-  include_no_persona: false,
+  include_no_tag: true,
+  include_no_persona: true,
   cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+  verification_status: 'inaccurate',
 });
 ```
 
@@ -1308,13 +1323,14 @@ const accuracy = await client.reports.accuracy.createClaimBreakdown({
 
 ```ts
 const accuracy = await client.reports.accuracy.createClaimCitations({
+  citation_category_taxonomy: 'legacy',
   start_date: '',
   end_date: '',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   exclude_topic_ids: false,
   tag_filter_type: 'any',
-  include_no_tag: false,
-  include_no_persona: false,
+  include_no_tag: true,
+  include_no_persona: true,
   cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   limit: 10,
   offset: 0,
@@ -1331,13 +1347,14 @@ const accuracy = await client.reports.accuracy.createClaimCitations({
 
 ```ts
 const accuracy = await client.reports.accuracy.createClusterExampleRuns({
+  citation_category_taxonomy: 'legacy',
   start_date: '',
   end_date: '',
   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   exclude_topic_ids: false,
   tag_filter_type: 'any',
-  include_no_tag: false,
-  include_no_persona: false,
+  include_no_tag: true,
+  include_no_persona: true,
   cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
   limit: 20,
   offset: 0,
@@ -1687,9 +1704,9 @@ const run = await client.agents.runs.retrieve('7c9e6679-7425-40de-944b-e07fc1f90
 
 List the node types available for building agents.
 
-The set is deterministic and does not depend on the caller, so the response
-is safe to cache across sessions. Integration-dependent and dynamic-schema
-node types are intentionally excluded in v1.
+Amazon Selling Partner nodes are omitted unless `showAmazonSellingPartnerIntegration`
+is enabled for one of the caller's organizations. Dynamic-schema node types stay
+excluded in v1.
 
 | Direction | Type |
 | --- | --- |
@@ -1847,15 +1864,8 @@ const project = await client.projects.list({
 
 ### Create Project
 
-| Direction | Type |
-| --- | --- |
-| Request | [`ProjectCreateParams`](./src/resources/projects/projects.ts) |
-| Response | [`ProjectCreateResponse`](./src/resources/projects/projects.ts) |
-
 ```ts
-const project = await client.projects.create({
-  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-});
+const response = await client.projects.create();
 ```
 
 ### Get Project
@@ -1926,30 +1936,14 @@ const project = await client.projects.unarchive('7c9e6679-7425-40de-944b-e07fc1f
 
 #### List Project Generations
 
-| Direction | Type |
-| --- | --- |
-| Request | [`GenerationListParams`](./src/resources/projects/generations.ts) |
-| Response | [`GenerationListResponse`](./src/resources/projects/generations.ts) |
-
 ```ts
-const generation = await client.projects.generations.list({
-  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-  limit: 100,
-  offset: 0,
-});
+const response = await client.projects.generations.list();
 ```
 
 #### Get Project Generation Status
 
-| Direction | Type |
-| --- | --- |
-| Request | [`GenerationRetrieveParams`](./src/resources/projects/generations.ts) |
-| Response | [`GenerationRetrieveResponse`](./src/resources/projects/generations.ts) |
-
 ```ts
-const generation = await client.projects.generations.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7', {
-  category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-});
+const response = await client.projects.generations.retrieve('7c9e6679-7425-40de-944b-e07fc1f90ae7');
 ```
 
 ### `Projects Tasks`
@@ -2282,10 +2276,10 @@ omitted for privacy.
 
 ```ts
 const volume = await client.promptVolumes.volume.onTheFly({
-  keyword: '',
   matching_type: 'exact_match',
   start_date: '2024-01-01',
   end_date: '2024-01-01',
+  keyword: 'x',
 });
 ```
 
@@ -2305,9 +2299,9 @@ are omitted for privacy. Doesn't use the daily keyword allowance.
 
 ```ts
 const intent = await client.promptVolumes.intents.onTheFly({
-  keyword: '',
   matching_type: 'exact_match',
   start_date: '2024-01-01',
   end_date: '2024-01-01',
+  keyword: 'x',
 });
 ```

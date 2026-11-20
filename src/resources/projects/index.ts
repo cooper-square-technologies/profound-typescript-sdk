@@ -4,8 +4,6 @@ export { Projects } from './projects';
 export type {
   ProjectListParams,
   ProjectListResponse,
-  ProjectCreateParams,
-  ProjectCreateResponse,
   ProjectRetrieveParams,
   ProjectRetrieveResponse,
   ProjectDeleteParams,
@@ -17,12 +15,6 @@ export type {
   ProjectUnarchiveResponse,
 } from './projects';
 export { Generations } from './generations';
-export type {
-  GenerationListParams,
-  GenerationListResponse,
-  GenerationRetrieveParams,
-  GenerationRetrieveResponse,
-} from './generations';
 export { Tasks } from './tasks';
 export type {
   TaskListParams,

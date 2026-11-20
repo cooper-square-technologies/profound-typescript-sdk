@@ -9,9 +9,9 @@ export class NodeTypes extends APIResource {
   /**
    * List the node types available for building agents.
    *
-   * The set is deterministic and does not depend on the caller, so the response
-   * is safe to cache across sessions. Integration-dependent and dynamic-schema
-   * node types are intentionally excluded in v1.
+   * Amazon Selling Partner nodes are omitted unless `showAmazonSellingPartnerIntegration`
+   * is enabled for one of the caller's organizations. Dynamic-schema node types stay
+   * excluded in v1.
    *
    * @param {RequestOptions} [options] - Options to apply to the request, such as headers and an abort signal.
    * @returns {APIPromise<NodeTypeListResponse>} Successful Response

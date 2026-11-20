@@ -4,6 +4,7 @@ import { type Profound } from '../client';
 
 import { type PromiseOrValue } from '../internal/types';
 import { APIResponseProps, defaultParseResponse } from '../internal/parse';
+import { releaseDeadline } from '../internal/utils/body';
 
 /**
  * A subclass of `Promise` providing additional helper methods
@@ -48,7 +49,11 @@ export class APIPromise<T> extends Promise<T> {
    * to your `tsconfig.json`.
    */
   asResponse(): Promise<Response> {
-    return this.responsePromise.then((p) => p.response);
+    // The caller reads this body at its own pace, so the request deadline stops here.
+    return this.responsePromise.then((p) => {
+      releaseDeadline(p.controller);
+      return p.response;
+    });
   }
 
   /**
@@ -62,7 +67,8 @@ export class APIPromise<T> extends Promise<T> {
    * to your `tsconfig.json`.
    */
   async withResponse(): Promise<{ data: T; response: Response }> {
-    const [data, response] = await Promise.all([this.parse(), this.asResponse()]);
+    // Not `asResponse()`, which would disarm the deadline the body parse runs under.
+    const [data, response] = await Promise.all([this.parse(), this.responsePromise.then((p) => p.response)]);
     return { data, response };
   }
 
