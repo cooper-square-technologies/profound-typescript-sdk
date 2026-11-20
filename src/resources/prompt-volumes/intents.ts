@@ -18,10 +18,10 @@ export class Intents extends APIResource {
    * @example
    * ```ts
    * const intent = await client.promptVolumes.intents.onTheFly({
-   *   keyword: '',
    *   matching_type: 'exact_match',
    *   start_date: '2024-01-01',
    *   end_date: '2024-01-01',
+   *   keyword: 'x',
    * });
    * ```
    */
@@ -31,16 +31,25 @@ export class Intents extends APIResource {
 }
 
 export interface IntentOnTheFlyParams {
-  keyword: string;
+  /**
+   * phrase_match: all tokens anywhere in the prompt. exact_match: tokens plus the normalized keyword as a contiguous substring.
+   */
   matching_type: 'exact_match' | 'phrase_match';
   /**
+   * Inclusive first event week (YYYY-MM-DD). Must not be after end_date.
    * @format date
    */
   start_date: string;
   /**
+   * Inclusive last event week (YYYY-MM-DD). Must not be before start_date.
    * @format date
    */
   end_date: string;
+  /**
+   * Keyword or phrase whose matching conversations are classified by intent. One keyword per call.
+   * @minLength 1
+   */
+  keyword: string;
   /**
    * ISO 3166-1 alpha-3 country codes (e.g. USA). Omit to include every region.
    */
@@ -67,7 +76,10 @@ export namespace IntentOnTheFlyResponse {
      * @default false
      */
     truncated?: boolean;
-    query?: Record<string, unknown> | null;
+    query?: Record<
+      string,
+      string | number | boolean | Array<unknown> | Record<string, unknown> | null
+    > | null;
   }
 
   export interface Data {

@@ -186,14 +186,15 @@ export namespace PromptAnswersParams {
      */
     search_triggered?: boolean;
     /**
-     * Use 'sentiment_themes' instead
+     * Deprecated and always empty: legacy (v1) sentiment is retired. Use /v2/reports/answers (sentiment_claims) or /v2/reports/sentiment.
      * @default true
      * @deprecated
      */
     themes?: boolean;
     /**
-     * Uses legacy sentiment data.
+     * Deprecated and always empty: legacy (v1) sentiment is retired. Use /v2/reports/answers (sentiment_claims) or /v2/reports/sentiment.
      * @default false
+     * @deprecated
      */
     sentiment_themes?: boolean;
     /**
@@ -271,9 +272,14 @@ export namespace PromptAnswersResponse {
     citation_details?: Array<Data.CitationDetail> | null;
     web_search_results?: Array<string> | null;
     search_triggered?: boolean | null;
+    /**
+     * Deprecated and always empty: legacy (v1) sentiment is retired. Use /v2/reports/answers (sentiment_claims) or /v2/reports/sentiment.
+     * @deprecated
+     */
     themes?: Array<string> | null;
     /**
-     * Uses legacy sentiment data.
+     * Deprecated and always empty: legacy (v1) sentiment is retired. Use /v2/reports/answers (sentiment_claims) or /v2/reports/sentiment.
+     * @deprecated
      */
     sentiment_themes?: Array<Data.SentimentTheme> | null;
     search_queries?: Array<string> | null;

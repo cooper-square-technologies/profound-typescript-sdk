@@ -1525,7 +1525,7 @@ export namespace ReportGetBotsReportParams {
 
 export interface ReportQueryFanoutsParams {
   /**
-   * Metrics to return for each row.
+   * fanouts_per_execution: average searches the model issued per answer. total_fanouts: searches issued. share: a query's occurrences over its prompt's total fanouts (requires the query dimension). query_variations: distinct search strings per row (not available with the query dimension).
    * @minItems 1
    */
   metrics: Array<'fanouts_per_execution' | 'total_fanouts' | 'share' | 'query_variations'>;

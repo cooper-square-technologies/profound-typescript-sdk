@@ -15,13 +15,14 @@ export class Accuracy extends APIResource {
    * @example
    * ```ts
    * const accuracy = await client.reports.accuracy.createOverview({
+   *   citation_category_taxonomy: 'legacy',
    *   start_date: '',
    *   end_date: '',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   exclude_topic_ids: false,
    *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   include_no_persona: false,
+   *   include_no_tag: true,
+   *   include_no_persona: true,
    *   group_by: 'period',
    * });
    * ```
@@ -43,13 +44,14 @@ export class Accuracy extends APIResource {
    * @example
    * ```ts
    * const accuracy = await client.reports.accuracy.createBreakdown({
+   *   citation_category_taxonomy: 'legacy',
    *   start_date: '',
    *   end_date: '',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   exclude_topic_ids: false,
    *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   include_no_persona: false,
+   *   include_no_tag: true,
+   *   include_no_persona: true,
    *   breakdown_by: 'citation',
    *   limit: 10,
    *   offset: 0,
@@ -76,7 +78,7 @@ export class Accuracy extends APIResource {
    * ```ts
    * const accuracy = await client.reports.accuracy.createCitationAnalysis({
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
-   *   clean_href: '',
+   *   clean_href: 'x',
    *   start_date: '',
    *   end_date: '',
    * });
@@ -122,13 +124,15 @@ export class Accuracy extends APIResource {
    * @example
    * ```ts
    * const accuracy = await client.reports.accuracy.createInaccurateThemes({
+   *   citation_category_taxonomy: 'legacy',
    *   start_date: '',
    *   end_date: '',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   exclude_topic_ids: false,
    *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   include_no_persona: false,
+   *   include_no_tag: true,
+   *   include_no_persona: true,
+   *   verification_status: 'inaccurate',
    *   limit: 10,
    *   offset: 0,
    *   sort_by: 'response_share',
@@ -153,16 +157,20 @@ export class Accuracy extends APIResource {
    * @example
    * ```ts
    * const accuracy = await client.reports.accuracy.createInaccurateClusters({
+   *   citation_category_taxonomy: 'legacy',
    *   start_date: '',
    *   end_date: '',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   exclude_topic_ids: false,
    *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   include_no_persona: false,
+   *   include_no_tag: true,
+   *   include_no_persona: true,
+   *   verification_status: 'inaccurate',
    *   limit: 5000,
    *   offset: 0,
    *   include_models: false,
+   *   include_citations: true,
+   *   include_citation_hostnames: true,
    * });
    * ```
    */
@@ -183,13 +191,14 @@ export class Accuracy extends APIResource {
    * @example
    * ```ts
    * const accuracy = await client.reports.accuracy.createInaccuracyDrivers({
+   *   citation_category_taxonomy: 'legacy',
    *   start_date: '',
    *   end_date: '',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   exclude_topic_ids: false,
    *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   include_no_persona: false,
+   *   include_no_tag: true,
+   *   include_no_persona: true,
    *   limit: 5,
    * });
    * ```
@@ -211,13 +220,14 @@ export class Accuracy extends APIResource {
    * @example
    * ```ts
    * const accuracy = await client.reports.accuracy.createTopInaccurateClaims({
+   *   citation_category_taxonomy: 'legacy',
    *   start_date: '',
    *   end_date: '',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   exclude_topic_ids: false,
    *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   include_no_persona: false,
+   *   include_no_tag: true,
+   *   include_no_persona: true,
    *   limit: 5,
    * });
    * ```
@@ -239,14 +249,16 @@ export class Accuracy extends APIResource {
    * @example
    * ```ts
    * const accuracy = await client.reports.accuracy.createClaimBreakdown({
+   *   citation_category_taxonomy: 'legacy',
    *   start_date: '',
    *   end_date: '',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   exclude_topic_ids: false,
    *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   include_no_persona: false,
+   *   include_no_tag: true,
+   *   include_no_persona: true,
    *   cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
+   *   verification_status: 'inaccurate',
    * });
    * ```
    */
@@ -267,13 +279,14 @@ export class Accuracy extends APIResource {
    * @example
    * ```ts
    * const accuracy = await client.reports.accuracy.createClaimCitations({
+   *   citation_category_taxonomy: 'legacy',
    *   start_date: '',
    *   end_date: '',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   exclude_topic_ids: false,
    *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   include_no_persona: false,
+   *   include_no_tag: true,
+   *   include_no_persona: true,
    *   cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   limit: 10,
    *   offset: 0,
@@ -298,13 +311,14 @@ export class Accuracy extends APIResource {
    * @example
    * ```ts
    * const accuracy = await client.reports.accuracy.createClusterExampleRuns({
+   *   citation_category_taxonomy: 'legacy',
    *   start_date: '',
    *   end_date: '',
    *   category_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   exclude_topic_ids: false,
    *   tag_filter_type: 'any',
-   *   include_no_tag: false,
-   *   include_no_persona: false,
+   *   include_no_tag: true,
+   *   include_no_persona: true,
    *   cluster_id: '7c9e6679-7425-40de-944b-e07fc1f90ae7',
    *   limit: 20,
    *   offset: 0,
@@ -369,6 +383,19 @@ export interface AccuracyCreateOverviewParams {
    * @format uuid
    */
   category_id: string;
+  /**
+   * Legacy category names or V2 classification/custom names. ORed with citation_category_pairs.
+   */
+  citation_categories?: Array<string> | null;
+  /**
+   * Dataset used for category assignments and filters. V2 leaf group values are JSON [classification, subcategory] pairs.
+   * @default legacy
+   */
+  citation_category_taxonomy?: 'legacy' | 'v2';
+  /**
+   * V2-only exact [classification, subcategory] selections, ORed with citation_categories. An empty subcategory matches only the leaf with no subcategory under that classification.
+   */
+  citation_category_pairs?: Array<Array<unknown>> | null;
   comparison_start_date?: string | null;
   comparison_end_date?: string | null;
   languages?: Array<string> | null;
@@ -383,18 +410,17 @@ export interface AccuracyCreateOverviewParams {
    */
   tag_filter_type?: 'all' | 'any';
   /**
-   * @default false
+   * @default true
    */
   include_no_tag?: boolean;
   region_ids?: Array<string> | null;
   platform_ids?: Array<string> | null;
   persona_ids?: Array<string> | null;
   /**
-   * @default false
+   * @default true
    */
   include_no_persona?: boolean;
   prompt_ids?: Array<string> | null;
-  citation_categories?: Array<string> | null;
   date_bucket?: string | null;
   /**
    * @default period
@@ -461,6 +487,19 @@ export interface AccuracyCreateBreakdownParams {
    * @format uuid
    */
   category_id: string;
+  /**
+   * Legacy category names or V2 classification/custom names. ORed with citation_category_pairs.
+   */
+  citation_categories?: Array<string> | null;
+  /**
+   * Dataset used for category assignments and filters. V2 leaf group values are JSON [classification, subcategory] pairs.
+   * @default legacy
+   */
+  citation_category_taxonomy?: 'legacy' | 'v2';
+  /**
+   * V2-only exact [classification, subcategory] selections, ORed with citation_categories. An empty subcategory matches only the leaf with no subcategory under that classification.
+   */
+  citation_category_pairs?: Array<Array<unknown>> | null;
   comparison_start_date?: string | null;
   comparison_end_date?: string | null;
   languages?: Array<string> | null;
@@ -475,18 +514,17 @@ export interface AccuracyCreateBreakdownParams {
    */
   tag_filter_type?: 'all' | 'any';
   /**
-   * @default false
+   * @default true
    */
   include_no_tag?: boolean;
   region_ids?: Array<string> | null;
   platform_ids?: Array<string> | null;
   persona_ids?: Array<string> | null;
   /**
-   * @default false
+   * @default true
    */
   include_no_persona?: boolean;
   prompt_ids?: Array<string> | null;
-  citation_categories?: Array<string> | null;
   /**
    * @default citation
    */
@@ -571,6 +609,9 @@ export interface AccuracyCreateCitationAnalysisParams {
    * @format uuid
    */
   category_id: string;
+  /**
+   * @minLength 1
+   */
   clean_href: string;
   start_date: string;
   end_date: string;
@@ -653,6 +694,19 @@ export interface AccuracyCreateInaccurateThemesParams {
    * @format uuid
    */
   category_id: string;
+  /**
+   * Legacy category names or V2 classification/custom names. ORed with citation_category_pairs.
+   */
+  citation_categories?: Array<string> | null;
+  /**
+   * Dataset used for category assignments and filters. V2 leaf group values are JSON [classification, subcategory] pairs.
+   * @default legacy
+   */
+  citation_category_taxonomy?: 'legacy' | 'v2';
+  /**
+   * V2-only exact [classification, subcategory] selections, ORed with citation_categories. An empty subcategory matches only the leaf with no subcategory under that classification.
+   */
+  citation_category_pairs?: Array<Array<unknown>> | null;
   comparison_start_date?: string | null;
   comparison_end_date?: string | null;
   languages?: Array<string> | null;
@@ -667,18 +721,21 @@ export interface AccuracyCreateInaccurateThemesParams {
    */
   tag_filter_type?: 'all' | 'any';
   /**
-   * @default false
+   * @default true
    */
   include_no_tag?: boolean;
   region_ids?: Array<string> | null;
   platform_ids?: Array<string> | null;
   persona_ids?: Array<string> | null;
   /**
-   * @default false
+   * @default true
    */
   include_no_persona?: boolean;
   prompt_ids?: Array<string> | null;
-  citation_categories?: Array<string> | null;
+  /**
+   * @default inaccurate
+   */
+  verification_status?: 'inaccurate' | 'not_enough_data';
   /**
    * @default 10
    * @minimum 1
@@ -731,6 +788,19 @@ export interface AccuracyCreateInaccurateClustersParams {
    * @format uuid
    */
   category_id: string;
+  /**
+   * Legacy category names or V2 classification/custom names. ORed with citation_category_pairs.
+   */
+  citation_categories?: Array<string> | null;
+  /**
+   * Dataset used for category assignments and filters. V2 leaf group values are JSON [classification, subcategory] pairs.
+   * @default legacy
+   */
+  citation_category_taxonomy?: 'legacy' | 'v2';
+  /**
+   * V2-only exact [classification, subcategory] selections, ORed with citation_categories. An empty subcategory matches only the leaf with no subcategory under that classification.
+   */
+  citation_category_pairs?: Array<Array<unknown>> | null;
   comparison_start_date?: string | null;
   comparison_end_date?: string | null;
   languages?: Array<string> | null;
@@ -745,18 +815,21 @@ export interface AccuracyCreateInaccurateClustersParams {
    */
   tag_filter_type?: 'all' | 'any';
   /**
-   * @default false
+   * @default true
    */
   include_no_tag?: boolean;
   region_ids?: Array<string> | null;
   platform_ids?: Array<string> | null;
   persona_ids?: Array<string> | null;
   /**
-   * @default false
+   * @default true
    */
   include_no_persona?: boolean;
   prompt_ids?: Array<string> | null;
-  citation_categories?: Array<string> | null;
+  /**
+   * @default inaccurate
+   */
+  verification_status?: 'inaccurate' | 'not_enough_data';
   /**
    * @format uuid
    */
@@ -777,6 +850,16 @@ export interface AccuracyCreateInaccurateClustersParams {
    * @default false
    */
   include_models?: boolean;
+  /**
+   * Include citation URLs and optional legacy hostnames.
+   * @default true
+   */
+  include_citations?: boolean;
+  /**
+   * Include legacy run-wide citation hostnames. Disable to skip this lookup; cited page URLs remain included.
+   * @default true
+   */
+  include_citation_hostnames?: boolean;
 }
 
 export interface AccuracyCreateInaccurateClustersResponse {
@@ -805,6 +888,15 @@ export namespace AccuracyCreateInaccurateClustersResponse {
      */
     description?: string;
     responseShareDelta?: number | null;
+    /**
+     * Lexically sorted, unranked sample of up to 100 complete cited page URLs, each at most 8192 UTF-8 bytes, with a 4 MiB URL JSON budget shared across response rows. Check citation_urls_truncated for omissions.
+     */
+    citationUrls?: Array<string>;
+    /**
+     * Whether citation_urls is an incomplete sample because citation count or byte limits were reached.
+     * @default false
+     */
+    citationUrlsTruncated?: boolean;
     models?: Array<Data.Model> | null;
   }
 
@@ -823,6 +915,19 @@ export interface AccuracyCreateInaccuracyDriversParams {
    * @format uuid
    */
   category_id: string;
+  /**
+   * Legacy category names or V2 classification/custom names. ORed with citation_category_pairs.
+   */
+  citation_categories?: Array<string> | null;
+  /**
+   * Dataset used for category assignments and filters. V2 leaf group values are JSON [classification, subcategory] pairs.
+   * @default legacy
+   */
+  citation_category_taxonomy?: 'legacy' | 'v2';
+  /**
+   * V2-only exact [classification, subcategory] selections, ORed with citation_categories. An empty subcategory matches only the leaf with no subcategory under that classification.
+   */
+  citation_category_pairs?: Array<Array<unknown>> | null;
   comparison_start_date?: string | null;
   comparison_end_date?: string | null;
   languages?: Array<string> | null;
@@ -837,18 +942,17 @@ export interface AccuracyCreateInaccuracyDriversParams {
    */
   tag_filter_type?: 'all' | 'any';
   /**
-   * @default false
+   * @default true
    */
   include_no_tag?: boolean;
   region_ids?: Array<string> | null;
   platform_ids?: Array<string> | null;
   persona_ids?: Array<string> | null;
   /**
-   * @default false
+   * @default true
    */
   include_no_persona?: boolean;
   prompt_ids?: Array<string> | null;
-  citation_categories?: Array<string> | null;
   /**
    * @default 5
    * @minimum 1
@@ -890,6 +994,19 @@ export interface AccuracyCreateTopInaccurateClaimsParams {
    * @format uuid
    */
   category_id: string;
+  /**
+   * Legacy category names or V2 classification/custom names. ORed with citation_category_pairs.
+   */
+  citation_categories?: Array<string> | null;
+  /**
+   * Dataset used for category assignments and filters. V2 leaf group values are JSON [classification, subcategory] pairs.
+   * @default legacy
+   */
+  citation_category_taxonomy?: 'legacy' | 'v2';
+  /**
+   * V2-only exact [classification, subcategory] selections, ORed with citation_categories. An empty subcategory matches only the leaf with no subcategory under that classification.
+   */
+  citation_category_pairs?: Array<Array<unknown>> | null;
   comparison_start_date?: string | null;
   comparison_end_date?: string | null;
   languages?: Array<string> | null;
@@ -904,18 +1021,17 @@ export interface AccuracyCreateTopInaccurateClaimsParams {
    */
   tag_filter_type?: 'all' | 'any';
   /**
-   * @default false
+   * @default true
    */
   include_no_tag?: boolean;
   region_ids?: Array<string> | null;
   platform_ids?: Array<string> | null;
   persona_ids?: Array<string> | null;
   /**
-   * @default false
+   * @default true
    */
   include_no_persona?: boolean;
   prompt_ids?: Array<string> | null;
-  citation_categories?: Array<string> | null;
   /**
    * @default 5
    * @minimum 1
@@ -948,6 +1064,19 @@ export interface AccuracyCreateClaimBreakdownParams {
    * @format uuid
    */
   cluster_id: string;
+  /**
+   * Legacy category names or V2 classification/custom names. ORed with citation_category_pairs.
+   */
+  citation_categories?: Array<string> | null;
+  /**
+   * Dataset used for category assignments and filters. V2 leaf group values are JSON [classification, subcategory] pairs.
+   * @default legacy
+   */
+  citation_category_taxonomy?: 'legacy' | 'v2';
+  /**
+   * V2-only exact [classification, subcategory] selections, ORed with citation_categories. An empty subcategory matches only the leaf with no subcategory under that classification.
+   */
+  citation_category_pairs?: Array<Array<unknown>> | null;
   comparison_start_date?: string | null;
   comparison_end_date?: string | null;
   languages?: Array<string> | null;
@@ -962,18 +1091,21 @@ export interface AccuracyCreateClaimBreakdownParams {
    */
   tag_filter_type?: 'all' | 'any';
   /**
-   * @default false
+   * @default true
    */
   include_no_tag?: boolean;
   region_ids?: Array<string> | null;
   platform_ids?: Array<string> | null;
   persona_ids?: Array<string> | null;
   /**
-   * @default false
+   * @default true
    */
   include_no_persona?: boolean;
   prompt_ids?: Array<string> | null;
-  citation_categories?: Array<string> | null;
+  /**
+   * @default inaccurate
+   */
+  verification_status?: 'inaccurate' | 'not_enough_data';
 }
 
 export interface AccuracyCreateClaimBreakdownResponse {
@@ -1020,6 +1152,19 @@ export interface AccuracyCreateClaimCitationsParams {
    * @format uuid
    */
   cluster_id: string;
+  /**
+   * Legacy category names or V2 classification/custom names. ORed with citation_category_pairs.
+   */
+  citation_categories?: Array<string> | null;
+  /**
+   * Dataset used for category assignments and filters. V2 leaf group values are JSON [classification, subcategory] pairs.
+   * @default legacy
+   */
+  citation_category_taxonomy?: 'legacy' | 'v2';
+  /**
+   * V2-only exact [classification, subcategory] selections, ORed with citation_categories. An empty subcategory matches only the leaf with no subcategory under that classification.
+   */
+  citation_category_pairs?: Array<Array<unknown>> | null;
   comparison_start_date?: string | null;
   comparison_end_date?: string | null;
   languages?: Array<string> | null;
@@ -1034,18 +1179,17 @@ export interface AccuracyCreateClaimCitationsParams {
    */
   tag_filter_type?: 'all' | 'any';
   /**
-   * @default false
+   * @default true
    */
   include_no_tag?: boolean;
   region_ids?: Array<string> | null;
   platform_ids?: Array<string> | null;
   persona_ids?: Array<string> | null;
   /**
-   * @default false
+   * @default true
    */
   include_no_persona?: boolean;
   prompt_ids?: Array<string> | null;
-  citation_categories?: Array<string> | null;
   /**
    * @default 10
    * @minimum 1
@@ -1066,6 +1210,10 @@ export interface AccuracyCreateClaimCitationsParams {
 export interface AccuracyCreateClaimCitationsResponse {
   data: Array<AccuracyCreateClaimCitationsResponse.Data>;
   totalCount: number;
+  /**
+   * @default Page-to-claim associations and snippets come from page content in the active FactCheck generation, not date- or execution-filtered attribution. Citation metrics use the requested scope; a returned page does not establish that it supported the selected claim in a matching execution.
+   */
+  evidenceScope?: string;
 }
 
 export namespace AccuracyCreateClaimCitationsResponse {
@@ -1099,6 +1247,19 @@ export interface AccuracyCreateClusterExampleRunsParams {
    * @format uuid
    */
   cluster_id: string;
+  /**
+   * Legacy category names or V2 classification/custom names. ORed with citation_category_pairs.
+   */
+  citation_categories?: Array<string> | null;
+  /**
+   * Dataset used for category assignments and filters. V2 leaf group values are JSON [classification, subcategory] pairs.
+   * @default legacy
+   */
+  citation_category_taxonomy?: 'legacy' | 'v2';
+  /**
+   * V2-only exact [classification, subcategory] selections, ORed with citation_categories. An empty subcategory matches only the leaf with no subcategory under that classification.
+   */
+  citation_category_pairs?: Array<Array<unknown>> | null;
   comparison_start_date?: string | null;
   comparison_end_date?: string | null;
   languages?: Array<string> | null;
@@ -1113,18 +1274,17 @@ export interface AccuracyCreateClusterExampleRunsParams {
    */
   tag_filter_type?: 'all' | 'any';
   /**
-   * @default false
+   * @default true
    */
   include_no_tag?: boolean;
   region_ids?: Array<string> | null;
   platform_ids?: Array<string> | null;
   persona_ids?: Array<string> | null;
   /**
-   * @default false
+   * @default true
    */
   include_no_persona?: boolean;
   prompt_ids?: Array<string> | null;
-  citation_categories?: Array<string> | null;
   /**
    * @default 20
    * @minimum 1
@@ -1155,10 +1315,12 @@ export namespace AccuracyCreateClusterExampleRunsResponse {
 
 export interface AccuracyCreateClusterVerificationPairsParams {
   /**
+   * Category UUID. Access is enforced before the tool runs.
    * @format uuid
    */
   category_id: string;
   /**
+   * Claim cluster UUID returned by a FactCheck table.
    * @format uuid
    */
   cluster_id: string;
@@ -1182,6 +1344,7 @@ export namespace AccuracyCreateClusterVerificationPairsResponse {
 
 export interface AccuracyCreateFactcheckSetupStatusParams {
   /**
+   * Category UUID. Access is enforced before the tool runs.
    * @format uuid
    */
   category_id: string;

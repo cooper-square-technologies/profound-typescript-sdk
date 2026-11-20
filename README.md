@@ -1,8 +1,8 @@
-# profound
+# Profound
 
-This library provides convenient access to the profound REST API from TypeScript or JavaScript.
+This library provides convenient access to the Profound REST API from TypeScript or JavaScript.
 
-The full API of this library can be found in [api.md](./api.md).
+The REST API documentation can be found on [docs.tryprofound.com](https://docs.tryprofound.com). The full API of this library can be found in [api.md](./api.md).
 
 <br />
 
@@ -76,8 +76,8 @@ Pass credentials to the generated client constructor. Environment variables are 
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `accessToken` | `string \| provider` | - | Credential for the BearerAuth scheme. Defaults to PROFOUND_ACCESS_TOKEN. |
-| `apiKey` | `string \| provider` | - | Credential for the APIKeyHeader scheme. Defaults to PROFOUND_API_KEY. |
+| `accessToken` | `string \| AuthTokenProvider \| null` | - | Credential for the BearerAuth scheme. Defaults to PROFOUND_ACCESS_TOKEN. |
+| `apiKey` | `string \| AuthTokenProvider \| null` | - | Credential for the APIKeyHeader scheme. Defaults to PROFOUND_API_KEY. |
 
 Declared schemes:
 
@@ -103,7 +103,7 @@ try {
 }
 ```
 
-Documented error statuses: `422`.
+Documented error statuses: `410`, `422`, `503`.
 
 <br />
 
@@ -123,8 +123,8 @@ const client = new Profound({
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `accessToken` | `string \| AuthTokenProvider` | `process.env["PROFOUND_ACCESS_TOKEN"]` | Credential for the BearerAuth scheme. |
-| `apiKey` | `string \| AuthTokenProvider` | `process.env["PROFOUND_API_KEY"]` | Credential for the APIKeyHeader scheme. |
+| `accessToken` | `string \| AuthTokenProvider \| null` | `process.env["PROFOUND_ACCESS_TOKEN"]` | Credential for the BearerAuth scheme. |
+| `apiKey` | `string \| AuthTokenProvider \| null` | `process.env["PROFOUND_API_KEY"]` | Credential for the APIKeyHeader scheme. |
 | `environment` | `Environment` | - | Select one of the configured API environments. |
 | `baseURL` | `string \| null` | `process.env["PROFOUND_BASE_URL"]` | Override the default API base URL. Pass `null` when selecting a configured environment. |
 | `timeout` | `number` | `60000` | Maximum time in milliseconds to wait for a response before aborting a request. |
