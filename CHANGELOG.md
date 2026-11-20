@@ -1,5 +1,183 @@
 # Changelog
 
+## [0.52.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.51.0...v0.52.0) (2026-11-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 167 breaking changes to the SDK surface.
+    - `422` error response of `organizations.regions` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `organizations.models` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `organizations.domains` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `organizations.listAssets` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `organizations.getPersonas` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `organizations.list` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `organizations.categories.list` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `organizations.categories.topics` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `organizations.categories.tags` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `organizations.categories.prompts` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `organizations.categories.assets` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `organizations.categories.getCategoryPersonas` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `organizations.categories.createPrompts` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `organizations.categories.updatePrompts` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `organizations.categories.updatePromptStatus` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `organizations.categories.retrieveRegions` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `organizations.categories.getCitationCategories` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `prompts.answers` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `prompts.answersV2` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `prompts.streamAnswersV2` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.citations` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.visibility` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.sentiment` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.sentimentV2` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.getReferralsReport` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.getBotsReport` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.queryFanouts` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.streamCitations` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.streamVisibility` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.streamSentiment` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.streamCitationsV2` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.streamVisibilityV2` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.streamSentimentV2` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.streamQueryFanouts` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.getReferralsReportV2` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.getBotsReportV2` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.queryVisibility` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.queryCitations` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.querySentiment` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.queryQueryFanouts` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.webSearchResults.query` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.webSearchResults.stream` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.shopping.brands` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.shopping.streamBrands` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.shopping.products` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.shopping.streamProducts` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.shopping.merchants` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.shopping.streamMerchants` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.shopping.triggerRate` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.shopping.streamTriggerRate` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.accuracy.createOverview` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.accuracy.createBreakdown` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.accuracy.createCitationAnalysis` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.accuracy.createTopicIds` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.accuracy.createInaccurateThemes` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.accuracy.createInaccurateClusters` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.accuracy.createInaccuracyDrivers` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.accuracy.createTopInaccurateClaims` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.accuracy.createClaimBreakdown` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.accuracy.createClaimCitations` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.accuracy.createClusterExampleRuns` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.accuracy.createClusterVerificationPairs` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.accuracy.createFactcheckSetupStatus` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.factcheck.queryScores` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.factcheck.streamScores` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.factcheck.claims.queryClaims` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.factcheck.claims.streamClaims` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.social.youtube.getChannels` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.social.youtube.getVideos` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `reports.social.youtube.getSummary` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `content.optimization.list` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `content.optimization.retrieve` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `agents.list` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `agents.retrieve` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `agents.create` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `agents.publish` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `agents.update` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `agents.retrieveGraph` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `agents.runs.create` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `agents.runs.retrieve` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `agents.nodeTypes.list` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `agents.nodeTypes.retrieveSchema` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `knowledgeBases.list` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `knowledgeBases.search` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `knowledgeBases.documents.create` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `knowledgeBases.documents.update` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `knowledgeBases.documents.delete` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `knowledgeBases.folders.create` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `knowledgeBases.folders.delete` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `projects.list` changed from `http_validation_error` to `application/json`.
+    - Removed body field `category_id` from `projects.create`.
+    - Removed body field `title` from `projects.create`.
+    - Removed body field `project_name` from `projects.create`.
+    - Removed body field `focus` from `projects.create`.
+    - Removed body field `topics` from `projects.create`.
+    - Removed body field `attachments` from `projects.create`.
+    - Removed body field `generation_context` from `projects.create`.
+    - Removed request body from `projects.create`.
+    - Response of `projects.create` changed from `project_generation_response` to an unnamed `application/json` body.
+    - `422` error response of `projects.create` changed from `http_validation_error` to `application/json`.
+    - Response of `projects.retrieve` changed from `project_detail_response` to `profound_projects_models_project_detail_response`.
+    - `422` error response of `projects.retrieve` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `projects.delete` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `projects.getStatus` changed from `http_validation_error` to `application/json`.
+    - Response of `projects.archive` changed from `project_response` to `profound_projects_models_project_response`.
+    - `422` error response of `projects.archive` changed from `http_validation_error` to `application/json`.
+    - Response of `projects.unarchive` changed from `project_response` to `profound_projects_models_project_response`.
+    - `422` error response of `projects.unarchive` changed from `http_validation_error` to `application/json`.
+    - Removed query param `category_id` from `projects.generations.list`.
+    - Removed query param `status` from `projects.generations.list`.
+    - Removed query param `limit` from `projects.generations.list`.
+    - Removed query param `offset` from `projects.generations.list`.
+    - Response of `projects.generations.list` changed from `list_project_generations_response` to an unnamed `application/json` body.
+    - `422` error response of `projects.generations.list` changed from `http_validation_error` to `application/json`.
+    - Removed query param `category_id` from `projects.generations.retrieve`.
+    - Response of `projects.generations.retrieve` changed from `project_generation_status_response` to an unnamed `application/json` body.
+    - `422` error response of `projects.generations.retrieve` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `projects.tasks.list` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `projects.tasks.create` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `projects.tasks.retrieve` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `projects.tasks.update` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `projects.tasks.delete` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `projects.tasks.updateStatus` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `integrations.list` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `documents.create` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `documents.list` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `documents.retrieve` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `documents.update` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `documents.delete` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `documents.replaceContent` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `ads.openaiAds.adAccount.retrieveInsights` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `promptVolumes.volume.onTheFly` changed from `http_validation_error` to `application/json`.
+    - `422` error response of `promptVolumes.intents.onTheFly` changed from `http_validation_error` to `application/json`.
+    - Property `accuracy_citation_analysis_query.clean_href` validation changed (`minLength` none → `1`).
+    - Property `analysis_type_filter.value` type changed from `enum(visibility | sentiment | sentiment_v2 | …) | Array<enum(visibility | sentiment | sentiment_v2 | …)>` to `enum(visibility | sentiment | accuracy) | Array<enum(visibility | sentiment | accuracy)>`.
+    - Property `category_with_organization.organization` type changed from `organization` to `organization | null`.
+    - Property `create_prompt_input.analysis_types` type changed from `Array<enum(visibility | sentiment | sentiment_v2 | …)> | null` to `Array<enum(visibility | sentiment | accuracy)> | null`.
+    - Property `otf_intent_shares_query.keyword` validation changed (`minLength` none → `1`).
+    - Property `otf_volume_request.keyword` validation changed (`minLength` none → `1`).
+    - Property `prompt.created_at` type changed from `string<date-time>` to `string`.
+    - Property `prompt.updated_at` type changed from `string<date-time>` to `string`.
+    - Property `prompt_update_preview.platforms` type changed from `named_resource_diff_list | null` to `prompt_platform_diff_list | null`.
+    - Property `query_fanouts_v2_query.sort` type changed from `app_routes_v2_answer_engine_insights_reports_query_fanouts_sort_spec | null` to `external_api_routes_v2_answer_engine_insights_reports_query_fanouts_sort_spec | null`.
+    - Property `sentiment_v2_query.sort` type changed from `app_routes_v2_answer_engine_insights_reports_sentiment_sort_spec` to `external_api_routes_v2_answer_engine_insights_reports_sentiment_sort_spec`.
+    - Property `update_prompt_input.analysis_types` type changed from `Array<enum(visibility | sentiment | sentiment_v2 | …)> | null` to `Array<enum(visibility | sentiment | accuracy)> | null`.
+    - Property `visibility_v2_query.sort` type changed from `app_routes_v2_answer_engine_insights_reports_visibility_sort_spec` to `external_api_routes_v2_answer_engine_insights_reports_visibility_sort_spec`.
+    - Property `volume_response_info.query` type changed from `object | null` to `Record<string, profound_core_models_json_json_value> | null`.
+    - Removed schema `analysis_type`.
+    - Removed schema `create_project_request`.
+    - Removed schema `http_validation_error`.
+    - Removed schema `list_project_generations_response`.
+    - Removed schema `project`.
+    - Removed schema `project_attachment`.
+    - Removed schema `project_detail`.
+    - Removed schema `project_detail_response`.
+    - Removed schema `project_generation`.
+    - Removed schema `project_generation_context`.
+    - Removed schema `project_generation_context_item`.
+    - Removed schema `project_generation_date_range`.
+    - Removed schema `project_generation_response`.
+    - Removed schema `project_generation_status`.
+    - Removed schema `project_generation_status_response`.
+    - Removed schema `project_response`.
+    - Removed schema `validation_error`.
+    - Removed schema `app_routes_v2_answer_engine_insights_reports_query_fanouts_sort_spec`.
+    - Removed schema `app_routes_v2_answer_engine_insights_reports_sentiment_sort_spec`.
+    - Removed schema `app_routes_v2_answer_engine_insights_reports_visibility_sort_spec`.
+
+### Features
+
+* **api:** update SDK surface (288 changes) ([5d8c39b](https://github.com/cooper-square-technologies/profound-typescript-sdk/commit/5d8c39b4353473d5f6751de09ce147d7205ed8f3))
+
 ## [0.51.0](https://github.com/cooper-square-technologies/profound-typescript-sdk/compare/v0.50.0...v0.51.0) (2026-09-25)
 
 
